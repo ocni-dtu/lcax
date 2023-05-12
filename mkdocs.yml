@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: EPDx
+theme:
+  name: material
+  custom_dir: 'docs/overrides'
+  font:
+    text: Roboto
+markdown_extensions:
+  - mdx_include:
+      base_path: docs
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+repo_url: https://github.com/ocni-dtu/lcax
+nav:
+  - EPDx: index.md
+  - Schemas: schemas.md
+extra:
+  analytics:
+    provider: custom
