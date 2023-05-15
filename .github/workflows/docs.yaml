@@ -21,7 +21,8 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install pipenv
-          pip install $(pipenv requirements --dev)
+          pipenv requirements --dev > requirements.txt
+          pip install -r requirements.txt
 
       - name: Export Schemas
         run: |
