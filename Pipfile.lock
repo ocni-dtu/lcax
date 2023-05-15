@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "566166d7d0d0d26d9d204f286a80a38a81e8a211db96532ad9f8a5374b31c95b"
+            "sha256": "1920f17b5940660e71d8c34a2e7b89a11544f4f77a29cbe6a0283500fb329705"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -19,14 +19,14 @@
     "default": {
         "epdx": {
             "hashes": [
-                "sha256:0db28f6f6805bcdecbc173f1a0897ee1f949d29e64b76546d4eeb74959fc5767",
-                "sha256:666159f190999a23d2502f60cb08a54553ef14ba9fb4095b93595285a704e03c",
-                "sha256:6ac888e484f994f59087b65c0e55621da9338c8ae0481265e8ca0b88744a7da7",
-                "sha256:bebdede9003f094dbaf7d05646bae85c88d2d0a6ff166f482a4dfe95eb74b2da",
-                "sha256:e72bc2a39f6bbf0d4c1d93fac2ab6c0d29b498831ef53341fce66914311de3c5"
+                "sha256:22cf5700cbb7c3f49a6675786ab765df64213af0d7b9f6f3e62274783c64c304",
+                "sha256:9f282efea2889d0a4d56a5e6a5b18545c17098e7440f90f9502e02dc1e24a338",
+                "sha256:b168a7ab96617514c196eeece02bc144c8b2dfbc5c59991912e181f8351bee5d",
+                "sha256:c45c67df6e2185319f16a3634c52000676742750b3b7adca688eb36b4e64e255",
+                "sha256:d16a3e3fd74b93298d358b1ce3492e20ac2b823055da4cfb5349369600f4efb2"
             ],
             "index": "pypi",
-            "version": "==0.2.4"
+            "version": "==0.2.5"
         },
         "pydantic": {
             "hashes": [
@@ -337,11 +337,11 @@
         },
         "pymdown-extensions": {
             "hashes": [
-                "sha256:a499191d8d869f30339de86fcf072a787e86c42b6f16f280f5c2cf174182b7f3",
-                "sha256:f7e86c1d3981f23d9dc43294488ecb54abadd05b0be4bf8f0e15efc90f7853ff"
+                "sha256:9a77955e63528c2ee98073a1fb3207c1a45607bc74a34ef21acd098f46c3aa8a",
+                "sha256:e6cbe8ace7d8feda30bc4fd6a21a073893a9a0e90c373e92d69ce5b653051f55"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==9.11"
+            "version": "==10.0"
         },
         "python-dateutil": {
             "hashes": [

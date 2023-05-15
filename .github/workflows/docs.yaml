@@ -26,8 +26,8 @@ jobs:
 
       - name: Export Schemas
         run: |
-          python src/export project > docs/schemas/lcaxproject.schema.json
-          python src/export assembly > docs/schemas/lcaxassembly.schema.json
+          python src/export.py project > docs/schemas/lcaxproject.schema.json
+          python src/export.py assembly > docs/schemas/lcaxassembly.schema.json
 
       - name: Build Docs
         run: |
