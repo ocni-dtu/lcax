@@ -1,0 +1,43 @@
+on:
+  workflow_call:
+
+jobs:
+  deployDocs:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          pip install pipenv
+          pip install $(pipenv requirements --dev)
+
+      - name: Export Schemas
+        run: |
+          python src/export project > docs/schemas/lcaxproject.schema.json
+          python src/export assembly > docs/schemas/lcaxassembly.schema.json
+
+      - name: Build Docs
+        run: |
+          mkdocs build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
