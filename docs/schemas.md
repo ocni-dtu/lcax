@@ -17,7 +17,7 @@
 === "JSON Schema"
 
     ```json
-    {!> schemas/lcaxassemly.schema.json!}
+    {!> schemas/lcaxassembly.schema.json!}
     ```
 
 === "Python"

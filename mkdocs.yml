@@ -1,9 +1,11 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 
-site_name: EPDx
+site_name: LCAx
 theme:
   name: material
   custom_dir: 'docs/overrides'
+  palette:
+    - scheme: chrkong
   font:
     text: Roboto
 markdown_extensions:
@@ -14,8 +16,18 @@ markdown_extensions:
       alternate_style: true
 repo_url: https://github.com/ocni-dtu/lcax
 nav:
-  - EPDx: index.md
+  - LCAx: index.md
   - Schemas: schemas.md
 extra:
+  generator: false
+  social:
+    - icon: octicons/globe-24
+      link: https://kongsgaard.eu
+      name: Christian Kongsgaard ApS
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/christian-kongsgaard/
   analytics:
     provider: custom
+extra_css:
+  - stylesheets/extra.css
+copyright: Christian Kongsgaard ApS

@@ -29,4 +29,4 @@ EPDs come in many data formats e.g. ILCD+EPD and PDF, and it is not our intentio
 create an exchange format that is easily human and machine-readable.
 Besides being a format EPDx is a library for parsing other formats.
 
-The first beta version of EPDx can be found here: https://epdx.kongsgaard.eu
+The first beta version of EPDx can be found [here](https://epdx.kongsgaard.eu)
