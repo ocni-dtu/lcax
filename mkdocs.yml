@@ -1,6 +1,9 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 
 site_name: LCAx
+site_author: Christian Kongsgaard
+site_description: "The goal for LCAx is to make an open, machine and human-readable data format for exchanging LCA results, EPD's and assemblies."
+site_url: "https://lcax.kongsgaard.eu"
 theme:
   name: material
   custom_dir: 'docs/overrides'
