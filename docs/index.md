@@ -7,12 +7,16 @@ We propose a simple three level data format with information on project, assembl
 written in an open data format and paired with a validator for a more robust and standardized format.
 We intend to create connections to existing tools and API’s.
 
+![LCAx](./assets/benchmark.png)
+
 ## LCAxProject
 
 The project is the top level format that contains information such as name, description, etc.
 It also includes information about what life cycle stages and impact categories should be calculated for the project.
 Besides that it includes a list of parts (LCAxAssembly items) that make up the project.
 Finally, if the project is already calculated then it includes the top level results.
+
+![LCAx Project](./assets/lcax%20project.jpeg)
 
 ## LCAxAssembly
 
@@ -23,6 +27,8 @@ without changing the EPD.
 If the project is already calculated then it includes the environmental impact results.
 
 ## EPDx
+
+![EPDx](./assets/epdx.png)
 
 EPDs is the lowest level of the hierarchy. EPDs contain all the environmental data that is needed to calculate the LCA.
 EPDs come in many data formats e.g. ILCD+EPD and PDF, and it is not our intention to replace those formats but meanly
