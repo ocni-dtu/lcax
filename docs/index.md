@@ -1,38 +1,33 @@
 # LCAx
 
 The goal for LCAx is to make an open, machine and human-readable data format for exchanging LCA results,
-EPD's and assemblies. 
+EPD's and assemblies.
 
 We propose a simple three level data format with information on project, assembly and EPD level,
 written in an open data format and paired with a validator for a more robust and standardized format.
 We intend to create connections to existing tools and API’s.
 
+Our goal is making LCA calculations more accessible, transparent, and open.
+
 ![LCAx](./assets/benchmark.png)
 
-## LCAxProject
+# Motivation
 
-The project is the top level format that contains information such as name, description, etc.
-It also includes information about what life cycle stages and impact categories should be calculated for the project.
-Besides that it includes a list of parts (LCAxAssembly items) that make up the project.
-Finally, if the project is already calculated then it includes the top level results.
+We are doing this because we see that many new LCA tools are seeing the light of day recently, but there is no open data
+exchange format between different software. This makes it hard to collaborate in interdisciplinary teams, as they all
+need to use the same platform for calculations if multiple people are working on the same calculation.
 
-![LCAx Project](./assets/lcax%20project.jpeg)
+Furthermore, it makes it hard to quality assure an LCA calculation coming from another software than the one you or your
+company is using. Having an open data format will make it easier to check if an LCA calculation is compliant with the
+requirements for an individual project.
 
-## LCAxAssembly
+# Get Involved!
 
-LCAxAssembly is a format for assemblies/aggregates/build-ups/parts/components.
-It is what makes up a project, and it brings together several EPDs in a single unit.
-It carries a series of additional data points to elaborate on the EPDs and make them Assembly-specific,
-without changing the EPD.
-If the project is already calculated then it includes the environmental impact results.
+In the spirit of transparency and openness, we would like anyone with interest in the project to participate on which
+ever level you feel comfortable with. If that is as an LCA specialist that has input to what needs to be included in the
+format, or as a developer helping with writing code for the project, or simply spreading the word in your professional
+network, we will be thankful for your contribution. 
 
-## EPDx
-
-![EPDx](./assets/epdx.png)
-
-EPDs is the lowest level of the hierarchy. EPDs contain all the environmental data that is needed to calculate the LCA.
-EPDs come in many data formats e.g. ILCD+EPD and PDF, and it is not our intention to replace those formats but meanly
-create an exchange format that is easily human and machine-readable.
-Besides being a format EPDx is a library for parsing other formats.
-
-The first beta version of EPDx can be found [here](https://epdx.kongsgaard.eu)
+The more people are involved and aware of the project, the more likely it is to succeed. 
+Feel free to reach out to us on [GitHub](https://github.com/ocni-dtu/lcax/issues) or contact us through 
+[email](mailto:christian@kongsgaard.eu), and we will get back to you as soon as possible.
