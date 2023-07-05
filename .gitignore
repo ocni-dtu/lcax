@@ -168,3 +168,7 @@ docs/schemas
 .vscode
 .idea
 .fleet
+
+# Added by cargo
+
+/target

@@ -1,0 +1,26 @@
+on:
+  workflow_call:
+    secrets:
+      cargo_token:
+        required: true
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Tests
+        run: cargo test --package lcax --target x86_64-unknown-linux-gnu
+
+      - name: Run Export Schemas
+        run: cargo run --target x86_64-unknown-linux-gnu --bin export-schema > lcax.schema.json
+
+      - name: Upload JSON Schema
+        uses: actions/upload-artifact@v3
+        with:
+          name: json-schema
+          path: 'lcax.schema.json'
+
+      - name: Publish Crate
+        run: cargo publish --allow-dirty --target x86_64-unknown-linux-gnu --token ${{ secrets.cargo_token }}
