@@ -1,9 +1,9 @@
 [package]
 name = "lcax"
 description = "LCAx is an open, machine and human-readable data format for exchanging LCA results."
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Christian Kongsgaard <christian@kongsgaard.eu>"]
-edition = "2021"
+edition = "2018"
 readme = "README.md"
 license-file = "LICENSE"
 homepage = "https://lcax.kongsgaard.eu"
@@ -12,7 +12,6 @@ repository = "https://github.com/ocni-dtu/lcax"
 
 [lib]
 name = "lcax"
-description = "LCAx is an open, machine and human-readable data format for exchanging LCA results."
 crate-type = ["cdylib", "rlib"]
 
 [[bin]]
@@ -26,4 +25,3 @@ schemars = { version = "0.8.12", features = ["chrono"] }
 serde = { version = "1.0.152", features = ["derive"] }
 serde_json = "1.0.93"
 epdx = "0.2.8"
-url = { version = "2", features = ["serde"] }

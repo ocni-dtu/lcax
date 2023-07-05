@@ -38,19 +38,14 @@ jobs:
           --input-file-type jsonschema \
           --output packages/python/src/lcax/pydantic.py
 
-      - name: Build wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          args: --release --out dist
-          manylinux: auto
-
       - name: Publish to PyPI
         uses: PyO3/maturin-action@v1
         env:
           MATURIN_PYPI_TOKEN: ${{ secrets.pypi_token }}
         with:
-          command: upload
-          args: --skip-existing *
+          command: publish
+          args: --release --out dist
+          manylinux: auto
 
       - name: Upload Pydantic Classes
         uses: actions/upload-artifact@v3

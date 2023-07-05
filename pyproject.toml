@@ -8,6 +8,8 @@ authors = [
     { name = "Christian Kongsgaard", email = "christian@kongsgaard.eu" },
 ]
 
+dependencies = ["cffi"]
+
 [project.optional-dependencies]
 doc = [
     "mkdocs-material >=8.1.4,<9.0.0",
@@ -33,4 +35,4 @@ build-backend = "maturin"
 
 [tool.maturin]
 # "extension-module" tells pyo3 we want to build an extension module (skips linking against libpython.so)
-python-source = "packages/python"
+python-source = "packages/python/src"
