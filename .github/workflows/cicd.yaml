@@ -40,6 +40,5 @@ jobs:
     uses: ocni-dtu/lcax/.github/workflows/release.yaml@main
     needs:
       - buildRust
-      - deployJS
       - deployPython
       - deployDocs
