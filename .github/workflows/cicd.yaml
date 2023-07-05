@@ -30,7 +30,7 @@ jobs:
     secrets:
       pypi_token: ${{ secrets.PYPI_TOKEN }}
 
-  createDocs:
+  deployDocs:
     needs:
       - buildRust
       - deployPython
