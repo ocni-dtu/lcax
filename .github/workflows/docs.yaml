@@ -1,3 +1,4 @@
+name: "Release Docs"
 on:
   workflow_call:
 
