@@ -15,6 +15,16 @@ jobs:
           name: json-schema
           path: artifacts
 
+      - uses: actions/download-artifact@v2
+        with:
+          name: pydantic-schema
+          path: artifacts
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: rust-schema
+          path: artifacts
+
       - name: Set Env
         run: |
           echo "TAG_VERSION=$(grep -o -m 1 [0-9]\.[0-9]*\.[0-9]* Cargo.toml)" >> $GITHUB_ENV
