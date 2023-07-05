@@ -24,5 +24,11 @@ jobs:
           name: json-schema
           path: 'lcax.schema.json'
 
+      - name: Upload Rust Schema
+        uses: actions/upload-artifact@v3
+        with:
+          name: rust-schema
+          path: 'src/project.rs'
+
       - name: Publish Crate
         run: cargo publish --allow-dirty --target x86_64-unknown-linux-gnu --token ${{ secrets.cargo_token }}

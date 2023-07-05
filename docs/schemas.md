@@ -8,7 +8,7 @@ The specification is provided both as JSON Schemas and Python classes with Pydan
 === "Python"
 
     ```python
-    {!> schemas/lcax.py!}
+    {!> schemas/pydantic.py!}
     ```
 
 === "JSON Schema"
@@ -17,10 +17,19 @@ The specification is provided both as JSON Schemas and Python classes with Pydan
     {!> schemas/lcax.schema.json!}
     ```
 
+=== "Rust"
+
+    ```rust
+    {!> schemas/project.rs!}
+    ```
+
 ## Download
 
 **Python**
-- [LCAx](./schemas/lcax.py)
+- [LCAx](./schemas/pydantic.py)
 
 **JSON Schema**
 - [LCAx](./schemas/lcax.schema.json)
+
+**Rust**
+- [LCAx](./schemas/project.rs)

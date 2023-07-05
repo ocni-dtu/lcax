@@ -36,8 +36,14 @@ jobs:
           name: pydantic-schema
           path: docs/schemas/
 
+      - uses: actions/download-artifact@v2
+        with:
+          name: rust-schema
+          path: docs/schemas/
+
       - name: Build Docs
         run: |
+          source venv/bin/activate
           mkdocs build
 
       - name: Upload artifact
