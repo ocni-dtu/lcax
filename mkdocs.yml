@@ -22,6 +22,7 @@ nav:
   - LCAx: index.md
   - Data Structure: data_structure.md
   - Schemas: schemas.md
+  - Examples: examples.md
 extra:
   generator: false
   social:
