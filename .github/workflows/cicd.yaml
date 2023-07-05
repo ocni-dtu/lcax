@@ -18,5 +18,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  buildRust:
+    uses: ocni-dtu/lcax/.github/workflows/rust.yaml@main
+    secrets:
+      cargo_token: ${{ secrets.CARGO_TOKEN }}
+
+  deployPython:
+    needs:
+      - buildRust
+    uses: ocni-dtu/lcax/.github/workflows/python.yaml@main
+    secrets:
+      pypi_token: ${{ secrets.PYPI_TOKEN }}
+
   createDocs:
+    needs:
+      - buildRust
+      - deployPython
     uses: ocni-dtu/lcax/.github/workflows/docs.yaml@main
+
+  createRelease:
+    uses: ocni-dtu/lcax/.github/workflows/release.yaml@main
+    needs:
+      - buildRust
+      - deployJS
+      - deployPython
+      - deployDocs

@@ -20,14 +20,20 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install pipenv
-          pipenv requirements --dev > requirements.txt
-          pip install -r requirements.txt
+          pip install maturin virtualenv
+          virtualenv venv
+          source venv/bin/activate
+          maturin develop --extras doc --target x86_64-unknown-linux-gnu
 
-      - name: Export Schemas
-        run: |
-          python src/export.py project > docs/schemas/lcaxproject.schema.json
-          python src/export.py assembly > docs/schemas/lcaxassembly.schema.json
+      - uses: actions/download-artifact@v2
+        with:
+          name: json-schema
+          path: docs/schemas/
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: pydantic-schema
+          path: docs/schemas/
 
       - name: Build Docs
         run: |

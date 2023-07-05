@@ -3,40 +3,24 @@
 Here you will find the specification for LCAx.
 The specification is provided both as JSON Schemas and Python classes with Pydantic.
 
-## LCAx Project
+## LCAx
 
 === "Python"
 
     ```python
-    {!> ../src/project.py!}
+    {!> schemas/lcax.py!}
     ```
 
 === "JSON Schema"
 
     ```json
-    {!> schemas/lcaxproject.schema.json!}
-    ```
-
-## LCAx Assembly
-
-=== "Python"
-
-    ```python
-    {!> ../src/assembly.py!}
-    ```
-
-=== "JSON Schema"
-
-    ```json
-    {!> schemas/lcaxassembly.schema.json!}
+    {!> schemas/lcax.schema.json!}
     ```
 
 ## Download
 
 **Python**
-- [LCAxProject](../src/project.py)
-- [LCAxAssembly](../src/assembly.py)
+- [LCAx](./schemas/lcax.py)
 
 **JSON Schema**
-- [LCAxProject](./schemas/lcaxproject.schema.json)
-- [LCAxAssembly](./schemas/lcaxassembly.schema.json)
+- [LCAx](./schemas/lcax.schema.json)

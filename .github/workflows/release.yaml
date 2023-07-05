@@ -1,0 +1,29 @@
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: json-schema
+          path: artifacts
+
+      - name: Set Env
+        run: |
+          echo "TAG_VERSION=$(grep -o -m 1 [0-9]\.[0-9]*\.[0-9]* Cargo.toml)" >> $GITHUB_ENV
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.TAG_VERSION }}
+          body: |
+            Release of ${{ env.TAG_VERSION }}
+          files: |
+            artifacts/*
