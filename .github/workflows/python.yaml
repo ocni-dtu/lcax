@@ -44,7 +44,7 @@ jobs:
           MATURIN_PYPI_TOKEN: ${{ secrets.pypi_token }}
         with:
           command: publish
-          args: --release --out dist
+          args: --out dist
           manylinux: auto
 
       - name: Upload Pydantic Classes
