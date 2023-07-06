@@ -13,12 +13,13 @@ pub struct LCAxProject {
     location: String,
     format_version: String,
     lcia_method: Option<String>,
-    meta_data: Option<HashMap<String, String>>,
     classification_system: Option<String>,
+    life_span: Option<u8>,
     life_cycle_stages: Vec<LifeCycleStage>,
-    impact_categories: Vec<ImpactCategory>,
+    impact_categories: Vec<ImpactCategoryKey>,
     emission_parts: HashMap<String, Assembly>,
     results: Option<Results>,
+    meta_data: Option<HashMap<String, String>>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
@@ -40,6 +41,34 @@ enum LifeCycleStage {
     D,
 }
 
+#[derive(Deserialize, Serialize, JsonSchema)]
+enum ImpactCategoryKey {
+    GWP,
+    ODP,
+    AP,
+    EP,
+    POCP,
+    ADPE,
+    ADPF,
+    PENRE,
+    PERE,
+    PERM,
+    PERT,
+    PENRT,
+    PENRM,
+    SM,
+    RSF,
+    NRSF,
+    FW,
+    HWD,
+    NHWD,
+    RWD,
+    CRU,
+    MRF,
+    MER,
+    EEE,
+    EET
+}
 
 #[derive(Deserialize, Serialize, JsonSchema)]
 pub struct Assembly {
