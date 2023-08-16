@@ -28,7 +28,7 @@ jobs:
     if: github.event_name != 'pull_request'
     needs:
       - buildRust
-    uses: ./.github/workflows/release_docs.yaml@main
+    uses: ./.github/workflows/release_docs.yaml
 
   createRelease:
     if: github.event_name != 'pull_request'
