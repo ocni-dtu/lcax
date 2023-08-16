@@ -77,9 +77,9 @@ checksum = "68b0cf012f1230e43cd00ebb729c6bb58707ecfa8ad08b52ef3a4ccd2697fc30"
 
 [[package]]
 name = "epdx"
-version = "0.2.8"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ec4682e5b3f740747d10050587ff2db8ac6861e202d04510a32d87dc971a4b1a"
+checksum = "e6689c3e1f018f88f6037ebaf03861c4a1d82e9679679d4aa87218c4632ac9e5"
 dependencies = [
  "chrono",
  "schemars",
