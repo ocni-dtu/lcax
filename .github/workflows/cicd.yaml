@@ -35,5 +35,6 @@ jobs:
     uses: ./.github/workflows/create_release.yaml
     needs:
       - buildRust
+      - releaseDocs
     secrets:
       cargo_token: ${{ secrets.CARGO_TOKEN }}
