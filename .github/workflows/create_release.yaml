@@ -1,41 +1,45 @@
-name: "Create GitHub Release"
+name: Create Release
 
 on:
   workflow_call:
+    secrets:
+      cargo_token:
+        required: true
 
 permissions:
   contents: write
 
 jobs:
   release:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - uses: actions/download-artifact@v2
         with:
           name: json-schema
           path: artifacts
 
-      - uses: actions/download-artifact@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          name: pydantic-schema
-          path: artifacts
+          node-version: ${{ env.NODE_VERSION }}
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: rust-schema
-          path: artifacts
-
-      - name: Set Env
+      - name: Install Semantic-Release
         run: |
-          echo "TAG_VERSION=$(grep -o -m 1 [0-9]\.[0-9]*\.[0-9]* Cargo.toml)" >> $GITHUB_ENV
+          npm install \
+            semantic-release \
+            @semantic-release/changelog \
+            @semantic-release/git \
+            @semantic-release/github \
+            semantic-release-cargo \
+            conventional-changelog-conventionalcommits
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ env.TAG_VERSION }}
-          body: |
-            Release of ${{ env.TAG_VERSION }}
-          files: |
-            artifacts/*
+      - name: Run Semantic-Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
