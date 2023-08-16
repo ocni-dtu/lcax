@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use epdx::epd::{EPD, ImpactCategory, Unit};
+use epdx::epd::{EPD, Unit};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -18,7 +18,7 @@ pub struct LCAxProject {
     life_cycle_stages: Vec<LifeCycleStage>,
     impact_categories: Vec<ImpactCategoryKey>,
     emission_parts: HashMap<String, Assembly>,
-    results: Option<Results>,
+    results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
     meta_data: Option<HashMap<String, String>>,
 }
 
@@ -81,7 +81,7 @@ pub struct Assembly {
     category: Option<String>,
     classification: Option<Vec<Classification>>,
     parts: HashMap<String, EPDPart>,
-    results: Option<Results>,
+    results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
     meta_data: Option<HashMap<String, String>>,
 }
 
