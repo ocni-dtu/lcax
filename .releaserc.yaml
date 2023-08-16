@@ -10,7 +10,6 @@ plugins:
   - - "semantic-release-cargo"
     - allFeatures: true
       check: true
-      checkArgs: [ "--no-deps" ]
       publishArg: [ "--no-verify" ]
   - - "@semantic-release/github"
     - assets:
