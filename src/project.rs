@@ -22,8 +22,8 @@ pub struct LCAxProject {
     meta_data: Option<HashMap<String, String>>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
-enum LifeCycleStage {
+#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq)]
+pub enum LifeCycleStage {
     A1A3,
     A4,
     A5,
@@ -41,8 +41,8 @@ enum LifeCycleStage {
     D,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
-enum ImpactCategoryKey {
+#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq)]
+pub enum ImpactCategoryKey {
     GWP,
     ODP,
     AP,
