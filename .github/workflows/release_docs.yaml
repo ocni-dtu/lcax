@@ -24,16 +24,19 @@ jobs:
           pip install maturin virtualenv
           virtualenv venv
           source venv/bin/activate
-          maturin develop --extras doc --target x86_64-unknown-linux-gnu
+          maturin develop --extras doc,code-gen --target x86_64-unknown-linux-gnu
+
+      - name: Create Pydantic Models
+        run: |
+          source venv/bin/activate
+          datamodel-codegen \
+          --input docs/schemas/lcax.schema.json \
+          --input-file-type jsonschema \
+          --output docs/schemas/pydantic.py
 
       - uses: actions/download-artifact@v2
         with:
           name: json-schema
-          path: docs/schemas/
-
-      - uses: actions/download-artifact@v2
-        with:
-          name: pydantic-schema
           path: docs/schemas/
 
       - uses: actions/download-artifact@v2
@@ -50,6 +53,12 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: './site'
+
+      - name: Upload Pydantic Classes
+        uses: actions/upload-artifact@v3
+        with:
+          name: pydantic-schema
+          path: 'docs/schemas/pydantic.py'
 
       - name: Deploy to GitHub Pages
         id: deployment

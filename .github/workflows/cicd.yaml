@@ -2,8 +2,11 @@ name: "CI/CD"
 
 on:
   push:
-    branches: [ main ]
-  # Allows you to run this workflow manually from the Actions tab
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -19,26 +22,18 @@ concurrency:
 
 jobs:
   buildRust:
-    uses: ocni-dtu/lcax/.github/workflows/rust.yaml@main
-    secrets:
-      cargo_token: ${{ secrets.CARGO_TOKEN }}
+    uses: ./.github/workflows/build_rust.yaml
 
-  deployPython:
+  releaseDocs:
+    if: github.event_name != 'pull_request'
     needs:
       - buildRust
-    uses: ocni-dtu/lcax/.github/workflows/python.yaml@main
-    secrets:
-      pypi_token: ${{ secrets.PYPI_TOKEN }}
-
-  deployDocs:
-    needs:
-      - buildRust
-      - deployPython
-    uses: ocni-dtu/lcax/.github/workflows/docs.yaml@main
+    uses: ./.github/workflows/release_docs.yaml@main
 
   createRelease:
-    uses: ocni-dtu/lcax/.github/workflows/release.yaml@main
+    if: github.event_name != 'pull_request'
+    uses: ./.github/workflows/create_release.yaml
     needs:
       - buildRust
-      - deployPython
-      - deployDocs
+    secrets:
+      cargo_token: ${{ secrets.CARGO_TOKEN }}

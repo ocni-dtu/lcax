@@ -1,0 +1,20 @@
+branches:
+  - "main"
+
+preset: "conventionalcommits"
+
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - "@semantic-release/changelog"
+  - - "semantic-release-cargo"
+    - allFeatures: true
+      check: true
+      checkArgs: [ "--no-deps" ]
+      publishArg: [ "--no-verify" ]
+  - - "@semantic-release/github"
+    - assets:
+        - { path: 'artifacts/lcax.schema.json', label: 'LCAx JSON Schema' }
+        - { path: 'artifacts/pydantic.py', label: 'LCAx Python Classes' }
+        - { path: 'artifacts/project.rs', label: 'LCAx Rust Structs' }
+  - "@semantic-release/git"

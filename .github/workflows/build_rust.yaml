@@ -1,10 +1,8 @@
-name: "Publish Python Package"
+name: "Build Rust"
 
 on:
   workflow_call:
-    secrets:
-      cargo_token:
-        required: true
+
 
 jobs:
   rust:
@@ -29,6 +27,3 @@ jobs:
         with:
           name: rust-schema
           path: 'src/project.rs'
-
-      - name: Publish Crate
-        run: cargo publish --allow-dirty --target x86_64-unknown-linux-gnu --token ${{ secrets.cargo_token }}
