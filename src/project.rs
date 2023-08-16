@@ -101,6 +101,9 @@ pub struct EPDPart {
 pub struct Transport {
     id: String,
     name: String,
+    distance: f64,
+    distance_unit: DistanceUnit,
+    transport_type: TransportType,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
@@ -131,35 +134,15 @@ pub struct Classification {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
-pub enum Results {
-    EN15804(ResultsEN15804),
+pub enum DistanceUnit {
+    M,
+    KM
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
-pub struct ResultsEN15804 {
-    adpe: Option<ImpactCategory>,
-    adpf: Option<ImpactCategory>,
-    ap: Option<ImpactCategory>,
-    cru: Option<ImpactCategory>,
-    eee: Option<ImpactCategory>,
-    eet: Option<ImpactCategory>,
-    ep: Option<ImpactCategory>,
-    fw: Option<ImpactCategory>,
-    gwp: Option<ImpactCategory>,
-    hwd: Option<ImpactCategory>,
-    mer: Option<ImpactCategory>,
-    mrf: Option<ImpactCategory>,
-    nhwd: Option<ImpactCategory>,
-    nrsf: Option<ImpactCategory>,
-    odp: Option<ImpactCategory>,
-    penre: Option<ImpactCategory>,
-    penrm: Option<ImpactCategory>,
-    penrt: Option<ImpactCategory>,
-    pere: Option<ImpactCategory>,
-    perm: Option<ImpactCategory>,
-    pert: Option<ImpactCategory>,
-    pocp: Option<ImpactCategory>,
-    rsf: Option<ImpactCategory>,
-    rwd: Option<ImpactCategory>,
-    sm: Option<ImpactCategory>,
+pub enum TransportType {
+    Truck,
+    Train,
+    Ship,
+    Plane,
 }
