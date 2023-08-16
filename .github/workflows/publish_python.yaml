@@ -3,7 +3,7 @@ name: Publish PyPI Package
 on:
   release:
     types:
-      - created
+      - released
 
 jobs:
   publishPython:
