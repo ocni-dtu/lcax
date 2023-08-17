@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/ocni-dtu/lcax/compare/v1.1.0...v1.1.1) (2023-08-17)
+
+
+### Bug Fixes
+
+* added test cases and fixed issues with Python packaging ([39680eb](https://github.com/ocni-dtu/lcax/commit/39680eb98d07fa5f218d0bbbea09648d7314645b))
+
 ## [1.1.0](https://github.com/ocni-dtu/lcax/compare/v1.0.0...v1.1.0) (2023-08-16)
 
 
