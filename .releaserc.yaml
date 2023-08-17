@@ -16,4 +16,8 @@ plugins:
         - { path: 'artifacts/lcax.schema.json', label: 'LCAx JSON Schema' }
         - { path: 'artifacts/pydantic.py', label: 'LCAx Python Classes' }
         - { path: 'artifacts/project.rs', label: 'LCAx Rust Structs' }
-  - "@semantic-release/git"
+  - - "@semantic-release/git"
+    - assets:
+        - "CHANGELOG.md"
+        - "Cargo.toml"
+        - "Cargo.lock"

@@ -14,7 +14,7 @@ jobs:
 
       - name: Download JSON Schema
         run: |
-          curl ${{ github.event.release.assets_url }}/pydantic.py > packages/python/epdx/pydantic.py
+          curl ${{ github.event.release.assets_url }}/pydantic.py > packages/python/src/lcax/pydantic.py
 
       - name: Set up Python
         uses: actions/setup-python@v4

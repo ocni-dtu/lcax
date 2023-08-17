@@ -6,20 +6,20 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, JsonSchema)]
 pub struct LCAxProject {
-    id: String,
-    name: String,
-    description: String,
-    comment: Option<String>,
-    location: String,
-    format_version: String,
-    lcia_method: Option<String>,
-    classification_system: Option<String>,
-    life_span: Option<u8>,
-    life_cycle_stages: Vec<LifeCycleStage>,
-    impact_categories: Vec<ImpactCategoryKey>,
-    emission_parts: HashMap<String, Assembly>,
-    results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
-    meta_data: Option<HashMap<String, String>>,
+    pub id: String,
+    pub name: String,
+    pub description: String,
+    pub comment: Option<String>,
+    pub location: String,
+    pub format_version: String,
+    pub lcia_method: Option<String>,
+    pub classification_system: Option<String>,
+    pub life_span: Option<u8>,
+    pub life_cycle_stages: Vec<LifeCycleStage>,
+    pub impact_categories: Vec<ImpactCategoryKey>,
+    pub emission_parts: HashMap<String, Assembly>,
+    pub results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
+    pub meta_data: Option<HashMap<String, String>>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq)]
