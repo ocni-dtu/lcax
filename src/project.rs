@@ -5,6 +5,7 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct LCAxProject {
     pub id: String,
     pub name: String,
@@ -23,6 +24,7 @@ pub struct LCAxProject {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq)]
+#[serde(rename_all = "lowercase")]
 pub enum LifeCycleStage {
     A1A3,
     A4,
@@ -42,6 +44,7 @@ pub enum LifeCycleStage {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq)]
+#[serde(rename_all = "lowercase")]
 pub enum ImpactCategoryKey {
     GWP,
     ODP,
@@ -71,6 +74,7 @@ pub enum ImpactCategoryKey {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct Assembly {
     id: String,
     name: String,
@@ -86,6 +90,7 @@ pub struct Assembly {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct EPDPart {
     id: String,
     name: String,
@@ -98,6 +103,7 @@ pub struct EPDPart {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct Transport {
     id: String,
     name: String,
@@ -107,6 +113,7 @@ pub struct Transport {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "lowercase")]
 pub enum EPDSource {
     EPD(EPD),
     ExternalEPD(ExternalEPD),
@@ -134,15 +141,17 @@ pub struct Classification {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "lowercase")]
 pub enum DistanceUnit {
     M,
     KM
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "lowercase")]
 pub enum TransportType {
-    Truck,
-    Train,
-    Ship,
-    Plane,
+    TRUCK,
+    TRAIN,
+    SHIP,
+    PLANE,
 }
