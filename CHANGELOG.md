@@ -1,3 +1,10 @@
+## [1.2.0](https://github.com/ocni-dtu/lcax/compare/v1.1.1...v1.2.0) (2023-08-21)
+
+
+### Features
+
+* made enums lowercase and structs camelCase ([23a81f0](https://github.com/ocni-dtu/lcax/commit/23a81f0242ba14c67fd19c1e3db3ef196a515c11))
+
 ## [1.1.1](https://github.com/ocni-dtu/lcax/compare/v1.1.0...v1.1.1) (2023-08-17)
 
 
