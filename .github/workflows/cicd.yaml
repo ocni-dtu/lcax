@@ -38,3 +38,11 @@ jobs:
       - releaseDocs
     secrets:
       cargo_token: ${{ secrets.CARGO_TOKEN }}
+
+  publishPython:
+    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.output.version != "" }}
+    uses: ./.github/workflows/publish_python.yaml
+    needs:
+      - createRelease
+    secrets:
+      pypi_token: ${{ secrets.PYPI_TOKEN }}
