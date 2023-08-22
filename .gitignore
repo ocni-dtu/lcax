@@ -173,3 +173,5 @@ docs/schemas
 
 /target
 /packages/python/src/lcax/lcax/
+/packages/python/src/lcax/lcax.schema.json
+/packages/python/src/lcax/pydantic.py
