@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/ocni-dtu/lcax/compare/v1.2.0...v1.2.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* corrected pydantic location ([9268be1](https://github.com/ocni-dtu/lcax/commit/9268be12a5b2289cb1d81ee3a82fa275aadd50f5))
+
 ## [1.2.0](https://github.com/ocni-dtu/lcax/compare/v1.1.1...v1.2.0) (2023-08-21)
 
 
