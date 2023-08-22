@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/ocni-dtu/lcax/compare/v1.2.1...v1.2.2) (2023-08-22)
+
+
+### Bug Fixes
+
+* updated Pydantic model generation ([bb61375](https://github.com/ocni-dtu/lcax/commit/bb61375d1cb25bc6881474d4a1487b71067e24cb))
+
 ## [1.2.1](https://github.com/ocni-dtu/lcax/compare/v1.2.0...v1.2.1) (2023-08-22)
 
 
