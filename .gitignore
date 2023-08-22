@@ -172,3 +172,4 @@ docs/schemas
 # Added by cargo
 
 /target
+/packages/python/src/lcax/lcax/

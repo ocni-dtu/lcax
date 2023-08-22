@@ -36,3 +36,7 @@ build-backend = "maturin"
 [tool.maturin]
 # "extension-module" tells pyo3 we want to build an extension module (skips linking against libpython.so)
 python-source = "packages/python/src"
+
+[tool.pytest.ini_options]
+pythonpath = "packages/python/src"
+testpaths = ["packages/python/tests/"]

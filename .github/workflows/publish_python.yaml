@@ -19,7 +19,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: pydantic-schema
-          path: packages/python/src/lcax/pydantic.py
+          path: packages/python/src/lcax
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -30,6 +30,12 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install maturin virtualenv
+          virtualenv venv
+          source venv/bin/activate
+          maturin develop --extras tests --target x86_64-unknown-linux-gnu
+
+      - name: Run Tests
+        run: pytest .
 
       - name: Publish to PyPI
         uses: PyO3/maturin-action@v1
