@@ -35,7 +35,9 @@ jobs:
           maturin develop --extras tests --target x86_64-unknown-linux-gnu
 
       - name: Run Tests
-        run: pytest .
+        run: |
+          source venv/bin/activate
+          pytest .
 
       - name: Publish to PyPI
         uses: PyO3/maturin-action@v1
