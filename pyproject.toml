@@ -8,7 +8,10 @@ authors = [
     { name = "Christian Kongsgaard", email = "christian@kongsgaard.eu" },
 ]
 
-dependencies = ["cffi"]
+dependencies = [
+    "cffi",
+    "pydantic >=1.8.2,<2.0.0",
+]
 
 [project.optional-dependencies]
 doc = [
@@ -16,7 +19,6 @@ doc = [
     "mdx-include >=1.4.1,<2.0.0",
 ]
 code-gen = [
-    "pydantic >=1.8.2,<2.0.0",
     "datamodel-code-generator",
 ]
 tests = [
