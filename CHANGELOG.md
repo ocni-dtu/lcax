@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/ocni-dtu/lcax/compare/v1.2.3...v1.2.4) (2023-08-23)
+
+
+### Bug Fixes
+
+* updated python publish command ([4b6412d](https://github.com/ocni-dtu/lcax/commit/4b6412d6a4c8c5ab87d20929b6173e70244968fe))
+
 ## [1.2.3](https://github.com/ocni-dtu/lcax/compare/v1.2.2...v1.2.3) (2023-08-23)
 
 
