@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/ocni-dtu/lcax/compare/v1.2.4...v1.2.5) (2023-08-23)
+
+
+### Bug Fixes
+
+* added pydantic.py to release/wheel ([1909c79](https://github.com/ocni-dtu/lcax/commit/1909c79afe1e0d3a8bc9f822dfc3ead8ddd6f708))
+
 ## [1.2.4](https://github.com/ocni-dtu/lcax/compare/v1.2.3...v1.2.4) (2023-08-23)
 
 
