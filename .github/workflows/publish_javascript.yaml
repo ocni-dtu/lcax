@@ -22,12 +22,12 @@ jobs:
       - name: Build
         run: |
           wasm-pack build --features jsbindings
-          mv pkg packages/javascript
+          mv pkg/* packages/javascript
 
       - uses: actions/download-artifact@v3
         with:
           name: typescript-schema
-          path: packages/python/src/lcax
+          path: packages/javascript
 
       - uses: actions/setup-node@v3
         with:
