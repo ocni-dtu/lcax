@@ -24,20 +24,31 @@ jobs:
   buildRust:
     uses: ./.github/workflows/build_rust.yaml
 
-  releaseDocs:
-    if: github.event_name != 'pull_request'
+  buildPython:
+    uses: ./.github/workflows/build_python.yaml
     needs:
       - buildRust
-    uses: ./.github/workflows/release_docs.yaml
+
+  buildTypeScript:
+    uses: ./.github/workflows/build_javascript.yaml
+    needs:
+      - buildRust
 
   createRelease:
     if: github.event_name != 'pull_request'
     uses: ./.github/workflows/create_release.yaml
     needs:
       - buildRust
-      - releaseDocs
+      - buildPython
+      - buildTypeScript
     secrets:
       cargo_token: ${{ secrets.CARGO_TOKEN }}
+
+  releaseDocs:
+    if: github.event_name != 'pull_request'
+    needs:
+      - createRelease
+    uses: ./.github/workflows/release_docs.yaml
 
   publishPython:
     if: (github.event_name != 'pull_request') && ${{ needs.createRelease.output.version != '' }}
@@ -46,3 +57,11 @@ jobs:
       - createRelease
     secrets:
       pypi_token: ${{ secrets.PYPI_TOKEN }}
+
+  publishJavascript:
+    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.output.version != '' }}
+    uses: ./.github/workflows/publish_javascript.yaml
+    needs:
+      - createRelease
+    secrets:
+      npm_token: ${{ secrets.NPM_TOKEN }}

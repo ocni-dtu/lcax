@@ -35,6 +35,11 @@ jobs:
           name: pydantic-schema
           path: packages/python/src/lcax
 
+      - uses: actions/download-artifact@v3
+        with:
+          name: typescript-schema
+          path: artifacts
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -74,3 +79,9 @@ jobs:
         with:
           name: cargo
           path: 'Cargo*'
+
+      - name: Upload CHANGELOG
+        uses: actions/upload-artifact@v3
+        with:
+          name: changelog
+          path: 'CHANGELOG.md'

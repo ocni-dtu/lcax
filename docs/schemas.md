@@ -23,6 +23,12 @@ The specification is provided both as JSON Schemas and Python classes with Pydan
     {!> schemas/project.rs!}
     ```
 
+=== "TypeScript"
+
+    ```typescript
+    {!> schemas/lcax.d.ts!}
+    ```
+
 ## Download
 
 **Python**
@@ -33,3 +39,6 @@ The specification is provided both as JSON Schemas and Python classes with Pydan
 
 **Rust**
 - [LCAx](./schemas/project.rs)
+
+**TypeScript**
+- [LCAx](./schemas/lcax.d.ts)

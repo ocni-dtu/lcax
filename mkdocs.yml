@@ -23,6 +23,7 @@ nav:
   - Data Structure: data_structure.md
   - Schemas: schemas.md
   - Examples: examples.md
+  - Changes: CHANGELOG.md
 extra:
   generator: false
   social:
