@@ -1,3 +1,10 @@
+## [1.3.0](https://github.com/ocni-dtu/lcax/compare/v1.2.5...v1.3.0) (2023-08-25)
+
+
+### Features
+
+* creating NPM package for LCAx ([b429581](https://github.com/ocni-dtu/lcax/commit/b429581b4562708d23bfee5fbdaed1af7a962bb7))
+
 ## [1.2.5](https://github.com/ocni-dtu/lcax/compare/v1.2.4...v1.2.5) (2023-08-23)
 
 
