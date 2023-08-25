@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/ocni-dtu/lcax/compare/v1.3.0...v1.3.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* fixed npm build and publish ([3c1a464](https://github.com/ocni-dtu/lcax/commit/3c1a46420ea8354950b9e1d5bd3167eb0b79d743))
+
 ## [1.3.0](https://github.com/ocni-dtu/lcax/compare/v1.2.5...v1.3.0) (2023-08-25)
 
 
