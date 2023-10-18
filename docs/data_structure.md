@@ -5,7 +5,7 @@ It also includes information about what life cycle stages and impact categories 
 Besides that it includes a list of parts (LCAxAssembly items) that make up the project.
 Finally, if the project is already calculated then it includes the top level results.
 
-![LCAx Project](./assets/lcax%20project.jpeg)
+![LCAx Project](./assets/lcax_structure.png)
 
 ## LCAxAssembly
 
