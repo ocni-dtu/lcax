@@ -28,15 +28,17 @@ jobs:
           dotnet-version: '7.0.x'
 
       - name: Install dependencies
+        working-directory: packages/csharp/lcax
         run: dotnet restore
 
       - name: Bump Version
-        run: sed -i "s/\(<Version>\)\([0-9]\.*\)\{3\}/\1${{ inputs.version }}/" packages/csharp/lcax/lcax.csproj
+        working-directory: packages/csharp/lcax
+        run: sed -i "s/\(<Version>\)\([0-9]\.*\)\{3\}/\1${{ inputs.version }}/" lcax.csproj
 
       - name: Pack
+        working-directory: packages/csharp/lcax
         run: dotnet pack
 
       - name: Publish Package
-        run: |
-          cd packages/csharp/lcax
-          dotnet nuget push bin/Release/lcax.* --api-key ${{ secrets.nuget_token }} --source https://api.nuget.org/v3/index.json
+        working-directory: packages/csharp/lcax
+        run: dotnet nuget push bin/Release/lcax.* --api-key ${{ secrets.nuget_token }} --source https://api.nuget.org/v3/index.json
