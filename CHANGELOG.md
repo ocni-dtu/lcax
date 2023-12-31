@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/ocni-dtu/lcax/compare/v1.3.1...v1.4.0) (2023-12-31)
+
+
+### Features
+
+* added nuget package ([803a212](https://github.com/ocni-dtu/lcax/commit/803a212eb8f86097ab2242a0a63adabf87ce91fc))
+
 ## [1.3.1](https://github.com/ocni-dtu/lcax/compare/v1.3.0...v1.3.1) (2023-08-25)
 
 
