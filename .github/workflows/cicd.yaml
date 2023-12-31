@@ -46,6 +46,7 @@ jobs:
       - buildRust
       - buildPython
       - buildTypeScript
+      - buildCSharp
     secrets:
       cargo_token: ${{ secrets.CARGO_TOKEN }}
 
