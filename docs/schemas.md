@@ -29,16 +29,16 @@ The specification is provided both as JSON Schemas and Python classes with Pydan
     {!> schemas/lcax.d.ts!}
     ```
 
+=== "C#"
+
+    ```csharp
+    {!> schemas/lcax.cs!}
+    ```
+
 ## Download
 
-**Python**
-- [LCAx](./schemas/pydantic.py)
-
-**JSON Schema**
-- [LCAx](./schemas/lcax.schema.json)
-
-**Rust**
-- [LCAx](./schemas/project.rs)
-
-**TypeScript**
-- [LCAx](./schemas/lcax.d.ts)
+- [**Python**](./schemas/pydantic.py)
+- [**JSON Schema**](./schemas/lcax.schema.json)
+- [**Rust**](./schemas/project.rs)
+- [**TypeScript**](./schemas/lcax.d.ts)
+- [**C#**](./schemas/lcax.cs)

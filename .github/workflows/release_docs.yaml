@@ -33,6 +33,11 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
+          name: csharp-schema
+          path: docs/schemas/
+
+      - uses: actions/download-artifact@v3
+        with:
           name: changelog
           path: docs/
 
