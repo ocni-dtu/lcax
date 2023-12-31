@@ -1,0 +1,30 @@
+name: Build C# Package
+
+on:
+  workflow_call:
+
+jobs:
+  buildCSharp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: json-schema
+          path: packages/csharp
+
+      - uses: actions/setup-node@v3
+        name: Setup Node
+
+      - name: Install Dependencies
+        run: npm install quicktype --save
+
+      - name: Create C# Classes
+        run: npx quicktype --src packages/csharp/lcax.schema.json --lang csharp --out packages/csharp/lcax.cs --namespace LCAx --features just-types
+
+      - name: Upload C#
+        uses: actions/upload-artifact@v3
+        with:
+          name: csharp-schema
+          path: 'packages/csharp/lcax.cs'
