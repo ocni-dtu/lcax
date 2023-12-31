@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/ocni-dtu/lcax/compare/v1.4.0...v1.4.1) (2023-12-31)
+
+
+### Bug Fixes
+
+* updated working dir cs ([63180d2](https://github.com/ocni-dtu/lcax/commit/63180d28aa60eb72bb2c3b249d0cfdf6f982f504))
+
 ## [1.4.0](https://github.com/ocni-dtu/lcax/compare/v1.3.1...v1.4.0) (2023-12-31)
 
 
