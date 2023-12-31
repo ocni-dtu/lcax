@@ -201,7 +201,7 @@ class EPD(BaseModel):
     version: str
 
 
-class EPDSourceItem(BaseModel):
+class EPDSource1(BaseModel):
     class Config:
         extra = Extra.forbid
         allow_population_by_field_name = True
@@ -209,7 +209,7 @@ class EPDSourceItem(BaseModel):
     epd: EPD
 
 
-class EPDSourceItem1(BaseModel):
+class EPDSource2(BaseModel):
     class Config:
         extra = Extra.forbid
         allow_population_by_field_name = True
@@ -217,7 +217,7 @@ class EPDSourceItem1(BaseModel):
     externalepd: ExternalEPD
 
 
-class EPDSourceItem2(BaseModel):
+class EPDSource3(BaseModel):
     class Config:
         extra = Extra.forbid
         allow_population_by_field_name = True
@@ -240,7 +240,7 @@ class EPDPart(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    epd_source: Union[EPDSourceItem, EPDSourceItem1, EPDSourceItem2] = Field(
+    epd_source: Union[EPDSource1, EPDSource2, EPDSource3] = Field(
         ..., alias='epdSource'
     )
     id: str
