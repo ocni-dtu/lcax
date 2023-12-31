@@ -182,3 +182,5 @@ packages/javascript
 node_modules/
 package.json
 package-lock.json
+/packages/csharp/lcax/bin/
+/packages/csharp/lcax/obj/

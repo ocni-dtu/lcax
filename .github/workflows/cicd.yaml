@@ -34,6 +34,11 @@ jobs:
     needs:
       - buildRust
 
+  buildCSharp:
+    uses: ./.github/workflows/build_csharp.yaml
+    needs:
+      - buildRust
+
   createRelease:
     if: github.event_name != 'pull_request'
     uses: ./.github/workflows/create_release.yaml
@@ -65,3 +70,13 @@ jobs:
       - createRelease
     secrets:
       npm_token: ${{ secrets.NPM_TOKEN }}
+
+  publishCSharp:
+    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.output.version != '' }}
+    uses: ./.github/workflows/publish_csharp.yaml
+    needs:
+      - createRelease
+    with:
+      version: ${{ needs.createRelease.output.version }}
+    secrets:
+      nuget_token: ${{ secrets.NUGET_TOKEN }}
