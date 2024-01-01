@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/ocni-dtu/lcax/compare/v1.4.1...v1.4.2) (2024-01-01)
+
+
+### Bug Fixes
+
+* updated C# types generation ([aeb9fb8](https://github.com/ocni-dtu/lcax/commit/aeb9fb886b2ebe00943b87f2489a8f3b741e44dd))
+
 ## [1.4.1](https://github.com/ocni-dtu/lcax/compare/v1.4.0...v1.4.1) (2023-12-31)
 
 
