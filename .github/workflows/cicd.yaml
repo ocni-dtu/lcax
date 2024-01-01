@@ -57,7 +57,7 @@ jobs:
     uses: ./.github/workflows/release_docs.yaml
 
   publishPython:
-    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.output.version != '' }}
+    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.outputs.version != '' }}
     uses: ./.github/workflows/publish_python.yaml
     needs:
       - createRelease
@@ -65,7 +65,7 @@ jobs:
       pypi_token: ${{ secrets.PYPI_TOKEN }}
 
   publishJavascript:
-    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.output.version != '' }}
+    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.outputs.version != '' }}
     uses: ./.github/workflows/publish_javascript.yaml
     needs:
       - createRelease
@@ -73,11 +73,11 @@ jobs:
       npm_token: ${{ secrets.NPM_TOKEN }}
 
   publishCSharp:
-    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.output.version != '' }}
+    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.outputs.version != '' }}
     uses: ./.github/workflows/publish_csharp.yaml
     needs:
       - createRelease
     with:
-      version: ${{ needs.createRelease.output.version }}
+      version: ${{ needs.createRelease.outputs.version }}
     secrets:
       nuget_token: ${{ secrets.NUGET_TOKEN }}

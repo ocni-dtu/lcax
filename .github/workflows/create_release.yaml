@@ -5,6 +5,10 @@ on:
     secrets:
       cargo_token:
         required: true
+    outputs:
+      version:
+        description: "New version"
+        value: ${{ jobs.release.outputs.version }}
 
 permissions:
   contents: write
