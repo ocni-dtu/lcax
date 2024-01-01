@@ -21,7 +21,14 @@ jobs:
         run: npm install quicktype --save
 
       - name: Create C# Classes
-        run: npx quicktype --src packages/csharp/lcax.schema.json --lang csharp --out packages/csharp/lcax.cs --namespace LCAx --features just-types
+        run: |
+          npx quicktype \
+            --src packages/csharp/lcax.schema.json \
+            --src-lang schema \
+            --lang csharp \
+            --out packages/csharp/lcax.cs \
+            --namespace LCAx \
+            --features just-types
 
       - name: Upload C#
         uses: actions/upload-artifact@v3
