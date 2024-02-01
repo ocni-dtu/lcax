@@ -11,7 +11,7 @@ Our goal is making LCA calculations more accessible, transparent, and open.
 
 ![LCAx](./assets/benchmark.png)
 
-# Motivation
+## Motivation
 
 We are doing this because we see that many new LCA tools are seeing the light of day recently, but there is no open data
 exchange format between different software. This makes it hard to collaborate in interdisciplinary teams, as they all
@@ -21,7 +21,7 @@ Furthermore, it makes it hard to quality assure an LCA calculation coming from a
 company is using. Having an open data format will make it easier to check if an LCA calculation is compliant with the
 requirements for an individual project.
 
-# Get Involved!
+## Get Involved!
 
 In the spirit of transparency and openness, we would like anyone with interest in the project to participate on which
 ever level you feel comfortable with. If that is as an LCA specialist that has input to what needs to be included in the
@@ -31,3 +31,29 @@ network, we will be thankful for your contribution.
 The more people are involved and aware of the project, the more likely it is to succeed. 
 Feel free to reach out to us on [GitHub](https://github.com/ocni-dtu/lcax/issues) or contact us through 
 [email](mailto:christian@kongsgaard.eu), and we will get back to you as soon as possible.
+
+## Install Packages
+
+=== "JavaScript"
+
+    ```bash
+    npm install lcax
+    ```
+
+=== "Python"
+
+    ```bash
+    pip install lcax
+    ```
+
+=== "Rust"
+
+    ```bash
+    cargo add lcax
+    ```
+
+=== "C#"
+    
+    ```bash
+    nuget add lcax
+    ```
