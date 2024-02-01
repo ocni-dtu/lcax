@@ -10,7 +10,7 @@ theme:
   palette:
     - scheme: chrkong
   font:
-    text: Roboto
+    text: Rubik
 markdown_extensions:
   - mdx_include:
       base_path: docs
