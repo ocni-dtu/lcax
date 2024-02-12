@@ -4,7 +4,7 @@ use epdx::epd::{EPD, Unit};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct LCAxProject {
     pub id: String,
@@ -27,7 +27,7 @@ pub struct LCAxProject {
     pub meta_data: Option<HashMap<String, String>>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct SoftwareInfo {
     pub goal_and_scope_definition: String,
@@ -35,16 +35,17 @@ pub struct SoftwareInfo {
     pub calculation_type: String
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Default)]
 #[serde(rename_all = "camelCase")]
 pub enum ProjectPhase {
     DESIGN,
     ONGOING,
     BUILT,
+    #[default]
     OTHER
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct Location {
     pub country: String,
