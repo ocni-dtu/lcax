@@ -7,7 +7,7 @@ use crate::project::LCAxProject;
 #[derive(Deserialize, Serialize)]
 enum NodesAndEdges {
     Node(crate::lcabyg::nodes::Node),
-    Edge((EdgeType, String, String))
+    Edge((EdgeType, String, String)),
 }
 
 
@@ -21,17 +21,13 @@ enum NodesAndEdges {
 /// returns: LCAxProject
 pub fn parse_lcabyg(project_data: String, result_data: Option<String>) -> Result<LCAxProject, Error> {
     match serde_json::from_str(&project_data) {
-        Ok(lcabyg_project) => {
-            let lcax_project = lcax_from_lcabyg(lcabyg_project, result_data);
-            Ok(lcax_project)
-        }
+        Ok(lcabyg_project) => Ok(lcax_from_lcabyg(lcabyg_project, result_data))
         Err(err) => Err(err)
     }
 }
 
 
 fn lcax_from_lcabyg(lcabyg_project: Vec<NodesAndEdges>, result_data: Option<String>) -> LCAxProject {
-
     let project: LCAxProject = Default::default();
     project
 }
