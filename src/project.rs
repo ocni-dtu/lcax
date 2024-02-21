@@ -30,9 +30,9 @@ pub struct LCAxProject {
 #[derive(Deserialize, Serialize, JsonSchema, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct SoftwareInfo {
-    pub goal_and_scope_definition: String,
+    pub goal_and_scope_definition: Option<String>,
     pub lca_software: String,
-    pub calculation_type: String
+    pub calculation_type: Option<String>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Default)]
@@ -42,7 +42,7 @@ pub enum ProjectPhase {
     ONGOING,
     BUILT,
     #[default]
-    OTHER
+    OTHER,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Default)]
@@ -50,7 +50,7 @@ pub enum ProjectPhase {
 pub struct Location {
     pub country: String,
     pub city: String,
-    pub address: String
+    pub address: String,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
@@ -81,7 +81,7 @@ pub struct BuildingInfo {
     pub energy_supply_electricity: f64,
     pub exported_electricity: f64,
     pub energy_class: String,
-    pub building_model_scope: BuildingModelScope
+    pub building_model_scope: Option<BuildingModelScope>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
@@ -95,14 +95,14 @@ pub struct BuildingModelScope {
     pub finishes: bool,
     pub building_services: bool,
     pub external_works: bool,
-    pub ff_e: bool
+    pub ff_e: bool,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "lowercase")]
 pub enum BuildingType {
     RENOVATION,
-    NEW
+    NEW,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
@@ -115,10 +115,25 @@ pub enum BuildingTypology {
     INDUSTRIAL,
     INFRASTRUCTURE,
     AGRICULTURAL,
-    OTHER
+    OTHER,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq)]
+impl From<&String> for BuildingTypology {
+    fn from(unit: &String) -> Self {
+        match unit.to_ascii_lowercase().as_str() {
+            "office" => BuildingTypology::OFFICE,
+            "residential" => BuildingTypology::RESIDENTIAL,
+            "public" => BuildingTypology::PUBLIC,
+            "commercial" => BuildingTypology::COMMERCIAL,
+            "industrial" => BuildingTypology::INDUSTRIAL,
+            "infrastructure" => BuildingTypology::INFRASTRUCTURE,
+            "agricultural" => BuildingTypology::AGRICULTURAL,
+            _ => BuildingTypology::OTHER,
+        }
+    }
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone)]
 #[serde(rename_all = "lowercase")]
 pub enum LifeCycleStage {
     A1A3,
@@ -138,7 +153,7 @@ pub enum LifeCycleStage {
     D,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq)]
+#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone)]
 #[serde(rename_all = "lowercase")]
 pub enum ImpactCategoryKey {
     GWP,
@@ -165,51 +180,51 @@ pub enum ImpactCategoryKey {
     MRF,
     MER,
     EEE,
-    EET
+    EET,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Assembly {
-    id: String,
-    name: String,
-    description: String,
-    comment: Option<String>,
-    quantity: f64,
-    unit: Unit,
-    category: Option<String>,
-    classification: Option<Vec<Classification>>,
-    products: HashMap<String, EPDProduct>,
-    results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
-    meta_data: Option<HashMap<String, String>>,
+    pub id: String,
+    pub name: String,
+    pub description: String,
+    pub comment: Option<String>,
+    pub quantity: f64,
+    pub unit: Unit,
+    pub category: Option<String>,
+    pub classification: Option<Vec<Classification>>,
+    pub products: HashMap<String, EPDProduct>,
+    pub results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
+    pub meta_data: Option<HashMap<String, String>>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct EPDProduct {
-    id: String,
-    name: String,
-    description: String,
-    reference_service_life: f64,
-    epd_source: EPDSource,
-    quantity: f64,
-    unit: Unit,
-    transport: Option<Transport>,
-    results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
-    meta_data: Option<HashMap<String, String>>,
+    pub id: String,
+    pub name: String,
+    pub description: String,
+    pub reference_service_life: u32,
+    pub epd_source: EPDSource,
+    pub quantity: f64,
+    pub unit: Unit,
+    pub transport: Option<Transport>,
+    pub results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
+    pub meta_data: Option<HashMap<String, String>>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Transport {
-    id: String,
-    name: String,
-    distance: f64,
-    distance_unit: Unit,
-    transport_epd: EPDSource,
+    pub id: String,
+    pub name: String,
+    pub distance: f64,
+    pub distance_unit: Unit,
+    pub transport_epd: EPDSource,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 pub enum EPDSource {
     EPD(EPD),
@@ -217,22 +232,32 @@ pub enum EPDSource {
     InternalEPD(InternalEPD),
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+impl Default for EPDSource {
+    fn default() -> EPDSource {
+        EPDSource::ExternalEPD(ExternalEPD {
+            url: "".to_string(),
+            format: "".to_string(),
+            version: None,
+        })
+    }
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 pub struct ExternalEPD {
-    url: String,
-    format: String,
-    version: Option<String>,
+    pub url: String,
+    pub format: String,
+    pub version: Option<String>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 pub struct InternalEPD {
-    path: String,
+    pub path: String,
 }
 
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 pub struct Classification {
-    system: String,
-    code: String,
-    name: String,
+    pub system: String,
+    pub code: String,
+    pub name: String,
 }

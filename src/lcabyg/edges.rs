@@ -1,5 +1,4 @@
 use serde::{Deserialize, Serialize};
-use crate::lcabyg::nodes::LCAbygUnit;
 
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
@@ -39,7 +38,7 @@ pub struct ProductToStageEdge {
 pub struct ConstructionToProductEdge {
     pub id: String,
     pub amount: f64,
-    pub unit: LCAbygUnit,
+    pub unit: String,
     pub lifespan: u32,
     pub demolition: bool,
     pub delayed_start: u32,

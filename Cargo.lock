@@ -86,9 +86,7 @@ checksum = "68b0cf012f1230e43cd00ebb729c6bb58707ecfa8ad08b52ef3a4ccd2697fc30"
 
 [[package]]
 name = "epdx"
-version = "1.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bd06e3fb6bb57cdd19dafa7446b862fc1b28f275c52b19048f2e3cb42d64895d"
+version = "1.1.4"
 dependencies = [
  "chrono",
  "pkg-version",
@@ -96,6 +94,27 @@ dependencies = [
  "serde",
  "serde_json",
  "wee_alloc",
+]
+
+[[package]]
+name = "field_access"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8964d92be54024fcd6a5ad8c204e85499249acc126a86ea5cabe7686c01af595"
+dependencies = [
+ "field_access_derive",
+ "paste",
+]
+
+[[package]]
+name = "field_access_derive"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e474d58478b562f802cf6097e46965bbadbbf4b134d3299aa7c45b91d5e40756"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.48",
 ]
 
 [[package]]
@@ -142,6 +161,8 @@ version = "1.4.2"
 dependencies = [
  "console_error_panic_hook",
  "epdx",
+ "field_access",
+ "pkg-version",
  "schemars",
  "serde",
  "serde_json",
@@ -180,6 +201,12 @@ name = "once_cell"
 version = "1.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dd8b5dd2ae5ed71462c540258bedcb51965123ad7e7ccf4b9a8cafaa4a63576d"
+
+[[package]]
+name = "paste"
+version = "1.0.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "de3145af08024dea9fa9914f381a17b8fc6034dfb00f3a84013f7ff43f29ed4c"
 
 [[package]]
 name = "pkg-version"

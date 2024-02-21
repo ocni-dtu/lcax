@@ -12,7 +12,10 @@ mod tests {
         let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
 
         match lcabyg::parse::parse_lcabyg(contents, None) {
-            Ok(epd) => Ok(()),
+            Ok(lca) => Ok({
+                lca;
+                ()
+            }),
             Err(error) => Err(error.to_string())
         }
     }
