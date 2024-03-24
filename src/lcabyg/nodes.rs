@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use field_access::FieldAccess;
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
@@ -17,7 +17,7 @@ pub enum Node {
     Stage(epdx::lcabyg::Stage),
     Operation(Operation),
     ProductTransportRoot(ProductTransportRoot),
-    Project(Project)
+    Project(Project),
 }
 
 #[derive(Serialize, Deserialize)]
@@ -75,7 +75,6 @@ pub struct Building {
     pub energy_class: String,
 }
 
-
 #[derive(Serialize, Deserialize, FieldAccess)]
 #[serde(rename_all = "UPPERCASE")]
 pub struct StageIndicators {
@@ -106,7 +105,7 @@ pub struct Project {
     pub owner: String,
     pub address: String,
     pub lca_advisor: String,
-    pub building_regulation_version: String
+    pub building_regulation_version: String,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -123,7 +122,6 @@ pub struct Operation {
 pub struct EmbodiedRoot {
     pub id: String,
 }
-
 
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]

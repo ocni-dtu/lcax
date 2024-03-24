@@ -60,7 +60,7 @@ pub struct ElementToConstructionEdge {
     pub amount: f64,
     pub enabled: bool,
     pub special_conditions: bool,
-    pub excluded_scenarios: Vec<String>
+    pub excluded_scenarios: Vec<String>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -73,5 +73,5 @@ pub struct CategoryToElementEdge {
 #[serde(rename_all = "snake_case")]
 pub struct CategoryToConstructionEdge {
     pub id: String,
-    pub layers: Vec<u32>
+    pub layers: Vec<u32>,
 }

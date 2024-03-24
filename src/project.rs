@@ -1,6 +1,7 @@
 use std::collections::HashMap;
+use std::fmt;
 
-use epdx::epd::{EPD, Unit};
+use epdx::epd::{Unit, EPD};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -20,12 +21,14 @@ pub struct LCAxProject {
     pub life_cycle_stages: Vec<LifeCycleStage>,
     pub impact_categories: Vec<ImpactCategoryKey>,
     pub assemblies: HashMap<String, Assembly>,
-    pub results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
+    pub results: Results,
     pub project_info: Option<ProjectInfo>,
     pub project_phase: ProjectPhase,
     pub software_info: SoftwareInfo,
     pub meta_data: Option<HashMap<String, String>>,
 }
+
+type Results = Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, Option<f64>>>>;
 
 #[derive(Deserialize, Serialize, JsonSchema, Default)]
 #[serde(rename_all = "camelCase")]
@@ -153,6 +156,28 @@ pub enum LifeCycleStage {
     D,
 }
 
+impl fmt::Display for LifeCycleStage {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            LifeCycleStage::A1A3 => write!(f, "A1A3"),
+            LifeCycleStage::A4 => write!(f, "A4"),
+            LifeCycleStage::A5 => write!(f, "A5"),
+            LifeCycleStage::B1 => write!(f, "B1"),
+            LifeCycleStage::B2 => write!(f, "B2"),
+            LifeCycleStage::B3 => write!(f, "B3"),
+            LifeCycleStage::B4 => write!(f, "B4"),
+            LifeCycleStage::B5 => write!(f, "B5"),
+            LifeCycleStage::B6 => write!(f, "B6"),
+            LifeCycleStage::B7 => write!(f, "B7"),
+            LifeCycleStage::C1 => write!(f, "C1"),
+            LifeCycleStage::C2 => write!(f, "C2"),
+            LifeCycleStage::C3 => write!(f, "C3"),
+            LifeCycleStage::C4 => write!(f, "C4"),
+            LifeCycleStage::D => write!(f, "D"),
+        }
+    }
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone)]
 #[serde(rename_all = "lowercase")]
 pub enum ImpactCategoryKey {
@@ -183,6 +208,38 @@ pub enum ImpactCategoryKey {
     EET,
 }
 
+impl fmt::Display for ImpactCategoryKey {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            ImpactCategoryKey::GWP => write!(f, "GWP"),
+            ImpactCategoryKey::ODP => write!(f, "ODP"),
+            ImpactCategoryKey::AP => write!(f, "AP"),
+            ImpactCategoryKey::EP => write!(f, "EP"),
+            ImpactCategoryKey::POCP => write!(f, "POCP"),
+            ImpactCategoryKey::ADPE => write!(f, "ADPE"),
+            ImpactCategoryKey::ADPF => write!(f, "ADPF"),
+            ImpactCategoryKey::PERE => write!(f, "PERE"),
+            ImpactCategoryKey::PERM => write!(f, "PERM"),
+            ImpactCategoryKey::PERT => write!(f, "PERT"),
+            ImpactCategoryKey::PENRT => write!(f, "PENRT"),
+            ImpactCategoryKey::PENRM => write!(f, "PENRM"),
+            ImpactCategoryKey::SM => write!(f, "SM"),
+            ImpactCategoryKey::RSF => write!(f, "RSF"),
+            ImpactCategoryKey::NRSF => write!(f, "NRSF"),
+            ImpactCategoryKey::FW => write!(f, "FW"),
+            ImpactCategoryKey::HWD => write!(f, "HWD"),
+            ImpactCategoryKey::NHWD => write!(f, "NHWD"),
+            ImpactCategoryKey::RWD => write!(f, "RWD"),
+            ImpactCategoryKey::CRU => write!(f, "CRU"),
+            ImpactCategoryKey::MRF => write!(f, "MRF"),
+            ImpactCategoryKey::MER => write!(f, "MER"),
+            ImpactCategoryKey::EEE => write!(f, "EEE"),
+            ImpactCategoryKey::EET => write!(f, "EET"),
+            ImpactCategoryKey::PENRE => write!(f, "PENRE")
+        }
+    }
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Assembly {
@@ -195,7 +252,7 @@ pub struct Assembly {
     pub category: Option<String>,
     pub classification: Option<Vec<Classification>>,
     pub products: HashMap<String, EPDProduct>,
-    pub results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
+    pub results: Results,
     pub meta_data: Option<HashMap<String, String>>,
 }
 
@@ -210,7 +267,7 @@ pub struct EPDProduct {
     pub quantity: f64,
     pub unit: Unit,
     pub transport: Option<Transport>,
-    pub results: Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, f64>>>,
+    pub results: Results,
     pub meta_data: Option<HashMap<String, String>>,
 }
 
@@ -253,7 +310,6 @@ pub struct ExternalEPD {
 pub struct InternalEPD {
     pub path: String,
 }
-
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 pub struct Classification {

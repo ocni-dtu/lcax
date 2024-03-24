@@ -27,8 +27,7 @@ jsbindings = ["wasm-bindgen", "console_error_panic_hook"]
 schemars = { version = "0.8.12", features = ["chrono"] }
 serde = { version = "1.0.152", features = ["derive"] }
 serde_json = "1.0.93"
-#epdx = "1.1.4"
-epdx = { path = "../epdx"}
+epdx = "1.2.0"
 wasm-bindgen = { version = "0.2.63", optional = true }
 console_error_panic_hook = { version = "0.1.6", optional = true }
 pkg-version = "1.0.0"

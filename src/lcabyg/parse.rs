@@ -1,16 +1,16 @@
 use epdx::epd::{Unit, EPD};
-use pkg_version::*;
+use field_access::FieldAccess;
 use serde::{Deserialize, Deserializer, Serialize};
 use serde_json::Error;
+use std::collections::HashMap;
 
 use crate::lcabyg::edges::EdgeType;
 use crate::lcabyg::nodes::Node;
+use crate::lcabyg::results::Model::InstanceModel;
+use crate::lcabyg::results::{LCAbygResults, YearResult};
 use crate::lcabyg::{categories, edges, nodes};
-use crate::project as lcax_project;
-use crate::project::{
-    Assembly, BuildingInfo, BuildingType, Classification, EPDProduct, EPDSource, LCAxProject,
-    Location, SoftwareInfo,
-};
+use crate::project::*;
+use crate::utils::get_version;
 
 type Edge = (EdgeType, String, String);
 
@@ -28,20 +28,20 @@ enum NodesAndEdges {
 /// * `result_data`: Optional JSON formatted string containing the result data from the LCAByg project
 ///
 /// returns: LCAxProject
-pub fn parse_lcabyg(
-    project_data: String,
-    result_data: Option<String>,
-) -> Result<LCAxProject, Error> {
-    match serde_json::from_str(&project_data) {
-        Ok(lcabyg_project) => Ok(lcax_from_lcabyg(lcabyg_project, result_data)),
+pub fn parse_lcabyg(project_data: &str, result_data: Option<&str>) -> Result<LCAxProject, Error> {
+    match serde_json::from_str(project_data) {
+        Ok(lcabyg_project) => match lcax_from_lcabyg(lcabyg_project, result_data) {
+            Ok(lcabyg_project) => Ok(lcabyg_project),
+            Err(err) => Err(err),
+        },
         Err(err) => Err(err),
     }
 }
 
 fn lcax_from_lcabyg(
     lcabyg_project: Vec<NodesAndEdges>,
-    result_data: Option<String>,
-) -> LCAxProject {
+    result_data: Option<&str>,
+) -> Result<LCAxProject, Error> {
     let mut project: LCAxProject = Default::default();
     let mut nodes: Vec<Node> = vec![];
     let mut edges: Vec<Edge> = vec![];
@@ -68,11 +68,103 @@ fn lcax_from_lcabyg(
             _ => {}
         }
     }
-    project
+    if result_data.is_some() {
+        match serde_json::from_str(result_data.unwrap()) {
+            Ok(_result_data) => {
+                let project_id = project.id.clone();
+                Ok(add_result_from_lcabyg(
+                    &mut project,
+                    &get_building_id(edges, &project_id),
+                    &_result_data,
+                ))
+            }
+            Err(err) => Err(err),
+        }
+        .expect("Failed to parse LCAbyg results");
+    }
+    Ok(project)
 }
 
-fn add_result_from_lcabyg(lcax_project: &LCAxProject, result_data: String) -> &LCAxProject {
-    lcax_project
+fn get_building_id(edges: Vec<Edge>, project_id: &str) -> String {
+    for edge in edges {
+        match edge {
+            (EdgeType::MainBuilding(_), _project_id, building_id) if _project_id == project_id => {
+                return building_id
+            }
+            _ => continue,
+        }
+    }
+    "".to_string()
+}
+
+fn add_result_from_lcabyg(
+    lcax_project: &mut LCAxProject,
+    building_id: &str,
+    results: &LCAbygResults,
+) {
+    lcax_project.results = collect_lcabyg_object_results(
+        building_id,
+        results,
+        &lcax_project.impact_categories,
+        &lcax_project.life_cycle_stages,
+    );
+    for (assembly_id, mut assembly) in &mut lcax_project.assemblies {
+        assembly.results = collect_lcabyg_object_results(
+            &get_result_id(assembly_id, results),
+            results,
+            &lcax_project.impact_categories,
+            &lcax_project.life_cycle_stages,
+        )
+    }
+}
+
+fn get_result_id(object_id: &str, results: &LCAbygResults) -> String {
+    for result in &results.model {
+        match result {
+            InstanceModel(instance) if instance.model_id == object_id => {
+                return instance.id.to_string()
+            }
+            _ => continue,
+        }
+    }
+    return "".to_string();
+}
+
+fn collect_lcabyg_object_results(
+    object_id: &str,
+    results: &LCAbygResults,
+    impact_categories: &Vec<ImpactCategoryKey>,
+    life_cycle_stages: &Vec<LifeCycleStage>,
+) -> Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, Option<f64>>>> {
+    match results.results.get(object_id) {
+        Some(object_result) => {
+            let mut result = HashMap::new();
+            for category in impact_categories {
+                let mut stages = HashMap::new();
+                for stage in life_cycle_stages {
+                    let impact_result =
+                        match &object_result.field(stage.to_string().to_lowercase().as_str()) {
+                            Some(field) => match field.get::<YearResult>() {
+                                Some(year) => Some(
+                                    year.end_of_time
+                                        .field(category.to_string().to_lowercase().as_str())
+                                        .unwrap()
+                                        .as_f64()
+                                        .unwrap(),
+                                ),
+                                None => None,
+                            },
+                            None => None,
+                        };
+                    stages.insert(stage.clone(), impact_result.clone());
+                }
+                result.insert(category.clone(), stages.clone());
+            }
+
+            Some(result)
+        }
+        None => None,
+    }
 }
 
 fn add_project_data(project: &mut LCAxProject, node: &nodes::Project) {
@@ -84,13 +176,25 @@ fn add_project_data(project: &mut LCAxProject, node: &nodes::Project) {
         city: String::from(""),
         address: node.address.to_string(),
     };
+    project.impact_categories = vec![
+        ImpactCategoryKey::AP,
+        ImpactCategoryKey::ADPE,
+        ImpactCategoryKey::ADPF,
+        ImpactCategoryKey::EP,
+        ImpactCategoryKey::POCP,
+        ImpactCategoryKey::ODP,
+        ImpactCategoryKey::GWP,
+        ImpactCategoryKey::PENRE,
+        ImpactCategoryKey::PERE,
+    ];
+    project.life_cycle_stages = vec![
+        LifeCycleStage::A1A3,
+        LifeCycleStage::C3,
+        LifeCycleStage::C4,
+        LifeCycleStage::D,
+    ];
     project.owner = node.owner.to_string();
-    project.format_version = format!(
-        "{}.{}.{}",
-        pkg_version_major!(),
-        pkg_version_minor!(),
-        pkg_version_patch!()
-    );
+    project.format_version = get_version();
     project.classification_system = Some(String::from("LCAByg"));
     project.software_info = SoftwareInfo {
         goal_and_scope_definition: None,
@@ -101,10 +205,10 @@ fn add_project_data(project: &mut LCAxProject, node: &nodes::Project) {
 
 fn add_building_data(project: &mut LCAxProject, node: &nodes::Building) {
     project.reference_study_period = Some(node.calculation_timespan as u8);
-    project.project_info = Some(lcax_project::ProjectInfo::BuildingInfo {
+    project.project_info = Some(ProjectInfo::BuildingInfo {
         0: BuildingInfo {
             building_type: BuildingType::NEW,
-            building_typology: lcax_project::BuildingTypology::from(&node.building_type),
+            building_typology: BuildingTypology::from(&node.building_type),
             certifications: "".to_string(),
             building_mass: "".to_string(),
             gross_floor_area: node.gross_area,
