@@ -1,30 +1,39 @@
-name: Build NPM Package
+name: Build JavaScript
 
 on:
   workflow_call:
 
+env:
+  NODE_VERSION: '20.x'
+
 jobs:
-  buildJavaScript:
+  build:
+    name: Build JavaScript
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: jetli/wasm-pack-action@v0.4.0
+
+      - name: Build
+        run: |
+          wasm-pack build --features jsbindings
+          mv pkg/lcax* packages/javascript/src
+
+      - uses: actions/setup-node@v4
         with:
-          name: json-schema
-          path: packages/javascript
-
-      - uses: actions/setup-node@v3
-        name: Setup Node
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Dependencies
-        run: npm install json-schema-to-typescript --save
+        working-directory: 'packages/javascript'
+        run: npm ci
 
-      - name: Create Typescript
-        run: npx json2ts packages/javascript/lcax.schema.json packages/javascript/lcax.d.ts
+      - name: Run Tests
+        working-directory: 'packages/javascript'
+        run: npm run test
 
-      - name: Upload TypeScript
-        uses: actions/upload-artifact@v3
+      - name: Upload Generated Files
+        uses: actions/upload-artifact@v4
         with:
-          name: typescript-schema
-          path: 'packages/javascript/lcax.d.ts'
+          name: javascript-files
+          path: 'packages/javascript/src/lcax*'

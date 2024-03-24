@@ -170,11 +170,11 @@ fn collect_lcabyg_object_results(
 fn add_project_data(project: &mut LCAxProject, node: &nodes::Project) {
     project.id = node.id.to_string();
     project.name = node.name.danish.clone().unwrap();
-    project.description = String::from("");
+    project.description = Some(String::from(""));
     project.location = Location {
         country: String::from("Denmark"),
-        city: String::from(""),
-        address: node.address.to_string(),
+        city: Some(String::from("")),
+        address: Some(node.address.to_string()),
     };
     project.impact_categories = vec![
         ImpactCategoryKey::AP,
@@ -193,7 +193,7 @@ fn add_project_data(project: &mut LCAxProject, node: &nodes::Project) {
         LifeCycleStage::C4,
         LifeCycleStage::D,
     ];
-    project.owner = node.owner.to_string();
+    project.owner = Some(node.owner.to_string());
     project.format_version = get_version();
     project.classification_system = Some(String::from("LCAByg"));
     project.software_info = SoftwareInfo {

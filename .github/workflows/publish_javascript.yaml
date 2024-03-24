@@ -7,36 +7,31 @@ on:
       npm_token:
         required: true
 
+env:
+  NODE_VERSION: '20.x'
+
 jobs:
   publishJavaScript:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: cargo
 
       - uses: jetli/wasm-pack-action@v0.4.0
 
       - name: Build
-        run: |
-          wasm-pack build --features jsbindings
-          mv pkg/* packages/javascript
+        run: wasm-pack build --features jsbindings
 
-      - uses: actions/download-artifact@v3
-        with:
-          name: typescript-schema
-          path: packages/javascript
-
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
       - name: Publish
-        run: |
-          cd packages/javascript
-          npm publish --access public
+        working-directory: pkg
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

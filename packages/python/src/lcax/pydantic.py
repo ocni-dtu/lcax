@@ -10,6 +10,37 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, Extra, Field
 
 
+class BuildingModelScope(BaseModel):
+    class Config:
+        allow_population_by_field_name = True
+
+    building_services: bool
+    external_works: bool
+    facilitating_works: bool
+    ff_e: bool
+    finishes: bool
+    substructure: bool
+    superstructure_envelope: bool
+    superstructure_frame: bool
+    superstructure_internal_elements: bool
+
+
+class BuildingType(Enum):
+    renovation = 'renovation'
+    new = 'new'
+
+
+class BuildingTypology(Enum):
+    office = 'office'
+    residential = 'residential'
+    public = 'public'
+    commercial = 'commercial'
+    industrial = 'industrial'
+    infrastructure = 'infrastructure'
+    agricultural = 'agricultural'
+    other = 'other'
+
+
 class Classification(BaseModel):
     class Config:
         allow_population_by_field_name = True
@@ -17,11 +48,6 @@ class Classification(BaseModel):
     code: str
     name: str
     system: str
-
-
-class DistanceUnit(Enum):
-    m = 'm'
-    km = 'km'
 
 
 class ExternalEPD(BaseModel):
@@ -107,6 +133,41 @@ class LifeCycleStage(Enum):
     d = 'd'
 
 
+class Location(BaseModel):
+    class Config:
+        allow_population_by_field_name = True
+
+    address: Optional[str] = None
+    city: Optional[str] = None
+    country: str
+
+
+class ProjectInfo2(BaseModel):
+    class Config:
+        extra = Extra.forbid
+        allow_population_by_field_name = True
+
+    infrastructureinfo: Dict[str, str]
+
+
+class ProjectPhase(Enum):
+    design = 'design'
+    ongoing = 'ongoing'
+    built = 'built'
+    other = 'other'
+
+
+class SoftwareInfo(BaseModel):
+    class Config:
+        allow_population_by_field_name = True
+
+    calculation_type: Optional[str] = Field(None, alias='calculationType')
+    goal_and_scope_definition: Optional[str] = Field(
+        None, alias='goalAndScopeDefinition'
+    )
+    lca_software: str = Field(..., alias='lcaSoftware')
+
+
 class Source(BaseModel):
     class Config:
         allow_population_by_field_name = True
@@ -128,13 +189,6 @@ class SubType(Enum):
     representative = 'Representative'
 
 
-class TransportType(Enum):
-    truck = 'truck'
-    train = 'train'
-    ship = 'ship'
-    plane = 'plane'
-
-
 class Unit(Enum):
     m = 'M'
     m2 = 'M2'
@@ -144,13 +198,43 @@ class Unit(Enum):
     pcs = 'PCS'
     l = 'L'
     m2_r1 = 'M2R1'
+    km = 'KM'
+    tones_km = 'TONES_KM'
     unknown = 'UNKNOWN'
+
+
+class BuildingInfo(BaseModel):
+    class Config:
+        allow_population_by_field_name = True
+
+    building_completion_year: int = Field(..., alias='buildingCompletionYear', ge=0)
+    building_mass: str = Field(..., alias='buildingMass')
+    building_model_scope: Optional[BuildingModelScope] = Field(
+        None, alias='buildingModelScope'
+    )
+    building_type: BuildingType = Field(..., alias='buildingType')
+    building_typology: BuildingTypology = Field(..., alias='buildingTypology')
+    certifications: str
+    energy_class: str = Field(..., alias='energyClass')
+    energy_demand_electricity: float = Field(..., alias='energyDemandElectricity')
+    energy_demand_heating: float = Field(..., alias='energyDemandHeating')
+    energy_supply_electricity: float = Field(..., alias='energySupplyElectricity')
+    energy_supply_heating: float = Field(..., alias='energySupplyHeating')
+    exported_electricity: float = Field(..., alias='exportedElectricity')
+    floors_above_ground: int = Field(..., alias='floorsAboveGround', ge=0)
+    floors_below_ground: int = Field(..., alias='floorsBelowGround', ge=0)
+    frame_type: str = Field(..., alias='frameType')
+    gross_floor_area: float = Field(..., alias='grossFloorArea')
+    gross_floor_area_definition: str = Field(..., alias='grossFloorAreaDefinition')
+    heated_floor_area: float = Field(..., alias='heatedFloorArea')
+    heated_floor_area_definition: str = Field(..., alias='heatedFloorAreaDefinition')
 
 
 class Conversion(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
+    meta_data: str
     to: Unit
     value: float
 
@@ -177,7 +261,7 @@ class EPD(BaseModel):
     location: str
     mer: Optional[ImpactCategory] = None
     meta_data: Optional[Dict[str, Any]] = None
-    mrf: Optional[ImpactCategory] = None
+    mfr: Optional[ImpactCategory] = None
     name: str
     nhwd: Optional[ImpactCategory] = None
     nrsf: Optional[ImpactCategory] = None
@@ -225,31 +309,43 @@ class EPDSource3(BaseModel):
     internalepd: InternalEPD
 
 
+class ProjectInfo1(BaseModel):
+    class Config:
+        extra = Extra.forbid
+        allow_population_by_field_name = True
+
+    buildinginfo: BuildingInfo
+
+
 class Transport(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
     distance: float
-    distance_unit: DistanceUnit = Field(..., alias='distanceUnit')
+    distance_unit: Unit = Field(..., alias='distanceUnit')
     id: str
     name: str
-    transport_type: TransportType = Field(..., alias='transportType')
+    transport_epd: Union[EPDSource1, EPDSource2, EPDSource3] = Field(
+        ..., alias='transportEpd'
+    )
 
 
-class EPDPart(BaseModel):
+class EPDProduct(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
+    description: str
     epd_source: Union[EPDSource1, EPDSource2, EPDSource3] = Field(
         ..., alias='epdSource'
     )
     id: str
     meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
-    part_quantity: float = Field(..., alias='partQuantity')
-    part_unit: Unit = Field(..., alias='partUnit')
-    reference_service_life: float = Field(..., alias='referenceServiceLife')
+    quantity: float
+    reference_service_life: int = Field(..., alias='referenceServiceLife', ge=0)
+    results: Optional[Dict[str, Any]] = None
     transport: Optional[Transport] = None
+    unit: Unit
 
 
 class Assembly(BaseModel):
@@ -263,7 +359,7 @@ class Assembly(BaseModel):
     id: str
     meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
-    parts: Dict[str, EPDPart]
+    products: Dict[str, EPDProduct]
     quantity: float
     results: Optional[Dict[str, Any]] = None
     unit: Unit
@@ -273,17 +369,25 @@ class LCAxProject(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
+    assemblies: Dict[str, Assembly]
     classification_system: Optional[str] = Field(None, alias='classificationSystem')
     comment: Optional[str] = None
-    description: str
-    emission_parts: Dict[str, Assembly] = Field(..., alias='emissionParts')
+    description: Optional[str] = None
     format_version: str = Field(..., alias='formatVersion')
     id: str
     impact_categories: List[ImpactCategoryKey] = Field(..., alias='impactCategories')
     lcia_method: Optional[str] = Field(None, alias='lciaMethod')
     life_cycle_stages: List[LifeCycleStage] = Field(..., alias='lifeCycleStages')
-    life_span: Optional[int] = Field(None, alias='lifeSpan', ge=0)
-    location: str
+    location: Location
     meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
+    owner: Optional[str] = None
+    project_info: Optional[Union[ProjectInfo1, ProjectInfo2]] = Field(
+        None, alias='projectInfo'
+    )
+    project_phase: ProjectPhase = Field(..., alias='projectPhase')
+    reference_study_period: Optional[int] = Field(
+        None, alias='referenceStudyPeriod', ge=0
+    )
     results: Optional[Dict[str, Any]] = None
+    software_info: SoftwareInfo = Field(..., alias='softwareInfo')

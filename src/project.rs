@@ -4,16 +4,22 @@ use std::fmt;
 use epdx::epd::{Unit, EPD};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use tsify::Tsify;
 
 #[derive(Deserialize, Serialize, JsonSchema, Default)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 pub struct LCAxProject {
     pub id: String,
     pub name: String,
-    pub description: String,
+    pub description: Option<String>,
     pub comment: Option<String>,
     pub location: Location,
-    pub owner: String,
+    pub owner: Option<String>,
     pub format_version: String,
     pub lcia_method: Option<String>,
     pub classification_system: Option<String>,
@@ -32,6 +38,7 @@ type Results = Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, Option<
 
 #[derive(Deserialize, Serialize, JsonSchema, Default)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct SoftwareInfo {
     pub goal_and_scope_definition: Option<String>,
     pub lca_software: String,
@@ -39,7 +46,8 @@ pub struct SoftwareInfo {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Default)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ProjectPhase {
     DESIGN,
     ONGOING,
@@ -50,14 +58,16 @@ pub enum ProjectPhase {
 
 #[derive(Deserialize, Serialize, JsonSchema, Default)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Location {
     pub country: String,
-    pub city: String,
-    pub address: String,
+    pub city: Option<String>,
+    pub address: Option<String>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ProjectInfo {
     BuildingInfo(BuildingInfo),
     InfrastructureInfo(HashMap<String, String>),
@@ -65,6 +75,7 @@ pub enum ProjectInfo {
 
 #[derive(Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct BuildingInfo {
     pub building_type: BuildingType,
     pub building_typology: BuildingTypology,
@@ -89,6 +100,7 @@ pub struct BuildingInfo {
 
 #[derive(Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct BuildingModelScope {
     pub facilitating_works: bool,
     pub substructure: bool,
@@ -103,6 +115,7 @@ pub struct BuildingModelScope {
 
 #[derive(Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum BuildingType {
     RENOVATION,
     NEW,
@@ -110,6 +123,7 @@ pub enum BuildingType {
 
 #[derive(Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum BuildingTypology {
     OFFICE,
     RESIDENTIAL,
@@ -138,6 +152,7 @@ impl From<&String> for BuildingTypology {
 
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone)]
 #[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum LifeCycleStage {
     A1A3,
     A4,
@@ -180,6 +195,7 @@ impl fmt::Display for LifeCycleStage {
 
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone)]
 #[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ImpactCategoryKey {
     GWP,
     ODP,
@@ -235,13 +251,14 @@ impl fmt::Display for ImpactCategoryKey {
             ImpactCategoryKey::MER => write!(f, "MER"),
             ImpactCategoryKey::EEE => write!(f, "EEE"),
             ImpactCategoryKey::EET => write!(f, "EET"),
-            ImpactCategoryKey::PENRE => write!(f, "PENRE")
+            ImpactCategoryKey::PENRE => write!(f, "PENRE"),
         }
     }
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Assembly {
     pub id: String,
     pub name: String,
@@ -258,6 +275,7 @@ pub struct Assembly {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct EPDProduct {
     pub id: String,
     pub name: String,
@@ -273,6 +291,7 @@ pub struct EPDProduct {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Transport {
     pub id: String,
     pub name: String,
@@ -283,6 +302,7 @@ pub struct Transport {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum EPDSource {
     EPD(EPD),
     ExternalEPD(ExternalEPD),
@@ -300,6 +320,7 @@ impl Default for EPDSource {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct ExternalEPD {
     pub url: String,
     pub format: String,
@@ -307,11 +328,13 @@ pub struct ExternalEPD {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct InternalEPD {
     pub path: String,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Classification {
     pub system: String,
     pub code: String,

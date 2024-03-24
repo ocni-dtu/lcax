@@ -1,0 +1,930 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LCAxProject",
+  "type": "object",
+  "required": [
+    "description",
+    "emissionParts",
+    "formatVersion",
+    "id",
+    "impactCategories",
+    "lifeCycleStages",
+    "location",
+    "name"
+  ],
+  "properties": {
+    "classificationSystem": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "comment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "emissionParts": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Assembly"
+      }
+    },
+    "formatVersion": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "impactCategories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ImpactCategoryKey"
+      }
+    },
+    "lciaMethod": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lifeCycleStages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/LifeCycleStage"
+      }
+    },
+    "lifeSpan": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "uint8",
+      "minimum": 0.0
+    },
+    "location": {
+      "type": "string"
+    },
+    "metaData": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "results": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Assembly": {
+      "type": "object",
+      "required": [
+        "description",
+        "id",
+        "name",
+        "parts",
+        "quantity",
+        "unit"
+      ],
+      "properties": {
+        "category": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "classification": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Classification"
+          }
+        },
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "metaData": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "parts": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/EPDPart"
+          }
+        },
+        "quantity": {
+          "type": "number",
+          "format": "double"
+        },
+        "results": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        },
+        "unit": {
+          "$ref": "#/definitions/Unit"
+        }
+      }
+    },
+    "Classification": {
+      "type": "object",
+      "required": [
+        "code",
+        "name",
+        "system"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "system": {
+          "type": "string"
+        }
+      }
+    },
+    "Conversion": {
+      "type": "object",
+      "required": [
+        "to",
+        "value"
+      ],
+      "properties": {
+        "to": {
+          "$ref": "#/definitions/Unit"
+        },
+        "value": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "DistanceUnit": {
+      "type": "string",
+      "enum": [
+        "m",
+        "km"
+      ]
+    },
+    "EPD": {
+      "type": "object",
+      "required": [
+        "declared_unit",
+        "format_version",
+        "id",
+        "location",
+        "name",
+        "published_date",
+        "standard",
+        "subtype",
+        "valid_until",
+        "version"
+      ],
+      "properties": {
+        "adpe": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "adpf": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ap": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "conversions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Conversion"
+          }
+        },
+        "cru": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "declared_unit": {
+          "$ref": "#/definitions/Unit"
+        },
+        "eee": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "eet": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ep": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "format_version": {
+          "type": "string"
+        },
+        "fw": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "gwp": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hwd": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "mer": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "meta_data": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "mrf": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "nhwd": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nrsf": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "odp": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "penre": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "penrm": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "penrt": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pere": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "perm": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pert": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pocp": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "published_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reference_service_life": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "rsf": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rwd": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sm": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ImpactCategory"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Source"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "standard": {
+          "$ref": "#/definitions/Standard"
+        },
+        "subtype": {
+          "$ref": "#/definitions/SubType"
+        },
+        "valid_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "EPDPart": {
+      "type": "object",
+      "required": [
+        "epdSource",
+        "id",
+        "name",
+        "partQuantity",
+        "partUnit",
+        "referenceServiceLife"
+      ],
+      "properties": {
+        "epdSource": {
+          "$ref": "#/definitions/EPDSource"
+        },
+        "id": {
+          "type": "string"
+        },
+        "metaData": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "partQuantity": {
+          "type": "number",
+          "format": "double"
+        },
+        "partUnit": {
+          "$ref": "#/definitions/Unit"
+        },
+        "referenceServiceLife": {
+          "type": "number",
+          "format": "double"
+        },
+        "transport": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Transport"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "EPDSource": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "epd"
+          ],
+          "properties": {
+            "epd": {
+              "$ref": "#/definitions/EPD"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "externalepd"
+          ],
+          "properties": {
+            "externalepd": {
+              "$ref": "#/definitions/ExternalEPD"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "internalepd"
+          ],
+          "properties": {
+            "internalepd": {
+              "$ref": "#/definitions/InternalEPD"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ExternalEPD": {
+      "type": "object",
+      "required": [
+        "format",
+        "url"
+      ],
+      "properties": {
+        "format": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "ImpactCategory": {
+      "type": "object",
+      "properties": {
+        "a1a3": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "a4": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "a5": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "b1": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "b2": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "b3": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "b4": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "b5": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "b6": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "b7": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "c1": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "c2": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "c3": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "c4": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "d": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        }
+      }
+    },
+    "ImpactCategoryKey": {
+      "type": "string",
+      "enum": [
+        "gwp",
+        "odp",
+        "ap",
+        "ep",
+        "pocp",
+        "adpe",
+        "adpf",
+        "penre",
+        "pere",
+        "perm",
+        "pert",
+        "penrt",
+        "penrm",
+        "sm",
+        "rsf",
+        "nrsf",
+        "fw",
+        "hwd",
+        "nhwd",
+        "rwd",
+        "cru",
+        "mrf",
+        "mer",
+        "eee",
+        "eet"
+      ]
+    },
+    "InternalEPD": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "LifeCycleStage": {
+      "type": "string",
+      "enum": [
+        "a1a3",
+        "a4",
+        "a5",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "d"
+      ]
+    },
+    "Source": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "Standard": {
+      "type": "string",
+      "enum": [
+        "EN15804A1",
+        "EN15804A2",
+        "UNKNOWN"
+      ]
+    },
+    "SubType": {
+      "type": "string",
+      "enum": [
+        "Generic",
+        "Specific",
+        "Industry",
+        "Representative"
+      ]
+    },
+    "Transport": {
+      "type": "object",
+      "required": [
+        "distance",
+        "distanceUnit",
+        "id",
+        "name",
+        "transportType"
+      ],
+      "properties": {
+        "distance": {
+          "type": "number",
+          "format": "double"
+        },
+        "distanceUnit": {
+          "$ref": "#/definitions/DistanceUnit"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "transportType": {
+          "$ref": "#/definitions/TransportType"
+        }
+      }
+    },
+    "TransportType": {
+      "type": "string",
+      "enum": [
+        "truck",
+        "train",
+        "ship",
+        "plane"
+      ]
+    },
+    "Unit": {
+      "type": "string",
+      "enum": [
+        "M",
+        "M2",
+        "M3",
+        "KG",
+        "TONES",
+        "PCS",
+        "L",
+        "M2R1",
+        "UNKNOWN"
+      ]
+    }
+  }
+}
