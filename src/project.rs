@@ -4,6 +4,8 @@ use std::fmt;
 use epdx::epd::{Unit, EPD};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+
+#[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
 #[derive(Deserialize, Serialize, JsonSchema, Default)]
