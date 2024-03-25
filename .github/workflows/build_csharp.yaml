@@ -7,14 +7,14 @@ jobs:
   buildCSharp:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: json-schema
           path: packages/csharp
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         name: Setup Node
 
       - name: Install Dependencies
@@ -31,7 +31,7 @@ jobs:
             --features just-types
 
       - name: Upload C#
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: csharp-schema
           path: 'packages/csharp/lcax.cs'
