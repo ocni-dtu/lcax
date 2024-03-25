@@ -175,9 +175,8 @@ docs/schemas
 /packages/python/src/lcax/lcax/
 /packages/python/src/lcax/lcax.schema.json
 
-packages/javascript
-!packages/javascript/.gitkeep
-/docs/CHANGELOG.md
+!/packages/javascript/package.json
+!/packages/javascript/package-lock.json
 
 node_modules/
 package.json

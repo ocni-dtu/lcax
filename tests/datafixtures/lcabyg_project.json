@@ -1,0 +1,613 @@
+[
+  {
+    "Node": {
+      "ConstructionProcess": {
+        "id": "349738da-9747-4d5c-b508-2a810317166f"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "ProcessToInstallation": "dd928199-b70a-43f8-8556-4f740dccd1ef"
+      },
+      "349738da-9747-4d5c-b508-2a810317166f",
+      "020cc362-536b-484e-b8f9-6507b40ab675"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ProcessToTransport": "15867192-86b7-40a8-9936-83d9e998516e"
+      },
+      "349738da-9747-4d5c-b508-2a810317166f",
+      "915c5162-93bc-49c0-bdaf-9f470b4c7998"
+    ]
+  },
+  {
+    "Node": {
+      "Product": {
+        "id": "ee60d276-eb44-41a9-a36d-6ded36315c47",
+        "name": {
+          "English": "Test produkt",
+          "German": "Test produkt",
+          "Norwegian": "Test produkt",
+          "Danish": "Test produkt"
+        },
+        "source": "User",
+        "comment": {
+          "English": "",
+          "Norwegian": "",
+          "German": "",
+          "Danish": ""
+        },
+        "uncertainty_factor": 1.0
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "ProductToStage": {
+          "id": "11c91e86-b42a-46e5-9d2e-e0348b3b968b",
+          "excluded_scenarios": [],
+          "enabled": true
+        }
+      },
+      "ee60d276-eb44-41a9-a36d-6ded36315c47",
+      "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "CategoryToStage": "37be9e71-9336-4adb-8533-4aa6b7ef6556"
+      },
+      "d8143098-5ed7-42db-8bea-996b0cb3d271",
+      "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218"
+    ]
+  },
+  {
+    "Node": {
+      "Construction": {
+        "id": "7cec94c1-bbc7-4609-aca5-41fa9474a311",
+        "name": {
+          "German": "Test konstruktion",
+          "Norwegian": "Test konstruktion",
+          "English": "Test konstruktion",
+          "Danish": "Test konstruktion"
+        },
+        "unit": "M2",
+        "source": "User",
+        "comment": {
+          "German": "",
+          "Danish": "",
+          "Norwegian": "",
+          "English": ""
+        },
+        "locked": false
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "ConstructionToProduct": {
+          "id": "5d2c7e8f-51a7-48d1-b75e-55d5b72ee140",
+          "amount": 0.5,
+          "unit": "KG",
+          "lifespan": 80,
+          "demolition": false,
+          "delayed_start": 0,
+          "enabled": true,
+          "excluded_scenarios": []
+        }
+      },
+      "7cec94c1-bbc7-4609-aca5-41fa9474a311",
+      "ee60d276-eb44-41a9-a36d-6ded36315c47"
+    ]
+  },
+  {
+    "Node": {
+      "ElementModel": {
+        "id": "aeefab8a-e825-4d14-b0c3-e87b7759e5b2"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "49bb8f71-6d02-48bf-986d-3fa6db9e9b92"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "0ae65810-51bc-4130-89a0-9c107f1aca3f"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "4640fd41-1a2c-4bb9-bd0a-7d1cd85b102e"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "20c75334-735c-442f-a541-985ac5a130c8"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "7911defb-6013-4cd7-ae97-ed870ed7cb47"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "9e7adf74-5281-4aa4-9cff-d903a4266aae"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "b879ae4c-15d5-4f6a-91e1-4b575702436b"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "bae7f4b9-967c-4542-bc99-f744aa261424"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "4ff922e8-982f-436e-a3b7-efecb987c5a6"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "ca17092d-2a42-4941-b478-669b12001556"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "6d2c715d-847c-4866-9bd7-a2b8defdf6a7"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "487184b7-5568-497b-b7e2-e8d2269e51ef"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "0e59acae-729c-4bc5-bea8-5b4b2abba72a"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "a1746ce9-3d06-424c-a701-34a090f08433"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "1cf888c3-deb9-42d0-a702-1cc1818e5dc1"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "571650a7-4259-4cc1-9d56-a12e516fd495"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "e009ab41-7be2-40ce-aafe-78b2cc86fb47"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "e5937376-1d7f-4edf-9710-cafd7fe91606"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "708fa945-e639-43f5-90dc-2d9719963254"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "6808ac7b-2a79-45a6-8013-5f89ad13c337"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "b576344e-eccf-4735-94f3-23ce5a6e2d0c"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "f7737ac7-ea51-488e-81de-9c1bab1c08bf"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "0efa66cb-2308-4e75-8d38-34c9b130af78"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "3cb417d3-d615-402e-81dc-d7d587e83ac1"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "badc823a-c90b-4ef9-890c-34690bb410eb"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "ac7112e7-ccea-4e1b-a6a2-9c9c3b9a7177"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "a2320d34-9ef5-42c3-a9ca-6e48303e7656"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "1e853d01-fce5-4947-850d-e0b43e51b1fc"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "4fa14d2c-f70f-4cd5-b1c6-c303821aa2a6"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "d50ad0a5-636a-4169-b4d7-21e9b64d94a8"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "25b12d48-dbd3-4851-aa40-306a099d45f1"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "dad100a3-f570-4c96-bec0-9028bc5f6835"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ParentTo": "af67e91b-9651-46e2-9abe-caaa46b6ea0f"
+      },
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2",
+      "de3a2393-388c-4079-9e7d-6529c14f8a69"
+    ]
+  },
+  {
+    "Node": {
+      "ConstructionInstallation": {
+        "id": "020cc362-536b-484e-b8f9-6507b40ab675"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "FuelUsage": "f069389f-b870-4c63-9362-88dc8c9912c9"
+      },
+      "020cc362-536b-484e-b8f9-6507b40ab675",
+      "5e5ccea5-5243-494b-9a49-292ada027abe"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "InstallationOperation": "082b809c-9850-4a72-8dbb-7ec74d0fec15"
+      },
+      "020cc362-536b-484e-b8f9-6507b40ab675",
+      "c33cf608-9ceb-47f3-9ccf-c3ecb58ddb96"
+    ]
+  },
+  {
+    "Node": {
+      "FuelConsumption": {
+        "id": "5e5ccea5-5243-494b-9a49-292ada027abe"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "TransportTypeUsage": {
+          "id": "899c9a7c-b616-49ac-8937-088ac10b2537",
+          "distance": 0.0
+        }
+      },
+      "5e5ccea5-5243-494b-9a49-292ada027abe",
+      "1adea09d-d954-4b9f-9a95-fa3cee0c4787"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "TransportTypeUsage": {
+          "id": "59292514-bf7b-4c89-a816-fe528cb07530",
+          "distance": 0.0
+        }
+      },
+      "5e5ccea5-5243-494b-9a49-292ada027abe",
+      "b0ca9d35-fdfe-4e29-8d65-1032bf5a220a"
+    ]
+  },
+  {
+    "Node": {
+      "DGNBOperationReference": {
+        "id": "1d8ac649-04d9-4f50-83ae-135b4bbfcb97",
+        "heat_supplement": 0.0,
+        "electricity_supplement": 0.0
+      }
+    }
+  },
+  {
+    "Node": {
+      "Element": {
+        "id": "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87",
+        "name": {
+          "German": "Test element",
+          "Norwegian": "Test element",
+          "Danish": "Test element",
+          "English": "Test element"
+        },
+        "source": "User",
+        "comment": {
+          "German": "",
+          "Norwegian": "",
+          "Danish": "",
+          "English": ""
+        },
+        "enabled": true,
+        "excluded_scenarios": []
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "ElementToConstruction": {
+          "id": "c8e25c82-0de6-408a-a0c3-4411d42b996a",
+          "amount": 50.0,
+          "enabled": true,
+          "special_conditions": false,
+          "excluded_scenarios": []
+        }
+      },
+      "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87",
+      "7cec94c1-bbc7-4609-aca5-41fa9474a311"
+    ]
+  },
+  {
+    "Node": {
+      "EmbodiedRoot": {
+        "id": "216cf5d6-3e9d-43ec-b0d8-5aee02240c28"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "RootToModel": "1191a67b-c672-43fc-b2b7-724bc62b974a"
+      },
+      "216cf5d6-3e9d-43ec-b0d8-5aee02240c28",
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "RootToConstructionProcess": "48781119-3992-4e48-9099-e8e8654a4935"
+      },
+      "216cf5d6-3e9d-43ec-b0d8-5aee02240c28",
+      "349738da-9747-4d5c-b508-2a810317166f"
+    ]
+  },
+  {
+    "Node": {
+      "Building": {
+        "id": "7791681b-40a2-401d-ac38-a2f73d736ab4",
+        "scenario_name": "Original bygningsmodel",
+        "locked": "Unlocked",
+        "description": {
+          "Norwegian": "",
+          "Danish": "",
+          "German": "",
+          "English": ""
+        },
+        "building_type": "Office",
+        "heated_floor_area": 100.0,
+        "gross_area": 100.0,
+        "integrated_garage": 0.0,
+        "external_area": 0.0,
+        "gross_area_above_ground": 0.0,
+        "person_count": 0,
+        "storeys_above_ground": 0,
+        "storeys_below_ground": 0,
+        "storey_height": 0.0,
+        "initial_year": 2023,
+        "calculation_timespan": 50,
+        "calculation_mode": "BR23",
+        "outside_area": 0.0,
+        "plot_area": 0.0,
+        "energy_class": "LowEnergy"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "BuildingToRoot": "e2ff039e-2328-4d9c-a792-01bd101f93a1"
+      },
+      "7791681b-40a2-401d-ac38-a2f73d736ab4",
+      "216cf5d6-3e9d-43ec-b0d8-5aee02240c28"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "BuildingToOperation": "67f5d798-3456-43b0-b6b9-fccdee63b17b"
+      },
+      "7791681b-40a2-401d-ac38-a2f73d736ab4",
+      "0338d31e-3876-440d-a88c-2daa2dd81942"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "BuildingToDGNBOperation": "a873771e-7bec-4eb1-8fdf-27a439c2df33"
+      },
+      "7791681b-40a2-401d-ac38-a2f73d736ab4",
+      "1d8ac649-04d9-4f50-83ae-135b4bbfcb97"
+    ]
+  },
+  {
+    "Node": {
+      "Stage": {
+        "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
+        "name": {
+          "English": "Test fase (A1-A3)",
+          "Danish": "Test fase (A1-A3)",
+          "German": "Test fase (A1-A3)",
+          "Norwegian": "Test fase (A1-A3)"
+        },
+        "comment": {
+          "German": "",
+          "Danish": "",
+          "English": "",
+          "Norwegian": ""
+        },
+        "source": "User",
+        "valid_to": "2027-01-01",
+        "stage": "A1to3",
+        "stage_unit": "M3",
+        "indicator_unit": "M3",
+        "stage_factor": 1.0,
+        "mass_factor": 7850.0,
+        "indicator_factor": 1.0,
+        "scale_factor": 1.0,
+        "external_source": "\u00d6kobau.dat",
+        "external_id": "5aa09d72-e200-40dc-b8da-959a72e32bc3",
+        "external_version": "00.02.000",
+        "external_url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en",
+        "compliance": "A1",
+        "data_type": "Specific",
+        "indicators": {
+          "SER": 0.0,
+          "EP": 0.1557,
+          "ODP": 2.148e-12,
+          "POCP": 0.1334,
+          "PER": 512.5,
+          "ADPE": 8.897e-05,
+          "AP": 1.65,
+          "GWP": 818.0,
+          "ADPF": 8430.0,
+          "PENR": 9067.0,
+          "SENR": 0.0
+        }
+      }
+    }
+  },
+  {
+    "Node": {
+      "Operation": {
+        "id": "0338d31e-3876-440d-a88c-2daa2dd81942",
+        "electricity_usage": 17.3,
+        "heat_usage": 0.0,
+        "electricity_production": 0.0
+      }
+    }
+  },
+  {
+    "Node": {
+      "Operation": {
+        "id": "c33cf608-9ceb-47f3-9ccf-c3ecb58ddb96",
+        "electricity_usage": 0.0,
+        "heat_usage": 0.0,
+        "electricity_production": 0.0
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "ElectricitySource": "587f9143-cc4b-40cf-9755-01ea30eb2cdc"
+      },
+      "0338d31e-3876-440d-a88c-2daa2dd81942",
+      "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "HeatingSource": "4436ecb5-5fdf-40f6-a6a3-c1e60ba375e3"
+      },
+      "0338d31e-3876-440d-a88c-2daa2dd81942",
+      "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ElectricitySource": "412781ab-6e00-474b-bbda-014c9c9bbe6e"
+      },
+      "c33cf608-9ceb-47f3-9ccf-c3ecb58ddb96",
+      "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "HeatingSource": "9c48ddd5-df44-4604-9bf6-f6b13c0799bd"
+      },
+      "c33cf608-9ceb-47f3-9ccf-c3ecb58ddb96",
+      "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "CategoryToElement": {
+          "id": "3f899653-8586-4162-b825-332a87a001fa"
+        }
+      },
+      "59ab59a5-2482-45ae-85f1-d0e39e640712",
+      "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87"
+    ]
+  },
+  {
+    "Node": {
+      "ProductTransportRoot": {
+        "id": "915c5162-93bc-49c0-bdaf-9f470b4c7998"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "CategoryToConstruction": {
+          "id": "ee4bb161-384d-4e35-a55f-31b184001a3e",
+          "layers": [
+            1
+          ]
+        }
+      },
+      "59ab59a5-2482-45ae-85f1-d0e39e640712",
+      "7cec94c1-bbc7-4609-aca5-41fa9474a311"
+    ]
+  },
+  {
+    "Node": {
+      "Project": {
+        "id": "2f95c41e-0cc4-4b6e-90ac-ffa796aecd6d",
+        "name": {
+          "Danish": "Test eksempel"
+        },
+        "address": "Testvej 1, 1111 Testbyen",
+        "owner": "Test",
+        "lca_advisor": "Test",
+        "building_regulation_version": "BR2023"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "MainBuilding": "bd294743-9c10-47c8-bce2-6b0593cb6852"
+      },
+      "2f95c41e-0cc4-4b6e-90ac-ffa796aecd6d",
+      "7791681b-40a2-401d-ac38-a2f73d736ab4"
+    ]
+  }
+]

@@ -11,7 +11,7 @@ Our goal is making LCA calculations more accessible, transparent, and open.
 
 ![LCAx](./docs/assets/benchmark.png)
 
-# Contribute 
+# Rust
 
 ## Install Rust
 Head over to Rust's installation [page](https://www.rust-lang.org/tools/install)
@@ -27,6 +27,13 @@ cargo update
 cargo test --package lcax --target x86_64-unknown-linux-gnu
 ```
 
+## Export JSON Schema
+```bash
+cargo run --target x86_64-unknown-linux-gnu --bin export-schema > lcax.schema.json
+```
+
+# Python
+
 ## Install Python Dependencies
 ```bash
 pip install maturin venv
@@ -35,8 +42,14 @@ pip install maturin venv
 ## Run Python Tests
 
 ```bash
-maturin develop --extras tests --target x86_64-unknown-linux-gnu
-source venv/bin/active .
+maturin develop --extras tests,codegen --target x86_64-unknown-linux-gnu
+source .venv/bin/activate .
+
+datamodel-codegen \
+--input lcax.schema.json \
+--input-file-type jsonschema \
+--output packages/python/src/lcax/pydantic.py
+          
 cd packages/python
 pytest tests/
 ```
@@ -46,4 +59,18 @@ pytest tests/
 ```bash
 maturin develop --extras doc --target x86_64-unknown-linux-gnu
 mkdocs serve
+```
+
+# JavaScript/TypeScript
+
+## Build JS Package
+
+```bash
+wasm-pack build --features jsbindings
+mv pkg/lcax* packages/javascript/src
+```
+
+## Run JS Tests
+```bash
+npm run test
 ```

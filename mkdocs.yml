@@ -22,6 +22,7 @@ nav:
   - LCAx: index.md
   - Data Structure: data_structure.md
   - Schemas: schemas.md
+  - Usage: usage.md
   - Examples: examples.md
   - Changes: CHANGELOG.md
 extra:
