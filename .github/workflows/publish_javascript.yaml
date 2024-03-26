@@ -3,6 +3,11 @@ name: Publish NPM Package
 
 on:
   workflow_call:
+    inputs:
+      release_version:
+        type: string
+        default: ""
+        required: true
     secrets:
       npm_token:
         required: true
@@ -12,6 +17,7 @@ env:
 
 jobs:
   publishJavaScript:
+    if: ${{ inputs.release_version != ''}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
