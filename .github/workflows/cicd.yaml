@@ -52,33 +52,33 @@ jobs:
       cargo_token: ${{ secrets.CARGO_TOKEN }}
 
   releaseDocs:
-    if: github.event_name != 'pull_request'
     needs:
       - createRelease
     uses: ./.github/workflows/release_docs.yaml
 
   publishPython:
-    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.outputs.version != '' }}
     uses: ./.github/workflows/publish_python.yaml
     needs:
       - createRelease
     secrets:
       pypi_token: ${{ secrets.PYPI_TOKEN }}
+    with:
+      release_version: ${{ needs.createRelease.outputs.version }}
 
   publishJavascript:
-    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.outputs.version != '' }}
     uses: ./.github/workflows/publish_javascript.yaml
     needs:
       - createRelease
     secrets:
       npm_token: ${{ secrets.NPM_TOKEN }}
+    with:
+      release_version: ${{ needs.createRelease.outputs.version }}
 
   publishCSharp:
-    if: (github.event_name != 'pull_request') && ${{ needs.createRelease.outputs.version != '' }}
     uses: ./.github/workflows/publish_csharp.yaml
     needs:
       - createRelease
     with:
-      version: ${{ needs.createRelease.outputs.version }}
+      release_version: ${{ needs.createRelease.outputs.version }}
     secrets:
       nuget_token: ${{ secrets.NUGET_TOKEN }}

@@ -4,8 +4,9 @@ name: Publish NuGet Package
 on:
   workflow_call:
     inputs:
-      version:
+      release_version:
         type: string
+        default: ""
         required: true
     secrets:
       nuget_token:
@@ -14,6 +15,7 @@ on:
 jobs:
   publishCSharp:
     runs-on: ubuntu-latest
+    if: ${{ inputs.release_version != ""}}
     steps:
       - uses: actions/checkout@v4
 

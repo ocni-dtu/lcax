@@ -5,9 +5,15 @@ on:
     secrets:
       pypi_token:
         required: true
+    inputs:
+      release_version:
+        required: false
+        type: string
+        default: ""
 
 jobs:
   publishPython:
+    if: ${{ inputs.release_version != ""}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
