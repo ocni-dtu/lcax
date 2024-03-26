@@ -41,7 +41,6 @@ jobs:
       - buildRust
 
   createRelease:
-    if: github.event_name != 'pull_request'
     uses: ./.github/workflows/create_release.yaml
     needs:
       - buildRust
