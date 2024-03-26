@@ -1,8 +1,8 @@
-pub mod project;
 pub mod lcabyg;
-mod utils;
+pub mod project;
 #[cfg(feature = "pybindings")]
 mod python;
+mod utils;
 
 #[cfg(feature = "jsbindings")]
 mod javascript;

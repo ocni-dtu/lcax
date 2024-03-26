@@ -335,13 +335,13 @@ fn add_construction_to_product_data(
     product_id: &String,
     edge: &edges::ConstructionToProductEdge,
     nodes: &Vec<Node>,
-) -> EPDProduct {
-    let mut product = EPDProduct {
+) -> Product {
+    let mut product = Product {
         id: product_id.clone(),
         name: "".to_string(),
         description: "".to_string(),
         reference_service_life: edge.lifespan,
-        epd_source: Default::default(),
+        impact_data: Default::default(),
         quantity: edge.amount,
         unit: Unit::from(&edge.unit),
         transport: None,
@@ -364,7 +364,7 @@ fn add_construction_to_product_data(
 
     let epd_data = EPD::from(&stages);
 
-    product.epd_source = EPDSource::EPD(epd_data);
+    product.impact_data = ImpactDataSource::EPD(epd_data);
     product
 }
 

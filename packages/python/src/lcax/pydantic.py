@@ -50,7 +50,7 @@ class Classification(BaseModel):
     system: str
 
 
-class ExternalEPD(BaseModel):
+class ExternalImpactData(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
@@ -108,7 +108,15 @@ class ImpactCategoryKey(Enum):
     eet = 'eet'
 
 
-class InternalEPD(BaseModel):
+class ImpactDataSource2(BaseModel):
+    class Config:
+        extra = Extra.forbid
+        allow_population_by_field_name = True
+
+    externalimpactdata: ExternalImpactData
+
+
+class InternalImpactData(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
@@ -285,7 +293,7 @@ class EPD(BaseModel):
     version: str
 
 
-class EPDSource1(BaseModel):
+class ImpactDataSource1(BaseModel):
     class Config:
         extra = Extra.forbid
         allow_population_by_field_name = True
@@ -293,20 +301,12 @@ class EPDSource1(BaseModel):
     epd: EPD
 
 
-class EPDSource2(BaseModel):
+class ImpactDataSource3(BaseModel):
     class Config:
         extra = Extra.forbid
         allow_population_by_field_name = True
 
-    externalepd: ExternalEPD
-
-
-class EPDSource3(BaseModel):
-    class Config:
-        extra = Extra.forbid
-        allow_population_by_field_name = True
-
-    internalepd: InternalEPD
+    internalimpactdata: InternalImpactData
 
 
 class ProjectInfo1(BaseModel):
@@ -325,20 +325,20 @@ class Transport(BaseModel):
     distance_unit: Unit = Field(..., alias='distanceUnit')
     id: str
     name: str
-    transport_epd: Union[EPDSource1, EPDSource2, EPDSource3] = Field(
-        ..., alias='transportEpd'
+    transport_epd: Union[ImpactDataSource1, ImpactDataSource2, ImpactDataSource3] = (
+        Field(..., alias='transportEpd')
     )
 
 
-class EPDProduct(BaseModel):
+class Product(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
     description: str
-    epd_source: Union[EPDSource1, EPDSource2, EPDSource3] = Field(
-        ..., alias='epdSource'
-    )
     id: str
+    impact_data: Union[ImpactDataSource1, ImpactDataSource2, ImpactDataSource3] = Field(
+        ..., alias='impactData'
+    )
     meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
     quantity: float
@@ -359,7 +359,7 @@ class Assembly(BaseModel):
     id: str
     meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
-    products: Dict[str, EPDProduct]
+    products: Dict[str, Product]
     quantity: float
     results: Optional[Dict[str, Any]] = None
     unit: Unit
