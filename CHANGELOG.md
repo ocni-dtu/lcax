@@ -1,3 +1,18 @@
+## [1.5.0](https://github.com/ocni-dtu/lcax/compare/v1.4.2...v1.5.0) (2024-03-26)
+
+
+### Features
+
+* added convert functions to JS and Python ([7d22438](https://github.com/ocni-dtu/lcax/commit/7d22438fa4793d67965ede591fa1613dda2ff535))
+* added support for LCAbyg result files ([0dd026f](https://github.com/ocni-dtu/lcax/commit/0dd026f08f7a3fede61b43e138e39fde1f7381aa))
+* initial implementation of parsing LCAbyg projects ([84dae7e](https://github.com/ocni-dtu/lcax/commit/84dae7e92b2c0b39c0f8fcaf0352de65cd31c16f))
+* updated LCAx data structure ([f0c69f2](https://github.com/ocni-dtu/lcax/commit/f0c69f2fc59ac0bfc72385f493d5db0bc6ad5786))
+
+
+### Bug Fixes
+
+* resolved test issues ([e25287d](https://github.com/ocni-dtu/lcax/commit/e25287dd6a87c9be56af7c9b78d6ad30fea410d4))
+
 ## [1.4.2](https://github.com/ocni-dtu/lcax/compare/v1.4.1...v1.4.2) (2024-01-01)
 
 

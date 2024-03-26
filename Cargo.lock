@@ -190,7 +190,7 @@ dependencies = [
 
 [[package]]
 name = "lcax"
-version = "1.4.2"
+version = "1.5.0"
 dependencies = [
  "console_error_panic_hook",
  "epdx",
