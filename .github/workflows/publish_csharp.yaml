@@ -35,7 +35,7 @@ jobs:
 
       - name: Bump Version
         working-directory: packages/csharp/lcax
-        run: sed -i "s/\(<Version>\)\([0-9]\.*\)\{3\}/\1${{ inputs.version }}/" lcax.csproj
+        run: sed -i "s/\(<Version>\)\([0-9]\.*\)\{3\}/\1${{ inputs.release_version }}/" lcax.csproj
 
       - name: Pack
         working-directory: packages/csharp/lcax
