@@ -17,7 +17,7 @@ env:
 
 jobs:
   publishJavaScript:
-    if: ${{ inputs.release_version != ""}}
+    if: ${{ inputs.release_version != ''}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -15,7 +15,7 @@ on:
 jobs:
   publishCSharp:
     runs-on: ubuntu-latest
-    if: ${{ inputs.release_version != ""}}
+    if: ${{ inputs.release_version != ''}}
     steps:
       - uses: actions/checkout@v4
 
