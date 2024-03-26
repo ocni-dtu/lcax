@@ -1,6 +1,6 @@
 use crate::lcabyg::parse;
-use wasm_bindgen::prelude::*;
 use crate::project::LCAxProject;
+use wasm_bindgen::prelude::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.

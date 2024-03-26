@@ -11,7 +11,11 @@ pub fn set_panic_hook() {
     console_error_panic_hook::set_once();
 }
 
-
 pub fn get_version() -> String {
-    format!("{}.{}.{}", pkg_version_major!(), pkg_version_minor!(), pkg_version_patch!())
+    format!(
+        "{}.{}.{}",
+        pkg_version_major!(),
+        pkg_version_minor!(),
+        pkg_version_patch!()
+    )
 }

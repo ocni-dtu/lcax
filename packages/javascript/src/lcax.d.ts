@@ -12,32 +12,32 @@ export interface Classification {
     name: string;
 }
 
-export interface InternalEPD {
+export interface InternalImpactData {
     path: string;
 }
 
-export interface ExternalEPD {
+export interface ExternalImpactData {
     url: string;
     format: string;
     version: string | null;
 }
 
-export type EPDSource = { epd: EPD } | { externalepd: ExternalEPD } | { internalepd: InternalEPD };
+export type ImpactDataSource = { epd: EPD } | { externalimpactdata: ExternalImpactData } | { internalimpactdata: InternalImpactData };
 
 export interface Transport {
     id: string;
     name: string;
     distance: number;
     distanceUnit: Unit;
-    transportEpd: EPDSource;
+    transportEpd: ImpactDataSource;
 }
 
-export interface EPDProduct {
+export interface Product {
     id: string;
     name: string;
     description: string;
     referenceServiceLife: number;
-    epdSource: EPDSource;
+    impactData: ImpactDataSource;
     quantity: number;
     unit: Unit;
     transport: Transport | null;
@@ -54,7 +54,7 @@ export interface Assembly {
     unit: Unit;
     category: string | null;
     classification: Classification[] | null;
-    products: Record<string, EPDProduct>;
+    products: Record<string, Product>;
     results: Results;
     metaData: Record<string, string> | null;
 }

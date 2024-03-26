@@ -1,4 +1,4 @@
-use schemars::{schema_for};
+use schemars::schema_for;
 extern crate lcax;
 
 use lcax::project;
