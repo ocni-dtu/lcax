@@ -270,7 +270,7 @@ pub struct Assembly {
     pub unit: Unit,
     pub category: Option<String>,
     pub classification: Option<Vec<Classification>>,
-    pub products: HashMap<String, EPDProduct>,
+    pub products: HashMap<String, Product>,
     pub results: Results,
     pub meta_data: Option<HashMap<String, String>>,
 }
@@ -278,12 +278,12 @@ pub struct Assembly {
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub struct EPDProduct {
+pub struct Product {
     pub id: String,
     pub name: String,
     pub description: String,
     pub reference_service_life: u32,
-    pub epd_source: EPDSource,
+    pub impact_data: ImpactDataSource,
     pub quantity: f64,
     pub unit: Unit,
     pub transport: Option<Transport>,
@@ -299,21 +299,21 @@ pub struct Transport {
     pub name: String,
     pub distance: f64,
     pub distance_unit: Unit,
-    pub transport_epd: EPDSource,
+    pub transport_epd: ImpactDataSource,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub enum EPDSource {
+pub enum ImpactDataSource {
     EPD(EPD),
-    ExternalEPD(ExternalEPD),
-    InternalEPD(InternalEPD),
+    ExternalImpactData(ExternalImpactData),
+    InternalImpactData(InternalImpactData),
 }
 
-impl Default for EPDSource {
-    fn default() -> EPDSource {
-        EPDSource::ExternalEPD(ExternalEPD {
+impl Default for ImpactDataSource {
+    fn default() -> ImpactDataSource {
+        ImpactDataSource::ExternalImpactData(ExternalImpactData {
             url: "".to_string(),
             format: "".to_string(),
             version: None,
@@ -323,7 +323,7 @@ impl Default for EPDSource {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub struct ExternalEPD {
+pub struct ExternalImpactData {
     pub url: String,
     pub format: String,
     pub version: Option<String>,
@@ -331,7 +331,7 @@ pub struct ExternalEPD {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub struct InternalEPD {
+pub struct InternalImpactData {
     pub path: String,
 }
 
