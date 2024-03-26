@@ -1,3 +1,10 @@
+## [1.6.0](https://github.com/ocni-dtu/lcax/compare/v1.5.0...v1.6.0) (2024-03-26)
+
+
+### Features
+
+* renamed fields ([e37d35b](https://github.com/ocni-dtu/lcax/commit/e37d35bd6da80b0295d2a8f2be5ac280699aaff8))
+
 ## [1.5.0](https://github.com/ocni-dtu/lcax/compare/v1.4.2...v1.5.0) (2024-03-26)
 
 
