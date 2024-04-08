@@ -1,9 +1,9 @@
+use crate::country::Country;
 use epdx::epd::{Unit, EPD};
 use field_access::FieldAccess;
 use serde::{Deserialize, Deserializer, Serialize};
 use serde_json::Error;
 use std::collections::HashMap;
-use crate::country::Country;
 
 use crate::lcabyg::edges::EdgeType;
 use crate::lcabyg::nodes::Node;
@@ -213,8 +213,16 @@ fn add_building_data(project: &mut LCAxProject, node: &nodes::Building) {
             certifications: None,
             building_mass: None,
             building_height: None,
-            gross_floor_area: Some(AreaType { value: node.gross_area, unit: Unit::M2, definition: "".to_string()}),
-            heated_floor_area: Some(AreaType { value: node.heated_floor_area, unit: Unit::M2, definition: "".to_string()}),
+            gross_floor_area: Some(AreaType {
+                value: node.gross_area,
+                unit: Unit::M2,
+                definition: "".to_string(),
+            }),
+            heated_floor_area: Some(AreaType {
+                value: node.heated_floor_area,
+                unit: Unit::M2,
+                definition: "".to_string(),
+            }),
             building_footprint: None,
             floors_above_ground: node.storeys_above_ground,
             floors_below_ground: Some(node.storeys_below_ground),

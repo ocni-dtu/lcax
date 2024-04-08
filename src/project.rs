@@ -1,8 +1,8 @@
-use std::collections::HashMap;
-use std::fmt;
 use epdx::epd::{Unit, EPD};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
+use std::fmt;
 
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
@@ -74,7 +74,6 @@ pub enum ProjectInfo {
     InfrastructureInfo(HashMap<String, String>),
 }
 
-
 #[derive(Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
@@ -129,7 +128,7 @@ pub enum RoofType {
     PITCHED,
     SADDLE,
     PYRAMID,
-    OTHER
+    OTHER,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]
@@ -139,7 +138,7 @@ pub enum GeneralEnergyClass {
     EXISTING,
     STANDARD,
     ADVANCED,
-    UNKNOWN
+    UNKNOWN,
 }
 
 impl From<&String> for GeneralEnergyClass {
