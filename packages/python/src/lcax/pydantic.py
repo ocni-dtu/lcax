@@ -50,6 +50,258 @@ class Classification(BaseModel):
     system: str
 
 
+class Country(Enum):
+    afg = 'afg'
+    ala = 'ala'
+    alb = 'alb'
+    dza = 'dza'
+    asm = 'asm'
+    and_ = 'and'
+    ago = 'ago'
+    aia = 'aia'
+    ata = 'ata'
+    atg = 'atg'
+    arg = 'arg'
+    arm = 'arm'
+    abw = 'abw'
+    aus = 'aus'
+    aut = 'aut'
+    aze = 'aze'
+    bhs = 'bhs'
+    bhr = 'bhr'
+    bgd = 'bgd'
+    brb = 'brb'
+    blr = 'blr'
+    bel = 'bel'
+    blz = 'blz'
+    ben = 'ben'
+    bmu = 'bmu'
+    btn = 'btn'
+    bol = 'bol'
+    bes = 'bes'
+    bih = 'bih'
+    bwa = 'bwa'
+    bvt = 'bvt'
+    bra = 'bra'
+    iot = 'iot'
+    brn = 'brn'
+    bgr = 'bgr'
+    bfa = 'bfa'
+    bdi = 'bdi'
+    cpv = 'cpv'
+    khm = 'khm'
+    cmr = 'cmr'
+    can = 'can'
+    cym = 'cym'
+    caf = 'caf'
+    tcd = 'tcd'
+    chl = 'chl'
+    chn = 'chn'
+    cxr = 'cxr'
+    cck = 'cck'
+    col = 'col'
+    com = 'com'
+    cog = 'cog'
+    cod = 'cod'
+    cok = 'cok'
+    cri = 'cri'
+    civ = 'civ'
+    hrv = 'hrv'
+    cub = 'cub'
+    cuw = 'cuw'
+    cyp = 'cyp'
+    cze = 'cze'
+    dnk = 'dnk'
+    dji = 'dji'
+    dma = 'dma'
+    dom = 'dom'
+    ecu = 'ecu'
+    egy = 'egy'
+    slv = 'slv'
+    gnq = 'gnq'
+    eri = 'eri'
+    est = 'est'
+    swz = 'swz'
+    eth = 'eth'
+    flk = 'flk'
+    fro = 'fro'
+    fji = 'fji'
+    fin = 'fin'
+    fra = 'fra'
+    guf = 'guf'
+    pyf = 'pyf'
+    atf = 'atf'
+    gab = 'gab'
+    gmb = 'gmb'
+    geo = 'geo'
+    deu = 'deu'
+    gha = 'gha'
+    gib = 'gib'
+    grc = 'grc'
+    grl = 'grl'
+    grd = 'grd'
+    glp = 'glp'
+    gum = 'gum'
+    gtm = 'gtm'
+    ggy = 'ggy'
+    gin = 'gin'
+    gnb = 'gnb'
+    guy = 'guy'
+    hti = 'hti'
+    hmd = 'hmd'
+    vat = 'vat'
+    hnd = 'hnd'
+    hkg = 'hkg'
+    hun = 'hun'
+    isl = 'isl'
+    ind = 'ind'
+    idn = 'idn'
+    irn = 'irn'
+    irq = 'irq'
+    irl = 'irl'
+    imn = 'imn'
+    isr = 'isr'
+    ita = 'ita'
+    jam = 'jam'
+    jpn = 'jpn'
+    jey = 'jey'
+    jor = 'jor'
+    kaz = 'kaz'
+    ken = 'ken'
+    kir = 'kir'
+    prk = 'prk'
+    kor = 'kor'
+    kwt = 'kwt'
+    kgz = 'kgz'
+    lao = 'lao'
+    lva = 'lva'
+    lbn = 'lbn'
+    lso = 'lso'
+    lbr = 'lbr'
+    lby = 'lby'
+    lie = 'lie'
+    ltu = 'ltu'
+    lux = 'lux'
+    mac = 'mac'
+    mdg = 'mdg'
+    mwi = 'mwi'
+    mys = 'mys'
+    mdv = 'mdv'
+    mli = 'mli'
+    mlt = 'mlt'
+    mhl = 'mhl'
+    mtq = 'mtq'
+    mrt = 'mrt'
+    mus = 'mus'
+    myt = 'myt'
+    mex = 'mex'
+    fsm = 'fsm'
+    mda = 'mda'
+    mco = 'mco'
+    mng = 'mng'
+    mne = 'mne'
+    msr = 'msr'
+    mar = 'mar'
+    moz = 'moz'
+    mmr = 'mmr'
+    nam = 'nam'
+    nru = 'nru'
+    npl = 'npl'
+    nld = 'nld'
+    ncl = 'ncl'
+    nzl = 'nzl'
+    nic = 'nic'
+    ner = 'ner'
+    nga = 'nga'
+    niu = 'niu'
+    nfk = 'nfk'
+    mkd = 'mkd'
+    mnp = 'mnp'
+    nor = 'nor'
+    omn = 'omn'
+    pak = 'pak'
+    plw = 'plw'
+    pse = 'pse'
+    pan = 'pan'
+    png = 'png'
+    pry = 'pry'
+    per = 'per'
+    phl = 'phl'
+    pcn = 'pcn'
+    pol = 'pol'
+    prt = 'prt'
+    pri = 'pri'
+    qat = 'qat'
+    reu = 'reu'
+    rou = 'rou'
+    rus = 'rus'
+    rwa = 'rwa'
+    blm = 'blm'
+    shn = 'shn'
+    kna = 'kna'
+    lca = 'lca'
+    maf = 'maf'
+    spm = 'spm'
+    vct = 'vct'
+    wsm = 'wsm'
+    smr = 'smr'
+    stp = 'stp'
+    sau = 'sau'
+    sen = 'sen'
+    srb = 'srb'
+    syc = 'syc'
+    sle = 'sle'
+    sgp = 'sgp'
+    sxm = 'sxm'
+    svk = 'svk'
+    svn = 'svn'
+    slb = 'slb'
+    som = 'som'
+    zaf = 'zaf'
+    sgs = 'sgs'
+    ssd = 'ssd'
+    esp = 'esp'
+    lka = 'lka'
+    sdn = 'sdn'
+    sur = 'sur'
+    sjm = 'sjm'
+    swe = 'swe'
+    che = 'che'
+    syr = 'syr'
+    twn = 'twn'
+    tjk = 'tjk'
+    tza = 'tza'
+    tha = 'tha'
+    tls = 'tls'
+    tgo = 'tgo'
+    tkl = 'tkl'
+    ton = 'ton'
+    tto = 'tto'
+    tun = 'tun'
+    tur = 'tur'
+    tkm = 'tkm'
+    tca = 'tca'
+    tuv = 'tuv'
+    uga = 'uga'
+    ukr = 'ukr'
+    are = 'are'
+    gbr = 'gbr'
+    usa = 'usa'
+    umi = 'umi'
+    ury = 'ury'
+    uzb = 'uzb'
+    vut = 'vut'
+    ven = 'ven'
+    vnm = 'vnm'
+    vgb = 'vgb'
+    vir = 'vir'
+    wlf = 'wlf'
+    esh = 'esh'
+    yem = 'yem'
+    zmb = 'zmb'
+    zwe = 'zwe'
+
+
 class ExternalImpactData(BaseModel):
     class Config:
         allow_population_by_field_name = True
@@ -57,6 +309,13 @@ class ExternalImpactData(BaseModel):
     format: str
     url: str
     version: Optional[str] = None
+
+
+class GeneralEnergyClass(Enum):
+    existing = 'existing'
+    standard = 'standard'
+    advanced = 'advanced'
+    unknown = 'unknown'
 
 
 class ImpactCategory(BaseModel):
@@ -147,7 +406,7 @@ class Location(BaseModel):
 
     address: Optional[str] = None
     city: Optional[str] = None
-    country: str
+    country: Country
 
 
 class ProjectInfo2(BaseModel):
@@ -162,6 +421,14 @@ class ProjectPhase(Enum):
     design = 'design'
     ongoing = 'ongoing'
     built = 'built'
+    other = 'other'
+
+
+class RoofType(Enum):
+    flat = 'flat'
+    pitched = 'pitched'
+    saddle = 'saddle'
+    pyramid = 'pyramid'
     other = 'other'
 
 
@@ -211,31 +478,58 @@ class Unit(Enum):
     unknown = 'UNKNOWN'
 
 
+class ValueUnit(BaseModel):
+    class Config:
+        allow_population_by_field_name = True
+
+    unit: Unit
+    value: float
+
+
+class AreaType(BaseModel):
+    class Config:
+        allow_population_by_field_name = True
+
+    definition: str
+    unit: Unit
+    value: float
+
+
 class BuildingInfo(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    building_completion_year: int = Field(..., alias='buildingCompletionYear', ge=0)
-    building_mass: str = Field(..., alias='buildingMass')
+    building_completion_year: Optional[int] = Field(
+        None, alias='buildingCompletionYear', ge=0
+    )
+    building_footprint: Optional[ValueUnit] = Field(None, alias='buildingFootprint')
+    building_height: Optional[ValueUnit] = Field(None, alias='buildingHeight')
+    building_mass: Optional[ValueUnit] = Field(None, alias='buildingMass')
     building_model_scope: Optional[BuildingModelScope] = Field(
         None, alias='buildingModelScope'
     )
+    building_permit_year: Optional[int] = Field(None, alias='buildingPermitYear', ge=0)
     building_type: BuildingType = Field(..., alias='buildingType')
     building_typology: BuildingTypology = Field(..., alias='buildingTypology')
-    certifications: str
-    energy_class: str = Field(..., alias='energyClass')
-    energy_demand_electricity: float = Field(..., alias='energyDemandElectricity')
-    energy_demand_heating: float = Field(..., alias='energyDemandHeating')
-    energy_supply_electricity: float = Field(..., alias='energySupplyElectricity')
-    energy_supply_heating: float = Field(..., alias='energySupplyHeating')
-    exported_electricity: float = Field(..., alias='exportedElectricity')
+    building_users: Optional[int] = Field(None, alias='buildingUsers', ge=0)
+    certifications: Optional[List[str]] = None
+    energy_demand_electricity: Optional[float] = Field(
+        None, alias='energyDemandElectricity'
+    )
+    energy_demand_heating: Optional[float] = Field(None, alias='energyDemandHeating')
+    energy_supply_electricity: Optional[float] = Field(
+        None, alias='energySupplyElectricity'
+    )
+    energy_supply_heating: Optional[float] = Field(None, alias='energySupplyHeating')
+    exported_electricity: Optional[float] = Field(None, alias='exportedElectricity')
     floors_above_ground: int = Field(..., alias='floorsAboveGround', ge=0)
-    floors_below_ground: int = Field(..., alias='floorsBelowGround', ge=0)
-    frame_type: str = Field(..., alias='frameType')
-    gross_floor_area: float = Field(..., alias='grossFloorArea')
-    gross_floor_area_definition: str = Field(..., alias='grossFloorAreaDefinition')
-    heated_floor_area: float = Field(..., alias='heatedFloorArea')
-    heated_floor_area_definition: str = Field(..., alias='heatedFloorAreaDefinition')
+    floors_below_ground: Optional[int] = Field(None, alias='floorsBelowGround', ge=0)
+    frame_type: Optional[str] = Field(None, alias='frameType')
+    general_energy_class: GeneralEnergyClass = Field(..., alias='generalEnergyClass')
+    gross_floor_area: Optional[AreaType] = Field(None, alias='grossFloorArea')
+    heated_floor_area: Optional[AreaType] = Field(None, alias='heatedFloorArea')
+    local_energy_class: Optional[str] = Field(None, alias='localEnergyClass')
+    roof_type: RoofType = Field(..., alias='roofType')
 
 
 class Conversion(BaseModel):
