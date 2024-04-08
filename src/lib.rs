@@ -6,6 +6,7 @@ mod utils;
 
 #[cfg(feature = "jsbindings")]
 mod javascript;
+pub mod country;
 
 #[cfg(feature = "default")]
 pub fn convert_lcabyg(data: String, result_data: Option<String>) -> String {

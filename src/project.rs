@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 use std::fmt;
-
 use epdx::epd::{Unit, EPD};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
@@ -62,7 +61,7 @@ pub enum ProjectPhase {
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Location {
-    pub country: String,
+    pub country: crate::country::Country,
     pub city: Option<String>,
     pub address: Option<String>,
 }
@@ -75,29 +74,81 @@ pub enum ProjectInfo {
     InfrastructureInfo(HashMap<String, String>),
 }
 
+
 #[derive(Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct BuildingInfo {
     pub building_type: BuildingType,
     pub building_typology: BuildingTypology,
-    pub certifications: String,
-    pub building_mass: String,
-    pub gross_floor_area: f64,
-    pub gross_floor_area_definition: String,
-    pub heated_floor_area: f64,
-    pub heated_floor_area_definition: String,
+    pub certifications: Option<Vec<String>>,
+    pub building_mass: Option<ValueUnit>,
+    pub building_height: Option<ValueUnit>,
+    pub gross_floor_area: Option<AreaType>,
+    pub heated_floor_area: Option<AreaType>,
+    pub building_footprint: Option<ValueUnit>,
     pub floors_above_ground: u16,
-    pub floors_below_ground: u16,
-    pub frame_type: String,
-    pub building_completion_year: u64,
-    pub energy_demand_heating: f64,
-    pub energy_supply_heating: f64,
-    pub energy_demand_electricity: f64,
-    pub energy_supply_electricity: f64,
-    pub exported_electricity: f64,
-    pub energy_class: String,
+    pub floors_below_ground: Option<u16>,
+    pub roof_type: RoofType,
+    pub frame_type: Option<String>,
+    pub building_completion_year: Option<u64>,
+    pub building_permit_year: Option<u64>,
+    pub energy_demand_heating: Option<f64>,
+    pub energy_supply_heating: Option<f64>,
+    pub energy_demand_electricity: Option<f64>,
+    pub energy_supply_electricity: Option<f64>,
+    pub exported_electricity: Option<f64>,
+    pub general_energy_class: GeneralEnergyClass,
+    pub local_energy_class: Option<String>,
+    pub building_users: Option<u64>,
     pub building_model_scope: Option<BuildingModelScope>,
+}
+
+#[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+pub struct AreaType {
+    pub value: f64,
+    pub unit: Unit,
+    pub definition: String,
+}
+
+#[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+pub struct ValueUnit {
+    value: f64,
+    unit: Unit,
+}
+
+#[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+pub enum RoofType {
+    FLAT,
+    PITCHED,
+    SADDLE,
+    PYRAMID,
+    OTHER
+}
+
+#[derive(Deserialize, Serialize, JsonSchema)]
+#[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+pub enum GeneralEnergyClass {
+    EXISTING,
+    STANDARD,
+    ADVANCED,
+    UNKNOWN
+}
+
+impl From<&String> for GeneralEnergyClass {
+    fn from(class: &String) -> Self {
+        match class.to_ascii_lowercase().as_str() {
+            "lowenergy" => GeneralEnergyClass::ADVANCED,
+            _ => GeneralEnergyClass::UNKNOWN,
+        }
+    }
 }
 
 #[derive(Deserialize, Serialize, JsonSchema)]

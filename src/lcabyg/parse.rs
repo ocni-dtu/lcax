@@ -3,6 +3,7 @@ use field_access::FieldAccess;
 use serde::{Deserialize, Deserializer, Serialize};
 use serde_json::Error;
 use std::collections::HashMap;
+use crate::country::Country;
 
 use crate::lcabyg::edges::EdgeType;
 use crate::lcabyg::nodes::Node;
@@ -172,7 +173,7 @@ fn add_project_data(project: &mut LCAxProject, node: &nodes::Project) {
     project.name = node.name.danish.clone().unwrap();
     project.description = Some(String::from(""));
     project.location = Location {
-        country: String::from("Denmark"),
+        country: Country::DNK,
         city: Some(String::from("")),
         address: Some(node.address.to_string()),
     };
@@ -209,23 +210,27 @@ fn add_building_data(project: &mut LCAxProject, node: &nodes::Building) {
         0: BuildingInfo {
             building_type: BuildingType::NEW,
             building_typology: BuildingTypology::from(&node.building_type),
-            certifications: "".to_string(),
-            building_mass: "".to_string(),
-            gross_floor_area: node.gross_area,
-            gross_floor_area_definition: "".to_string(),
-            heated_floor_area: node.heated_floor_area,
-            heated_floor_area_definition: "".to_string(),
+            certifications: None,
+            building_mass: None,
+            building_height: None,
+            gross_floor_area: Some(AreaType { value: node.gross_area, unit: Unit::M2, definition: "".to_string()}),
+            heated_floor_area: Some(AreaType { value: node.heated_floor_area, unit: Unit::M2, definition: "".to_string()}),
+            building_footprint: None,
             floors_above_ground: node.storeys_above_ground,
-            floors_below_ground: node.storeys_below_ground,
-            frame_type: "".to_string(),
-            building_completion_year: 0,
-            energy_demand_heating: 0.0,
-            energy_supply_heating: 0.0,
-            energy_demand_electricity: 0.0,
-            energy_supply_electricity: 0.0,
-            exported_electricity: 0.0,
-            energy_class: node.energy_class.to_string(),
+            floors_below_ground: Some(node.storeys_below_ground),
+            roof_type: RoofType::OTHER,
+            frame_type: Some("".to_string()),
+            building_completion_year: Some(0),
+            building_permit_year: None,
+            energy_demand_heating: Some(0.0),
+            energy_supply_heating: Some(0.0),
+            energy_demand_electricity: Some(0.0),
+            energy_supply_electricity: Some(0.0),
+            exported_electricity: Some(0.0),
+            general_energy_class: GeneralEnergyClass::from(&node.energy_class),
+            local_energy_class: None,
             building_model_scope: None,
+            building_users: None,
         },
     })
 }

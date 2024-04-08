@@ -1,6 +1,7 @@
 #[cfg(test)]
 mod tests {
     use lcax::project::Location;
+    use lcax::country::Country;
 
     #[test]
     fn test_lcax() -> Result<(), String> {
@@ -10,7 +11,7 @@ mod tests {
             description: Some("Test Project".to_string()),
             comment: None,
             location: Location {
-                country: "Denmark".to_string(),
+                country: Country::DNK,
                 city: None,
                 address: None,
             },
