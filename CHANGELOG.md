@@ -1,3 +1,10 @@
+## [1.7.0](https://github.com/ocni-dtu/lcax/compare/v1.6.0...v1.7.0) (2024-04-08)
+
+
+### Features
+
+* [#41](https://github.com/ocni-dtu/lcax/issues/41) Added CarbEnMats MetaData ([1ae39d7](https://github.com/ocni-dtu/lcax/commit/1ae39d7ad1094076e97038fd7fdf1fb7ea401b43))
+
 ## [1.6.0](https://github.com/ocni-dtu/lcax/compare/v1.5.0...v1.6.0) (2024-03-26)
 
 
