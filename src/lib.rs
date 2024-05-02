@@ -1,4 +1,5 @@
 pub mod lcabyg;
+pub mod slice;
 pub mod project;
 #[cfg(feature = "pybindings")]
 mod python;

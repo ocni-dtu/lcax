@@ -32,6 +32,8 @@ serde_json = "1.0.93"
 epdx = "1.2.0"
 pkg-version = "1.0.0"
 field_access = "0.1.4"
+parquet = "51.0.0"
+uuid = { version = "1.8.0", features = ["v4", "v5"] }
 
 # Python Bindings
 pyo3 = { version = "0.20.2", features = ["abi3-py310"], optional = true }
@@ -41,3 +43,4 @@ wee_alloc = { version = "0.4.5", optional = true }
 wasm-bindgen = { version = "0.2.63", optional = true }
 console_error_panic_hook = { version = "0.1.6", optional = true }
 tsify = { version = "0.4.5", optional = true }
+

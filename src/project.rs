@@ -7,7 +7,7 @@ use std::fmt;
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
-#[derive(Deserialize, Serialize, JsonSchema, Default)]
+#[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(
     feature = "jsbindings",
@@ -37,7 +37,7 @@ pub struct LCAxProject {
 
 type Results = Option<HashMap<ImpactCategoryKey, HashMap<LifeCycleStage, Option<f64>>>>;
 
-#[derive(Deserialize, Serialize, JsonSchema, Default)]
+#[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct SoftwareInfo {
@@ -46,7 +46,7 @@ pub struct SoftwareInfo {
     pub calculation_type: Option<String>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Default)]
+#[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ProjectPhase {
@@ -57,7 +57,7 @@ pub enum ProjectPhase {
     OTHER,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Default)]
+#[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Location {
@@ -66,7 +66,7 @@ pub struct Location {
     pub address: Option<String>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ProjectInfo {
@@ -74,7 +74,7 @@ pub enum ProjectInfo {
     InfrastructureInfo(HashMap<String, String>),
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct BuildingInfo {
@@ -103,7 +103,7 @@ pub struct BuildingInfo {
     pub building_model_scope: Option<BuildingModelScope>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct AreaType {
@@ -112,7 +112,7 @@ pub struct AreaType {
     pub definition: String,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct ValueUnit {
@@ -120,7 +120,7 @@ pub struct ValueUnit {
     unit: Unit,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum RoofType {
@@ -131,7 +131,7 @@ pub enum RoofType {
     OTHER,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum GeneralEnergyClass {
@@ -150,7 +150,7 @@ impl From<&String> for GeneralEnergyClass {
     }
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct BuildingModelScope {
@@ -165,7 +165,7 @@ pub struct BuildingModelScope {
     pub ff_e: bool,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum BuildingType {
@@ -173,7 +173,7 @@ pub enum BuildingType {
     NEW,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum BuildingTypology {

@@ -1,7 +1,7 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize, JsonSchema, Default)]
+#[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
 #[serde(rename_all = "lowercase")]
 pub enum Country {
     #[default]
