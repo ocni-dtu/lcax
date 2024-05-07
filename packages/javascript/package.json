@@ -19,6 +19,7 @@
   "scripts": {
     "test": "vitest run"
   },
+  "type": "module",
   "module": "lcax.js",
   "homepage": "https://lcax.kongsgaard.eu",
   "types": "lcax.d.ts",
@@ -27,8 +28,8 @@
     "./snippets/*"
   ],
   "devDependencies": {
-    "@types/node": "^20.11.30",
+    "@types/node": "^20.12.10",
     "vite-plugin-wasm": "^3.3.0",
-    "vitest": "^1.4.0"
+    "vitest": "^1.6.0"
   }
 }

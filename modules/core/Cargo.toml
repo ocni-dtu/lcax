@@ -1,0 +1,24 @@
+[package]
+name = "lcax_core"
+description = { workspace = true}
+version = { workspace = true}
+authors = { workspace = true}
+edition = { workspace = true}
+readme = { workspace = true}
+license-file = { workspace = true}
+homepage = { workspace = true}
+documentation = { workspace = true}
+repository = { workspace = true}
+
+
+[lib]
+name = "lcax_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+schemars = { version = "0.8.12", features = ["chrono"] }
+serde = { version = "1.0.152", features = ["derive"] }
+serde_json = "1.0.93"
+pkg-version = "1.0.0"
+chrono = "0.4.38"
+rust_iso3166 = "0.1.12"

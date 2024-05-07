@@ -1,0 +1,96 @@
+[
+  {
+    "Node": {
+      "Stage": {
+        "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
+        "name": {
+          "English": "Test fase (A1-A3)",
+          "Danish": "Test fase (A1-A3)",
+          "German": "Test fase (A1-A3)",
+          "Norwegian": "Test fase (A1-A3)"
+        },
+        "comment": {
+          "German": "",
+          "Danish": "",
+          "English": "",
+          "Norwegian": ""
+        },
+        "source": "User",
+        "valid_to": "2027-01-01",
+        "stage": "A1to3",
+        "stage_unit": "M3",
+        "indicator_unit": "M3",
+        "stage_factor": 1.0,
+        "mass_factor": 7850.0,
+        "indicator_factor": 1.0,
+        "scale_factor": 1.0,
+        "external_source": "\u00d6kobau.dat",
+        "external_id": "5aa09d72-e200-40dc-b8da-959a72e32bc3",
+        "external_version": "00.02.000",
+        "external_url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en",
+        "compliance": "A1",
+        "data_type": "Specific",
+        "indicators": {
+          "SER": 0.0,
+          "EP": 0.1557,
+          "ODP": 2.148e-12,
+          "POCP": 0.1334,
+          "PER": 512.5,
+          "ADPE": 8.897e-05,
+          "AP": 1.65,
+          "GWP": 818.0,
+          "ADPF": 8430.0,
+          "PENR": 9067.0,
+          "SENR": 0.0
+        }
+      }
+    }
+  },
+  {
+    "Node": {
+      "Stage": {
+        "id": "d62fc8da-1a0d-4baa-a0fa-194c1f8a5218",
+        "name": {
+          "English": "Test fase (A4)",
+          "Danish": "Test fase (A4)",
+          "German": "Test fase (A4)",
+          "Norwegian": "Test fase (A4)"
+        },
+        "comment": {
+          "German": "",
+          "Danish": "",
+          "English": "",
+          "Norwegian": ""
+        },
+        "source": "User",
+        "valid_to": "2027-01-01",
+        "stage": "A4",
+        "stage_unit": "M3",
+        "indicator_unit": "M3",
+        "stage_factor": 1.0,
+        "mass_factor": 7850.0,
+        "indicator_factor": 1.0,
+        "scale_factor": 1.0,
+        "external_source": "\u00d6kobau.dat",
+        "external_id": "5aa09d72-e200-40dc-b8da-959a72e32bc3",
+        "external_version": "00.02.000",
+        "external_url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en",
+        "compliance": "A1",
+        "data_type": "Specific",
+        "indicators": {
+          "SER": 0.0,
+          "EP": 1.1557,
+          "ODP": 2.148e-12,
+          "POCP": 0.1334,
+          "PER": 612.5,
+          "ADPE": 8.897e-05,
+          "AP": 2.65,
+          "GWP": 918.0,
+          "ADPF": 8430.0,
+          "PENR": 9067.0,
+          "SENR": 0.0
+        }
+      }
+    }
+  }
+]

@@ -1,18 +1,25 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "LCAxProject",
+  "title": "Project",
   "type": "object",
   "required": [
-    "description",
-    "emissionParts",
+    "assemblies",
     "formatVersion",
     "id",
     "impactCategories",
     "lifeCycleStages",
     "location",
-    "name"
+    "name",
+    "projectPhase",
+    "softwareInfo"
   ],
   "properties": {
+    "assemblies": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Assembly"
+      }
+    },
     "classificationSystem": {
       "type": [
         "string",
@@ -26,13 +33,10 @@
       ]
     },
     "description": {
-      "type": "string"
-    },
-    "emissionParts": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "#/definitions/Assembly"
-      }
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "formatVersion": {
       "type": "string"
@@ -58,16 +62,8 @@
         "$ref": "#/definitions/LifeCycleStage"
       }
     },
-    "lifeSpan": {
-      "type": [
-        "integer",
-        "null"
-      ],
-      "format": "uint8",
-      "minimum": 0.0
-    },
     "location": {
-      "type": "string"
+      "$ref": "#/definitions/Location"
     },
     "metaData": {
       "type": [
@@ -81,6 +77,33 @@
     "name": {
       "type": "string"
     },
+    "owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "projectInfo": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ProjectInfo"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "projectPhase": {
+      "$ref": "#/definitions/ProjectPhase"
+    },
+    "referenceStudyPeriod": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "uint8",
+      "minimum": 0.0
+    },
     "results": {
       "type": [
         "object",
@@ -89,20 +112,46 @@
       "additionalProperties": {
         "type": "object",
         "additionalProperties": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        }
+      }
+    },
+    "softwareInfo": {
+      "$ref": "#/definitions/SoftwareInfo"
+    }
+  },
+  "definitions": {
+    "AreaType": {
+      "type": "object",
+      "required": [
+        "definition",
+        "unit",
+        "value"
+      ],
+      "properties": {
+        "definition": {
+          "type": "string"
+        },
+        "unit": {
+          "$ref": "#/definitions/Unit"
+        },
+        "value": {
           "type": "number",
           "format": "double"
         }
       }
-    }
-  },
-  "definitions": {
+    },
     "Assembly": {
       "type": "object",
       "required": [
         "description",
         "id",
         "name",
-        "parts",
+        "products",
         "quantity",
         "unit"
       ],
@@ -146,10 +195,10 @@
         "name": {
           "type": "string"
         },
-        "parts": {
+        "products": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/EPDPart"
+            "$ref": "#/definitions/Product"
           }
         },
         "quantity": {
@@ -164,7 +213,10 @@
           "additionalProperties": {
             "type": "object",
             "additionalProperties": {
-              "type": "number",
+              "type": [
+                "number",
+                "null"
+              ],
               "format": "double"
             }
           }
@@ -173,6 +225,247 @@
           "$ref": "#/definitions/Unit"
         }
       }
+    },
+    "BuildingInfo": {
+      "type": "object",
+      "required": [
+        "buildingType",
+        "buildingTypology",
+        "floorsAboveGround",
+        "generalEnergyClass",
+        "roofType"
+      ],
+      "properties": {
+        "buildingCompletionYear": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "buildingFootprint": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ValueUnit"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "buildingHeight": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ValueUnit"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "buildingMass": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ValueUnit"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "buildingModelScope": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/BuildingModelScope"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "buildingPermitYear": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "buildingType": {
+          "$ref": "#/definitions/BuildingType"
+        },
+        "buildingTypology": {
+          "$ref": "#/definitions/BuildingTypology"
+        },
+        "buildingUsers": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint64",
+          "minimum": 0.0
+        },
+        "certifications": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "energyDemandElectricity": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "energyDemandHeating": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "energySupplyElectricity": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "energySupplyHeating": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "exportedElectricity": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "floorsAboveGround": {
+          "type": "integer",
+          "format": "uint16",
+          "minimum": 0.0
+        },
+        "floorsBelowGround": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint16",
+          "minimum": 0.0
+        },
+        "frameType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "generalEnergyClass": {
+          "$ref": "#/definitions/GeneralEnergyClass"
+        },
+        "grossFloorArea": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AreaType"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "heatedFloorArea": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AreaType"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "localEnergyClass": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "roofType": {
+          "$ref": "#/definitions/RoofType"
+        }
+      }
+    },
+    "BuildingModelScope": {
+      "type": "object",
+      "required": [
+        "building_services",
+        "external_works",
+        "facilitating_works",
+        "ff_e",
+        "finishes",
+        "substructure",
+        "superstructure_envelope",
+        "superstructure_frame",
+        "superstructure_internal_elements"
+      ],
+      "properties": {
+        "building_services": {
+          "type": "boolean"
+        },
+        "external_works": {
+          "type": "boolean"
+        },
+        "facilitating_works": {
+          "type": "boolean"
+        },
+        "ff_e": {
+          "type": "boolean"
+        },
+        "finishes": {
+          "type": "boolean"
+        },
+        "substructure": {
+          "type": "boolean"
+        },
+        "superstructure_envelope": {
+          "type": "boolean"
+        },
+        "superstructure_frame": {
+          "type": "boolean"
+        },
+        "superstructure_internal_elements": {
+          "type": "boolean"
+        }
+      }
+    },
+    "BuildingType": {
+      "type": "string",
+      "enum": [
+        "renovation",
+        "new"
+      ]
+    },
+    "BuildingTypology": {
+      "type": "string",
+      "enum": [
+        "office",
+        "residential",
+        "public",
+        "commercial",
+        "industrial",
+        "infrastructure",
+        "agricultural",
+        "mixeduse",
+        "other"
+      ]
     },
     "Classification": {
       "type": "object",
@@ -196,10 +489,14 @@
     "Conversion": {
       "type": "object",
       "required": [
+        "meta_data",
         "to",
         "value"
       ],
       "properties": {
+        "meta_data": {
+          "type": "string"
+        },
         "to": {
           "$ref": "#/definitions/Unit"
         },
@@ -209,11 +506,259 @@
         }
       }
     },
-    "DistanceUnit": {
+    "Country": {
       "type": "string",
       "enum": [
-        "m",
-        "km"
+        "unknown",
+        "afg",
+        "ala",
+        "alb",
+        "dza",
+        "asm",
+        "and",
+        "ago",
+        "aia",
+        "ata",
+        "atg",
+        "arg",
+        "arm",
+        "abw",
+        "aus",
+        "aut",
+        "aze",
+        "bhs",
+        "bhr",
+        "bgd",
+        "brb",
+        "blr",
+        "bel",
+        "blz",
+        "ben",
+        "bmu",
+        "btn",
+        "bol",
+        "bes",
+        "bih",
+        "bwa",
+        "bvt",
+        "bra",
+        "iot",
+        "brn",
+        "bgr",
+        "bfa",
+        "bdi",
+        "cpv",
+        "khm",
+        "cmr",
+        "can",
+        "cym",
+        "caf",
+        "tcd",
+        "chl",
+        "chn",
+        "cxr",
+        "cck",
+        "col",
+        "com",
+        "cog",
+        "cod",
+        "cok",
+        "cri",
+        "civ",
+        "hrv",
+        "cub",
+        "cuw",
+        "cyp",
+        "cze",
+        "dnk",
+        "dji",
+        "dma",
+        "dom",
+        "ecu",
+        "egy",
+        "slv",
+        "gnq",
+        "eri",
+        "est",
+        "swz",
+        "eth",
+        "flk",
+        "fro",
+        "fji",
+        "fin",
+        "fra",
+        "guf",
+        "pyf",
+        "atf",
+        "gab",
+        "gmb",
+        "geo",
+        "deu",
+        "gha",
+        "gib",
+        "grc",
+        "grl",
+        "grd",
+        "glp",
+        "gum",
+        "gtm",
+        "ggy",
+        "gin",
+        "gnb",
+        "guy",
+        "hti",
+        "hmd",
+        "vat",
+        "hnd",
+        "hkg",
+        "hun",
+        "isl",
+        "ind",
+        "idn",
+        "irn",
+        "irq",
+        "irl",
+        "imn",
+        "isr",
+        "ita",
+        "jam",
+        "jpn",
+        "jey",
+        "jor",
+        "kaz",
+        "ken",
+        "kir",
+        "prk",
+        "kor",
+        "kwt",
+        "kgz",
+        "lao",
+        "lva",
+        "lbn",
+        "lso",
+        "lbr",
+        "lby",
+        "lie",
+        "ltu",
+        "lux",
+        "mac",
+        "mdg",
+        "mwi",
+        "mys",
+        "mdv",
+        "mli",
+        "mlt",
+        "mhl",
+        "mtq",
+        "mrt",
+        "mus",
+        "myt",
+        "mex",
+        "fsm",
+        "mda",
+        "mco",
+        "mng",
+        "mne",
+        "msr",
+        "mar",
+        "moz",
+        "mmr",
+        "nam",
+        "nru",
+        "npl",
+        "nld",
+        "ncl",
+        "nzl",
+        "nic",
+        "ner",
+        "nga",
+        "niu",
+        "nfk",
+        "mkd",
+        "mnp",
+        "nor",
+        "omn",
+        "pak",
+        "plw",
+        "pse",
+        "pan",
+        "png",
+        "pry",
+        "per",
+        "phl",
+        "pcn",
+        "pol",
+        "prt",
+        "pri",
+        "qat",
+        "reu",
+        "rou",
+        "rus",
+        "rwa",
+        "blm",
+        "shn",
+        "kna",
+        "lca",
+        "maf",
+        "spm",
+        "vct",
+        "wsm",
+        "smr",
+        "stp",
+        "sau",
+        "sen",
+        "srb",
+        "syc",
+        "sle",
+        "sgp",
+        "sxm",
+        "svk",
+        "svn",
+        "slb",
+        "som",
+        "zaf",
+        "sgs",
+        "ssd",
+        "esp",
+        "lka",
+        "sdn",
+        "sur",
+        "sjm",
+        "swe",
+        "che",
+        "syr",
+        "twn",
+        "tjk",
+        "tza",
+        "tha",
+        "tls",
+        "tgo",
+        "tkl",
+        "ton",
+        "tto",
+        "tun",
+        "tur",
+        "tkm",
+        "tca",
+        "tuv",
+        "uga",
+        "ukr",
+        "are",
+        "gbr",
+        "usa",
+        "umi",
+        "ury",
+        "uzb",
+        "vut",
+        "ven",
+        "vnm",
+        "vgb",
+        "vir",
+        "wlf",
+        "esh",
+        "yem",
+        "zmb",
+        "zwe"
       ]
     },
     "EPD": {
@@ -222,6 +767,7 @@
         "declared_unit",
         "format_version",
         "id",
+        "impacts",
         "location",
         "name",
         "published_date",
@@ -231,36 +777,6 @@
         "version"
       ],
       "properties": {
-        "adpe": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "adpf": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "ap": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "comment": {
           "type": [
             "string",
@@ -276,97 +792,30 @@
             "$ref": "#/definitions/Conversion"
           }
         },
-        "cru": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "declared_unit": {
           "$ref": "#/definitions/Unit"
-        },
-        "eee": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "eet": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "ep": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
         },
         "format_version": {
           "type": "string"
         },
-        "fw": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "gwp": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "hwd": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "id": {
           "type": "string"
         },
-        "location": {
-          "type": "string"
-        },
-        "mer": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
+        "impacts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
             }
-          ]
+          }
+        },
+        "location": {
+          "$ref": "#/definitions/Country"
         },
         "meta_data": {
           "type": [
@@ -377,122 +826,12 @@
             "type": "string"
           }
         },
-        "mrf": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "name": {
           "type": "string"
         },
-        "nhwd": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "nrsf": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "odp": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "penre": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "penrm": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "penrt": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "pere": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "perm": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "pert": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "pocp": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "published_date": {
           "type": "string",
-          "format": "date-time"
+          "format": "date"
         },
         "reference_service_life": {
           "type": [
@@ -501,36 +840,6 @@
           ],
           "format": "uint32",
           "minimum": 0.0
-        },
-        "rsf": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "rwd": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "sm": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ImpactCategory"
-            },
-            {
-              "type": "null"
-            }
-          ]
         },
         "source": {
           "anyOf": [
@@ -550,106 +859,14 @@
         },
         "valid_until": {
           "type": "string",
-          "format": "date-time"
+          "format": "date"
         },
         "version": {
           "type": "string"
         }
       }
     },
-    "EPDPart": {
-      "type": "object",
-      "required": [
-        "epdSource",
-        "id",
-        "name",
-        "partQuantity",
-        "partUnit",
-        "referenceServiceLife"
-      ],
-      "properties": {
-        "epdSource": {
-          "$ref": "#/definitions/EPDSource"
-        },
-        "id": {
-          "type": "string"
-        },
-        "metaData": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "name": {
-          "type": "string"
-        },
-        "partQuantity": {
-          "type": "number",
-          "format": "double"
-        },
-        "partUnit": {
-          "$ref": "#/definitions/Unit"
-        },
-        "referenceServiceLife": {
-          "type": "number",
-          "format": "double"
-        },
-        "transport": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Transport"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        }
-      }
-    },
-    "EPDSource": {
-      "oneOf": [
-        {
-          "type": "object",
-          "required": [
-            "epd"
-          ],
-          "properties": {
-            "epd": {
-              "$ref": "#/definitions/EPD"
-            }
-          },
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "required": [
-            "externalepd"
-          ],
-          "properties": {
-            "externalepd": {
-              "$ref": "#/definitions/ExternalEPD"
-            }
-          },
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "required": [
-            "internalepd"
-          ],
-          "properties": {
-            "internalepd": {
-              "$ref": "#/definitions/InternalEPD"
-            }
-          },
-          "additionalProperties": false
-        }
-      ]
-    },
-    "ExternalEPD": {
+    "ExternalImpactData": {
       "type": "object",
       "required": [
         "format",
@@ -670,123 +887,28 @@
         }
       }
     },
-    "ImpactCategory": {
-      "type": "object",
-      "properties": {
-        "a1a3": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "a4": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "a5": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "b1": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "b2": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "b3": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "b4": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "b5": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "b6": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "b7": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "c1": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "c2": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "c3": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "c4": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "d": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        }
-      }
+    "GeneralEnergyClass": {
+      "type": "string",
+      "enum": [
+        "existing",
+        "standard",
+        "advanced",
+        "unknown"
+      ]
     },
     "ImpactCategoryKey": {
       "type": "string",
       "enum": [
         "gwp",
+        "gwp_fos",
+        "gwp_bio",
+        "gwp_lul",
         "odp",
         "ap",
         "ep",
+        "ep_fw",
+        "ep_mar",
+        "ep_ter",
         "pocp",
         "adpe",
         "adpf",
@@ -797,6 +919,13 @@
         "penrt",
         "penrm",
         "sm",
+        "pm",
+        "wdp",
+        "irp",
+        "etp_fw",
+        "htp_c",
+        "htp_nc",
+        "sqp",
         "rsf",
         "nrsf",
         "fw",
@@ -810,7 +939,59 @@
         "eet"
       ]
     },
-    "InternalEPD": {
+    "ImpactDataSource": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "epd"
+          ],
+          "properties": {
+            "epd": {
+              "$ref": "#/definitions/EPD"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "techflow"
+          ],
+          "properties": {
+            "techflow": {
+              "$ref": "#/definitions/TechFlow"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "externalimpactdata"
+          ],
+          "properties": {
+            "externalimpactdata": {
+              "$ref": "#/definitions/ExternalImpactData"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "internalimpactdata"
+          ],
+          "properties": {
+            "internalimpactdata": {
+              "$ref": "#/definitions/InternalImpactData"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "InternalImpactData": {
       "type": "object",
       "required": [
         "path"
@@ -840,6 +1021,175 @@
         "c4",
         "d"
       ]
+    },
+    "Location": {
+      "type": "object",
+      "required": [
+        "country"
+      ],
+      "properties": {
+        "address": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "country": {
+          "$ref": "#/definitions/Country"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "required": [
+        "description",
+        "id",
+        "impactData",
+        "name",
+        "quantity",
+        "referenceServiceLife",
+        "unit"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "impactData": {
+          "$ref": "#/definitions/ImpactDataSource"
+        },
+        "metaData": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "double"
+        },
+        "referenceServiceLife": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "results": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
+            }
+          }
+        },
+        "transport": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Transport"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "$ref": "#/definitions/Unit"
+        }
+      }
+    },
+    "ProjectInfo": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "buildinginfo"
+          ],
+          "properties": {
+            "buildinginfo": {
+              "$ref": "#/definitions/BuildingInfo"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "infrastructureinfo"
+          ],
+          "properties": {
+            "infrastructureinfo": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ProjectPhase": {
+      "type": "string",
+      "enum": [
+        "design",
+        "ongoing",
+        "built",
+        "other"
+      ]
+    },
+    "RoofType": {
+      "type": "string",
+      "enum": [
+        "flat",
+        "pitched",
+        "saddle",
+        "pyramid",
+        "other"
+      ]
+    },
+    "SoftwareInfo": {
+      "type": "object",
+      "required": [
+        "lcaSoftware"
+      ],
+      "properties": {
+        "calculationType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "goalAndScopeDefinition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lcaSoftware": {
+          "type": "string"
+        }
+      }
     },
     "Source": {
       "type": "object",
@@ -875,6 +1225,81 @@
         "Representative"
       ]
     },
+    "TechFlow": {
+      "type": "object",
+      "required": [
+        "declared_unit",
+        "format_version",
+        "id",
+        "impacts",
+        "location",
+        "name"
+      ],
+      "properties": {
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "conversions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Conversion"
+          }
+        },
+        "declared_unit": {
+          "$ref": "#/definitions/Unit"
+        },
+        "format_version": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "impacts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
+            }
+          }
+        },
+        "location": {
+          "$ref": "#/definitions/Country"
+        },
+        "meta_data": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Source"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
     "Transport": {
       "type": "object",
       "required": [
@@ -882,7 +1307,7 @@
         "distanceUnit",
         "id",
         "name",
-        "transportType"
+        "transportEpd"
       ],
       "properties": {
         "distance": {
@@ -890,7 +1315,7 @@
           "format": "double"
         },
         "distanceUnit": {
-          "$ref": "#/definitions/DistanceUnit"
+          "$ref": "#/definitions/Unit"
         },
         "id": {
           "type": "string"
@@ -898,19 +1323,10 @@
         "name": {
           "type": "string"
         },
-        "transportType": {
-          "$ref": "#/definitions/TransportType"
+        "transportEpd": {
+          "$ref": "#/definitions/ImpactDataSource"
         }
       }
-    },
-    "TransportType": {
-      "type": "string",
-      "enum": [
-        "truck",
-        "train",
-        "ship",
-        "plane"
-      ]
     },
     "Unit": {
       "type": "string",
@@ -923,8 +1339,26 @@
         "PCS",
         "L",
         "M2R1",
+        "KM",
+        "TONES_KM",
         "UNKNOWN"
       ]
+    },
+    "ValueUnit": {
+      "type": "object",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "properties": {
+        "unit": {
+          "$ref": "#/definitions/Unit"
+        },
+        "value": {
+          "type": "number",
+          "format": "double"
+        }
+      }
     }
   }
 }

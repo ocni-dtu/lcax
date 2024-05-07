@@ -1,46 +1,22 @@
-[package]
-name = "lcax"
+[workspace]
+members = [
+    "modules/convert",
+    "modules/core",
+    "modules/lcax",
+    "modules/models"
+]
+
+resolver = "2"
+
+[workspace.package]
 description = "LCAx is an open, machine and human-readable data format for exchanging LCA results."
 version = "1.6.0"
 authors = ["Christian Kongsgaard <christian@kongsgaard.eu>"]
-edition = "2018"
+edition = "2021"
 readme = "README.md"
 license-file = "LICENSE"
 homepage = "https://lcax.kongsgaard.eu"
 documentation = "https://lcax.kongsgaard.eu"
 repository = "https://github.com/ocni-dtu/lcax"
 
-[lib]
-name = "lcax"
-crate-type = ["cdylib", "rlib"]
-
-[[bin]]
-name = "export-schema"
-path = "src/schemars.rs"
-test = false
-bench = false
-
-[features]
-default = ["wee_alloc"]
-pybindings = ["pyo3", "pyo3/extension-module"]
-jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify"]
-
-[dependencies]
-schemars = { version = "0.8.12", features = ["chrono"] }
-serde = { version = "1.0.152", features = ["derive"] }
-serde_json = "1.0.93"
-epdx = "1.2.0"
-pkg-version = "1.0.0"
-field_access = "0.1.4"
-parquet = "51.0.0"
-uuid = { version = "1.8.0", features = ["v4", "v5"] }
-
-# Python Bindings
-pyo3 = { version = "0.20.2", features = ["abi3-py310"], optional = true }
-
-# JS Bindings
-wee_alloc = { version = "0.4.5", optional = true }
-wasm-bindgen = { version = "0.2.63", optional = true }
-console_error_panic_hook = { version = "0.1.6", optional = true }
-tsify = { version = "0.4.5", optional = true }
 

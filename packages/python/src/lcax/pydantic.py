@@ -3,17 +3,17 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import date
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Extra, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BuildingModelScope(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     building_services: bool
     external_works: bool
     facilitating_works: bool
@@ -26,416 +26,410 @@ class BuildingModelScope(BaseModel):
 
 
 class BuildingType(Enum):
-    renovation = 'renovation'
-    new = 'new'
+    RENOVATION = 'renovation'
+    NEW = 'new'
 
 
 class BuildingTypology(Enum):
-    office = 'office'
-    residential = 'residential'
-    public = 'public'
-    commercial = 'commercial'
-    industrial = 'industrial'
-    infrastructure = 'infrastructure'
-    agricultural = 'agricultural'
-    other = 'other'
+    OFFICE = 'office'
+    RESIDENTIAL = 'residential'
+    PUBLIC = 'public'
+    COMMERCIAL = 'commercial'
+    INDUSTRIAL = 'industrial'
+    INFRASTRUCTURE = 'infrastructure'
+    AGRICULTURAL = 'agricultural'
+    MIXEDUSE = 'mixeduse'
+    OTHER = 'other'
 
 
 class Classification(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     code: str
     name: str
     system: str
 
 
 class Country(Enum):
-    afg = 'afg'
-    ala = 'ala'
-    alb = 'alb'
-    dza = 'dza'
-    asm = 'asm'
-    and_ = 'and'
-    ago = 'ago'
-    aia = 'aia'
-    ata = 'ata'
-    atg = 'atg'
-    arg = 'arg'
-    arm = 'arm'
-    abw = 'abw'
-    aus = 'aus'
-    aut = 'aut'
-    aze = 'aze'
-    bhs = 'bhs'
-    bhr = 'bhr'
-    bgd = 'bgd'
-    brb = 'brb'
-    blr = 'blr'
-    bel = 'bel'
-    blz = 'blz'
-    ben = 'ben'
-    bmu = 'bmu'
-    btn = 'btn'
-    bol = 'bol'
-    bes = 'bes'
-    bih = 'bih'
-    bwa = 'bwa'
-    bvt = 'bvt'
-    bra = 'bra'
-    iot = 'iot'
-    brn = 'brn'
-    bgr = 'bgr'
-    bfa = 'bfa'
-    bdi = 'bdi'
-    cpv = 'cpv'
-    khm = 'khm'
-    cmr = 'cmr'
-    can = 'can'
-    cym = 'cym'
-    caf = 'caf'
-    tcd = 'tcd'
-    chl = 'chl'
-    chn = 'chn'
-    cxr = 'cxr'
-    cck = 'cck'
-    col = 'col'
-    com = 'com'
-    cog = 'cog'
-    cod = 'cod'
-    cok = 'cok'
-    cri = 'cri'
-    civ = 'civ'
-    hrv = 'hrv'
-    cub = 'cub'
-    cuw = 'cuw'
-    cyp = 'cyp'
-    cze = 'cze'
-    dnk = 'dnk'
-    dji = 'dji'
-    dma = 'dma'
-    dom = 'dom'
-    ecu = 'ecu'
-    egy = 'egy'
-    slv = 'slv'
-    gnq = 'gnq'
-    eri = 'eri'
-    est = 'est'
-    swz = 'swz'
-    eth = 'eth'
-    flk = 'flk'
-    fro = 'fro'
-    fji = 'fji'
-    fin = 'fin'
-    fra = 'fra'
-    guf = 'guf'
-    pyf = 'pyf'
-    atf = 'atf'
-    gab = 'gab'
-    gmb = 'gmb'
-    geo = 'geo'
-    deu = 'deu'
-    gha = 'gha'
-    gib = 'gib'
-    grc = 'grc'
-    grl = 'grl'
-    grd = 'grd'
-    glp = 'glp'
-    gum = 'gum'
-    gtm = 'gtm'
-    ggy = 'ggy'
-    gin = 'gin'
-    gnb = 'gnb'
-    guy = 'guy'
-    hti = 'hti'
-    hmd = 'hmd'
-    vat = 'vat'
-    hnd = 'hnd'
-    hkg = 'hkg'
-    hun = 'hun'
-    isl = 'isl'
-    ind = 'ind'
-    idn = 'idn'
-    irn = 'irn'
-    irq = 'irq'
-    irl = 'irl'
-    imn = 'imn'
-    isr = 'isr'
-    ita = 'ita'
-    jam = 'jam'
-    jpn = 'jpn'
-    jey = 'jey'
-    jor = 'jor'
-    kaz = 'kaz'
-    ken = 'ken'
-    kir = 'kir'
-    prk = 'prk'
-    kor = 'kor'
-    kwt = 'kwt'
-    kgz = 'kgz'
-    lao = 'lao'
-    lva = 'lva'
-    lbn = 'lbn'
-    lso = 'lso'
-    lbr = 'lbr'
-    lby = 'lby'
-    lie = 'lie'
-    ltu = 'ltu'
-    lux = 'lux'
-    mac = 'mac'
-    mdg = 'mdg'
-    mwi = 'mwi'
-    mys = 'mys'
-    mdv = 'mdv'
-    mli = 'mli'
-    mlt = 'mlt'
-    mhl = 'mhl'
-    mtq = 'mtq'
-    mrt = 'mrt'
-    mus = 'mus'
-    myt = 'myt'
-    mex = 'mex'
-    fsm = 'fsm'
-    mda = 'mda'
-    mco = 'mco'
-    mng = 'mng'
-    mne = 'mne'
-    msr = 'msr'
-    mar = 'mar'
-    moz = 'moz'
-    mmr = 'mmr'
-    nam = 'nam'
-    nru = 'nru'
-    npl = 'npl'
-    nld = 'nld'
-    ncl = 'ncl'
-    nzl = 'nzl'
-    nic = 'nic'
-    ner = 'ner'
-    nga = 'nga'
-    niu = 'niu'
-    nfk = 'nfk'
-    mkd = 'mkd'
-    mnp = 'mnp'
-    nor = 'nor'
-    omn = 'omn'
-    pak = 'pak'
-    plw = 'plw'
-    pse = 'pse'
-    pan = 'pan'
-    png = 'png'
-    pry = 'pry'
-    per = 'per'
-    phl = 'phl'
-    pcn = 'pcn'
-    pol = 'pol'
-    prt = 'prt'
-    pri = 'pri'
-    qat = 'qat'
-    reu = 'reu'
-    rou = 'rou'
-    rus = 'rus'
-    rwa = 'rwa'
-    blm = 'blm'
-    shn = 'shn'
-    kna = 'kna'
-    lca = 'lca'
-    maf = 'maf'
-    spm = 'spm'
-    vct = 'vct'
-    wsm = 'wsm'
-    smr = 'smr'
-    stp = 'stp'
-    sau = 'sau'
-    sen = 'sen'
-    srb = 'srb'
-    syc = 'syc'
-    sle = 'sle'
-    sgp = 'sgp'
-    sxm = 'sxm'
-    svk = 'svk'
-    svn = 'svn'
-    slb = 'slb'
-    som = 'som'
-    zaf = 'zaf'
-    sgs = 'sgs'
-    ssd = 'ssd'
-    esp = 'esp'
-    lka = 'lka'
-    sdn = 'sdn'
-    sur = 'sur'
-    sjm = 'sjm'
-    swe = 'swe'
-    che = 'che'
-    syr = 'syr'
-    twn = 'twn'
-    tjk = 'tjk'
-    tza = 'tza'
-    tha = 'tha'
-    tls = 'tls'
-    tgo = 'tgo'
-    tkl = 'tkl'
-    ton = 'ton'
-    tto = 'tto'
-    tun = 'tun'
-    tur = 'tur'
-    tkm = 'tkm'
-    tca = 'tca'
-    tuv = 'tuv'
-    uga = 'uga'
-    ukr = 'ukr'
-    are = 'are'
-    gbr = 'gbr'
-    usa = 'usa'
-    umi = 'umi'
-    ury = 'ury'
-    uzb = 'uzb'
-    vut = 'vut'
-    ven = 'ven'
-    vnm = 'vnm'
-    vgb = 'vgb'
-    vir = 'vir'
-    wlf = 'wlf'
-    esh = 'esh'
-    yem = 'yem'
-    zmb = 'zmb'
-    zwe = 'zwe'
+    UNKNOWN = 'unknown'
+    AFG = 'afg'
+    ALA = 'ala'
+    ALB = 'alb'
+    DZA = 'dza'
+    ASM = 'asm'
+    AND_ = 'and'
+    AGO = 'ago'
+    AIA = 'aia'
+    ATA = 'ata'
+    ATG = 'atg'
+    ARG = 'arg'
+    ARM = 'arm'
+    ABW = 'abw'
+    AUS = 'aus'
+    AUT = 'aut'
+    AZE = 'aze'
+    BHS = 'bhs'
+    BHR = 'bhr'
+    BGD = 'bgd'
+    BRB = 'brb'
+    BLR = 'blr'
+    BEL = 'bel'
+    BLZ = 'blz'
+    BEN = 'ben'
+    BMU = 'bmu'
+    BTN = 'btn'
+    BOL = 'bol'
+    BES = 'bes'
+    BIH = 'bih'
+    BWA = 'bwa'
+    BVT = 'bvt'
+    BRA = 'bra'
+    IOT = 'iot'
+    BRN = 'brn'
+    BGR = 'bgr'
+    BFA = 'bfa'
+    BDI = 'bdi'
+    CPV = 'cpv'
+    KHM = 'khm'
+    CMR = 'cmr'
+    CAN = 'can'
+    CYM = 'cym'
+    CAF = 'caf'
+    TCD = 'tcd'
+    CHL = 'chl'
+    CHN = 'chn'
+    CXR = 'cxr'
+    CCK = 'cck'
+    COL = 'col'
+    COM = 'com'
+    COG = 'cog'
+    COD = 'cod'
+    COK = 'cok'
+    CRI = 'cri'
+    CIV = 'civ'
+    HRV = 'hrv'
+    CUB = 'cub'
+    CUW = 'cuw'
+    CYP = 'cyp'
+    CZE = 'cze'
+    DNK = 'dnk'
+    DJI = 'dji'
+    DMA = 'dma'
+    DOM = 'dom'
+    ECU = 'ecu'
+    EGY = 'egy'
+    SLV = 'slv'
+    GNQ = 'gnq'
+    ERI = 'eri'
+    EST = 'est'
+    SWZ = 'swz'
+    ETH = 'eth'
+    FLK = 'flk'
+    FRO = 'fro'
+    FJI = 'fji'
+    FIN = 'fin'
+    FRA = 'fra'
+    GUF = 'guf'
+    PYF = 'pyf'
+    ATF = 'atf'
+    GAB = 'gab'
+    GMB = 'gmb'
+    GEO = 'geo'
+    DEU = 'deu'
+    GHA = 'gha'
+    GIB = 'gib'
+    GRC = 'grc'
+    GRL = 'grl'
+    GRD = 'grd'
+    GLP = 'glp'
+    GUM = 'gum'
+    GTM = 'gtm'
+    GGY = 'ggy'
+    GIN = 'gin'
+    GNB = 'gnb'
+    GUY = 'guy'
+    HTI = 'hti'
+    HMD = 'hmd'
+    VAT = 'vat'
+    HND = 'hnd'
+    HKG = 'hkg'
+    HUN = 'hun'
+    ISL = 'isl'
+    IND = 'ind'
+    IDN = 'idn'
+    IRN = 'irn'
+    IRQ = 'irq'
+    IRL = 'irl'
+    IMN = 'imn'
+    ISR = 'isr'
+    ITA = 'ita'
+    JAM = 'jam'
+    JPN = 'jpn'
+    JEY = 'jey'
+    JOR = 'jor'
+    KAZ = 'kaz'
+    KEN = 'ken'
+    KIR = 'kir'
+    PRK = 'prk'
+    KOR = 'kor'
+    KWT = 'kwt'
+    KGZ = 'kgz'
+    LAO = 'lao'
+    LVA = 'lva'
+    LBN = 'lbn'
+    LSO = 'lso'
+    LBR = 'lbr'
+    LBY = 'lby'
+    LIE = 'lie'
+    LTU = 'ltu'
+    LUX = 'lux'
+    MAC = 'mac'
+    MDG = 'mdg'
+    MWI = 'mwi'
+    MYS = 'mys'
+    MDV = 'mdv'
+    MLI = 'mli'
+    MLT = 'mlt'
+    MHL = 'mhl'
+    MTQ = 'mtq'
+    MRT = 'mrt'
+    MUS = 'mus'
+    MYT = 'myt'
+    MEX = 'mex'
+    FSM = 'fsm'
+    MDA = 'mda'
+    MCO = 'mco'
+    MNG = 'mng'
+    MNE = 'mne'
+    MSR = 'msr'
+    MAR = 'mar'
+    MOZ = 'moz'
+    MMR = 'mmr'
+    NAM = 'nam'
+    NRU = 'nru'
+    NPL = 'npl'
+    NLD = 'nld'
+    NCL = 'ncl'
+    NZL = 'nzl'
+    NIC = 'nic'
+    NER = 'ner'
+    NGA = 'nga'
+    NIU = 'niu'
+    NFK = 'nfk'
+    MKD = 'mkd'
+    MNP = 'mnp'
+    NOR = 'nor'
+    OMN = 'omn'
+    PAK = 'pak'
+    PLW = 'plw'
+    PSE = 'pse'
+    PAN = 'pan'
+    PNG = 'png'
+    PRY = 'pry'
+    PER = 'per'
+    PHL = 'phl'
+    PCN = 'pcn'
+    POL = 'pol'
+    PRT = 'prt'
+    PRI = 'pri'
+    QAT = 'qat'
+    REU = 'reu'
+    ROU = 'rou'
+    RUS = 'rus'
+    RWA = 'rwa'
+    BLM = 'blm'
+    SHN = 'shn'
+    KNA = 'kna'
+    LCA = 'lca'
+    MAF = 'maf'
+    SPM = 'spm'
+    VCT = 'vct'
+    WSM = 'wsm'
+    SMR = 'smr'
+    STP = 'stp'
+    SAU = 'sau'
+    SEN = 'sen'
+    SRB = 'srb'
+    SYC = 'syc'
+    SLE = 'sle'
+    SGP = 'sgp'
+    SXM = 'sxm'
+    SVK = 'svk'
+    SVN = 'svn'
+    SLB = 'slb'
+    SOM = 'som'
+    ZAF = 'zaf'
+    SGS = 'sgs'
+    SSD = 'ssd'
+    ESP = 'esp'
+    LKA = 'lka'
+    SDN = 'sdn'
+    SUR = 'sur'
+    SJM = 'sjm'
+    SWE = 'swe'
+    CHE = 'che'
+    SYR = 'syr'
+    TWN = 'twn'
+    TJK = 'tjk'
+    TZA = 'tza'
+    THA = 'tha'
+    TLS = 'tls'
+    TGO = 'tgo'
+    TKL = 'tkl'
+    TON = 'ton'
+    TTO = 'tto'
+    TUN = 'tun'
+    TUR = 'tur'
+    TKM = 'tkm'
+    TCA = 'tca'
+    TUV = 'tuv'
+    UGA = 'uga'
+    UKR = 'ukr'
+    ARE = 'are'
+    GBR = 'gbr'
+    USA = 'usa'
+    UMI = 'umi'
+    URY = 'ury'
+    UZB = 'uzb'
+    VUT = 'vut'
+    VEN = 'ven'
+    VNM = 'vnm'
+    VGB = 'vgb'
+    VIR = 'vir'
+    WLF = 'wlf'
+    ESH = 'esh'
+    YEM = 'yem'
+    ZMB = 'zmb'
+    ZWE = 'zwe'
 
 
 class ExternalImpactData(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     format: str
     url: str
     version: Optional[str] = None
 
 
 class GeneralEnergyClass(Enum):
-    existing = 'existing'
-    standard = 'standard'
-    advanced = 'advanced'
-    unknown = 'unknown'
-
-
-class ImpactCategory(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
-    a1a3: Optional[float] = None
-    a4: Optional[float] = None
-    a5: Optional[float] = None
-    b1: Optional[float] = None
-    b2: Optional[float] = None
-    b3: Optional[float] = None
-    b4: Optional[float] = None
-    b5: Optional[float] = None
-    b6: Optional[float] = None
-    b7: Optional[float] = None
-    c1: Optional[float] = None
-    c2: Optional[float] = None
-    c3: Optional[float] = None
-    c4: Optional[float] = None
-    d: Optional[float] = None
+    EXISTING = 'existing'
+    STANDARD = 'standard'
+    ADVANCED = 'advanced'
+    UNKNOWN = 'unknown'
 
 
 class ImpactCategoryKey(Enum):
-    gwp = 'gwp'
-    odp = 'odp'
-    ap = 'ap'
-    ep = 'ep'
-    pocp = 'pocp'
-    adpe = 'adpe'
-    adpf = 'adpf'
-    penre = 'penre'
-    pere = 'pere'
-    perm = 'perm'
-    pert = 'pert'
-    penrt = 'penrt'
-    penrm = 'penrm'
-    sm = 'sm'
-    rsf = 'rsf'
-    nrsf = 'nrsf'
-    fw = 'fw'
-    hwd = 'hwd'
-    nhwd = 'nhwd'
-    rwd = 'rwd'
-    cru = 'cru'
-    mrf = 'mrf'
-    mer = 'mer'
-    eee = 'eee'
-    eet = 'eet'
+    GWP = 'gwp'
+    GWP_FOS = 'gwp_fos'
+    GWP_BIO = 'gwp_bio'
+    GWP_LUL = 'gwp_lul'
+    ODP = 'odp'
+    AP = 'ap'
+    EP = 'ep'
+    EP_FW = 'ep_fw'
+    EP_MAR = 'ep_mar'
+    EP_TER = 'ep_ter'
+    POCP = 'pocp'
+    ADPE = 'adpe'
+    ADPF = 'adpf'
+    PENRE = 'penre'
+    PERE = 'pere'
+    PERM = 'perm'
+    PERT = 'pert'
+    PENRT = 'penrt'
+    PENRM = 'penrm'
+    SM = 'sm'
+    PM = 'pm'
+    WDP = 'wdp'
+    IRP = 'irp'
+    ETP_FW = 'etp_fw'
+    HTP_C = 'htp_c'
+    HTP_NC = 'htp_nc'
+    SQP = 'sqp'
+    RSF = 'rsf'
+    NRSF = 'nrsf'
+    FW = 'fw'
+    HWD = 'hwd'
+    NHWD = 'nhwd'
+    RWD = 'rwd'
+    CRU = 'cru'
+    MRF = 'mrf'
+    MER = 'mer'
+    EEE = 'eee'
+    EET = 'eet'
 
 
-class ImpactDataSource2(BaseModel):
-    class Config:
-        extra = Extra.forbid
-        allow_population_by_field_name = True
-
+class ImpactDataSource3(BaseModel):
+    model_config = ConfigDict(
+        extra='forbid',
+        populate_by_name=True,
+    )
     externalimpactdata: ExternalImpactData
 
 
 class InternalImpactData(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     path: str
 
 
 class LifeCycleStage(Enum):
-    a1a3 = 'a1a3'
-    a4 = 'a4'
-    a5 = 'a5'
-    b1 = 'b1'
-    b2 = 'b2'
-    b3 = 'b3'
-    b4 = 'b4'
-    b5 = 'b5'
-    b6 = 'b6'
-    b7 = 'b7'
-    c1 = 'c1'
-    c2 = 'c2'
-    c3 = 'c3'
-    c4 = 'c4'
-    d = 'd'
+    A1A3 = 'a1a3'
+    A4 = 'a4'
+    A5 = 'a5'
+    B1 = 'b1'
+    B2 = 'b2'
+    B3 = 'b3'
+    B4 = 'b4'
+    B5 = 'b5'
+    B6 = 'b6'
+    B7 = 'b7'
+    C1 = 'c1'
+    C2 = 'c2'
+    C3 = 'c3'
+    C4 = 'c4'
+    D = 'd'
 
 
 class Location(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     address: Optional[str] = None
     city: Optional[str] = None
     country: Country
 
 
 class ProjectInfo2(BaseModel):
-    class Config:
-        extra = Extra.forbid
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        extra='forbid',
+        populate_by_name=True,
+    )
     infrastructureinfo: Dict[str, str]
 
 
 class ProjectPhase(Enum):
-    design = 'design'
-    ongoing = 'ongoing'
-    built = 'built'
-    other = 'other'
+    DESIGN = 'design'
+    ONGOING = 'ongoing'
+    BUILT = 'built'
+    OTHER = 'other'
 
 
 class RoofType(Enum):
-    flat = 'flat'
-    pitched = 'pitched'
-    saddle = 'saddle'
-    pyramid = 'pyramid'
-    other = 'other'
+    FLAT = 'flat'
+    PITCHED = 'pitched'
+    SADDLE = 'saddle'
+    PYRAMID = 'pyramid'
+    OTHER = 'other'
 
 
 class SoftwareInfo(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     calculation_type: Optional[str] = Field(None, alias='calculationType')
     goal_and_scope_definition: Optional[str] = Field(
         None, alias='goalAndScopeDefinition'
@@ -444,61 +438,61 @@ class SoftwareInfo(BaseModel):
 
 
 class Source(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     url: Optional[str] = None
 
 
 class Standard(Enum):
-    en15804_a1 = 'EN15804A1'
-    en15804_a2 = 'EN15804A2'
-    unknown = 'UNKNOWN'
+    EN15804_A1 = 'EN15804A1'
+    EN15804_A2 = 'EN15804A2'
+    UNKNOWN = 'UNKNOWN'
 
 
 class SubType(Enum):
-    generic = 'Generic'
-    specific = 'Specific'
-    industry = 'Industry'
-    representative = 'Representative'
+    GENERIC = 'Generic'
+    SPECIFIC = 'Specific'
+    INDUSTRY = 'Industry'
+    REPRESENTATIVE = 'Representative'
 
 
 class Unit(Enum):
-    m = 'M'
-    m2 = 'M2'
-    m3 = 'M3'
-    kg = 'KG'
-    tones = 'TONES'
-    pcs = 'PCS'
-    l = 'L'
-    m2_r1 = 'M2R1'
-    km = 'KM'
-    tones_km = 'TONES_KM'
-    unknown = 'UNKNOWN'
+    M = 'M'
+    M2 = 'M2'
+    M3 = 'M3'
+    KG = 'KG'
+    TONES = 'TONES'
+    PCS = 'PCS'
+    L = 'L'
+    M2_R1 = 'M2R1'
+    KM = 'KM'
+    TONES_KM = 'TONES_KM'
+    UNKNOWN = 'UNKNOWN'
 
 
 class ValueUnit(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     unit: Unit
     value: float
 
 
 class AreaType(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     definition: str
     unit: Unit
     value: float
 
 
 class BuildingInfo(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     building_completion_year: Optional[int] = Field(
         None, alias='buildingCompletionYear', ge=0
     )
@@ -533,106 +527,106 @@ class BuildingInfo(BaseModel):
 
 
 class Conversion(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     meta_data: str
     to: Unit
     value: float
 
 
 class EPD(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
-    adpe: Optional[ImpactCategory] = None
-    adpf: Optional[ImpactCategory] = None
-    ap: Optional[ImpactCategory] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     comment: Optional[str] = None
     conversions: Optional[List[Conversion]] = None
-    cru: Optional[ImpactCategory] = None
     declared_unit: Unit
-    eee: Optional[ImpactCategory] = None
-    eet: Optional[ImpactCategory] = None
-    ep: Optional[ImpactCategory] = None
     format_version: str
-    fw: Optional[ImpactCategory] = None
-    gwp: Optional[ImpactCategory] = None
-    hwd: Optional[ImpactCategory] = None
     id: str
-    location: str
-    mer: Optional[ImpactCategory] = None
+    impacts: Dict[str, Dict[str, Optional[float]]]
+    location: Country
     meta_data: Optional[Dict[str, Any]] = None
-    mfr: Optional[ImpactCategory] = None
     name: str
-    nhwd: Optional[ImpactCategory] = None
-    nrsf: Optional[ImpactCategory] = None
-    odp: Optional[ImpactCategory] = None
-    penre: Optional[ImpactCategory] = None
-    penrm: Optional[ImpactCategory] = None
-    penrt: Optional[ImpactCategory] = None
-    pere: Optional[ImpactCategory] = None
-    perm: Optional[ImpactCategory] = None
-    pert: Optional[ImpactCategory] = None
-    pocp: Optional[ImpactCategory] = None
-    published_date: datetime
+    published_date: date
     reference_service_life: Optional[int] = Field(None, ge=0)
-    rsf: Optional[ImpactCategory] = None
-    rwd: Optional[ImpactCategory] = None
-    sm: Optional[ImpactCategory] = None
     source: Optional[Source] = None
     standard: Standard
     subtype: SubType
-    valid_until: datetime
+    valid_until: date
     version: str
 
 
 class ImpactDataSource1(BaseModel):
-    class Config:
-        extra = Extra.forbid
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        extra='forbid',
+        populate_by_name=True,
+    )
     epd: EPD
 
 
-class ImpactDataSource3(BaseModel):
-    class Config:
-        extra = Extra.forbid
-        allow_population_by_field_name = True
-
+class ImpactDataSource4(BaseModel):
+    model_config = ConfigDict(
+        extra='forbid',
+        populate_by_name=True,
+    )
     internalimpactdata: InternalImpactData
 
 
 class ProjectInfo1(BaseModel):
-    class Config:
-        extra = Extra.forbid
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        extra='forbid',
+        populate_by_name=True,
+    )
     buildinginfo: BuildingInfo
 
 
-class Transport(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
+class TechFlow(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    comment: Optional[str] = None
+    conversions: Optional[List[Conversion]] = None
+    declared_unit: Unit
+    format_version: str
+    id: str
+    impacts: Dict[str, Dict[str, Optional[float]]]
+    location: Country
+    meta_data: Optional[Dict[str, Any]] = None
+    name: str
+    source: Optional[Source] = None
 
+
+class ImpactDataSource2(BaseModel):
+    model_config = ConfigDict(
+        extra='forbid',
+        populate_by_name=True,
+    )
+    techflow: TechFlow
+
+
+class Transport(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     distance: float
     distance_unit: Unit = Field(..., alias='distanceUnit')
     id: str
     name: str
-    transport_epd: Union[ImpactDataSource1, ImpactDataSource2, ImpactDataSource3] = (
-        Field(..., alias='transportEpd')
-    )
+    transport_epd: Union[
+        ImpactDataSource1, ImpactDataSource2, ImpactDataSource3, ImpactDataSource4
+    ] = Field(..., alias='transportEpd')
 
 
 class Product(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     description: str
     id: str
-    impact_data: Union[ImpactDataSource1, ImpactDataSource2, ImpactDataSource3] = Field(
-        ..., alias='impactData'
-    )
+    impact_data: Union[
+        ImpactDataSource1, ImpactDataSource2, ImpactDataSource3, ImpactDataSource4
+    ] = Field(..., alias='impactData')
     meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
     quantity: float
@@ -643,9 +637,9 @@ class Product(BaseModel):
 
 
 class Assembly(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     category: Optional[str] = None
     classification: Optional[List[Classification]] = None
     comment: Optional[str] = None
@@ -659,10 +653,10 @@ class Assembly(BaseModel):
     unit: Unit
 
 
-class LCAxProject(BaseModel):
-    class Config:
-        allow_population_by_field_name = True
-
+class Project(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     assemblies: Dict[str, Assembly]
     classification_system: Optional[str] = Field(None, alias='classificationSystem')
     comment: Optional[str] = None

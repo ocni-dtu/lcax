@@ -10,7 +10,7 @@ authors = [
 
 dependencies = [
     "cffi",
-    "pydantic >=1.8.2,<2.0.0",
+    "pydantic >2.0.0",
 ]
 
 [project.optional-dependencies]
@@ -39,6 +39,7 @@ build-backend = "maturin"
 # "extension-module" tells pyo3 we want to build an extension module (skips linking against libpython.so)
 features = ["pybindings"]
 python-source = "packages/python/src"
+manifest-path = "modules/lcax/Cargo.toml"
 
 [tool.pytest.ini_options]
 pythonpath = "packages/python/src"
@@ -51,4 +52,7 @@ strip-default-none = false
 target-python-version = "3.10"
 collapse-root-models = true
 disable-timestamp = true
-extra-template-data = "codegen.template.json"
+capitalise-enum-members = true
+input-file-type = "jsonschema"
+output-model-type = "pydantic_v2.BaseModel"
+allow_population_by_field_name = true
