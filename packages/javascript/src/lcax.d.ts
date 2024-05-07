@@ -11,6 +11,13 @@ export function convertLCAbyg(data: string, resultData?: string): Project;
 * @returns {EPD}
 */
 export function convertIlcd(data: string): EPD;
+/**
+* @param {Uint8Array} file
+* @returns {JSProjects}
+*/
+export function convertSLiCE(file: Uint8Array): JSProjects;
+export type JSProjects = Project[];
+
 export type BuildingTypology = "office" | "residential" | "public" | "commercial" | "industrial" | "infrastructure" | "agricultural" | "mixeduse" | "other";
 
 export type BuildingType = "renovation" | "new";

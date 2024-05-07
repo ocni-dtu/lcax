@@ -15,7 +15,7 @@ use crate::shared::Unit;
 #[cfg_attr(
     feature = "jsbindings",
     derive(Tsify),
-    tsify(into_wasm_abi, from_wasm_abi)
+    tsify(into_wasm_abi, from_wasm_abi),
 )]
 pub struct Project {
     pub id: String,

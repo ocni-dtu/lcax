@@ -25,3 +25,4 @@ uuid = { version = "1.8.0", features = ["v4", "v5"] }
 lcax_core = { path = "../core" }
 models = { path = "../models" }
 chrono = "0.4.38"
+bytes = "1.6.0"

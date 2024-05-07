@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from typing import Type, TypeVar
 
 from .lcax import *
@@ -63,6 +64,34 @@ def convert_ilcd(data: str | dict, *, as_type: Type[EPD_Type] = dict) -> EPD_Typ
         return json.loads(_epd)
     elif as_type == EPD:
         return EPD(**json.loads(_epd))
+    else:
+        raise NotImplementedError("Currently only 'dict', 'str' and 'lcax.EPD' is implemented as_type.")
+
+
+def convert_slice(path: str | Path, *, as_type: Type[Project_Type] = dict) -> list[Project_Type]:
+    """
+    Converts a SLiCE .parquet file into a list of LCAx projects
+
+    The LCAx project can either be returned as a list of strings, dicts or Pydantic classes.
+    """
+
+    if isinstance(path, str):
+        path = Path(path)
+
+    if not path.is_file():
+        raise FileNotFoundError(f"File not found: {path}")
+
+    try:
+        projects = lcax._convert_slice(str(path))
+    except Exception as err:
+        raise ParsingException(err)
+
+    if as_type == str:
+        return projects
+    elif as_type == dict:
+        return [json.loads(project) for project in projects]
+    elif as_type == EPD:
+        return [Project(**json.loads(project)) for project in projects]
     else:
         raise NotImplementedError("Currently only 'dict', 'str' and 'lcax.EPD' is implemented as_type.")
 

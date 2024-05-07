@@ -153,6 +153,7 @@ pub enum ModuleValue {
 
 #[derive(Deserialize)]
 pub struct ModuleMap {
+    #[allow(dead_code)]
     name: String,
 }
 

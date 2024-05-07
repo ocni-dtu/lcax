@@ -1,14 +1,14 @@
 [package]
 name = "lcax"
-description = { workspace = true}
-version = { workspace = true}
-authors = { workspace = true}
-edition = { workspace = true}
-readme = { workspace = true}
-license-file = { workspace = true}
-homepage = { workspace = true}
-documentation = { workspace = true}
-repository = { workspace = true}
+description = { workspace = true }
+version = { workspace = true }
+authors = { workspace = true }
+edition = { workspace = true }
+readme = { workspace = true }
+license-file = { workspace = true }
+homepage = { workspace = true }
+documentation = { workspace = true }
+repository = { workspace = true }
 
 
 [lib]
@@ -22,9 +22,15 @@ test = false
 bench = false
 
 [features]
-default = ["wee_alloc"]
+default = []
 pybindings = ["pyo3", "pyo3/extension-module", "models/pybindings"]
-jsbindings = ["wasm-bindgen", "serde-wasm-bindgen", "console_error_panic_hook", "tsify", "getrandom", "models/jsbindings"]
+jsbindings = [
+    "wee_alloc",
+    "wasm-bindgen",
+    "serde-wasm-bindgen",
+    "console_error_panic_hook",
+    "tsify", "getrandom", "models/jsbindings"
+]
 
 [dependencies]
 schemars = { version = "0.8.19", features = ["chrono"] }

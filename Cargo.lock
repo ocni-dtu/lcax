@@ -139,6 +139,7 @@ dependencies = [
 name = "convert"
 version = "1.6.0"
 dependencies = [
+ "bytes",
  "chrono",
  "field_access",
  "lcax_core",
