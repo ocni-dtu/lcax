@@ -31,5 +31,9 @@
     "@types/node": "^20.12.10",
     "vite-plugin-wasm": "^3.3.0",
     "vitest": "^1.6.0"
+  },
+  "engines" : {
+    "npm" : ">=10.0.0",
+    "node" : ">=20.0.0"
   }
 }
