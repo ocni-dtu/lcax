@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/ocni-dtu/lcax/compare/v2.0.2...v2.0.3) (2024-05-08)
+
+
+### Bug Fixes
+
+* multiple cargo releases ([0ca74ee](https://github.com/ocni-dtu/lcax/commit/0ca74ee8493b76718debc81419de2dd55f2e6251))
+
 ## [2.0.2](https://github.com/ocni-dtu/lcax/compare/v2.0.1...v2.0.2) (2024-05-08)
 
 
