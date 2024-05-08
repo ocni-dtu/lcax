@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/ocni-dtu/lcax/compare/v2.0.3...v2.0.4) (2024-05-08)
+
+
+### Bug Fixes
+
+* bumping version ([e3aecae](https://github.com/ocni-dtu/lcax/commit/e3aecae6c31cc1d993dca2f48ed8ee5296623f4b))
+
 ## [2.0.3](https://github.com/ocni-dtu/lcax/compare/v2.0.2...v2.0.3) (2024-05-08)
 
 
