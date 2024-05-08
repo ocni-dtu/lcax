@@ -1,3 +1,15 @@
+## [2.0.0](https://github.com/ocni-dtu/lcax/compare/v1.7.0...v2.0.0) (2024-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Merging EPDx into LCAx and changing EPD fields.
+
+### Features
+
+* Added converter for SLiCE datasets ([5110d0a](https://github.com/ocni-dtu/lcax/commit/5110d0a3cc1a958df9a7d3f95afebc2a8de5a668))
+* Refactor and merge EPDx ([0553137](https://github.com/ocni-dtu/lcax/commit/05531373447b0f028af6077cff47ab43f6ec8a30))
+
 ## [1.7.0](https://github.com/ocni-dtu/lcax/compare/v1.6.0...v1.7.0) (2024-04-08)
 
 
