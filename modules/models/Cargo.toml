@@ -1,5 +1,5 @@
 [package]
-name = "models"
+name = "lcax_models"
 description = { workspace = true}
 version = { workspace = true}
 authors = { workspace = true}

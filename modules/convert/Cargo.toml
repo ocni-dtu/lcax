@@ -1,5 +1,5 @@
 [package]
-name = "convert"
+name = "lcax_convert"
 description = { workspace = true}
 version = { workspace = true}
 authors = { workspace = true}
@@ -23,6 +23,6 @@ field_access = "0.1.4"
 parquet = {  version = "51.0.0", default-features = false, features = ["flate2", "snap"] }
 uuid = { version = "1.8.0", features = ["v4", "v5"] }
 lcax_core = { path = "../core", version = ">2.0.0" }
-models = { path = "../models", version = ">2.0.0" }
+lcax_models = { path = "../models", version = ">2.0.0" }
 chrono = "0.4.38"
 bytes = "1.6.0"
