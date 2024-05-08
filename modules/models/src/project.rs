@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 
+use lcax_core::country::Country;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
-use lcax_core::country::Country;
 
 use crate::assembly::Assembly;
 use crate::life_cycle_base::{ImpactCategoryKey, LifeCycleStage, Results};
@@ -15,7 +15,7 @@ use crate::shared::Unit;
 #[cfg_attr(
     feature = "jsbindings",
     derive(Tsify),
-    tsify(into_wasm_abi, from_wasm_abi),
+    tsify(into_wasm_abi, from_wasm_abi)
 )]
 pub struct Project {
     pub id: String,

@@ -30,7 +30,6 @@ pub struct TechFlow {
     pub meta_data: Option<HashMap<String, String>>,
 }
 
-
 impl TechFlow {
     pub fn new() -> Self {
         Self {

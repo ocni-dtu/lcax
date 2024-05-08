@@ -39,7 +39,6 @@ impl From<&String> for Unit {
     }
 }
 
-
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Conversion {
@@ -48,11 +47,9 @@ pub struct Conversion {
     pub meta_data: String,
 }
 
-
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Source {
     pub name: String,
     pub url: Option<String>,
 }
-

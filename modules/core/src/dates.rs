@@ -3,22 +3,17 @@ use serde::{Deserialize, Deserializer, Serializer};
 
 const FORMAT: &'static str = "%Y-%m-%d";
 
-pub fn serialize_yyyy_mm_dd<S>(
-    date: &NaiveDate,
-    serializer: S,
-) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
+pub fn serialize_yyyy_mm_dd<S>(date: &NaiveDate, serializer: S) -> Result<S::Ok, S::Error>
+where
+    S: Serializer,
 {
     let s = format!("{}", date.format(FORMAT));
     serializer.serialize_str(&s)
 }
 
-pub fn deserialize_yyyy_mm_dd<'de, D>(
-    deserializer: D,
-) -> Result<NaiveDate, D::Error>
-    where
-        D: Deserializer<'de>,
+pub fn deserialize_yyyy_mm_dd<'de, D>(deserializer: D) -> Result<NaiveDate, D::Error>
+where
+    D: Deserializer<'de>,
 {
     let s = String::deserialize(deserializer)?;
     let dt = NaiveDate::parse_from_str(&s, FORMAT).map_err(serde::de::Error::custom)?;

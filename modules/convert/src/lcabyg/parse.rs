@@ -1,19 +1,22 @@
-use lcax_core::country::Country;
+use crate::lcabyg::edges::EdgeType;
+use crate::lcabyg::nodes::{epd_from_lcabyg_stages, Node};
+use crate::lcabyg::results::Model::InstanceModel;
+use crate::lcabyg::results::{LCAbygResults, YearResult};
+use crate::lcabyg::{categories, edges, nodes};
 use field_access::FieldAccess;
-use serde::{Deserialize, Serialize};
-use serde_json::Error;
-use std::collections::HashMap;
+use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::assembly::{Assembly, Classification};
 use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleStage};
 use lcax_models::product::{ImpactDataSource, Product as LCAxProduct};
-use lcax_models::project::{AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project as LCAxProject, ProjectInfo, RoofType, SoftwareInfo};
+use lcax_models::project::{
+    AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location,
+    Project as LCAxProject, ProjectInfo, RoofType, SoftwareInfo,
+};
 use lcax_models::shared::Unit;
-use crate::lcabyg::edges::EdgeType;
-use crate::lcabyg::{categories, edges, nodes};
-use crate::lcabyg::nodes::{epd_from_lcabyg_stages, Node};
-use crate::lcabyg::results::{LCAbygResults, YearResult};
-use crate::lcabyg::results::Model::InstanceModel;
+use serde::{Deserialize, Serialize};
+use serde_json::Error;
+use std::collections::HashMap;
 
 type Edge = (EdgeType, String, String);
 
@@ -285,9 +288,7 @@ fn add_element_data(
                     found = (true, false);
                 }
             }
-            (EdgeType::CategoryToElement(_), category_id, element_id)
-                if element_id == &node_id =>
-            {
+            (EdgeType::CategoryToElement(_), category_id, element_id) if element_id == &node_id => {
                 assembly.classification = Some(get_lcabyg_classification(category_id));
                 if found == (true, false) {
                     break;

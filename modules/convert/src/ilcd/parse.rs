@@ -1,12 +1,12 @@
 use crate::ilcd::ilcd::{DataSetName, Exchange, LCIAResult, ModuleAnie, ILCD};
 use chrono::NaiveDate;
+use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
 use lcax_models::shared::{Conversion, Unit};
 use serde_json::Error;
 use std::collections::HashMap;
-use lcax_core::country::Country;
 
 /// Parse a ILCD formatted EPD in an EPDx struct
 ///
@@ -58,11 +58,14 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
         source: None,
         published_date: get_date(&ilcd_epd.process_information.time.reference_year),
         valid_until: get_date(&ilcd_epd.process_information.time.data_set_valid_until),
-        location: Country::from(ilcd_epd
-            .process_information
-            .geography
-            .location_of_operation_supply_or_production
-            .location.as_str()),
+        location: Country::from(
+            ilcd_epd
+                .process_information
+                .geography
+                .location_of_operation_supply_or_production
+                .location
+                .as_str(),
+        ),
         subtype: SubType::from(&subtype.value),
         impacts,
     })
@@ -78,13 +81,14 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
 
     for anie in anies {
         match (&anie.module, &anie.value) {
-            (Some(module), Some(value)) if vec!["a1", "a2", "a3"].contains(&module.to_lowercase().as_str()) => {
+            (Some(module), Some(value))
+                if vec!["a1", "a2", "a3"].contains(&module.to_lowercase().as_str()) =>
+            {
                 if composite_a1a3.is_some() {
                     composite_a1a3 = Some(composite_a1a3.unwrap() + f64::from(value));
                 } else {
                     composite_a1a3 = Some(f64::from(value));
                 }
-
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a1-a3") => {
                 category.insert(LifeCycleStage::A1A3, Some(f64::from(value)));
@@ -254,7 +258,7 @@ fn collect_from_lcia_result(
                 Some(value) if value.contains("(PM)") => {
                     impacts.insert(ImpactCategoryKey::PM, impact_value);
                 }
-                Some(value) if value.contains("(IRP)") || value.contains("(IR)")=> {
+                Some(value) if value.contains("(IRP)") || value.contains("(IR)") => {
                     impacts.insert(ImpactCategoryKey::IRP, impact_value);
                 }
                 Some(value) if value.contains("(ADPE)") => {
@@ -303,25 +307,61 @@ fn collect_from_exchanges(
                         _ => continue,
                     };
                     match &description.value {
-                        Some(_description) if _description.contains("(PERE)") => {impacts.insert(ImpactCategoryKey::PERE, impact_value);},
-                        Some(_description) if _description.contains("(PERM)") => {impacts.insert(ImpactCategoryKey::PERM, impact_value);},
-                        Some(_description) if _description.contains("(PERT)") => {impacts.insert(ImpactCategoryKey::PERT, impact_value);},
-                        Some(_description) if _description.contains("(PENRE)") => {impacts.insert(ImpactCategoryKey::PENRE, impact_value);},
-                        Some(_description) if _description.contains("(PENRM)") => {impacts.insert(ImpactCategoryKey::PENRM, impact_value);},
-                        Some(_description) if _description.contains("(PENRT)") => {impacts.insert(ImpactCategoryKey::PENRT, impact_value);},
-                        Some(_description) if _description.contains("(SM)") => {impacts.insert(ImpactCategoryKey::SM, impact_value);},
-                        Some(_description) if _description.contains("(RSF)") => {impacts.insert(ImpactCategoryKey::RSF, impact_value);},
-                        Some(_description) if _description.contains("(NRSF)") => {impacts.insert(ImpactCategoryKey::NRSF, impact_value);},
-                        Some(_description) if _description.contains("(FW)") => {impacts.insert(ImpactCategoryKey::FW, impact_value);},
-                        Some(_description) if _description.contains("(HWD)") => {impacts.insert(ImpactCategoryKey::HWD, impact_value);},
-                        Some(_description) if _description.contains("(NHWD)") => {impacts.insert(ImpactCategoryKey::NHWD, impact_value);},
-                        Some(_description) if _description.contains("(RWD)") => {impacts.insert(ImpactCategoryKey::RWD, impact_value);},
-                        Some(_description) if _description.contains("(CRU)") => {impacts.insert(ImpactCategoryKey::CRU, impact_value);},
-                        Some(_description) if _description.contains("(MFR)") => {impacts.insert(ImpactCategoryKey::MRF, impact_value);},
-                        Some(_description) if _description.contains("(MER)") => {impacts.insert(ImpactCategoryKey::MER, impact_value);},
-                        Some(_description) if _description.contains("(EEE)") => {impacts.insert(ImpactCategoryKey::EEE, impact_value);},
-                        Some(_description) if _description.contains("(EET)") => {impacts.insert(ImpactCategoryKey::EET, impact_value);},
-                        _ => continue
+                        Some(_description) if _description.contains("(PERE)") => {
+                            impacts.insert(ImpactCategoryKey::PERE, impact_value);
+                        }
+                        Some(_description) if _description.contains("(PERM)") => {
+                            impacts.insert(ImpactCategoryKey::PERM, impact_value);
+                        }
+                        Some(_description) if _description.contains("(PERT)") => {
+                            impacts.insert(ImpactCategoryKey::PERT, impact_value);
+                        }
+                        Some(_description) if _description.contains("(PENRE)") => {
+                            impacts.insert(ImpactCategoryKey::PENRE, impact_value);
+                        }
+                        Some(_description) if _description.contains("(PENRM)") => {
+                            impacts.insert(ImpactCategoryKey::PENRM, impact_value);
+                        }
+                        Some(_description) if _description.contains("(PENRT)") => {
+                            impacts.insert(ImpactCategoryKey::PENRT, impact_value);
+                        }
+                        Some(_description) if _description.contains("(SM)") => {
+                            impacts.insert(ImpactCategoryKey::SM, impact_value);
+                        }
+                        Some(_description) if _description.contains("(RSF)") => {
+                            impacts.insert(ImpactCategoryKey::RSF, impact_value);
+                        }
+                        Some(_description) if _description.contains("(NRSF)") => {
+                            impacts.insert(ImpactCategoryKey::NRSF, impact_value);
+                        }
+                        Some(_description) if _description.contains("(FW)") => {
+                            impacts.insert(ImpactCategoryKey::FW, impact_value);
+                        }
+                        Some(_description) if _description.contains("(HWD)") => {
+                            impacts.insert(ImpactCategoryKey::HWD, impact_value);
+                        }
+                        Some(_description) if _description.contains("(NHWD)") => {
+                            impacts.insert(ImpactCategoryKey::NHWD, impact_value);
+                        }
+                        Some(_description) if _description.contains("(RWD)") => {
+                            impacts.insert(ImpactCategoryKey::RWD, impact_value);
+                        }
+                        Some(_description) if _description.contains("(CRU)") => {
+                            impacts.insert(ImpactCategoryKey::CRU, impact_value);
+                        }
+                        Some(_description) if _description.contains("(MFR)") => {
+                            impacts.insert(ImpactCategoryKey::MRF, impact_value);
+                        }
+                        Some(_description) if _description.contains("(MER)") => {
+                            impacts.insert(ImpactCategoryKey::MER, impact_value);
+                        }
+                        Some(_description) if _description.contains("(EEE)") => {
+                            impacts.insert(ImpactCategoryKey::EEE, impact_value);
+                        }
+                        Some(_description) if _description.contains("(EET)") => {
+                            impacts.insert(ImpactCategoryKey::EET, impact_value);
+                        }
+                        _ => continue,
                     }
                 }
             }
@@ -337,5 +377,3 @@ fn get_name(base_name: &DataSetName) -> String {
         _ => "".to_string(),
     }
 }
-
-

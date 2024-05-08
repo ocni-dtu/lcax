@@ -348,14 +348,17 @@ fn add_impact_data(tech_flow: &mut TechFlow, element: &SLiCEElement) {
                     ImpactCategoryKey::HTP_C => element.ind_htp_c,
                     ImpactCategoryKey::HTP_NC => element.ind_htp_nc,
                     ImpactCategoryKey::SQP => element.ind_sqp,
-                    _ => continue
+                    _ => continue,
                 };
                 match category_value.get(&stage) {
                     None => {
                         category_value.insert(stage.clone(), Some(impact_value));
-                    },
+                    }
                     Some(impact_category_value) => {
-                        category_value.insert(stage.clone(), Some(impact_category_value.unwrap() + impact_value));
+                        category_value.insert(
+                            stage.clone(),
+                            Some(impact_category_value.unwrap() + impact_value),
+                        );
                     }
                 }
             }

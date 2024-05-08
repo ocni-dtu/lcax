@@ -1,7 +1,7 @@
-pub mod life_cycle_base;
-pub mod project;
-pub mod epd;
-pub mod techflow;
-pub mod shared;
 pub mod assembly;
+pub mod epd;
+pub mod life_cycle_base;
 pub mod product;
+pub mod project;
+pub mod shared;
+pub mod techflow;

@@ -110,9 +110,6 @@ impl From<&Option<String>> for SubType {
     }
 }
 
-
-
-
 // mod my_date_format {
 //     use chrono::{NaiveDate};
 //     use serde::{self, Serializer, Deserializer, Deserialize};

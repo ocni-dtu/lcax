@@ -1,11 +1,11 @@
-use std::collections::HashMap;
 use field_access::FieldAccess;
-use serde::{Deserialize, Serialize};
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
-use lcax_models::epd::{EPD, Standard, SubType};
+use lcax_models::epd::{Standard, SubType, EPD};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
 use lcax_models::shared::{Conversion, Source, Unit};
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
@@ -194,7 +194,6 @@ pub struct Stage {
     pub indicators: StageIndicators,
 }
 
-
 pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
     let mut impacts = HashMap::from([
         (ImpactCategoryKey::EP, ImpactCategory::new()),
@@ -220,14 +219,32 @@ pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
                 None => {
                     impact_category.insert(
                         LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
-                        Some(stage.indicators.field(&category_name).unwrap().as_f64().unwrap())
+                        Some(
+                            stage
+                                .indicators
+                                .field(&category_name)
+                                .unwrap()
+                                .as_f64()
+                                .unwrap(),
+                        ),
                     );
-                },
+                }
                 Some(stage_value) => {
-                    let value = stage.indicators.field(&category_name).unwrap().as_f64().unwrap();
+                    let value = stage
+                        .indicators
+                        .field(&category_name)
+                        .unwrap()
+                        .as_f64()
+                        .unwrap();
                     match stage_value {
-                        None => impact_category.insert(LifeCycleStage::try_from(stage.stage.as_str()).unwrap(), Some(value)),
-                        Some(_stage_value) => impact_category.insert(LifeCycleStage::try_from(stage.stage.as_str()).unwrap(), Some(value + _stage_value)),
+                        None => impact_category.insert(
+                            LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                            Some(value),
+                        ),
+                        Some(_stage_value) => impact_category.insert(
+                            LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                            Some(value + _stage_value),
+                        ),
                     };
                 }
             }

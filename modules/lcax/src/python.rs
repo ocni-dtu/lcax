@@ -1,7 +1,7 @@
-use std::fs;
-use lcax_convert::{lcabyg, ilcd, slice};
+use lcax_convert::{ilcd, lcabyg, slice};
 use pyo3::exceptions::PyTypeError;
 use pyo3::prelude::*;
+use std::fs;
 
 #[pyfunction]
 pub fn _convert_lcabyg(data: String, result_data: Option<String>) -> PyResult<String> {
@@ -25,9 +25,10 @@ pub fn _convert_ilcd(data: String) -> PyResult<String> {
 pub fn _convert_slice(path: String) -> PyResult<Vec<String>> {
     let file = fs::read(path).unwrap();
     match slice::parse::parse_slice(file) {
-        Ok(projects) => Ok(
-            projects.iter().map(|project| serde_json::to_string(&project).unwrap()).collect()
-        ),
+        Ok(projects) => Ok(projects
+            .iter()
+            .map(|project| serde_json::to_string(&project).unwrap())
+            .collect()),
         Err(error) => Err(PyTypeError::new_err(error.to_string())),
     }
 }

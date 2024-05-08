@@ -1,16 +1,15 @@
 use tsify::Tsify;
 use wasm_bindgen::prelude::*;
 
-use serde::{Deserialize, Serialize};
 use lcax_convert::{ilcd, lcabyg, slice};
 use lcax_models::epd::EPD;
 use lcax_models::project::Project;
+use serde::{Deserialize, Serialize};
 extern crate console_error_panic_hook;
 use std::panic;
 
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-
 
 #[wasm_bindgen]
 extern "C" {
@@ -42,7 +41,6 @@ pub fn convertIlcd(data: String) -> Result<EPD, JsError> {
 #[derive(Deserialize, Serialize, Tsify)]
 #[tsify(into_wasm_abi, from_wasm_abi)]
 pub struct JSProjects(Vec<Project>);
-
 
 #[allow(non_snake_case)]
 #[wasm_bindgen]

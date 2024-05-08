@@ -1,2 +1,2 @@
-pub mod parse;
 pub mod model;
+pub mod parse;
