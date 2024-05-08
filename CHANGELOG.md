@@ -1,3 +1,11 @@
+## [2.0.2](https://github.com/ocni-dtu/lcax/compare/v2.0.1...v2.0.2) (2024-05-08)
+
+
+### Bug Fixes
+
+* changes to semantic-release-cargo ([fab2dcf](https://github.com/ocni-dtu/lcax/commit/fab2dcff9b63b5677129936c2e3ccb117a15473c))
+* changes to semantic-release-cargo ([ec7a3ab](https://github.com/ocni-dtu/lcax/commit/ec7a3ab22afaca80b581220921c69fb2082f5f29))
+
 ## [2.0.1](https://github.com/ocni-dtu/lcax/compare/v2.0.0...v2.0.1) (2024-05-08)
 
 
