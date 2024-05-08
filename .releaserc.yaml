@@ -10,7 +10,7 @@ plugins:
   - - "semantic-release-cargo"
     - allFeatures: true
       check: true
-      publishArg: [ "--no-verify" ]
+      publishArg: [ "--no-verify", "-p", "lcax" ]
   - - "@semantic-release/github"
     - assets:
         - { path: 'artifacts/lcax.schema.json', label: 'LCAx JSON Schema' }
