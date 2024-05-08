@@ -1,0 +1,53 @@
+[package]
+name = "lcax"
+description = { workspace = true }
+version = { workspace = true }
+authors = { workspace = true }
+edition = { workspace = true }
+readme = { workspace = true }
+license-file = { workspace = true }
+homepage = { workspace = true }
+documentation = { workspace = true }
+repository = { workspace = true }
+
+
+[lib]
+name = "lcax"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "export-schema"
+path = "src/schemars.rs"
+test = false
+bench = false
+
+[features]
+default = []
+pybindings = ["pyo3", "pyo3/extension-module", "models/pybindings"]
+jsbindings = [
+    "wee_alloc",
+    "wasm-bindgen",
+    "serde-wasm-bindgen",
+    "console_error_panic_hook",
+    "tsify", "getrandom", "models/jsbindings"
+]
+
+[dependencies]
+schemars = { version = "0.8.19", features = ["chrono"] }
+serde = { version = "1.0.200", features = ["derive"] }
+serde_json = "1.0.116"
+lcax_core = { path = "../core" }
+models = { path = "../models" }
+convert = { path = "../convert" }
+
+# Python Bindings
+pyo3 = { version = "0.21.2", features = ["abi3-py310"], optional = true }
+
+# JS Bindings
+wee_alloc = { version = "0.4.5", optional = true }
+wasm-bindgen = { version = "0.2.92", optional = true }
+serde-wasm-bindgen = { version = "0.6.5", optional = true }
+console_error_panic_hook = { version = "0.1.7", optional = true }
+tsify = { version = "0.4.5", optional = true }
+getrandom = { version = "0.2", features = ["js"], optional = true }
+

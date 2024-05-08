@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - uses: actions/download-artifact@v4
         with:
@@ -32,7 +34,6 @@ jobs:
           source venv/bin/activate
           datamodel-codegen \
           --input docs/schemas/lcax.schema.json \
-          --input-file-type jsonschema \
           --output packages/python/src/lcax/pydantic.py
 
       - name: Run Tests

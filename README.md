@@ -47,7 +47,6 @@ source .venv/bin/activate .
 
 datamodel-codegen \
 --input lcax.schema.json \
---input-file-type jsonschema \
 --output packages/python/src/lcax/pydantic.py
           
 cd packages/python

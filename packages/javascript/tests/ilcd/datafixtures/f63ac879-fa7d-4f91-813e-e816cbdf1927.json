@@ -1,0 +1,2408 @@
+{
+  "processInformation": {
+    "dataSetInformation": {
+      "UUID": "f63ac879-fa7d-4f91-813e-e816cbdf1927",
+      "name": {
+        "baseName": [
+          {
+            "value": "3- und 5-Schicht Massivholzplatte (Durchschnitt DE)",
+            "lang": "de"
+          }
+        ],
+        "functionalUnitFlowProperties": [
+          {
+            "lang": "de"
+          }
+        ]
+      },
+      "synonyms": [
+        {
+          "lang": "de"
+        }
+      ],
+      "classificationInformation": {
+        "classification": [
+          {
+            "class": [
+              {
+                "value": "Holz",
+                "level": 0,
+                "classId": "3"
+              },
+              {
+                "value": "Holzwerkstoffe",
+                "level": 1,
+                "classId": "3.2"
+              },
+              {
+                "value": "3- und 5-Schichtplatten",
+                "level": 2,
+                "classId": "3.2.01"
+              }
+            ],
+            "name": "OEKOBAU.DAT"
+          }
+        ]
+      },
+      "generalComment": [
+        {
+          "value": "Weitere Informationen zur deklarierten Einheit (Zusammensetzung) und die auf Herstellerangaben beruhende Sachbilanz (In- und Output der Stoff- und Energieströme) stehen als Excel-Datei unter dem Unterpunkt Hintergrund-Bericht zum Download bereit.\r\nDer Datensatz wurde 2020 als Aktualisierung mit gleichbleibendem Vordergrundsystem erstellt. Alle Hintergrunddaten entstammen der GaBi Professional Datenbank 2020 im Service Pack 40. Die Modellierung und Berechnung der Ökobilanz basiert auf den europäischen Normen EN 15804:2012+A1:2013 und EN 16485:2014. Bei Rückfragen wenden Sie sich bitte an holzundklima@thuenen.de.",
+          "lang": "de"
+        }
+      ],
+      "referenceToExternalDocumentation": [
+        {
+          "shortDescription": [
+            {
+              "value": "Rüter S, Diederichs S (2012) Ökobilanz Basisdaten für Bauprodukte aus Holz, Hamburg, Johann Heinrich von Thünen Institut, Institut für Holztechnologie und Holzbiologie, Abschlussbericht",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "caead862-97ea-4e99-9b3c-438c78c79ebd",
+          "version": "00.00.004",
+          "uri": "http://openlca.org/ilcd/resource/sources/caead862-97ea-4e99-9b3c-438c78c79ebd"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "LCI_Schichtmassiv_xlsx",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "eb61b0aa-9c81-4f7e-b211-03b92e474711",
+          "version": "01.01.002",
+          "uri": "http://openlca.org/ilcd/resource/sources/eb61b0aa-9c81-4f7e-b211-03b92e474711"
+        }
+      ],
+      "other": {
+        "anies": [
+          {
+            "scenario": [
+              {
+                "description": [
+                  {
+                    "value": "therm. Verwertung"
+                  }
+                ],
+                "name": "energetisch",
+                "default": true
+              },
+              {
+                "description": [
+                  {
+                    "value": "stoffl. Verwertung"
+                  }
+                ],
+                "name": "stofflich"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "quantitativeReference": {
+      "referenceToReferenceFlow": [
+        0
+      ],
+      "type": "Reference flow(s)"
+    },
+    "time": {
+      "referenceYear": 2020,
+      "dataSetValidUntil": 2025,
+      "timeRepresentativenessDescription": [
+        {
+          "value": "Der Datensatz basiert auf Produktionsdaten aus den Jahren 2009 bis 2011 (Vordergrundsystem).\r\nEine Aktualisierung des Hintergrundsystems erfolgte 2020.",
+          "lang": "de"
+        }
+      ]
+    },
+    "geography": {
+      "locationOfOperationSupplyOrProduction": {
+        "descriptionOfRestrictions": [
+          {
+            "value": "Für die Ökobilanzierung von Schicht-Massivholzplatten wurden Daten von 2 Werken berücksichtigt (Rüter & Diederichs 2012).  Für alle in Rüter & Diederichs (2012) angeführten Vollholzprodukte wurden von 2009 bis 2011 insgesamt 178 Prozesslinien erfasst. Im Verhältnis zu den vom Statistischen Bundesamt gemeldeten Produktionsmengen im selben Zeitraum entspricht die erreichte Abdeckung von Vollholzprodukten aus Nadelschnittholz 38 %. ",
+            "lang": "de"
+          }
+        ],
+        "location": "DE"
+      }
+    },
+    "technology": {
+      "technologyDescriptionAndIncludedProcesses": [
+        {
+          "value": "Massivholzplatten sind in der Regel symmetrisch aufgebaut und bestehen aus drei oder fünf recht-winklig zueinander verklebten Lagen aus Nadelschnittholz. Die Plattendicke beträgt normalerweise zwischen 12 und 100 mm. Die Verklebung von Massivholzplatten wird vornehmlich mittels Melamin-Harnstoff-Formaldehyd-Bindemittel durchgeführt. Für die Herstellung von Massivholzplatten werden Bretter und Bohlen aus Nadelholz zunächst auf weniger als 15 % Holzfeuchte getrocknet, gehobelt und mittels Schmalseitenverklebung zu einer Ein-schichtplatte verklebt. Diese werden nach der Aushärtung gehobelt, beleimt und anschließend in der Presse kreuzweise angeordnet. Nach dem Pressen und Aushärten wird der Rohling gehobelt, gefast, abgebunden und verpackt.\r\nDie Holzfeuchte des Produktes liegt bei 12% ",
+          "lang": "de"
+        }
+      ],
+      "technologicalApplicability": [
+        {
+          "value": "Massivholzplatten in 3- oder 5- schichtigem Aufbau sind industriell gefertigte flächige Holzprodukte für den Innenausbau, Möbelbau oder konstruktiven Holzbau.",
+          "lang": "de"
+        }
+      ],
+      "referenceToTechnologyFlowDiagrammOrPicture": [
+        {
+          "shortDescription": [
+            {
+              "value": "3-5-Mehrschichtp",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "2316d3e3-24e1-4afb-8633-9f546c773f16",
+          "version": "00.00.002",
+          "uri": "http://openlca.org/ilcd/resource/sources/2316d3e3-24e1-4afb-8633-9f546c773f16"
+        }
+      ]
+    }
+  },
+  "modellingAndValidation": {
+    "LCIMethodAndAllocation": {
+      "typeOfDataSet": "EPD",
+      "referenceToLCAMethodDetails": [
+        {
+          "shortDescription": [
+            {
+              "value": "EN 15804",
+              "lang": "de"
+            },
+            {
+              "value": "EN 15804",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "b00f9ec0-7874-11e3-981f-0800200c9a66",
+          "version": "00.02.001"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "ILCD format",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "a97a0155-0234-4b87-b4ce-a45da52f2a40",
+          "version": "03.00.000",
+          "uri": "http://lca.jrc.ec.europa.eu/lcainfohub/datasets/ilcd/sources/a97a0155-0234-4b87-b4ce-a45da52f2a40.xml"
+        }
+      ],
+      "other": {
+        "anies": [
+          {
+            "name": "subType",
+            "value": "representative dataset"
+          }
+        ]
+      }
+    },
+    "dataSourcesTreatmentAndRepresentativeness": {
+      "referenceToDataSource": [
+        {
+          "shortDescription": [
+            {
+              "value": "Rüter S, Diederichs S (2012) Ökobilanz Basisdaten für Bauprodukte aus Holz, Hamburg, Johann Heinrich von Thünen Institut, Institut für Holztechnologie und Holzbiologie, Abschlussbericht",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "caead862-97ea-4e99-9b3c-438c78c79ebd",
+          "version": "00.00.004",
+          "uri": "http://openlca.org/ilcd/resource/sources/caead862-97ea-4e99-9b3c-438c78c79ebd"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "GaBi database SP40 2020",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "0115289e-52f0-4920-bc7e-57b1c96aec8d",
+          "version": "00.00.002",
+          "uri": "http://www.oekobaudat.de/OEKOBAU.DAT/resource/sources/feda7597-12a1-4bd5-93ef-4d8120877b78"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "GaBi database (general)",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "28d74cc0-db8b-4d7e-bc44-5f6d56ce0c4a",
+          "version": "00.03.002"
+        }
+      ],
+      "useAdviceForDataSet": [
+        {
+          "value": "Der Datensatz bildet die durchschnittlichen Produktionsverhältnisse und die damit verbundenen Umweltwirkungen repräsentativ für Deutschland ab. Liegen keine herstellerspezifischen Ökobilanzergebnisse des verwendeten Produkts vor, empfiehlt sich die Verwendung dieses Durchschnittsdatensatzes.",
+          "lang": "de"
+        }
+      ]
+    },
+    "validation": {
+      "review": [
+        {
+          "referenceToNameOfReviewerAndInstitution": [
+            {
+              "shortDescription": [
+                {
+                  "value": "Dr. Frank Werner - Umwelt & Entwicklung",
+                  "lang": "de"
+                }
+              ],
+              "type": "contact data set",
+              "refObjectId": "62792478-795c-4ae2-ac9a-1012d9515424",
+              "version": "00.02.000"
+            }
+          ],
+          "otherReviewDetails": [
+            {
+              "lang": "de"
+            }
+          ],
+          "type": "Independent external review"
+        }
+      ]
+    },
+    "complianceDeclarations": {
+      "compliance": [
+        {
+          "referenceToComplianceSystem": {
+            "shortDescription": [
+              {
+                "value": "EN 15804",
+                "lang": "de"
+              },
+              {
+                "value": "EN 15804",
+                "lang": "en"
+              }
+            ],
+            "type": "source data set",
+            "refObjectId": "b00f9ec0-7874-11e3-981f-0800200c9a66",
+            "version": "00.02.001"
+          }
+        }
+      ]
+    }
+  },
+  "administrativeInformation": {
+    "dataEntryBy": {
+      "timeStamp": 1623098354962,
+      "referenceToDataSetFormat": [
+        {
+          "shortDescription": [
+            {
+              "value": "ILCD format",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "a97a0155-0234-4b87-b4ce-a45da52f2a40",
+          "version": "03.00.000",
+          "uri": "http://lca.jrc.ec.europa.eu/lcainfohub/datasets/ilcd/sources/a97a0155-0234-4b87-b4ce-a45da52f2a40.xml"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "EPD Data Format Extension",
+              "lang": "de"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "cba73800-7874-11e3-981f-0800200c9a66",
+          "version": "00.01.001"
+        }
+      ],
+      "referenceToPersonOrEntityEnteringTheData": {
+        "shortDescription": [
+          {
+            "value": "Thünen-Institut für Holzforschung",
+            "lang": "en"
+          }
+        ],
+        "type": "contact data set",
+        "refObjectId": "7ac81002-181b-4302-827e-7ccc1a3730f0",
+        "version": "00.01.000"
+      }
+    },
+    "publicationAndOwnership": {
+      "dataSetVersion": "00.00.025",
+      "referenceToOwnershipOfDataSet": {
+        "shortDescription": [
+          {
+            "value": "Thünen-Institut für Holzforschung",
+            "lang": "en"
+          }
+        ],
+        "type": "contact data set",
+        "refObjectId": "7ac81002-181b-4302-827e-7ccc1a3730f0",
+        "version": "00.01.000"
+      },
+      "copyright": true,
+      "accessRestrictions": [
+        {
+          "lang": "de"
+        }
+      ]
+    }
+  },
+  "exchanges": {
+    "exchange": [
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "3- und 5 Schichtplatte",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "4e1beb5b-f059-4aa9-b12a-4462eb1fa606",
+          "version": "00.00.004",
+          "uri": "http://openlca.org/ilcd/resource/flows/4e1beb5b-f059-4aa9-b12a-4462eb1fa606"
+        },
+        "meanAmount": 1.0,
+        "resultingAmount": 1.0,
+        "dataSetInternalID": 0,
+        "referenceFlow": true,
+        "resultingflowAmount": 1.0,
+        "flowProperties": [
+          {
+            "name": [
+              {
+                "lang": "en",
+                "value": "Carbon content (biogenic) - packaging"
+              }
+            ],
+            "uuid": "262a541b-209e-44cc-a426-33bce30de7b1",
+            "meanValue": 0.0
+          },
+          {
+            "name": [
+              {
+                "lang": "en",
+                "value": "Carbon content (biogenic)"
+              }
+            ],
+            "uuid": "62e503ce-544a-4599-b2ad-bcea15a7bf20",
+            "meanValue": 219.94
+          },
+          {
+            "name": [
+              {
+                "lang": "en",
+                "value": "Volume"
+              },
+              {
+                "lang": "de",
+                "value": "Volumen"
+              }
+            ],
+            "uuid": "93a60a56-a3c8-22da-a746-0800200c9a66",
+            "referenceFlowProperty": true,
+            "meanValue": 1.0,
+            "referenceUnit": "m3",
+            "unitGroupUUID": "cd950537-0a98-4044-9ba7-9f9a68d0a504"
+          },
+          {
+            "name": [
+              {
+                "lang": "en",
+                "value": "Mass"
+              },
+              {
+                "lang": "de",
+                "value": "Masse"
+              }
+            ],
+            "uuid": "93a60a56-a3c8-11da-a746-0800200b9a66",
+            "meanValue": 510.45
+          }
+        ],
+        "materialProperties": [
+          {
+            "name": "gross density",
+            "value": "510.45",
+            "unit": "kg/m^3",
+            "unitDescription": "kilograms per cubic metre"
+          }
+        ]
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of renewable primary energy (PERE)",
+              "lang": "en"
+            },
+            {
+              "value": "Erneuerbare Primärenergie als Energieträger (PERE)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso de energía primaria renovable excluyendo los recursos de energía primaria renovable utilizada como materia prima (PERE)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "20f32be5-0398-4288-9b6d-accddd195317",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "356.271556181999",
+              "module": "A1"
+            },
+            {
+              "value": "20.025546764126187",
+              "module": "A2"
+            },
+            {
+              "value": "1697.9460478750702",
+              "module": "A3"
+            },
+            {
+              "value": "2074.2431508211953",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0837962918403035",
+              "module": "A5"
+            },
+            {
+              "value": "0.41666634924156",
+              "module": "C2"
+            },
+            {
+              "value": "30.8332047336264",
+              "module": "C3"
+            },
+            {
+              "value": "6221.023808727457",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-26.570732562347946",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 1
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of renewable primary energy resources used as raw materials (PERM)",
+              "lang": "en"
+            },
+            {
+              "value": "Erneuerbare Primärenergie zur stofflichen Nutzung (PERM)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso de energía primaria renovable utilizada como materia prima (PERM)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "fb3ec0de-548d-4508-aea5-00b73bf6f702",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "8476.734770000001",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "0.0",
+              "module": "A3"
+            },
+            {
+              "value": "8476.734770000001",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "-8476.734770000001",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 2
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Total use of renewable primary energy resources (PERT)",
+              "lang": "en"
+            },
+            {
+              "value": "Total erneuerbare Primärenergie (PERT)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso total de la energía primaria renovable (energía primaria y recursos de energía primaria renovable utilizada como materia prima) (PERT)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "53f97275-fa8a-4cdd-9024-65936002acd0",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "8833.006326182",
+              "module": "A1"
+            },
+            {
+              "value": "20.025546764126187",
+              "module": "A2"
+            },
+            {
+              "value": "1697.9460478750702",
+              "module": "A3"
+            },
+            {
+              "value": "10550.977920821195",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0837962918403035",
+              "module": "A5"
+            },
+            {
+              "value": "0.41666634924156",
+              "module": "C2"
+            },
+            {
+              "value": "-8445.901565266375",
+              "module": "C3"
+            },
+            {
+              "value": "6221.023808727457",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-26.570732562347946",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 3
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of non renewable primary energy (PENRE)",
+              "lang": "en"
+            },
+            {
+              "value": "Nicht-erneuerbare Primärenergie als Energieträger (PENRE)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso de energía primaria no renovable, excluyendo los recursos de energía primaria no renovable utilizada como materia prima (PENRE)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "ac857178-2b45-46ec-892a-a9a4332f0372",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "590.9957826348151",
+              "module": "A1"
+            },
+            {
+              "value": "334.8237166714427",
+              "module": "A2"
+            },
+            {
+              "value": "1141.540498887552",
+              "module": "A3"
+            },
+            {
+              "value": "2067.3599981938096",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.409319356883338",
+              "module": "A5"
+            },
+            {
+              "value": "7.41985246657139",
+              "module": "C2"
+            },
+            {
+              "value": "53.6094047293883",
+              "module": "C3"
+            },
+            {
+              "value": "-4880.096514068938",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-144.4349251947206",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 4
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of non renewable primary energy resources used as raw materials (PENRM)",
+              "lang": "en"
+            },
+            {
+              "value": "Nicht-erneuerbare Primärenergie zur stofflichen Nutzung (PENRM)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso de la energía primaria no renovable utilizada como materia prima (PENRM)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "1421caa0-679d-4bf4-b282-0eb850ccae27",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "178.38168704412467",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "27.612000000000002",
+              "module": "A3"
+            },
+            {
+              "value": "205.99368704412467",
+              "module": "A1-A3"
+            },
+            {
+              "value": "-27.612000000000002",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "-178.38168704412467",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 5
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Total use of non renewable primary energy resource (PENRT)",
+              "lang": "en"
+            },
+            {
+              "value": "Total nicht erneuerbare Primärenergie (PENRT)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso total de la energía primaria no renovable (energía primaria y recursos de energía primaria renovable utilizada como materia prima) (PENRT)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "06159210-646b-4c8d-8583-da9b3b95a6c1",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "769.3774696789397",
+              "module": "A1"
+            },
+            {
+              "value": "334.8237166714427",
+              "module": "A2"
+            },
+            {
+              "value": "1169.1524988875522",
+              "module": "A3"
+            },
+            {
+              "value": "2273.3536852379348",
+              "module": "A1-A3"
+            },
+            {
+              "value": "-27.202680643116665",
+              "module": "A5"
+            },
+            {
+              "value": "7.41985246657139",
+              "module": "C2"
+            },
+            {
+              "value": "-124.77228231473637",
+              "module": "C3"
+            },
+            {
+              "value": "-4880.096514068938",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-144.4349251947206",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 6
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of secondary material (SM)",
+              "lang": "en"
+            },
+            {
+              "value": "Einsatz von Sekundärstoffen (SM)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso de materiales secundarios (SM)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "c6a1f35f-2d09-4f54-8dfb-97e502e1ce92",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "0.0",
+              "module": "A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "0.0",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "511.708798175917",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 7
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of renewable secondary fuels (RSF)",
+              "lang": "en"
+            },
+            {
+              "value": "Erneuerbare Sekundärbrennstoffe (RSF)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso de combustibles secundarios renovables (RSF)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "64333088-a55f-4aa2-9a31-c10b07816787",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "22.10804125790116",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "87.27944657786578",
+              "module": "A3"
+            },
+            {
+              "value": "109.38748783576695",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "0.0",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 8
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of non renewable secondary fuels (NRSF)",
+              "lang": "en"
+            },
+            {
+              "value": "Nicht erneuerbare Sekundärbrennstoffe (NRSF)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso de combustibles secundarios no renovables (NRSF)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "89def144-d39a-4287-b86f-efde453ddcb2",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "0.0",
+              "module": "A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "0.0",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 9
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of net fresh water (FW)",
+              "lang": "en"
+            },
+            {
+              "value": "Einsatz von Süßwasserressourcen (FW)",
+              "lang": "de"
+            },
+            {
+              "value": "Uso neto de recursos de agua dulce (FW)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "3cf952c8-f3a4-461d-8c96-96456ca62246",
+          "version": "30.00.000"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.14028970373173577",
+              "module": "A1"
+            },
+            {
+              "value": "0.018815287560464865",
+              "module": "A2"
+            },
+            {
+              "value": "0.3845961180050616",
+              "module": "A3"
+            },
+            {
+              "value": "0.5437011092972622",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.004056182962154401",
+              "module": "A5"
+            },
+            {
+              "value": "4.82471040820208E-4",
+              "module": "C2"
+            },
+            {
+              "value": "0.0166922758789533",
+              "module": "C3"
+            },
+            {
+              "value": "0.8782003486280852",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-0.016538871688954824",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "m3"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "cd950537-0a98-4044-9ba7-9f9a68d0a504",
+                "uri": "../unitgroups/cd950537-0a98-4044-9ba7-9f9a68d0a504"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 10
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Hazardous waste disposed (HWD)",
+              "lang": "en"
+            },
+            {
+              "value": "Gefährlicher Abfall zur Deponie (HWD)",
+              "lang": "de"
+            },
+            {
+              "value": "Residuos peligrosos eliminados (HWD)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "430f9e0f-59b2-46a0-8e0d-55e0e84948fc",
+          "version": "30.00.003"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "1.178358666156463E-5",
+              "module": "A1"
+            },
+            {
+              "value": "1.3181186791442466E-5",
+              "module": "A2"
+            },
+            {
+              "value": "6.939245663087992E-6",
+              "module": "A3"
+            },
+            {
+              "value": "3.1904019116095085E-5",
+              "module": "A1-A3"
+            },
+            {
+              "value": "1.15154154176988E-9",
+              "module": "A5"
+            },
+            {
+              "value": "3.45296450743297E-7",
+              "module": "C2"
+            },
+            {
+              "value": "3.60527110762891E-8",
+              "module": "C3"
+            },
+            {
+              "value": "-2.6989082505010913E-6",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-5.57829319903906E-6",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 11
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Non hazardous waste dispose (NHWD)",
+              "lang": "en"
+            },
+            {
+              "value": "Entsorgter nicht gefährlicher Abfall (NHWD)",
+              "lang": "de"
+            },
+            {
+              "value": "Residuos no peligrosos eliminados (NHWD)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "b29ef66b-e286-4afa-949f-62f1a7b4d7fa",
+          "version": "30.00.000"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.4159350046192254",
+              "module": "A1"
+            },
+            {
+              "value": "0.057804358102135335",
+              "module": "A2"
+            },
+            {
+              "value": "1.8757310824165854",
+              "module": "A3"
+            },
+            {
+              "value": "2.3494704451379462",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0224230046667528",
+              "module": "A5"
+            },
+            {
+              "value": "0.00113552137202641",
+              "module": "C2"
+            },
+            {
+              "value": "0.0412596215720162",
+              "module": "C3"
+            },
+            {
+              "value": "12.111887857585069",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-0.041070973544452",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 12
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Radioactive waste disposed (RWD)",
+              "lang": "en"
+            },
+            {
+              "value": "Entsorgter radioaktiver Abfall (RWD)",
+              "lang": "de"
+            },
+            {
+              "value": "Residuos radiactivos eliminados (RWD)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "3449546e-52ad-4b39-b809-9fb77cea8ff6",
+          "version": "30.00.000"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.010000793863543227",
+              "module": "A1"
+            },
+            {
+              "value": "4.7794969972636856E-4",
+              "module": "A2"
+            },
+            {
+              "value": "0.0900208638522069",
+              "module": "A3"
+            },
+            {
+              "value": "0.10049960741547649",
+              "module": "A1-A3"
+            },
+            {
+              "value": "1.20322558371037E-5",
+              "module": "A5"
+            },
+            {
+              "value": "9.18381973199006E-6",
+              "module": "C2"
+            },
+            {
+              "value": "0.00448112466659964",
+              "module": "C3"
+            },
+            {
+              "value": "-0.3118271563186947",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-0.0031196654738033076",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 13
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Components for re-use (CRU)",
+              "lang": "en"
+            },
+            {
+              "value": "Komponenten für die Wiederverwendung (CRU)",
+              "lang": "de"
+            },
+            {
+              "value": "Componentes para su reutilización (CRU)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "a2b32f97-3fc7-4af2-b209-525bc6426f33",
+          "version": "30.00.000"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "0.0",
+              "module": "A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "0.0",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 14
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Materials for recycling (MFR)",
+              "lang": "en"
+            },
+            {
+              "value": "Stoffe zum Recycling (MFR)",
+              "lang": "de"
+            },
+            {
+              "value": "Materiales para el reciclaje (MFR)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "d7fe48a5-4103-49c8-9aae-b0b5dfdbd6ae",
+          "version": "30.00.000"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "0.0",
+              "module": "A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "511.708798175917",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 15
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Materials for energy recovery (MER)",
+              "lang": "en"
+            },
+            {
+              "value": "Stoffe für die Energierückgewinnung (MER)",
+              "lang": "de"
+            },
+            {
+              "value": "Materiales para valorización energética (recuperación de energía) (MER)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "59a9181c-3aaf-46ee-8b13-2b3723b6e447",
+          "version": "30.00.000"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "0.0",
+              "module": "A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.0",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "511.708798175917",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 16
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Exported electrical energy (EEE)",
+              "lang": "en"
+            },
+            {
+              "value": "Exportierte elektrische Energie (EEE)",
+              "lang": "de"
+            },
+            {
+              "value": "Energía exportada electrica (EEE)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "4da0c987-2b76-40d6-9e9e-82a017aaaf29",
+          "version": "30.00.000"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "0.399237972271835",
+              "module": "A3"
+            },
+            {
+              "value": "0.399237972271835",
+              "module": "A1-A3"
+            },
+            {
+              "value": "2.52043205171065",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "0.0",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 17
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Exported thermal energy (EET)",
+              "lang": "en"
+            },
+            {
+              "value": "Exportierte thermische Energie (EET)",
+              "lang": "de"
+            },
+            {
+              "value": "Energía exportada termal (EET)",
+              "lang": "es"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "98daf38a-7a79-46d3-9a37-2b7bd0955810",
+          "version": "30.00.000"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0",
+              "module": "A1"
+            },
+            {
+              "value": "0.0",
+              "module": "A2"
+            },
+            {
+              "value": "0.927477418791169",
+              "module": "A3"
+            },
+            {
+              "value": "0.927477418791169",
+              "module": "A1-A3"
+            },
+            {
+              "value": "5.83315996933576",
+              "module": "A5"
+            },
+            {
+              "value": "0.0",
+              "module": "C2"
+            },
+            {
+              "value": "0.0",
+              "module": "C3"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "0.0",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "dataSetInternalID": 18
+      }
+    ]
+  },
+  "LCIAResults": {
+    "LCIAResult": [
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Global warming potential (GWP)",
+              "lang": "en"
+            },
+            {
+              "value": "Globales Erwärmungspotenzial (GWP)",
+              "lang": "de"
+            },
+            {
+              "value": "Potencial de calentamiento global (GWP)",
+              "lang": "es"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "77e416eb-a363-4258-a04e-171d843a6460",
+          "version": "00.01.000"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "-764.0695889049085",
+              "module": "A1"
+            },
+            {
+              "value": "24.72725059074996",
+              "module": "A2"
+            },
+            {
+              "value": "91.92219863019348",
+              "module": "A3"
+            },
+            {
+              "value": "-647.4201396839651",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.87278541690962",
+              "module": "A5"
+            },
+            {
+              "value": "0.535834904201247",
+              "module": "C2"
+            },
+            {
+              "value": "810.1162362231684",
+              "module": "C3"
+            },
+            {
+              "value": "-261.09709844067464",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-11.125577109865484",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CO2-Äqv."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "1ebf3012-d0db-4de2-aefd-ef30cedb0be1",
+                "uri": "../unitgroups/1ebf3012-d0db-4de2-aefd-ef30cedb0be1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Depletion potential of the stratospheric ozone layer (ODP)",
+              "lang": "en"
+            },
+            {
+              "value": "Abbau Potential der stratosphärischen Ozonschicht (ODP)",
+              "lang": "de"
+            },
+            {
+              "value": "Potencial de agotamiento de la capa de ozono estratosférico (ODP)",
+              "lang": "es"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "06dcd26f-025f-401a-a7c1-5e457eb54637",
+          "version": "00.01.000"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "3.717964110844404E-13",
+              "module": "A1"
+            },
+            {
+              "value": "1.1637361200405569E-14",
+              "module": "A2"
+            },
+            {
+              "value": "1.190674517336969E-11",
+              "module": "A3"
+            },
+            {
+              "value": "1.2290178945654536E-11",
+              "module": "A1-A3"
+            },
+            {
+              "value": "4.69169823667527E-16",
+              "module": "A5"
+            },
+            {
+              "value": "8.91961830124776E-17",
+              "module": "C2"
+            },
+            {
+              "value": "1.75969668714801E-13",
+              "module": "C3"
+            },
+            {
+              "value": "-1.2244437760650134E-11",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-1.2076251916571023E-13",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg R11 eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "88054749-b0a6-47ea-a82b-dc5b29326512",
+                "uri": "../unitgroups/88054749-b0a6-47ea-a82b-dc5b29326512"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Acidification potential of soil and water (AP)",
+              "lang": "en"
+            },
+            {
+              "value": "Versauerungspotenzial von Boden und Wasser (AP)",
+              "lang": "de"
+            },
+            {
+              "value": "Potencial de acidificación del suelo y de los recursos de agua (AP)",
+              "lang": "es"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b4274add-93b7-4905-a5e4-2e878c4e4216",
+          "version": "00.01.000"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.1399780090675532",
+              "module": "A1"
+            },
+            {
+              "value": "0.09958950372208328",
+              "module": "A2"
+            },
+            {
+              "value": "0.3020375996814004",
+              "module": "A3"
+            },
+            {
+              "value": "0.5416051124710369",
+              "module": "A1-A3"
+            },
+            {
+              "value": "2.55777795731779E-4",
+              "module": "A5"
+            },
+            {
+              "value": "0.00224511180436878",
+              "module": "C2"
+            },
+            {
+              "value": "0.00587833398682072",
+              "module": "C3"
+            },
+            {
+              "value": "-0.3388750772438673",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-0.04599715348540342",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg SO2-Äqv."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "bc50c624-a9bc-45b1-a9b0-e6b10d00476f",
+                "uri": "../unitgroups/bc50c624-a9bc-45b1-a9b0-e6b10d00476f"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Eutrophication potential (EP)",
+              "lang": "en"
+            },
+            {
+              "value": "Eutrophierungspotenzial (EP)",
+              "lang": "de"
+            },
+            {
+              "value": "Potencial de eutrofización (EP)",
+              "lang": "es"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "f58827d0-b407-4ec6-be75-8b69efb98a0f",
+          "version": "00.01.000"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.04295368113889723",
+              "module": "A1"
+            },
+            {
+              "value": "0.025192629409263936",
+              "module": "A2"
+            },
+            {
+              "value": "0.06178528796759396",
+              "module": "A3"
+            },
+            {
+              "value": "0.12993159851575514",
+              "module": "A1-A3"
+            },
+            {
+              "value": "5.36535206330059E-5",
+              "module": "A5"
+            },
+            {
+              "value": "5.64797528113427E-4",
+              "module": "C2"
+            },
+            {
+              "value": "0.00104827433633523",
+              "module": "C3"
+            },
+            {
+              "value": "-0.058409923601688986",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-0.011035914683435587",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg Phosphat-Äqv."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "67b5401d-873c-485f-bcf3-6ae83b918822",
+                "uri": "../unitgroups/67b5401d-873c-485f-bcf3-6ae83b918822"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Formation potential of tropospheric ozone (POCP)",
+              "lang": "en"
+            },
+            {
+              "value": "Bildungspotential für troposphärisches Ozon (POCP)",
+              "lang": "de"
+            },
+            {
+              "value": "Potencial de formación de ozono troposférico (POCP)",
+              "lang": "es"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "1e84a202-dae6-42aa-9e9d-71ea48b8be00",
+          "version": "00.01.000"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.020024612862812693",
+              "module": "A1"
+            },
+            {
+              "value": "-0.04280016079269411",
+              "module": "A2"
+            },
+            {
+              "value": "0.07138229879869419",
+              "module": "A3"
+            },
+            {
+              "value": "0.048606750868812776",
+              "module": "A1-A3"
+            },
+            {
+              "value": "1.45578813944667E-5",
+              "module": "A5"
+            },
+            {
+              "value": "-9.44152052485476E-4",
+              "module": "C2"
+            },
+            {
+              "value": "4.14745399684924E-4",
+              "module": "C3"
+            },
+            {
+              "value": "-0.027440224154760034",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-7.484307412727821E-5",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg Ethen-Äqv."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "01c26c17-9a76-406e-8295-f17b55fd909e",
+                "uri": "../unitgroups/01c26c17-9a76-406e-8295-f17b55fd909e"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Abiotic depletion potential for non fossil resources (ADPE)",
+              "lang": "en"
+            },
+            {
+              "value": "Potenzial für den abiotischen Abbau nicht fossiler Ressourcen (ADPE)",
+              "lang": "de"
+            },
+            {
+              "value": "Potencial de agotamiento de recursos abióticos para recursos no fósiles (ADPE)",
+              "lang": "es"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "f7c73bb9-ab1a-4249-9c6d-379a0de6f67e",
+          "version": "00.01.000"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "1.094463886467379E-5",
+              "module": "A1"
+            },
+            {
+              "value": "2.27187889116186E-6",
+              "module": "A2"
+            },
+            {
+              "value": "4.085805365500064E-5",
+              "module": "A3"
+            },
+            {
+              "value": "5.4074571410836295E-5",
+              "module": "A1-A3"
+            },
+            {
+              "value": "3.11168182261146E-8",
+              "module": "A5"
+            },
+            {
+              "value": "4.51197054792974E-8",
+              "module": "C2"
+            },
+            {
+              "value": "1.7525865331071E-6",
+              "module": "C3"
+            },
+            {
+              "value": "-1.0539431685644729E-4",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-1.8935041890036041E-6",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg Sb-Äqv."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "54ccd2d9-a32a-4fc2-923d-f2c8c93e89d4",
+                "uri": "../unitgroups/54ccd2d9-a32a-4fc2-923d-f2c8c93e89d4"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Abiotic depletion potential for fossil resources (ADPF)",
+              "lang": "en"
+            },
+            {
+              "value": "Potenzial für den abiotischen Abbau fossiler Brennstoffe (ADPF)",
+              "lang": "de"
+            },
+            {
+              "value": "Potencial de agotamiento de recursos abióticos para recursos fósiles (ADPF)",
+              "lang": "es"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "804ebcdf-309d-4098-8ed8-fdaf2f389981",
+          "version": "00.01.000"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "744.6146105283281",
+              "module": "A1"
+            },
+            {
+              "value": "333.60601152911755",
+              "module": "A2"
+            },
+            {
+              "value": "916.9122159715025",
+              "module": "A3"
+            },
+            {
+              "value": "1995.132838028948",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0.378945043869203",
+              "module": "A5"
+            },
+            {
+              "value": "7.39640599144668",
+              "module": "C2"
+            },
+            {
+              "value": "42.2984669752729",
+              "module": "C3"
+            },
+            {
+              "value": "-3914.6164290116735",
+              "module": "D",
+              "scenario": "energetisch"
+            },
+            {
+              "value": "-136.55706668219787",
+              "module": "D",
+              "scenario": "stofflich"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "otherAttributes": {
+    "{http://www.okworx.com/ILCD/Extensions/2018/Profile}profile": "EN_15804"
+  },
+  "version": "1.1"
+}

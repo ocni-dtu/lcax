@@ -1,0 +1,1955 @@
+{
+  "processInformation": {
+    "dataSetInformation": {
+      "UUID": "00c28f1f-1d49-4c81-9208-138922a1dd6c",
+      "name": {
+        "baseName": [
+          {
+            "value": "Window fitting for horizontal sliding window",
+            "lang": "en"
+          },
+          {
+            "value": "Fenster-Beschlag f\u00fcr horizontales Schiebefenster",
+            "lang": "de"
+          }
+        ],
+        "functionalUnitFlowProperties": [
+          {
+            "value": "0,696 kg/piece",
+            "lang": "en"
+          }
+        ]
+      },
+      "classificationInformation": {
+        "classification": [
+          {
+            "class": [
+              {
+                "value": "Komponenten von Fenstern und Vorhangfassaden",
+                "level": 0,
+                "classId": "7"
+              },
+              {
+                "value": "Beschl\u00e4ge",
+                "level": 1,
+                "classId": "7.4"
+              },
+              {
+                "value": "Aluminiumbeschl\u00e4ge",
+                "level": 2,
+                "classId": "7.4.02"
+              }
+            ],
+            "name": "oekobau.dat"
+          }
+        ]
+      },
+      "generalComment": [
+        {
+          "value": "This data set has been modeled according to the European Standard EN 15804 for Sustainable Building. Results are depicted in modules that allow the structured expression of results over the entire life cycle.",
+          "lang": "en"
+        },
+        {
+          "value": "Dieser Datensatz wurde nach dem European Standard EN 15804 f\u00fcr Nachhaltiges Bauen modelliert. Ergebnisse werden in Modulen abgebildet, die den strukturierten Ausdruck von Ergebnissen \u00fcber den gesamten Lebenszyklus zulassen.",
+          "lang": "de"
+        }
+      ],
+      "other": {
+        "anies": [
+          {
+            "margins": 10,
+            "description": [
+              {
+                "value": "Product system almost completely covered. Good technological, temporal and geographic representativeness.",
+                "lang": "en"
+              },
+              {
+                "value": "Produktsystem weitgehend vollst\u00e4ndig abgebildet. Gute technologische, zeitliche und geographische Repr\u00e4sentativit\u00e4t.",
+                "lang": "de"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "quantitativeReference": {
+      "referenceToReferenceFlow": [
+        103287
+      ],
+      "type": "Reference flow(s)"
+    },
+    "time": {
+      "referenceYear": 2018,
+      "dataSetValidUntil": 2022,
+      "timeRepresentativenessDescription": [
+        {
+          "value": "Annual average",
+          "lang": "en"
+        },
+        {
+          "value": "J\u00e4hrlicher Durchschnitt",
+          "lang": "de"
+        }
+      ]
+    },
+    "geography": {
+      "locationOfOperationSupplyOrProduction": {
+        "descriptionOfRestrictions": [
+          {
+            "value": "The data set represents the country specific situation in Germany, focusing on the main technologies, the region specific characteristics and / or import statistics.",
+            "lang": "en"
+          },
+          {
+            "value": "Der Datensatz bildet die l\u00e4nderspezifische Situation in Deutschland ab. Dabei werden Haupttechnologien, spezifische regionale Charakteristiken und ggf. Importstatistiken ber\u00fccksichtigt.",
+            "lang": "de"
+          }
+        ],
+        "location": "DE"
+      }
+    },
+    "technology": {
+      "technologyDescriptionAndIncludedProcesses": [
+        {
+          "value": "The LCA for a metal fitting for horizontal sliding windows refers to the production of 1 fitting with a mass of 0.696 kg/piece. Main components are a moulding part of zinc (approx. 35%), an aluminium extrusion profile, a stainless steel component as well as polymers . The system boundaries are represented by the finished metal fitting at the factory gate. The recycling percentage of the raw material is already taken into account in the database. Transports from the factory to the building site are not considered and must be included according to the system boundaries.\nBackground system:\nElectricity: Electricity is modelled according to the individual country-specific situations. The country-specific modelling is achieved on multiple levels. Firstly, individual energy carrier specific power plants and plants for renewable energy sources are modelled according to the current national electricity grid mix. Modelling the electricity consumption mix includes transmission / distribution losses and the own use by energy producers (own consumption of power plants and \"other\" own consumption e.g. due to pumped storage hydro power etc.), as well as imported electricity. Secondly, the national emission and efficiency standards of the power plants are modelled as well as the share of electricity plants and combined heat and power plants (CHP). Thirdly, the country-specific energy carrier supply (share of imports and / or domestic supply) including the country-specific energy carrier properties (e.g. element and energy content) are accounted for. Fourthly, the exploration, mining/production, processing and transport processes of the energy carrier supply chains are modelled according to the specific situation of each electricity producing country. The different production and processing techniques (emissions and efficiencies) in the different energy producing countries are considered, e.g. different crude oil production technologies or different flaring rates at the oil platforms.\nThermal energy, process steam: The thermal energy and process steam supply is modelled according to the individual country-specific situation with regard to emission standards and considered energy carriers. The thermal energy and process steam are produced at heat plants. Efficiencies for thermal energy production are by definition 100% in relation to the corresponding energy carrier input. For process steam the efficiency ranges from 85%, 90% to 95%. The energy carriers used for the generation of thermal energy and process steam are modelled according to the specific import situation (see electricity above).\nTransports: All relevant and known transport processes are included. Ocean-going and inland ship transport as well as rail, truck and pipeline transport of bulk commodities are considered.\nEnergy carriers: The energy carriers are modelled according to the specific supply situation (see electricity above).\nRefinery products: Diesel fuel, gasoline, technical gases, fuel oils, lubricants and residues such as bitumen are modelled with a parameterised country-specific refinery model. The refinery model represents the current national standard in refining techniques (e.g. emission level, internal energy consumption, etc.) as well as the individual country-specific product output spectrum, which can be quite different from country to country. The supply of crude oil is modelled, again, according to the country-specific situation with the respective properties of the resources.",
+          "lang": "en"
+        },
+        {
+          "value": "Die Lebenszyklusanalyse des Fensterbeschlags f\u00fcr horizontale Schiebefenster bezieht sich auf die Herstellung von 1 St\u00fcck Beschlag mit einer Masse von 0,696 kg/St\u00fcck. Hauptbestandteile sind hierbei ein Zinkdruckgussteil (zu etwa 35%) sowie ein Aluminium-Extrusionsprofil, ein Edelstahlteil sowie Polymere. Die Systemgrenze bildet der fertige Fensterbeschlag am Werkstor. Der Recyclinganteil im Ausgangsmaterial ist bereits im Datensatz ber\u00fccksichtigt. Transporte vom Werk zur Baustelle sind nicht ber\u00fccksichtigt und m\u00fcssen bei Systembetrachtungen eingerechnet werden. \n\nHintergrundsystem:\nStrom: Die Stromerzeugung wird entsprechend der l\u00e4nderspezifischen Randbedingungen modelliert. Die landesspezifische Analyse beinhaltet:\n1.: Spezifische Kraftwerke der verschiedenen fossilen Energietr\u00e4ger und der Einsatz erneuerbarer Energien sind entsprechend der l\u00e4nderspezifischen Energietr\u00e4germixe modelliert. Die Analyse bezieht Stromimporte aus den Nachbarl\u00e4ndern, Transmissions-und Verteilungsverluste und den Eigenverbrauch im Kraftwerk und bei der Verteilung bzw. Speicherung, z. B. durch Pumpspeicherwerke, ein.\n2.: Die landes-/regionalspezifischen Technologiestandards sowie die Erzeugung in Elektrizit\u00e4tskraftwerken und/oder in speziellen Kraftwerken mit Kraft-W\u00e4rme-Kopplung (KWK) sind ber\u00fccksichtigt. \n3.: Die l\u00e4nderspezifische Energietr\u00e4gerbereitstellung (mit Anteil der Importe und/oder Eigenversorgung) einschlie\u00dflich der Energietr\u00e4ger-Eigenschaften (z. B. Elementar- und Energiegehalte) werden ber\u00fccksichtigt. \n4.: Die F\u00f6rderung, Produktion, Verarbeitung und Transportprozesse werden entsprechend der Situation im jeweiligen Stromerzeugerland modelliert. Die unterschiedlichen Produktions- und Verarbeitungsverfahren (Emissionen und Wirkungsgrade) in den verschiedenen Energieerzeugerl\u00e4ndern werden einbezogen, z. B. Roh\u00f6l-Veredelungsverfahren oder Abfackel-Raten an den \u00d6lplattformen.\nThermische Energie, Prozessdampf: Die Erzeugung von Dampf und thermischer Energie in Heizkraftwerken wird entsprechend der landesspezifischen Situation (Emissionsgrenzwerte, Energietr\u00e4gerbasis) modelliert.\nDer Wirkungsgrad f\u00fcr die thermische Energieerzeugung betr\u00e4gt per Definition 100% des Energietr\u00e4gereinsatzes. F\u00fcr Prozessdampf liegt der Wirkungsgrad im Bereich von 85-95%. Die zur Heizenergie-Erzeugung verwendeten Energietr\u00e4ger werden entsprechend der nationalen Situation modelliert (siehe Kapitel Strom oben).\nTransporte: Alle relevanten und bekannten Transportprozesse in Form von See- und Binnenschiffsverkehr sowie Bahn-, Lkw- und der Leitungstransport sind enthalten.\nEnergietr\u00e4ger: Die Energietr\u00e4ger werden entsprechend der spezifischen Versorgungslage modelliert (siehe Kapitel Strom oben). \nRaffinerieprodukte: Diesel, Benzin, technische Gase, Heiz\u00f6l, Schmierstoffe und R\u00fcckst\u00e4nde, wie Bitumen, werden mit einem parametrierten l\u00e4nderspezifische Raffineriemodell modelliert. Das Raffinerie-Modell bezieht die l\u00e4nderspezifischen Veredelungsverfahren (z. B. Emissionspegel, interner Energieverbrauch etc.) und das l\u00e4nderspezifische Produktspektrum ein, das sich je nach Land stark unterscheiden kann. Die Roh\u00f6l-F\u00f6rderung wird gem\u00e4\u00df der l\u00e4nderspezifischen Situation mit den jeweiligen Energietr\u00e4ger-Eigenschaften modelliert.",
+          "lang": "de"
+        }
+      ],
+      "technologicalApplicability": [
+        {
+          "value": "This product can be used in construction.",
+          "lang": "en"
+        },
+        {
+          "value": "Dieses Produkt kann im Baubereich verwendet werden.",
+          "lang": "de"
+        }
+      ],
+      "referenceToTechnologyPictogramme": {
+        "shortDescription": [
+          {
+            "value": "construction_de_metal fitting for horizontal sliding window.jpg",
+            "lang": "en"
+          },
+          {
+            "value": "construction_de_metal fitting for horizontal sliding window.jpg",
+            "lang": "de"
+          }
+        ],
+        "type": "source data set",
+        "refObjectId": "960fba01-e869-400c-a1de-809b7833f28c",
+        "version": "39.00.000",
+        "uri": "../sources/960fba01-e869-400c-a1de-809b7833f28c.xml"
+      }
+    }
+  },
+  "modellingAndValidation": {
+    "LCIMethodAndAllocation": {
+      "typeOfDataSet": "EPD",
+      "other": {
+        "anies": [
+          {
+            "name": "subType",
+            "value": "generic dataset"
+          }
+        ]
+      }
+    },
+    "dataSourcesTreatmentAndRepresentativeness": {
+      "referenceToDataSource": [
+        {
+          "shortDescription": [
+            {
+              "value": "GaBi Database Edition 2020, SP40",
+              "lang": "en"
+            },
+            {
+              "value": "GaBi Database Edition 2020, SP40",
+              "lang": "de"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "cb50c596-16b4-44e4-b1aa-319319a79fb5",
+          "version": "39.00.000",
+          "uri": "../sources/cb50c596-16b4-44e4-b1aa-319319a79fb5.xml"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "GaBi database (all versions)",
+              "lang": "en"
+            },
+            {
+              "value": "GaBi database (all versions)",
+              "lang": "de"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "28d74cc0-db8b-4d7e-bc44-5f6d56ce0c4a",
+          "version": "39.00.000",
+          "uri": "../sources/28d74cc0-db8b-4d7e-bc44-5f6d56ce0c4a.xml"
+        }
+      ],
+      "useAdviceForDataSet": [
+        {
+          "value": "The data set represents a cradle to gate inventory. It can be used to characterise the supply chain situation of the respective commodity in a representative manner. Combination with individual unit processes using this commodity enables the generation of user-specific (product) LCAs.",
+          "lang": "en"
+        },
+        {
+          "value": "Der Datensatz repr\u00e4sentiert ein Cradle to Gate Inventar. Er kann verwendet werden, um die Lieferkette des jeweiligen Produktes in einer repr\u00e4sentativen Weise zu charakterisieren. Die Kombination mit einzelnen Einheitenprozessen und diesem Produkt erm\u00f6glicht die Erstellung von anwenderspezifischen (Produkt-) LCAs.",
+          "lang": "de"
+        }
+      ]
+    },
+    "validation": {
+      "review": [
+        {
+          "referenceToNameOfReviewerAndInstitution": [
+            {
+              "shortDescription": [
+                {
+                  "value": "thinkstep",
+                  "lang": "en"
+                },
+                {
+                  "value": "thinkstep",
+                  "lang": "de"
+                }
+              ],
+              "type": "contact data set",
+              "refObjectId": "d7fa0337-f279-430d-becf-7f3111a85010",
+              "version": "39.00.000",
+              "uri": "../contacts/d7fa0337-f279-430d-becf-7f3111a85010.xml"
+            },
+            {
+              "shortDescription": [
+                {
+                  "value": "IABP-GaBi",
+                  "lang": "en"
+                },
+                {
+                  "value": "IABP-GaBi",
+                  "lang": "de"
+                }
+              ],
+              "type": "contact data set",
+              "refObjectId": "de53c560-d6a9-11da-a94d-0800200c9a66",
+              "version": "39.00.000",
+              "uri": "../contacts/de53c560-d6a9-11da-a94d-0800200c9a66.xml"
+            },
+            {
+              "shortDescription": [
+                {
+                  "value": "IBP-GaBi",
+                  "lang": "en"
+                },
+                {
+                  "value": "IBP-GaBi",
+                  "lang": "de"
+                }
+              ],
+              "type": "contact data set",
+              "refObjectId": "c0a9feeb-48d1-4c8f-9e8f-3ada7c0294c7",
+              "version": "39.00.000",
+              "uri": "../contacts/c0a9feeb-48d1-4c8f-9e8f-3ada7c0294c7.xml"
+            }
+          ],
+          "type": "Dependent internal review"
+        },
+        {
+          "referenceToNameOfReviewerAndInstitution": [
+            {
+              "shortDescription": [
+                {
+                  "value": "GaBi user forum",
+                  "lang": "en"
+                },
+                {
+                  "value": "GaBi user forum",
+                  "lang": "de"
+                }
+              ],
+              "type": "contact data set",
+              "refObjectId": "8f1306f0-7b83-4f36-a537-aa83f0498266",
+              "version": "39.00.000",
+              "uri": "../contacts/8f1306f0-7b83-4f36-a537-aa83f0498266.xml"
+            },
+            {
+              "shortDescription": [
+                {
+                  "value": "GaBi bug forum",
+                  "lang": "en"
+                },
+                {
+                  "value": "GaBi bug forum",
+                  "lang": "de"
+                }
+              ],
+              "type": "contact data set",
+              "refObjectId": "851d996c-b88d-45ce-983a-b00ed0393ffb",
+              "version": "39.00.000",
+              "uri": "../contacts/851d996c-b88d-45ce-983a-b00ed0393ffb.xml"
+            },
+            {
+              "shortDescription": [
+                {
+                  "value": "GaBi user community",
+                  "lang": "en"
+                },
+                {
+                  "value": "GaBi user community",
+                  "lang": "de"
+                }
+              ],
+              "type": "contact data set",
+              "refObjectId": "47511c41-5096-4dcf-be4f-dbb0c1c5cffc",
+              "version": "39.00.000",
+              "uri": "../contacts/47511c41-5096-4dcf-be4f-dbb0c1c5cffc.xml"
+            }
+          ],
+          "type": "Independent external review"
+        }
+      ]
+    },
+    "complianceDeclarations": {
+      "compliance": [
+        {
+          "referenceToComplianceSystem": {
+            "shortDescription": [
+              {
+                "value": "DIN EN 15804",
+                "lang": "en"
+              },
+              {
+                "value": "DIN EN 15804",
+                "lang": "de"
+              }
+            ],
+            "type": "source data set",
+            "refObjectId": "b00f9ec0-7874-11e3-981f-0800200c9a66",
+            "version": "02.00.000",
+            "uri": "../sources/b00f9ec0-7874-11e3-981f-0800200c9a66.xml"
+          },
+          "approvalOfOverallCompliance": "Fully compliant"
+        }
+      ]
+    }
+  },
+  "administrativeInformation": {
+    "dataEntryBy": {
+      "timeStamp": 1575450377000,
+      "referenceToDataSetFormat": [
+        {
+          "shortDescription": [
+            {
+              "value": "ILCD format 1.1",
+              "lang": "en"
+            },
+            {
+              "value": "ILCD format 1.1",
+              "lang": "de"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "a97a0155-0234-4b87-b4ce-a45da52f2a40",
+          "version": "03.00.000",
+          "uri": "../sources/a97a0155-0234-4b87-b4ce-a45da52f2a40.xml"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "EPD Data Format Extensions",
+              "lang": "en"
+            },
+            {
+              "value": "EPD-Datenformaterweiterungen",
+              "lang": "de"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "cba73800-7874-11e3-981f-0800200c9a66",
+          "version": "02.00.000",
+          "uri": "../sources/cba73800-7874-11e3-981f-0800200c9a66.xml"
+        }
+      ],
+      "referenceToPersonOrEntityEnteringTheData": {
+        "shortDescription": [
+          {
+            "value": "thinkstep",
+            "lang": "en"
+          },
+          {
+            "value": "thinkstep",
+            "lang": "de"
+          }
+        ],
+        "type": "contact data set",
+        "refObjectId": "d7fa0337-f279-430d-becf-7f3111a85010",
+        "version": "39.00.000",
+        "uri": "../contacts/d7fa0337-f279-430d-becf-7f3111a85010.xml"
+      }
+    },
+    "publicationAndOwnership": {
+      "dataSetVersion": "20.19.120",
+      "referenceToOwnershipOfDataSet": {
+        "shortDescription": [
+          {
+            "value": "thinkstep",
+            "lang": "en"
+          },
+          {
+            "value": "thinkstep",
+            "lang": "de"
+          }
+        ],
+        "type": "contact data set",
+        "refObjectId": "d7fa0337-f279-430d-becf-7f3111a85010",
+        "version": "39.00.000",
+        "uri": "../contacts/d7fa0337-f279-430d-becf-7f3111a85010.xml"
+      },
+      "copyright": true
+    }
+  },
+  "exchanges": {
+    "exchange": [
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Metal fitting for horizontal sliding window",
+              "lang": "en"
+            },
+            {
+              "value": "Fenster Beschlagverbund (horizontales Schiebefenster)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "6ab844c5-3e5f-4ed8-a401-2077df3ac771",
+          "version": "39.00.000",
+          "uri": "../flows/6ab844c5-3e5f-4ed8-a401-2077df3ac771.xml"
+        },
+        "meanAmount": 1.0,
+        "dataSetInternalID": 103287,
+        "referenceFlow": true,
+        "resultingflowAmount": 1.0,
+        "flowProperties": [
+          {
+            "name": [
+              {
+                "lang": "en",
+                "value": "Mass"
+              },
+              {
+                "lang": "de",
+                "value": "Masse"
+              }
+            ],
+            "uuid": "93a60a56-a3c8-11da-a746-0800200b9a66",
+            "meanValue": 0.696
+          },
+          {
+            "name": [
+              {
+                "lang": "en",
+                "value": "Number of pieces"
+              },
+              {
+                "lang": "de",
+                "value": "Anzahl"
+              }
+            ],
+            "uuid": "01846770-4cfe-4a25-8ad9-919d8d378345",
+            "referenceFlowProperty": true,
+            "meanValue": 1.0,
+            "referenceUnit": "pcs.",
+            "unitGroupUUID": "934110e3-baf4-49e9-992c-3d8109a6aafb"
+          }
+        ],
+        "materialProperties": [
+          {
+            "name": "weight per unit",
+            "value": "0.696",
+            "unit": "kg/Stk"
+          }
+        ],
+        "typeOfFlow": "Product flow",
+        "classification": {
+          "classHierarchy": "Valuable substances / Materials / Metals",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of renewable primary energy (PERE)",
+              "lang": "en"
+            },
+            {
+              "value": "Erneuerbare Prim\u00e4renergie als Energietr\u00e4ger (PERE)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "20f32be5-0398-4288-9b6d-accddd195317",
+          "version": "39.00.000",
+          "uri": "../flows/20f32be5-0398-4288-9b6d-accddd195317.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "20.4806010165945",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0013983202047092",
+              "module": "C2"
+            },
+            {
+              "value": "-8.50808100101603",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103288
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Primary energy resources used as raw materials (PERM)",
+              "lang": "en"
+            },
+            {
+              "value": "Erneuerbare Prim\u00e4renergie zur stofflichen Nutzung (PERM)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "fb3ec0de-548d-4508-aea5-00b73bf6f702",
+          "version": "39.00.000",
+          "uri": "../flows/fb3ec0de-548d-4508-aea5-00b73bf6f702.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103289
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Total use of renewable primary energy resources (PERT)",
+              "lang": "en"
+            },
+            {
+              "value": "Total erneuerbare Prim\u00e4renergie (PERT)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "53f97275-fa8a-4cdd-9024-65936002acd0",
+          "version": "39.00.000",
+          "uri": "../flows/53f97275-fa8a-4cdd-9024-65936002acd0.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "20.4806010165945",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0013983202047092",
+              "module": "C2"
+            },
+            {
+              "value": "-8.50808100101603",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103290
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of non-renewable primary energy (PENRE)",
+              "lang": "en"
+            },
+            {
+              "value": "Nicht-erneuerbare Prim\u00e4renergie als Energietr\u00e4ger (PENRE)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "ac857178-2b45-46ec-892a-a9a4332f0372",
+          "version": "39.00.000",
+          "uri": "../flows/ac857178-2b45-46ec-892a-a9a4332f0372.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "84.7279360939828",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0240195105788553",
+              "module": "C2"
+            },
+            {
+              "value": "-41.7608634669174",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103291
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Non-renewable primary energy resources used as raw materials (PENRM)",
+              "lang": "en"
+            },
+            {
+              "value": "Nicht-erneuerbare Prim\u00e4renergie zur stofflichen Nutzung (PENRM)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "1421caa0-679d-4bf4-b282-0eb850ccae27",
+          "version": "39.00.000",
+          "uri": "../flows/1421caa0-679d-4bf4-b282-0eb850ccae27.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103292
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Total use of non-renewable primary energy resources (PENRT)",
+              "lang": "en"
+            },
+            {
+              "value": "Total nicht erneuerbare Prim\u00e4renergie (PENRT)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "06159210-646b-4c8d-8583-da9b3b95a6c1",
+          "version": "39.00.000",
+          "uri": "../flows/06159210-646b-4c8d-8583-da9b3b95a6c1.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "84.7279360939828",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0240195105788553",
+              "module": "C2"
+            },
+            {
+              "value": "-41.7608634669174",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103293
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Input of secondary material (SM)",
+              "lang": "en"
+            },
+            {
+              "value": "Einsatz von Sekund\u00e4rstoffen (SM)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "c6a1f35f-2d09-4f54-8dfb-97e502e1ce92",
+          "version": "39.00.000",
+          "uri": "../flows/c6a1f35f-2d09-4f54-8dfb-97e502e1ce92.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a4c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a4c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103294
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of renewable secondary fuels (RSF)",
+              "lang": "en"
+            },
+            {
+              "value": "Erneuerbare Sekund\u00e4rbrennstoffe (RSF)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "64333088-a55f-4aa2-9a31-c10b07816787",
+          "version": "39.00.000",
+          "uri": "../flows/64333088-a55f-4aa2-9a31-c10b07816787.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103295
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of non renewable secondary fuels (NRSF)",
+              "lang": "en"
+            },
+            {
+              "value": "Nicht erneuerbare Sekund\u00e4rbrennstoffe (NRSF)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "89def144-d39a-4287-b86f-efde453ddcb2",
+          "version": "39.00.000",
+          "uri": "../flows/89def144-d39a-4287-b86f-efde453ddcb2.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103296
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of net fresh water (FW)",
+              "lang": "en"
+            },
+            {
+              "value": "Einsatz von S\u00fc\u00dfwasserressourcen (FW)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "3cf952c8-f3a4-461d-8c96-96456ca62246",
+          "version": "39.00.000",
+          "uri": "../flows/3cf952c8-f3a4-461d-8c96-96456ca62246.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0.0432807576491432",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "m3",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "m3",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-12da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-12da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "1.25231308751985E-6",
+              "module": "C2"
+            },
+            {
+              "value": "-0.0460560166362333",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103297
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Hazardous waste disposed (HWD)",
+              "lang": "en"
+            },
+            {
+              "value": "Gef\u00e4hrlicher Abfall zur Deponie (HWD)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "430f9e0f-59b2-46a0-8e0d-55e0e84948fc",
+          "version": "39.00.000",
+          "uri": "../flows/430f9e0f-59b2-46a0-8e0d-55e0e84948fc.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "1.00454806652987E-7",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a4c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a4c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "8.97584057390588E-10",
+              "module": "C2"
+            },
+            {
+              "value": "-5.18728038983747E-7",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103298
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Non-hazardous waste disposed (NHWD)",
+              "lang": "en"
+            },
+            {
+              "value": "Entsorgter nicht gef\u00e4hrlicher Abfall (NHWD)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "b29ef66b-e286-4afa-949f-62f1a7b4d7fa",
+          "version": "39.00.000",
+          "uri": "../flows/b29ef66b-e286-4afa-949f-62f1a7b4d7fa.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0.631907011249598",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a4c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a4c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "4.21584386683146E-6",
+              "module": "C2"
+            },
+            {
+              "value": "-0.199080356392534",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103299
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Radioactive waste disposed (RWD)",
+              "lang": "en"
+            },
+            {
+              "value": "Entsorgter radioaktiver Abfall (RWD)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "3449546e-52ad-4b39-b809-9fb77cea8ff6",
+          "version": "39.00.000",
+          "uri": "../flows/3449546e-52ad-4b39-b809-9fb77cea8ff6.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0.00415973362628194",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a4c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a4c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "2.52876094720127E-8",
+              "module": "C2"
+            },
+            {
+              "value": "-0.000677997097458384",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103300
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Components for re-use (CRU)",
+              "lang": "en"
+            },
+            {
+              "value": "Komponenten f\u00fcr die Wiederverwendung (CRU)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "a2b32f97-3fc7-4af2-b209-525bc6426f33",
+          "version": "39.00.000",
+          "uri": "../flows/a2b32f97-3fc7-4af2-b209-525bc6426f33.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a4c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a4c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103301
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Materials for Recycling (MFR)",
+              "lang": "en"
+            },
+            {
+              "value": "Stoffe zum Recycling (MFR)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "d7fe48a5-4103-49c8-9aae-b0b5dfdbd6ae",
+          "version": "39.00.000",
+          "uri": "../flows/d7fe48a5-4103-49c8-9aae-b0b5dfdbd6ae.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a4c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a4c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0.77",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103302
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Material for Energy Recovery (MER)",
+              "lang": "en"
+            },
+            {
+              "value": "Stoffe f\u00fcr die Energier\u00fcckgewinnung (MER)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "59a9181c-3aaf-46ee-8b13-2b3723b6e447",
+          "version": "39.00.000",
+          "uri": "../flows/59a9181c-3aaf-46ee-8b13-2b3723b6e447.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a4c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a4c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103303
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Exported electrical energy (EEE)",
+              "lang": "en"
+            },
+            {
+              "value": "Exportierte elektrische Energie (EEE)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "4da0c987-2b76-40d6-9e9e-82a017aaaf29",
+          "version": "39.00.000",
+          "uri": "../flows/4da0c987-2b76-40d6-9e9e-82a017aaaf29.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103304
+      },
+      {
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Exported thermal energy (EET)",
+              "lang": "en"
+            },
+            {
+              "value": "Exportierte thermische Energie (EET)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "98daf38a-7a79-46d3-9a37-2b7bd0955810",
+          "version": "39.00.000",
+          "uri": "../flows/98daf38a-7a79-46d3-9a37-2b7bd0955810.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            }
+          ]
+        },
+        "dataSetInternalID": 103305
+      }
+    ]
+  },
+  "LCIAResults": {
+    "LCIAResult": [
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Global warming potential (GWP)",
+              "lang": "en"
+            },
+            {
+              "value": "Globales Erw\u00e4rmungspotenzial (GWP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "77e416eb-a363-4258-a04e-171d843a6460",
+          "version": "39.00.000",
+          "uri": "../lciamethods/77e416eb-a363-4258-a04e-171d843a6460.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "value": "5.75046217471126",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00178708143423231",
+              "module": "C2"
+            },
+            {
+              "value": "-3.34062826134951",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CO2 eq.",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg CO2 \u00c4quiv.",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "1ebf3012-d0db-4de2-aefd-ef30cedb0be1",
+                "version": "39.00.000",
+                "uri": "../unitgroups/1ebf3012-d0db-4de2-aefd-ef30cedb0be1.xml"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Ozone Depletion Potential (ODP)",
+              "lang": "en"
+            },
+            {
+              "value": "Abbaupotenzial der stratosph\u00e4rischen Ozonschicht (ODP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "06dcd26f-025f-401a-a7c1-5e457eb54637",
+          "version": "39.00.000",
+          "uri": "../lciamethods/06dcd26f-025f-401a-a7c1-5e457eb54637.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "value": "7.57674479881357E-14",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "5.91531015330711E-19",
+              "module": "C2"
+            },
+            {
+              "value": "-1.1660403509883E-14",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg R11 eq.",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg R11 \u00c4quiv.",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "88054749-b0a6-47ea-a82b-dc5b29326512",
+                "version": "39.00.000",
+                "uri": "../unitgroups/88054749-b0a6-47ea-a82b-dc5b29326512.xml"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Acidification potential (AP)",
+              "lang": "en"
+            },
+            {
+              "value": "Versauerungspotential (AP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b4274add-93b7-4905-a5e4-2e878c4e4216",
+          "version": "39.00.000",
+          "uri": "../lciamethods/b4274add-93b7-4905-a5e4-2e878c4e4216.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "value": "0.015131372765683",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "3.60971188560073E-6",
+              "module": "C2"
+            },
+            {
+              "value": "-0.0130870230097807",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg SO2 eq.",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg SO2 \u00c4quiv.",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "bc50c624-a9bc-45b1-a9b0-e6b10d00476f",
+                "version": "39.00.000",
+                "uri": "../unitgroups/bc50c624-a9bc-45b1-a9b0-e6b10d00476f.xml"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Eutrophication potential (EP)",
+              "lang": "en"
+            },
+            {
+              "value": "Eutrophierungspotential (EP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "f58827d0-b407-4ec6-be75-8b69efb98a0f",
+          "version": "39.00.000",
+          "uri": "../lciamethods/f58827d0-b407-4ec6-be75-8b69efb98a0f.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "value": "0.00153293383942052",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "8.58128311713464E-7",
+              "module": "C2"
+            },
+            {
+              "value": "-0.000873460966067906",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg Phosphate eq.",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg Phosphat \u00c4quiv.",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "67b5401d-873c-485f-bcf3-6ae83b918822",
+                "version": "39.00.000",
+                "uri": "../unitgroups/67b5401d-873c-485f-bcf3-6ae83b918822.xml"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Photochemical Ozone Creation Potential (POCP)",
+              "lang": "en"
+            },
+            {
+              "value": "Bildungspotenzial f\u00fcr troposph\u00e4risches Ozon (POCP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "1e84a202-dae6-42aa-9e9d-71ea48b8be00",
+          "version": "39.00.000",
+          "uri": "../lciamethods/1e84a202-dae6-42aa-9e9d-71ea48b8be00.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "value": "0.00140468627628836",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "-1.17978322332452E-6",
+              "module": "C2"
+            },
+            {
+              "value": "-0.00108878638850732",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg Ethene eq.",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg Ethen \u00c4quiv.",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "01c26c17-9a76-406e-8295-f17b55fd909e",
+                "version": "39.00.000",
+                "uri": "../unitgroups/01c26c17-9a76-406e-8295-f17b55fd909e.xml"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Abiotic depletion potential for non fossil resources (ADPE)",
+              "lang": "en"
+            },
+            {
+              "value": "Potenzial f\u00fcr den abiotischen Abbau nicht fossiler Ressourcen (ADPE)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "f7c73bb9-ab1a-4249-9c6d-379a0de6f67e",
+          "version": "39.00.000",
+          "uri": "../lciamethods/f7c73bb9-ab1a-4249-9c6d-379a0de6f67e.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "value": "0.00101469089729107",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "1.50384405347324E-10",
+              "module": "C2"
+            },
+            {
+              "value": "-0.000437473739221514",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg Sb eq.",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "kg Sb \u00c4quiv.",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "54ccd2d9-a32a-4fc2-923d-f2c8c93e89d4",
+                "version": "39.00.000",
+                "uri": "../unitgroups/54ccd2d9-a32a-4fc2-923d-f2c8c93e89d4.xml"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Abiotic depletion potential for fossil resources (ADPF)",
+              "lang": "en"
+            },
+            {
+              "value": "Potenzial f\u00fcr den abiotischen Abbau fossiler Brennstoffe (ADPF)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "804ebcdf-309d-4098-8ed8-fdaf2f389981",
+          "version": "39.00.000",
+          "uri": "../lciamethods/804ebcdf-309d-4098-8ed8-fdaf2f389981.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "value": "74.2630018019204",
+              "module": "A1-A3"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0239548814646764",
+              "module": "C2"
+            },
+            {
+              "value": "-40.0240800827562",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  },
+                  {
+                    "value": "MJ",
+                    "lang": "de"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "version": "03.00.000",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "version": "1.1",
+  "locations": "../ILCDLocations.xml",
+  "source": "https://oekobaudat.de/OEKOBAU.DAT/resource/datastocks/cd2bda71-760b-4fcc-8a0b-3877c10000a8/processes/00c28f1f-1d49-4c81-9208-138922a1dd6c"
+}
