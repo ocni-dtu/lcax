@@ -32,7 +32,6 @@ jobs:
           source venv/bin/activate
           datamodel-codegen \
           --input docs/schemas/lcax.schema.json \
-          --input-file-type jsonschema \
           --output packages/python/src/lcax/pydantic.py
 
       - name: Run Tests

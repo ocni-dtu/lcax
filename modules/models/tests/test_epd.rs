@@ -1,11 +1,9 @@
-#[cfg(test)]
-mod tests {
+use lcax_models::epd;
 
-    #[test]
-    fn test_epd() -> Result<(), String> {
-        let epd = lcax::epd::EPD::new();
-        assert!(!epd.id.is_empty());
+#[test]
+fn test_epd() -> Result<(), String> {
+    let epd = epd::EPD::new();
+    assert!(!epd.id.is_empty());
 
-        Ok(())
-    }
+    Ok(())
 }

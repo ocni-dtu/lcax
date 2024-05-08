@@ -29,6 +29,7 @@ jobs:
       - uses: jetli/wasm-pack-action@v0.4.0
 
       - name: Build
+        working-directory: 'modules/lcax'
         run: wasm-pack build --features jsbindings
 
       - uses: actions/setup-node@v4
@@ -37,7 +38,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Publish
-        working-directory: pkg
+        working-directory: modules/lcax/pkg
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
