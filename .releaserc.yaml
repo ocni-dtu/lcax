@@ -9,8 +9,8 @@ plugins:
   - "@semantic-release/changelog"
   - - "semantic-release-cargo"
     - allFeatures: true
-    - check: true
-    - publishArg: [ "-p", "lcax" ]
+      check: true
+      publishArgs: [ "-p", "lcax" ]
   - - "@semantic-release/github"
     - assets:
         - { path: 'artifacts/lcax.schema.json', label: 'LCAx JSON Schema' }
