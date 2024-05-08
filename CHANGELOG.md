@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/ocni-dtu/lcax/compare/v2.0.0...v2.0.1) (2024-05-08)
+
+
+### Bug Fixes
+
+* formatting to bump version ([afe368a](https://github.com/ocni-dtu/lcax/commit/afe368ac2a5c5417ab3290c13978ab53037f0993))
+
 ## [2.0.0](https://github.com/ocni-dtu/lcax/compare/v1.7.0...v2.0.0) (2024-05-08)
 
 
