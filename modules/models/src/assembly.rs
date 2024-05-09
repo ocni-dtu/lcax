@@ -15,7 +15,7 @@ use crate::shared::Unit;
 pub struct Assembly {
     pub id: String,
     pub name: String,
-    pub description: String,
+    pub description: Option<String>,
     pub comment: Option<String>,
     pub quantity: f64,
     pub unit: Unit,

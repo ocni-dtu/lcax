@@ -16,7 +16,7 @@ use crate::techflow::TechFlow;
 pub struct Product {
     pub id: String,
     pub name: String,
-    pub description: String,
+    pub description: Option<String>,
     pub reference_service_life: u32,
     pub impact_data: ImpactDataSource,
     pub quantity: f64,
