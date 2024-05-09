@@ -365,7 +365,7 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "lcax"
-version = "2.0.5"
+version = "2.0.6"
 dependencies = [
  "console_error_panic_hook",
  "getrandom",
@@ -384,7 +384,7 @@ dependencies = [
 
 [[package]]
 name = "lcax_convert"
-version = "2.0.5"
+version = "2.0.6"
 dependencies = [
  "bytes",
  "chrono",
@@ -400,7 +400,7 @@ dependencies = [
 
 [[package]]
 name = "lcax_core"
-version = "2.0.5"
+version = "2.0.6"
 dependencies = [
  "chrono",
  "pkg-version",
@@ -412,7 +412,7 @@ dependencies = [
 
 [[package]]
 name = "lcax_models"
-version = "2.0.5"
+version = "2.0.6"
 dependencies = [
  "chrono",
  "console_error_panic_hook",

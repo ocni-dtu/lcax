@@ -1,3 +1,11 @@
+## [2.0.6](https://github.com/ocni-dtu/lcax/compare/v2.0.5...v2.0.6) (2024-05-09)
+
+
+### Bug Fixes
+
+* made description of assembly and product optional ([f371cff](https://github.com/ocni-dtu/lcax/commit/f371cfff0964dd0026b07cd8cecc67e6707a403b))
+* solved test and build issues ([ecde85b](https://github.com/ocni-dtu/lcax/commit/ecde85b345488660bf0faf3e94c642a11380836c))
+
 ## [2.0.5](https://github.com/ocni-dtu/lcax/compare/v2.0.4...v2.0.5) (2024-05-08)
 
 
