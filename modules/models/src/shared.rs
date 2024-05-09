@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 use tsify::Tsify;
 
 #[derive(Debug, Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum Unit {
     M,

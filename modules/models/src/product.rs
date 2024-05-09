@@ -41,6 +41,7 @@ pub struct Transport {
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ImpactDataSource {
+    #[serde(rename = "EPD")]
     EPD(EPD),
     TechFlow(TechFlow),
     ExternalImpactData(ExternalImpactData),

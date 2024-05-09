@@ -446,30 +446,30 @@ class Source(BaseModel):
 
 
 class Standard(Enum):
-    EN15804_A1 = 'EN15804A1'
-    EN15804_A2 = 'EN15804A2'
-    UNKNOWN = 'UNKNOWN'
+    EN15804A1 = 'en15804a1'
+    EN15804A2 = 'en15804a2'
+    UNKNOWN = 'unknown'
 
 
 class SubType(Enum):
-    GENERIC = 'Generic'
-    SPECIFIC = 'Specific'
-    INDUSTRY = 'Industry'
-    REPRESENTATIVE = 'Representative'
+    GENERIC = 'generic'
+    SPECIFIC = 'specific'
+    INDUSTRY = 'industry'
+    REPRESENTATIVE = 'representative'
 
 
 class Unit(Enum):
-    M = 'M'
-    M2 = 'M2'
-    M3 = 'M3'
-    KG = 'KG'
-    TONES = 'TONES'
-    PCS = 'PCS'
-    L = 'L'
-    M2_R1 = 'M2R1'
-    KM = 'KM'
-    TONES_KM = 'TONES_KM'
-    UNKNOWN = 'UNKNOWN'
+    M = 'm'
+    M2 = 'm2'
+    M3 = 'm3'
+    KG = 'kg'
+    TONES = 'tones'
+    PCS = 'pcs'
+    L = 'l'
+    M2R1 = 'm2r1'
+    KM = 'km'
+    TONES_KM = 'tones_km'
+    UNKNOWN = 'unknown'
 
 
 class ValueUnit(BaseModel):
@@ -564,7 +564,7 @@ class ImpactDataSource1(BaseModel):
         extra='forbid',
         populate_by_name=True,
     )
-    e_pd: EPD = Field(..., alias='ePD')
+    epd: EPD = Field(..., alias='EPD')
 
 
 class ImpactDataSource4(BaseModel):

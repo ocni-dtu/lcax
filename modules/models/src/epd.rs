@@ -70,6 +70,7 @@ impl EPD {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum Standard {
     EN15804A1,
@@ -90,6 +91,7 @@ impl From<&String> for Standard {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum SubType {
     Generic,

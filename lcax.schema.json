@@ -946,10 +946,10 @@
         {
           "type": "object",
           "required": [
-            "ePD"
+            "EPD"
           ],
           "properties": {
-            "ePD": {
+            "EPD": {
               "$ref": "#/definitions/EPD"
             }
           },
@@ -1215,18 +1215,18 @@
     "Standard": {
       "type": "string",
       "enum": [
-        "EN15804A1",
-        "EN15804A2",
-        "UNKNOWN"
+        "en15804a1",
+        "en15804a2",
+        "unknown"
       ]
     },
     "SubType": {
       "type": "string",
       "enum": [
-        "Generic",
-        "Specific",
-        "Industry",
-        "Representative"
+        "generic",
+        "specific",
+        "industry",
+        "representative"
       ]
     },
     "TechFlow": {
@@ -1335,17 +1335,17 @@
     "Unit": {
       "type": "string",
       "enum": [
-        "M",
-        "M2",
-        "M3",
-        "KG",
-        "TONES",
-        "PCS",
-        "L",
-        "M2R1",
-        "KM",
-        "TONES_KM",
-        "UNKNOWN"
+        "m",
+        "m2",
+        "m3",
+        "kg",
+        "tones",
+        "pcs",
+        "l",
+        "m2r1",
+        "km",
+        "tones_km",
+        "unknown"
       ]
     },
     "ValueUnit": {

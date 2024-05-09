@@ -112,9 +112,9 @@ export interface Project {
     metaData: Record<string, string> | null;
 }
 
-export type SubType = "Generic" | "Specific" | "Industry" | "Representative";
+export type SubType = "generic" | "specific" | "industry" | "representative";
 
-export type Standard = "EN15804A1" | "EN15804A2" | "UNKNOWN";
+export type Standard = "en15804a1" | "en15804a2" | "unknown";
 
 export interface EPD {
     id: string;
@@ -145,7 +145,7 @@ export interface ExternalImpactData {
     version: string | null;
 }
 
-export type ImpactDataSource = { ePD: EPD } | { techFlow: TechFlow } | { externalImpactData: ExternalImpactData } | { internalImpactData: InternalImpactData };
+export type ImpactDataSource = { EPD: EPD } | { techFlow: TechFlow } | { externalImpactData: ExternalImpactData } | { internalImpactData: InternalImpactData };
 
 export interface Transport {
     id: string;
@@ -183,7 +183,7 @@ export interface Conversion {
     meta_data: string;
 }
 
-export type Unit = "M" | "M2" | "M3" | "KG" | "TONES" | "PCS" | "L" | "M2R1" | "KM" | "TONES_KM" | "UNKNOWN";
+export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "l" | "m2r1" | "km" | "tones_km" | "unknown";
 
 export interface TechFlow {
     id: string;
