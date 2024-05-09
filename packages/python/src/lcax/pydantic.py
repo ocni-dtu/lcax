@@ -530,7 +530,7 @@ class Conversion(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    meta_data: str
+    meta_data: str = Field(..., alias='metaData')
     to: Unit
     value: float
 

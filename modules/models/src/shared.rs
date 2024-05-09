@@ -41,6 +41,7 @@ impl From<&String> for Unit {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Conversion {
     pub value: f64,
@@ -49,6 +50,7 @@ pub struct Conversion {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Source {
     pub name: String,

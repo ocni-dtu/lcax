@@ -180,7 +180,7 @@ export interface Source {
 export interface Conversion {
     value: number;
     to: Unit;
-    meta_data: string;
+    metaData: string;
 }
 
 export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "l" | "m2r1" | "km" | "tones_km" | "unknown";

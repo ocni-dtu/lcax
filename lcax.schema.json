@@ -491,12 +491,12 @@
     "Conversion": {
       "type": "object",
       "required": [
-        "meta_data",
+        "metaData",
         "to",
         "value"
       ],
       "properties": {
-        "meta_data": {
+        "metaData": {
           "type": "string"
         },
         "to": {
