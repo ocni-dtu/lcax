@@ -1,3 +1,10 @@
+## [2.1.0](https://github.com/ocni-dtu/lcax/compare/v2.0.6...v2.1.0) (2024-05-09)
+
+
+### Features
+
+* corrected serialization of models ([d77a0a4](https://github.com/ocni-dtu/lcax/commit/d77a0a4a05c4e941776d76a9ae1dca6c16a4a778))
+
 ## [2.0.6](https://github.com/ocni-dtu/lcax/compare/v2.0.5...v2.0.6) (2024-05-09)
 
 
