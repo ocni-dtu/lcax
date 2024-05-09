@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/ocni-dtu/lcax/compare/v2.1.0...v2.1.1) (2024-05-09)
+
+
+### Bug Fixes
+
+* corrected naming serialization of models ([62c8f35](https://github.com/ocni-dtu/lcax/commit/62c8f3517523f1fa8aaeebcabbf3a5ca60311ac2))
+
 ## [2.1.0](https://github.com/ocni-dtu/lcax/compare/v2.0.6...v2.1.0) (2024-05-09)
 
 
