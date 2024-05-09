@@ -212,7 +212,7 @@ fn assembly_from_slice(uid: &str, element: &SLiCEElement) -> Assembly {
     Assembly {
         id: uid.to_string(),
         name: element.element_class_sfb.clone(),
-        description: element.element_class_generic_name.clone(),
+        description: Some(element.element_class_generic_name.clone()),
         comment: None,
         quantity: 1.0,
         unit: Unit::KG,
@@ -232,7 +232,7 @@ fn product_from_slice(uid: &str, element: &SLiCEElement) -> Product {
     Product {
         id: uid.to_string(),
         name: element.worksection_class_sfb.clone(),
-        description: "".to_string(),
+        description: Some("".to_string()),
         reference_service_life: 50,
         impact_data: ImpactDataSource::TechFlow(create_tech_flow(element)),
         quantity: element.amount_material_kg_per_building,

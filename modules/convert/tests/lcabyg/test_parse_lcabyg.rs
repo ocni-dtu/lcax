@@ -1,7 +1,7 @@
 use std::fs;
 use std::path::Path;
 
-use lcax_convert::lcabyg::nodes::{epd_from_lcabyg_stages, Stage, Node};
+use lcax_convert::lcabyg::nodes::{epd_from_lcabyg_stages, Node, Stage};
 use lcax_convert::lcabyg::parse::NodesAndEdges;
 use lcax_models::epd::Standard;
 use lcax_models::life_cycle_base::ImpactCategoryKey;

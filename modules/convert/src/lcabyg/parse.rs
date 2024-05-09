@@ -258,7 +258,7 @@ fn add_element_data(
     let mut assembly = Assembly {
         id: node_id.to_string(),
         name: node.name.english.clone().unwrap(),
-        description: "".to_string(),
+        description: Some("".to_string()),
         comment: node.comment.english.clone(),
         quantity: 0.0,
         unit: Unit::M,
@@ -355,7 +355,7 @@ fn add_construction_to_product_data(
     let mut product = LCAxProduct {
         id: product_id.clone(),
         name: "".to_string(),
-        description: "".to_string(),
+        description: Some("".to_string()),
         reference_service_life: edge.lifespan,
         impact_data: Default::default(),
         quantity: edge.amount,
@@ -371,7 +371,7 @@ fn add_construction_to_product_data(
         match node {
             Node::Product(product_node) => {
                 product.name = product_node.name.english.clone().unwrap();
-                product.description = product_node.comment.english.clone().unwrap();
+                product.description = Some(product_node.comment.english.clone().unwrap());
             }
             Node::Stage(stage_node) => stages.append(&mut vec![stage_node.clone()]),
             _ => continue,

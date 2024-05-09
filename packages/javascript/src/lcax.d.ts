@@ -158,7 +158,7 @@ export interface Transport {
 export interface Product {
     id: string;
     name: string;
-    description: string;
+    description: string | null;
     referenceServiceLife: number;
     impactData: ImpactDataSource;
     quantity: number;
@@ -185,26 +185,6 @@ export interface Conversion {
 
 export type Unit = "M" | "M2" | "M3" | "KG" | "TONES" | "PCS" | "L" | "M2R1" | "KM" | "TONES_KM" | "UNKNOWN";
 
-export interface Classification {
-    system: string;
-    code: string;
-    name: string;
-}
-
-export interface Assembly {
-    id: string;
-    name: string;
-    description: string;
-    comment: string | null;
-    quantity: number;
-    unit: Unit;
-    category: string | null;
-    classification: Classification[] | null;
-    products: Record<string, Product>;
-    results: Results;
-    metaData: Record<string, string> | null;
-}
-
 export interface TechFlow {
     id: string;
     name: string;
@@ -216,5 +196,25 @@ export interface TechFlow {
     conversions: Conversion[] | null;
     impacts: Record<ImpactCategoryKey, ImpactCategory>;
     meta_data: Record<string, string> | null;
+}
+
+export interface Classification {
+    system: string;
+    code: string;
+    name: string;
+}
+
+export interface Assembly {
+    id: string;
+    name: string;
+    description: string | null;
+    comment: string | null;
+    quantity: number;
+    unit: Unit;
+    category: string | null;
+    classification: Classification[] | null;
+    products: Record<string, Product>;
+    results: Results;
+    metaData: Record<string, string> | null;
 }
 

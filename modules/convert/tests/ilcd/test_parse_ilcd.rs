@@ -1,9 +1,8 @@
-
-use std::fs;
-use std::path::Path;
 use lcax_convert::ilcd;
 use lcax_models::epd::Standard;
 use lcax_models::life_cycle_base::ImpactCategoryKey;
+use std::fs;
+use std::path::Path;
 
 macro_rules! parse_ilcd_a1_tests {
     ($($name:ident: $value:expr)*) => {
@@ -77,7 +76,6 @@ parse_ilcd_a1_tests! {
     ilcd_335241f9: ("335241f9-db84-486c-9a19-cd5ebb791903.json", "a2")
     ilcd_503dfca1: ("503dfca1-7c65-4179-9ffa-ebc6d8b48b7d.json", "a2")
 }
-
 
 #[test]
 fn test_parse_ilcd_short() -> Result<(), String> {

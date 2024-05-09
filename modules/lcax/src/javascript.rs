@@ -6,7 +6,6 @@ use lcax_models::epd::EPD;
 use lcax_models::project::Project;
 use serde::{Deserialize, Serialize};
 extern crate console_error_panic_hook;
-use std::panic;
 
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;

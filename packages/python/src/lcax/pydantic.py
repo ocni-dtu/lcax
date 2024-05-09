@@ -622,7 +622,7 @@ class Product(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    description: str
+    description: Optional[str] = None
     id: str
     impact_data: Union[
         ImpactDataSource1, ImpactDataSource2, ImpactDataSource3, ImpactDataSource4
@@ -643,7 +643,7 @@ class Assembly(BaseModel):
     category: Optional[str] = None
     classification: Optional[List[Classification]] = None
     comment: Optional[str] = None
-    description: str
+    description: Optional[str] = None
     id: str
     meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
