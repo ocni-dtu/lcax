@@ -95,13 +95,13 @@ pub enum ProjectPhase {
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Location {
-    pub country: lcax_core::country::Country,
+    pub country: Country,
     pub city: Option<String>,
     pub address: Option<String>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ProjectInfo {
     BuildingInfo(BuildingInfo),

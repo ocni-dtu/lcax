@@ -766,16 +766,16 @@
     "EPD": {
       "type": "object",
       "required": [
-        "declared_unit",
-        "format_version",
+        "declaredUnit",
+        "formatVersion",
         "id",
         "impacts",
         "location",
         "name",
-        "published_date",
+        "publishedDate",
         "standard",
         "subtype",
-        "valid_until",
+        "validUntil",
         "version"
       ],
       "properties": {
@@ -794,10 +794,10 @@
             "$ref": "#/definitions/Conversion"
           }
         },
-        "declared_unit": {
+        "declaredUnit": {
           "$ref": "#/definitions/Unit"
         },
-        "format_version": {
+        "formatVersion": {
           "type": "string"
         },
         "id": {
@@ -819,7 +819,7 @@
         "location": {
           "$ref": "#/definitions/Country"
         },
-        "meta_data": {
+        "metaData": {
           "type": [
             "object",
             "null"
@@ -831,11 +831,11 @@
         "name": {
           "type": "string"
         },
-        "published_date": {
+        "publishedDate": {
           "type": "string",
           "format": "date"
         },
-        "reference_service_life": {
+        "referenceServiceLife": {
           "type": [
             "integer",
             "null"
@@ -859,7 +859,7 @@
         "subtype": {
           "$ref": "#/definitions/SubType"
         },
-        "valid_until": {
+        "validUntil": {
           "type": "string",
           "format": "date"
         },
@@ -946,10 +946,10 @@
         {
           "type": "object",
           "required": [
-            "epd"
+            "ePD"
           ],
           "properties": {
-            "epd": {
+            "ePD": {
               "$ref": "#/definitions/EPD"
             }
           },
@@ -958,10 +958,10 @@
         {
           "type": "object",
           "required": [
-            "techflow"
+            "techFlow"
           ],
           "properties": {
-            "techflow": {
+            "techFlow": {
               "$ref": "#/definitions/TechFlow"
             }
           },
@@ -970,10 +970,10 @@
         {
           "type": "object",
           "required": [
-            "externalimpactdata"
+            "externalImpactData"
           ],
           "properties": {
-            "externalimpactdata": {
+            "externalImpactData": {
               "$ref": "#/definitions/ExternalImpactData"
             }
           },
@@ -982,10 +982,10 @@
         {
           "type": "object",
           "required": [
-            "internalimpactdata"
+            "internalImpactData"
           ],
           "properties": {
-            "internalimpactdata": {
+            "internalImpactData": {
               "$ref": "#/definitions/InternalImpactData"
             }
           },
@@ -1127,10 +1127,10 @@
         {
           "type": "object",
           "required": [
-            "buildinginfo"
+            "buildingInfo"
           ],
           "properties": {
-            "buildinginfo": {
+            "buildingInfo": {
               "$ref": "#/definitions/BuildingInfo"
             }
           },
@@ -1139,10 +1139,10 @@
         {
           "type": "object",
           "required": [
-            "infrastructureinfo"
+            "infrastructureInfo"
           ],
           "properties": {
-            "infrastructureinfo": {
+            "infrastructureInfo": {
               "type": "object",
               "additionalProperties": {
                 "type": "string"
@@ -1232,8 +1232,8 @@
     "TechFlow": {
       "type": "object",
       "required": [
-        "declared_unit",
-        "format_version",
+        "declaredUnit",
+        "formatVersion",
         "id",
         "impacts",
         "location",
@@ -1255,10 +1255,10 @@
             "$ref": "#/definitions/Conversion"
           }
         },
-        "declared_unit": {
+        "declaredUnit": {
           "$ref": "#/definitions/Unit"
         },
-        "format_version": {
+        "formatVersion": {
           "type": "string"
         },
         "id": {
@@ -1280,7 +1280,7 @@
         "location": {
           "$ref": "#/definitions/Country"
         },
-        "meta_data": {
+        "metaData": {
           "type": [
             "object",
             "null"

@@ -366,7 +366,7 @@ class ImpactDataSource3(BaseModel):
         extra='forbid',
         populate_by_name=True,
     )
-    externalimpactdata: ExternalImpactData
+    external_impact_data: ExternalImpactData = Field(..., alias='externalImpactData')
 
 
 class InternalImpactData(BaseModel):
@@ -408,7 +408,7 @@ class ProjectInfo2(BaseModel):
         extra='forbid',
         populate_by_name=True,
     )
-    infrastructureinfo: Dict[str, str]
+    infrastructure_info: Dict[str, str] = Field(..., alias='infrastructureInfo')
 
 
 class ProjectPhase(Enum):
@@ -541,19 +541,21 @@ class EPD(BaseModel):
     )
     comment: Optional[str] = None
     conversions: Optional[List[Conversion]] = None
-    declared_unit: Unit
-    format_version: str
+    declared_unit: Unit = Field(..., alias='declaredUnit')
+    format_version: str = Field(..., alias='formatVersion')
     id: str
     impacts: Dict[str, Dict[str, Optional[float]]]
     location: Country
-    meta_data: Optional[Dict[str, Any]] = None
+    meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
-    published_date: date
-    reference_service_life: Optional[int] = Field(None, ge=0)
+    published_date: date = Field(..., alias='publishedDate')
+    reference_service_life: Optional[int] = Field(
+        None, alias='referenceServiceLife', ge=0
+    )
     source: Optional[Source] = None
     standard: Standard
     subtype: SubType
-    valid_until: date
+    valid_until: date = Field(..., alias='validUntil')
     version: str
 
 
@@ -562,7 +564,7 @@ class ImpactDataSource1(BaseModel):
         extra='forbid',
         populate_by_name=True,
     )
-    epd: EPD
+    e_pd: EPD = Field(..., alias='ePD')
 
 
 class ImpactDataSource4(BaseModel):
@@ -570,7 +572,7 @@ class ImpactDataSource4(BaseModel):
         extra='forbid',
         populate_by_name=True,
     )
-    internalimpactdata: InternalImpactData
+    internal_impact_data: InternalImpactData = Field(..., alias='internalImpactData')
 
 
 class ProjectInfo1(BaseModel):
@@ -578,7 +580,7 @@ class ProjectInfo1(BaseModel):
         extra='forbid',
         populate_by_name=True,
     )
-    buildinginfo: BuildingInfo
+    building_info: BuildingInfo = Field(..., alias='buildingInfo')
 
 
 class TechFlow(BaseModel):
@@ -587,12 +589,12 @@ class TechFlow(BaseModel):
     )
     comment: Optional[str] = None
     conversions: Optional[List[Conversion]] = None
-    declared_unit: Unit
-    format_version: str
+    declared_unit: Unit = Field(..., alias='declaredUnit')
+    format_version: str = Field(..., alias='formatVersion')
     id: str
     impacts: Dict[str, Dict[str, Optional[float]]]
     location: Country
-    meta_data: Optional[Dict[str, Any]] = None
+    meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
     source: Optional[Source] = None
 
@@ -602,7 +604,7 @@ class ImpactDataSource2(BaseModel):
         extra='forbid',
         populate_by_name=True,
     )
-    techflow: TechFlow
+    tech_flow: TechFlow = Field(..., alias='techFlow')
 
 
 class Transport(BaseModel):

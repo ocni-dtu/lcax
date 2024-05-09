@@ -12,6 +12,7 @@ use crate::life_cycle_base::{ImpactCategory, ImpactCategoryKey};
 use crate::shared::{Conversion, Source, Unit};
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "camelCase")]
 #[cfg_attr(
     feature = "jsbindings",
     derive(Tsify),

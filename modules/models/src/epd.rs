@@ -14,6 +14,7 @@ use crate::life_cycle_base::{ImpactCategory, ImpactCategoryKey};
 use crate::shared::{Conversion, Source, Unit};
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone)]
+#[serde(rename_all = "camelCase")]
 #[cfg_attr(
     feature = "jsbindings",
     derive(Tsify),
@@ -109,32 +110,3 @@ impl From<&Option<String>> for SubType {
         }
     }
 }
-
-// mod my_date_format {
-//     use chrono::{NaiveDate};
-//     use serde::{self, Serializer, Deserializer, Deserialize};
-//
-//     const FORMAT: &'static str = "%Y-%m-%d";
-//
-//     pub fn serialize<S>(
-//         date: &NaiveDate,
-//         serializer: S,
-//     ) -> Result<S::Ok, S::Error>
-//         where
-//             S: Serializer,
-//     {
-//         let s = format!("{}", date.format(FORMAT));
-//         serializer.serialize_str(&s)
-//     }
-//
-//     pub fn deserialize<'de, D>(
-//         deserializer: D,
-//     ) -> Result<NaiveDate, D::Error>
-//         where
-//             D: Deserializer<'de>,
-//     {
-//         let s = String::deserialize(deserializer)?;
-//         let dt = NaiveDate::parse_from_str(&s, FORMAT).map_err(serde::de::Error::custom)?;
-//         Ok(dt)
-//     }
-// }

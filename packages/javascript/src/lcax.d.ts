@@ -75,7 +75,7 @@ export interface BuildingInfo {
     buildingModelScope: BuildingModelScope | null;
 }
 
-export type ProjectInfo = { buildinginfo: BuildingInfo } | { infrastructureinfo: Record<string, string> };
+export type ProjectInfo = { buildingInfo: BuildingInfo } | { infrastructureInfo: Record<string, string> };
 
 export interface Location {
     country: Country;
@@ -119,20 +119,20 @@ export type Standard = "EN15804A1" | "EN15804A2" | "UNKNOWN";
 export interface EPD {
     id: string;
     name: string;
-    declared_unit: Unit;
+    declaredUnit: Unit;
     version: string;
-    published_date: NaiveDate;
-    valid_until: NaiveDate;
-    format_version: string;
+    publishedDate: NaiveDate;
+    validUntil: NaiveDate;
+    formatVersion: string;
     source: Source | null;
-    reference_service_life: number | null;
+    referenceServiceLife: number | null;
     standard: Standard;
     comment: string | null;
     location: Country;
     subtype: SubType;
     conversions: Conversion[] | null;
     impacts: Record<ImpactCategoryKey, ImpactCategory>;
-    meta_data: Record<string, string> | null;
+    metaData: Record<string, string> | null;
 }
 
 export interface InternalImpactData {
@@ -145,7 +145,7 @@ export interface ExternalImpactData {
     version: string | null;
 }
 
-export type ImpactDataSource = { epd: EPD } | { techflow: TechFlow } | { externalimpactdata: ExternalImpactData } | { internalimpactdata: InternalImpactData };
+export type ImpactDataSource = { ePD: EPD } | { techFlow: TechFlow } | { externalImpactData: ExternalImpactData } | { internalImpactData: InternalImpactData };
 
 export interface Transport {
     id: string;
@@ -188,14 +188,14 @@ export type Unit = "M" | "M2" | "M3" | "KG" | "TONES" | "PCS" | "L" | "M2R1" | "
 export interface TechFlow {
     id: string;
     name: string;
-    declared_unit: Unit;
-    format_version: string;
+    declaredUnit: Unit;
+    formatVersion: string;
     source: Source | null;
     comment: string | null;
     location: Country;
     conversions: Conversion[] | null;
     impacts: Record<ImpactCategoryKey, ImpactCategory>;
-    meta_data: Record<string, string> | null;
+    metaData: Record<string, string> | null;
 }
 
 export interface Classification {
