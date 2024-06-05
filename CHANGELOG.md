@@ -1,3 +1,11 @@
+## [2.2.0](https://github.com/ocni-dtu/lcax/compare/v2.1.2...v2.2.0) (2024-06-05)
+
+### Features
+
+* added kWh as unit ([e7f450a](https://github.com/ocni-dtu/lcax/commit/e7f450a5a42f5cdbd16334bd28a684b88cc248ea))
+* Made the transport field of Product a list, so more transport objects can be included. ([e149b2b](https://github.com/ocni-dtu/lcax/commit/e149b2b6f9de983299dceb025b1e6b6f33716a1b))
+* Unified object reference and made it possible to reference assemblies and products ([57a94af](https://github.com/ocni-dtu/lcax/commit/57a94af78b6a932e8d82e43c8af5e715bc80c9c4))
+
 ## [2.1.2](https://github.com/ocni-dtu/lcax/compare/v2.1.1...v2.1.2) (2024-05-09)
 
 

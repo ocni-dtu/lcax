@@ -446,6 +446,7 @@ class Unit(Enum):
     KG = 'kg'
     TONES = 'tones'
     PCS = 'pcs'
+    KWH = 'kwh'
     L = 'l'
     M2R1 = 'm2r1'
     KM = 'km'
