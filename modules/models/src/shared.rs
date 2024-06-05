@@ -1,6 +1,7 @@
+use std::collections::HashMap;
+
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
@@ -55,4 +56,23 @@ pub struct Conversion {
 pub struct Source {
     pub name: String,
     pub url: Option<String>,
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+pub struct Reference {
+    #[serde(rename = "type")]
+    pub _type: ReferenceType,
+    pub path: String,
+    pub format: Option<String>,
+    pub version: Option<String>,
+    pub overrides: Option<HashMap<String, String>>,
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+pub enum ReferenceType {
+    INTERNAL,
+    EXTERNAL,
 }

@@ -1,16 +1,18 @@
 use core::any::TypeId;
+use std::collections::HashMap;
+
 use field_access::FieldAccess;
+use parquet::record::{Row, RowAccessor};
+use uuid;
+
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
-use lcax_models::assembly::{Assembly, Classification};
+use lcax_models::assembly::{Assembly, AssemblySource, Classification};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
-use lcax_models::product::{ImpactDataSource, Product};
+use lcax_models::product::{ImpactDataSource, Product, ProductSource};
 use lcax_models::project::{Location, Project as LCAxProject, SoftwareInfo};
 use lcax_models::shared::Unit;
 use lcax_models::techflow::TechFlow;
-use parquet::record::{Row, RowAccessor};
-use std::collections::HashMap;
-use uuid;
 
 #[derive(Default, FieldAccess)]
 pub struct SLiCEElement {
@@ -184,22 +186,34 @@ pub fn add_slice_element(project: &mut LCAxProject, element: &SLiCEElement) {
     if !project.assemblies.contains_key(&assembly_uuid) {
         let mut assembly = assembly_from_slice(assembly_uuid.as_str(), element);
         let product = product_from_slice(product_uuid.as_str(), element);
-        assembly.products.insert(product_uuid.clone(), product);
-        project.assemblies.insert(assembly_uuid.clone(), assembly);
+        assembly
+            .products
+            .insert(product_uuid.clone(), ProductSource::Product(product));
+        project
+            .assemblies
+            .insert(assembly_uuid.clone(), AssemblySource::Assembly(assembly));
     } else {
-        let assembly = project.assemblies.get_mut(&assembly_uuid).unwrap();
-        if !assembly.products.contains_key(&product_uuid) {
-            let product = product_from_slice(product_uuid.as_str(), element);
-            assembly.products.insert(product_uuid.clone(), product);
-        } else {
-            let product = assembly.products.get_mut(&product_uuid).unwrap();
-            match product.impact_data {
-                ImpactDataSource::TechFlow(ref mut tech_flow) => {
-                    add_impact_data(tech_flow, element);
+        match project.assemblies.get_mut(&assembly_uuid).unwrap() {
+            AssemblySource::Assembly(ref mut assembly) => {
+                if !assembly.products.contains_key(&product_uuid) {
+                    let product = product_from_slice(product_uuid.as_str(), element);
+                    assembly
+                        .products
+                        .insert(product_uuid.clone(), ProductSource::Product(product));
+                } else {
+                    match assembly.products.get_mut(&product_uuid).unwrap() {
+                        ProductSource::Product(ref mut product) => match product.impact_data {
+                            ImpactDataSource::TechFlow(ref mut tech_flow) => {
+                                add_impact_data(tech_flow, element);
+                            }
+                            _ => {}
+                        },
+                        _ => {}
+                    }
                 }
-                _ => {}
             }
-        }
+            _ => {}
+        };
     }
 }
 
@@ -216,7 +230,6 @@ fn assembly_from_slice(uid: &str, element: &SLiCEElement) -> Assembly {
         comment: None,
         quantity: 1.0,
         unit: Unit::KG,
-        category: None,
         classification: Some(vec![Classification {
             system: "SfB".to_string(),
             code: element.element_class_sfb.clone(),

@@ -6,8 +6,16 @@ use std::collections::HashMap;
 use tsify::Tsify;
 
 use crate::life_cycle_base::Results;
-use crate::product::Product;
-use crate::shared::Unit;
+use crate::product::ProductSource;
+use crate::shared::{Reference, Unit};
+
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+pub enum AssemblySource {
+    Assembly(Assembly),
+    Reference(Reference),
+}
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -19,9 +27,8 @@ pub struct Assembly {
     pub comment: Option<String>,
     pub quantity: f64,
     pub unit: Unit,
-    pub category: Option<String>,
     pub classification: Option<Vec<Classification>>,
-    pub products: HashMap<String, Product>,
+    pub products: HashMap<String, ProductSource>,
     pub results: Results,
     pub meta_data: Option<HashMap<String, String>>,
 }

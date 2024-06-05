@@ -104,7 +104,7 @@ export interface Project {
     referenceStudyPeriod: number | null;
     lifeCycleStages: LifeCycleStage[];
     impactCategories: ImpactCategoryKey[];
-    assemblies: Record<string, Assembly>;
+    assemblies: Record<string, AssemblySource>;
     results: Results;
     projectInfo: ProjectInfo | null;
     projectPhase: ProjectPhase;
@@ -145,11 +145,12 @@ export interface ExternalImpactData {
     version: string | null;
 }
 
-export type ImpactDataSource = { EPD: EPD } | { techFlow: TechFlow } | { externalImpactData: ExternalImpactData } | { internalImpactData: InternalImpactData };
+export type ImpactDataSource = { EPD: EPD } | { techFlow: TechFlow } | { reference: Reference };
 
 export interface Transport {
     id: string;
     name: string;
+    impactCategories: ImpactCategoryKey[];
     distance: number;
     distanceUnit: Unit;
     transportEpd: ImpactDataSource;
@@ -163,14 +164,22 @@ export interface Product {
     impactData: ImpactDataSource;
     quantity: number;
     unit: Unit;
-    transport: Transport | null;
+    transport: Transport[] | null;
     results: Results;
     metaData: Record<string, string> | null;
 }
 
-export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+export type ProductSource = { product: Product } | { reference: Reference };
 
-export type LifeCycleStage = "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "c1" | "c2" | "c3" | "c4" | "d";
+export type ReferenceType = "internal" | "external";
+
+export interface Reference {
+    type: ReferenceType;
+    path: string;
+    format: string | null;
+    version: string | null;
+    overrides: Record<string, string> | null;
+}
 
 export interface Source {
     name: string;
@@ -184,6 +193,10 @@ export interface Conversion {
 }
 
 export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "l" | "m2r1" | "km" | "tones_km" | "unknown";
+
+export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+
+export type LifeCycleStage = "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "c1" | "c2" | "c3" | "c4" | "d";
 
 export interface TechFlow {
     id: string;
@@ -211,10 +224,11 @@ export interface Assembly {
     comment: string | null;
     quantity: number;
     unit: Unit;
-    category: string | null;
     classification: Classification[] | null;
-    products: Record<string, Product>;
+    products: Record<string, ProductSource>;
     results: Results;
     metaData: Record<string, string> | null;
 }
+
+export type AssemblySource = { assembly: Assembly } | { reference: Reference };
 

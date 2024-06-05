@@ -61,7 +61,7 @@ impl EPD {
             standard: Standard::UNKNOWN,
             comment: None,
             location: Country::UNKNOWN,
-            subtype: SubType::Generic,
+            subtype: SubType::GENERIC,
             conversions: None,
             impacts: Default::default(),
             meta_data: None,
@@ -94,21 +94,21 @@ impl From<&String> for Standard {
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum SubType {
-    Generic,
-    Specific,
-    Industry,
-    Representative,
+    GENERIC,
+    SPECIFIC,
+    INDUSTRY,
+    REPRESENTATIVE,
 }
 
 impl From<&Option<String>> for SubType {
     fn from(value: &Option<String>) -> Self {
         match value {
             Some(_value) if _value.to_lowercase().contains("representative") => {
-                SubType::Representative
+                SubType::REPRESENTATIVE
             }
-            Some(_value) if _value.to_lowercase().contains("specific") => SubType::Specific,
-            Some(_value) if _value.to_lowercase().contains("industry") => SubType::Industry,
-            _ => SubType::Generic,
+            Some(_value) if _value.to_lowercase().contains("specific") => SubType::SPECIFIC,
+            Some(_value) if _value.to_lowercase().contains("industry") => SubType::INDUSTRY,
+            _ => SubType::GENERIC,
         }
     }
 }
