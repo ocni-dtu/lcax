@@ -29,7 +29,7 @@ pub struct Product {
     pub impact_data: ImpactDataSource,
     pub quantity: f64,
     pub unit: Unit,
-    pub transport: Option<Transport>,
+    pub transport: Option<Vec<Transport>>,
     pub results: Results,
     pub meta_data: Option<HashMap<String, String>>,
 }
@@ -40,6 +40,7 @@ pub struct Product {
 pub struct Transport {
     pub id: String,
     pub name: String,
+    pub impact_categories: Vec<ImpactCategoryKey>,
     pub distance: f64,
     pub distance_unit: Unit,
     pub transport_epd: ImpactDataSource,
