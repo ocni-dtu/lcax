@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
-use crate::assembly::Assembly;
+use crate::assembly::AssemblySource;
 use crate::life_cycle_base::{ImpactCategoryKey, LifeCycleStage, Results};
 use crate::shared::Unit;
 
@@ -30,7 +30,7 @@ pub struct Project {
     pub reference_study_period: Option<u8>,
     pub life_cycle_stages: Vec<LifeCycleStage>,
     pub impact_categories: Vec<ImpactCategoryKey>,
-    pub assemblies: HashMap<String, Assembly>,
+    pub assemblies: HashMap<String, AssemblySource>,
     pub results: Results,
     pub project_info: Option<ProjectInfo>,
     pub project_phase: ProjectPhase,

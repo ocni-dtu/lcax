@@ -17,7 +17,7 @@
     "assemblies": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/Assembly"
+        "$ref": "#/definitions/AssemblySource"
       }
     },
     "classificationSystem": {
@@ -155,12 +155,6 @@
         "unit"
       ],
       "properties": {
-        "category": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
         "classification": {
           "type": [
             "array",
@@ -200,7 +194,7 @@
         "products": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/Product"
+            "$ref": "#/definitions/ProductSource"
           }
         },
         "quantity": {
@@ -227,6 +221,34 @@
           "$ref": "#/definitions/Unit"
         }
       }
+    },
+    "AssemblySource": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "assembly"
+          ],
+          "properties": {
+            "assembly": {
+              "$ref": "#/definitions/Assembly"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "reference"
+          ],
+          "properties": {
+            "reference": {
+              "$ref": "#/definitions/Reference"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
     },
     "BuildingInfo": {
       "type": "object",
@@ -868,27 +890,6 @@
         }
       }
     },
-    "ExternalImpactData": {
-      "type": "object",
-      "required": [
-        "format",
-        "url"
-      ],
-      "properties": {
-        "format": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        },
-        "version": {
-          "type": [
-            "string",
-            "null"
-          ]
-        }
-      }
-    },
     "GeneralEnergyClass": {
       "type": "string",
       "enum": [
@@ -970,39 +971,16 @@
         {
           "type": "object",
           "required": [
-            "externalImpactData"
+            "reference"
           ],
           "properties": {
-            "externalImpactData": {
-              "$ref": "#/definitions/ExternalImpactData"
-            }
-          },
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "required": [
-            "internalImpactData"
-          ],
-          "properties": {
-            "internalImpactData": {
-              "$ref": "#/definitions/InternalImpactData"
+            "reference": {
+              "$ref": "#/definitions/Reference"
             }
           },
           "additionalProperties": false
         }
       ]
-    },
-    "InternalImpactData": {
-      "type": "object",
-      "required": [
-        "path"
-      ],
-      "properties": {
-        "path": {
-          "type": "string"
-        }
-      }
     },
     "LifeCycleStage": {
       "type": "string",
@@ -1108,19 +1086,46 @@
           }
         },
         "transport": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Transport"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Transport"
+          }
         },
         "unit": {
           "$ref": "#/definitions/Unit"
         }
       }
+    },
+    "ProductSource": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "product"
+          ],
+          "properties": {
+            "product": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "reference"
+          ],
+          "properties": {
+            "reference": {
+              "$ref": "#/definitions/Reference"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
     },
     "ProjectInfo": {
       "oneOf": [
@@ -1160,6 +1165,49 @@
         "ongoing",
         "built",
         "other"
+      ]
+    },
+    "Reference": {
+      "type": "object",
+      "required": [
+        "path",
+        "type"
+      ],
+      "properties": {
+        "format": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "overrides": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "path": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/ReferenceType"
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "ReferenceType": {
+      "type": "string",
+      "enum": [
+        "internal",
+        "external"
       ]
     },
     "RoofType": {
@@ -1310,6 +1358,7 @@
         "distance",
         "distanceUnit",
         "id",
+        "impactCategories",
         "name",
         "transportEpd"
       ],
@@ -1323,6 +1372,12 @@
         },
         "id": {
           "type": "string"
+        },
+        "impactCategories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImpactCategoryKey"
+          }
         },
         "name": {
           "type": "string"

@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/ocni-dtu/lcax/compare/v2.1.1...v2.1.2) (2024-05-09)
+
+
+### Bug Fixes
+
+* another naming correction ([d7f9beb](https://github.com/ocni-dtu/lcax/commit/d7f9beb578576562ac5bac84bcc50bcfc84bd25c))
+
 ## [2.1.1](https://github.com/ocni-dtu/lcax/compare/v2.1.0...v2.1.1) (2024-05-09)
 
 
