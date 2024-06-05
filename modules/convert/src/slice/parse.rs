@@ -164,6 +164,8 @@ fn get_projects_by_archetypes(
             Err(_) => println!("Couldn't get archetype. Skipping row"),
         }
     }
+
+    projects.retain(|_, project| project.id.is_empty() != true);
     projects.values().cloned().collect()
 }
 

@@ -4,7 +4,7 @@ import {readFileSync} from "node:fs";
 
 describe("convertSLiCE", () => {
     it("should convert a SLiCE file", async () => {
-        const sliceFile = new Uint8Array(readFileSync(`${__dirname}/datafixtures/results_slice_WLCR.parquet`))
+        const sliceFile = new Uint8Array(readFileSync(`${__dirname}/datafixtures/slice.parquet`))
         const project = convertSLiCE(sliceFile)
 
         expect(project).toBeTruthy()
