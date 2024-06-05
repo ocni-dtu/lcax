@@ -6,7 +6,7 @@ use std::collections::HashMap;
 use tsify::Tsify;
 
 use crate::epd::EPD;
-use crate::life_cycle_base::{ImpactCategoryKey, Results};
+use crate::life_cycle_base::{ImpactCategoryKey, LifeCycleStage, Results};
 use crate::shared::{Reference, ReferenceType, Unit};
 use crate::techflow::TechFlow;
 
@@ -40,10 +40,10 @@ pub struct Product {
 pub struct Transport {
     pub id: String,
     pub name: String,
-    pub impact_categories: Vec<ImpactCategoryKey>,
+    pub life_cycle_stages: Vec<LifeCycleStage>,
     pub distance: f64,
     pub distance_unit: Unit,
-    pub transport_epd: ImpactDataSource,
+    pub impact_data: ImpactDataSource,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
