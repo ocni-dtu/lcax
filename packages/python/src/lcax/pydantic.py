@@ -623,11 +623,11 @@ class Transport(BaseModel):
     distance: float
     distance_unit: Unit = Field(..., alias='distanceUnit')
     id: str
-    impact_categories: List[ImpactCategoryKey] = Field(..., alias='impactCategories')
-    name: str
-    transport_epd: Union[ImpactDataSource1, ImpactDataSource2, ImpactDataSource3] = (
-        Field(..., alias='transportEpd')
+    impact_data: Union[ImpactDataSource1, ImpactDataSource2, ImpactDataSource3] = Field(
+        ..., alias='impactData'
     )
+    life_cycle_stages: List[LifeCycleStage] = Field(..., alias='lifeCycleStages')
+    name: str
 
 
 class Product(BaseModel):

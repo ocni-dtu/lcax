@@ -1,3 +1,9 @@
+## [2.2.1](https://github.com/ocni-dtu/lcax/compare/v2.2.0...v2.2.1) (2024-06-05)
+
+### Bug Fixes
+
+* naming fix to Transport ([fd17d3d](https://github.com/ocni-dtu/lcax/commit/fd17d3daf852f3e073bb327528a5f473e630f673))
+
 ## [2.2.0](https://github.com/ocni-dtu/lcax/compare/v2.1.2...v2.2.0) (2024-06-05)
 
 ### Features
