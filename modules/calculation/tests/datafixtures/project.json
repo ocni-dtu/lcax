@@ -1,0 +1,371 @@
+{
+  "id": "e9e6e798-390e-4419-a1fa-3b46a8ba5b8d",
+  "name": "Enfamiliehus, eksempelbygning",
+  "description": "",
+  "comment": null,
+  "location": {
+    "country": "dnk",
+    "city": "",
+    "address": "Miljøvej 99, 9999 Fremtidsbyen"
+  },
+  "owner": "BUILD",
+  "formatVersion": "2.2.1",
+  "lciaMethod": null,
+  "classificationSystem": "LCAByg",
+  "referenceStudyPeriod": 50,
+  "lifeCycleStages": [
+    "a1a3",
+    "a4"
+  ],
+  "impactCategories": [
+    "odp",
+    "gwp"
+  ],
+  "assemblies": {
+    "94e59b91-bbe0-413f-922a-a4fd2c187b6d": {
+      "actual": {
+        "id": "94e59b91-bbe0-413f-922a-a4fd2c187b6d",
+        "name": "Ground floor slab",
+        "description": "",
+        "comment": "",
+        "quantity": 183.61,
+        "unit": "m",
+        "classification": [
+          {
+            "system": "LCAByg",
+            "code": "2ffe16fd-f0c9-4d31-a31a-f96d58d3df95",
+            "name": "Terrændæk"
+          }
+        ],
+        "products": {
+          "0bc5dc7f-5cc1-44ed-8c9a-f09d27e61ea5": {
+            "actual": {
+              "id": "0bc5dc7f-5cc1-44ed-8c9a-f09d27e61ea5",
+              "name": "concrete slab",
+              "description": null,
+              "quantity": 5.0,
+              "unit": "m",
+              "transport": null,
+              "results": null,
+              "metaData": null,
+              "referenceServiceLife": 20,
+              "impactData": {
+                "actual": {
+                  "EPD": {
+                    "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
+                    "name": "Test fase (A1-A3)",
+                    "declaredUnit": "m3",
+                    "version": "00.02.000",
+                    "publishedDate": "1970-01-01",
+                    "validUntil": "1970-01-01",
+                    "formatVersion": "2.2.1",
+                    "source": {
+                      "name": "Ökobau.dat",
+                      "url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en"
+                    },
+                    "referenceServiceLife": 20,
+                    "standard": "en15804a1",
+                    "comment": "",
+                    "location": "dnk",
+                    "subtype": "specific",
+                    "conversions": [
+                      {
+                        "value": 7850.0,
+                        "to": "kg",
+                        "metaData": ""
+                      }
+                    ],
+                    "impacts": {
+                      "ep": {
+                        "a1a3": 0.1557,
+                        "a4": 1.1557
+                      },
+                      "pert": {
+                        "a1a3": 512.5,
+                        "a4": 612.5
+                      },
+                      "penrt": {
+                        "a4": 9067.0,
+                        "a1a3": 9067.0
+                      },
+                      "odp": {
+                        "a1a3": 2.148e-12,
+                        "a4": 2.148e-12
+                      },
+                      "adpf": {
+                        "a1a3": 8430.0,
+                        "a4": 8430.0
+                      },
+                      "gwp": {
+                        "a1a3": 818.0,
+                        "a4": 918.0
+                      },
+                      "pocp": {
+                        "a4": 0.1334,
+                        "a1a3": 0.1334
+                      },
+                      "adpe": {
+                        "a4": 0.00008897,
+                        "a1a3": 0.00008897
+                      },
+                      "ap": {
+                        "a4": 2.65,
+                        "a1a3": 1.65
+                      }
+                    },
+                    "metaData": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "metaData": null
+      }
+    },
+    "37a8987d-7344-46b0-bc40-e314d5d44a7a": {
+      "actual": {
+        "id": "37a8987d-7344-46b0-bc40-e314d5d44a7a",
+        "name": "Internal walls",
+        "description": "",
+        "comment": "",
+        "quantity": 121.2,
+        "unit": "m",
+        "classification": [
+          {
+            "system": "LCAByg",
+            "code": "59ab59a5-2482-45ae-85f1-d0e39e640712",
+            "name": "Bærende indervægge"
+          }
+        ],
+        "products": {
+          "2fc62571-e667-48c9-9f0c-a28bb411cee3": {
+            "actual": {
+              "id": "2fc62571-e667-48c9-9f0c-a28bb411cee3",
+              "name": "metal stud wall",
+              "description": null,
+              "quantity": 5.0,
+              "unit": "m",
+              "transport": null,
+              "results": null,
+              "metaData": null,
+              "referenceServiceLife": 20,
+              "impactData": {
+                "actual": {
+                  "EPD": {
+                    "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
+                    "name": "Test fase (A1-A3)",
+                    "declaredUnit": "m3",
+                    "version": "00.02.000",
+                    "publishedDate": "1970-01-01",
+                    "validUntil": "1970-01-01",
+                    "formatVersion": "2.2.1",
+                    "source": {
+                      "name": "Ökobau.dat",
+                      "url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en"
+                    },
+                    "referenceServiceLife": 20,
+                    "standard": "en15804a1",
+                    "comment": "",
+                    "location": "dnk",
+                    "subtype": "specific",
+                    "conversions": [
+                      {
+                        "value": 7850.0,
+                        "to": "kg",
+                        "metaData": ""
+                      }
+                    ],
+                    "impacts": {
+                      "ep": {
+                        "a1a3": 0.1557,
+                        "a4": 1.1557
+                      },
+                      "pert": {
+                        "a1a3": 512.5,
+                        "a4": 612.5
+                      },
+                      "penrt": {
+                        "a4": 9067.0,
+                        "a1a3": 9067.0
+                      },
+                      "odp": {
+                        "a1a3": 2.148e-12,
+                        "a4": 2.148e-12
+                      },
+                      "adpf": {
+                        "a1a3": 8430.0,
+                        "a4": 8430.0
+                      },
+                      "gwp": {
+                        "a1a3": 818.0,
+                        "a4": 918.0
+                      },
+                      "pocp": {
+                        "a4": 0.1334,
+                        "a1a3": 0.1334
+                      },
+                      "adpe": {
+                        "a4": 0.00008897,
+                        "a1a3": 0.00008897
+                      },
+                      "ap": {
+                        "a4": 2.65,
+                        "a1a3": 1.65
+                      }
+                    },
+                    "metaData": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "metaData": null
+      }
+    },
+    "7c301d2c-a2bc-4eff-a08e-b5c020086ae8": {
+      "actual": {
+        "id": "7c301d2c-a2bc-4eff-a08e-b5c020086ae8",
+        "name": "Water and piping",
+        "description": "",
+        "comment": "",
+        "quantity": 15.0,
+        "unit": "m",
+        "classification": [
+          {
+            "system": "LCAByg",
+            "code": "16528722-ecc6-4a69-a269-35ba3e1205b2",
+            "name": "Vandrør"
+          }
+        ],
+        "products": {
+          "7a81efbd-1119-4d64-8226-8438626a02bc": {
+            "actual": {
+              "id": "7a81efbd-1119-4d64-8226-8438626a02bc",
+              "name": "Water pipe, copper",
+              "description": null,
+              "quantity": 5.0,
+              "unit": "m",
+              "transport": null,
+              "results": null,
+              "metaData": null,
+              "referenceServiceLife": 20,
+              "impactData": {
+                "actual": {
+                  "EPD": {
+                    "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
+                    "name": "Test fase (A1-A3)",
+                    "declaredUnit": "m3",
+                    "version": "00.02.000",
+                    "publishedDate": "1970-01-01",
+                    "validUntil": "1970-01-01",
+                    "formatVersion": "2.2.1",
+                    "source": {
+                      "name": "Ökobau.dat",
+                      "url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en"
+                    },
+                    "referenceServiceLife": 20,
+                    "standard": "en15804a1",
+                    "comment": "",
+                    "location": "dnk",
+                    "subtype": "specific",
+                    "conversions": [
+                      {
+                        "value": 7850.0,
+                        "to": "kg",
+                        "metaData": ""
+                      }
+                    ],
+                    "impacts": {
+                      "ep": {
+                        "a1a3": 0.1557,
+                        "a4": 1.1557
+                      },
+                      "pert": {
+                        "a1a3": 512.5,
+                        "a4": 612.5
+                      },
+                      "penrt": {
+                        "a4": 9067.0,
+                        "a1a3": 9067.0
+                      },
+                      "odp": {
+                        "a1a3": 2.148e-12,
+                        "a4": 2.148e-12
+                      },
+                      "adpf": {
+                        "a1a3": 8430.0,
+                        "a4": 8430.0
+                      },
+                      "gwp": {
+                        "a1a3": 818.0,
+                        "a4": 918.0
+                      },
+                      "pocp": {
+                        "a4": 0.1334,
+                        "a1a3": 0.1334
+                      },
+                      "adpe": {
+                        "a4": 0.00008897,
+                        "a1a3": 0.00008897
+                      },
+                      "ap": {
+                        "a4": 2.65,
+                        "a1a3": 1.65
+                      }
+                    },
+                    "metaData": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "metaData": null
+      }
+    }
+  },
+  "projectInfo": {
+    "buildingInfo": {
+      "buildingType": "new",
+      "buildingTypology": "other",
+      "certifications": null,
+      "buildingMass": null,
+      "buildingHeight": null,
+      "grossFloorArea": {
+        "value": 184.0,
+        "unit": "m2",
+        "definition": ""
+      },
+      "heatedFloorArea": {
+        "value": 184.0,
+        "unit": "m2",
+        "definition": ""
+      },
+      "buildingFootprint": null,
+      "floorsAboveGround": 1,
+      "floorsBelowGround": 0,
+      "roofType": "other",
+      "frameType": "",
+      "buildingCompletionYear": 0,
+      "buildingPermitYear": null,
+      "energyDemandHeating": 0.0,
+      "energySupplyHeating": 0.0,
+      "energyDemandElectricity": 0.0,
+      "energySupplyElectricity": 0.0,
+      "exportedElectricity": 0.0,
+      "generalEnergyClass": "advanced",
+      "localEnergyClass": null,
+      "buildingUsers": null,
+      "buildingModelScope": null
+    }
+  },
+  "projectPhase": "other",
+  "softwareInfo": {
+    "goalAndScopeDefinition": null,
+    "lcaSoftware": "LCAByg",
+    "calculationType": "BR2018"
+  },
+  "metaData": null
+}

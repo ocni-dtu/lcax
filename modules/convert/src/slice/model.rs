@@ -7,11 +7,11 @@ use uuid;
 
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
-use lcax_models::assembly::{Assembly, AssemblySource, Classification};
+use lcax_models::assembly::{Assembly, Classification};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
-use lcax_models::product::{ImpactDataSource, Product, ProductSource};
+use lcax_models::product::{ImpactDataSource, Product};
 use lcax_models::project::{Location, Project as LCAxProject, SoftwareInfo};
-use lcax_models::shared::Unit;
+use lcax_models::shared::{ReferenceSource, Unit};
 use lcax_models::techflow::TechFlow;
 
 #[derive(Default, FieldAccess)]
@@ -188,22 +188,22 @@ pub fn add_slice_element(project: &mut LCAxProject, element: &SLiCEElement) {
         let product = product_from_slice(product_uuid.as_str(), element);
         assembly
             .products
-            .insert(product_uuid.clone(), ProductSource::Product(product));
+            .insert(product_uuid.clone(), ReferenceSource::Actual(product));
         project
             .assemblies
-            .insert(assembly_uuid.clone(), AssemblySource::Assembly(assembly));
+            .insert(assembly_uuid.clone(), ReferenceSource::Actual(assembly));
     } else {
         match project.assemblies.get_mut(&assembly_uuid).unwrap() {
-            AssemblySource::Assembly(ref mut assembly) => {
+            ReferenceSource::Actual(ref mut assembly) => {
                 if !assembly.products.contains_key(&product_uuid) {
                     let product = product_from_slice(product_uuid.as_str(), element);
                     assembly
                         .products
-                        .insert(product_uuid.clone(), ProductSource::Product(product));
+                        .insert(product_uuid.clone(), ReferenceSource::Actual(product));
                 } else {
                     match assembly.products.get_mut(&product_uuid).unwrap() {
-                        ProductSource::Product(ref mut product) => match product.impact_data {
-                            ImpactDataSource::TechFlow(ref mut tech_flow) => {
+                        ReferenceSource::Actual(ref mut product) => match product.impact_data {
+                            ReferenceSource::Actual(ImpactDataSource::TechFlow(ref mut tech_flow)) => {
                                 add_impact_data(tech_flow, element);
                             }
                             _ => {}
@@ -247,7 +247,7 @@ fn product_from_slice(uid: &str, element: &SLiCEElement) -> Product {
         name: element.worksection_class_sfb.clone(),
         description: Some("".to_string()),
         reference_service_life: 50,
-        impact_data: ImpactDataSource::TechFlow(create_tech_flow(element)),
+        impact_data: ReferenceSource::Actual(ImpactDataSource::TechFlow(create_tech_flow(element))),
         quantity: element.amount_material_kg_per_building,
         unit: Unit::KG,
         transport: None,

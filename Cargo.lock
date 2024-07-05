@@ -383,6 +383,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "lcax_calculation"
+version = "2.2.1"
+dependencies = [
+ "lcax_core",
+ "lcax_models",
+ "serde_json",
+]
+
+[[package]]
 name = "lcax_convert"
 version = "2.2.1"
 dependencies = [

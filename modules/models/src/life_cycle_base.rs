@@ -176,4 +176,4 @@ impl fmt::Display for ImpactCategoryKey {
 
 pub type ImpactCategory = HashMap<LifeCycleStage, Option<f64>>;
 
-pub type Results = Option<HashMap<ImpactCategoryKey, ImpactCategory>>;
+pub type Results = HashMap<ImpactCategoryKey, ImpactCategory>;

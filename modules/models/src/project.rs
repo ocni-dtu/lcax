@@ -6,9 +6,9 @@ use serde::{Deserialize, Serialize};
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
-use crate::assembly::AssemblySource;
+use crate::assembly::Assembly;
 use crate::life_cycle_base::{ImpactCategoryKey, LifeCycleStage, Results};
-use crate::shared::Unit;
+use crate::shared::{ReferenceSource, Unit};
 
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -30,8 +30,8 @@ pub struct Project {
     pub reference_study_period: Option<u8>,
     pub life_cycle_stages: Vec<LifeCycleStage>,
     pub impact_categories: Vec<ImpactCategoryKey>,
-    pub assemblies: HashMap<String, AssemblySource>,
-    pub results: Results,
+    pub assemblies: HashMap<String, ReferenceSource<Assembly>>,
+    pub results: Option<Results>,
     pub project_info: Option<ProjectInfo>,
     pub project_phase: ProjectPhase,
     pub software_info: SoftwareInfo,
@@ -58,7 +58,7 @@ impl Project {
             life_cycle_stages: vec![],
             impact_categories: vec![],
             assemblies: HashMap::new(),
-            results: Results::default(),
+            results: None,
             project_info: None,
             project_phase: ProjectPhase::DESIGN,
             software_info: SoftwareInfo {

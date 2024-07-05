@@ -61,20 +61,18 @@ pub struct Source {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub struct Reference {
-    #[serde(rename = "type")]
-    pub _type: ReferenceType,
-    pub path: String,
-    pub format: Option<String>,
-    pub version: Option<String>,
-    pub overrides: Option<HashMap<String, String>>,
+pub enum ReferenceSource<T> {
+    Actual(T),
+    Reference(Reference),
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
-#[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub enum ReferenceType {
-    INTERNAL,
-    EXTERNAL,
+pub struct Reference {
+    pub uri: String,
+    pub format: Option<String>,
+    pub version: Option<String>,
+    pub overrides: Option<HashMap<String, String>>,
 }
