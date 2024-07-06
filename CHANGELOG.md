@@ -1,3 +1,9 @@
+## [2.2.3](https://github.com/ocni-dtu/lcax/compare/v2.2.2...v2.2.3) (2024-07-06)
+
+### Bug Fixes
+
+* explicitly added rust target ([87c88b9](https://github.com/ocni-dtu/lcax/commit/87c88b901c2b641dba4d4a48deaa6d148b738f6b))
+
 ## [2.2.2](https://github.com/ocni-dtu/lcax/compare/v2.2.1...v2.2.2) (2024-07-06)
 
 ### Bug Fixes
