@@ -1,3 +1,9 @@
+## [2.2.2](https://github.com/ocni-dtu/lcax/compare/v2.2.1...v2.2.2) (2024-07-06)
+
+### Bug Fixes
+
+* adding more compile targets for Python ([371a56d](https://github.com/ocni-dtu/lcax/commit/371a56d839b668df439bb1a9b390e9dd67c2f32d))
+
 ## [2.2.1](https://github.com/ocni-dtu/lcax/compare/v2.2.0...v2.2.1) (2024-06-05)
 
 ### Bug Fixes
