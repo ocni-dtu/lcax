@@ -42,26 +42,15 @@ jobs:
           name: pydantic-schema
           path: packages/python/src/lcax
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: "pip"
-
       - name: Setup Rust
         run: rustup target add ${{ matrix.os.target }}
 
-      - name: Install Dependencies
-        run: |
-          pip install maturin virtualenv
-          virtualenv venv
-          source venv/bin/activate
-          maturin develop --target ${{ matrix.os.target }}
-
-      - name: Build Wheel
-        run: |
-          source venv/bin/activate
-          maturin build --target ${{ matrix.os.target }} --out dist
+      - uses: PyO3/maturin-action@v1
+        name: Build Python Wheel
+        with:
+          target: ${{ matrix.os.target }}
+          command: build
+          args: --release -i python${{ matrix.python-version }} --out dist
 
       - name: Upload Wheel
         uses: actions/upload-artifact@v4
