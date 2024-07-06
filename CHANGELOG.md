@@ -1,3 +1,9 @@
+## [2.2.4](https://github.com/ocni-dtu/lcax/compare/v2.2.3...v2.2.4) (2024-07-06)
+
+### Bug Fixes
+
+* fixing pypi release ([df5a428](https://github.com/ocni-dtu/lcax/commit/df5a428c58a7ed3f8f18fe58a0366b7b2ddb0a98))
+
 ## [2.2.3](https://github.com/ocni-dtu/lcax/compare/v2.2.2...v2.2.3) (2024-07-06)
 
 ### Bug Fixes
