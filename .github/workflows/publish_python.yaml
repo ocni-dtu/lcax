@@ -55,7 +55,7 @@ jobs:
       - name: Upload Wheel
         uses: actions/upload-artifact@v4
         with:
-          name: lcax-${{ matrix.os.name }}-${{ matrix.python-version }}
+          name: lcax-${{ matrix.os.name }}-${{ matrix.python-version }}.whl
           path: dist
 
   publishPython:
@@ -68,6 +68,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: dist
+          pattern: '*.whl'
+          merge-multiple: true
 
       - name: Check Download
         run: ls -lah dist
