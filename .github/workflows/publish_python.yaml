@@ -13,7 +13,6 @@ on:
 
 jobs:
   buildPython:
-    if: ${{ inputs.release_version != ''}}
     runs-on: ${{ matrix.os.runner }}
     strategy:
       matrix:
@@ -43,11 +42,14 @@ jobs:
           name: pydantic-schema
           path: packages/python/src/lcax
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
+
+      - name: Setup Rust
+        run: rustup target add ${{ matrix.os.target }}
 
       - name: Install Dependencies
         run: |
