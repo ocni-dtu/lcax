@@ -75,7 +75,7 @@ export interface BuildingInfo {
     buildingModelScope: BuildingModelScope | null;
 }
 
-export type ProjectInfo = { buildingInfo: BuildingInfo } | { infrastructureInfo: Record<string, string> };
+export type ProjectInfo = ({ type: "buildingInfo" } & BuildingInfo) | ({ type: "infrastructureInfo" } & Record<string, string>);
 
 export interface Location {
     country: Country;
@@ -135,41 +135,9 @@ export interface EPD {
     metaData: Record<string, string> | null;
 }
 
-export interface InternalImpactData {
-    path: string;
-}
+export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
 
-export interface ExternalImpactData {
-    url: string;
-    format: string;
-    version: string | null;
-}
-
-export type ImpactDataSource = { EPD: EPD } | { techFlow: TechFlow } | { reference: Reference };
-
-export interface Transport {
-    id: string;
-    name: string;
-    impactCategories: ImpactCategoryKey[];
-    distance: number;
-    distanceUnit: Unit;
-    transportEpd: ImpactDataSource;
-}
-
-export interface Product {
-    id: string;
-    name: string;
-    description: string | null;
-    referenceServiceLife: number;
-    impactData: ImpactDataSource;
-    quantity: number;
-    unit: Unit;
-    transport: Transport[] | null;
-    results: Results;
-    metaData: Record<string, string> | null;
-}
-
-export type ProductSource = { product: Product } | { reference: Reference };
+export type LifeCycleStage = "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "c1" | "c2" | "c3" | "c4" | "d";
 
 export type ReferenceType = "internal" | "external";
 
@@ -192,11 +160,33 @@ export interface Conversion {
     metaData: string;
 }
 
-export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "l" | "m2r1" | "km" | "tones_km" | "unknown";
+export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
 
-export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+export type ImpactDataSource = ({ type: "EPD" } & EPD) | ({ type: "techFlow" } & TechFlow) | ({ type: "reference" } & Reference);
 
-export type LifeCycleStage = "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "c1" | "c2" | "c3" | "c4" | "d";
+export interface Transport {
+    id: string;
+    name: string;
+    lifeCycleStages: LifeCycleStage[];
+    distance: number;
+    distanceUnit: Unit;
+    impactData: ImpactDataSource;
+}
+
+export interface Product {
+    id: string;
+    name: string;
+    description: string | null;
+    referenceServiceLife: number;
+    impactData: ImpactDataSource;
+    quantity: number;
+    unit: Unit;
+    transport: Transport[] | null;
+    results: Results;
+    metaData: Record<string, string> | null;
+}
+
+export type ProductSource = ({ type: "product" } & Product) | ({ type: "reference" } & Reference);
 
 export interface TechFlow {
     id: string;
@@ -230,5 +220,5 @@ export interface Assembly {
     metaData: Record<string, string> | null;
 }
 
-export type AssemblySource = { assembly: Assembly } | { reference: Reference };
+export type AssemblySource = ({ type: "assembly" } & Assembly) | ({ type: "reference" } & Reference);
 

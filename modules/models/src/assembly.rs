@@ -11,6 +11,7 @@ use crate::shared::{Reference, Unit};
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
+#[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum AssemblySource {
     Assembly(Assembly),

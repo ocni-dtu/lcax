@@ -6,12 +6,13 @@ use std::collections::HashMap;
 use tsify::Tsify;
 
 use crate::epd::EPD;
-use crate::life_cycle_base::{ImpactCategoryKey, LifeCycleStage, Results};
+use crate::life_cycle_base::{LifeCycleStage, Results};
 use crate::shared::{Reference, ReferenceType, Unit};
 use crate::techflow::TechFlow;
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
+#[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ProductSource {
     Product(Product),
@@ -48,6 +49,7 @@ pub struct Transport {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
+#[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ImpactDataSource {
     #[serde(rename = "EPD")]
@@ -66,18 +68,4 @@ impl Default for ImpactDataSource {
             overrides: None,
         })
     }
-}
-
-#[derive(Deserialize, Serialize, JsonSchema, Clone)]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub struct ExternalImpactData {
-    pub url: String,
-    pub format: String,
-    pub version: Option<String>,
-}
-
-#[derive(Deserialize, Serialize, JsonSchema, Clone)]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub struct InternalImpactData {
-    pub path: String,
 }
