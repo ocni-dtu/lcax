@@ -21,6 +21,7 @@ pub enum Unit {
     KM,
     #[allow(non_camel_case_types)]
     TONES_KM,
+    KGM3,
     UNKNOWN,
 }
 
@@ -38,6 +39,7 @@ impl From<&String> for Unit {
             "kwh" => Unit::KWH,
             "m2r1" => Unit::M2R1,
             "tones*km" => Unit::TONES_KM,
+            "kgm3" => Unit::KGM3,
             _ => Unit::UNKNOWN,
         }
     }
