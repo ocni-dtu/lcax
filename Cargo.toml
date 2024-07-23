@@ -1,5 +1,5 @@
 [workspace]
-members = [
+members = [ "modules/calculation",
     "modules/convert",
     "modules/core",
     "modules/lcax",

@@ -1,8 +1,8 @@
-use schemars::JsonSchema;
-use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fmt;
 
+use schemars::JsonSchema;
+use serde::{Deserialize, Serialize};
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
@@ -176,4 +176,27 @@ impl fmt::Display for ImpactCategoryKey {
 
 pub type ImpactCategory = HashMap<LifeCycleStage, Option<f64>>;
 
-pub type Results = Option<HashMap<ImpactCategoryKey, ImpactCategory>>;
+pub type Results = HashMap<ImpactCategoryKey, ImpactCategory>;
+
+pub trait NewResults {
+    fn new_results(
+        impact_categories: &Vec<ImpactCategoryKey>,
+        life_cycle_stage: &Vec<LifeCycleStage>,
+    ) -> Self;
+}
+impl NewResults for Results {
+    fn new_results(
+        impact_categories: &Vec<ImpactCategoryKey>,
+        life_cycle_stage: &Vec<LifeCycleStage>,
+    ) -> Self {
+        let mut results = HashMap::new();
+        impact_categories.iter().for_each(|impact_category_key| {
+            let mut impact_category = HashMap::new();
+            life_cycle_stage.iter().for_each(|life_cycle_stage| {
+                impact_category.insert(life_cycle_stage.clone(), Some(0.0));
+            });
+            results.insert(impact_category_key.clone(), impact_category);
+        });
+        results
+    }
+}

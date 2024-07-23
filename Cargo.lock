@@ -383,12 +383,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "lcax_calculation"
+version = "2.2.4"
+dependencies = [
+ "lcax_core",
+ "lcax_models",
+ "serde_json",
+]
+
+[[package]]
 name = "lcax_convert"
 version = "2.2.4"
 dependencies = [
  "bytes",
  "chrono",
  "field_access",
+ "lcax_calculation",
  "lcax_core",
  "lcax_models",
  "parquet",

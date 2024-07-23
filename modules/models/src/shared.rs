@@ -21,6 +21,7 @@ pub enum Unit {
     KM,
     #[allow(non_camel_case_types)]
     TONES_KM,
+    KGM3,
     UNKNOWN,
 }
 
@@ -38,6 +39,7 @@ impl From<&String> for Unit {
             "kwh" => Unit::KWH,
             "m2r1" => Unit::M2R1,
             "tones*km" => Unit::TONES_KM,
+            "kgm3" => Unit::KGM3,
             _ => Unit::UNKNOWN,
         }
     }
@@ -61,20 +63,19 @@ pub struct Source {
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "camelCase")]
+#[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub struct Reference {
-    #[serde(rename = "type")]
-    pub _type: ReferenceType,
-    pub path: String,
-    pub format: Option<String>,
-    pub version: Option<String>,
-    pub overrides: Option<HashMap<String, String>>,
+pub enum ReferenceSource<T> {
+    Actual(T),
+    Reference(Reference),
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
-#[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub enum ReferenceType {
-    INTERNAL,
-    EXTERNAL,
+pub struct Reference {
+    pub uri: String,
+    pub format: Option<String>,
+    pub version: Option<String>,
+    pub overrides: Option<HashMap<String, String>>,
 }

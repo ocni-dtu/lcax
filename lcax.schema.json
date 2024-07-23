@@ -17,7 +17,7 @@
     "assemblies": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/AssemblySource"
+        "$ref": "#/definitions/ReferenceSource_for_Assembly"
       }
     },
     "classificationSystem": {
@@ -142,288 +142,6 @@
         "value": {
           "type": "number",
           "format": "double"
-        }
-      }
-    },
-    "Assembly": {
-      "type": "object",
-      "required": [
-        "id",
-        "name",
-        "products",
-        "quantity",
-        "unit"
-      ],
-      "properties": {
-        "classification": {
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "$ref": "#/definitions/Classification"
-          }
-        },
-        "comment": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "description": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "id": {
-          "type": "string"
-        },
-        "metaData": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "name": {
-          "type": "string"
-        },
-        "products": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/ProductSource"
-          }
-        },
-        "quantity": {
-          "type": "number",
-          "format": "double"
-        },
-        "results": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "additionalProperties": {
-            "type": "object",
-            "additionalProperties": {
-              "type": [
-                "number",
-                "null"
-              ],
-              "format": "double"
-            }
-          }
-        },
-        "unit": {
-          "$ref": "#/definitions/Unit"
-        }
-      }
-    },
-    "AssemblySource": {
-      "oneOf": [
-        {
-          "type": "object",
-          "required": [
-            "assembly"
-          ],
-          "properties": {
-            "assembly": {
-              "$ref": "#/definitions/Assembly"
-            }
-          },
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "required": [
-            "reference"
-          ],
-          "properties": {
-            "reference": {
-              "$ref": "#/definitions/Reference"
-            }
-          },
-          "additionalProperties": false
-        }
-      ]
-    },
-    "BuildingInfo": {
-      "type": "object",
-      "required": [
-        "buildingType",
-        "buildingTypology",
-        "floorsAboveGround",
-        "generalEnergyClass",
-        "roofType"
-      ],
-      "properties": {
-        "buildingCompletionYear": {
-          "type": [
-            "integer",
-            "null"
-          ],
-          "format": "uint64",
-          "minimum": 0.0
-        },
-        "buildingFootprint": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ValueUnit"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "buildingHeight": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ValueUnit"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "buildingMass": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ValueUnit"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "buildingModelScope": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/BuildingModelScope"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "buildingPermitYear": {
-          "type": [
-            "integer",
-            "null"
-          ],
-          "format": "uint64",
-          "minimum": 0.0
-        },
-        "buildingType": {
-          "$ref": "#/definitions/BuildingType"
-        },
-        "buildingTypology": {
-          "$ref": "#/definitions/BuildingTypology"
-        },
-        "buildingUsers": {
-          "type": [
-            "integer",
-            "null"
-          ],
-          "format": "uint64",
-          "minimum": 0.0
-        },
-        "certifications": {
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "type": "string"
-          }
-        },
-        "energyDemandElectricity": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "energyDemandHeating": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "energySupplyElectricity": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "energySupplyHeating": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "exportedElectricity": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
-        },
-        "floorsAboveGround": {
-          "type": "integer",
-          "format": "uint16",
-          "minimum": 0.0
-        },
-        "floorsBelowGround": {
-          "type": [
-            "integer",
-            "null"
-          ],
-          "format": "uint16",
-          "minimum": 0.0
-        },
-        "frameType": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "generalEnergyClass": {
-          "$ref": "#/definitions/GeneralEnergyClass"
-        },
-        "grossFloorArea": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/AreaType"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "heatedFloorArea": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/AreaType"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "localEnergyClass": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "roofType": {
-          "$ref": "#/definitions/RoofType"
         }
       }
     },
@@ -943,42 +661,12 @@
       ]
     },
     "ImpactDataSource": {
-      "oneOf": [
+      "anyOf": [
         {
-          "type": "object",
-          "required": [
-            "EPD"
-          ],
-          "properties": {
-            "EPD": {
-              "$ref": "#/definitions/EPD"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/EPD"
         },
         {
-          "type": "object",
-          "required": [
-            "techFlow"
-          ],
-          "properties": {
-            "techFlow": {
-              "$ref": "#/definitions/TechFlow"
-            }
-          },
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "required": [
-            "reference"
-          ],
-          "properties": {
-            "reference": {
-              "$ref": "#/definitions/Reference"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/TechFlow"
         }
       ]
     },
@@ -1025,136 +713,205 @@
         }
       }
     },
-    "Product": {
-      "type": "object",
-      "required": [
-        "id",
-        "impactData",
-        "name",
-        "quantity",
-        "referenceServiceLife",
-        "unit"
-      ],
-      "properties": {
-        "description": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "id": {
-          "type": "string"
-        },
-        "impactData": {
-          "$ref": "#/definitions/ImpactDataSource"
-        },
-        "metaData": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "name": {
-          "type": "string"
-        },
-        "quantity": {
-          "type": "number",
-          "format": "double"
-        },
-        "referenceServiceLife": {
-          "type": "integer",
-          "format": "uint32",
-          "minimum": 0.0
-        },
-        "results": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "additionalProperties": {
-            "type": "object",
-            "additionalProperties": {
-              "type": [
-                "number",
-                "null"
-              ],
-              "format": "double"
-            }
-          }
-        },
-        "transport": {
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "$ref": "#/definitions/Transport"
-          }
-        },
-        "unit": {
-          "$ref": "#/definitions/Unit"
-        }
-      }
-    },
-    "ProductSource": {
-      "oneOf": [
-        {
-          "type": "object",
-          "required": [
-            "product"
-          ],
-          "properties": {
-            "product": {
-              "$ref": "#/definitions/Product"
-            }
-          },
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "required": [
-            "reference"
-          ],
-          "properties": {
-            "reference": {
-              "$ref": "#/definitions/Reference"
-            }
-          },
-          "additionalProperties": false
-        }
-      ]
-    },
     "ProjectInfo": {
       "oneOf": [
         {
           "type": "object",
           "required": [
-            "buildingInfo"
+            "buildingType",
+            "buildingTypology",
+            "floorsAboveGround",
+            "generalEnergyClass",
+            "roofType",
+            "type"
           ],
           "properties": {
-            "buildingInfo": {
-              "$ref": "#/definitions/BuildingInfo"
+            "buildingCompletionYear": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "uint64",
+              "minimum": 0.0
+            },
+            "buildingFootprint": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/ValueUnit"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "buildingHeight": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/ValueUnit"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "buildingMass": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/ValueUnit"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "buildingModelScope": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/BuildingModelScope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "buildingPermitYear": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "uint64",
+              "minimum": 0.0
+            },
+            "buildingType": {
+              "$ref": "#/definitions/BuildingType"
+            },
+            "buildingTypology": {
+              "$ref": "#/definitions/BuildingTypology"
+            },
+            "buildingUsers": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "uint64",
+              "minimum": 0.0
+            },
+            "certifications": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "energyDemandElectricity": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
+            },
+            "energyDemandHeating": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
+            },
+            "energySupplyElectricity": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
+            },
+            "energySupplyHeating": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
+            },
+            "exportedElectricity": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
+            },
+            "floorsAboveGround": {
+              "type": "integer",
+              "format": "uint16",
+              "minimum": 0.0
+            },
+            "floorsBelowGround": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "uint16",
+              "minimum": 0.0
+            },
+            "frameType": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "generalEnergyClass": {
+              "$ref": "#/definitions/GeneralEnergyClass"
+            },
+            "grossFloorArea": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/AreaType"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "heatedFloorArea": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/AreaType"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "localEnergyClass": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "roofType": {
+              "$ref": "#/definitions/RoofType"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "buildingInfo"
+              ]
             }
-          },
-          "additionalProperties": false
+          }
         },
         {
           "type": "object",
           "required": [
-            "infrastructureInfo"
+            "type"
           ],
           "properties": {
-            "infrastructureInfo": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              }
+            "type": {
+              "type": "string",
+              "enum": [
+                "infrastructureInfo"
+              ]
             }
-          },
-          "additionalProperties": false
+          }
         }
       ]
     },
@@ -1167,47 +924,320 @@
         "other"
       ]
     },
-    "Reference": {
-      "type": "object",
-      "required": [
-        "path",
-        "type"
-      ],
-      "properties": {
-        "format": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "overrides": {
-          "type": [
-            "object",
-            "null"
+    "ReferenceSource_for_Assembly": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "products",
+            "quantity",
+            "type",
+            "unit"
           ],
-          "additionalProperties": {
-            "type": "string"
+          "properties": {
+            "classification": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Classification"
+              }
+            },
+            "comment": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "id": {
+              "type": "string"
+            },
+            "metaData": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string"
+            },
+            "products": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ReferenceSource_for_Product"
+              }
+            },
+            "quantity": {
+              "type": "number",
+              "format": "double"
+            },
+            "results": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "format": "double"
+                }
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "actual"
+              ]
+            },
+            "unit": {
+              "$ref": "#/definitions/Unit"
+            }
           }
         },
-        "path": {
-          "type": "string"
-        },
-        "type": {
-          "$ref": "#/definitions/ReferenceType"
-        },
-        "version": {
-          "type": [
-            "string",
-            "null"
-          ]
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "uri"
+          ],
+          "properties": {
+            "format": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "overrides": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "reference"
+              ]
+            },
+            "uri": {
+              "type": "string"
+            },
+            "version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
         }
-      }
+      ]
     },
-    "ReferenceType": {
-      "type": "string",
-      "enum": [
-        "internal",
-        "external"
+    "ReferenceSource_for_ImpactDataSource": {
+      "oneOf": [
+        {
+          "type": "object",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EPD"
+            },
+            {
+              "$ref": "#/definitions/TechFlow"
+            }
+          ],
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "actual"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "uri"
+          ],
+          "properties": {
+            "format": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "overrides": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "reference"
+              ]
+            },
+            "uri": {
+              "type": "string"
+            },
+            "version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ReferenceSource_for_Product": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "impactData",
+            "name",
+            "quantity",
+            "referenceServiceLife",
+            "type",
+            "unit"
+          ],
+          "properties": {
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "id": {
+              "type": "string"
+            },
+            "impactData": {
+              "$ref": "#/definitions/ReferenceSource_for_ImpactDataSource"
+            },
+            "metaData": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number",
+              "format": "double"
+            },
+            "referenceServiceLife": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0.0
+            },
+            "results": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "format": "double"
+                }
+              }
+            },
+            "transport": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Transport"
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "actual"
+              ]
+            },
+            "unit": {
+              "$ref": "#/definitions/Unit"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "uri"
+          ],
+          "properties": {
+            "format": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "overrides": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "reference"
+              ]
+            },
+            "uri": {
+              "type": "string"
+            },
+            "version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
       ]
     },
     "RoofType": {
@@ -1358,9 +1388,9 @@
         "distance",
         "distanceUnit",
         "id",
-        "impactCategories",
-        "name",
-        "transportEpd"
+        "impactData",
+        "lifeCycleStages",
+        "name"
       ],
       "properties": {
         "distance": {
@@ -1373,17 +1403,17 @@
         "id": {
           "type": "string"
         },
-        "impactCategories": {
+        "impactData": {
+          "$ref": "#/definitions/ImpactDataSource"
+        },
+        "lifeCycleStages": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ImpactCategoryKey"
+            "$ref": "#/definitions/LifeCycleStage"
           }
         },
         "name": {
           "type": "string"
-        },
-        "transportEpd": {
-          "$ref": "#/definitions/ImpactDataSource"
         }
       }
     },
@@ -1396,10 +1426,12 @@
         "kg",
         "tones",
         "pcs",
+        "kwh",
         "l",
         "m2r1",
         "km",
         "tones_km",
+        "kgm3",
         "unknown"
       ]
     },

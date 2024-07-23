@@ -1,18 +1,25 @@
 import json
 from pathlib import Path
-from typing import Type, TypeVar
+from typing import Type as PyType, TypeVar
 
-from .lcax import *
+from .lcax import _convert_lcabyg, _convert_ilcd, _convert_slice
+import lcax as lcax_binary
 from .pydantic import *
+from .pydantic import ReferenceSourceForImpactDataSource1 as EPD
+from .pydantic import ReferenceSourceForImpactDataSource2 as TechFlow
+from .pydantic import ReferenceSourceForAssembly1 as Assembly
+from .pydantic import ReferenceSourceForProduct1 as Product
+from .pydantic import ProjectInfo1 as BuildingInfo
 
-__doc__ = lcax.__doc__
-if hasattr(lcax, "__all__"):
-    __all__ = lcax.__all__
+
+__doc__ = lcax_binary.__doc__
+if hasattr(lcax_binary, "__all__"):
+    __all__ = lcax_binary.__all__
 
 Project_Type = TypeVar("Project_Type", str, dict, Project)
 
 
-def convert_lcabyg(data: str | dict, result_data: str | dict | None = None, *, as_type: Type[Project_Type] = dict) -> Project_Type:
+def convert_lcabyg(data: str | dict, result_data: str | dict | None = None, *, as_type: PyType[Project_Type] = dict) -> Project_Type:
     """
     Converts json formatted LCAbyg data into a LCAx project
 
@@ -26,7 +33,7 @@ def convert_lcabyg(data: str | dict, result_data: str | dict | None = None, *, a
         result_data = json.dumps(result_data)
 
     try:
-        _project = lcax._convert_lcabyg(data, result_data)
+        _project = _convert_lcabyg(data, result_data)
     except Exception as err:
         raise ParsingException(err)
 
@@ -37,13 +44,13 @@ def convert_lcabyg(data: str | dict, result_data: str | dict | None = None, *, a
     elif as_type == Project:
         return Project(**json.loads(_project))
     else:
-        raise NotImplementedError("Currently only 'dict', 'str' and 'lcax.LCAxProject' is implemented as_type.")
+        raise NotImplementedError("Currently only 'dict', 'str' and 'lcax.Project' is implemented as_type.")
 
 
 EPD_Type = TypeVar("EPD_Type", str, dict, EPD)
 
 
-def convert_ilcd(data: str | dict, *, as_type: Type[EPD_Type] = dict) -> EPD_Type:
+def convert_ilcd(data: str | dict, *, as_type: PyType[EPD_Type] = dict) -> EPD_Type:
     """
     Converts a json formatted ILCD+EPD data into EPDx
 
@@ -54,7 +61,7 @@ def convert_ilcd(data: str | dict, *, as_type: Type[EPD_Type] = dict) -> EPD_Typ
         data = json.dumps(data)
 
     try:
-        _epd = lcax._convert_ilcd(data)
+        _epd = _convert_ilcd(data)
     except Exception as err:
         raise ParsingException(err)
 
@@ -63,12 +70,12 @@ def convert_ilcd(data: str | dict, *, as_type: Type[EPD_Type] = dict) -> EPD_Typ
     elif as_type == dict:
         return json.loads(_epd)
     elif as_type == EPD:
-        return EPD(**json.loads(_epd))
+        return EPD(**json.loads(_epd), type='actual')
     else:
         raise NotImplementedError("Currently only 'dict', 'str' and 'lcax.EPD' is implemented as_type.")
 
 
-def convert_slice(path: str | Path, *, as_type: Type[Project_Type] = dict) -> list[Project_Type]:
+def convert_slice(path: str | Path, *, as_type: PyType[Project_Type] = dict) -> list[Project_Type]:
     """
     Converts a SLiCE .parquet file into a list of LCAx projects
 
@@ -82,7 +89,7 @@ def convert_slice(path: str | Path, *, as_type: Type[Project_Type] = dict) -> li
         raise FileNotFoundError(f"File not found: {path}")
 
     try:
-        projects = lcax._convert_slice(str(path))
+        projects = _convert_slice(str(path))
     except Exception as err:
         raise ParsingException(err)
 

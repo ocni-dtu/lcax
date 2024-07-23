@@ -7,7 +7,7 @@ from datetime import date
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BuildingModelScope(BaseModel):
@@ -379,12 +379,19 @@ class Location(BaseModel):
     country: Country
 
 
+class Type(Enum):
+    BUILDING_INFO = 'buildingInfo'
+
+
+class Type1(Enum):
+    INFRASTRUCTURE_INFO = 'infrastructureInfo'
+
+
 class ProjectInfo2(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
         populate_by_name=True,
     )
-    infrastructure_info: Dict[str, str] = Field(..., alias='infrastructureInfo')
+    type: Type1
 
 
 class ProjectPhase(Enum):
@@ -394,9 +401,61 @@ class ProjectPhase(Enum):
     OTHER = 'other'
 
 
-class ReferenceType(Enum):
-    INTERNAL = 'internal'
-    EXTERNAL = 'external'
+class Type2(Enum):
+    ACTUAL = 'actual'
+
+
+class Type3(Enum):
+    REFERENCE = 'reference'
+
+
+class ReferenceSourceForAssembly2(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    format: Optional[str] = None
+    overrides: Optional[Dict[str, Any]] = None
+    type: Type3
+    uri: str
+    version: Optional[str] = None
+
+
+class Type4(Enum):
+    ACTUAL = 'actual'
+
+
+class Type6(Enum):
+    REFERENCE = 'reference'
+
+
+class ReferenceSourceForImpactDataSource3(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    format: Optional[str] = None
+    overrides: Optional[Dict[str, Any]] = None
+    type: Type6
+    uri: str
+    version: Optional[str] = None
+
+
+class Type7(Enum):
+    ACTUAL = 'actual'
+
+
+class Type8(Enum):
+    REFERENCE = 'reference'
+
+
+class ReferenceSourceForProduct2(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    format: Optional[str] = None
+    overrides: Optional[Dict[str, Any]] = None
+    type: Type8
+    uri: str
+    version: Optional[str] = None
 
 
 class RoofType(Enum):
@@ -451,6 +510,7 @@ class Unit(Enum):
     M2R1 = 'm2r1'
     KM = 'km'
     TONES_KM = 'tones_km'
+    KGM3 = 'kgm3'
     UNKNOWN = 'unknown'
 
 
@@ -469,43 +529,6 @@ class AreaType(BaseModel):
     definition: str
     unit: Unit
     value: float
-
-
-class BuildingInfo(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    building_completion_year: Optional[int] = Field(
-        None, alias='buildingCompletionYear', ge=0
-    )
-    building_footprint: Optional[ValueUnit] = Field(None, alias='buildingFootprint')
-    building_height: Optional[ValueUnit] = Field(None, alias='buildingHeight')
-    building_mass: Optional[ValueUnit] = Field(None, alias='buildingMass')
-    building_model_scope: Optional[BuildingModelScope] = Field(
-        None, alias='buildingModelScope'
-    )
-    building_permit_year: Optional[int] = Field(None, alias='buildingPermitYear', ge=0)
-    building_type: BuildingType = Field(..., alias='buildingType')
-    building_typology: BuildingTypology = Field(..., alias='buildingTypology')
-    building_users: Optional[int] = Field(None, alias='buildingUsers', ge=0)
-    certifications: Optional[List[str]] = None
-    energy_demand_electricity: Optional[float] = Field(
-        None, alias='energyDemandElectricity'
-    )
-    energy_demand_heating: Optional[float] = Field(None, alias='energyDemandHeating')
-    energy_supply_electricity: Optional[float] = Field(
-        None, alias='energySupplyElectricity'
-    )
-    energy_supply_heating: Optional[float] = Field(None, alias='energySupplyHeating')
-    exported_electricity: Optional[float] = Field(None, alias='exportedElectricity')
-    floors_above_ground: int = Field(..., alias='floorsAboveGround', ge=0)
-    floors_below_ground: Optional[int] = Field(None, alias='floorsBelowGround', ge=0)
-    frame_type: Optional[str] = Field(None, alias='frameType')
-    general_energy_class: GeneralEnergyClass = Field(..., alias='generalEnergyClass')
-    gross_floor_area: Optional[AreaType] = Field(None, alias='grossFloorArea')
-    heated_floor_area: Optional[AreaType] = Field(None, alias='heatedFloorArea')
-    local_energy_class: Optional[str] = Field(None, alias='localEnergyClass')
-    roof_type: RoofType = Field(..., alias='roofType')
 
 
 class Conversion(BaseModel):
@@ -541,31 +564,49 @@ class EPD(BaseModel):
     version: str
 
 
-class ImpactDataSource1(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    epd: EPD = Field(..., alias='EPD')
-
-
 class ProjectInfo1(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
         populate_by_name=True,
     )
-    building_info: BuildingInfo = Field(..., alias='buildingInfo')
+    building_completion_year: Optional[int] = Field(
+        None, alias='buildingCompletionYear', ge=0
+    )
+    building_footprint: Optional[ValueUnit] = Field(None, alias='buildingFootprint')
+    building_height: Optional[ValueUnit] = Field(None, alias='buildingHeight')
+    building_mass: Optional[ValueUnit] = Field(None, alias='buildingMass')
+    building_model_scope: Optional[BuildingModelScope] = Field(
+        None, alias='buildingModelScope'
+    )
+    building_permit_year: Optional[int] = Field(None, alias='buildingPermitYear', ge=0)
+    building_type: BuildingType = Field(..., alias='buildingType')
+    building_typology: BuildingTypology = Field(..., alias='buildingTypology')
+    building_users: Optional[int] = Field(None, alias='buildingUsers', ge=0)
+    certifications: Optional[List[str]] = None
+    energy_demand_electricity: Optional[float] = Field(
+        None, alias='energyDemandElectricity'
+    )
+    energy_demand_heating: Optional[float] = Field(None, alias='energyDemandHeating')
+    energy_supply_electricity: Optional[float] = Field(
+        None, alias='energySupplyElectricity'
+    )
+    energy_supply_heating: Optional[float] = Field(None, alias='energySupplyHeating')
+    exported_electricity: Optional[float] = Field(None, alias='exportedElectricity')
+    floors_above_ground: int = Field(..., alias='floorsAboveGround', ge=0)
+    floors_below_ground: Optional[int] = Field(None, alias='floorsBelowGround', ge=0)
+    frame_type: Optional[str] = Field(None, alias='frameType')
+    general_energy_class: GeneralEnergyClass = Field(..., alias='generalEnergyClass')
+    gross_floor_area: Optional[AreaType] = Field(None, alias='grossFloorArea')
+    heated_floor_area: Optional[AreaType] = Field(None, alias='heatedFloorArea')
+    local_energy_class: Optional[str] = Field(None, alias='localEnergyClass')
+    roof_type: RoofType = Field(..., alias='roofType')
+    type: Type
 
 
-class Reference(BaseModel):
+class ReferenceSourceForImpactDataSource1(EPD):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    format: Optional[str] = None
-    overrides: Optional[Dict[str, Any]] = None
-    path: str
-    type: ReferenceType
-    version: Optional[str] = None
+    type: Type4
 
 
 class TechFlow(BaseModel):
@@ -584,36 +625,11 @@ class TechFlow(BaseModel):
     source: Optional[Source] = None
 
 
-class AssemblySource2(BaseModel):
+class ReferenceSourceForImpactDataSource2(TechFlow):
     model_config = ConfigDict(
-        extra='forbid',
         populate_by_name=True,
     )
-    reference: Reference
-
-
-class ImpactDataSource2(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    tech_flow: TechFlow = Field(..., alias='techFlow')
-
-
-class ImpactDataSource3(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    reference: Reference
-
-
-class ProductSource2(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    reference: Reference
+    type: Type4
 
 
 class Transport(BaseModel):
@@ -623,40 +639,32 @@ class Transport(BaseModel):
     distance: float
     distance_unit: Unit = Field(..., alias='distanceUnit')
     id: str
-    impact_data: Union[ImpactDataSource1, ImpactDataSource2, ImpactDataSource3] = Field(
-        ..., alias='impactData'
-    )
+    impact_data: Union[EPD, TechFlow] = Field(..., alias='impactData')
     life_cycle_stages: List[LifeCycleStage] = Field(..., alias='lifeCycleStages')
     name: str
 
 
-class Product(BaseModel):
+class ReferenceSourceForProduct1(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
     description: Optional[str] = None
     id: str
-    impact_data: Union[ImpactDataSource1, ImpactDataSource2, ImpactDataSource3] = Field(
-        ..., alias='impactData'
-    )
+    impact_data: Union[
+        Union[ReferenceSourceForImpactDataSource1, ReferenceSourceForImpactDataSource2],
+        ReferenceSourceForImpactDataSource3,
+    ] = Field(..., alias='impactData')
     meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
     quantity: float
     reference_service_life: int = Field(..., alias='referenceServiceLife', ge=0)
     results: Optional[Dict[str, Any]] = None
     transport: Optional[List[Transport]] = None
+    type: Type7
     unit: Unit
 
 
-class ProductSource1(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    product: Product
-
-
-class Assembly(BaseModel):
+class ReferenceSourceForAssembly1(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
@@ -666,25 +674,20 @@ class Assembly(BaseModel):
     id: str
     meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
     name: str
-    products: Dict[str, Union[ProductSource1, ProductSource2]]
+    products: Dict[str, Union[ReferenceSourceForProduct1, ReferenceSourceForProduct2]]
     quantity: float
     results: Optional[Dict[str, Any]] = None
+    type: Type2
     unit: Unit
-
-
-class AssemblySource1(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    assembly: Assembly
 
 
 class Project(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    assemblies: Dict[str, Union[AssemblySource1, AssemblySource2]]
+    assemblies: Dict[
+        str, Union[ReferenceSourceForAssembly1, ReferenceSourceForAssembly2]
+    ]
     classification_system: Optional[str] = Field(None, alias='classificationSystem')
     comment: Optional[str] = None
     description: Optional[str] = None

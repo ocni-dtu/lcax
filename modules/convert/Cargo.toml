@@ -24,5 +24,6 @@ parquet = {  version = "51.0.0", default-features = false, features = ["flate2",
 uuid = { version = "1.8.0", features = ["v4", "v5"] }
 lcax_core = { path = "../core", version = ">2.0.0" }
 lcax_models = { path = "../models", version = ">2.0.0" }
+lcax_calculation = { path = "../calculation", version = ">2.0.0" }
 chrono = "0.4.38"
 bytes = "1.6.0"

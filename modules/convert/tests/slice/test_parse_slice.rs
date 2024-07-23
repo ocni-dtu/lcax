@@ -2,8 +2,7 @@ use std::fs;
 use std::path::Path;
 
 use lcax_convert::slice::parse::parse_slice;
-use lcax_models::assembly::AssemblySource;
-use lcax_models::product::ProductSource;
+use lcax_models::shared::ReferenceSource;
 
 #[test]
 fn test_parse_slice() -> Result<(), String> {
@@ -16,28 +15,29 @@ fn test_parse_slice() -> Result<(), String> {
     for project in projects {
         assert!(!project.id.is_empty());
         assert!(!project.name.is_empty());
+        assert!(project.results.is_some());
 
         // Assert Assembly Info
         assert!(!project.assemblies.is_empty());
         for (_, assembly) in &project.assemblies {
             match assembly {
-                AssemblySource::Assembly(assembly) => {
+                ReferenceSource::Actual(assembly) => {
                     assert!(!assembly.name.is_empty());
                     assert!(!assembly.products.is_empty());
 
                     for (_, product) in &assembly.products {
                         // Assert Product Info
                         match product {
-                            ProductSource::Product(product) => {
+                            ReferenceSource::Actual(product) => {
                                 assert!(!product.quantity.is_nan());
                             }
-                            ProductSource::Reference(_) => {
+                            ReferenceSource::Reference(_) => {
                                 assert!(false);
                             }
                         }
                     }
                 }
-                AssemblySource::Reference(_) => {
+                ReferenceSource::Reference(_) => {
                     assert!(false);
                 }
             }
