@@ -1,3 +1,9 @@
+## [2.3.1](https://github.com/ocni-dtu/lcax/compare/v2.3.0...v2.3.1) (2024-07-23)
+
+### Bug Fixes
+
+* updating release ([8faf90f](https://github.com/ocni-dtu/lcax/commit/8faf90fe29767a9993b51c7258a94bbdbeba8cc9))
+
 ## [2.3.0](https://github.com/ocni-dtu/lcax/compare/v2.2.4...v2.3.0) (2024-07-23)
 
 ### Features
