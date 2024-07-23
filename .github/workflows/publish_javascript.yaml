@@ -26,7 +26,8 @@ jobs:
         with:
           name: cargo
 
-      - uses: jetli/wasm-pack-action@v0.4.0
+      - name: Install Wasm Pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - name: Build
         working-directory: 'modules/lcax'
