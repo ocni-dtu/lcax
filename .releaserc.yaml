@@ -18,6 +18,10 @@ plugins:
   - - "semantic-release-cargo"
     - allFeatures: true
       check: true
+      publishArgs: [ "-p", "lcax_calculate" ]
+  - - "semantic-release-cargo"
+    - allFeatures: true
+      check: true
       publishArgs: [ "-p", "lcax_convert" ]
   - - "semantic-release-cargo"
     - allFeatures: true
