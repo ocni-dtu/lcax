@@ -1,3 +1,9 @@
+## [2.3.2](https://github.com/ocni-dtu/lcax/compare/v2.3.1...v2.3.2) (2024-07-23)
+
+### Bug Fixes
+
+* typo ([9d814f2](https://github.com/ocni-dtu/lcax/commit/9d814f2329df4ad22bc19ffec12702548e0c704f))
+
 ## [2.3.1](https://github.com/ocni-dtu/lcax/compare/v2.3.0...v2.3.1) (2024-07-23)
 
 ### Bug Fixes
