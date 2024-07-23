@@ -203,7 +203,9 @@ pub fn add_slice_element(project: &mut LCAxProject, element: &SLiCEElement) {
                 } else {
                     match assembly.products.get_mut(&product_uuid).unwrap() {
                         ReferenceSource::Actual(ref mut product) => match product.impact_data {
-                            ReferenceSource::Actual(ImpactDataSource::TechFlow(ref mut tech_flow)) => {
+                            ReferenceSource::Actual(ImpactDataSource::TechFlow(
+                                ref mut tech_flow,
+                            )) => {
                                 add_impact_data(tech_flow, element);
                             }
                             _ => {}

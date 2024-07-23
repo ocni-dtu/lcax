@@ -2,11 +2,11 @@ use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
 
 use bytes::Bytes;
+use lcax_calculation::calculate::calculate_project;
+use lcax_models::project::Project as LCAxProject;
 use parquet::file::reader::{FileReader, SerializedFileReader};
 use parquet::record::RowAccessor;
 use parquet::schema::types::Type;
-
-use lcax_models::project::Project as LCAxProject;
 
 use crate::slice::model::{add_project_data, add_slice_element, SLiCEElement};
 
@@ -167,7 +167,7 @@ fn get_projects_by_archetypes(
 
     projects.retain(|_, project| project.id.is_empty() != true);
     for (_, project) in projects.iter_mut() {
-        calculate_project(project)
+        calculate_project(project, None).expect("Could not calculate results");
     }
     projects.values().cloned().collect()
 }

@@ -5,10 +5,10 @@ from typing import Type as PyType, TypeVar
 from .lcax import _convert_lcabyg, _convert_ilcd, _convert_slice
 import lcax as lcax_binary
 from .pydantic import *
-from .pydantic import ImpactDataSource1 as EPD
-from .pydantic import ImpactDataSource2 as TechFlow
-from .pydantic import AssemblySource1 as Assembly
-from .pydantic import ProductSource1 as Product
+from .pydantic import ReferenceSourceForImpactDataSource1 as EPD
+from .pydantic import ReferenceSourceForImpactDataSource2 as TechFlow
+from .pydantic import ReferenceSourceForAssembly1 as Assembly
+from .pydantic import ReferenceSourceForProduct1 as Product
 from .pydantic import ProjectInfo1 as BuildingInfo
 
 
@@ -70,7 +70,7 @@ def convert_ilcd(data: str | dict, *, as_type: PyType[EPD_Type] = dict) -> EPD_T
     elif as_type == dict:
         return json.loads(_epd)
     elif as_type == EPD:
-        return EPD(**json.loads(_epd), type='EPD')
+        return EPD(**json.loads(_epd), type='actual')
     else:
         raise NotImplementedError("Currently only 'dict', 'str' and 'lcax.EPD' is implemented as_type.")
 
