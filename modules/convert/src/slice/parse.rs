@@ -166,6 +166,9 @@ fn get_projects_by_archetypes(
     }
 
     projects.retain(|_, project| project.id.is_empty() != true);
+    for (_, project) in projects.iter_mut() {
+        calculate_project(project)
+    }
     projects.values().cloned().collect()
 }
 
