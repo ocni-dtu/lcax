@@ -15,6 +15,7 @@ fn test_parse_slice() -> Result<(), String> {
     for project in projects {
         assert!(!project.id.is_empty());
         assert!(!project.name.is_empty());
+        assert!(project.results.is_some());
 
         // Assert Assembly Info
         assert!(!project.assemblies.is_empty());

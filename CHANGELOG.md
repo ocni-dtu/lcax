@@ -1,3 +1,21 @@
+## [2.2.4](https://github.com/ocni-dtu/lcax/compare/v2.2.3...v2.2.4) (2024-07-06)
+
+### Bug Fixes
+
+* fixing pypi release ([df5a428](https://github.com/ocni-dtu/lcax/commit/df5a428c58a7ed3f8f18fe58a0366b7b2ddb0a98))
+
+## [2.2.3](https://github.com/ocni-dtu/lcax/compare/v2.2.2...v2.2.3) (2024-07-06)
+
+### Bug Fixes
+
+* explicitly added rust target ([87c88b9](https://github.com/ocni-dtu/lcax/commit/87c88b901c2b641dba4d4a48deaa6d148b738f6b))
+
+## [2.2.2](https://github.com/ocni-dtu/lcax/compare/v2.2.1...v2.2.2) (2024-07-06)
+
+### Bug Fixes
+
+* adding more compile targets for Python ([371a56d](https://github.com/ocni-dtu/lcax/commit/371a56d839b668df439bb1a9b390e9dd67c2f32d))
+
 ## [2.2.1](https://github.com/ocni-dtu/lcax/compare/v2.2.0...v2.2.1) (2024-06-05)
 
 ### Bug Fixes

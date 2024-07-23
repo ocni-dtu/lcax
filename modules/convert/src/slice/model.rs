@@ -129,7 +129,7 @@ pub fn add_project_data(project: &mut LCAxProject, element: &SLiCEElement) {
     project.description = Some(format!("{stock_region_name}-{building_use_subtype_name}-{stock_activity_type_name}-{building_energy_performance_name}"));
 
     project.location = Location {
-        country: get_country_from_region(&element.stock_region_code),
+        country: get_country_from_region(&stock_region_name),
         city: None,
         address: None,
     };

@@ -10,6 +10,10 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class Type(Enum):
+    ASSEMBLY = 'assembly'
+
+
 class BuildingModelScope(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
@@ -352,6 +356,14 @@ class ImpactCategoryKey(Enum):
     EET = 'eet'
 
 
+class Type1(Enum):
+    EPD = 'EPD'
+
+
+class Type2(Enum):
+    TECH_FLOW = 'techFlow'
+
+
 class LifeCycleStage(Enum):
     A1A3 = 'a1a3'
     A4 = 'a4'
@@ -379,12 +391,23 @@ class Location(BaseModel):
     country: Country
 
 
+class Type3(Enum):
+    PRODUCT = 'product'
+
+
+class Type4(Enum):
+    BUILDING_INFO = 'buildingInfo'
+
+
+class Type5(Enum):
+    INFRASTRUCTURE_INFO = 'infrastructureInfo'
+
+
 class ProjectInfo2(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
         populate_by_name=True,
     )
-    infrastructure_info: Dict[str, str] = Field(..., alias='infrastructureInfo')
+    type: Type5
 
 
 class ProjectPhase(Enum):
@@ -451,6 +474,7 @@ class Unit(Enum):
     M2R1 = 'm2r1'
     KM = 'km'
     TONES_KM = 'tones_km'
+    KGM3 = 'kgm3'
     UNKNOWN = 'unknown'
 
 
@@ -471,7 +495,91 @@ class AreaType(BaseModel):
     value: float
 
 
-class BuildingInfo(BaseModel):
+class AssemblySource2(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    format: Optional[str] = None
+    overrides: Optional[Dict[str, Any]] = None
+    path: str
+    type: ReferenceType
+    version: Optional[str] = None
+
+
+class Conversion(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    meta_data: str = Field(..., alias='metaData')
+    to: Unit
+    value: float
+
+
+class ImpactDataSource1(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    comment: Optional[str] = None
+    conversions: Optional[List[Conversion]] = None
+    declared_unit: Unit = Field(..., alias='declaredUnit')
+    format_version: str = Field(..., alias='formatVersion')
+    id: str
+    impacts: Dict[str, Dict[str, Optional[float]]]
+    location: Country
+    meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
+    name: str
+    published_date: date = Field(..., alias='publishedDate')
+    reference_service_life: Optional[int] = Field(
+        None, alias='referenceServiceLife', ge=0
+    )
+    source: Optional[Source] = None
+    standard: Standard
+    subtype: SubType
+    type: Type1
+    valid_until: date = Field(..., alias='validUntil')
+    version: str
+
+
+class ImpactDataSource2(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    comment: Optional[str] = None
+    conversions: Optional[List[Conversion]] = None
+    declared_unit: Unit = Field(..., alias='declaredUnit')
+    format_version: str = Field(..., alias='formatVersion')
+    id: str
+    impacts: Dict[str, Dict[str, Optional[float]]]
+    location: Country
+    meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
+    name: str
+    source: Optional[Source] = None
+    type: Type2
+
+
+class ImpactDataSource3(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    format: Optional[str] = None
+    overrides: Optional[Dict[str, Any]] = None
+    path: str
+    type: ReferenceType
+    version: Optional[str] = None
+
+
+class ProductSource2(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    format: Optional[str] = None
+    overrides: Optional[Dict[str, Any]] = None
+    path: str
+    type: ReferenceType
+    version: Optional[str] = None
+
+
+class ProjectInfo1(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
@@ -506,114 +614,7 @@ class BuildingInfo(BaseModel):
     heated_floor_area: Optional[AreaType] = Field(None, alias='heatedFloorArea')
     local_energy_class: Optional[str] = Field(None, alias='localEnergyClass')
     roof_type: RoofType = Field(..., alias='roofType')
-
-
-class Conversion(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    meta_data: str = Field(..., alias='metaData')
-    to: Unit
-    value: float
-
-
-class EPD(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    comment: Optional[str] = None
-    conversions: Optional[List[Conversion]] = None
-    declared_unit: Unit = Field(..., alias='declaredUnit')
-    format_version: str = Field(..., alias='formatVersion')
-    id: str
-    impacts: Dict[str, Dict[str, Optional[float]]]
-    location: Country
-    meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
-    name: str
-    published_date: date = Field(..., alias='publishedDate')
-    reference_service_life: Optional[int] = Field(
-        None, alias='referenceServiceLife', ge=0
-    )
-    source: Optional[Source] = None
-    standard: Standard
-    subtype: SubType
-    valid_until: date = Field(..., alias='validUntil')
-    version: str
-
-
-class ImpactDataSource1(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    epd: EPD = Field(..., alias='EPD')
-
-
-class ProjectInfo1(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    building_info: BuildingInfo = Field(..., alias='buildingInfo')
-
-
-class Reference(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    format: Optional[str] = None
-    overrides: Optional[Dict[str, Any]] = None
-    path: str
-    type: ReferenceType
-    version: Optional[str] = None
-
-
-class TechFlow(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    comment: Optional[str] = None
-    conversions: Optional[List[Conversion]] = None
-    declared_unit: Unit = Field(..., alias='declaredUnit')
-    format_version: str = Field(..., alias='formatVersion')
-    id: str
-    impacts: Dict[str, Dict[str, Optional[float]]]
-    location: Country
-    meta_data: Optional[Dict[str, Any]] = Field(None, alias='metaData')
-    name: str
-    source: Optional[Source] = None
-
-
-class AssemblySource2(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    reference: Reference
-
-
-class ImpactDataSource2(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    tech_flow: TechFlow = Field(..., alias='techFlow')
-
-
-class ImpactDataSource3(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    reference: Reference
-
-
-class ProductSource2(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    reference: Reference
+    type: Type4
 
 
 class Transport(BaseModel):
@@ -630,7 +631,7 @@ class Transport(BaseModel):
     name: str
 
 
-class Product(BaseModel):
+class ProductSource1(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
@@ -645,18 +646,11 @@ class Product(BaseModel):
     reference_service_life: int = Field(..., alias='referenceServiceLife', ge=0)
     results: Optional[Dict[str, Any]] = None
     transport: Optional[List[Transport]] = None
+    type: Type3
     unit: Unit
 
 
-class ProductSource1(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    product: Product
-
-
-class Assembly(BaseModel):
+class AssemblySource1(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
@@ -669,15 +663,8 @@ class Assembly(BaseModel):
     products: Dict[str, Union[ProductSource1, ProductSource2]]
     quantity: float
     results: Optional[Dict[str, Any]] = None
+    type: Type
     unit: Unit
-
-
-class AssemblySource1(BaseModel):
-    model_config = ConfigDict(
-        extra='forbid',
-        populate_by_name=True,
-    )
-    assembly: Assembly
 
 
 class Project(BaseModel):

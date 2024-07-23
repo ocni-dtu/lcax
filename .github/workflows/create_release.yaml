@@ -87,7 +87,6 @@ jobs:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
 
       - name: Upload Cargo
-        if: steps.nextVersion.outputs.version != ''
         uses: actions/upload-artifact@v4
         with:
           name: cargo
