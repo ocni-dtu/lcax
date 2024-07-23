@@ -40,6 +40,7 @@ pub struct Transport {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
+#[serde(untagged)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ImpactDataSource {
     #[serde(rename = "EPD")]

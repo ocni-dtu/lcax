@@ -64,6 +64,7 @@ pub struct Source {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
+#[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ReferenceSource<T> {
     Actual(T),

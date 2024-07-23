@@ -1,4 +1,5 @@
 use lcax_models::assembly::Assembly as LCAxAssembly;
+use lcax_models::life_cycle_base::NewResults;
 use lcax_models::life_cycle_base::{
     ImpactCategory, ImpactCategoryKey, LifeCycleStage, Results as LCAxResults,
 };
@@ -25,7 +26,8 @@ pub fn calculate_project(
         },
     };
 
-    let mut project_results = LCAxResults::new();
+    let mut project_results =
+        LCAxResults::new_results(&_options.impact_categories, &_options.life_cycle_stages);
     project.assemblies.iter_mut().for_each(|(_, assembly)| {
         let results =
             calculate_assembly(resolve_reference_mut(assembly).unwrap(), &_options).unwrap();
@@ -39,7 +41,8 @@ pub fn calculate_assembly(
     assembly: &mut LCAxAssembly,
     options: &CalculationOptions,
 ) -> Result<LCAxResults, String> {
-    let mut assembly_results = LCAxResults::new();
+    let mut assembly_results =
+        LCAxResults::new_results(&options.impact_categories, &options.life_cycle_stages);
     assembly.products.iter_mut().for_each(|(_, product)| {
         let results = calculate_product(resolve_reference_mut(product).unwrap(), options).unwrap();
         add_results(&mut assembly_results, &results)
@@ -90,20 +93,25 @@ pub fn calculate_product(
                         Ok(ImpactDataSource::EPD(epd)) => {
                             impact_category.insert(
                                 life_cycle_stage.clone(),
-                                Some(
-                                    epd.impacts[impact_category_key][life_cycle_stage].unwrap()
-                                        * product.quantity,
-                                ),
+                                Some(match epd.impacts.get(impact_category_key) {
+                                    Some(impact) => match impact.get(life_cycle_stage) {
+                                        Some(value) => value.unwrap() * product.quantity,
+                                        None => 0.0,
+                                    },
+                                    None => 0.0,
+                                }),
                             );
                         }
                         Ok(ImpactDataSource::TechFlow(techflow)) => {
                             impact_category.insert(
                                 life_cycle_stage.clone(),
-                                Some(
-                                    techflow.impacts[impact_category_key][life_cycle_stage]
-                                        .unwrap()
-                                        * product.quantity,
-                                ),
+                                Some(match techflow.impacts.get(impact_category_key) {
+                                    Some(impact) => match impact.get(life_cycle_stage) {
+                                        Some(value) => value.unwrap() * product.quantity,
+                                        None => 0.0,
+                                    },
+                                    None => 0.0,
+                                }),
                             );
                         }
                         Err(_) => panic!("Handling reference not implemented yet!"),

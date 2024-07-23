@@ -1,9 +1,11 @@
 use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
-use lcax_calculation::calculate::{calculate_product, calculate_project};
 
-use lcax_models::epd::{EPD, Standard, SubType};
+use lcax_calculation::calculate::{
+    calculate_assembly, calculate_product, calculate_project, CalculationOptions,
+};
+use lcax_models::epd::{Standard, SubType, EPD};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
 use lcax_models::product::{ImpactDataSource, Product};
 use lcax_models::project::Project;
@@ -17,8 +19,6 @@ fn test_calculate_project() -> Result<(), String> {
     let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
     let mut project = serde_json::from_str::<Project>(&contents).unwrap();
 
-    // TODO - Fix tests!!!!
-
     calculate_project(&mut project, None).unwrap();
     assert!(project.results.is_some());
     Ok(())
@@ -26,8 +26,28 @@ fn test_calculate_project() -> Result<(), String> {
 
 #[test]
 fn test_calculate_assembly() -> Result<(), String> {
-    assert!(true);
+    let root_dir = Path::new(env!("CARGO_MANIFEST_DIR"));
 
+    let file_path = root_dir.join("tests/datafixtures/project.json");
+    let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
+    let mut project = serde_json::from_str::<Project>(&contents).unwrap();
+
+    let assembly = match project
+        .assemblies
+        .get_mut("d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87")
+        .unwrap()
+    {
+        ReferenceSource::Actual(actual) => actual,
+        ReferenceSource::Reference(_) => panic!("Expected actual assembly"),
+    };
+    let options = CalculationOptions {
+        reference_study_period: project.reference_study_period.clone(),
+        life_cycle_stages: project.life_cycle_stages.clone(),
+        impact_categories: project.impact_categories.clone(),
+    };
+
+    calculate_assembly(assembly, &options).unwrap();
+    assert!(assembly.results.is_some());
     Ok(())
 }
 
@@ -72,6 +92,9 @@ fn test_calculate_product() -> Result<(), String> {
         impact_categories: vec![ImpactCategoryKey::GWP],
     };
     let result = calculate_product(&mut product, &options).unwrap();
-    assert_eq!(result[&ImpactCategoryKey::GWP][&LifeCycleStage::A1A3], Some(15.0));
+    assert_eq!(
+        result[&ImpactCategoryKey::GWP][&LifeCycleStage::A1A3],
+        Some(15.0)
+    );
     Ok(())
 }

@@ -17,7 +17,7 @@
     "assemblies": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/AssemblySource"
+        "$ref": "#/definitions/ReferenceSource_for_Assembly"
       }
     },
     "classificationSystem": {
@@ -144,130 +144,6 @@
           "format": "double"
         }
       }
-    },
-    "AssemblySource": {
-      "oneOf": [
-        {
-          "type": "object",
-          "required": [
-            "id",
-            "name",
-            "products",
-            "quantity",
-            "type",
-            "unit"
-          ],
-          "properties": {
-            "classification": {
-              "type": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "$ref": "#/definitions/Classification"
-              }
-            },
-            "comment": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "description": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "id": {
-              "type": "string"
-            },
-            "metaData": {
-              "type": [
-                "object",
-                "null"
-              ],
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "name": {
-              "type": "string"
-            },
-            "products": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/ProductSource"
-              }
-            },
-            "quantity": {
-              "type": "number",
-              "format": "double"
-            },
-            "results": {
-              "type": [
-                "object",
-                "null"
-              ],
-              "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": [
-                    "number",
-                    "null"
-                  ],
-                  "format": "double"
-                }
-              }
-            },
-            "type": {
-              "type": "string",
-              "enum": [
-                "assembly"
-              ]
-            },
-            "unit": {
-              "$ref": "#/definitions/Unit"
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "path",
-            "type"
-          ],
-          "properties": {
-            "format": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "overrides": {
-              "type": [
-                "object",
-                "null"
-              ],
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "path": {
-              "type": "string"
-            },
-            "type": {
-              "$ref": "#/definitions/ReferenceType"
-            },
-            "version": {
-              "type": [
-                "string",
-                "null"
-              ]
-            }
-          }
-        }
-      ]
     },
     "BuildingModelScope": {
       "type": "object",
@@ -627,6 +503,111 @@
         "zwe"
       ]
     },
+    "EPD": {
+      "type": "object",
+      "required": [
+        "declaredUnit",
+        "formatVersion",
+        "id",
+        "impacts",
+        "location",
+        "name",
+        "publishedDate",
+        "standard",
+        "subtype",
+        "validUntil",
+        "version"
+      ],
+      "properties": {
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "conversions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Conversion"
+          }
+        },
+        "declaredUnit": {
+          "$ref": "#/definitions/Unit"
+        },
+        "formatVersion": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "impacts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
+            }
+          }
+        },
+        "location": {
+          "$ref": "#/definitions/Country"
+        },
+        "metaData": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "publishedDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "referenceServiceLife": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "source": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Source"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "standard": {
+          "$ref": "#/definitions/Standard"
+        },
+        "subtype": {
+          "$ref": "#/definitions/SubType"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
     "GeneralEnergyClass": {
       "type": "string",
       "enum": [
@@ -680,236 +661,12 @@
       ]
     },
     "ImpactDataSource": {
-      "oneOf": [
+      "anyOf": [
         {
-          "type": "object",
-          "required": [
-            "declaredUnit",
-            "formatVersion",
-            "id",
-            "impacts",
-            "location",
-            "name",
-            "publishedDate",
-            "standard",
-            "subtype",
-            "type",
-            "validUntil",
-            "version"
-          ],
-          "properties": {
-            "comment": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "conversions": {
-              "type": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "$ref": "#/definitions/Conversion"
-              }
-            },
-            "declaredUnit": {
-              "$ref": "#/definitions/Unit"
-            },
-            "formatVersion": {
-              "type": "string"
-            },
-            "id": {
-              "type": "string"
-            },
-            "impacts": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": [
-                    "number",
-                    "null"
-                  ],
-                  "format": "double"
-                }
-              }
-            },
-            "location": {
-              "$ref": "#/definitions/Country"
-            },
-            "metaData": {
-              "type": [
-                "object",
-                "null"
-              ],
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "name": {
-              "type": "string"
-            },
-            "publishedDate": {
-              "type": "string",
-              "format": "date"
-            },
-            "referenceServiceLife": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "format": "uint32",
-              "minimum": 0.0
-            },
-            "source": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/Source"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "standard": {
-              "$ref": "#/definitions/Standard"
-            },
-            "subtype": {
-              "$ref": "#/definitions/SubType"
-            },
-            "type": {
-              "type": "string",
-              "enum": [
-                "EPD"
-              ]
-            },
-            "validUntil": {
-              "type": "string",
-              "format": "date"
-            },
-            "version": {
-              "type": "string"
-            }
-          }
+          "$ref": "#/definitions/EPD"
         },
         {
-          "type": "object",
-          "required": [
-            "declaredUnit",
-            "formatVersion",
-            "id",
-            "impacts",
-            "location",
-            "name",
-            "type"
-          ],
-          "properties": {
-            "comment": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "conversions": {
-              "type": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "$ref": "#/definitions/Conversion"
-              }
-            },
-            "declaredUnit": {
-              "$ref": "#/definitions/Unit"
-            },
-            "formatVersion": {
-              "type": "string"
-            },
-            "id": {
-              "type": "string"
-            },
-            "impacts": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": [
-                    "number",
-                    "null"
-                  ],
-                  "format": "double"
-                }
-              }
-            },
-            "location": {
-              "$ref": "#/definitions/Country"
-            },
-            "metaData": {
-              "type": [
-                "object",
-                "null"
-              ],
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "name": {
-              "type": "string"
-            },
-            "source": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/Source"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "type": {
-              "type": "string",
-              "enum": [
-                "techFlow"
-              ]
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "path",
-            "type"
-          ],
-          "properties": {
-            "format": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "overrides": {
-              "type": [
-                "object",
-                "null"
-              ],
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "path": {
-              "type": "string"
-            },
-            "type": {
-              "$ref": "#/definitions/ReferenceType"
-            },
-            "version": {
-              "type": [
-                "string",
-                "null"
-              ]
-            }
-          }
+          "$ref": "#/definitions/TechFlow"
         }
       ]
     },
@@ -955,127 +712,6 @@
           "$ref": "#/definitions/Country"
         }
       }
-    },
-    "ProductSource": {
-      "oneOf": [
-        {
-          "type": "object",
-          "required": [
-            "id",
-            "impactData",
-            "name",
-            "quantity",
-            "referenceServiceLife",
-            "type",
-            "unit"
-          ],
-          "properties": {
-            "description": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "id": {
-              "type": "string"
-            },
-            "impactData": {
-              "$ref": "#/definitions/ImpactDataSource"
-            },
-            "metaData": {
-              "type": [
-                "object",
-                "null"
-              ],
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "name": {
-              "type": "string"
-            },
-            "quantity": {
-              "type": "number",
-              "format": "double"
-            },
-            "referenceServiceLife": {
-              "type": "integer",
-              "format": "uint32",
-              "minimum": 0.0
-            },
-            "results": {
-              "type": [
-                "object",
-                "null"
-              ],
-              "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": [
-                    "number",
-                    "null"
-                  ],
-                  "format": "double"
-                }
-              }
-            },
-            "transport": {
-              "type": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "$ref": "#/definitions/Transport"
-              }
-            },
-            "type": {
-              "type": "string",
-              "enum": [
-                "product"
-              ]
-            },
-            "unit": {
-              "$ref": "#/definitions/Unit"
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "path",
-            "type"
-          ],
-          "properties": {
-            "format": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "overrides": {
-              "type": [
-                "object",
-                "null"
-              ],
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "path": {
-              "type": "string"
-            },
-            "type": {
-              "$ref": "#/definitions/ReferenceType"
-            },
-            "version": {
-              "type": [
-                "string",
-                "null"
-              ]
-            }
-          }
-        }
-      ]
     },
     "ProjectInfo": {
       "oneOf": [
@@ -1288,11 +924,320 @@
         "other"
       ]
     },
-    "ReferenceType": {
-      "type": "string",
-      "enum": [
-        "internal",
-        "external"
+    "ReferenceSource_for_Assembly": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "products",
+            "quantity",
+            "type",
+            "unit"
+          ],
+          "properties": {
+            "classification": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Classification"
+              }
+            },
+            "comment": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "id": {
+              "type": "string"
+            },
+            "metaData": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string"
+            },
+            "products": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/ReferenceSource_for_Product"
+              }
+            },
+            "quantity": {
+              "type": "number",
+              "format": "double"
+            },
+            "results": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "format": "double"
+                }
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "actual"
+              ]
+            },
+            "unit": {
+              "$ref": "#/definitions/Unit"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "uri"
+          ],
+          "properties": {
+            "format": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "overrides": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "reference"
+              ]
+            },
+            "uri": {
+              "type": "string"
+            },
+            "version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ReferenceSource_for_ImpactDataSource": {
+      "oneOf": [
+        {
+          "type": "object",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EPD"
+            },
+            {
+              "$ref": "#/definitions/TechFlow"
+            }
+          ],
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "actual"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "uri"
+          ],
+          "properties": {
+            "format": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "overrides": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "reference"
+              ]
+            },
+            "uri": {
+              "type": "string"
+            },
+            "version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ReferenceSource_for_Product": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "impactData",
+            "name",
+            "quantity",
+            "referenceServiceLife",
+            "type",
+            "unit"
+          ],
+          "properties": {
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "id": {
+              "type": "string"
+            },
+            "impactData": {
+              "$ref": "#/definitions/ReferenceSource_for_ImpactDataSource"
+            },
+            "metaData": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "name": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number",
+              "format": "double"
+            },
+            "referenceServiceLife": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0.0
+            },
+            "results": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "format": "double"
+                }
+              }
+            },
+            "transport": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Transport"
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "actual"
+              ]
+            },
+            "unit": {
+              "$ref": "#/definitions/Unit"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "uri"
+          ],
+          "properties": {
+            "format": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "overrides": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "reference"
+              ]
+            },
+            "uri": {
+              "type": "string"
+            },
+            "version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
       ]
     },
     "RoofType": {
@@ -1361,6 +1306,81 @@
         "industry",
         "representative"
       ]
+    },
+    "TechFlow": {
+      "type": "object",
+      "required": [
+        "declaredUnit",
+        "formatVersion",
+        "id",
+        "impacts",
+        "location",
+        "name"
+      ],
+      "properties": {
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "conversions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Conversion"
+          }
+        },
+        "declaredUnit": {
+          "$ref": "#/definitions/Unit"
+        },
+        "formatVersion": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "impacts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double"
+            }
+          }
+        },
+        "location": {
+          "$ref": "#/definitions/Country"
+        },
+        "metaData": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Source"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
     },
     "Transport": {
       "type": "object",
