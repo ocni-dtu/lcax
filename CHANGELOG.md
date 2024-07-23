@@ -1,3 +1,15 @@
+## [2.3.0](https://github.com/ocni-dtu/lcax/compare/v2.2.4...v2.3.0) (2024-07-23)
+
+### Features
+
+* adding kgm3 to units. resolves [#59](https://github.com/ocni-dtu/lcax/issues/59) ([41b0738](https://github.com/ocni-dtu/lcax/commit/41b0738ab1360c9e54311b7195169f7e7094004a))
+* adding results to SLiCE conversion ([81b23a1](https://github.com/ocni-dtu/lcax/commit/81b23a199ae7b41a88768e2066475be673f866fe))
+* initial implementation of the calculation module ([f1ee5e0](https://github.com/ocni-dtu/lcax/commit/f1ee5e0f889dd01fb7354025d81596ed0a888305))
+
+### Bug Fixes
+
+* fixed issue with enums from Rust ([8809bb2](https://github.com/ocni-dtu/lcax/commit/8809bb2c74a38aafa1215f41eb70962637300069))
+
 ## [2.2.4](https://github.com/ocni-dtu/lcax/compare/v2.2.3...v2.2.4) (2024-07-06)
 
 ### Bug Fixes
