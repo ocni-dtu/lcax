@@ -60,7 +60,7 @@ impl Project {
             assemblies: HashMap::new(),
             results: None,
             project_info: None,
-            project_phase: ProjectPhase::DESIGN,
+            project_phase: ProjectPhase::STRATEGIC_DESIGN,
             software_info: SoftwareInfo {
                 goal_and_scope_definition: None,
                 lca_software: "lcax".to_string(),
@@ -84,9 +84,17 @@ pub struct SoftwareInfo {
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ProjectPhase {
-    DESIGN,
-    ONGOING,
-    BUILT,
+    #[allow(non_camel_case_types)]
+    STRATEGIC_DESIGN,
+    #[allow(non_camel_case_types)]
+    CONCEPT_DESIGN,
+    #[allow(non_camel_case_types)]
+    TECHNICAL_DESIGN,
+    CONSTRUCTION,
+    #[allow(non_camel_case_types)]
+    POST_COMPLETION,
+    #[allow(non_camel_case_types)]
+    IN_USE,
     #[default]
     OTHER,
 }
@@ -114,7 +122,7 @@ pub enum ProjectInfo {
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct BuildingInfo {
     pub building_type: BuildingType,
-    pub building_typology: BuildingTypology,
+    pub building_typology: Vec<BuildingTypology>,
     pub certifications: Option<Vec<String>>,
     pub building_mass: Option<ValueUnit>,
     pub building_height: Option<ValueUnit>,
@@ -135,7 +143,7 @@ pub struct BuildingInfo {
     pub general_energy_class: GeneralEnergyClass,
     pub local_energy_class: Option<String>,
     pub building_users: Option<u64>,
-    pub building_model_scope: Option<BuildingModelScope>,
+    pub building_model_scope: Option<Vec<BuildingModelScope>>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
@@ -188,24 +196,44 @@ impl From<&String> for GeneralEnergyClass {
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub struct BuildingModelScope {
-    pub facilitating_works: bool,
-    pub substructure: bool,
-    pub superstructure_frame: bool,
-    pub superstructure_envelope: bool,
-    pub superstructure_internal_elements: bool,
-    pub finishes: bool,
-    pub building_services: bool,
-    pub external_works: bool,
-    pub ff_e: bool,
+pub enum BuildingModelScope {
+    #[allow(non_camel_case_types)]
+    FACILITATING_WORKS,
+    SUBSTRUCTURE,
+    #[allow(non_camel_case_types)]
+    SUPERSTRUCTURE_FRAME,
+    #[allow(non_camel_case_types)]
+    SUPERSTRUCTURE_ENVELOPE,
+    #[allow(non_camel_case_types)]
+    SUPERSTRUCTURE_INTERNAL_ELEMENTS,
+    FINISHES,
+    #[allow(non_camel_case_types)]
+    BUILDING_SERVICES,
+    #[allow(non_camel_case_types)]
+    EXTERNAL_WORKS,
+    #[allow(non_camel_case_types)]
+    FF_E,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum BuildingType {
-    RENOVATION,
-    NEW,
+    #[allow(non_camel_case_types)]
+    NEW_CONSTRUCTION_WORKS,
+    DEMOLITION,
+    #[allow(non_camel_case_types)]
+    DECONSTRUCTION_AND_NEW_CONSTRUCTION_WORKS,
+    #[allow(non_camel_case_types)]
+    RETROFIT_WORKS,
+    #[allow(non_camel_case_types)]
+    EXTENSION_WORKS,
+    #[allow(non_camel_case_types)]
+    RETROFIT_AND_EXTENSION_WORKS,
+    #[allow(non_camel_case_types)]
+    FIT_OUT_WORKS,
+    OPERATIONS,
+    OTHER,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
@@ -219,7 +247,6 @@ pub enum BuildingTypology {
     INDUSTRIAL,
     INFRASTRUCTURE,
     AGRICULTURAL,
-    MIXEDUSE,
     OTHER,
 }
 
@@ -233,7 +260,6 @@ impl From<&String> for BuildingTypology {
             "industrial" => BuildingTypology::INDUSTRIAL,
             "infrastructure" => BuildingTypology::INFRASTRUCTURE,
             "agricultural" => BuildingTypology::AGRICULTURAL,
-            "mixeduse" => BuildingTypology::MIXEDUSE,
             _ => BuildingTypology::OTHER,
         }
     }

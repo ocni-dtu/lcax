@@ -123,8 +123,8 @@
   "results": null,
   "projectInfo": {
     "type": "buildingInfo",
-    "buildingType": "new",
-    "buildingTypology": "office",
+    "buildingType": "new_construction_works",
+    "buildingTypology": ["office"],
     "certifications": null,
     "buildingMass": null,
     "buildingHeight": null,

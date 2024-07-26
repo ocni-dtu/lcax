@@ -221,8 +221,8 @@ fn add_building_data(project: &mut LCAxProject, node: &nodes::Building) {
     project.reference_study_period = Some(node.calculation_timespan as u8);
     project.project_info = Some(ProjectInfo::BuildingInfo {
         0: BuildingInfo {
-            building_type: BuildingType::NEW,
-            building_typology: BuildingTypology::from(&node.building_type),
+            building_type: BuildingType::NEW_CONSTRUCTION_WORKS,
+            building_typology: vec![BuildingTypology::from(&node.building_type)],
             certifications: None,
             building_mass: None,
             building_height: None,
