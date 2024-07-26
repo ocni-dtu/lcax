@@ -124,7 +124,7 @@
   "projectInfo": {
     "type": "buildingInfo",
     "buildingType": "new_construction_works",
-    "buildingTypology": "office",
+    "buildingTypology": ["office"],
     "certifications": null,
     "buildingMass": null,
     "buildingHeight": null,

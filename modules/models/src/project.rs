@@ -122,7 +122,7 @@ pub enum ProjectInfo {
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct BuildingInfo {
     pub building_type: BuildingType,
-    pub building_typology: BuildingTypology,
+    pub building_typology: Vec<BuildingTypology>,
     pub certifications: Option<Vec<String>>,
     pub building_mass: Option<ValueUnit>,
     pub building_height: Option<ValueUnit>,
@@ -233,9 +233,8 @@ pub enum BuildingType {
     #[allow(non_camel_case_types)]
     FIT_OUT_WORKS,
     OPERATIONS,
-    OTHER
+    OTHER,
 }
-
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
@@ -248,7 +247,6 @@ pub enum BuildingTypology {
     INDUSTRIAL,
     INFRASTRUCTURE,
     AGRICULTURAL,
-    MIXEDUSE,
     OTHER,
 }
 
@@ -262,7 +260,6 @@ impl From<&String> for BuildingTypology {
             "industrial" => BuildingTypology::INDUSTRIAL,
             "infrastructure" => BuildingTypology::INFRASTRUCTURE,
             "agricultural" => BuildingTypology::AGRICULTURAL,
-            "mixeduse" => BuildingTypology::MIXEDUSE,
             _ => BuildingTypology::OTHER,
         }
     }
