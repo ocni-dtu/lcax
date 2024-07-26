@@ -146,53 +146,31 @@
       }
     },
     "BuildingModelScope": {
-      "type": "object",
-      "required": [
+      "type": "string",
+      "enum": [
+        "facilitating_works",
+        "substructure",
+        "superstructure_frame",
+        "superstructure_envelope",
+        "superstructure_internal_elements",
+        "finishes",
         "building_services",
         "external_works",
-        "facilitating_works",
-        "ff_e",
-        "finishes",
-        "substructure",
-        "superstructure_envelope",
-        "superstructure_frame",
-        "superstructure_internal_elements"
-      ],
-      "properties": {
-        "building_services": {
-          "type": "boolean"
-        },
-        "external_works": {
-          "type": "boolean"
-        },
-        "facilitating_works": {
-          "type": "boolean"
-        },
-        "ff_e": {
-          "type": "boolean"
-        },
-        "finishes": {
-          "type": "boolean"
-        },
-        "substructure": {
-          "type": "boolean"
-        },
-        "superstructure_envelope": {
-          "type": "boolean"
-        },
-        "superstructure_frame": {
-          "type": "boolean"
-        },
-        "superstructure_internal_elements": {
-          "type": "boolean"
-        }
-      }
+        "ff_e"
+      ]
     },
     "BuildingType": {
       "type": "string",
       "enum": [
-        "renovation",
-        "new"
+        "new_construction_works",
+        "demolition",
+        "deconstruction_and_new_construction_works",
+        "retrofit_works",
+        "extension_works",
+        "retrofit_and_extension_works",
+        "fit_out_works",
+        "operations",
+        "other"
       ]
     },
     "BuildingTypology": {
@@ -673,6 +651,7 @@
     "LifeCycleStage": {
       "type": "string",
       "enum": [
+        "a0",
         "a1a3",
         "a4",
         "a5",
@@ -683,6 +662,7 @@
         "b5",
         "b6",
         "b7",
+        "b8",
         "c1",
         "c2",
         "c3",
@@ -765,14 +745,13 @@
               ]
             },
             "buildingModelScope": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/BuildingModelScope"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/BuildingModelScope"
+              }
             },
             "buildingPermitYear": {
               "type": [
@@ -918,9 +897,12 @@
     "ProjectPhase": {
       "type": "string",
       "enum": [
-        "design",
-        "ongoing",
-        "built",
+        "strategic_design",
+        "concept_design",
+        "technical_design",
+        "construction",
+        "post_completion",
+        "in_use",
         "other"
       ]
     },

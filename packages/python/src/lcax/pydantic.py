@@ -7,27 +7,33 @@ from datetime import date
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class BuildingModelScope(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    building_services: bool
-    external_works: bool
-    facilitating_works: bool
-    ff_e: bool
-    finishes: bool
-    substructure: bool
-    superstructure_envelope: bool
-    superstructure_frame: bool
-    superstructure_internal_elements: bool
+class BuildingModelScope(Enum):
+    FACILITATING_WORKS = 'facilitating_works'
+    SUBSTRUCTURE = 'substructure'
+    SUPERSTRUCTURE_FRAME = 'superstructure_frame'
+    SUPERSTRUCTURE_ENVELOPE = 'superstructure_envelope'
+    SUPERSTRUCTURE_INTERNAL_ELEMENTS = 'superstructure_internal_elements'
+    FINISHES = 'finishes'
+    BUILDING_SERVICES = 'building_services'
+    EXTERNAL_WORKS = 'external_works'
+    FF_E = 'ff_e'
 
 
 class BuildingType(Enum):
-    RENOVATION = 'renovation'
-    NEW = 'new'
+    NEW_CONSTRUCTION_WORKS = 'new_construction_works'
+    DEMOLITION = 'demolition'
+    DECONSTRUCTION_AND_NEW_CONSTRUCTION_WORKS = (
+        'deconstruction_and_new_construction_works'
+    )
+    RETROFIT_WORKS = 'retrofit_works'
+    EXTENSION_WORKS = 'extension_works'
+    RETROFIT_AND_EXTENSION_WORKS = 'retrofit_and_extension_works'
+    FIT_OUT_WORKS = 'fit_out_works'
+    OPERATIONS = 'operations'
+    OTHER = 'other'
 
 
 class BuildingTypology(Enum):
@@ -353,6 +359,7 @@ class ImpactCategoryKey(Enum):
 
 
 class LifeCycleStage(Enum):
+    A0 = 'a0'
     A1A3 = 'a1a3'
     A4 = 'a4'
     A5 = 'a5'
@@ -363,6 +370,7 @@ class LifeCycleStage(Enum):
     B5 = 'b5'
     B6 = 'b6'
     B7 = 'b7'
+    B8 = 'b8'
     C1 = 'c1'
     C2 = 'c2'
     C3 = 'c3'
@@ -395,9 +403,12 @@ class ProjectInfo2(BaseModel):
 
 
 class ProjectPhase(Enum):
-    DESIGN = 'design'
-    ONGOING = 'ongoing'
-    BUILT = 'built'
+    STRATEGIC_DESIGN = 'strategic_design'
+    CONCEPT_DESIGN = 'concept_design'
+    TECHNICAL_DESIGN = 'technical_design'
+    CONSTRUCTION = 'construction'
+    POST_COMPLETION = 'post_completion'
+    IN_USE = 'in_use'
     OTHER = 'other'
 
 
@@ -574,7 +585,7 @@ class ProjectInfo1(BaseModel):
     building_footprint: Optional[ValueUnit] = Field(None, alias='buildingFootprint')
     building_height: Optional[ValueUnit] = Field(None, alias='buildingHeight')
     building_mass: Optional[ValueUnit] = Field(None, alias='buildingMass')
-    building_model_scope: Optional[BuildingModelScope] = Field(
+    building_model_scope: Optional[List[BuildingModelScope]] = Field(
         None, alias='buildingModelScope'
     )
     building_permit_year: Optional[int] = Field(None, alias='buildingPermitYear', ge=0)

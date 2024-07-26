@@ -219,9 +219,23 @@ pub enum BuildingModelScope {
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum BuildingType {
-    RENOVATION,
-    NEW,
+    #[allow(non_camel_case_types)]
+    NEW_CONSTRUCTION_WORKS,
+    DEMOLITION,
+    #[allow(non_camel_case_types)]
+    DECONSTRUCTION_AND_NEW_CONSTRUCTION_WORKS,
+    #[allow(non_camel_case_types)]
+    RETROFIT_WORKS,
+    #[allow(non_camel_case_types)]
+    EXTENSION_WORKS,
+    #[allow(non_camel_case_types)]
+    RETROFIT_AND_EXTENSION_WORKS,
+    #[allow(non_camel_case_types)]
+    FIT_OUT_WORKS,
+    OPERATIONS,
+    OTHER
 }
+
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
