@@ -60,7 +60,7 @@ impl Project {
             assemblies: HashMap::new(),
             results: None,
             project_info: None,
-            project_phase: ProjectPhase::DESIGN,
+            project_phase: ProjectPhase::STRATEGIC_DESIGN,
             software_info: SoftwareInfo {
                 goal_and_scope_definition: None,
                 lca_software: "lcax".to_string(),
@@ -84,9 +84,17 @@ pub struct SoftwareInfo {
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum ProjectPhase {
-    DESIGN,
-    ONGOING,
-    BUILT,
+    #[allow(non_camel_case_types)]
+    STRATEGIC_DESIGN,
+    #[allow(non_camel_case_types)]
+    CONCEPT_DESIGN,
+    #[allow(non_camel_case_types)]
+    TECHNICAL_DESIGN,
+    CONSTRUCTION,
+    #[allow(non_camel_case_types)]
+    POST_COMPLETION,
+    #[allow(non_camel_case_types)]
+    IN_USE,
     #[default]
     OTHER,
 }
