@@ -135,7 +135,7 @@ pub struct BuildingInfo {
     pub general_energy_class: GeneralEnergyClass,
     pub local_energy_class: Option<String>,
     pub building_users: Option<u64>,
-    pub building_model_scope: Option<BuildingModelScope>,
+    pub building_model_scope: Option<Vec<BuildingModelScope>>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
@@ -188,16 +188,23 @@ impl From<&String> for GeneralEnergyClass {
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-pub struct BuildingModelScope {
-    pub facilitating_works: bool,
-    pub substructure: bool,
-    pub superstructure_frame: bool,
-    pub superstructure_envelope: bool,
-    pub superstructure_internal_elements: bool,
-    pub finishes: bool,
-    pub building_services: bool,
-    pub external_works: bool,
-    pub ff_e: bool,
+pub enum BuildingModelScope {
+    #[allow(non_camel_case_types)]
+    FACILITATING_WORKS,
+    SUBSTRUCTURE,
+    #[allow(non_camel_case_types)]
+    SUPERSTRUCTURE_FRAME,
+    #[allow(non_camel_case_types)]
+    SUPERSTRUCTURE_ENVELOPE,
+    #[allow(non_camel_case_types)]
+    SUPERSTRUCTURE_INTERNAL_ELEMENTS,
+    FINISHES,
+    #[allow(non_camel_case_types)]
+    BUILDING_SERVICES,
+    #[allow(non_camel_case_types)]
+    EXTERNAL_WORKS,
+    #[allow(non_camel_case_types)]
+    FF_E,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
