@@ -7,7 +7,7 @@ from datetime import date
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class BuildingModelScope(Enum):
@@ -44,7 +44,6 @@ class BuildingTypology(Enum):
     INDUSTRIAL = 'industrial'
     INFRASTRUCTURE = 'infrastructure'
     AGRICULTURAL = 'agricultural'
-    MIXEDUSE = 'mixeduse'
     OTHER = 'other'
 
 
@@ -590,7 +589,7 @@ class ProjectInfo1(BaseModel):
     )
     building_permit_year: Optional[int] = Field(None, alias='buildingPermitYear', ge=0)
     building_type: BuildingType = Field(..., alias='buildingType')
-    building_typology: BuildingTypology = Field(..., alias='buildingTypology')
+    building_typology: List[BuildingTypology] = Field(..., alias='buildingTypology')
     building_users: Optional[int] = Field(None, alias='buildingUsers', ge=0)
     certifications: Optional[List[str]] = None
     energy_demand_electricity: Optional[float] = Field(

@@ -1,3 +1,13 @@
+## [2.4.0](https://github.com/ocni-dtu/lcax/compare/v2.3.2...v2.4.0) (2024-07-26)
+
+### Features
+
+* Adding A0 and B8 life cycle stages ([2ae8f61](https://github.com/ocni-dtu/lcax/commit/2ae8f6112b7ea3d561831aeda1f0e83992dff99d)), closes [#63](https://github.com/ocni-dtu/lcax/issues/63)
+* Changing BuildingModelScope to vector of enums. ([5ece309](https://github.com/ocni-dtu/lcax/commit/5ece309d34168ceeff0f0af8bf98aa993ba0ea7c)), closes [#58](https://github.com/ocni-dtu/lcax/issues/58)
+* Updating building type ([e7d7211](https://github.com/ocni-dtu/lcax/commit/e7d7211a15e75dc150bde9fb67b3f598d73e019a)), closes [#65](https://github.com/ocni-dtu/lcax/issues/65)
+* Updating building typology to be a vector of enums ([993acac](https://github.com/ocni-dtu/lcax/commit/993acac66a5f9736e3ff2919d27bcf8cc4aeafb6)), closes [#66](https://github.com/ocni-dtu/lcax/issues/66)
+* Updating project phases ([0c7beec](https://github.com/ocni-dtu/lcax/commit/0c7beec06e3f14bf73ff629d438e67d76effba80)), closes [#64](https://github.com/ocni-dtu/lcax/issues/64)
+
 ## [2.3.2](https://github.com/ocni-dtu/lcax/compare/v2.3.1...v2.3.2) (2024-07-23)
 
 ### Bug Fixes
