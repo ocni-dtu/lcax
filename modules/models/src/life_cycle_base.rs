@@ -10,6 +10,7 @@ use tsify::Tsify;
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub enum LifeCycleStage {
+    A0,
     A1A3,
     A4,
     A5,
@@ -20,6 +21,7 @@ pub enum LifeCycleStage {
     B5,
     B6,
     B7,
+    B8,
     C1,
     C2,
     C3,
@@ -30,6 +32,7 @@ pub enum LifeCycleStage {
 impl fmt::Display for LifeCycleStage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
+            LifeCycleStage::A0 => write!(f, "A0"),
             LifeCycleStage::A1A3 => write!(f, "A1A3"),
             LifeCycleStage::A4 => write!(f, "A4"),
             LifeCycleStage::A5 => write!(f, "A5"),
@@ -40,6 +43,7 @@ impl fmt::Display for LifeCycleStage {
             LifeCycleStage::B5 => write!(f, "B5"),
             LifeCycleStage::B6 => write!(f, "B6"),
             LifeCycleStage::B7 => write!(f, "B7"),
+            LifeCycleStage::B8 => write!(f, "B8"),
             LifeCycleStage::C1 => write!(f, "C1"),
             LifeCycleStage::C2 => write!(f, "C2"),
             LifeCycleStage::C3 => write!(f, "C3"),
@@ -54,6 +58,7 @@ impl TryFrom<&str> for LifeCycleStage {
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         match value.to_lowercase().as_str() {
+            "a0" => Ok(LifeCycleStage::A0),
             "a1to3" => Ok(LifeCycleStage::A1A3),
             "a1a3" => Ok(LifeCycleStage::A1A3),
             "a1-3" => Ok(LifeCycleStage::A1A3),
@@ -66,6 +71,7 @@ impl TryFrom<&str> for LifeCycleStage {
             "b5" => Ok(LifeCycleStage::B5),
             "b6" => Ok(LifeCycleStage::B6),
             "b7" => Ok(LifeCycleStage::B7),
+            "b8" => Ok(LifeCycleStage::B8),
             "c1" => Ok(LifeCycleStage::C1),
             "c2" => Ok(LifeCycleStage::C2),
             "c3" => Ok(LifeCycleStage::C3),
