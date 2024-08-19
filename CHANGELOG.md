@@ -1,3 +1,9 @@
+## [2.5.0](https://github.com/ocni-dtu/lcax/compare/v2.4.0...v2.5.0) (2024-08-19)
+
+### Features
+
+* Added linux arm build for Python ([5f6f071](https://github.com/ocni-dtu/lcax/commit/5f6f0712ceabd7aeac7e96eaaec84b8adac08513))
+
 ## [2.4.0](https://github.com/ocni-dtu/lcax/compare/v2.3.2...v2.4.0) (2024-07-26)
 
 ### Features
