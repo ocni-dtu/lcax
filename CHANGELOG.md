@@ -1,3 +1,9 @@
+## [2.5.1](https://github.com/ocni-dtu/lcax/compare/v2.5.0...v2.5.1) (2024-08-20)
+
+### Bug Fixes
+
+* fix to how enums are handled in Python ([b984cfd](https://github.com/ocni-dtu/lcax/commit/b984cfd2d60aaedb8b89f1a39c2e8d85746aece7))
+
 ## [2.5.0](https://github.com/ocni-dtu/lcax/compare/v2.4.0...v2.5.0) (2024-08-19)
 
 ### Features
