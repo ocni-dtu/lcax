@@ -183,7 +183,6 @@
         "industrial",
         "infrastructure",
         "agricultural",
-        "mixeduse",
         "other"
       ]
     },
@@ -765,7 +764,10 @@
               "$ref": "#/definitions/BuildingType"
             },
             "buildingTypology": {
-              "$ref": "#/definitions/BuildingTypology"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BuildingTypology"
+              }
             },
             "buildingUsers": {
               "type": [
