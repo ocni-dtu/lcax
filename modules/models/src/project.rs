@@ -171,6 +171,7 @@ pub enum RoofType {
     PITCHED,
     SADDLE,
     PYRAMID,
+    UNKNOWN,
     OTHER,
 }
 
@@ -233,6 +234,7 @@ pub enum BuildingType {
     #[allow(non_camel_case_types)]
     FIT_OUT_WORKS,
     OPERATIONS,
+    UNKNOWN,
     OTHER,
 }
 
@@ -247,6 +249,9 @@ pub enum BuildingTypology {
     INDUSTRIAL,
     INFRASTRUCTURE,
     AGRICULTURAL,
+    EDUCATIONAL,
+    HEALTH,
+    UNKNOWN,
     OTHER,
 }
 
@@ -260,6 +265,8 @@ impl From<&String> for BuildingTypology {
             "industrial" => BuildingTypology::INDUSTRIAL,
             "infrastructure" => BuildingTypology::INFRASTRUCTURE,
             "agricultural" => BuildingTypology::AGRICULTURAL,
+            "educational" => BuildingTypology::EDUCATIONAL,
+            "health" => BuildingTypology::HEALTH,
             _ => BuildingTypology::OTHER,
         }
     }
