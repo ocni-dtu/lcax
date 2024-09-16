@@ -33,6 +33,7 @@ class BuildingType(Enum):
     retrofit_and_extension_works = 'retrofit_and_extension_works'
     fit_out_works = 'fit_out_works'
     operations = 'operations'
+    unknown = 'unknown'
     other = 'other'
 
 
@@ -44,6 +45,9 @@ class BuildingTypology(Enum):
     industrial = 'industrial'
     infrastructure = 'infrastructure'
     agricultural = 'agricultural'
+    educational = 'educational'
+    health = 'health'
+    unknown = 'unknown'
     other = 'other'
 
 
@@ -473,6 +477,7 @@ class RoofType(Enum):
     pitched = 'pitched'
     saddle = 'saddle'
     pyramid = 'pyramid'
+    unknown = 'unknown'
     other = 'other'
 
 

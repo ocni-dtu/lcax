@@ -1,3 +1,10 @@
+## [2.5.2](https://github.com/ocni-dtu/lcax/compare/v2.5.1...v2.5.2) (2024-09-16)
+
+### Bug Fixes
+
+* added more options to building typology, building type and roof type ([cf344b9](https://github.com/ocni-dtu/lcax/commit/cf344b92d2c918660b6726df02c683b5d66ad4c9)), closes [#72](https://github.com/ocni-dtu/lcax/issues/72) [#73](https://github.com/ocni-dtu/lcax/issues/73)
+* updated cargo token ([bbe6717](https://github.com/ocni-dtu/lcax/commit/bbe6717fbd099050b3d9059f9567ce1ebcd20c4f))
+
 ## [2.5.1](https://github.com/ocni-dtu/lcax/compare/v2.5.0...v2.5.1) (2024-08-20)
 
 ### Bug Fixes
