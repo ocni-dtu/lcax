@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Type as PyType, TypeVar
 
-from .lcax import _convert_lcabyg, _convert_ilcd, _convert_slice
+from .lcax import _convert_lcabyg, _convert_ilcd, _convert_slice, _calculate_project
 import lcax as lcax_binary
 from .pydantic import *
 from .pydantic import ReferenceSourceForImpactDataSource1 as EPD
@@ -73,6 +73,21 @@ def convert_ilcd(data: str | dict, *, as_type: PyType[EPD_Type] = dict) -> EPD_T
         return EPD(**json.loads(_epd), type='actual')
     else:
         raise NotImplementedError("Currently only 'dict', 'str' and 'lcax.EPD' is implemented as_type.")
+
+
+def calculate_project(project: Project) -> Project:
+    """
+    Calculates the LCAx project, based on the data in the assemblies, products and impact data.
+
+    The method populates the result objects at the project, assembly and product level.
+    """
+
+    try:
+        _project = _calculate_project(json.dumps(project.model_dump(mode="json", by_alias=True)))
+        return Project(**json.loads(_project))
+
+    except Exception as err:
+        raise ParsingException(err)
 
 
 def convert_slice(path: str | Path, *, as_type: PyType[Project_Type] = dict) -> list[Project_Type]:
