@@ -1,3 +1,13 @@
+## [2.6.0](https://github.com/ocni-dtu/lcax/compare/v2.5.2...v2.6.0) (2024-09-27)
+
+### Features
+
+* exposing calculation functionality to js and py ([512df66](https://github.com/ocni-dtu/lcax/commit/512df667b930dc46c4519c5c3a620ca58a648ccc))
+
+### Bug Fixes
+
+* adding deprecation warning for SLiCE removal in 3.0.0 ([adc5332](https://github.com/ocni-dtu/lcax/commit/adc5332afaef92fd0b1d6156d645f6281c118452))
+
 ## [2.5.2](https://github.com/ocni-dtu/lcax/compare/v2.5.1...v2.5.2) (2024-09-16)
 
 ### Bug Fixes
