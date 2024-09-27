@@ -39,9 +39,10 @@ serde_json = "1.0.116"
 lcax_core = { path = "../core", version = ">2.0.0" }
 lcax_models = { path = "../models", version = ">2.0.0" }
 lcax_convert = { path = "../convert", version = ">2.0.0" }
+lcax_calculation = { path = "../calculation", version = ">2.0.0" }
 
 # Python Bindings
-pyo3 = { version = "0.21.2", features = ["abi3-py310"], optional = true }
+pyo3 = { version = "0.22.3", features = ["abi3-py310"], optional = true }
 
 # JS Bindings
 wee_alloc = { version = "0.4.5", optional = true }

@@ -1,4 +1,6 @@
+use lcax_calculation::calculate::{calculate_project, CalculationOptions};
 use lcax_convert::{ilcd, lcabyg, slice};
+use lcax_models::project::Project;
 use pyo3::exceptions::PyTypeError;
 use pyo3::prelude::*;
 use std::fs;
@@ -33,6 +35,16 @@ pub fn _convert_slice(path: String) -> PyResult<Vec<String>> {
     }
 }
 
+#[pyfunction]
+pub fn _calculate_project(project: String) -> PyResult<String> {
+    let mut _project: Project = serde_json::from_str(&project).unwrap();
+
+    match calculate_project(&mut _project, None) {
+        Ok(project) => Ok(serde_json::to_string(project).unwrap()),
+        Err(error) => Err(PyTypeError::new_err(error.to_string())),
+    }
+}
+
 /// A Python module implemented in Rust. The name of this function must match
 /// the `lib.name` setting in the `Cargo.toml`, else Python will not be able to
 /// import the module.
@@ -41,5 +53,6 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(_convert_lcabyg, m)?)?;
     m.add_function(wrap_pyfunction!(_convert_ilcd, m)?)?;
     m.add_function(wrap_pyfunction!(_convert_slice, m)?)?;
+    m.add_function(wrap_pyfunction!(_calculate_project, m)?)?;
     Ok(())
 }

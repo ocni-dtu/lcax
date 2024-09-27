@@ -18,6 +18,10 @@ use crate::slice::model::{add_project_data, add_slice_element, SLiCEElement};
 /// * `result_data`: Optional JSON formatted string containing the result data from the LCAByg project
 ///
 /// returns: LCAxProject
+#[deprecated(
+    since = "3.0.0",
+    note = "SLiCE converter will no longer be maintained and will be removed in version 3.0.0"
+)]
 pub fn parse_slice(file: Vec<u8>) -> Result<Vec<LCAxProject>, String> {
     let cursor: Bytes = file.into();
     let reader = match SerializedFileReader::new(cursor) {

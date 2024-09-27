@@ -61,12 +61,17 @@ mkdocs serve
 ```
 
 # JavaScript/TypeScript
+Install wasm-pack
+```bash
+curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+```
 
 ## Build JS Package
 
 ```bash
+cd modules/lcax
 wasm-pack build --features jsbindings
-mv pkg/lcax* packages/javascript/src
+mv pkg/lcax* ../../packages/javascript/src
 ```
 
 ## Run JS Tests
