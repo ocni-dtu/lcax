@@ -1,8 +1,8 @@
-use std::collections::HashMap;
 #[allow(dead_code)]
 use serde::Deserialize;
 use serde::Serialize;
 use serde_json::Value;
+use std::collections::HashMap;
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -67,7 +67,10 @@ impl Into<HashMap<String, Value>> for MaterialProperty {
             ("name".to_string(), Value::from(self.name)),
             ("value".to_string(), Value::from(self.value)),
             ("unit".to_string(), Value::from(self.unit)),
-            ("unit_description".to_string(), Value::from(self.unit_description)),
+            (
+                "unit_description".to_string(),
+                Value::from(self.unit_description),
+            ),
         ])
     }
 }
