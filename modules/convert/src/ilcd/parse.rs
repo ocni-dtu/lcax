@@ -181,7 +181,7 @@ fn get_ilcd_conversion(exchange: &Exchange) -> Vec<Conversion> {
                 conversions.push(Conversion {
                     value,
                     to: get_converted_unit(&material_property.unit),
-                    meta_data: serde_json::to_string(material_property).unwrap(),
+                    meta_data: Some((*material_property).clone().into()),
                 })
             }
         }

@@ -1,13 +1,12 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
 use crate::epd::EPD;
 use crate::life_cycle_base::{LifeCycleStage, Results};
-use crate::shared::{Reference, ReferenceSource, Unit};
+use crate::shared::{MetaData, Reference, ReferenceSource, Unit};
 use crate::techflow::TechFlow;
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
@@ -23,7 +22,7 @@ pub struct Product {
     pub unit: Unit,
     pub transport: Option<Vec<Transport>>,
     pub results: Option<Results>,
-    pub meta_data: Option<HashMap<String, String>>,
+    pub meta_data: Option<MetaData>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
