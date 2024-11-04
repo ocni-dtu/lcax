@@ -1,3 +1,9 @@
+## [2.6.1](https://github.com/ocni-dtu/lcax/compare/v2.6.0...v2.6.1) (2024-11-04)
+
+### Bug Fixes
+
+* made metadata fields except any kind of data type ([1ea567e](https://github.com/ocni-dtu/lcax/commit/1ea567eef362ced89cc951569610fb17f32bac1b))
+
 ## [2.6.0](https://github.com/ocni-dtu/lcax/compare/v2.5.2...v2.6.0) (2024-09-27)
 
 ### Features
