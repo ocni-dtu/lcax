@@ -75,7 +75,7 @@
               {
                 "value": 7850.0,
                 "to": "kg",
-                "metaData": ""
+                "metaData": null
               }
             ],
             "impacts": {
