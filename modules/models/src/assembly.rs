@@ -7,7 +7,7 @@ use tsify::Tsify;
 
 use crate::life_cycle_base::Results;
 use crate::product::Product;
-use crate::shared::{ReferenceSource, Unit};
+use crate::shared::{MetaData, ReferenceSource, Unit};
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -22,7 +22,7 @@ pub struct Assembly {
     pub classification: Option<Vec<Classification>>,
     pub products: HashMap<String, ReferenceSource<Product>>,
     pub results: Option<Results>,
-    pub meta_data: Option<HashMap<String, String>>,
+    pub meta_data: Option<MetaData>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]

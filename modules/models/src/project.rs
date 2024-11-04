@@ -8,7 +8,7 @@ use tsify::Tsify;
 
 use crate::assembly::Assembly;
 use crate::life_cycle_base::{ImpactCategoryKey, LifeCycleStage, Results};
-use crate::shared::{ReferenceSource, Unit};
+use crate::shared::{MetaData, ReferenceSource, Unit};
 
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -35,7 +35,7 @@ pub struct Project {
     pub project_info: Option<ProjectInfo>,
     pub project_phase: ProjectPhase,
     pub software_info: SoftwareInfo,
-    pub meta_data: Option<HashMap<String, String>>,
+    pub meta_data: Option<MetaData>,
 }
 
 impl Project {

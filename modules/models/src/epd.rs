@@ -11,7 +11,7 @@ use lcax_core::dates::{deserialize_yyyy_mm_dd, serialize_yyyy_mm_dd};
 use lcax_core::utils::get_version;
 
 use crate::life_cycle_base::{ImpactCategory, ImpactCategoryKey};
-use crate::shared::{Conversion, Source, Unit};
+use crate::shared::{Conversion, MetaData, Source, Unit};
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -43,7 +43,7 @@ pub struct EPD {
     pub subtype: SubType,
     pub conversions: Option<Vec<Conversion>>,
     pub impacts: HashMap<ImpactCategoryKey, ImpactCategory>,
-    pub meta_data: Option<HashMap<String, String>>,
+    pub meta_data: Option<MetaData>,
 }
 
 impl EPD {

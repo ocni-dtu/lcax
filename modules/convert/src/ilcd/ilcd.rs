@@ -1,6 +1,8 @@
+use std::collections::HashMap;
 #[allow(dead_code)]
 use serde::Deserialize;
 use serde::Serialize;
+use serde_json::Value;
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -50,13 +52,24 @@ pub struct FlowProperty {
     pub unit_group_uuid: Option<String>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct MaterialProperty {
     pub name: String,
     pub value: String,
     pub unit: String,
     pub unit_description: Option<String>,
+}
+
+impl Into<HashMap<String, Value>> for MaterialProperty {
+    fn into(self) -> HashMap<String, Value> {
+        HashMap::from([
+            ("name".to_string(), Value::from(self.name)),
+            ("value".to_string(), Value::from(self.value)),
+            ("unit".to_string(), Value::from(self.unit)),
+            ("unit_description".to_string(), Value::from(self.unit_description)),
+        ])
+    }
 }
 
 #[derive(Deserialize)]

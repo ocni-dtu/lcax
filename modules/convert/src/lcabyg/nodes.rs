@@ -277,7 +277,7 @@ pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
         conversions: Some(vec![Conversion {
             to: Unit::KG,
             value: node.mass_factor,
-            meta_data: "".to_string(),
+            meta_data: None,
         }]),
         meta_data: None,
     };

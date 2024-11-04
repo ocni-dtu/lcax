@@ -9,7 +9,7 @@ use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 
 use crate::life_cycle_base::{ImpactCategory, ImpactCategoryKey};
-use crate::shared::{Conversion, Source, Unit};
+use crate::shared::{Conversion, MetaData, Source, Unit};
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -28,7 +28,7 @@ pub struct TechFlow {
     pub location: Country,
     pub conversions: Option<Vec<Conversion>>,
     pub impacts: HashMap<ImpactCategoryKey, ImpactCategory>,
-    pub meta_data: Option<HashMap<String, String>>,
+    pub meta_data: Option<MetaData>,
 }
 
 impl TechFlow {
