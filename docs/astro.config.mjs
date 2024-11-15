@@ -14,9 +14,9 @@ export default defineConfig({
                 {
                     label: 'Concept',
                     items: [
-                        { label: 'Introduction', slug: 'concept/introduction'},
-                        { label: 'Why Rust', slug: 'concept/rust'},
-                        {label: 'LCAx\'s Data Structure', slug: 'concept/data_structure'},
+                        {label: 'Introduction', slug: 'concept/introduction'},
+                        {label: 'Why Rust', slug: 'concept/rust'},
+                        {label: 'LCAx\'s Data Structure', slug: 'concept/data-structure'},
                         {label: 'LCAx\'s 4 Pillars', slug: 'concept/pillars'},
                     ]
                 },
@@ -44,7 +44,17 @@ export default defineConfig({
                 },
                 {
                     label: 'Reference',
-                    autogenerate: {directory: 'reference'},
+                    items: [
+                        {label: 'Changelog', slug: 'reference/changelog'},
+                        {
+                            label: 'Schemas', items: [
+                                {label: 'C#', slug: 'reference/schemas/csharp'},
+                                {label: 'Python', slug: 'reference/schemas/python'},
+                                {label: 'TypeScript', slug: 'reference/schemas/javascript'},
+                                {label: 'Rust', slug: 'reference/schemas/rust'},
+                            ]
+                        },
+                    ]
                 },
             ],
         }),

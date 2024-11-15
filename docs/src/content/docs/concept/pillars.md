@@ -3,14 +3,16 @@ title: LCAx's 4 Pillars
 description: An introduction to the 4 pillars making up LCAx.
 ---
 
-# Data Structure
+![LCAx Packages](../../../assets/lcax_pillars.svg)
+
+## Data Structure
 
 At the center of the LCAx project is the data structure.
 
 The data structure is at the core of the project and is the foundation that the rest of the pillars built upon and
 leverage.
 
-# Conversion
+## Conversion
 
 Central to LCAx's mission is to facilitate the exchange of LCA projects and data.
 To facilitate that exchange requires capabilities to translate LCA data from one piece of software into another.
@@ -19,20 +21,20 @@ It is here the Conversion Pillar comes into play.
 Conversion functionality between EPD data providers, LCA calculation software and the LCAx data structure is paramount
 to make the exchange of data possible.
 
-# Validation
+## Validation
 
 Data validation in LCAx is separated into two levels:
 
 - correctness of filled out data structure
 - custom data validation
 
-## Data Correctness
+### Data Correctness
 
 Rust is a strongly typed language so all data processed by the Rust functions will have to adhere to the data structure.
 Furthermore, LCAx provides the data structure in a JSON Schema allowing everyone to validate their data using third
 party tools.
 
-## Custom Data Validation
+### Custom Data Validation
 
 LCA projects and data can take many forms even if the same data structure is used and applied correctly.
 Therefore, it is needed to be able to check and validate data structure against custom logic.
@@ -41,7 +43,7 @@ This functionality can for example be used in quality assurance procedures.
 An example of this could be to validate if all the EPDs in the project adhere to a certain standard i.e. EN15804+A2 or
 if all assemblies have a classification code filled out. 
 
-# Calculation
+## Calculation
 
 At the time of writing there doesn't exist a popular open source engine for calculating whole life LCA on construction
 projects.

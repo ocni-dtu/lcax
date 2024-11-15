@@ -3,6 +3,7 @@ title: Why Rust?
 description: Reasoning behind choosing Rust for the LCAx implementation.
 ---
 
+![LCAx Packages](../../../assets/lcax_embed.svg)
 
 Rust allows for cross compiling LCAx into multiple languages notably the most commonly used ones in the AEC industry:
 Python, JavaScript/TypeScript and C#.
@@ -18,3 +19,4 @@ Compared to C, which offers many of the same features in terms of cross-compilin
 programming language with modern tooling baked in.
 Even though, it is a low level language it has a high level feeling to it and especially Python developers will find the
 syntax familiar.
+

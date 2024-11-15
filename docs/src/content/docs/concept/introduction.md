@@ -12,7 +12,7 @@ We intend to create connections to existing tools and API’s.
 
 Our goal is making LCA calculations more accessible, transparent, and open.
 
-![LCAx](./assets/benchmark.png)
+![LCAx](../../../assets/lcax_benchmark.svg)
 
 ## Motivation
 
@@ -24,7 +24,7 @@ Furthermore, it makes it hard to quality assure an LCA calculation coming from a
 company is using. Having an open data format will make it easier to check if an LCA calculation is compliant with the
 requirements for an individual project.
 
-# Importance of LCA Data Models
+## Importance of LCA Data Models
 
 A well-defined LCA data model ensures consistency and comparability across different assessments, enabling researchers,
 businesses, and policymakers to make meaningful comparisons and draw reliable conclusions.
@@ -35,3 +35,11 @@ existing formats must be placed.
 Additionally, having a flexible, yet robust, data structure, makes sure that, even with advancements in methodology,
 technology, and data availability, stored projects can continue to have relevance and address the evolving challenges
 and stakeholder needs.
+
+## Development of LCAx
+The LCAx project was initiated by Christian Kongsgaard and Andreas Sørensen in the spring of 2023 and has since the
+beginning been developed as an open source project (Apache 2.0) by Christian Kongsgaard ApS.
+Besides the data structure, LCAx consists of converters, a validation engine and a calculation engine. These parts of
+the project are not described here.
+As part of the GBDI project it is the intention to contribute to the continued development of LCAx and adapt it to fit
+the needs of GBDI.
