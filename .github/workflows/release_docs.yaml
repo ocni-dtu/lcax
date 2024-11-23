@@ -11,32 +11,32 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: json-schema
-          path: docs/schemas/
+          path: docs/src/content/code
 
       - uses: actions/download-artifact@v4
         with:
           name: rust-schema
-          path: docs/schemas/
+          path: docs/src/content/code/rust
 
       - uses: actions/download-artifact@v4
         with:
           name: pydantic-schema
-          path: docs/schemas/
+          path: docs/src/content/code/python
 
       - uses: actions/download-artifact@v4
         with:
           name: typescript-schema
-          path: docs/schemas/
+          path: docs/src/content/code/javascript
 
       - uses: actions/download-artifact@v4
         with:
           name: csharp-schema
-          path: docs/schemas/
+          path: docs/src/content/code/csharp
 
       - uses: actions/download-artifact@v4
         with:
           name: changelog
-          path: docs/
+          path: docs/src/content/docs/reference
 
       - name: Set up Node
       - uses: actions/setup-node@v4
