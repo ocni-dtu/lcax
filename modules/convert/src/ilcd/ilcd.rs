@@ -182,7 +182,7 @@ pub struct ReferenceToLCIAMethodDataSet {
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct LCIMethodAndAllocation {
-    pub other: Anies,
+    pub other: Option<Anies>,
 }
 
 #[derive(Deserialize)]

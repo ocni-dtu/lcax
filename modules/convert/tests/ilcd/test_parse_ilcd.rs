@@ -75,6 +75,7 @@ parse_ilcd_a1_tests! {
     ilcd_0aa8b645: ("0aa8b645-02d9-41b4-8aa3-70335af2a9e7.json", "a2")
     ilcd_335241f9: ("335241f9-db84-486c-9a19-cd5ebb791903.json", "a2")
     ilcd_503dfca1: ("503dfca1-7c65-4179-9ffa-ebc6d8b48b7d.json", "a2")
+    ilcd_b56530ee: ("b56530ee-77bf-49bd-7997-08d972c43176.json", "a2")
 }
 
 #[test]

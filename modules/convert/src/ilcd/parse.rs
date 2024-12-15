@@ -1,4 +1,4 @@
-use crate::ilcd::ilcd::{DataSetName, Exchange, LCIAResult, ModuleAnie, ILCD};
+use crate::ilcd::ilcd::{Anie, DataSetName, Exchange, LCIAResult, ModuleAnie, ILCD};
 use chrono::NaiveDate;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
@@ -26,14 +26,21 @@ pub fn parse_ilcd(data: &str) -> Result<EPD, Error> {
 }
 
 fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
-    let subtype = ilcd_epd
+    let generic_anie = Anie {
+        value: Some("Generic".to_string()),
+        name: "subType".to_string(),
+    };
+    let subtype = match &ilcd_epd
         .modelling_and_validation
         .lci_method_and_allocation
         .other
-        .anies
-        .iter()
-        .find(|&anie| anie.name == "subType")
-        .unwrap();
+    {
+        Some(other) => match other.anies.iter().find(|&anie| anie.name == "subType") {
+            Some(subtype) => subtype.clone(),
+            None => &generic_anie,
+        },
+        None => &generic_anie,
+    };
 
     let mut impacts = collect_from_lcia_result(&ilcd_epd.lcia_results.lcia_result);
 
