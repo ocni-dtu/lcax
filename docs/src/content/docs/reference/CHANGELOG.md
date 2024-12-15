@@ -1,8 +1,3 @@
----
-title: Changelog
-description: A guide in my new Starlight docs site.
----
-
 ## [1.2.5](https://github.com/ocni-dtu/lcax/compare/v1.2.4...v1.2.5) (2023-08-23)
 
 
