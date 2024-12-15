@@ -1,3 +1,9 @@
+## [2.6.2](https://github.com/ocni-dtu/lcax/compare/v2.6.1...v2.6.2) (2024-12-15)
+
+### Bug Fixes
+
+* LCIMethodAndAllocation missing "other" field ([#86](https://github.com/ocni-dtu/lcax/issues/86)) ([14bd934](https://github.com/ocni-dtu/lcax/commit/14bd934596a1eda1695d0896bb060fe61bfa791a)), closes [#85](https://github.com/ocni-dtu/lcax/issues/85)
+
 ## [2.6.1](https://github.com/ocni-dtu/lcax/compare/v2.6.0...v2.6.1) (2024-11-04)
 
 ### Bug Fixes
