@@ -1,3 +1,9 @@
+## [2.6.3](https://github.com/ocni-dtu/lcax/compare/v2.6.2...v2.6.3) (2024-12-16)
+
+### Bug Fixes
+
+* Updated ILCD Parser ([#88](https://github.com/ocni-dtu/lcax/issues/88)) ([7e134ce](https://github.com/ocni-dtu/lcax/commit/7e134ce697d3625fddabaed2a9a4e0dac7682f85)), closes [#87](https://github.com/ocni-dtu/lcax/issues/87)
+
 ## [2.6.2](https://github.com/ocni-dtu/lcax/compare/v2.6.1...v2.6.2) (2024-12-15)
 
 ### Bug Fixes
