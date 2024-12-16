@@ -1,0 +1,3897 @@
+{
+  "processInformation": {
+    "dataSetInformation": {
+      "UUID": "1bf3e138-54a4-4155-7116-08da598ce856",
+      "name": {
+        "baseName": [
+          {
+            "value": "EPD-IES-0006473:002 (S-P-06473) High Pressure Laminates-Compact Panels",
+            "lang": "en"
+          }
+        ]
+      },
+      "synonyms": [
+        {
+          "value": "EPD-IES-0006473:002 (S-P-06473)",
+          "lang": "en"
+        }
+      ]
+    },
+    "quantitativeReference": {
+      "referenceToReferenceFlow": [
+        0
+      ],
+      "type": "Reference flow(s)"
+    },
+    "time": {
+      "referenceYear": 2023,
+      "dataSetValidUntil": 2028,
+      "timeRepresentativenessDescription": [
+        {
+          "lang": "en"
+        }
+      ]
+    },
+    "geography": {
+      "locationOfOperationSupplyOrProduction": {
+        "location": "IN"
+      }
+    }
+  },
+  "modellingAndValidation": {
+    "LCIMethodAndAllocation": {
+      "typeOfDataSet": "EPD",
+      "referenceToLCAMethodDetails": [
+        {
+          "shortDescription": [
+            {
+              "value": "Construction products (EN 15804A2)",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "45538f2e-17c0-49fd-a543-b1a02ac27658",
+          "version": "00.00.001"
+        }
+      ]
+    },
+    "dataSourcesTreatmentAndRepresentativeness": {
+      "referenceToDataSource": [
+        {
+          "shortDescription": [
+            {
+              "value": "GaBi database (general)",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "28d74cc0-db8b-4d7e-bc44-5f6d56ce0c4a"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "Other",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "df7d3cfd-8d65-ed11-9f5e-6045bd95222d"
+        }
+      ],
+      "other": {
+        "anies": [
+          {
+            "name": "referenceToOriginalEPD",
+            "value": {
+              "shortDescription": {
+                "value": "EPD-IES-0006473:002 (S-P-06473) High Pressure Laminates-Compact Panels",
+                "defaultValue": "EPD-IES-0006473:002 (S-P-06473) High Pressure Laminates-Compact Panels",
+                "lstrings": [
+                  {
+                    "lang": "en",
+                    "value": "EPD-IES-0006473:002 (S-P-06473) High Pressure Laminates-Compact Panels"
+                  }
+                ]
+              },
+              "version": {
+                "version": 1,
+                "majorVersion": 0,
+                "minorVersion": 0,
+                "subMinorVersion": 1,
+                "zero": false,
+                "versionString": "00.00.001"
+              },
+              "type": "source data set",
+              "uuid": {
+                "uuid": "311ccfb7-ffff-4d5f-91eb-08db99396d74"
+              },
+              "refObjectId": "311ccfb7-ffff-4d5f-91eb-08db99396d74",
+              "versionAsString": "00.00.001",
+              "resourceURLs": [
+                "https://data.environdec.com/resource/sources/311ccfb7-ffff-4d5f-91eb-08db99396d74/https://www.environdec.com/Detail/epd6473?version=00.00.001"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "validation": {
+      "review": [
+        {
+          "type": "Independent internal review"
+        }
+      ]
+    },
+    "complianceDeclarations": {
+      "compliance": [
+        {
+          "referenceToComplianceSystem": {
+            "shortDescription": [
+              {
+                "value": "EN 15804+A2",
+                "lang": "en"
+              }
+            ],
+            "type": "source data set",
+            "refObjectId": "c0016b33-8cf7-415c-ac6e-deba0d21440d",
+            "version": "00.02.000"
+          }
+        },
+        {
+          "referenceToComplianceSystem": {
+            "shortDescription": [
+              {
+                "value": "ISO 14025",
+                "lang": "en"
+              }
+            ],
+            "type": "source data set",
+            "refObjectId": "4f2eb655-6e44-4874-a95a-e28f5442cd4d",
+            "version": "00.00.004"
+          }
+        }
+      ]
+    },
+    "other": {
+      "anies": [
+        {
+          "name": "referenceToOriginalEPD",
+          "value": {
+            "shortDescription": [
+              {
+                "value": "EPD-IES-0006473:002 (S-P-06473) High Pressure Laminates-Compact Panels",
+                "lang": "en"
+              }
+            ],
+            "type": "source data set",
+            "refObjectId": "311ccfb7-ffff-4d5f-91eb-08db99396d74",
+            "version": "00.00.001"
+          }
+        }
+      ]
+    }
+  },
+  "administrativeInformation": {
+    "dataEntryBy": {
+      "timeStamp": 1719993142887,
+      "referenceToDataSetFormat": [
+        {
+          "shortDescription": [
+            {
+              "value": "EPD Data Format Extension",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "cba73800-7874-11e3-981f-0800200c9a66",
+          "version": "00.01.000"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "ILCD format",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "a97a0155-0234-4b87-b4ce-a45da52f2a40",
+          "version": "01.00.000",
+          "uri": "http://lca.jrc.ec.europa.eu/lcainfohub/sample_data/ilcd/sources/ILCD_Format_a97a0155-0234-4b87-b4ce-a45da52f2a40_01.00.000.xml"
+        }
+      ],
+      "referenceToPersonOrEntityEnteringTheData": {
+        "shortDescription": [
+          {
+            "value": "The International EPD System",
+            "lang": "en"
+          }
+        ],
+        "type": "contact data set",
+        "refObjectId": "5e09bd06-11a1-4292-a56b-47898ad6a691",
+        "version": "00.00.001"
+      }
+    },
+    "publicationAndOwnership": {
+      "dataSetVersion": "07.01.004",
+      "referenceToOwnershipOfDataSet": {
+        "shortDescription": [
+          {
+            "value": "Stylam Industries Limited",
+            "lang": "en"
+          }
+        ],
+        "type": "contact data set",
+        "refObjectId": "cf9d1343-96c8-4161-3e43-08daf799d4ea",
+        "version": "00.00.001"
+      },
+      "accessRestrictions": [
+        {
+          "value": "Your use of this material is subject to the General Terms of Use published on by EPD International AB:s homepage at https://www.environdec.com/contact/General-terms-of-use/. If you have not accepted EPD International AB:s the General Terms of Use, you are not authorized to exploit this work in any manner.",
+          "lang": "en"
+        }
+      ]
+    }
+  },
+  "exchanges": {
+    "exchange": [
+      {
+        "dataSetInternalID": 0,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "produced laminates used for construction ",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "ef93f47e-a0b4-406a-043d-08db9974dd85",
+          "version": "00.01.000"
+        },
+        "meanAmount": 1.0,
+        "referenceFlow": true,
+        "resultingflowAmount": 1.0,
+        "flowProperties": [
+          {
+            "name": [
+              {
+                "lang": "en",
+                "value": "Area"
+              }
+            ],
+            "uuid": "93a60a56-a3c8-19da-a746-0800200c9a66",
+            "referenceFlowProperty": true,
+            "meanValue": 1.0,
+            "referenceUnit": "m2",
+            "unitGroupUUID": "93a60a57-a3c8-18da-a746-0800200c9a66"
+          }
+        ],
+        "materialProperties": [
+          {
+            "name": "grammage (kg/m^2)",
+            "value": "8.7",
+            "unit": "grammage (kg/m^2)",
+            "unitDescription": "grammage (kg/m^2)"
+          },
+          {
+            "name": "layer thickness (m)",
+            "value": "0.006",
+            "unit": "layer thickness (m)",
+            "unitDescription": "layer thickness (m)"
+          }
+        ],
+        "typeOfFlow": "Product flow"
+      },
+      {
+        "dataSetInternalID": 1,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of renewable primary energy as energy carrier (PERE)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "20f32be5-0398-4288-9b6d-accddd195317"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "99.9",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "9.06",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00252",
+              "module": "C2"
+            },
+            {
+              "value": "104",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-21",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 2,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of renewable primary energy resources used as raw materials (PERM)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "fb3ec0de-548d-4508-aea5-00b73bf6f702"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "112",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "-9",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "-103",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 3,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Total use of renewable primary energy (PERT)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "53f97275-fa8a-4cdd-9024-65936002acd0"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "212",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.0616",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00252",
+              "module": "C2"
+            },
+            {
+              "value": "0.821",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-21",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities / Environmental quantities / EPD EN 15804 / LCI indicators",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 4,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of non renewable primary energy as energy carrier (PENRE)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "ac857178-2b45-46ec-892a-a9a4332f0372"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "307",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "1.95",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.521",
+              "module": "C2"
+            },
+            {
+              "value": "4.28",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-76",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 5,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of non renewable primary energy resources used as raw materials (PENRM)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "1421caa0-679d-4bf4-b282-0eb850ccae27"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "1.68",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "-1.68",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 6,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Total use of non renewable primary energy resource (PENRT)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "06159210-646b-4c8d-8583-da9b3b95a6c1"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "308",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.262",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.521",
+              "module": "C2"
+            },
+            {
+              "value": "4.28",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-76",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities / Environmental quantities / EPD EN 15804 / LCI indicators",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 7,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of secondary material (SM)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "c6a1f35f-2d09-4f54-8dfb-97e502e1ce92"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "1.89",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities / Environmental quantities / EPD EN 15804 / LCI indicators",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 8,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of renewable secondary fuels (RSF)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "64333088-a55f-4aa2-9a31-c10b07816787"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 9,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of non renewable secondary fuels (NRSF)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "89def144-d39a-4287-b86f-efde453ddcb2"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 10,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Net use of fresh water (FW)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "3cf952c8-f3a4-461d-8c96-96456ca62246"
+        },
+        "exchange direction": "INPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0633",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.00287",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00000422",
+              "module": "C2"
+            },
+            {
+              "value": "0.0357",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.0202",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "m3"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "cd950537-0a98-4044-9ba7-9f9a68d0a504",
+                "uri": "../unitgroups/cd950537-0a98-4044-9ba7-9f9a68d0a504"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities / Environmental quantities / EPD EN 15804 / LCI indicators",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 11,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Hazardous waste disposed (HWD)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "430f9e0f-59b2-46a0-8e0d-55e0e84948fc"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.00000138",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.0000000000248",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00000000000179",
+              "module": "C2"
+            },
+            {
+              "value": "0.000000000534",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.0000000103",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities / Environmental quantities / EPD EN 15804 / LCI indicators",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 12,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Non harzardous waste disposed (NHWD)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "b29ef66b-e286-4afa-949f-62f1a7b4d7fa"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.313",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.0168",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00000782",
+              "module": "C2"
+            },
+            {
+              "value": "0.11",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.0385",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities / Environmental quantities / EPD EN 15804 / LCI indicators",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 13,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Radioactive waste disposed (RWD)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "3449546e-52ad-4b39-b809-9fb77cea8ff6"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.00246",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.0000148",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.000000118",
+              "module": "C2"
+            },
+            {
+              "value": "0.0002",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.00602",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities / Environmental quantities / EPD EN 15804 / LCI indicators",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 14,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Components for re-use (CRU)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "a2b32f97-3fc7-4af2-b209-525bc6426f33"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 15,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Materials for recycling (MFR)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "d7fe48a5-4103-49c8-9aae-b0b5dfdbd6ae"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 16,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Materials for energy recovery (MER)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "59a9181c-3aaf-46ee-8b13-2b3723b6e447"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "0",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 17,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Exported electrical energy (EEE)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "4da0c987-2b76-40d6-9e9e-82a017aaaf29"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.655",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "1.75",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "17.8",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities / Environmental quantities / EPD EN 15804 / LCI indicators",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 18,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Exported thermal energy (EET)",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "98daf38a-7a79-46d3-9a37-2b7bd0955810"
+        },
+        "exchange direction": "OUTPUT",
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "1.16",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "3.14",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0",
+              "module": "C2"
+            },
+            {
+              "value": "31.6",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "0",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        },
+        "resolvedFlowVersion": "35.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Quantities / Environmental quantities / EPD EN 15804 / LCI indicators",
+          "name": "GaBiCategories"
+        }
+      }
+    ]
+  },
+  "LCIAResults": {
+    "LCIAResult": [
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Global Warming Potential - fossil fuels (GWP-fossil)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "5f635281-343e-44fb-83df-1971b155e6b6",
+          "uri": "../lciamethods/5f635281-343e-44fb-83df-1971b155e6b6"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "18",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.116",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.038",
+              "module": "C2"
+            },
+            {
+              "value": "0.293",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-4.47",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CO2 eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "1ebf3012-d0db-4de2-aefd-ef30cedb0be1",
+                "uri": "../unitgroups/1ebf3012-d0db-4de2-aefd-ef30cedb0be1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Global Warming Potential - biogenic (GWP-biogenic)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "2356e1ab-0185-4db5-86e5-16de51c7485c",
+          "uri": "../lciamethods/2356e1ab-0185-4db5-86e5-16de51c7485c"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "-10.3",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "1.08",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00159",
+              "module": "C2"
+            },
+            {
+              "value": "9.42",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.0229",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CO2 eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "1ebf3012-d0db-4de2-aefd-ef30cedb0be1",
+                "uri": "../unitgroups/1ebf3012-d0db-4de2-aefd-ef30cedb0be1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Global Warming Potential - land use and land use change (GWP-luluc)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "4331bbdb-978a-490d-8707-eeb047f01a55",
+          "uri": "../lciamethods/4331bbdb-978a-490d-8707-eeb047f01a55"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0891",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.00000324",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00000113",
+              "module": "C2"
+            },
+            {
+              "value": "0.0000331",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.000493",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CO2 eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "1ebf3012-d0db-4de2-aefd-ef30cedb0be1",
+                "uri": "../unitgroups/1ebf3012-d0db-4de2-aefd-ef30cedb0be1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Global Warming Potential - total (GWP-total)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "6a37f984-a4b3-458a-a20a-64418c145fa2",
+          "uri": "../lciamethods/6a37f984-a4b3-458a-a20a-64418c145fa2"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "7.82",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "1.19",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0396",
+              "module": "C2"
+            },
+            {
+              "value": "9.71",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-4.49",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CO2 eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "1ebf3012-d0db-4de2-aefd-ef30cedb0be1",
+                "uri": "../unitgroups/1ebf3012-d0db-4de2-aefd-ef30cedb0be1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Depletion potential of the stratospheric ozone layer (ODP)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b5c629d6-def3-11e6-bf01-fe55135034f3",
+          "uri": "../lciamethods/b5c629d6-def3-11e6-bf01-fe55135034f3"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0000000000812",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.0000000000000993",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00000000000000216",
+              "module": "C2"
+            },
+            {
+              "value": "0.00000000000132",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.0000000000304",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CFC-11 eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "d9e957c9-7309-4474-bf3a-7777df6c4e5b",
+                "uri": "../unitgroups/d9e957c9-7309-4474-bf3a-7777df6c4e5b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Acidifcation potential, Accumulated Exceedance (AP)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b5c611c6-def3-11e6-bf01-fe55135034f3",
+          "uri": "../lciamethods/b5c611c6-def3-11e6-bf01-fe55135034f3"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.129",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.000166",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0000596",
+              "module": "C2"
+            },
+            {
+              "value": "0.0075",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.00589",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "mol H+ eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "42e089ac-92bf-4bf2-8ca1-5fc40d18f2ed",
+                "uri": "../unitgroups/42e089ac-92bf-4bf2-8ca1-5fc40d18f2ed"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Europhication potential - freshwater (EP-freshwater)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b53ec18f-7377-4ad3-86eb-cc3f4f276b2b",
+          "uri": "../lciamethods/b53ec18f-7377-4ad3-86eb-cc3f4f276b2b"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.000123",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.0000000239",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00000000825",
+              "module": "C2"
+            },
+            {
+              "value": "0.000000343",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.00000618",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg P eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "0429039d-a61d-4590-ba67-aa4a20a810a1",
+                "uri": "../unitgroups/0429039d-a61d-4590-ba67-aa4a20a810a1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Europhication potential - marine (EP-marine)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b5c619fa-def3-11e6-bf01-fe55135034f3",
+          "uri": "../lciamethods/b5c619fa-def3-11e6-bf01-fe55135034f3"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0287",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.0000536",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0000136",
+              "module": "C2"
+            },
+            {
+              "value": "0.00355",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.0016",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg N eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "d05bb823-ecdf-4686-8c40-bf1d9257859f",
+                "uri": "../unitgroups/d05bb823-ecdf-4686-8c40-bf1d9257859f"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Europhication potential - terrestrial (EP-terrestrial)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b5c614d2-def3-11e6-bf01-fe55135034f3",
+          "uri": "../lciamethods/b5c614d2-def3-11e6-bf01-fe55135034f3"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.282",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.000788",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.000152",
+              "module": "C2"
+            },
+            {
+              "value": "0.0412",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.0171",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "mol N eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "71b4d617-0ec9-4d3f-b65e-e438940c2401",
+                "uri": "../unitgroups/71b4d617-0ec9-4d3f-b65e-e438940c2401"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Photochemical Ozone Creation Potential (POCP)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b5c610fe-def3-11e6-bf01-fe55135034f3",
+          "uri": "../lciamethods/b5c610fe-def3-11e6-bf01-fe55135034f3"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0787",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.000146",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0000414",
+              "module": "C2"
+            },
+            {
+              "value": "0.00915",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.00447",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg NMVOC eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "d27c25f8-fbc1-44c6-b47b-4adbae4199c6",
+                "uri": "../unitgroups/d27c25f8-fbc1-44c6-b47b-4adbae4199c6"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Abiotic depletion potential - non-fossil resources (ADPE)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b2ad6494-c78d-11e6-9d9d-cec0c932ce01",
+          "uri": "../lciamethods/b2ad6494-c78d-11e6-9d9d-cec0c932ce01"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0000015",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.00000000242",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.000000000787",
+              "module": "C2"
+            },
+            {
+              "value": "0.0000000348",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.000000677",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg Sb eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "54ccd2d9-a32a-4fc2-923d-f2c8c93e89d4",
+                "uri": "../unitgroups/54ccd2d9-a32a-4fc2-923d-f2c8c93e89d4"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Abiotic depletion potential - fossil resources (ADPF)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b2ad6110-c78d-11e6-9d9d-cec0c932ce01",
+          "uri": "../lciamethods/b2ad6110-c78d-11e6-9d9d-cec0c932ce01"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "308",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.262",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.521",
+              "module": "C2"
+            },
+            {
+              "value": "4.28",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-76",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Water (user) deprivation potential (WDP)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b2ad66ce-c78d-11e6-9d9d-cec0c932ce01",
+          "uri": "../lciamethods/b2ad66ce-c78d-11e6-9d9d-cec0c932ce01"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "1.68",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.122",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.000124",
+              "module": "C2"
+            },
+            {
+              "value": "1.51",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.478",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "m3 world eq. deprived"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "6ae2df01-888e-46c8-b17d-49fa3869b476",
+                "uri": "../unitgroups/6ae2df01-888e-46c8-b17d-49fa3869b476"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Global Warming Potential (GWP-GHG)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "fb774615-0575-45de-9a89-1ded92f19770",
+          "uri": "../lciamethods/fb774615-0575-45de-9a89-1ded92f19770"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "17.9",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.116",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.0379",
+              "module": "C2"
+            },
+            {
+              "value": "0.292",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-4.48",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CO2 eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "1ebf3012-d0db-4de2-aefd-ef30cedb0be1",
+                "uri": "../unitgroups/1ebf3012-d0db-4de2-aefd-ef30cedb0be1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Particulate Matter emissions (PM)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b5c602c6-def3-11e6-bf01-fe55135034f3",
+          "uri": "../lciamethods/b5c602c6-def3-11e6-bf01-fe55135034f3"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.0000027",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.000000000907",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.000000000437",
+              "module": "C2"
+            },
+            {
+              "value": "0.0000000223",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.0000000488",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "Disease incidence"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "3883559b-648f-4afc-8ba2-0bd24f3affa3",
+                "uri": "../unitgroups/3883559b-648f-4afc-8ba2-0bd24f3affa3"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Ionizing radiation, human health (IRP)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b5c632be-def3-11e6-bf01-fe55135034f3",
+          "uri": "../lciamethods/b5c632be-def3-11e6-bf01-fe55135034f3"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.391",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.00239",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.000011",
+              "module": "C2"
+            },
+            {
+              "value": "0.0323",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-1.02",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kBq U235 eq."
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "456b05bf-1415-44a9-9993-02452f554c09",
+                "uri": "../unitgroups/456b05bf-1415-44a9-9993-02452f554c09"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Eco-toxicity - freshwater (ETP-fw)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "ee1082d1-b0f7-43ca-a1f0-21e2a4a74511",
+          "uri": "../lciamethods/ee1082d1-b0f7-43ca-a1f0-21e2a4a74511"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "1940",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.126",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.189",
+              "module": "C2"
+            },
+            {
+              "value": "1.59",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-16.8",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "CTUe"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "aa959ded-f1eb-4efb-9c5c-2d60be36b3e6",
+                "uri": "../unitgroups/aa959ded-f1eb-4efb-9c5c-2d60be36b3e6"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Human toxicity, cancer effect (HTP-c)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "2299222a-bbd8-474f-9d4f-4dd1f18aea7c",
+          "uri": "../lciamethods/2299222a-bbd8-474f-9d4f-4dd1f18aea7c"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.000000055",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.00000000000824",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00000000000321",
+              "module": "C2"
+            },
+            {
+              "value": "0.000000000104",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.000000000767",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "CTUh"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "d4c9523e-2d7e-49fd-8469-998f547d3a70",
+                "uri": "../unitgroups/d4c9523e-2d7e-49fd-8469-998f547d3a70"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Human toxicity, non-cancer effects (HTP-nc)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "3af763a5-b7a1-48c9-9cee-1f223481fcef",
+          "uri": "../lciamethods/3af763a5-b7a1-48c9-9cee-1f223481fcef"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "0.000000296",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.000000000386",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.000000000107",
+              "module": "C2"
+            },
+            {
+              "value": "0.00000000384",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-0.0000000295",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "CTUh"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "d4c9523e-2d7e-49fd-8469-998f547d3a70",
+                "uri": "../unitgroups/d4c9523e-2d7e-49fd-8469-998f547d3a70"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Land use related impacts/Soil quality (SQP)",
+              "lang": "en"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b2ad6890-c78d-11e6-9d9d-cec0c932ce01",
+          "uri": "../lciamethods/b2ad6890-c78d-11e6-9d9d-cec0c932ce01"
+        },
+        "meanAmount": 0.0,
+        "other": {
+          "anies": [
+            {
+              "value": "1390",
+              "module": "A1-A3"
+            },
+            {
+              "value": "ND",
+              "module": "A4"
+            },
+            {
+              "value": "0.0761",
+              "module": "A5"
+            },
+            {
+              "value": "ND",
+              "module": "B1"
+            },
+            {
+              "value": "ND",
+              "module": "B2"
+            },
+            {
+              "value": "ND",
+              "module": "B3"
+            },
+            {
+              "value": "ND",
+              "module": "B4"
+            },
+            {
+              "value": "ND",
+              "module": "B5"
+            },
+            {
+              "value": "ND",
+              "module": "B6"
+            },
+            {
+              "value": "ND",
+              "module": "B7"
+            },
+            {
+              "value": "0",
+              "module": "C1"
+            },
+            {
+              "value": "0.00221",
+              "module": "C2"
+            },
+            {
+              "value": "1.01",
+              "module": "C3"
+            },
+            {
+              "value": "0",
+              "module": "C4"
+            },
+            {
+              "value": "-13.6",
+              "module": "D"
+            },
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "dimensionless"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "f130951c-e67f-4f7f-8dd4-665de3974e18",
+                "uri": "../unitgroups/f130951c-e67f-4f7f-8dd4-665de3974e18"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "otherAttributes": {
+    "{http://www.indata.network/EPD/2019}epd-version": "1,2"
+  },
+  "version": "1.1",
+  "source": "https://data.environdec.com/resource/datastocks/a6c533b3-502e-47b9-885d-31304bf15c64/processes/1bf3e138-54a4-4155-7116-08da598ce856?version=07.01.004"
+}

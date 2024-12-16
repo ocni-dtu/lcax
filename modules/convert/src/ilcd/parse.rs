@@ -92,55 +92,136 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
                 if vec!["a1", "a2", "a3"].contains(&module.to_lowercase().as_str()) =>
             {
                 if composite_a1a3.is_some() {
-                    composite_a1a3 = Some(composite_a1a3.unwrap() + f64::from(value));
+                    match f64::try_from(value) {
+                        Ok(value) => composite_a1a3 = Some(composite_a1a3.unwrap() + value),
+                        Err(_) => {}
+                    }
                 } else {
-                    composite_a1a3 = Some(f64::from(value));
+                    match f64::try_from(value) {
+                        Ok(value) => composite_a1a3 = Some(value),
+                        Err(_) => {}
+                    }
                 }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a1-a3") => {
-                category.insert(LifeCycleStage::A1A3, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::A1A3, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a4") => {
-                category.insert(LifeCycleStage::A4, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::A4, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a5") => {
-                category.insert(LifeCycleStage::A5, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::A5, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b1") => {
-                category.insert(LifeCycleStage::B1, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B1, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b2") => {
-                category.insert(LifeCycleStage::B2, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B2, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b3") => {
-                category.insert(LifeCycleStage::B3, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B3, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b4") => {
-                category.insert(LifeCycleStage::B4, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B4, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b5") => {
-                category.insert(LifeCycleStage::B5, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B5, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b6") => {
-                category.insert(LifeCycleStage::B6, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B6, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b7") => {
-                category.insert(LifeCycleStage::B7, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B7, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c1") => {
-                category.insert(LifeCycleStage::C1, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::C1, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c2") => {
-                category.insert(LifeCycleStage::C2, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::C2, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c3") => {
-                category.insert(LifeCycleStage::C3, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::C3, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c4") => {
-                category.insert(LifeCycleStage::C4, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::C4, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("d") => {
-                category.insert(LifeCycleStage::D, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::D, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             _ => continue,
         }

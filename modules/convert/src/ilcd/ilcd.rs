@@ -139,17 +139,18 @@ pub enum AnieValue {
     ValueObject(ValueObject),
 }
 
-impl From<&AnieValue> for f64 {
-    fn from(value: &AnieValue) -> Self {
+impl TryFrom<&AnieValue> for f64 {
+    type Error = ();
+    fn try_from(value: &AnieValue) -> Result<Self, Self::Error> {
         match value {
             AnieValue::ValueString(s) => {
                 // Parse the string into a float
-                let float_value = s.parse::<f64>().unwrap();
-                float_value
+                match s.parse::<f64>() {
+                    Ok(f) => Ok(f),
+                    Err(_) => Err(()),
+                }
             }
-            AnieValue::ValueObject(_) => {
-                panic!("Cannot convert AnieValue::ValueObject to f64");
-            }
+            AnieValue::ValueObject(_) => Err(()),
         }
     }
 }

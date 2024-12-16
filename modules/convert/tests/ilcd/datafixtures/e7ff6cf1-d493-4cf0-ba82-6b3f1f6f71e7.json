@@ -1,0 +1,1564 @@
+{
+  "processInformation": {
+    "dataSetInformation": {
+      "UUID": "e7ff6cf1-d493-4cf0-ba82-6b3f1f6f71e7",
+      "name": {
+        "baseName": [
+          {
+            "value": "SHERA Fibre Cement Building Product",
+            "lang": "en"
+          },
+          {
+            "value": "SHERA Faserzement Bauprodukt",
+            "lang": "de"
+          }
+        ],
+        "functionalUnitFlowProperties": [
+          {
+            "lang": "en"
+          }
+        ]
+      },
+      "classificationInformation": {
+        "classification": [
+          {
+            "class": [
+              {
+                "value": "Mineralische Baustoffe",
+                "level": 0,
+                "classId": "1"
+              },
+              {
+                "value": "Steine und Elemente",
+                "level": 1,
+                "classId": "1.3"
+              },
+              {
+                "value": "Faserzement",
+                "level": 2,
+                "classId": "1.3.12"
+              }
+            ],
+            "name": "OEKOBAU.DAT"
+          },
+          {
+            "class": [
+              {
+                "value": "02 Building products",
+                "level": 0
+              },
+              {
+                "value": "Internal and external wall and ceiling finishes",
+                "level": 1
+              },
+              {
+                "value": "Fibre cement / Fibre concrete",
+                "level": 2
+              }
+            ],
+            "name": "IBUCategories"
+          }
+        ]
+      },
+      "generalComment": [
+        {
+          "value": "All (of) SHERA Fibre Cement products are composed of Portland cement, silica sand, fly ash, cellulose fibre, and flue gas desulfurization (FGD) gypsum or synthetic gypsum. SHERA fibre cement products, therefore, are cement-based composites, that are reinforced with cellulose fibre. SHERA products, which are applied in this EPD, are five autoclaved product groups, and one air-dried product group, which is the Roof group. SHERA Fibre Cement products have been either finished or painted. The declared products include: \n\n 1) Ceiling product group: 1.1) Ceiling board 1.2) Cornice 1.3) Strip \n\n\n\n2) Wall product group:\n\n2.1) Plank 2.2) Wallboard 2.3) Splendid\n\n \n\n3) Floor product group:\n\n3.1) Flooring board 3.2) Floor plank 3.3) Skirt 3.4) Stair\n\n\n4) Decorative item product group:\n 4.1) SHERA Ply 4.2) SHERA Wood Air Vent 4.3) SHERA Safety Plank 4.4) Fence 4.5) Decorative Wood Plank\n\n\n5) Accessories group:\n\n\n5.1) Eave 5.2) Eaves Filler Unit\n\n6) Roof group: 6.1) Slate 6.2) Corrugated Roof 6.3) Zedar Shake\n\nFor the use and application of the product, the respective national provisions at the place of use are applied. For example, in Germany, those include the building codes of the federal states and the corresponding national specifications.",
+          "lang": "en"
+        }
+      ]
+    },
+    "quantitativeReference": {
+      "referenceToReferenceFlow": [
+        0
+      ]
+    },
+    "time": {
+      "referenceYear": 2022,
+      "dataSetValidUntil": 2027,
+      "other": {
+        "anies": [
+          {
+            "name": "publicationDateOfEPD",
+            "value": 1664841600000
+          }
+        ]
+      }
+    },
+    "geography": {
+      "locationOfOperationSupplyOrProduction": {
+        "location": "TH"
+      }
+    },
+    "technology": {
+      "technologyDescriptionAndIncludedProcesses": [
+        {
+          "value": "There are five raw materials i.e. Portland cement, silica sand, fly ash, cellulose fibre, and FGD gypsum, used as based materials of producing SHERA fibre cement product. Only sand and cellulose fibre are needed to be pre-processed. The unbleached cellulose fibre is refined and washed by re-pulping, and bleaching with NaOH, respectively. The sand is also prepared by blended with water to form the sand slurry. Then these are fed to combine with the rest raw materials to form a mixture at the mixing unit. The mixture is then fed to the Hatschek unit, where the fibre cement mixture is produced, called \u2018the moist solid sheet\u2019. The moist solid sheet is transferred onto rollers to reduce the size of the product to achieve the desired thickness. The output is called \u201cWet Green Sheet\u201d. Then, the Wet Green Sheet is dried to become \u2018Dry Green Sheet\u2019. The drying process has two operations i.e. Autoclaving unit for building product, the process uses additional heat source, and air-drying for roof product. After, the moisture content has been reached to desire level, 13-15%, the Dry Green Sheet is then inspected at the QC unit, and classified into three quality grade as follows: A Grade: Products fit for sale; B Grade: Products with minor defects that will be re-touched/ re-finished to become A-grade. The process for re-touched/ re-finished B-grade products to be A-grade is included in the finishing process; C Grade: Products which are not fit for sale. C-grade products will be either recycled or reused as pallet for supporting the transportation of SHERA product to client/customer. If the products have been verified by QC unit, the A-graded product is either finished or coloured. Then, the final unit is packing. All of the autoclaved products are packed by using shrink film to cover the external surface, while the roof product, only Zedar shake, is packed by using paper cardboard to support the edge of merchandise. The packed products are now able to deliver to the client or customer. \nDeclared unit: \nThe life-cycle assessment refers to 1 ton of SHERA fibre cement products. The declared indicators for the inventory and impact assessment were determined on the basis of an average formulation and the data on production at the manufacturing plant in Pattananikom district, Lopburi.",
+          "lang": "en"
+        },
+        {
+          "value": "Es gibt f\u00fcnf Rohstoffe, n\u00e4mlich Portlandzement, Quarzsand, Flugasche, Zellulosefasern und REA-Gips, die als Ausgangsmaterial f\u00fcr die Herstellung von SHERA-Faserzementprodukten verwendet werden. Nur Sand und Zellulosefasern m\u00fcssen vorverarbeitet werden. Die ungebleichten Zellulosefasern werden durch Wiederaufbereitung und Waschen bzw. Bleichen mit NaOH aufbereitet. Der Sand wird ebenfalls aufbereitet, indem er mit Wasser zu einer Sandaufschl\u00e4mmung vermischt wird. Dieser wird dann in der Mischanlage mit den \u00fcbrigen Rohstoffen zu einem Gemisch vermischt. Das Gemisch wird dann der Hatschek-Anlage zugef\u00fchrt, wo die Faserzementmischung hergestellt wird, die als \"feuchte feste Platte\" bezeichnet wird. Die feuchte Platte wird auf Walzen \u00fcbertragen, um die Gr\u00f6\u00dfe des Produkts zu reduzieren und die gew\u00fcnschte Dicke zu erreichen. Das Ergebnis wird als \"Wet Green Sheet\" bezeichnet. Anschlie\u00dfend wird die nasse Gr\u00fcnfolie getrocknet, um die \"trockene Gr\u00fcnfolie\" zu erhalten. Der Trocknungsprozess besteht aus zwei Vorg\u00e4ngen: Autoklav f\u00fcr das Bauprodukt, wobei eine zus\u00e4tzliche W\u00e4rmequelle verwendet wird, und Lufttrocknung f\u00fcr das Dachprodukt. Nachdem der Feuchtigkeitsgehalt das gew\u00fcnschte Niveau erreicht hat (13-15%), wird das trockene Gr\u00fcnblech in der Qualit\u00e4tskontrolleinheit gepr\u00fcft und in drei Qualit\u00e4tsklassen eingeteilt:\n\nKlasse A: F\u00fcr den Verkauf geeignete Produkte;\n\nG\u00fcteklasse B: Produkte mit geringf\u00fcgigen M\u00e4ngeln, die nachbearbeitet werden, um A-Qualit\u00e4t zu erreichen. Der Prozess der Nachbesserung/ Nachbearbeitung von Produkten der G\u00fcteklasse B zur G\u00fcteklasse A ist Teil des Veredelungsprozesses;\n\nC-Qualit\u00e4t: Produkte, die nicht f\u00fcr den Verkauf geeignet sind. C-Qualit\u00e4t: Produkte, die nicht f\u00fcr den Verkauf geeignet sind. C-Qualit\u00e4t-Produkte werden entweder recycelt oder als Paletten f\u00fcr den Transport der SHERA-Produkte zum Kunden wiederverwendet.\n\nWenn die Produkte von der QC-Einheit \u00fcberpr\u00fcft wurden, wird das A-Grad-Produkt entweder fertiggestellt oder gef\u00e4rbt. Die letzte Einheit ist dann die Verpackung. Alle autoklavierten Produkte werden mit Schrumpffolie verpackt, um die \u00e4u\u00dfere Oberfl\u00e4che zu bedecken, w\u00e4hrend das Dachprodukt, nur Zedar Shake, mit Papierkarton verpackt wird, um den Rand der Ware zu unterst\u00fctzen. Die verpackten Produkte k\u00f6nnen nun an den Auftraggeber oder Kunden geliefert werden. \n",
+          "lang": "de"
+        }
+      ],
+      "technologicalApplicability": [
+        {
+          "value": "SHERA Fibre Cement products are used for residential, commercial, and industrial buildings.",
+          "lang": "en"
+        },
+        {
+          "value": "SHERA-Faserzementprodukte werden f\u00fcr Wohn-, Gewerbe- und Industriegeb\u00e4ude verwendet.",
+          "lang": "de"
+        }
+      ]
+    }
+  },
+  "modellingAndValidation": {
+    "LCIMethodAndAllocation": {
+      "typeOfDataSet": "EPD",
+      "referenceToLCAMethodDetails": [
+        {
+          "shortDescription": [
+            {
+              "value": "Fibre cement / Fibre concrete.pdf",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "fffe960f-352a-4df3-8d4a-f96069f88d20"
+        }
+      ],
+      "other": {
+        "anies": [
+          {
+            "name": "subType",
+            "value": "average dataset"
+          }
+        ]
+      }
+    },
+    "dataSourcesTreatmentAndRepresentativeness": {
+      "referenceToDataSource": [
+        {
+          "shortDescription": [
+            {
+              "value": "ecoinvent database (all versions)",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "b497a91f-e14b-4b69-8f28-f50eb1576766"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "ecoinvent 3.0 database",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "ae9fac17-61c1-4776-947a-0fc2865954ff"
+        }
+      ],
+      "useAdviceForDataSet": [
+        {
+          "value": "Scope: \nThis EPD declaration and background report covers the 26 fibre cement building products in six product groups i.e. Ceiling, Wall, Floor, Decorative, Accessories and Roof. These products are based on a weighted average of different SHERA fibre cement building products manufactured by SHERA Public Company Limited, and produced in the manufacturing plant located in Pattananikom, Lopburi province, Thailand in which the production data from January 2019 to December 2019 were recorded. Life cycle assessment (LCA) was conducted based on the cradle-to-gate approach (Module A1-A3), where the whole production phase of the SHERA fibre cement building product was considered in this study. \nSystem boundary: \nType of the EPD: cradle to gate \n\nThe LCA refers to the stage of product development i.e. modules A1 to A3. The process after the product has been developed is not accounted for. \n\nA1 \u2013 raw material extraction, processing \n\nA2 \u2013 transportation of raw materials to the manufacturer \n\nA3 \u2013 All of manufacturing operations starting from raw materials preparation to packing process. \n\nEnvironmental impact as a result of energy production has been included in the LCA. The production of ancillary materials i.e. painting materials, LDPE film, paper cardboard, and production of chemical agents used to treat paint-contaminated wastewater have also been included in the LCA analysis.",
+          "lang": "en"
+        }
+      ],
+      "other": {
+        "anies": [
+          {
+            "name": "referenceToOriginalEPD",
+            "value": {
+              "shortDescription": {
+                "value": "SHERA Fibre Cement Building Product.pdf",
+                "defaultValue": "SHERA Fibre Cement Building Product.pdf",
+                "lstrings": [
+                  {
+                    "lang": "en",
+                    "value": "SHERA Fibre Cement Building Product.pdf"
+                  }
+                ]
+              },
+              "type": "source data set",
+              "uuid": {
+                "uuid": "c0742cb3-2c1c-4b82-8e59-7fc7088d7d97"
+              },
+              "refObjectId": "c0742cb3-2c1c-4b82-8e59-7fc7088d7d97",
+              "resourceURLs": [
+                "https://ibudata.lca-data.com/resource/sources/c0742cb3-2c1c-4b82-8e59-7fc7088d7d97/SHERA_Fibre_Cement_Building_Product_15850.pdf?version=00.01.000"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "validation": {
+      "review": [
+        {
+          "referenceToNameOfReviewerAndInstitution": [
+            {
+              "shortDescription": [
+                {
+                  "value": "Institut Bauen und Umwelt e. V.",
+                  "lang": "en"
+                }
+              ],
+              "type": "contact data set",
+              "refObjectId": "d111dbec-b024-4be5-86c5-752d6eb2cf95",
+              "uri": "../contacts/d111dbec-b024-4be5-86c5-752d6eb2cf95.xml"
+            }
+          ],
+          "type": "Accredited third party review"
+        }
+      ]
+    },
+    "complianceDeclarations": {
+      "compliance": [
+        {
+          "referenceToComplianceSystem": {
+            "shortDescription": [
+              {
+                "value": "DIN EN 15804",
+                "lang": "en"
+              }
+            ],
+            "type": "source data set",
+            "refObjectId": "b00f9ec0-7874-11e3-981f-0800200c9a66",
+            "uri": "../sources/b00f9ec0-7874-11e3-981f-0800200c9a66.xml"
+          }
+        },
+        {
+          "referenceToComplianceSystem": {
+            "shortDescription": [
+              {
+                "value": "ISO 14025",
+                "lang": "en"
+              }
+            ],
+            "type": "source data set",
+            "refObjectId": "4f2eb655-6e44-4874-a95a-e28f5442cd4d",
+            "uri": "../sources/4f2eb655-6e44-4874-a95a-e28f5442cd4d.xml"
+          }
+        }
+      ]
+    }
+  },
+  "administrativeInformation": {
+    "commissionerAndGoal": {
+      "referenceToCommissioner": [
+        {
+          "shortDescription": [
+            {
+              "value": "SHERA (Public) Company Limited",
+              "lang": "en"
+            }
+          ],
+          "type": "contact data set",
+          "refObjectId": "312eb530-16b7-4da5-8ec1-a925eaace00b",
+          "uri": "../contacts/312eb530-16b7-4da5-8ec1-a925eaace00b.xml"
+        }
+      ]
+    },
+    "dataGenerator": {
+      "referenceToPersonOrEntityGeneratingTheDataSet": [
+        {
+          "shortDescription": [
+            {
+              "value": "ERM-Siam Co, Ltd.",
+              "lang": "en"
+            }
+          ],
+          "type": "contact data set",
+          "refObjectId": "a564d4e8-8aae-47ec-b106-3d6c47cf338b",
+          "uri": "../contacts/a564d4e8-8aae-47ec-b106-3d6c47cf338b.xml"
+        }
+      ]
+    },
+    "dataEntryBy": {
+      "timeStamp": 1664889622716,
+      "referenceToDataSetFormat": [
+        {
+          "shortDescription": [
+            {
+              "value": "ILCD Format",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "a97a0155-0234-4b87-b4ce-a45da52f2a40",
+          "uri": "../sources/a97a0155-0234-4b87-b4ce-a45da52f2a40.xml"
+        },
+        {
+          "shortDescription": [
+            {
+              "value": "EPD-Datenformaterweiterungen v1.2",
+              "lang": "de"
+            },
+            {
+              "value": "EPD Data Format Extensions v1.2",
+              "lang": "en"
+            }
+          ],
+          "type": "source data set",
+          "refObjectId": "a29449fd-aa2f-4de8-b5d7-4b06b43c6fde",
+          "uri": "../sources/a29449fd-aa2f-4de8-b5d7-4b06b43c6fde.xml"
+        }
+      ]
+    },
+    "publicationAndOwnership": {
+      "dataSetVersion": "00.01.000",
+      "referenceToRegistrationAuthority": {
+        "shortDescription": [
+          {
+            "value": "Institut Bauen und Umwelt e. V.",
+            "lang": "en"
+          }
+        ],
+        "type": "contact data set",
+        "refObjectId": "d111dbec-b024-4be5-86c5-752d6eb2cf95",
+        "uri": "../contacts/d111dbec-b024-4be5-86c5-752d6eb2cf95.xml"
+      },
+      "registrationNumber": "EPD-MFC-20220122-IBC1-EN",
+      "referenceToOwnershipOfDataSet": {
+        "shortDescription": [
+          {
+            "value": "SHERA (Public) Company Limited",
+            "lang": "en"
+          }
+        ],
+        "type": "contact data set",
+        "refObjectId": "312eb530-16b7-4da5-8ec1-a925eaace00b",
+        "uri": "../contacts/312eb530-16b7-4da5-8ec1-a925eaace00b.xml"
+      },
+      "copyright": true,
+      "licenseType": "Free of charge for all users and uses",
+      "accessRestrictions": [
+        {
+          "value": "None",
+          "lang": "en"
+        }
+      ],
+      "other": {
+        "anies": [
+          {
+            "name": "referenceToPublisher",
+            "value": {
+              "shortDescription": [
+                {
+                  "value": "Institut Bauen und Umwelt e. V.",
+                  "lang": "en"
+                }
+              ],
+              "type": "contact data set",
+              "refObjectId": "d111dbec-b024-4be5-86c5-752d6eb2cf95",
+              "uri": "../contacts/d111dbec-b024-4be5-86c5-752d6eb2cf95.xml"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "exchanges": {
+    "exchange": [
+      {
+        "dataSetInternalID": 0,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "SHERA fiber cement products ()",
+              "lang": "en"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "0d728dc0-f1b2-1bb1-e373-8a2f56f12f08",
+          "uri": "../flows/0d728dc0-f1b2-1bb1-e373-8a2f56f12f08.xml"
+        },
+        "meanAmount": 1000.0,
+        "referencesToDataSource": {},
+        "referenceFlow": true,
+        "resolvedFlowVersion": "00.01.000",
+        "resultingflowAmount": 1000.0,
+        "flowProperties": [
+          {
+            "name": [
+              {
+                "lang": "en",
+                "value": "Mass"
+              },
+              {
+                "lang": "de",
+                "value": "Masse"
+              }
+            ],
+            "uuid": "93a60a56-a3c8-11da-a746-0800200b9a66",
+            "referenceFlowProperty": true,
+            "meanValue": 1.0,
+            "referenceUnit": "kg",
+            "unitGroupUUID": "ad38d542-3fe9-439d-9b95-2f5f7752acaf"
+          }
+        ],
+        "materialProperties": [
+          {
+            "name": "gross density",
+            "value": "1371.0",
+            "unit": "kg/m^3",
+            "unitDescription": "kilograms per cubic metre"
+          }
+        ],
+        "typeOfFlow": "Product flow",
+        "classification": {
+          "classHierarchy": "Mineralische Baustoffe / Steine und Elemente / Faserzement",
+          "name": "OEKOBAU.DAT"
+        }
+      },
+      {
+        "dataSetInternalID": 1,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Renewable primary energy as energy carrier (PERE)",
+              "lang": "en"
+            },
+            {
+              "value": "Erneuerbare Prim\u00e4renergie als Energietr\u00e4ger (PERE)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "20f32be5-0398-4288-9b6d-accddd195317",
+          "uri": "../flows/20f32be5-0398-4288-9b6d-accddd195317.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 2,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Renewable primary energy resources as material utilization (PERM)",
+              "lang": "en"
+            },
+            {
+              "value": "Erneuerbare Prim\u00e4renergie zur stofflichen Nutzung (PERM)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "fb3ec0de-548d-4508-aea5-00b73bf6f702",
+          "uri": "../flows/fb3ec0de-548d-4508-aea5-00b73bf6f702.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "141",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 3,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Total use of renewable primary energy resources (PERT)",
+              "lang": "en"
+            },
+            {
+              "value": "Total erneuerbare Prim\u00e4renergie (PERT)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "53f97275-fa8a-4cdd-9024-65936002acd0",
+          "uri": "../flows/53f97275-fa8a-4cdd-9024-65936002acd0.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "141",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 4,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Non renewable primary energy as energy carrier (PENRE)",
+              "lang": "en"
+            },
+            {
+              "value": "Nicht-erneuerbare Prim\u00e4renergie als Energietr\u00e4ger (PENRE)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "ac857178-2b45-46ec-892a-a9a4332f0372",
+          "uri": "../flows/ac857178-2b45-46ec-892a-a9a4332f0372.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "5050",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 5,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Non renewable primary energy as material utilization (PENRM)",
+              "lang": "en"
+            },
+            {
+              "value": "Nicht-erneuerbare Prim\u00e4renergie zur stofflichen Nutzung (PENRM)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "1421caa0-679d-4bf4-b282-0eb850ccae27",
+          "uri": "../flows/1421caa0-679d-4bf4-b282-0eb850ccae27.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "233",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 6,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Total use of non renewable primary energy resources (PENRT)",
+              "lang": "en"
+            },
+            {
+              "value": "Total nicht erneuerbare Prim\u00e4renergie (PENRT)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "06159210-646b-4c8d-8583-da9b3b95a6c1",
+          "uri": "../flows/06159210-646b-4c8d-8583-da9b3b95a6c1.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "5290",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 7,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of secondary material (SM)",
+              "lang": "en"
+            },
+            {
+              "value": "Einsatz von Sekund\u00e4rstoffen (SM)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "c6a1f35f-2d09-4f54-8dfb-97e502e1ce92",
+          "uri": "../flows/c6a1f35f-2d09-4f54-8dfb-97e502e1ce92.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf.xml"
+              }
+            },
+            {
+              "value": "267",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 8,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of renewable secondary fuels (RSF)",
+              "lang": "en"
+            },
+            {
+              "value": "Erneuerbare Sekund\u00e4rbrennstoffe (RSF)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "64333088-a55f-4aa2-9a31-c10b07816787",
+          "uri": "../flows/64333088-a55f-4aa2-9a31-c10b07816787.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 9,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of non renewable secondary fuels (NRSF)",
+              "lang": "en"
+            },
+            {
+              "value": "Nicht erneuerbare Sekund\u00e4rbrennstoffe (NRSF)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "89def144-d39a-4287-b86f-efde453ddcb2",
+          "uri": "../flows/89def144-d39a-4287-b86f-efde453ddcb2.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "587",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 10,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Use of net fresh water (FW)",
+              "lang": "en"
+            },
+            {
+              "value": "Einsatz von S\u00fc\u00dfwasserressourcen (FW)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "3cf952c8-f3a4-461d-8c96-96456ca62246",
+          "uri": "../flows/3cf952c8-f3a4-461d-8c96-96456ca62246.xml"
+        },
+        "exchange direction": "INPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "m^3",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "cd950537-0a98-4044-9ba7-9f9a68d0a504",
+                "uri": "../unitgroups/cd950537-0a98-4044-9ba7-9f9a68d0a504.xml"
+              }
+            },
+            {
+              "value": "1.8",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 11,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Hazardous waste disposed (HWD)",
+              "lang": "en"
+            },
+            {
+              "value": "Gef\u00e4hrlicher Abfall zur Deponie (HWD)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "430f9e0f-59b2-46a0-8e0d-55e0e84948fc",
+          "uri": "../flows/430f9e0f-59b2-46a0-8e0d-55e0e84948fc.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf.xml"
+              }
+            },
+            {
+              "value": "22.4",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 12,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Non hazardous waste disposed (NHWD)",
+              "lang": "en"
+            },
+            {
+              "value": "Entsorgter nicht gef\u00e4hrlicher Abfall (NHWD)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "b29ef66b-e286-4afa-949f-62f1a7b4d7fa",
+          "uri": "../flows/b29ef66b-e286-4afa-949f-62f1a7b4d7fa.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf.xml"
+              }
+            },
+            {
+              "value": "3.82",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 13,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Radioactive waste disposed (RWD)",
+              "lang": "en"
+            },
+            {
+              "value": "Entsorgter radioaktiver Abfall (RWD)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "3449546e-52ad-4b39-b809-9fb77cea8ff6",
+          "uri": "../flows/3449546e-52ad-4b39-b809-9fb77cea8ff6.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 14,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Components for re-use (CRU)",
+              "lang": "en"
+            },
+            {
+              "value": "Komponenten f\u00fcr die Wiederverwendung (CRU)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "a2b32f97-3fc7-4af2-b209-525bc6426f33",
+          "uri": "../flows/a2b32f97-3fc7-4af2-b209-525bc6426f33.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf.xml"
+              }
+            },
+            {
+              "value": "32",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 15,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Materials for recycling (MFR)",
+              "lang": "en"
+            },
+            {
+              "value": "Stoffe zum Recycling (MFR)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "d7fe48a5-4103-49c8-9aae-b0b5dfdbd6ae",
+          "uri": "../flows/d7fe48a5-4103-49c8-9aae-b0b5dfdbd6ae.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf.xml"
+              }
+            },
+            {
+              "value": "425",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 16,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Materials for energy recovery (MER)",
+              "lang": "en"
+            },
+            {
+              "value": "Stoffe f\u00fcr die Energier\u00fcckgewinnung (MER)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "59a9181c-3aaf-46ee-8b13-2b3723b6e447",
+          "uri": "../flows/59a9181c-3aaf-46ee-8b13-2b3723b6e447.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "ad38d542-3fe9-439d-9b95-2f5f7752acaf",
+                "uri": "../unitgroups/ad38d542-3fe9-439d-9b95-2f5f7752acaf.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 17,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Exported electrical energy (EEE)",
+              "lang": "en"
+            },
+            {
+              "value": "Exportierte elektrische Energie (EEE)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "4da0c987-2b76-40d6-9e9e-82a017aaaf29",
+          "uri": "../flows/4da0c987-2b76-40d6-9e9e-82a017aaaf29.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      },
+      {
+        "dataSetInternalID": 18,
+        "referenceToFlowDataSet": {
+          "shortDescription": [
+            {
+              "value": "Exported thermal energy (EET)",
+              "lang": "en"
+            },
+            {
+              "value": "Exportierte thermische Energie (EET)",
+              "lang": "de"
+            }
+          ],
+          "type": "flow data set",
+          "refObjectId": "98daf38a-7a79-46d3-9a37-2b7bd0955810",
+          "uri": "../flows/98daf38a-7a79-46d3-9a37-2b7bd0955810.xml"
+        },
+        "exchange direction": "OUTPUT",
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "0",
+              "module": "A1-A3"
+            }
+          ]
+        },
+        "resolvedFlowVersion": "30.00.000",
+        "flowProperties": [],
+        "typeOfFlow": "Other flow",
+        "classification": {
+          "classHierarchy": "Gr\u00f6\u00dfen / Umweltliche Gr\u00f6\u00dfen / EPD EN 15804 / LCI Indikatoren",
+          "name": "GaBiCategories"
+        }
+      }
+    ]
+  },
+  "LCIAResults": {
+    "LCIAResult": [
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Global warming potential (GWP)",
+              "lang": "en"
+            },
+            {
+              "value": "Globales Erw\u00e4rmungspotenzial (GWP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "77e416eb-a363-4258-a04e-171d843a6460",
+          "uri": "../lciamethods/77e416eb-a363-4258-a04e-171d843a6460.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CO_(2)-\u00c4q.",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "1ebf3012-d0db-4de2-aefd-ef30cedb0be1",
+                "uri": "../unitgroups/1ebf3012-d0db-4de2-aefd-ef30cedb0be1.xml"
+              }
+            },
+            {
+              "value": "490.59729",
+              "module": "A1-A3"
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Depletion potential of the stratospheric ozone layer (ODP)",
+              "lang": "en"
+            },
+            {
+              "value": "Abbau Potential der stratosph\u00e4rischen Ozonschicht (ODP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "06dcd26f-025f-401a-a7c1-5e457eb54637",
+          "uri": "../lciamethods/06dcd26f-025f-401a-a7c1-5e457eb54637.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg CFC11-\u00c4q.",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "88054749-b0a6-47ea-a82b-dc5b29326512",
+                "uri": "../unitgroups/88054749-b0a6-47ea-a82b-dc5b29326512.xml"
+              }
+            },
+            {
+              "value": "4E-05",
+              "module": "A1-A3"
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Acidification potential of land and water (AP)",
+              "lang": "en"
+            },
+            {
+              "value": "Versauerungspotenzial von Boden und Wasser (AP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "b4274add-93b7-4905-a5e4-2e878c4e4216",
+          "uri": "../lciamethods/b4274add-93b7-4905-a5e4-2e878c4e4216.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg SO_(2)-\u00c4q.",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "bc50c624-a9bc-45b1-a9b0-e6b10d00476f",
+                "uri": "../unitgroups/bc50c624-a9bc-45b1-a9b0-e6b10d00476f.xml"
+              }
+            },
+            {
+              "value": "1.96396",
+              "module": "A1-A3"
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Eutrophication potential (EP)",
+              "lang": "en"
+            },
+            {
+              "value": "Eutrophierungspotenzial (EP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "f58827d0-b407-4ec6-be75-8b69efb98a0f",
+          "uri": "../lciamethods/f58827d0-b407-4ec6-be75-8b69efb98a0f.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg PO_(4)^(3)-\u00c4q.",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "67b5401d-873c-485f-bcf3-6ae83b918822",
+                "uri": "../unitgroups/67b5401d-873c-485f-bcf3-6ae83b918822.xml"
+              }
+            },
+            {
+              "value": "0.38718",
+              "module": "A1-A3"
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Formation potential of tropospheric ozone photochemical oxidants (POCP)",
+              "lang": "en"
+            },
+            {
+              "value": "Bildungspotential f\u00fcr troposph\u00e4risches Ozon (POCP)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "1e84a202-dae6-42aa-9e9d-71ea48b8be00",
+          "uri": "../lciamethods/1e84a202-dae6-42aa-9e9d-71ea48b8be00.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg Ethen-\u00c4q.",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "01c26c17-9a76-406e-8295-f17b55fd909e",
+                "uri": "../unitgroups/01c26c17-9a76-406e-8295-f17b55fd909e.xml"
+              }
+            },
+            {
+              "value": "0.06031",
+              "module": "A1-A3"
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Abiotic depletion potential for non fossil resources (ADPE)",
+              "lang": "en"
+            },
+            {
+              "value": "Potenzial f\u00fcr den abiotischen Abbau nicht fossiler Ressourcen (ADPE)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "f7c73bb9-ab1a-4249-9c6d-379a0de6f67e",
+          "uri": "../lciamethods/f7c73bb9-ab1a-4249-9c6d-379a0de6f67e.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "kg Sb-\u00c4q.",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "54ccd2d9-a32a-4fc2-923d-f2c8c93e89d4",
+                "uri": "../unitgroups/54ccd2d9-a32a-4fc2-923d-f2c8c93e89d4.xml"
+              }
+            },
+            {
+              "value": "2E-05",
+              "module": "A1-A3"
+            }
+          ]
+        }
+      },
+      {
+        "referenceToLCIAMethodDataSet": {
+          "shortDescription": [
+            {
+              "value": "Abiotic depletion potential for fossil resources (ADPF)",
+              "lang": "en"
+            },
+            {
+              "value": "Potenzial f\u00fcr den abiotischen Abbau fossiler Brennstoffe (ADPF)",
+              "lang": "de"
+            }
+          ],
+          "type": "LCIA method data set",
+          "refObjectId": "804ebcdf-309d-4098-8ed8-fdaf2f389981",
+          "uri": "../lciamethods/804ebcdf-309d-4098-8ed8-fdaf2f389981.xml"
+        },
+        "other": {
+          "anies": [
+            {
+              "name": "referenceToUnitGroupDataSet",
+              "value": {
+                "shortDescription": [
+                  {
+                    "value": "MJ",
+                    "lang": "en"
+                  }
+                ],
+                "type": "unit group data set",
+                "refObjectId": "93a60a57-a3c8-11da-a746-0800200c9a66",
+                "uri": "../unitgroups/93a60a57-a3c8-11da-a746-0800200c9a66.xml"
+              }
+            },
+            {
+              "value": "5286.74365",
+              "module": "A1-A3"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "otherAttributes": {
+    "{http://www.indata.network/EPD/2019}epd-version": "1.2"
+  },
+  "version": "1.1",
+  "locations": "../ILCDLocations.xml",
+  "source": "https://ibudata.lca-data.com/resource/datastocks/7f92c48a-07c6-4a0c-91fd-4166e6138402/processes/e7ff6cf1-d493-4cf0-ba82-6b3f1f6f71e7?version=00.01.000"
+}
