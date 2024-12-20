@@ -82,4 +82,4 @@ jobs:
           space_name: ${{ vars.SPACE_NAME }}
           space_region: ${{ vars.SPACE_REGION }}
           source: .
-          out_dir: docs/${{ github.ref_name }}
+          out_dir: lcax/${{ github.ref_name }}/docs
