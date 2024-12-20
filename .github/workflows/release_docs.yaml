@@ -1,7 +1,11 @@
 name: "Release Docs"
 on:
   workflow_call:
-
+    secrets:
+      access_key:
+        required: true
+      secret_key:
+        required: true
 jobs:
   buildDocs:
     runs-on: ubuntu-latest
@@ -73,8 +77,8 @@ jobs:
 
       - uses: BetaHuhn/do-spaces-action@v2
         with:
-          access_key: ${{ secrets.ACCESS_KEY }}
-          secret_key: ${{ secrets.SECRET_KEY }}
+          access_key: ${{ secrets.access_key }}
+          secret_key: ${{ secrets.secret_key }}
           space_name: ${{ vars.SPACE_NAME }}
           space_region: ${{ vars.SPACE_REGION }}
           source: .
