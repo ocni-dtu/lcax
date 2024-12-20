@@ -1,4 +1,4 @@
-use crate::ilcd::ilcd::{DataSetName, Exchange, LCIAResult, ModuleAnie, ILCD};
+use crate::ilcd::ilcd::{Anie, DataSetName, Exchange, LCIAResult, ModuleAnie, ILCD};
 use chrono::NaiveDate;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
@@ -26,14 +26,21 @@ pub fn parse_ilcd(data: &str) -> Result<EPD, Error> {
 }
 
 fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
-    let subtype = ilcd_epd
+    let generic_anie = Anie {
+        value: Some("Generic".to_string()),
+        name: "subType".to_string(),
+    };
+    let subtype = match &ilcd_epd
         .modelling_and_validation
         .lci_method_and_allocation
         .other
-        .anies
-        .iter()
-        .find(|&anie| anie.name == "subType")
-        .unwrap();
+    {
+        Some(other) => match other.anies.iter().find(|&anie| anie.name == "subType") {
+            Some(subtype) => subtype.clone(),
+            None => &generic_anie,
+        },
+        None => &generic_anie,
+    };
 
     let mut impacts = collect_from_lcia_result(&ilcd_epd.lcia_results.lcia_result);
 
@@ -85,55 +92,136 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
                 if vec!["a1", "a2", "a3"].contains(&module.to_lowercase().as_str()) =>
             {
                 if composite_a1a3.is_some() {
-                    composite_a1a3 = Some(composite_a1a3.unwrap() + f64::from(value));
+                    match f64::try_from(value) {
+                        Ok(value) => composite_a1a3 = Some(composite_a1a3.unwrap() + value),
+                        Err(_) => {}
+                    }
                 } else {
-                    composite_a1a3 = Some(f64::from(value));
+                    match f64::try_from(value) {
+                        Ok(value) => composite_a1a3 = Some(value),
+                        Err(_) => {}
+                    }
                 }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a1-a3") => {
-                category.insert(LifeCycleStage::A1A3, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::A1A3, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a4") => {
-                category.insert(LifeCycleStage::A4, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::A4, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a5") => {
-                category.insert(LifeCycleStage::A5, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::A5, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b1") => {
-                category.insert(LifeCycleStage::B1, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B1, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b2") => {
-                category.insert(LifeCycleStage::B2, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B2, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b3") => {
-                category.insert(LifeCycleStage::B3, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B3, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b4") => {
-                category.insert(LifeCycleStage::B4, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B4, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b5") => {
-                category.insert(LifeCycleStage::B5, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B5, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b6") => {
-                category.insert(LifeCycleStage::B6, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B6, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b7") => {
-                category.insert(LifeCycleStage::B7, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::B7, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c1") => {
-                category.insert(LifeCycleStage::C1, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::C1, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c2") => {
-                category.insert(LifeCycleStage::C2, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::C2, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c3") => {
-                category.insert(LifeCycleStage::C3, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::C3, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c4") => {
-                category.insert(LifeCycleStage::C4, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::C4, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             (Some(module), Some(value)) if module.to_lowercase() == String::from("d") => {
-                category.insert(LifeCycleStage::D, Some(f64::from(value)));
+                match f64::try_from(value) {
+                    Ok(value) => {
+                        category.insert(LifeCycleStage::D, Some(value));
+                    }
+                    Err(_) => {}
+                }
             }
             _ => continue,
         }
@@ -181,7 +269,7 @@ fn get_ilcd_conversion(exchange: &Exchange) -> Vec<Conversion> {
                 conversions.push(Conversion {
                     value,
                     to: get_converted_unit(&material_property.unit),
-                    meta_data: serde_json::to_string(material_property).unwrap(),
+                    meta_data: Some((*material_property).clone().into()),
                 })
             }
         }

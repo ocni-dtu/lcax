@@ -70,9 +70,7 @@
         "object",
         "null"
       ],
-      "additionalProperties": {
-        "type": "string"
-      }
+      "additionalProperties": true
     },
     "name": {
       "type": "string"
@@ -170,6 +168,7 @@
         "retrofit_and_extension_works",
         "fit_out_works",
         "operations",
+        "unknown",
         "other"
       ]
     },
@@ -183,6 +182,9 @@
         "industrial",
         "infrastructure",
         "agricultural",
+        "educational",
+        "health",
+        "unknown",
         "other"
       ]
     },
@@ -208,13 +210,16 @@
     "Conversion": {
       "type": "object",
       "required": [
-        "metaData",
         "to",
         "value"
       ],
       "properties": {
         "metaData": {
-          "type": "string"
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
         },
         "to": {
           "$ref": "#/definitions/Unit"
@@ -541,9 +546,7 @@
             "object",
             "null"
           ],
-          "additionalProperties": {
-            "type": "string"
-          }
+          "additionalProperties": true
         },
         "name": {
           "type": "string"
@@ -950,9 +953,7 @@
                 "object",
                 "null"
               ],
-              "additionalProperties": {
-                "type": "string"
-              }
+              "additionalProperties": true
             },
             "name": {
               "type": "string"
@@ -1131,9 +1132,7 @@
                 "object",
                 "null"
               ],
-              "additionalProperties": {
-                "type": "string"
-              }
+              "additionalProperties": true
             },
             "name": {
               "type": "string"
@@ -1231,6 +1230,7 @@
         "pitched",
         "saddle",
         "pyramid",
+        "unknown",
         "other"
       ]
     },
@@ -1347,9 +1347,7 @@
             "object",
             "null"
           ],
-          "additionalProperties": {
-            "type": "string"
-          }
+          "additionalProperties": true
         },
         "name": {
           "type": "string"

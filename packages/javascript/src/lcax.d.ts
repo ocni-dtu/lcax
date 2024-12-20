@@ -16,27 +16,22 @@ export function convertIlcd(data: string): EPD;
 * @returns {JSProjects}
 */
 export function convertSLiCE(file: Uint8Array): JSProjects;
+/**
+* @param {Project} project
+* @returns {Project}
+*/
+export function calculateProject(project: Project): Project;
 export type JSProjects = Project[];
 
-export type BuildingTypology = "office" | "residential" | "public" | "commercial" | "industrial" | "infrastructure" | "agricultural" | "mixeduse" | "other";
+export type BuildingTypology = "office" | "residential" | "public" | "commercial" | "industrial" | "infrastructure" | "agricultural" | "educational" | "health" | "unknown" | "other";
 
-export type BuildingType = "renovation" | "new";
+export type BuildingType = "new_construction_works" | "demolition" | "deconstruction_and_new_construction_works" | "retrofit_works" | "extension_works" | "retrofit_and_extension_works" | "fit_out_works" | "operations" | "unknown" | "other";
 
-export interface BuildingModelScope {
-    facilitating_works: boolean;
-    substructure: boolean;
-    superstructure_frame: boolean;
-    superstructure_envelope: boolean;
-    superstructure_internal_elements: boolean;
-    finishes: boolean;
-    building_services: boolean;
-    external_works: boolean;
-    ff_e: boolean;
-}
+export type BuildingModelScope = "facilitating_works" | "substructure" | "superstructure_frame" | "superstructure_envelope" | "superstructure_internal_elements" | "finishes" | "building_services" | "external_works" | "ff_e";
 
 export type GeneralEnergyClass = "existing" | "standard" | "advanced" | "unknown";
 
-export type RoofType = "flat" | "pitched" | "saddle" | "pyramid" | "other";
+export type RoofType = "flat" | "pitched" | "saddle" | "pyramid" | "unknown" | "other";
 
 export interface ValueUnit {
     value: number;
@@ -51,7 +46,7 @@ export interface AreaType {
 
 export interface BuildingInfo {
     buildingType: BuildingType;
-    buildingTypology: BuildingTypology;
+    buildingTypology: BuildingTypology[];
     certifications: string[] | null;
     buildingMass: ValueUnit | null;
     buildingHeight: ValueUnit | null;
@@ -72,7 +67,7 @@ export interface BuildingInfo {
     generalEnergyClass: GeneralEnergyClass;
     localEnergyClass: string | null;
     buildingUsers: number | null;
-    buildingModelScope: BuildingModelScope | null;
+    buildingModelScope: BuildingModelScope[] | null;
 }
 
 export type ProjectInfo = ({ type: "buildingInfo" } & BuildingInfo) | ({ type: "infrastructureInfo" } & Record<string, string>);
@@ -83,7 +78,7 @@ export interface Location {
     address: string | null;
 }
 
-export type ProjectPhase = "design" | "ongoing" | "built" | "other";
+export type ProjectPhase = "strategic_design" | "concept_design" | "technical_design" | "construction" | "post_completion" | "in_use" | "other";
 
 export interface SoftwareInfo {
     goalAndScopeDefinition: string | null;
@@ -135,6 +130,10 @@ export interface EPD {
     metaData: Record<string, string> | null;
 }
 
+export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+
+export type LifeCycleStage = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
+
 export interface Reference {
     uri: string;
     format: string | null;
@@ -157,19 +156,6 @@ export interface Conversion {
 
 export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
 
-export interface TechFlow {
-    id: string;
-    name: string;
-    declaredUnit: Unit;
-    formatVersion: string;
-    source: Source | null;
-    comment: string | null;
-    location: Country;
-    conversions: Conversion[] | null;
-    impacts: Record<ImpactCategoryKey, ImpactCategory>;
-    metaData: Record<string, string> | null;
-}
-
 export interface Classification {
     system: string;
     code: string;
@@ -186,6 +172,19 @@ export interface Assembly {
     classification: Classification[] | null;
     products: Record<string, ReferenceSource<Product>>;
     results: Results | null;
+    metaData: Record<string, string> | null;
+}
+
+export interface TechFlow {
+    id: string;
+    name: string;
+    declaredUnit: Unit;
+    formatVersion: string;
+    source: Source | null;
+    comment: string | null;
+    location: Country;
+    conversions: Conversion[] | null;
+    impacts: Record<ImpactCategoryKey, ImpactCategory>;
     metaData: Record<string, string> | null;
 }
 
@@ -222,8 +221,4 @@ export interface Product {
     results: Results | null;
     metaData: Record<string, string> | null;
 }
-
-export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
-
-export type LifeCycleStage = "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "c1" | "c2" | "c3" | "c4" | "d";
 

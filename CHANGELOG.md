@@ -1,3 +1,31 @@
+## [2.6.3](https://github.com/ocni-dtu/lcax/compare/v2.6.2...v2.6.3) (2024-12-16)
+
+### Bug Fixes
+
+* Updated ILCD Parser ([#88](https://github.com/ocni-dtu/lcax/issues/88)) ([7e134ce](https://github.com/ocni-dtu/lcax/commit/7e134ce697d3625fddabaed2a9a4e0dac7682f85)), closes [#87](https://github.com/ocni-dtu/lcax/issues/87)
+
+## [2.6.2](https://github.com/ocni-dtu/lcax/compare/v2.6.1...v2.6.2) (2024-12-15)
+
+### Bug Fixes
+
+* LCIMethodAndAllocation missing "other" field ([#86](https://github.com/ocni-dtu/lcax/issues/86)) ([14bd934](https://github.com/ocni-dtu/lcax/commit/14bd934596a1eda1695d0896bb060fe61bfa791a)), closes [#85](https://github.com/ocni-dtu/lcax/issues/85)
+
+## [2.6.1](https://github.com/ocni-dtu/lcax/compare/v2.6.0...v2.6.1) (2024-11-04)
+
+### Bug Fixes
+
+* made metadata fields except any kind of data type ([1ea567e](https://github.com/ocni-dtu/lcax/commit/1ea567eef362ced89cc951569610fb17f32bac1b))
+
+## [2.6.0](https://github.com/ocni-dtu/lcax/compare/v2.5.2...v2.6.0) (2024-09-27)
+
+### Features
+
+* exposing calculation functionality to js and py ([512df66](https://github.com/ocni-dtu/lcax/commit/512df667b930dc46c4519c5c3a620ca58a648ccc))
+
+### Bug Fixes
+
+* adding deprecation warning for SLiCE removal in 3.0.0 ([adc5332](https://github.com/ocni-dtu/lcax/commit/adc5332afaef92fd0b1d6156d645f6281c118452))
+
 ## [2.5.2](https://github.com/ocni-dtu/lcax/compare/v2.5.1...v2.5.2) (2024-09-16)
 
 ### Bug Fixes

@@ -1,6 +1,8 @@
 #[allow(dead_code)]
 use serde::Deserialize;
 use serde::Serialize;
+use serde_json::Value;
+use std::collections::HashMap;
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -50,13 +52,27 @@ pub struct FlowProperty {
     pub unit_group_uuid: Option<String>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct MaterialProperty {
     pub name: String,
     pub value: String,
     pub unit: String,
     pub unit_description: Option<String>,
+}
+
+impl Into<HashMap<String, Value>> for MaterialProperty {
+    fn into(self) -> HashMap<String, Value> {
+        HashMap::from([
+            ("name".to_string(), Value::from(self.name)),
+            ("value".to_string(), Value::from(self.value)),
+            ("unit".to_string(), Value::from(self.unit)),
+            (
+                "unit_description".to_string(),
+                Value::from(self.unit_description),
+            ),
+        ])
+    }
 }
 
 #[derive(Deserialize)]
@@ -123,17 +139,18 @@ pub enum AnieValue {
     ValueObject(ValueObject),
 }
 
-impl From<&AnieValue> for f64 {
-    fn from(value: &AnieValue) -> Self {
+impl TryFrom<&AnieValue> for f64 {
+    type Error = ();
+    fn try_from(value: &AnieValue) -> Result<Self, Self::Error> {
         match value {
             AnieValue::ValueString(s) => {
                 // Parse the string into a float
-                let float_value = s.parse::<f64>().unwrap();
-                float_value
+                match s.parse::<f64>() {
+                    Ok(f) => Ok(f),
+                    Err(_) => Err(()),
+                }
             }
-            AnieValue::ValueObject(_) => {
-                panic!("Cannot convert AnieValue::ValueObject to f64");
-            }
+            AnieValue::ValueObject(_) => Err(()),
         }
     }
 }
@@ -166,7 +183,7 @@ pub struct ReferenceToLCIAMethodDataSet {
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct LCIMethodAndAllocation {
-    pub other: Anies,
+    pub other: Option<Anies>,
 }
 
 #[derive(Deserialize)]

@@ -2,6 +2,7 @@ use std::collections::HashMap;
 
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
@@ -51,7 +52,7 @@ impl From<&String> for Unit {
 pub struct Conversion {
     pub value: f64,
     pub to: Unit,
-    pub meta_data: String,
+    pub meta_data: Option<MetaData>,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
@@ -79,3 +80,5 @@ pub struct Reference {
     pub version: Option<String>,
     pub overrides: Option<HashMap<String, String>>,
 }
+
+pub type MetaData = HashMap<String, Value>;

@@ -1,10 +1,12 @@
 use tsify::Tsify;
 use wasm_bindgen::prelude::*;
 
+use lcax_calculation::calculate::{calculate_project, CalculationOptions};
 use lcax_convert::{ilcd, lcabyg, slice};
 use lcax_models::epd::EPD;
 use lcax_models::project::Project;
 use serde::{Deserialize, Serialize};
+
 extern crate console_error_panic_hook;
 
 #[global_allocator]
@@ -49,4 +51,18 @@ pub fn convertSLiCE(file: Vec<u8>) -> Result<JSProjects, JsError> {
         Ok(projects) => Ok(JSProjects(projects)),
         Err(error) => Err(JsError::new(error.to_string().as_str())),
     }
+}
+
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn calculateProject(mut project: Project) -> Result<Project, JsError> {
+    console_error_panic_hook::set_once();
+    calculate_project(&mut project, None).expect("TODO: panic message");
+
+    Ok(project)
+
+    // match calculate_project(&mut project, options) {
+    //     Ok(_project) => Ok(*_project),
+    //     Err(error) => Err(JsError::new(error.to_string().as_str())),
+    // }
 }
