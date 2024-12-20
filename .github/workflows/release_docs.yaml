@@ -36,7 +36,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: changelog
-          path: docs/src/content/docs/reference
+          path: .
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -46,6 +46,9 @@ jobs:
       - name: Install Dependencies
         working-directory: docs
         run: npm ci
+
+      - name: Construct Changelog
+        run: cat CHANGELOG.md >> docs/src/content/docs/reference/changelog.md
 
       - name: Build Docs
         working-directory: docs

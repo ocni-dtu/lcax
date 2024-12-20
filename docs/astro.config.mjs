@@ -4,9 +4,6 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-    markdown: {
-        remarkPlugins: [frontmatterPlugin]
-    },
     integrations: [
         starlight({
             title: 'LCAx Docs',
