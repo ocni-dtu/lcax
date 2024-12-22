@@ -161,6 +161,7 @@ pub fn add_project_data(project: &mut LCAxProject, element: &SLiCEElement) {
     project.format_version = get_version();
     project.classification_system = Some(String::from("SfB"));
     project.software_info = SoftwareInfo {
+        lca_software_version: None,
         goal_and_scope_definition: None,
         lca_software: String::from("SLiCE"),
         calculation_type: None,

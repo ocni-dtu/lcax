@@ -5,7 +5,7 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
-
+use lcax_core::utils::get_version;
 use crate::assembly::Assembly;
 use crate::life_cycle_base::{ImpactCategoryKey, LifeCycleStage, Results};
 use crate::shared::{MetaData, ReferenceSource, Unit};
@@ -63,6 +63,7 @@ impl Project {
             project_phase: ProjectPhase::STRATEGIC_DESIGN,
             software_info: SoftwareInfo {
                 goal_and_scope_definition: None,
+                lca_software_version: Some(get_version()),
                 lca_software: "lcax".to_string(),
                 calculation_type: None,
             },
@@ -77,6 +78,7 @@ impl Project {
 pub struct SoftwareInfo {
     pub goal_and_scope_definition: Option<String>,
     pub lca_software: String,
+    pub lca_software_version: Option<String>,
     pub calculation_type: Option<String>,
 }
 

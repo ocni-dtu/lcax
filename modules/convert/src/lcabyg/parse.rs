@@ -212,6 +212,7 @@ fn add_project_data(project: &mut LCAxProject, node: &nodes::Project) {
     project.classification_system = Some(String::from("LCAByg"));
     project.software_info = SoftwareInfo {
         goal_and_scope_definition: None,
+        lca_software_version: None,
         lca_software: String::from("LCAByg"),
         calculation_type: Some(node.building_regulation_version.to_string()),
     }
