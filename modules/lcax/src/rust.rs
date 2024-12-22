@@ -1,4 +1,4 @@
-use lcax_convert::{ilcd, lcabyg, slice};
+use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
 use lcax_models::project::Project;
 
@@ -15,13 +15,5 @@ pub fn convert_ilcd(data: String) -> Result<EPD, String> {
     match ilcd::parse::parse_ilcd(&data) {
         Ok(epd) => Ok(epd),
         Err(_) => panic!("Error parsing ILCD data"),
-    }
-}
-
-#[cfg(feature = "default")]
-pub fn convert_slice(file: Vec<u8>) -> Result<Vec<Project>, String> {
-    match slice::parse::parse_slice(file) {
-        Ok(projects) => Ok(projects),
-        Err(_) => panic!("Error parsing SLiCE data"),
     }
 }
