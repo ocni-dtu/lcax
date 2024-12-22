@@ -1,7 +1,7 @@
 use tsify::Tsify;
 use wasm_bindgen::prelude::*;
 
-use lcax_calculation::calculate::{calculate_project};
+use lcax_calculation::calculate::calculate_project;
 use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
 use lcax_models::project::Project;

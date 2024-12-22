@@ -1,4 +1,4 @@
-use lcax_calculation::calculate::{calculate_project};
+use lcax_calculation::calculate::calculate_project;
 use lcax_convert::{ilcd, lcabyg};
 use lcax_models::project::Project;
 use pyo3::exceptions::PyTypeError;
