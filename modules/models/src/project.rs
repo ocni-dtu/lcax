@@ -1,14 +1,14 @@
 use std::collections::HashMap;
 
+use crate::assembly::Assembly;
+use crate::life_cycle_base::{ImpactCategoryKey, LifeCycleStage, Results};
+use crate::shared::{MetaData, ReferenceSource, Unit};
 use lcax_core::country::Country;
+use lcax_core::utils::get_version;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
-use lcax_core::utils::get_version;
-use crate::assembly::Assembly;
-use crate::life_cycle_base::{ImpactCategoryKey, LifeCycleStage, Results};
-use crate::shared::{MetaData, ReferenceSource, Unit};
 
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
 #[serde(rename_all = "camelCase")]
