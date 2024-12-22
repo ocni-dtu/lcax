@@ -1,8 +1,8 @@
 use tsify::Tsify;
 use wasm_bindgen::prelude::*;
 
-use lcax_calculation::calculate::{calculate_project, CalculationOptions};
-use lcax_convert::{ilcd, lcabyg, slice};
+use lcax_calculation::calculate::calculate_project;
+use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
 use lcax_models::project::Project;
 use serde::{Deserialize, Serialize};
@@ -42,16 +42,6 @@ pub fn convertIlcd(data: String) -> Result<EPD, JsError> {
 #[derive(Deserialize, Serialize, Tsify)]
 #[tsify(into_wasm_abi, from_wasm_abi)]
 pub struct JSProjects(Vec<Project>);
-
-#[allow(non_snake_case)]
-#[wasm_bindgen]
-pub fn convertSLiCE(file: Vec<u8>) -> Result<JSProjects, JsError> {
-    console_error_panic_hook::set_once();
-    match slice::parse::parse_slice(file) {
-        Ok(projects) => Ok(JSProjects(projects)),
-        Err(error) => Err(JsError::new(error.to_string().as_str())),
-    }
-}
 
 #[allow(non_snake_case)]
 #[wasm_bindgen]

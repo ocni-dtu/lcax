@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Type as PyType, TypeVar
 
-from .lcax import _convert_lcabyg, _convert_ilcd, _convert_slice, _calculate_project
+from .lcax import _convert_lcabyg, _convert_ilcd, _calculate_project
 import lcax as lcax_binary
 from .pydantic import *
 from .pydantic import ReferenceSourceForImpactDataSource1 as EPD
@@ -88,34 +88,6 @@ def calculate_project(project: Project) -> Project:
 
     except Exception as err:
         raise ParsingException(err)
-
-
-def convert_slice(path: str | Path, *, as_type: PyType[Project_Type] = dict) -> list[Project_Type]:
-    """
-    Converts a SLiCE .parquet file into a list of LCAx projects
-
-    The LCAx project can either be returned as a list of strings, dicts or Pydantic classes.
-    """
-
-    if isinstance(path, str):
-        path = Path(path)
-
-    if not path.is_file():
-        raise FileNotFoundError(f"File not found: {path}")
-
-    try:
-        projects = _convert_slice(str(path))
-    except Exception as err:
-        raise ParsingException(err)
-
-    if as_type == str:
-        return projects
-    elif as_type == dict:
-        return [json.loads(project) for project in projects]
-    elif as_type == EPD:
-        return [Project(**json.loads(project)) for project in projects]
-    else:
-        raise NotImplementedError("Currently only 'dict', 'str' and 'lcax.EPD' is implemented as_type.")
 
 
 class ParsingException(Exception):

@@ -102,10 +102,10 @@ pub fn calculate_product(
                                 }),
                             );
                         }
-                        Ok(ImpactDataSource::TechFlow(techflow)) => {
+                        Ok(ImpactDataSource::GenericData(generic_data)) => {
                             impact_category.insert(
                                 life_cycle_stage.clone(),
-                                Some(match techflow.impacts.get(impact_category_key) {
+                                Some(match generic_data.impacts.get(impact_category_key) {
                                     Some(impact) => match impact.get(life_cycle_stage) {
                                         Some(value) => value.unwrap() * product.quantity,
                                         None => 0.0,

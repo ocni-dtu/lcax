@@ -1,5 +1,5 @@
-use lcax_calculation::calculate::{calculate_project, CalculationOptions};
-use lcax_convert::{ilcd, lcabyg, slice};
+use lcax_calculation::calculate::calculate_project;
+use lcax_convert::{ilcd, lcabyg};
 use lcax_models::project::Project;
 use pyo3::exceptions::PyTypeError;
 use pyo3::prelude::*;
@@ -24,18 +24,6 @@ pub fn _convert_ilcd(data: String) -> PyResult<String> {
 }
 
 #[pyfunction]
-pub fn _convert_slice(path: String) -> PyResult<Vec<String>> {
-    let file = fs::read(path).unwrap();
-    match slice::parse::parse_slice(file) {
-        Ok(projects) => Ok(projects
-            .iter()
-            .map(|project| serde_json::to_string(&project).unwrap())
-            .collect()),
-        Err(error) => Err(PyTypeError::new_err(error.to_string())),
-    }
-}
-
-#[pyfunction]
 pub fn _calculate_project(project: String) -> PyResult<String> {
     let mut _project: Project = serde_json::from_str(&project).unwrap();
 
@@ -52,7 +40,6 @@ pub fn _calculate_project(project: String) -> PyResult<String> {
 fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(_convert_lcabyg, m)?)?;
     m.add_function(wrap_pyfunction!(_convert_ilcd, m)?)?;
-    m.add_function(wrap_pyfunction!(_convert_slice, m)?)?;
     m.add_function(wrap_pyfunction!(_calculate_project, m)?)?;
     Ok(())
 }

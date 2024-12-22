@@ -5,9 +5,9 @@ use serde::{Deserialize, Serialize};
 use tsify::Tsify;
 
 use crate::epd::EPD;
+use crate::generic_impact_data::GenericData;
 use crate::life_cycle_base::{LifeCycleStage, Results};
 use crate::shared::{MetaData, Reference, ReferenceSource, Unit};
-use crate::techflow::TechFlow;
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -44,7 +44,7 @@ pub struct Transport {
 pub enum ImpactDataSource {
     #[serde(rename = "EPD")]
     EPD(EPD),
-    TechFlow(TechFlow),
+    GenericData(GenericData),
 }
 
 impl Default for ReferenceSource<ImpactDataSource> {

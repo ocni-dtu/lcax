@@ -18,20 +18,19 @@ use crate::shared::{Conversion, MetaData, Source, Unit};
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-pub struct TechFlow {
+pub struct GenericData {
     pub id: String,
     pub name: String,
     pub declared_unit: Unit,
     pub format_version: String,
     pub source: Option<Source>,
     pub comment: Option<String>,
-    pub location: Country,
     pub conversions: Option<Vec<Conversion>>,
     pub impacts: HashMap<ImpactCategoryKey, ImpactCategory>,
     pub meta_data: Option<MetaData>,
 }
 
-impl TechFlow {
+impl GenericData {
     pub fn new() -> Self {
         Self {
             id: uuid::Uuid::new_v4().to_string(),
@@ -40,7 +39,6 @@ impl TechFlow {
             format_version: get_version(),
             source: None,
             comment: None,
-            location: Country::UNKNOWN,
             conversions: None,
             impacts: HashMap::new(),
             meta_data: None,
