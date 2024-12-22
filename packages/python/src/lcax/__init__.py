@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Type as PyType, TypeVar
 
-from .lcax import _convert_lcabyg, _convert_ilcd, _convert_slice, _calculate_project
+from .lcax import _convert_lcabyg, _convert_ilcd, _calculate_project
 import lcax as lcax_binary
 from .pydantic import *
 from .pydantic import ReferenceSourceForImpactDataSource1 as EPD
