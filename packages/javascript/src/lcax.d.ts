@@ -12,16 +12,58 @@ export function convertLCAbyg(data: string, resultData?: string): Project;
 */
 export function convertIlcd(data: string): EPD;
 /**
-* @param {Uint8Array} file
-* @returns {JSProjects}
-*/
-export function convertSLiCE(file: Uint8Array): JSProjects;
-/**
 * @param {Project} project
 * @returns {Project}
 */
 export function calculateProject(project: Project): Project;
 export type JSProjects = Project[];
+
+export type ImpactData = EPDReference | GenericDataReference;
+
+export interface Transport {
+    id: string;
+    name: string;
+    lifeCycleStages: LifeCycleStage[];
+    distance: number;
+    distanceUnit: Unit;
+    impactData: ImpactData;
+}
+
+export type ProductReference = ({ type: "product" } & Product) | ({ type: "reference" } & Reference);
+
+export interface Product {
+    id: string;
+    name: string;
+    description: string | null;
+    referenceServiceLife: number;
+    impactData: ImpactData;
+    quantity: number;
+    unit: Unit;
+    transport: Transport[] | null;
+    results: Impacts | null;
+    metaData: MetaData | null;
+}
+
+export type AssemblyReference = ({ type: "assembly" } & Assembly) | ({ type: "reference" } & Reference);
+
+export interface Classification {
+    system: string;
+    code: string;
+    name: string;
+}
+
+export interface Assembly {
+    id: string;
+    name: string;
+    description: string | null;
+    comment: string | null;
+    quantity: number;
+    unit: Unit;
+    classification: Classification[] | null;
+    products: Record<string, ProductReference>;
+    results: Impacts | null;
+    metaData: MetaData | null;
+}
 
 export type BuildingTypology = "office" | "residential" | "public" | "commercial" | "industrial" | "infrastructure" | "agricultural" | "educational" | "health" | "unknown" | "other";
 
@@ -81,8 +123,9 @@ export interface Location {
 export type ProjectPhase = "strategic_design" | "concept_design" | "technical_design" | "construction" | "post_completion" | "in_use" | "other";
 
 export interface SoftwareInfo {
-    goalAndScopeDefinition: string | null;
     lcaSoftware: string;
+    lcaSoftwareVersion: string | null;
+    goalAndScopeDefinition: string | null;
     calculationType: string | null;
 }
 
@@ -99,13 +142,53 @@ export interface Project {
     referenceStudyPeriod: number | null;
     lifeCycleStages: LifeCycleStage[];
     impactCategories: ImpactCategoryKey[];
-    assemblies: Record<string, ReferenceSource<Assembly>>;
-    results: Results | null;
+    assemblies: Record<string, AssemblyReference>;
+    results: Impacts | null;
     projectInfo: ProjectInfo | null;
     projectPhase: ProjectPhase;
     softwareInfo: SoftwareInfo;
-    metaData: Record<string, string> | null;
+    metaData: MetaData | null;
 }
+
+export interface Reference {
+    uri: string;
+    format: string | null;
+    version: string | null;
+    overrides: Record<string, AnyValue> | null;
+}
+
+export interface Source {
+    name: string;
+    url: string | null;
+}
+
+export interface Conversion {
+    value: number;
+    to: Unit;
+    metaData: MetaData | null;
+}
+
+export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
+
+export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
+
+export interface GenericData {
+    id: string;
+    name: string;
+    declaredUnit: Unit;
+    formatVersion: string;
+    source: Source | null;
+    comment: string | null;
+    conversions: Conversion[] | null;
+    impacts: Impacts;
+    metaData: MetaData | null;
+}
+
+export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+
+export type LifeCycleStage = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
+
+export type EPDReference = ({ type: "EPD" } & EPD) | ({ type: "reference" } & Reference);
 
 export type SubType = "generic" | "specific" | "industry" | "representative";
 
@@ -126,99 +209,13 @@ export interface EPD {
     location: Country;
     subtype: SubType;
     conversions: Conversion[] | null;
-    impacts: Record<ImpactCategoryKey, ImpactCategory>;
-    metaData: Record<string, string> | null;
+    impacts: Impacts;
+    metaData: MetaData | null;
 }
 
-export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+export type Country = "unknown" | "afg" | "ala" | "alb" | "dza" | "asm" | "and" | "ago" | "aia" | "ata" | "atg" | "arg" | "arm" | "abw" | "aus" | "aut" | "aze" | "bhs" | "bhr" | "bgd" | "brb" | "blr" | "bel" | "blz" | "ben" | "bmu" | "btn" | "bol" | "bes" | "bih" | "bwa" | "bvt" | "bra" | "iot" | "brn" | "bgr" | "bfa" | "bdi" | "cpv" | "khm" | "cmr" | "can" | "cym" | "caf" | "tcd" | "chl" | "chn" | "cxr" | "cck" | "col" | "com" | "cog" | "cod" | "cok" | "cri" | "civ" | "hrv" | "cub" | "cuw" | "cyp" | "cze" | "dnk" | "dji" | "dma" | "dom" | "ecu" | "egy" | "slv" | "gnq" | "eri" | "est" | "swz" | "eth" | "flk" | "fro" | "fji" | "fin" | "fra" | "guf" | "pyf" | "atf" | "gab" | "gmb" | "geo" | "deu" | "gha" | "gib" | "grc" | "grl" | "grd" | "glp" | "gum" | "gtm" | "ggy" | "gin" | "gnb" | "guy" | "hti" | "hmd" | "vat" | "hnd" | "hkg" | "hun" | "isl" | "ind" | "idn" | "irn" | "irq" | "irl" | "imn" | "isr" | "ita" | "jam" | "jpn" | "jey" | "jor" | "kaz" | "ken" | "kir" | "prk" | "kor" | "kwt" | "kgz" | "lao" | "lva" | "lbn" | "lso" | "lbr" | "lby" | "lie" | "ltu" | "lux" | "mac" | "mdg" | "mwi" | "mys" | "mdv" | "mli" | "mlt" | "mhl" | "mtq" | "mrt" | "mus" | "myt" | "mex" | "fsm" | "mda" | "mco" | "mng" | "mne" | "msr" | "mar" | "moz" | "mmr" | "nam" | "nru" | "npl" | "nld" | "ncl" | "nzl" | "nic" | "ner" | "nga" | "niu" | "nfk" | "mkd" | "mnp" | "nor" | "omn" | "pak" | "plw" | "pse" | "pan" | "png" | "pry" | "per" | "phl" | "pcn" | "pol" | "prt" | "pri" | "qat" | "reu" | "rou" | "rus" | "rwa" | "blm" | "shn" | "kna" | "lca" | "maf" | "spm" | "vct" | "wsm" | "smr" | "stp" | "sau" | "sen" | "srb" | "syc" | "sle" | "sgp" | "sxm" | "svk" | "svn" | "slb" | "som" | "zaf" | "sgs" | "ssd" | "esp" | "lka" | "sdn" | "sur" | "sjm" | "swe" | "che" | "syr" | "twn" | "tjk" | "tza" | "tha" | "tls" | "tgo" | "tkl" | "ton" | "tto" | "tun" | "tur" | "tkm" | "tca" | "tuv" | "uga" | "ukr" | "are" | "gbr" | "usa" | "umi" | "ury" | "uzb" | "vut" | "ven" | "vnm" | "vgb" | "vir" | "wlf" | "esh" | "yem" | "zmb" | "zwe";
 
-export type LifeCycleStage = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
+export type Number = { int: number } | { float: number };
 
-export interface Reference {
-    uri: string;
-    format: string | null;
-    version: string | null;
-    overrides: Record<string, string> | null;
-}
-
-export type ReferenceSource<T> = ({ type: "actual" } & T) | ({ type: "reference" } & Reference);
-
-export interface Source {
-    name: string;
-    url: string | null;
-}
-
-export interface Conversion {
-    value: number;
-    to: Unit;
-    metaData: string;
-}
-
-export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
-
-export interface Classification {
-    system: string;
-    code: string;
-    name: string;
-}
-
-export interface Assembly {
-    id: string;
-    name: string;
-    description: string | null;
-    comment: string | null;
-    quantity: number;
-    unit: Unit;
-    classification: Classification[] | null;
-    products: Record<string, ReferenceSource<Product>>;
-    results: Results | null;
-    metaData: Record<string, string> | null;
-}
-
-export interface TechFlow {
-    id: string;
-    name: string;
-    declaredUnit: Unit;
-    formatVersion: string;
-    source: Source | null;
-    comment: string | null;
-    location: Country;
-    conversions: Conversion[] | null;
-    impacts: Record<ImpactCategoryKey, ImpactCategory>;
-    metaData: Record<string, string> | null;
-}
-
-export interface InternalImpactData {
-    path: string;
-}
-
-export interface ExternalImpactData {
-    url: string;
-    format: string;
-    version: string | null;
-}
-
-export type ImpactDataSource = EPD | TechFlow;
-
-export interface Transport {
-    id: string;
-    name: string;
-    lifeCycleStages: LifeCycleStage[];
-    distance: number;
-    distanceUnit: Unit;
-    impactData: ImpactDataSource;
-}
-
-export interface Product {
-    id: string;
-    name: string;
-    description: string | null;
-    referenceServiceLife: number;
-    impactData: ReferenceSource<ImpactDataSource>;
-    quantity: number;
-    unit: Unit;
-    transport: Transport[] | null;
-    results: Results | null;
-    metaData: Record<string, string> | null;
-}
+export type AnyValue = { null: [] } | { bool: boolean } | { number: Number } | { string: string } | { array: AnyValue[] } | { object: Record<string, AnyValue> };
 

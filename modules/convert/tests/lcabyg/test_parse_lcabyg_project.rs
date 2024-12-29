@@ -2,7 +2,8 @@ use std::fs;
 use std::path::Path;
 
 use lcax_convert::lcabyg;
-use lcax_models::shared::ReferenceSource;
+use lcax_models::assembly::AssemblyReference;
+use lcax_models::product::ProductReference;
 
 #[test]
 fn test_parse_lcabyg_project() -> Result<(), String> {
@@ -20,24 +21,24 @@ fn test_parse_lcabyg_project() -> Result<(), String> {
             assert!(!lca.assemblies.is_empty());
             for (_, assembly) in &lca.assemblies {
                 match assembly {
-                    ReferenceSource::Actual(assembly) => {
+                    AssemblyReference::Assembly(assembly) => {
                         assert!(!assembly.name.is_empty());
                         assert!(!assembly.products.is_empty());
 
                         for (_, product) in &assembly.products {
                             // Assert Product Info
                             match product {
-                                ReferenceSource::Actual(product) => {
+                                ProductReference::Product(product) => {
                                     assert!(!product.name.is_empty());
                                     assert!(!product.quantity.is_nan());
                                 }
-                                ReferenceSource::Reference(_) => {
+                                ProductReference::Reference(_) => {
                                     assert!(false);
                                 }
                             }
                         }
                     }
-                    ReferenceSource::Reference(_) => {
+                    AssemblyReference::Reference(_) => {
                         assert!(false);
                     }
                 }
@@ -69,10 +70,10 @@ fn test_parse_lcabyg_example() -> Result<(), String> {
             assert!(!lca.assemblies.is_empty());
             for (_, assembly) in &lca.assemblies {
                 match assembly {
-                    ReferenceSource::Actual(assembly) => {
+                    AssemblyReference::Assembly(assembly) => {
                         assert!(assembly.results.is_some());
                     }
-                    ReferenceSource::Reference(_) => {
+                    AssemblyReference::Reference(_) => {
                         assert!(false);
                     }
                 }

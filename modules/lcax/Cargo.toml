@@ -23,13 +23,13 @@ bench = false
 
 [features]
 default = []
-pybindings = ["pyo3", "pyo3/extension-module", "lcax_models/pybindings"]
+pybindings = ["pyo3", "pyo3/extension-module", "lcax_models/pybindings", "lcax_core/pybindings"]
 jsbindings = [
     "wee_alloc",
     "wasm-bindgen",
     "serde-wasm-bindgen",
     "console_error_panic_hook",
-    "tsify", "getrandom", "lcax_models/jsbindings"
+    "tsify", "getrandom", "lcax_models/jsbindings", "lcax_core/jsbindings"
 ]
 
 [dependencies]
@@ -42,7 +42,7 @@ lcax_convert = { path = "../convert", version = ">2.0.0" }
 lcax_calculation = { path = "../calculation", version = ">2.0.0" }
 
 # Python Bindings
-pyo3 = { version = "0.22.3", features = ["abi3-py310"], optional = true }
+pyo3 = { version = "0.22.3", features = ["abi3-py310", "chrono"], optional = true }
 
 # JS Bindings
 wee_alloc = { version = "0.4.5", optional = true }
