@@ -12,11 +12,11 @@ use lcax_core::dates::{deserialize_yyyy_mm_dd, serialize_yyyy_mm_dd};
 use lcax_core::utils::get_version;
 
 #[cfg(feature = "pybindings")]
+use pyo3::exceptions::PyTypeError;
+#[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
 #[cfg(feature = "pybindings")]
 use pyo3::types::PyType;
-#[cfg(feature = "pybindings")]
-use pyo3::exceptions::PyTypeError;
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]

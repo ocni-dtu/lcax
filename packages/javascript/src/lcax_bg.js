@@ -4,12 +4,6 @@ export function __wbg_set_wasm(val) {
 }
 
 
-const heap = new Array(128).fill(undefined);
-
-heap.push(undefined, null, true, false);
-
-function getObject(idx) { return heap[idx]; }
-
 const lTextDecoder = typeof TextDecoder === 'undefined' ? (0, module.require)('util').TextDecoder : TextDecoder;
 
 let cachedTextDecoder = new lTextDecoder('utf-8', { ignoreBOM: true, fatal: true });
@@ -30,6 +24,10 @@ function getStringFromWasm0(ptr, len) {
     return cachedTextDecoder.decode(getUint8ArrayMemory0().subarray(ptr, ptr + len));
 }
 
+const heap = new Array(128).fill(undefined);
+
+heap.push(undefined, null, true, false);
+
 let heap_next = heap.length;
 
 function addHeapObject(obj) {
@@ -40,6 +38,8 @@ function addHeapObject(obj) {
     heap[idx] = obj;
     return idx;
 }
+
+function getObject(idx) { return heap[idx]; }
 
 function dropObject(idx) {
     if (idx < 132) return;
@@ -124,6 +124,7 @@ function getDataViewMemory0() {
     return cachedDataViewMemory0;
 }
 /**
+* Converts a json formatted LCAByg project into a LCAx Project
 * @param {string} data
 * @param {string | undefined} [resultData]
 * @returns {Project}
@@ -149,6 +150,7 @@ export function convertLCAbyg(data, resultData) {
 }
 
 /**
+*Converts a json formatted ILCD+EPD data string into a LCAx EPD
 * @param {string} data
 * @returns {EPD}
 */
@@ -171,6 +173,8 @@ export function convertIlcd(data) {
 }
 
 /**
+*Calculate the impact results for a Project.
+*The impact results for the project will be added to the `results` property.
 * @param {Project} project
 * @returns {Project}
 */
@@ -198,11 +202,6 @@ function handleError(f, args) {
     }
 }
 
-export function __wbindgen_is_undefined(arg0) {
-    const ret = getObject(arg0) === undefined;
-    return ret;
-};
-
 export function __wbindgen_error_new(arg0, arg1) {
     const ret = new Error(getStringFromWasm0(arg0, arg1));
     return addHeapObject(ret);
@@ -215,6 +214,11 @@ export function __wbindgen_object_clone_ref(arg0) {
 
 export function __wbindgen_object_drop_ref(arg0) {
     takeObject(arg0);
+};
+
+export function __wbindgen_is_undefined(arg0) {
+    const ret = getObject(arg0) === undefined;
+    return ret;
 };
 
 export function __wbg_crypto_1d1f22824a6a080c(arg0) {

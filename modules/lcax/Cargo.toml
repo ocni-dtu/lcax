@@ -21,6 +21,9 @@ path = "src/bin/schemars.rs"
 test = false
 bench = false
 
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
+
 [features]
 default = []
 pybindings = ["pyo3", "pyo3/extension-module", "lcax_models/pybindings", "lcax_core/pybindings"]

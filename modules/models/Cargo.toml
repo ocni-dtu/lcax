@@ -1,19 +1,21 @@
 [package]
 name = "lcax_models"
-description = { workspace = true}
-version = { workspace = true}
-authors = { workspace = true}
-edition = { workspace = true}
-readme = { workspace = true}
-license-file = { workspace = true}
-homepage = { workspace = true}
-documentation = { workspace = true}
-repository = { workspace = true}
-
+description = { workspace = true }
+version = { workspace = true }
+authors = { workspace = true }
+edition = { workspace = true }
+readme = { workspace = true }
+license-file = { workspace = true }
+homepage = { workspace = true }
+documentation = { workspace = true }
+repository = { workspace = true }
 
 [lib]
 name = "lcax_models"
 crate-type = ["cdylib", "rlib"]
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
 
 [features]
 default = ["wee_alloc"]

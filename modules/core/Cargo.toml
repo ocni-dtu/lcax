@@ -10,10 +10,12 @@ homepage = { workspace = true}
 documentation = { workspace = true}
 repository = { workspace = true}
 
-
 [lib]
 name = "lcax_core"
 crate-type = ["cdylib", "rlib"]
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
 
 [features]
 default = []

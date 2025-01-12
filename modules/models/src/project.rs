@@ -19,7 +19,6 @@ use pyo3::prelude::*;
 #[cfg(feature = "pybindings")]
 use pyo3::types::PyType;
 
-
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(
