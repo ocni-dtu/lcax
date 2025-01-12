@@ -1,8 +1,5 @@
 from enum import Enum
 
-# TODO - Test out this: https://crates.io/crates/pyo3-stub-gen
-
-
 class ProjectPhase(Enum):
     ...
 

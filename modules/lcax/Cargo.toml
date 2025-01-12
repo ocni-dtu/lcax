@@ -17,7 +17,7 @@ crate-type = ["cdylib", "rlib"]
 
 [[bin]]
 name = "export-schema"
-path = "src/schemars.rs"
+path = "src/bin/schemars.rs"
 test = false
 bench = false
 
@@ -42,7 +42,7 @@ lcax_convert = { path = "../convert", version = ">2.0.0" }
 lcax_calculation = { path = "../calculation", version = ">2.0.0" }
 
 # Python Bindings
-pyo3 = { version = "0.22.3", features = ["abi3-py310", "chrono"], optional = true }
+pyo3 = { version = "0.23.4", features = ["abi3-py310", "chrono"], optional = true }
 
 # JS Bindings
 wee_alloc = { version = "0.4.5", optional = true }

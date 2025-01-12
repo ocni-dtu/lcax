@@ -28,7 +28,7 @@ pkg-version = "1.0.0"
 chrono = "0.4.38"
 
 # Python Bindings
-pyo3 = { version = "0.22.3", features = ["abi3-py310", "chrono"], optional = true }
+pyo3 = { version = "0.23.4", features = ["abi3-py310", "chrono"], optional = true }
 
 # JS Bindings
 wee_alloc = { version = "0.4.5", optional = true }
