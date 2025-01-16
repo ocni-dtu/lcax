@@ -13,7 +13,7 @@ def test_project_new():
 
     project = Project(id=str(uuid.uuid4()), name='Test', description="Test Project", location=Location(country=Country.DNK),
                       life_cycle_stages=[], impact_categories=[],
-                      assemblies={}, software_info=SoftwareInfo(lca_software="LCAx"), project_phase=ProjectPhase.OTHER)
+                      assemblies=[], software_info=SoftwareInfo(lca_software="LCAx"), project_phase=ProjectPhase.OTHER)
 
     assert project
 

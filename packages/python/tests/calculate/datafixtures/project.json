@@ -9,7 +9,7 @@
     "address": "Testvej 1, 1111 Testbyen"
   },
   "owner": "Test",
-  "formatVersion": "2.2.4",
+  "formatVersion": "2.6.3",
   "lciaMethod": null,
   "classificationSystem": "LCAByg",
   "referenceStudyPeriod": 50,
@@ -30,8 +30,8 @@
     "penre",
     "pere"
   ],
-  "assemblies": {
-    "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87": {
+  "assemblies": [
+    {
       "type": "assembly",
       "id": "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87",
       "name": "Test element",
@@ -46,8 +46,8 @@
           "name": "Bærende indervægge"
         }
       ],
-      "products": {
-        "ee60d276-eb44-41a9-a36d-6ded36315c47": {
+      "products": [
+        {
           "type": "product",
           "id": "ee60d276-eb44-41a9-a36d-6ded36315c47",
           "name": "Test produkt",
@@ -61,7 +61,7 @@
             "version": "00.02.000",
             "publishedDate": "1970-01-01",
             "validUntil": "1970-01-01",
-            "formatVersion": "2.2.4",
+            "formatVersion": "2.6.3",
             "source": {
               "name": "Ökobau.dat",
               "url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en"
@@ -79,11 +79,11 @@
               }
             ],
             "impacts": {
-              "pert": {
-                "a1a3": 512.5
-              },
               "ep": {
                 "a1a3": 0.1557
+              },
+              "pert": {
+                "a1a3": 512.5
               },
               "adpe": {
                 "a1a3": 0.00008897
@@ -94,17 +94,17 @@
               "ap": {
                 "a1a3": 1.65
               },
+              "odp": {
+                "a1a3": 2.148e-12
+              },
               "pocp": {
                 "a1a3": 0.1334
-              },
-              "penrt": {
-                "a1a3": 9067.0
               },
               "adpf": {
                 "a1a3": 8430.0
               },
-              "odp": {
-                "a1a3": 2.148e-12
+              "penrt": {
+                "a1a3": 9067.0
               }
             },
             "metaData": null
@@ -115,16 +115,18 @@
           "results": null,
           "metaData": null
         }
-      },
+      ],
       "results": null,
       "metaData": null
     }
-  },
+  ],
   "results": null,
   "projectInfo": {
     "type": "buildingInfo",
     "buildingType": "new_construction_works",
-    "buildingTypology": ["office"],
+    "buildingTypology": [
+      "office"
+    ],
     "certifications": null,
     "buildingMass": null,
     "buildingHeight": null,
@@ -157,8 +159,9 @@
   },
   "projectPhase": "other",
   "softwareInfo": {
-    "goalAndScopeDefinition": null,
     "lcaSoftware": "LCAByg",
+    "lcaSoftwareVersion": null,
+    "goalAndScopeDefinition": null,
     "calculationType": "BR2023"
   },
   "metaData": null

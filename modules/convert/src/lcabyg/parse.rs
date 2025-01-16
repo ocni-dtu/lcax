@@ -118,11 +118,11 @@ fn add_result_from_lcabyg(
         &lcax_project.impact_categories,
         &lcax_project.life_cycle_stages,
     );
-    for (assembly_id, _assembly) in &mut lcax_project.assemblies {
+    for _assembly in &mut lcax_project.assemblies {
         match _assembly {
             AssemblyReference::Assembly(assembly) => {
                 assembly.results = collect_lcabyg_object_results(
-                    &get_result_id(assembly_id, results),
+                    &get_result_id(&assembly.id, results),
                     results,
                     &lcax_project.impact_categories,
                     &lcax_project.life_cycle_stages,
@@ -308,10 +308,9 @@ fn add_element_data(
             _ => continue,
         }
     }
-    project.assemblies.insert(
-        assembly.id.clone(),
-        AssemblyReference::Assembly(assembly.clone()),
-    );
+    project
+        .assemblies
+        .push(AssemblyReference::Assembly(assembly.clone()));
 }
 
 fn add_element_to_construction_data(
@@ -347,10 +346,9 @@ fn add_construction_data(
                 if parent_id == &node.id =>
             {
                 let product = add_construction_to_product_data(child_id, &construction_edge, nodes);
-                assembly.products.insert(
-                    product.id.clone(),
-                    ProductReference::Product(product.clone()),
-                );
+                assembly
+                    .products
+                    .push(ProductReference::Product(product.clone()));
                 break;
             }
             _ => continue,

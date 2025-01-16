@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "jsbindings")]
@@ -24,7 +22,7 @@ pub struct Assembly {
     pub quantity: f64,
     pub unit: Unit,
     pub classification: Option<Vec<Classification>>,
-    pub products: HashMap<String, ProductReference>,
+    pub products: Vec<ProductReference>,
     pub results: Option<Impacts>,
     pub meta_data: Option<MetaData>,
 }
@@ -38,7 +36,7 @@ impl Assembly {
         name: String,
         quantity: f64,
         unit: Unit,
-        products: HashMap<String, ProductReference>,
+        products: Vec<ProductReference>,
         id: Option<String>,
         description: Option<String>,
         comment: Option<String>,
@@ -70,7 +68,7 @@ impl Assembly {
         quantity: f64,
         unit: Unit,
         classification: Option<Vec<Classification>>,
-        products: HashMap<String, ProductReference>,
+        products: Vec<ProductReference>,
         results: Option<Impacts>,
         meta_data: Option<MetaData>,
     ) -> Self {
@@ -134,7 +132,7 @@ impl AssemblyReference {
         name: String,
         quantity: f64,
         unit: Unit,
-        products: HashMap<String, ProductReference>,
+        products: Vec<ProductReference>,
         id: Option<String>,
         description: Option<String>,
         comment: Option<String>,
@@ -182,7 +180,7 @@ impl AssemblyReference {
         quantity: f64,
         unit: Unit,
         classification: Option<Vec<Classification>>,
-        products: HashMap<String, ProductReference>,
+        products: Vec<ProductReference>,
         results: Option<Impacts>,
         meta_data: Option<MetaData>,
     ) -> Self {

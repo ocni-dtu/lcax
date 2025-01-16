@@ -26,7 +26,7 @@ pub fn calculate_project(
 
     let mut project_results =
         Impacts::new_results(&_options.impact_categories, &_options.life_cycle_stages);
-    for (_, assembly) in &mut project.assemblies {
+    for assembly in &mut project.assemblies {
         let results = calculate_assembly(&mut assembly.resolve_mut()?, &_options)?;
         add_results(&mut project_results, &results);
     }
@@ -41,7 +41,7 @@ pub fn calculate_assembly(
     let mut assembly_results =
         Impacts::new_results(&options.impact_categories, &options.life_cycle_stages);
 
-    for (_, product) in &mut assembly.products {
+    for product in &mut assembly.products {
         let results = calculate_product(&mut product.resolve()?, options)?;
         add_results(&mut assembly_results, &results);
     }
