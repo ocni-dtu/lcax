@@ -24,16 +24,6 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          name: pydantic-schema
-          path: docs/src/content/code/python
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: typescript-schema
-          path: docs/src/content/code/javascript
-
-      - uses: actions/download-artifact@v4
-        with:
           name: csharp-schema
           path: docs/src/content/code/csharp
 

@@ -40,16 +40,6 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          name: pydantic-schema
-          path: packages/python/src/lcax
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: typescript-schema
-          path: artifacts
-
-      - uses: actions/download-artifact@v4
-        with:
           name: csharp-schema
           path: artifacts
 
