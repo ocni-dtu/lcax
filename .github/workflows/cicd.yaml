@@ -29,13 +29,9 @@ jobs:
 
   buildPython:
     uses: ./.github/workflows/build_python.yaml
-    needs:
-      - buildRust
 
   buildTypeScript:
     uses: ./.github/workflows/build_javascript.yaml
-    needs:
-      - buildRust
 
   buildCSharp:
     uses: ./.github/workflows/build_csharp.yaml
