@@ -33,10 +33,10 @@ jobs:
   buildTypeScript:
     uses: ./.github/workflows/build_javascript.yaml
 
-  buildCSharp:
-    uses: ./.github/workflows/build_csharp.yaml
-    needs:
-      - buildRust
+#  buildCSharp:
+#    uses: ./.github/workflows/build_csharp.yaml
+#    needs:
+#      - buildRust
 
   createRelease:
     uses: ./.github/workflows/create_release.yaml
@@ -44,7 +44,7 @@ jobs:
       - buildRust
       - buildPython
       - buildTypeScript
-      - buildCSharp
+#      - buildCSharp
     secrets:
       cargo_token: ${{ secrets.CARGO_TOKEN }}
 
@@ -74,11 +74,11 @@ jobs:
     with:
       release_version: ${{ needs.createRelease.outputs.version }}
 
-  publishCSharp:
-    uses: ./.github/workflows/publish_csharp.yaml
-    needs:
-      - createRelease
-    with:
-      release_version: ${{ needs.createRelease.outputs.version }}
-    secrets:
-      nuget_token: ${{ secrets.NUGET_TOKEN }}
+#  publishCSharp:
+#    uses: ./.github/workflows/publish_csharp.yaml
+#    needs:
+#      - createRelease
+#    with:
+#      release_version: ${{ needs.createRelease.outputs.version }}
+#    secrets:
+#      nuget_token: ${{ secrets.NUGET_TOKEN }}
