@@ -6,14 +6,15 @@ use serde_json::Error;
 
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
-use lcax_models::assembly::{Assembly, Classification};
+use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
+use lcax_models::epd::EPDReference;
 use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleStage};
-use lcax_models::product::{ImpactDataSource, Product as LCAxProduct};
+use lcax_models::product::{ImpactData, Product as LCAxProduct, ProductReference};
 use lcax_models::project::{
     AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location,
     Project as LCAxProject, ProjectInfo, RoofType, SoftwareInfo,
 };
-use lcax_models::shared::{ReferenceSource, Unit};
+use lcax_models::shared::Unit;
 
 use crate::lcabyg::edges::EdgeType;
 use crate::lcabyg::nodes::{epd_from_lcabyg_stages, Node};
@@ -119,7 +120,7 @@ fn add_result_from_lcabyg(
     );
     for (assembly_id, _assembly) in &mut lcax_project.assemblies {
         match _assembly {
-            ReferenceSource::Actual(assembly) => {
+            AssemblyReference::Assembly(assembly) => {
                 assembly.results = collect_lcabyg_object_results(
                     &get_result_id(assembly_id, results),
                     results,
@@ -309,7 +310,7 @@ fn add_element_data(
     }
     project.assemblies.insert(
         assembly.id.clone(),
-        ReferenceSource::Actual(assembly.clone()),
+        AssemblyReference::Assembly(assembly.clone()),
     );
 }
 
@@ -346,9 +347,10 @@ fn add_construction_data(
                 if parent_id == &node.id =>
             {
                 let product = add_construction_to_product_data(child_id, &construction_edge, nodes);
-                assembly
-                    .products
-                    .insert(product.id.clone(), ReferenceSource::Actual(product.clone()));
+                assembly.products.insert(
+                    product.id.clone(),
+                    ProductReference::Product(product.clone()),
+                );
                 break;
             }
             _ => continue,
@@ -389,7 +391,7 @@ fn add_construction_to_product_data(
 
     let epd_data = epd_from_lcabyg_stages(&stages);
 
-    product.impact_data = ReferenceSource::Actual(ImpactDataSource::EPD(epd_data));
+    product.impact_data = ImpactData::EPD(EPDReference::EPD(epd_data));
     product
 }
 

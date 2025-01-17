@@ -32,7 +32,7 @@
   ],
   "assemblies": {
     "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87": {
-      "type": "actual",
+      "type": "assembly",
       "id": "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87",
       "name": "Test element",
       "description": "",
@@ -48,13 +48,13 @@
       ],
       "products": {
         "ee60d276-eb44-41a9-a36d-6ded36315c47": {
-          "type": "actual",
+          "type": "product",
           "id": "ee60d276-eb44-41a9-a36d-6ded36315c47",
           "name": "Test produkt",
           "description": "",
           "referenceServiceLife": 80,
           "impactData": {
-            "type": "actual",
+            "type": "EPD",
             "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
             "name": "Test fase (A1-A3)",
             "declaredUnit": "m3",

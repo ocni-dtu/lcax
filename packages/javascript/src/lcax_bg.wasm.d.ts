@@ -3,7 +3,6 @@
 export const memory: WebAssembly.Memory;
 export function convertLCAbyg(a: number, b: number, c: number, d: number, e: number): void;
 export function convertIlcd(a: number, b: number, c: number): void;
-export function convertSLiCE(a: number, b: number, c: number): void;
 export function calculateProject(a: number, b: number): void;
 export function __wbindgen_malloc(a: number, b: number): number;
 export function __wbindgen_realloc(a: number, b: number, c: number, d: number): number;

@@ -37,9 +37,9 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
     {
         Some(other) => match other.anies.iter().find(|&anie| anie.name == "subType") {
             Some(subtype) => subtype.clone(),
-            None => &generic_anie,
+            None => generic_anie,
         },
-        None => &generic_anie,
+        None => generic_anie,
     };
 
     let mut impacts = collect_from_lcia_result(&ilcd_epd.lcia_results.lcia_result);

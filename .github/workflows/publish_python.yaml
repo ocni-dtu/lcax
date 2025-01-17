@@ -40,11 +40,6 @@ jobs:
         with:
           name: cargo
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: pydantic-schema
-          path: packages/python/src/lcax
-
       - name: Setup Rust
         run: rustup target add ${{ matrix.os.target }}
 
