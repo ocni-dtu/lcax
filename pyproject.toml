@@ -7,6 +7,7 @@ license = { file = "LICENSE" }
 authors = [
     { name = "Christian Kongsgaard", email = "christian@kongsgaard.eu" },
 ]
+dynamic = ["version"]
 
 dependencies = [
     "cffi",
