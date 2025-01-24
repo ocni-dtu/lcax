@@ -82,6 +82,7 @@ parse_ilcd_a1_tests! {
     ilcd_459392b1: ("459392b1-18ad-4429-721e-08da598ce856.json", "a2")
     ilcd_e7ff6cf1: ("e7ff6cf1-d493-4cf0-ba82-6b3f1f6f71e7.json", "a1")
     ilcd_f0e092b5: ("f0e092b5-772f-4e0a-e997-08dab10a8a87.json", "a2")
+    ilcd_0e43fd10: ("0e43fd10-1ca4-4baa-ae9f-08db7e36184f.json", "a2")
 
 }
 
