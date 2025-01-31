@@ -1,3 +1,9 @@
+## [2.6.4](https://github.com/ocni-dtu/lcax/compare/v2.6.3...v2.6.4) (2025-01-24)
+
+### Bug Fixes
+
+* graceful error handling when subtype anie is invalid ([#98](https://github.com/ocni-dtu/lcax/issues/98)) ([4c6a120](https://github.com/ocni-dtu/lcax/commit/4c6a1203480f1d7b7a3eeeeff9f1739ee969a3ff)), closes [#97](https://github.com/ocni-dtu/lcax/issues/97)
+
 ## [2.6.3](https://github.com/ocni-dtu/lcax/compare/v2.6.2...v2.6.3) (2024-12-16)
 
 ### Bug Fixes
