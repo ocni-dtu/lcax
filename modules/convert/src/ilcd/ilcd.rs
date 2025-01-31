@@ -1,8 +1,7 @@
 use lcax_core::value::AnyValue;
 #[allow(dead_code)]
-use serde::Deserialize;
-use serde::Serialize;
 use std::collections::HashMap;
+use serde::{Deserialize, Deserializer, Serialize};
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -189,7 +188,17 @@ pub struct LCIMethodAndAllocation {
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Anies {
+    #[serde(deserialize_with = "ok_or_default")]
     pub anies: Vec<Anie>,
+}
+
+fn ok_or_default<'a, T, D>(deserializer: D) -> Result<T, D::Error>
+where
+    T: Deserialize<'a> + Default,
+    D: Deserializer<'a>,
+{
+    let v: Value = Deserialize::deserialize(deserializer)?;
+    Ok(T::deserialize(v).unwrap_or_default())
 }
 
 #[derive(Deserialize, Clone)]
