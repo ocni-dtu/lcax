@@ -10,6 +10,6 @@ def test_assembly_import():
 def test_assembly_new():
     from lcax import Assembly, Unit
 
-    assembly = Assembly(name='Test', description="Test Assembly", quantity=4.0, unit=Unit.M, products={})
+    assembly = Assembly(name='Test', description="Test Assembly", quantity=4.0, unit=Unit.M, products=[])
 
     assert assembly

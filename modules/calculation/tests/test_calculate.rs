@@ -33,11 +33,7 @@ fn test_calculate_assembly() -> Result<(), String> {
     let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
     let mut project = serde_json::from_str::<Project>(&contents).unwrap();
 
-    let assembly = match project
-        .assemblies
-        .get_mut("d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87")
-        .unwrap()
-    {
+    let assembly = match &mut project.assemblies[0] {
         AssemblyReference::Assembly(actual) => actual,
         AssemblyReference::Reference(_) => panic!("Expected actual assembly"),
     };
@@ -47,7 +43,7 @@ fn test_calculate_assembly() -> Result<(), String> {
         impact_categories: project.impact_categories.clone(),
     };
 
-    calculate_assembly(assembly, &options).unwrap();
+    calculate_assembly(assembly, &options)?;
     assert!(assembly.results.is_some());
     Ok(())
 }

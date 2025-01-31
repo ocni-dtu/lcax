@@ -572,7 +572,7 @@ class Assembly:
     quantity: float
     unit: Unit
     classification: list[Classification] | None
-    products: dict[str, Product | Reference]
+    products: list[Product | Reference]
     results: Impacts | None
     meta_data: MetaData | None
 
@@ -623,7 +623,7 @@ class Project:
     reference_study_period: int | None
     life_cycle_stages: list[LifeCycleStage]
     impact_categories: list[ImpactCategoryKey]
-    assemblies: dict[str, Assembly | Reference]
+    assemblies: list[Assembly | Reference]
     results: Impacts | None
     project_info: ProjectInfo | None
     project_phase: ProjectPhase

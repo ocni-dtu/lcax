@@ -19,13 +19,13 @@ fn test_parse_lcabyg_project() -> Result<(), String> {
 
             // Assert Assembly Info
             assert!(!lca.assemblies.is_empty());
-            for (_, assembly) in &lca.assemblies {
+            for assembly in &lca.assemblies {
                 match assembly {
                     AssemblyReference::Assembly(assembly) => {
                         assert!(!assembly.name.is_empty());
                         assert!(!assembly.products.is_empty());
 
-                        for (_, product) in &assembly.products {
+                        for product in &assembly.products {
                             // Assert Product Info
                             match product {
                                 ProductReference::Product(product) => {
@@ -68,7 +68,7 @@ fn test_parse_lcabyg_example() -> Result<(), String> {
 
             // Assert Assembly Info
             assert!(!lca.assemblies.is_empty());
-            for (_, assembly) in &lca.assemblies {
+            for assembly in &lca.assemblies {
                 match assembly {
                     AssemblyReference::Assembly(assembly) => {
                         assert!(assembly.results.is_some());
