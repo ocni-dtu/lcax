@@ -1,13 +1,11 @@
-use tsify::Tsify;
+extern crate console_error_panic_hook;
 use wasm_bindgen::prelude::*;
 
-use lcax_calculation::calculate::{calculate_project, CalculationOptions};
-use lcax_convert::{ilcd, lcabyg, slice};
+use lcax_calculation::calculate::calculate_project;
+use lcax_convert::lcabyg::parse::LCABygResult;
+use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
 use lcax_models::project::Project;
-use serde::{Deserialize, Serialize};
-
-extern crate console_error_panic_hook;
 
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
@@ -17,17 +15,19 @@ extern "C" {
     fn alert(s: &str);
 }
 
+/// Converts a json formatted LCAByg project into a LCAx Project
 #[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn convertLCAbyg(data: String, resultData: Option<String>) -> Result<Project, JsError> {
+pub fn convertLCAbyg(data: String, resultData: Option<String>) -> Result<LCABygResult, JsError> {
     console_error_panic_hook::set_once();
-    let project = lcabyg::parse::parse_lcabyg(&data, resultData.as_deref());
-    match project {
-        Ok(project) => Ok(project),
+
+    match lcabyg::parse::parse_lcabyg(&data, resultData.as_deref()) {
+        Ok(result) => Ok(result),
         Err(error) => Err(JsError::new(error.to_string().as_str())),
     }
 }
 
+///Converts a json formatted ILCD+EPD data string into a LCAx EPD
 #[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn convertIlcd(data: String) -> Result<EPD, JsError> {
@@ -39,30 +39,14 @@ pub fn convertIlcd(data: String) -> Result<EPD, JsError> {
     }
 }
 
-#[derive(Deserialize, Serialize, Tsify)]
-#[tsify(into_wasm_abi, from_wasm_abi)]
-pub struct JSProjects(Vec<Project>);
-
-#[allow(non_snake_case)]
-#[wasm_bindgen]
-pub fn convertSLiCE(file: Vec<u8>) -> Result<JSProjects, JsError> {
-    console_error_panic_hook::set_once();
-    match slice::parse::parse_slice(file) {
-        Ok(projects) => Ok(JSProjects(projects)),
-        Err(error) => Err(JsError::new(error.to_string().as_str())),
-    }
-}
-
+///Calculate the impact results for a Project.
+///The impact results for the project will be added to the `results` property.
 #[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn calculateProject(mut project: Project) -> Result<Project, JsError> {
     console_error_panic_hook::set_once();
-    calculate_project(&mut project, None).expect("TODO: panic message");
-
-    Ok(project)
-
-    // match calculate_project(&mut project, options) {
-    //     Ok(_project) => Ok(*_project),
-    //     Err(error) => Err(JsError::new(error.to_string().as_str())),
-    // }
+    match calculate_project(&mut project, None) {
+        Ok(project) => Ok(project.clone()),
+        Err(error) => Err(JsError::new(error.to_string().as_str())),
+    }
 }

@@ -1,6 +1,7 @@
+use lcax_core::value::AnyValue;
 use serde::{Deserialize, Deserializer, Serialize};
-#[allow(dead_code)]
 use serde_json::Value;
+#[allow(dead_code)]
 use std::collections::HashMap;
 
 #[derive(Deserialize)]
@@ -60,15 +61,15 @@ pub struct MaterialProperty {
     pub unit_description: Option<String>,
 }
 
-impl Into<HashMap<String, Value>> for MaterialProperty {
-    fn into(self) -> HashMap<String, Value> {
+impl Into<HashMap<String, AnyValue>> for MaterialProperty {
+    fn into(self) -> HashMap<String, AnyValue> {
         HashMap::from([
-            ("name".to_string(), Value::from(self.name)),
-            ("value".to_string(), Value::from(self.value)),
-            ("unit".to_string(), Value::from(self.unit)),
+            ("name".to_string(), AnyValue::from(self.name)),
+            ("value".to_string(), AnyValue::from(self.value)),
+            ("unit".to_string(), AnyValue::from(self.unit)),
             (
                 "unit_description".to_string(),
-                Value::from(self.unit_description),
+                AnyValue::from(self.unit_description),
             ),
         ])
     }
@@ -201,7 +202,7 @@ where
     Ok(T::deserialize(v).unwrap_or_default())
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Anie {
     pub name: String,

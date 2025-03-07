@@ -4,7 +4,7 @@
     "Christian Kongsgaard <christian@kongsgaard.eu>"
   ],
   "description": "LCAx is an open, machine and human-readable data format for exchanging LCA results.",
-  "version": "1.4.2",
+  "version": "3.0.0-beta0",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
@@ -32,8 +32,8 @@
     "vite-plugin-wasm": "^3.3.0",
     "vitest": "^1.6.0"
   },
-  "engines" : {
-    "npm" : ">=10.0.0",
-    "node" : ">=20.0.0"
+  "engines": {
+    "npm": ">=10.0.0",
+    "node": ">=20.0.0"
   }
 }

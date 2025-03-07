@@ -1,14 +1,18 @@
+use schemars::JsonSchema;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fmt;
 
-use schemars::JsonSchema;
-use serde::{Deserialize, Serialize};
+#[cfg(feature = "pybindings")]
+use pyo3::prelude::*;
+
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
-#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone)]
+#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone, Debug)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]
 pub enum LifeCycleStage {
     A0,
     A1A3,
@@ -82,9 +86,10 @@ impl TryFrom<&str> for LifeCycleStage {
     }
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone)]
+#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone, Debug)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]
 pub enum ImpactCategoryKey {
     GWP,
     #[allow(non_camel_case_types)]
@@ -182,7 +187,7 @@ impl fmt::Display for ImpactCategoryKey {
 
 pub type ImpactCategory = HashMap<LifeCycleStage, Option<f64>>;
 
-pub type Results = HashMap<ImpactCategoryKey, ImpactCategory>;
+pub type Impacts = HashMap<ImpactCategoryKey, ImpactCategory>;
 
 pub trait NewResults {
     fn new_results(
@@ -190,7 +195,7 @@ pub trait NewResults {
         life_cycle_stage: &Vec<LifeCycleStage>,
     ) -> Self;
 }
-impl NewResults for Results {
+impl NewResults for Impacts {
     fn new_results(
         impact_categories: &Vec<ImpactCategoryKey>,
         life_cycle_stage: &Vec<LifeCycleStage>,

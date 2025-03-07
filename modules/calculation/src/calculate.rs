@@ -1,11 +1,9 @@
 use lcax_models::assembly::Assembly as LCAxAssembly;
-use lcax_models::life_cycle_base::NewResults;
 use lcax_models::life_cycle_base::{
-    ImpactCategory, ImpactCategoryKey, LifeCycleStage, Results as LCAxResults,
+    ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleStage, NewResults,
 };
-use lcax_models::product::{ImpactDataSource, Product as LCAxProduct};
+use lcax_models::product::{ImpactData, Product as LCAxProduct, Product};
 use lcax_models::project::Project as LCAxProject;
-use lcax_models::shared::ReferenceSource;
 
 pub struct CalculationOptions {
     pub reference_study_period: Option<u8>,
@@ -27,12 +25,11 @@ pub fn calculate_project(
     };
 
     let mut project_results =
-        LCAxResults::new_results(&_options.impact_categories, &_options.life_cycle_stages);
-    project.assemblies.iter_mut().for_each(|(_, assembly)| {
-        let results =
-            calculate_assembly(resolve_reference_mut(assembly).unwrap(), &_options).unwrap();
-        add_results(&mut project_results, &results)
-    });
+        Impacts::new_results(&_options.impact_categories, &_options.life_cycle_stages);
+    for assembly in &mut project.assemblies {
+        let results = calculate_assembly(&mut assembly.resolve_mut()?, &_options)?;
+        add_results(&mut project_results, &results);
+    }
     project.results = Some(project_results.clone());
     Ok(project)
 }
@@ -40,36 +37,34 @@ pub fn calculate_project(
 pub fn calculate_assembly(
     assembly: &mut LCAxAssembly,
     options: &CalculationOptions,
-) -> Result<LCAxResults, String> {
+) -> Result<Impacts, String> {
     let mut assembly_results =
-        LCAxResults::new_results(&options.impact_categories, &options.life_cycle_stages);
-    assembly.products.iter_mut().for_each(|(_, product)| {
-        let results = calculate_product(resolve_reference_mut(product).unwrap(), options).unwrap();
-        add_results(&mut assembly_results, &results)
-    });
+        Impacts::new_results(&options.impact_categories, &options.life_cycle_stages);
 
-    options
-        .impact_categories
-        .iter()
-        .for_each(|impact_category_key| {
-            options
-                .life_cycle_stages
-                .iter()
-                .for_each(|life_cycle_stage| {
-                    let value = assembly_results
-                        .get(impact_category_key)
-                        .unwrap()
-                        .get(life_cycle_stage)
-                        .unwrap()
-                        .unwrap();
+    for product in &mut assembly.products {
+        let results = calculate_product(&mut product.resolve()?, options)?;
+        add_results(&mut assembly_results, &results);
+    }
 
-                    *assembly_results
-                        .get_mut(impact_category_key)
-                        .unwrap()
-                        .get_mut(life_cycle_stage)
-                        .unwrap() = Some(value * assembly.quantity);
-                });
-        });
+    for impact_category_key in &options.impact_categories {
+        for life_cycle_stage in &options.life_cycle_stages {
+            let value = match assembly_results.get(impact_category_key) {
+                Some(_impact) => match _impact.get(life_cycle_stage) {
+                    Some(value) => match value {
+                        Some(value) => value,
+                        None => &0.0,
+                    },
+                    None => &0.0,
+                },
+                None => &0.0,
+            };
+            *assembly_results
+                .get_mut(impact_category_key)
+                .unwrap()
+                .get_mut(life_cycle_stage)
+                .unwrap() = Some(value * assembly.quantity)
+        }
+    }
     assembly.results = Some(assembly_results.clone());
     Ok(assembly_results)
 }
@@ -77,68 +72,63 @@ pub fn calculate_assembly(
 pub fn calculate_product(
     product: &mut LCAxProduct,
     options: &CalculationOptions,
-) -> Result<LCAxResults, String> {
-    let mut product_results = LCAxResults::new();
+) -> Result<Impacts, String> {
+    let mut product_results = Impacts::new();
 
-    options
-        .impact_categories
-        .iter()
-        .for_each(|impact_category_key| {
-            let mut impact_category = ImpactCategory::new();
-            options
-                .life_cycle_stages
-                .iter()
-                .for_each(
-                    |life_cycle_stage| match resolve_reference(&product.impact_data) {
-                        Ok(ImpactDataSource::EPD(epd)) => {
-                            impact_category.insert(
-                                life_cycle_stage.clone(),
-                                Some(match epd.impacts.get(impact_category_key) {
-                                    Some(impact) => match impact.get(life_cycle_stage) {
-                                        Some(value) => value.unwrap() * product.quantity,
-                                        None => 0.0,
-                                    },
-                                    None => 0.0,
-                                }),
-                            );
-                        }
-                        Ok(ImpactDataSource::TechFlow(techflow)) => {
-                            impact_category.insert(
-                                life_cycle_stage.clone(),
-                                Some(match techflow.impacts.get(impact_category_key) {
-                                    Some(impact) => match impact.get(life_cycle_stage) {
-                                        Some(value) => value.unwrap() * product.quantity,
-                                        None => 0.0,
-                                    },
-                                    None => 0.0,
-                                }),
-                            );
-                        }
-                        Err(_) => panic!("Handling reference not implemented yet!"),
-                    },
-                );
-            product_results.insert(impact_category_key.clone(), impact_category);
-        });
-
+    for impact_category_key in &options.impact_categories {
+        let mut impact_category = ImpactCategory::new();
+        for life_cycle_stage in &options.life_cycle_stages {
+            for impact_data in &product.impact_data {
+                match impact_data {
+                    ImpactData::EPD(epd) => {
+                        let impacts = epd.resolve()?.impacts;
+                        impact_category.insert(
+                            life_cycle_stage.clone(),
+                            Some(add_impact_result(
+                                &impacts,
+                                impact_category_key,
+                                life_cycle_stage,
+                                product,
+                            )),
+                        );
+                    }
+                    ImpactData::GenericData(data) => {
+                        let impacts = data.resolve()?.impacts;
+                        impact_category.insert(
+                            life_cycle_stage.clone(),
+                            Some(add_impact_result(
+                                &impacts,
+                                impact_category_key,
+                                life_cycle_stage,
+                                product,
+                            )),
+                        );
+                    }
+                }
+            }
+        }
+        product_results.insert(impact_category_key.clone(), impact_category);
+    }
     product.results = Some(product_results.clone());
     Ok(product_results)
 }
 
-fn resolve_reference<T>(reference: &ReferenceSource<T>) -> Result<&T, String> {
-    match reference {
-        ReferenceSource::Actual(reference) => Ok(reference),
-        ReferenceSource::Reference(_) => panic!("Handling reference not implemented yet!"),
+fn add_impact_result(
+    impacts: &Impacts,
+    impact_category_key: &ImpactCategoryKey,
+    life_cycle_stage: &LifeCycleStage,
+    product: &Product,
+) -> f64 {
+    match impacts.get(impact_category_key) {
+        Some(impact) => match impact.get(life_cycle_stage) {
+            Some(value) => value.unwrap() * product.quantity,
+            None => 0.0,
+        },
+        None => 0.0,
     }
 }
 
-fn resolve_reference_mut<T>(reference: &mut ReferenceSource<T>) -> Result<&mut T, String> {
-    match reference {
-        ReferenceSource::Actual(reference) => Ok(reference),
-        ReferenceSource::Reference(_) => panic!("Handling reference not implemented yet!"),
-    }
-}
-
-fn add_results(existing_results: &mut LCAxResults, new_results: &LCAxResults) {
+fn add_results(existing_results: &mut Impacts, new_results: &Impacts) {
     new_results
         .iter()
         .for_each(|(impact_category_key, impact_category)| {

@@ -1,0 +1,172 @@
+{
+  "id": "2f95c41e-0cc4-4b6e-90ac-ffa796aecd6d",
+  "name": "Test eksempel",
+  "description": "",
+  "comment": null,
+  "location": {
+    "country": "dnk",
+    "city": "",
+    "address": "Testvej 1, 1111 Testbyen"
+  },
+  "owner": "Test",
+  "formatVersion": "2.6.3",
+  "lciaMethod": null,
+  "classificationSystems": [
+    "LCAByg"
+  ],
+  "referenceStudyPeriod": 50,
+  "lifeCycleStages": [
+    "a1a3",
+    "c3",
+    "c4",
+    "d"
+  ],
+  "impactCategories": [
+    "ap",
+    "adpe",
+    "adpf",
+    "ep",
+    "pocp",
+    "odp",
+    "gwp",
+    "penre",
+    "pere"
+  ],
+  "assemblies": [
+    {
+      "type": "assembly",
+      "id": "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87",
+      "name": "Test element",
+      "description": "",
+      "comment": "",
+      "quantity": 50.0,
+      "unit": "m2",
+      "classification": [
+        {
+          "system": "LCAByg",
+          "code": "59ab59a5-2482-45ae-85f1-d0e39e640712",
+          "name": "Bærende indervægge"
+        }
+      ],
+      "products": [
+        {
+          "type": "product",
+          "id": "ee60d276-eb44-41a9-a36d-6ded36315c47",
+          "name": "Test produkt",
+          "description": "",
+          "referenceServiceLife": 80,
+          "impactData": [
+            {
+              "type": "EPD",
+              "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
+              "name": "Test fase (A1-A3)",
+              "declaredUnit": "m3",
+              "version": "00.02.000",
+              "publishedDate": "1970-01-01",
+              "validUntil": "1970-01-01",
+              "formatVersion": "2.6.3",
+              "source": {
+                "name": "Ökobau.dat",
+                "url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en"
+              },
+              "referenceServiceLife": null,
+              "standard": "en15804a1",
+              "comment": "",
+              "location": "dnk",
+              "subtype": "specific",
+              "conversions": [
+                {
+                  "value": 7850.0,
+                  "to": "kg",
+                  "metaData": null
+                }
+              ],
+              "impacts": {
+                "ep": {
+                  "a1a3": 0.1557
+                },
+                "pert": {
+                  "a1a3": 512.5
+                },
+                "adpe": {
+                  "a1a3": 0.00008897
+                },
+                "gwp": {
+                  "a1a3": 818.0
+                },
+                "ap": {
+                  "a1a3": 1.65
+                },
+                "odp": {
+                  "a1a3": 2.148e-12
+                },
+                "pocp": {
+                  "a1a3": 0.1334
+                },
+                "adpf": {
+                  "a1a3": 8430.0
+                },
+                "penrt": {
+                  "a1a3": 9067.0
+                }
+              },
+              "metaData": null
+            }
+          ],
+          "quantity": 0.5,
+          "unit": "kg",
+          "transport": null,
+          "results": null,
+          "metaData": null
+        }
+      ],
+      "results": null,
+      "metaData": null
+    }
+  ],
+  "results": null,
+  "projectInfo": {
+    "type": "buildingInfo",
+    "buildingType": "new_construction_works",
+    "buildingTypology": [
+      "office"
+    ],
+    "certifications": null,
+    "buildingMass": null,
+    "buildingHeight": null,
+    "grossFloorArea": {
+      "value": 100.0,
+      "unit": "m2",
+      "definition": ""
+    },
+    "heatedFloorArea": {
+      "value": 100.0,
+      "unit": "m2",
+      "definition": ""
+    },
+    "buildingFootprint": null,
+    "floorsAboveGround": 0,
+    "floorsBelowGround": 0,
+    "roofType": "other",
+    "frameType": "",
+    "buildingCompletionYear": 0,
+    "buildingPermitYear": null,
+    "energyDemandHeating": 0.0,
+    "energySupplyHeating": 0.0,
+    "energyDemandElectricity": 0.0,
+    "energySupplyElectricity": 0.0,
+    "exportedElectricity": 0.0,
+    "generalEnergyClass": "advanced",
+    "localEnergyClass": null,
+    "buildingUsers": null,
+    "buildingModelScope": null
+  },
+  "projectPhase": "other",
+  "softwareInfo": {
+    "lcaSoftware": "LCAByg",
+    "lcaSoftwareVersion": null,
+    "goalAndScopeDefinition": null,
+    "calculationType": "BR2023"
+  },
+  "metaData": null
+}

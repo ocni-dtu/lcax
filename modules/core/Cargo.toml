@@ -10,15 +10,29 @@ homepage = { workspace = true}
 documentation = { workspace = true}
 repository = { workspace = true}
 
-
 [lib]
 name = "lcax_core"
 crate-type = ["cdylib", "rlib"]
 
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
+
+[features]
+default = []
+pybindings = ["pyo3", "pyo3/extension-module"]
+jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify"]
+
 [dependencies]
 schemars = { version = "0.8.12", features = ["chrono"] }
 serde = { version = "1.0.152", features = ["derive"] }
-serde_json = "1.0.93"
 pkg-version = "1.0.0"
 chrono = "0.4.38"
-rust_iso3166 = "0.1.12"
+
+# Python Bindings
+pyo3 = { version = "0.23.4", features = ["abi3-py310", "chrono"], optional = true }
+
+# JS Bindings
+wee_alloc = { version = "0.4.5", optional = true }
+wasm-bindgen = { version = "0.2.92", optional = true }
+console_error_panic_hook = { version = "0.1.7", optional = true }
+tsify = { version = "0.4.5", optional = true }
