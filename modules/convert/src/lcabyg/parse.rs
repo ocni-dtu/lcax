@@ -32,10 +32,10 @@ use pyo3::prelude::*;
 use crate::lcabyg::br18_generic_data::{
     get_district_heating_data, get_electricity_data, get_lng_data,
 };
+use lcax_core::value::AnyValue;
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
-use lcax_core::value::AnyValue;
 
 type Edge = (EdgeType, String, String);
 
@@ -522,9 +522,10 @@ impl
             },
             reference_study_period: Some(building.calculation_timespan as u8),
             project_phase: Default::default(),
-            meta_data: Some(HashMap::from([
-                ("convertedAt".to_string(), AnyValue::String(format!("{}", Utc::now().naive_utc().format("%Y-%m-%d"))))
-            ])),
+            meta_data: Some(HashMap::from([(
+                "convertedAt".to_string(),
+                AnyValue::String(format!("{}", Utc::now().naive_utc().format("%Y-%m-%d"))),
+            )])),
         };
         project.resolve_impact_categories();
         project.resolve_life_cycle_stages();
