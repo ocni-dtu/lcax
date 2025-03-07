@@ -1,149 +1,111 @@
 [
   {
     "Node": {
-      "Project": {
-        "id": "e9e6e798-390e-4419-a1fa-3b46a8ba5b8d",
-        "name": {
-          "English": "Single-family house, example",
-          "Danish": "Enfamiliehus, eksempelbygning"
-        },
-        "address": "Miljøvej 99, 9999 Fremtidsbyen",
-        "owner": "BUILD",
-        "lca_advisor": "BUILD",
-        "building_regulation_version": "BR2018"
+      "ConstructionProcess": {
+        "id": "349738da-9747-4d5c-b508-2a810317166f"
       }
     }
   },
   {
     "Edge": [
       {
-        "MainBuilding": "15867192-86b7-40a8-9936-83d9e998516d"
+        "ProcessToInstallation": "dd928199-b70a-43f8-8556-4f740dccd1ef"
       },
-      "e9e6e798-390e-4419-a1fa-3b46a8ba5b8d",
-      "915c5162-93bc-49c0-bdaf-9f470b4c7996"
+      "349738da-9747-4d5c-b508-2a810317166f",
+      "020cc362-536b-484e-b8f9-6507b40ab675"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ProcessToTransport": "15867192-86b7-40a8-9936-83d9e998516e"
+      },
+      "349738da-9747-4d5c-b508-2a810317166f",
+      "915c5162-93bc-49c0-bdaf-9f470b4c7998"
     ]
   },
   {
     "Node": {
-      "Building": {
-        "id": "915c5162-93bc-49c0-bdaf-9f470b4c7996",
-        "scenario_name": "Original bygningsmodel",
-        "locked": "Unlocked",
-        "description": {
-          "Danish": "",
+      "Product": {
+        "id": "ee60d276-eb44-41a9-a36d-6ded36315c47",
+        "name": {
+          "English": "Test produkt",
+          "German": "Test produkt",
+          "Norwegian": "Test produkt",
+          "Danish": "Test produkt"
+        },
+        "source": "User",
+        "comment": {
           "English": "",
           "Norwegian": "",
-          "German": ""
+          "German": "",
+          "Danish": ""
         },
-        "building_type": "ResidentialBuildingSingleFamilyHouse",
-        "heated_floor_area": 184.0,
-        "gross_area": 184.0,
-        "integrated_garage": 0.0,
-        "external_area": 0.0,
-        "gross_area_above_ground": 184.0,
-        "person_count": 0,
-        "building_topology": "Unknown",
-        "project_type": "New",
-        "storeys_above_ground": 1,
-        "storeys_below_ground": 0,
-        "storey_height": 0.0,
-        "initial_year": 2023,
-        "calculation_timespan": 50,
-        "calculation_mode": "BR23",
-        "outside_area": 0.0,
-        "plot_area": 0.0,
-        "energy_class": "LowEnergy"
+        "uncertainty_factor": 1.0
       }
     }
   },
   {
     "Edge": [
       {
-        "BuildingToRoot": "bc35b94d-b8c0-4b8c-9bf3-3f63acc94063"
+        "ProductToStage": {
+          "id": "11c91e86-b42a-46e5-9d2e-e0348b3b968b",
+          "excluded_scenarios": [],
+          "enabled": true
+        }
       },
-      "915c5162-93bc-49c0-bdaf-9f470b4c7996",
-      "216cf5d6-3e9d-43ec-b0d8-5aee02240c28"
+      "ee60d276-eb44-41a9-a36d-6ded36315c47",
+      "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218"
     ]
   },
   {
     "Edge": [
       {
-        "BuildingToOperation": "0c35b94d-b8a0-4bec-92f3-3463acc94064"
+        "CategoryToStage": "37be9e71-9336-4adb-8533-4aa6b7ef6556"
       },
-      "915c5162-93bc-49c0-bdaf-9f470b4c7996",
-      "0338d31e-3876-440d-a88c-2daa2dd81942"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "BuildingToDGNBOperation": "2b6392cc-a452-4176-b9d8-3bb76abd741c"
-      },
-      "915c5162-93bc-49c0-bdaf-9f470b4c7996",
-      "602be83e-2a68-453f-a0e2-b9fb1d7d7754"
+      "d8143098-5ed7-42db-8bea-996b0cb3d271",
+      "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218"
     ]
   },
   {
     "Node": {
-      "EmbodiedRoot": {
-        "id": "216cf5d6-3e9d-43ec-b0d8-5aee02240c28"
+      "Construction": {
+        "id": "7cec94c1-bbc7-4609-aca5-41fa9474a311",
+        "name": {
+          "German": "Test konstruktion",
+          "Norwegian": "Test konstruktion",
+          "English": "Test konstruktion",
+          "Danish": "Test konstruktion"
+        },
+        "unit": "M2",
+        "source": "User",
+        "comment": {
+          "German": "",
+          "Danish": "",
+          "Norwegian": "",
+          "English": ""
+        },
+        "locked": false
       }
     }
   },
   {
     "Edge": [
       {
-        "RootToModel": "1191a67b-c672-43fc-b2b7-724bc62b974a"
+        "ConstructionToProduct": {
+          "id": "5d2c7e8f-51a7-48d1-b75e-55d5b72ee140",
+          "amount": 0.5,
+          "unit": "KG",
+          "lifespan": 80,
+          "demolition": false,
+          "delayed_start": 0,
+          "enabled": true,
+          "excluded_scenarios": []
+        }
       },
-      "216cf5d6-3e9d-43ec-b0d8-5aee02240c28",
-      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2"
+      "7cec94c1-bbc7-4609-aca5-41fa9474a311",
+      "ee60d276-eb44-41a9-a36d-6ded36315c47"
     ]
-  },
-  {
-    "Edge": [
-      {
-        "RootToConstructionProcess": "48781119-3992-4e48-9099-e8e8654a4935"
-      },
-      "216cf5d6-3e9d-43ec-b0d8-5aee02240c28",
-      "349738da-9747-4d5c-b508-2a810317166f"
-    ]
-  },
-  {
-    "Node": {
-      "Operation": {
-        "id": "0338d31e-3876-440d-a88c-2daa2dd81942",
-        "electricity_usage": 17.3,
-        "heat_usage": 0.0,
-        "electricity_production": 0.0
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElectricitySource": "af579fc8-0cad-40df-a3a4-ca36966aab9c"
-      },
-      "0338d31e-3876-440d-a88c-2daa2dd81942",
-      "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "HeatingSource": "38d00b33-2175-4743-b4ee-836a22562b56"
-      },
-      "0338d31e-3876-440d-a88c-2daa2dd81942",
-      "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
-    ]
-  },
-  {
-    "Node": {
-      "DGNBOperationReference": {
-        "id": "602be83e-2a68-453f-a0e2-b9fb1d7d7754",
-        "heat_supplement": 0.0,
-        "electricity_supplement": 0.0
-      }
-    }
   },
   {
     "Node": {
@@ -307,31 +269,6 @@
   },
   {
     "Node": {
-      "ConstructionProcess": {
-        "id": "349738da-9747-4d5c-b508-2a810317166f"
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ProcessToInstallation": "dd928199-b70a-43f8-8556-4f740dccd1ef"
-      },
-      "349738da-9747-4d5c-b508-2a810317166f",
-      "020cc362-536b-484e-b8f9-6507b40ab675"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ProcessToTransport": "15867192-86b7-40a8-9936-83d9e998516e"
-      },
-      "349738da-9747-4d5c-b508-2a810317166f",
-      "915c5162-93bc-49c0-bdaf-9f470b4c7998"
-    ]
-  },
-  {
-    "Node": {
       "ConstructionInstallation": {
         "id": "020cc362-536b-484e-b8f9-6507b40ab675"
       }
@@ -354,13 +291,6 @@
       "020cc362-536b-484e-b8f9-6507b40ab675",
       "c33cf608-9ceb-47f3-9ccf-c3ecb58ddb96"
     ]
-  },
-  {
-    "Node": {
-      "ProductTransportRoot": {
-        "id": "915c5162-93bc-49c0-bdaf-9f470b4c7998"
-      }
-    }
   },
   {
     "Node": {
@@ -395,6 +325,192 @@
   },
   {
     "Node": {
+      "DGNBOperationReference": {
+        "id": "1d8ac649-04d9-4f50-83ae-135b4bbfcb97",
+        "heat_supplement": 0.0,
+        "electricity_supplement": 0.0
+      }
+    }
+  },
+  {
+    "Node": {
+      "Element": {
+        "id": "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87",
+        "name": {
+          "German": "Test element",
+          "Norwegian": "Test element",
+          "Danish": "Test element",
+          "English": "Test element"
+        },
+        "source": "User",
+        "comment": {
+          "German": "",
+          "Norwegian": "",
+          "Danish": "",
+          "English": ""
+        },
+        "enabled": true,
+        "excluded_scenarios": []
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "ElementToConstruction": {
+          "id": "c8e25c82-0de6-408a-a0c3-4411d42b996a",
+          "amount": 50.0,
+          "enabled": true,
+          "special_conditions": false,
+          "excluded_scenarios": []
+        }
+      },
+      "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87",
+      "7cec94c1-bbc7-4609-aca5-41fa9474a311"
+    ]
+  },
+  {
+    "Node": {
+      "EmbodiedRoot": {
+        "id": "216cf5d6-3e9d-43ec-b0d8-5aee02240c28"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "RootToModel": "1191a67b-c672-43fc-b2b7-724bc62b974a"
+      },
+      "216cf5d6-3e9d-43ec-b0d8-5aee02240c28",
+      "aeefab8a-e825-4d14-b0c3-e87b7759e5b2"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "RootToConstructionProcess": "48781119-3992-4e48-9099-e8e8654a4935"
+      },
+      "216cf5d6-3e9d-43ec-b0d8-5aee02240c28",
+      "349738da-9747-4d5c-b508-2a810317166f"
+    ]
+  },
+  {
+    "Node": {
+      "Building": {
+        "id": "7791681b-40a2-401d-ac38-a2f73d736ab4",
+        "scenario_name": "Original bygningsmodel",
+        "locked": "Unlocked",
+        "description": {
+          "Norwegian": "",
+          "Danish": "",
+          "German": "",
+          "English": ""
+        },
+        "building_type": "Office",
+        "heated_floor_area": 100.0,
+        "gross_area": 100.0,
+        "integrated_garage": 0.0,
+        "external_area": 0.0,
+        "gross_area_above_ground": 0.0,
+        "person_count": 0,
+        "storeys_above_ground": 0,
+        "storeys_below_ground": 0,
+        "storey_height": 0.0,
+        "initial_year": 2023,
+        "calculation_timespan": 50,
+        "calculation_mode": "BR23",
+        "outside_area": 0.0,
+        "plot_area": 0.0,
+        "energy_class": "LowEnergy"
+      }
+    }
+  },
+  {
+    "Edge": [
+      {
+        "BuildingToRoot": "e2ff039e-2328-4d9c-a792-01bd101f93a1"
+      },
+      "7791681b-40a2-401d-ac38-a2f73d736ab4",
+      "216cf5d6-3e9d-43ec-b0d8-5aee02240c28"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "BuildingToOperation": "67f5d798-3456-43b0-b6b9-fccdee63b17b"
+      },
+      "7791681b-40a2-401d-ac38-a2f73d736ab4",
+      "0338d31e-3876-440d-a88c-2daa2dd81942"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "BuildingToDGNBOperation": "a873771e-7bec-4eb1-8fdf-27a439c2df33"
+      },
+      "7791681b-40a2-401d-ac38-a2f73d736ab4",
+      "1d8ac649-04d9-4f50-83ae-135b4bbfcb97"
+    ]
+  },
+  {
+    "Node": {
+      "Stage": {
+        "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
+        "name": {
+          "English": "Test fase (A1-A3)",
+          "Danish": "Test fase (A1-A3)",
+          "German": "Test fase (A1-A3)",
+          "Norwegian": "Test fase (A1-A3)"
+        },
+        "comment": {
+          "German": "",
+          "Danish": "",
+          "English": "",
+          "Norwegian": ""
+        },
+        "source": "User",
+        "valid_to": "2027-01-01",
+        "stage": "A1to3",
+        "stage_unit": "M3",
+        "indicator_unit": "M3",
+        "stage_factor": 1.0,
+        "mass_factor": 7850.0,
+        "indicator_factor": 1.0,
+        "scale_factor": 1.0,
+        "external_source": "\u00d6kobau.dat",
+        "external_id": "5aa09d72-e200-40dc-b8da-959a72e32bc3",
+        "external_version": "00.02.000",
+        "external_url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en",
+        "compliance": "A1",
+        "data_type": "Specific",
+        "indicators": {
+          "SER": 0.0,
+          "EP": 0.1557,
+          "ODP": 2.148e-12,
+          "POCP": 0.1334,
+          "PER": 512.5,
+          "ADPE": 8.897e-05,
+          "AP": 1.65,
+          "GWP": 818.0,
+          "ADPF": 8430.0,
+          "PENR": 9067.0,
+          "SENR": 0.0
+        }
+      }
+    }
+  },
+  {
+    "Node": {
+      "Operation": {
+        "id": "0338d31e-3876-440d-a88c-2daa2dd81942",
+        "electricity_usage": 17.3,
+        "heat_usage": 0.0,
+        "electricity_production": 0.0
+      }
+    }
+  },
+  {
+    "Node": {
       "Operation": {
         "id": "c33cf608-9ceb-47f3-9ccf-c3ecb58ddb96",
         "electricity_usage": 0.0,
@@ -406,7 +522,25 @@
   {
     "Edge": [
       {
-        "ElectricitySource": "5a38b95a-e2ce-4802-8576-39511c9fd155"
+        "ElectricitySource": "587f9143-cc4b-40cf-9755-01ea30eb2cdc"
+      },
+      "0338d31e-3876-440d-a88c-2daa2dd81942",
+      "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "HeatingSource": "4436ecb5-5fdf-40f6-a6a3-c1e60ba375e3"
+      },
+      "0338d31e-3876-440d-a88c-2daa2dd81942",
+      "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ElectricitySource": "412781ab-6e00-474b-bbda-014c9c9bbe6e"
       },
       "c33cf608-9ceb-47f3-9ccf-c3ecb58ddb96",
       "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
@@ -415,692 +549,65 @@
   {
     "Edge": [
       {
-        "HeatingSource": "36457e01-13be-43fe-860a-7aae588591a8"
+        "HeatingSource": "9c48ddd5-df44-4604-9bf6-f6b13c0799bd"
       },
       "c33cf608-9ceb-47f3-9ccf-c3ecb58ddb96",
       "e967c8e7-e73d-47f3-8cba-19569ad76b4d"
     ]
   },
   {
-    "Node": {
-      "Element": {
-        "id": "654d4204-990f-4b34-a74d-47e87bcd0d16",
-        "name": {
-          "English": "Strip footings",
-          "Danish": "Randfundamenter",
-          "German": ""
-        },
-        "source": "User",
-        "comment": {
-          "Norwegian": "",
-          "English": "",
-          "Danish": "",
-          "German": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "c77d73d4-0a5b-4d52-8ae8-fd97a5e52c84",
-          "amount": 59.9,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "654d4204-990f-4b34-a74d-47e87bcd0d16",
-      "c5ab6cd4-1137-5612-a423-cd8beb293457"
-    ]
-  },
-  {
     "Edge": [
       {
         "CategoryToElement": {
-          "id": "170dd8cd-9ff5-4642-82f3-675f2b5c2ce9"
-        }
-      },
-      "1a966c7c-fd7c-4abc-9d4b-307fdcd0cc88",
-      "654d4204-990f-4b34-a74d-47e87bcd0d16"
-    ]
-  },
-  {
-    "Node": {
-      "Element": {
-        "id": "94e59b91-bbe0-413f-922a-a4fd2c187b6d",
-        "name": {
-          "English": "Ground floor slab",
-          "Danish": "Terrændæk",
-          "German": ""
-        },
-        "source": "User",
-        "comment": {
-          "Norwegian": "",
-          "German": "",
-          "Danish": "",
-          "English": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "d9c325f7-c51d-4c03-905d-e3d88ffffb72",
-          "amount": 183.61,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "94e59b91-bbe0-413f-922a-a4fd2c187b6d",
-      "c1f43e31-d3ea-567a-8c39-79239dc9395b"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "160a85cb-465c-4cd3-b369-b509321e0226",
-          "amount": 183.61,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "94e59b91-bbe0-413f-922a-a4fd2c187b6d",
-      "ce1f4896-861d-569f-8d21-7e255221e796"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "26527d58-94e0-4a07-8e93-d881a54634df",
-          "amount": 183.61,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "94e59b91-bbe0-413f-922a-a4fd2c187b6d",
-      "e510a1e4-c95b-5c6d-9b5f-e291aed58978"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "92dbb979-500f-4de4-af08-be3f85653c4c"
-        }
-      },
-      "2ffe16fd-f0c9-4d31-a31a-f96d58d3df95",
-      "94e59b91-bbe0-413f-922a-a4fd2c187b6d"
-    ]
-  },
-  {
-    "Node": {
-      "Element": {
-        "id": "f5bb4ef6-49c3-4c5a-a0b9-2765ccfd4de9",
-        "name": {
-          "German": "",
-          "English": "External walls",
-          "Danish": "Ydervægge"
-        },
-        "source": "User",
-        "comment": {
-          "German": "",
-          "English": "",
-          "Danish": "",
-          "Norwegian": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "53447bed-500c-4e5e-ae60-32a4d4205791",
-          "amount": 124.47,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "f5bb4ef6-49c3-4c5a-a0b9-2765ccfd4de9",
-      "9f4c228c-3507-5f6e-a993-2dc84ffb5319"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "a119676f-e636-4b05-b65e-faab3f83be23",
-          "amount": 124.47,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "f5bb4ef6-49c3-4c5a-a0b9-2765ccfd4de9",
-      "295e2b38-3bd4-5e0d-8009-ea0be40e7600"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "e7400f0a-c965-46ef-aba3-f0cad85b2377",
-          "amount": 124.47,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "f5bb4ef6-49c3-4c5a-a0b9-2765ccfd4de9",
-      "f2ce8b16-7c8e-56e0-8a85-136a20d3bb26"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "4e8410bc-f100-4b2f-893c-06ea32b9c815"
-        }
-      },
-      "10a52123-48d7-466a-9622-d463511a6df0",
-      "f5bb4ef6-49c3-4c5a-a0b9-2765ccfd4de9"
-    ]
-  },
-  {
-    "Node": {
-      "Element": {
-        "id": "37a8987d-7344-46b0-bc40-e314d5d44a7a",
-        "name": {
-          "Danish": "Indervægge",
-          "English": "Internal walls",
-          "German": ""
-        },
-        "source": "User",
-        "comment": {
-          "Danish": "",
-          "English": "",
-          "German": "",
-          "Norwegian": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "43d16a3f-1edc-421e-a856-f45c0afc45d5",
-          "amount": 121.2,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "37a8987d-7344-46b0-bc40-e314d5d44a7a",
-      "9f4c228c-3507-5f6e-a993-2dc84ffb5319"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "8dcf8f1d-d7f3-4efc-9616-60b845f0e904",
-          "amount": 121.2,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "37a8987d-7344-46b0-bc40-e314d5d44a7a",
-      "f0e989fa-f0dd-500f-ad01-5a37ef3a361d"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "dffb87c3-3e49-4b8a-bd19-4a44347351c7",
-          "amount": 121.2,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "37a8987d-7344-46b0-bc40-e314d5d44a7a",
-      "9f4c228c-3507-5f6e-a993-2dc84ffb5319"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "6ed74ccb-54cf-495c-a34d-527c866e3e8e"
+          "id": "3f899653-8586-4162-b825-332a87a001fa"
         }
       },
       "59ab59a5-2482-45ae-85f1-d0e39e640712",
-      "37a8987d-7344-46b0-bc40-e314d5d44a7a"
+      "d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87"
     ]
   },
   {
     "Node": {
-      "Element": {
-        "id": "91329025-d117-4a64-a577-58bb1d76d82e",
-        "name": {
-          "Danish": "Tagkonstruktion",
-          "English": "Roof",
-          "German": ""
-        },
-        "source": "User",
-        "comment": {
-          "English": "",
-          "Danish": "",
-          "Norwegian": "",
-          "German": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
+      "ProductTransportRoot": {
+        "id": "915c5162-93bc-49c0-bdaf-9f470b4c7998"
       }
     }
   },
   {
     "Edge": [
       {
-        "ElementToConstruction": {
-          "id": "f5e266c4-c8e5-4885-835f-d43789b9a632",
-          "amount": 251.16,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
+        "CategoryToConstruction": {
+          "id": "ee4bb161-384d-4e35-a55f-31b184001a3e",
+          "layers": [
+            1
+          ]
         }
       },
-      "91329025-d117-4a64-a577-58bb1d76d82e",
-      "6fe12a41-b527-50da-9358-0c42539ec684"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "e6e8f5c2-78a3-4fb7-ab0d-19742bf89907",
-          "amount": 251.16,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "91329025-d117-4a64-a577-58bb1d76d82e",
-      "e196e6c4-698f-437e-8a95-69e29db357a3"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "32ec5065-ced0-438b-8a2f-b292b790bd60",
-          "amount": 251.16,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "91329025-d117-4a64-a577-58bb1d76d82e",
-      "10aa622f-a6c9-5f76-88cc-eceb7b22526f"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "da544f27-ed17-4f69-b0db-be77d5cb3eac"
-        }
-      },
-      "d734712a-d27d-42c5-936f-98fe4c4df90b",
-      "91329025-d117-4a64-a577-58bb1d76d82e"
+      "59ab59a5-2482-45ae-85f1-d0e39e640712",
+      "7cec94c1-bbc7-4609-aca5-41fa9474a311"
     ]
   },
   {
     "Node": {
-      "Element": {
-        "id": "05c32e5f-eef5-400d-aa36-5b6780fd76a8",
+      "Project": {
+        "id": "2f95c41e-0cc4-4b6e-90ac-ffa796aecd6d",
         "name": {
-          "Danish": "Vinduer og udvendige døre",
-          "English": "Windows and external doors",
-          "German": ""
+          "Danish": "Test eksempel"
         },
-        "source": "User",
-        "comment": {
-          "German": "",
-          "English": "",
-          "Danish": "",
-          "Norwegian": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
+        "address": "Testvej 1, 1111 Testbyen",
+        "owner": "Test",
+        "lca_advisor": "Test",
+        "building_regulation_version": "BR2023"
       }
     }
   },
   {
     "Edge": [
       {
-        "ElementToConstruction": {
-          "id": "8a26bf8c-1d3e-4fe4-99bf-ac0f4d1a5288",
-          "amount": 18.4,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
+        "MainBuilding": "bd294743-9c10-47c8-bce2-6b0593cb6852"
       },
-      "05c32e5f-eef5-400d-aa36-5b6780fd76a8",
-      "828ed54b-cade-553a-8f79-8123e1b42534"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "e396b3af-9755-4b58-8b0a-ae4a76e76be8",
-          "amount": 18.4,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "05c32e5f-eef5-400d-aa36-5b6780fd76a8",
-      "e5e40667-cd81-51d3-8ffc-32c2f2ef9c72"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "5ba94e20-fa68-475a-8272-6f85b9ad7a1a"
-        }
-      },
-      "dcbf55db-3189-4d22-9b2b-2e27c057b363",
-      "05c32e5f-eef5-400d-aa36-5b6780fd76a8"
-    ]
-  },
-  {
-    "Node": {
-      "Element": {
-        "id": "12c86f82-7c69-4cd3-b54f-9ead68120d35",
-        "name": {
-          "Danish": "Indvendige døre",
-          "English": "Internal doors",
-          "German": ""
-        },
-        "source": "User",
-        "comment": {
-          "Danish": "",
-          "English": "",
-          "Norwegian": "",
-          "German": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "ff5df567-e419-48d3-88ad-4cde8410e16e",
-          "amount": 9.0,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "12c86f82-7c69-4cd3-b54f-9ead68120d35",
-      "77c8e9c9-2b33-5a9e-b14a-be459d9f0643"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "0d47a766-f2ea-4e08-b015-c99d3a01bf7e",
-          "amount": 1.0,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "12c86f82-7c69-4cd3-b54f-9ead68120d35",
-      "92fee8be-a171-4957-a73c-990e120e2d60"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "65fe223e-c7e4-45e6-aee8-0c13768c2f23"
-        }
-      },
-      "9bd14e05-5fba-4ecb-ab41-7940a8a0dbdc",
-      "12c86f82-7c69-4cd3-b54f-9ead68120d35"
-    ]
-  },
-  {
-    "Node": {
-      "Element": {
-        "id": "7c301d2c-a2bc-4eff-a08e-b5c020086ae8",
-        "name": {
-          "English": "Water and piping",
-          "Danish": "Vand og afløb",
-          "German": ""
-        },
-        "source": "User",
-        "comment": {
-          "Norwegian": "",
-          "German": "",
-          "Danish": "",
-          "English": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "43a3d3b4-5d0c-4459-bd0c-28c4ff5b52e5",
-          "amount": 15.0,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "7c301d2c-a2bc-4eff-a08e-b5c020086ae8",
-      "196ca238-852b-5a29-ae01-60a70db73f1a"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "c176f3e6-a9d8-4736-a88a-96df69cf62be"
-        }
-      },
-      "16528722-ecc6-4a69-a269-35ba3e1205b2",
-      "7c301d2c-a2bc-4eff-a08e-b5c020086ae8"
-    ]
-  },
-  {
-    "Node": {
-      "Element": {
-        "id": "fab45b6c-aa08-40e0-baf3-8d6fac440358",
-        "name": {
-          "Danish": "Varmeanlæg",
-          "German": "",
-          "English": "Heating unit"
-        },
-        "source": "User",
-        "comment": {
-          "Norwegian": "",
-          "German": "",
-          "Danish": "",
-          "English": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "56bec0d5-1863-4d45-84cf-7a66d1c340f0",
-          "amount": 1.0,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "fab45b6c-aa08-40e0-baf3-8d6fac440358",
-      "90751522-ca91-5780-97bb-c5f90b7ac0c1"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "a56e39fc-7fd6-4b35-852a-071666644706",
-          "amount": 1.0,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "fab45b6c-aa08-40e0-baf3-8d6fac440358",
-      "fbbc687d-9daa-4d66-ba18-0fab37aaa0f2"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "21b619da-24a2-486f-a06f-34040cf54864"
-        }
-      },
-      "0fb0348e-2c54-40cb-a4c6-a9c1f2033b22",
-      "fab45b6c-aa08-40e0-baf3-8d6fac440358"
-    ]
-  },
-  {
-    "Node": {
-      "Element": {
-        "id": "ca7f0525-c55b-4fff-a75e-bb8083919f39",
-        "name": {
-          "Danish": "Gulvarmeanlæg",
-          "German": "",
-          "English": "Floor heating"
-        },
-        "source": "User",
-        "comment": {
-          "Norwegian": "",
-          "German": "",
-          "Danish": "",
-          "English": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "a88efac9-5f5c-4b19-b607-30f06b5c952b",
-          "amount": 184.0,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "ca7f0525-c55b-4fff-a75e-bb8083919f39",
-      "1daa8b47-a366-5bf3-89ab-e8df5720b08f"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "fe7a8229-ded3-4ec3-b0dd-862bcc10e160"
-        }
-      },
-      "78d66965-b806-47d6-af5f-b278e737adaa",
-      "ca7f0525-c55b-4fff-a75e-bb8083919f39"
-    ]
-  },
-  {
-    "Node": {
-      "Element": {
-        "id": "821a2fe7-8db9-4c02-b4b7-c726c4437a27",
-        "name": {
-          "German": "",
-          "English": "Ventilation unit",
-          "Danish": "Ventilationsanlæg"
-        },
-        "source": "User",
-        "comment": {
-          "English": "",
-          "Danish": "",
-          "German": "",
-          "Norwegian": ""
-        },
-        "enabled": true,
-        "excluded_scenarios": []
-      }
-    }
-  },
-  {
-    "Edge": [
-      {
-        "ElementToConstruction": {
-          "id": "da35800d-a159-4658-b93e-007e6d467175",
-          "amount": 1.0,
-          "enabled": true,
-          "special_conditions": false,
-          "excluded_scenarios": []
-        }
-      },
-      "821a2fe7-8db9-4c02-b4b7-c726c4437a27",
-      "d76ae856-66df-52f1-881d-8cd21dbd40dc"
-    ]
-  },
-  {
-    "Edge": [
-      {
-        "CategoryToElement": {
-          "id": "fea1e762-c9ab-4f4b-9b06-334a11f57a69"
-        }
-      },
-      "cf702d99-5d5a-4973-ba9c-c4dbfae656a9",
-      "821a2fe7-8db9-4c02-b4b7-c726c4437a27"
+      "2f95c41e-0cc4-4b6e-90ac-ffa796aecd6d",
+      "7791681b-40a2-401d-ac38-a2f73d736ab4"
     ]
   }
 ]

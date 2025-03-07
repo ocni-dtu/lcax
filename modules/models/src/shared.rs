@@ -1,18 +1,14 @@
-use lcax_core::value::AnyValue;
+use std::collections::HashMap;
+
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
-use std::fmt;
+use serde_json::Value;
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
-#[cfg(feature = "pybindings")]
-use pyo3::prelude::*;
-
-#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum Unit {
     M,
     M2,
@@ -49,45 +45,40 @@ impl From<&String> for Unit {
         }
     }
 }
-impl fmt::Display for Unit {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{:?}", self)
-    }
-}
 
-impl Default for Unit {
-    fn default() -> Unit {
-        Unit::UNKNOWN
-    }
-}
-
-#[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
 pub struct Conversion {
     pub value: f64,
     pub to: Unit,
     pub meta_data: Option<MetaData>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
 pub struct Source {
     pub name: String,
     pub url: Option<String>,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[serde(rename_all = "camelCase")]
+#[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+pub enum ReferenceSource<T> {
+    Actual(T),
+    Reference(Reference),
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, Clone)]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
 pub struct Reference {
     pub uri: String,
     pub format: Option<String>,
     pub version: Option<String>,
-    pub overrides: Option<HashMap<String, AnyValue>>,
+    pub overrides: Option<HashMap<String, String>>,
 }
 
-pub type MetaData = HashMap<String, AnyValue>;
+pub type MetaData = HashMap<String, Value>;

@@ -5,12 +5,11 @@ use std::path::Path;
 use lcax_calculation::calculate::{
     calculate_assembly, calculate_product, calculate_project, CalculationOptions,
 };
-use lcax_models::assembly::AssemblyReference;
-use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
+use lcax_models::epd::{Standard, SubType, EPD};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
-use lcax_models::product::{ImpactData, Product};
+use lcax_models::product::{ImpactDataSource, Product};
 use lcax_models::project::Project;
-use lcax_models::shared::Unit;
+use lcax_models::shared::{ReferenceSource, Unit};
 
 #[test]
 fn test_calculate_project() -> Result<(), String> {
@@ -33,9 +32,13 @@ fn test_calculate_assembly() -> Result<(), String> {
     let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
     let mut project = serde_json::from_str::<Project>(&contents).unwrap();
 
-    let assembly = match &mut project.assemblies[0] {
-        AssemblyReference::Assembly(actual) => actual,
-        AssemblyReference::Reference(_) => panic!("Expected actual assembly"),
+    let assembly = match project
+        .assemblies
+        .get_mut("d57fbbc1-2f57-47bc-b7de-8f1b2ee4da87")
+        .unwrap()
+    {
+        ReferenceSource::Actual(actual) => actual,
+        ReferenceSource::Reference(_) => panic!("Expected actual assembly"),
     };
     let options = CalculationOptions {
         reference_study_period: project.reference_study_period.clone(),
@@ -43,7 +46,7 @@ fn test_calculate_assembly() -> Result<(), String> {
         impact_categories: project.impact_categories.clone(),
     };
 
-    calculate_assembly(assembly, &options)?;
+    calculate_assembly(assembly, &options).unwrap();
     assert!(assembly.results.is_some());
     Ok(())
 }
@@ -55,7 +58,7 @@ fn test_calculate_product() -> Result<(), String> {
         name: "Product 1".to_string(),
         description: None,
         reference_service_life: 20,
-        impact_data: vec![ImpactData::EPD(EPDReference::EPD(EPD {
+        impact_data: ReferenceSource::Actual(ImpactDataSource::EPD(EPD {
             id: "1".to_string(),
             name: "EPD 1".to_string(),
             declared_unit: Unit::M,
@@ -75,7 +78,7 @@ fn test_calculate_product() -> Result<(), String> {
                 ImpactCategory::from([(LifeCycleStage::A1A3, Some(3.0))]),
             )]),
             meta_data: None,
-        }))],
+        })),
         quantity: 5.0,
         unit: Unit::M,
         transport: None,

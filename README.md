@@ -72,8 +72,6 @@ curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 cd modules/lcax
 wasm-pack build --features jsbindings
 mv pkg/lcax* ../../packages/javascript/src
-rm -rf pkg
-rm ../LICENSE
 ```
 
 ## Run JS Tests

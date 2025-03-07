@@ -11,6 +11,11 @@ jobs:
         with:
           lfs: true
 
+      - uses: actions/download-artifact@v4
+        with:
+          name: json-schema
+          path: docs/schemas/
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -22,9 +27,22 @@ jobs:
           pip install maturin virtualenv
           virtualenv venv
           source venv/bin/activate
-          maturin develop --extras tests --target x86_64-unknown-linux-gnu
+          maturin develop --extras tests,codegen --target x86_64-unknown-linux-gnu
+
+      - name: Create Pydantic Models
+        run: |
+          source venv/bin/activate
+          datamodel-codegen \
+          --input docs/schemas/lcax.schema.json \
+          --output packages/python/src/lcax/pydantic.py
 
       - name: Run Tests
         run: |
           source venv/bin/activate
           pytest .
+
+      - name: Upload Pydantic Classes
+        uses: actions/upload-artifact@v4
+        with:
+          name: pydantic-schema
+          path: 'packages/python/src/lcax/pydantic.py'

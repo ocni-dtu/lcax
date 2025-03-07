@@ -1,21 +1,19 @@
 [package]
 name = "lcax_models"
-description = { workspace = true }
-version = { workspace = true }
-authors = { workspace = true }
-edition = { workspace = true }
-readme = { workspace = true }
-license-file = { workspace = true }
-homepage = { workspace = true }
-documentation = { workspace = true }
-repository = { workspace = true }
+description = { workspace = true}
+version = { workspace = true}
+authors = { workspace = true}
+edition = { workspace = true}
+readme = { workspace = true}
+license-file = { workspace = true}
+homepage = { workspace = true}
+documentation = { workspace = true}
+repository = { workspace = true}
+
 
 [lib]
 name = "lcax_models"
 crate-type = ["cdylib", "rlib"]
-
-[lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
 
 [features]
 default = ["wee_alloc"]
@@ -31,7 +29,7 @@ lcax_core = { path = "../core", version = ">2.0.0" }
 chrono = "0.4.38"
 
 # Python Bindings
-pyo3 = { version = "0.23.4", features = ["abi3-py310"], optional = true }
+pyo3 = { version = "0.22.3", features = ["abi3-py310"], optional = true }
 
 # JS Bindings
 wee_alloc = { version = "0.4.5", optional = true }
