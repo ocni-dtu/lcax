@@ -207,7 +207,6 @@ dependencies = [
 name = "lcax_calculation"
 version = "2.6.4"
 dependencies = [
- "lcax_core",
  "lcax_models",
  "serde_json",
 ]
@@ -217,11 +216,17 @@ name = "lcax_convert"
 version = "2.6.4"
 dependencies = [
  "chrono",
+ "console_error_panic_hook",
  "field_access",
  "lcax_core",
  "lcax_models",
+ "log",
+ "pyo3",
  "serde",
  "serde_json",
+ "tsify",
+ "uuid",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -234,7 +239,6 @@ dependencies = [
  "pyo3",
  "schemars",
  "serde",
- "serde_json",
  "tsify",
  "wasm-bindgen",
  "wee_alloc",

@@ -236,6 +236,17 @@ impl From<&Option<String>> for SubType {
     }
 }
 
+impl Into<String> for SubType {
+    fn into(self) -> String {
+        match self {
+            SubType::REPRESENTATIVE => "representative".to_string(),
+            SubType::SPECIFIC => "specific".to_string(),
+            SubType::INDUSTRY => "industry".to_string(),
+            SubType::GENERIC => "generic".to_string(),
+        }
+    }
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[serde(tag = "type")]

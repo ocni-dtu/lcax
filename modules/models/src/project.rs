@@ -19,7 +19,7 @@ use pyo3::prelude::*;
 #[cfg(feature = "pybindings")]
 use pyo3::types::PyType;
 
-#[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
+#[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(
     feature = "jsbindings",
@@ -36,7 +36,7 @@ pub struct Project {
     pub owner: Option<String>,
     pub format_version: String,
     pub lcia_method: Option<String>,
-    pub classification_system: Option<String>,
+    pub classification_systems: Option<Vec<String>>,
     pub reference_study_period: Option<u8>,
     pub life_cycle_stages: Vec<LifeCycleStage>,
     pub impact_categories: Vec<ImpactCategoryKey>,
@@ -52,7 +52,7 @@ pub struct Project {
 impl Project {
     #[cfg(feature = "pybindings")]
     #[new]
-    #[pyo3(signature=(name, location, project_phase, software_info, life_cycle_stages, impact_categories, assemblies, id=None, description=None, comment=None, owner=None, format_version=None, lcia_method=None, classification_system=None, reference_study_period=None, results=None, project_info=None, meta_data=None ))]
+    #[pyo3(signature=(name, location, project_phase, software_info, life_cycle_stages, impact_categories, assemblies, id=None, description=None, comment=None, owner=None, format_version=None, lcia_method=None, classification_systems=None, reference_study_period=None, results=None, project_info=None, meta_data=None ))]
     pub fn new_py(
         name: &str,
         location: Location,
@@ -67,7 +67,7 @@ impl Project {
         owner: Option<String>,
         format_version: Option<String>,
         lcia_method: Option<String>,
-        classification_system: Option<String>,
+        classification_systems: Option<Vec<String>>,
         reference_study_period: Option<u8>,
         results: Option<Impacts>,
         project_info: Option<ProjectInfo>,
@@ -82,7 +82,7 @@ impl Project {
             owner,
             format_version,
             lcia_method,
-            classification_system,
+            classification_systems,
             reference_study_period,
             life_cycle_stages,
             impact_categories,
@@ -125,7 +125,7 @@ impl Project {
         owner: Option<String>,
         format_version: Option<String>,
         lcia_method: Option<String>,
-        classification_system: Option<String>,
+        classification_systems: Option<Vec<String>>,
         reference_study_period: Option<u8>,
         life_cycle_stages: Vec<LifeCycleStage>,
         impact_categories: Vec<ImpactCategoryKey>,
@@ -147,7 +147,7 @@ impl Project {
             owner,
             format_version: _format_version,
             lcia_method,
-            classification_system,
+            classification_systems,
             reference_study_period,
             life_cycle_stages,
             impact_categories,
@@ -167,9 +167,39 @@ impl Project {
     pub fn dumps(&self) -> Result<String, serde_json::Error> {
         serde_json::to_string(self)
     }
+
+    pub fn resolve_impact_categories(&mut self) {
+        self.impact_categories = match self.results {
+            Some(ref results) => {
+                let mut keys = Vec::new();
+                for (key, _) in results.iter() {
+                    keys.push(key.clone());
+                }
+                keys
+            }
+            None => vec![],
+        }
+    }
+    pub fn resolve_life_cycle_stages(&mut self) {
+        self.life_cycle_stages = match self.results {
+            Some(ref results) => {
+                let mut keys = Vec::new();
+                for (_, value) in results.iter() {
+                    for (key, _) in value.iter() {
+                        if keys.contains(key) {
+                            continue;
+                        }
+                        keys.push(key.clone());
+                    }
+                }
+                keys
+            }
+            None => vec![],
+        }
+    }
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
+#[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
@@ -236,7 +266,7 @@ pub enum ProjectPhase {
     OTHER,
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
+#[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
@@ -293,8 +323,8 @@ pub struct BuildingInfo {
     pub floors_below_ground: Option<u16>,
     pub roof_type: RoofType,
     pub frame_type: Option<String>,
-    pub building_completion_year: Option<u64>,
-    pub building_permit_year: Option<u64>,
+    pub building_completion_year: Option<u16>,
+    pub building_permit_year: Option<u16>,
     pub energy_demand_heating: Option<f64>,
     pub energy_supply_heating: Option<f64>,
     pub energy_demand_electricity: Option<f64>,
@@ -302,7 +332,7 @@ pub struct BuildingInfo {
     pub exported_electricity: Option<f64>,
     pub general_energy_class: GeneralEnergyClass,
     pub local_energy_class: Option<String>,
-    pub building_users: Option<u64>,
+    pub building_users: Option<u32>,
     pub building_model_scope: Option<Vec<BuildingModelScope>>,
 }
 

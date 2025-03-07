@@ -2,6 +2,7 @@ extern crate console_error_panic_hook;
 use wasm_bindgen::prelude::*;
 
 use lcax_calculation::calculate::calculate_project;
+use lcax_convert::lcabyg::parse::LCABygResult;
 use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
 use lcax_models::project::Project;
@@ -17,11 +18,11 @@ extern "C" {
 /// Converts a json formatted LCAByg project into a LCAx Project
 #[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn convertLCAbyg(data: String, resultData: Option<String>) -> Result<Project, JsError> {
+pub fn convertLCAbyg(data: String, resultData: Option<String>) -> Result<LCABygResult, JsError> {
     console_error_panic_hook::set_once();
-    let project = lcabyg::parse::parse_lcabyg(&data, resultData.as_deref());
-    match project {
-        Ok(project) => Ok(project),
+
+    match lcabyg::parse::parse_lcabyg(&data, resultData.as_deref()) {
+        Ok(result) => Ok(result),
         Err(error) => Err(JsError::new(error.to_string().as_str())),
     }
 }

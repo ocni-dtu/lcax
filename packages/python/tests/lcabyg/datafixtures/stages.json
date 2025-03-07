@@ -1,0 +1,199 @@
+[
+  {
+    "Edge": [
+      {
+        "ProductToStage": {
+          "id": "59634393-5285-4514-be78-c1533dc4c6c0",
+          "excluded_scenarios": [],
+          "enabled": true
+        }
+      },
+      "e38dd7e5-fa3a-4532-bc45-803fd199f204",
+      "95f28db0-e467-42b4-ba4f-41c32006318e"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ProductToStage": {
+          "id": "ca8e1d2e-3128-4905-a263-be675f79eaeb",
+          "excluded_scenarios": [],
+          "enabled": true
+        }
+      },
+      "e38dd7e5-fa3a-4532-bc45-803fd199f204",
+      "67990267-a9f7-4ecd-9769-fab8ed1eee2d"
+    ]
+  },
+  {
+    "Edge": [
+      {
+        "ProductToStage": {
+          "id": "32ab80da-7f28-4313-8f84-78d44feccce1",
+          "excluded_scenarios": [],
+          "enabled": true
+        }
+      },
+      "e38dd7e5-fa3a-4532-bc45-803fd199f204",
+      "4894701f-0e57-4332-a82e-11302e97cd70"
+    ]
+  },
+  {
+    "Node": {
+      "Product": {
+        "id": "e38dd7e5-fa3a-4532-bc45-803fd199f204",
+        "name": {
+          "Danish": "Rør, Afløbsrør, PVC (Klon)",
+          "English": "Sewer pipe GFK (Clone)",
+          "German": "Abwasserrohr GFK (Klonen)"
+        },
+        "source": "User",
+        "comment": {
+          "English": "",
+          "German": "",
+          "Norwegian": "",
+          "Danish": ""
+        },
+        "uncertainty_factor": 1.0
+      }
+    }
+  },
+  {
+    "Node": {
+      "Stage": {
+        "id": "4894701f-0e57-4332-a82e-11302e97cd70",
+        "name": {
+          "Danish": "Rør, Afløbsrør, PVC (D) (Klon)",
+          "German": "Abwasserrohr GFK (D) (Klonen)",
+          "English": "Sewer pipe GFK (D) (Clone)"
+        },
+        "comment": {
+          "Danish": "",
+          "English": "",
+          "Norwegian": "",
+          "German": ""
+        },
+        "source": "User",
+        "valid_to": "2022-12-31",
+        "stage": "D",
+        "stage_unit": "KG",
+        "indicator_unit": "KG",
+        "stage_factor": 1.0,
+        "mass_factor": 1.0,
+        "indicator_factor": 1.0,
+        "scale_factor": 1.0,
+        "external_source": "Ökobau.dat 2020 II",
+        "external_id": "f5c6cbd6-258c-4542-876a-1d44adfc0992",
+        "external_version": "20.19.120",
+        "external_url": "http://www.oekobaudat.de/OEKOBAU.DAT/resource/processes/f5c6cbd6-258c-4542-876a-1d44adfc0992?version=20.19.120",
+        "compliance": "A1",
+        "data_type": "Generic",
+        "indicators": {
+          "ADPE": -6.45757e-8,
+          "GWP": -0.259614,
+          "EP": -0.0000415637,
+          "ODP": -6.01712e-15,
+          "PER": -1.08817,
+          "SER": 0.0,
+          "AP": -0.000219308,
+          "POCP": -0.0000223297,
+          "PENR": -3.79807,
+          "ADPF": -3.46618,
+          "SENR": 0.0
+        }
+      }
+    }
+  },
+  {
+    "Node": {
+      "Stage": {
+        "id": "67990267-a9f7-4ecd-9769-fab8ed1eee2d",
+        "name": {
+          "Danish": "Rør, Afløbsrør, PVC (A1-A3) (Klon)",
+          "English": "Sewer pipe GFK (A1-A3) (Clone)",
+          "German": "Abwasserrohr GFK (A1-A3) (Klonen)"
+        },
+        "comment": {
+          "Danish": "6.1.02 Abwasserrohr PVC (A1-A3)",
+          "German": "6.1.02 Abwasserrohr PVC (A1-A3)",
+          "Norwegian": "6.1.02 Abwasserrohr PVC (A1-A3)",
+          "English": "6.1.02 Abwasserrohr PVC (A1-A3)"
+        },
+        "source": "User",
+        "valid_to": "2022-12-31",
+        "stage": "A1to3",
+        "stage_unit": "KG",
+        "indicator_unit": "KG",
+        "stage_factor": 1.0,
+        "mass_factor": 1.0,
+        "indicator_factor": 1.0,
+        "scale_factor": 1.0,
+        "external_source": "Ökobau.dat 2020 II",
+        "external_id": "f5c6cbd6-258c-4542-876a-1d44adfc0992",
+        "external_version": "20.19.120",
+        "external_url": "http://www.oekobaudat.de/OEKOBAU.DAT/resource/processes/f5c6cbd6-258c-4542-876a-1d44adfc0992?version=20.19.120",
+        "compliance": "A1",
+        "data_type": "Generic",
+        "indicators": {
+          "POCP": 0.000679884,
+          "PER": 4.0613,
+          "SER": 0.0,
+          "EP": 0.000413444,
+          "ADPE": 3.53495e-7,
+          "ADPF": 41.7259,
+          "ODP": 2.2598e-14,
+          "PENR": 43.2136,
+          "GWP": 1.91881,
+          "SENR": 0.0,
+          "AP": 0.00388997
+        }
+      }
+    }
+  },
+  {
+    "Node": {
+      "Stage": {
+        "id": "95f28db0-e467-42b4-ba4f-41c32006318e",
+        "name": {
+          "German": "Abwasserrohr GFK (C3) (Klonen)",
+          "English": "Sewer pipe GFK (C3) (Clone)",
+          "Danish": "Rør, Afløbsrør, PVC (C3) (Klon)"
+        },
+        "comment": {
+          "English": "",
+          "Norwegian": "",
+          "German": "",
+          "Danish": ""
+        },
+        "source": "User",
+        "valid_to": "2022-12-31",
+        "stage": "C3",
+        "stage_unit": "KG",
+        "indicator_unit": "KG",
+        "stage_factor": 1.0,
+        "mass_factor": 1.0,
+        "indicator_factor": 1.0,
+        "scale_factor": 1.0,
+        "external_source": "Ökobau.dat 2020 II",
+        "external_id": "f5c6cbd6-258c-4542-876a-1d44adfc0992",
+        "external_version": "20.19.120",
+        "external_url": "http://www.oekobaudat.de/OEKOBAU.DAT/resource/processes/f5c6cbd6-258c-4542-876a-1d44adfc0992?version=20.19.120",
+        "compliance": "A1",
+        "data_type": "Generic",
+        "indicators": {
+          "SENR": 0.0,
+          "ODP": 4.3897e-16,
+          "EP": 0.0000151752,
+          "POCP": 6.31476e-6,
+          "GWP": 0.607628,
+          "AP": 0.000068199,
+          "PENR": 0.29171,
+          "PER": 0.0785849,
+          "SER": 0.0,
+          "ADPE": 4.5519e-9,
+          "ADPF": 0.263367
+        }
+      }
+    }
+  }
+]

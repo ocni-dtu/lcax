@@ -12,7 +12,7 @@ def test_product_new():
     product = Product(
         name='Test',
         reference_service_life=50,
-        impact_data=ImpactData(
+        impact_data=[ImpactData(
             _type="epd",
             name="EPD",
             declared_unit=Unit.M2,
@@ -23,7 +23,7 @@ def test_product_new():
             location=Country.FRA,
             subtype=SubType.INDUSTRY,
             impacts={}
-        ),
+        )],
         quantity=1.0,
         unit=Unit.KG,
     )

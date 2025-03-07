@@ -394,16 +394,6 @@
     ]
   },
   {
-    "Node": {
-      "Operation": {
-        "id": "c33cf608-9ceb-47f3-9ccf-c3ecb58ddb96",
-        "electricity_usage": 0.0,
-        "heat_usage": 0.0,
-        "electricity_production": 0.0
-      }
-    }
-  },
-  {
     "Edge": [
       {
         "ElectricitySource": "5a38b95a-e2ce-4802-8576-39511c9fd155"

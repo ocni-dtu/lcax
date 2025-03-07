@@ -9,7 +9,7 @@ use pyo3::prelude::*;
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
-#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone)]
+#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone, Debug)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]
@@ -86,7 +86,7 @@ impl TryFrom<&str> for LifeCycleStage {
     }
 }
 
-#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone)]
+#[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone, Debug)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]

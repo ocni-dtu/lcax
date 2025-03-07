@@ -33,6 +33,16 @@ pub struct ProductToStageEdge {
     pub enabled: bool,
 }
 
+impl ProductToStageEdge {
+    pub fn new() -> Self {
+        Self {
+            id: uuid::Uuid::new_v4().to_string(),
+            excluded_scenarios: vec![],
+            enabled: true,
+        }
+    }
+}
+
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub struct ConstructionToProductEdge {

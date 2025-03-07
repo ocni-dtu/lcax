@@ -550,7 +550,7 @@ class Product:
     name: str
     description: str | None
     reference_service_life: int
-    impact_data: ImpactData
+    impact_data: list[ImpactData]
     quantity: float
     unit: Unit
     transport: list[Transport] | None
@@ -619,7 +619,7 @@ class Project:
     owner: str | None
     format_version: str
     lcia_method: str | None
-    classification_system: str | None
+    classification_systems: list[str] | None
     reference_study_period: int | None
     life_cycle_stages: list[LifeCycleStage]
     impact_categories: list[ImpactCategoryKey]

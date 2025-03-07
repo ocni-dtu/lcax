@@ -4,9 +4,9 @@
 * Converts a json formatted LCAByg project into a LCAx Project
 * @param {string} data
 * @param {string | undefined} [resultData]
-* @returns {Project}
+* @returns {LCABygResult}
 */
-export function convertLCAbyg(data: string, resultData?: string): Project;
+export function convertLCAbyg(data: string, resultData?: string): LCABygResult;
 /**
 *Converts a json formatted ILCD+EPD data string into a LCAx EPD
 * @param {string} data
@@ -20,6 +20,8 @@ export function convertIlcd(data: string): EPD;
 * @returns {Project}
 */
 export function calculateProject(project: Project): Project;
+export type LCABygResult = { project: Project } | { assemblies: Assembly[] } | { products: Product[] } | { epds: EPD[] };
+
 export type BuildingTypology = "office" | "residential" | "public" | "commercial" | "industrial" | "infrastructure" | "agricultural" | "educational" | "health" | "unknown" | "other";
 
 export type BuildingType = "new_construction_works" | "demolition" | "deconstruction_and_new_construction_works" | "retrofit_works" | "extension_works" | "retrofit_and_extension_works" | "fit_out_works" | "operations" | "unknown" | "other";
@@ -93,7 +95,7 @@ export interface Project {
     owner: string | null;
     formatVersion: string;
     lciaMethod: string | null;
-    classificationSystem: string | null;
+    classificationSystems: string[] | null;
     referenceStudyPeriod: number | null;
     lifeCycleStages: LifeCycleStage[];
     impactCategories: ImpactCategoryKey[];
@@ -102,6 +104,55 @@ export interface Project {
     projectInfo: ProjectInfo | null;
     projectPhase: ProjectPhase;
     softwareInfo: SoftwareInfo;
+    metaData: MetaData | null;
+}
+
+export interface Reference {
+    uri: string;
+    format: string | null;
+    version: string | null;
+    overrides: Record<string, AnyValue> | null;
+}
+
+export interface Source {
+    name: string;
+    url: string | null;
+}
+
+export interface Conversion {
+    value: number;
+    to: Unit;
+    metaData: MetaData | null;
+}
+
+export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
+
+export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+
+export type LifeCycleStage = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
+
+export type EPDReference = ({ type: "EPD" } & EPD) | ({ type: "reference" } & Reference);
+
+export type SubType = "generic" | "specific" | "industry" | "representative";
+
+export type Standard = "en15804a1" | "en15804a2" | "unknown";
+
+export interface EPD {
+    id: string;
+    name: string;
+    declaredUnit: Unit;
+    version: string;
+    publishedDate: NaiveDate;
+    validUntil: NaiveDate;
+    formatVersion: string;
+    source: Source | null;
+    referenceServiceLife: number | null;
+    standard: Standard;
+    comment: string | null;
+    location: Country;
+    subtype: SubType;
+    conversions: Conversion[] | null;
+    impacts: Impacts;
     metaData: MetaData | null;
 }
 
@@ -118,10 +169,6 @@ export interface GenericData {
     impacts: Impacts;
     metaData: MetaData | null;
 }
-
-export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
-
-export type LifeCycleStage = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
 
 export type ImpactData = EPDReference | GenericDataReference;
 
@@ -141,7 +188,7 @@ export interface Product {
     name: string;
     description: string | null;
     referenceServiceLife: number;
-    impactData: ImpactData;
+    impactData: ImpactData[];
     quantity: number;
     unit: Unit;
     transport: Transport[] | null;
@@ -167,51 +214,6 @@ export interface Assembly {
     classification: Classification[] | null;
     products: ProductReference[];
     results: Impacts | null;
-    metaData: MetaData | null;
-}
-
-export interface Reference {
-    uri: string;
-    format: string | null;
-    version: string | null;
-    overrides: Record<string, AnyValue> | null;
-}
-
-export interface Source {
-    name: string;
-    url: string | null;
-}
-
-export interface Conversion {
-    value: number;
-    to: Unit;
-    metaData: MetaData | null;
-}
-
-export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
-
-export type EPDReference = ({ type: "EPD" } & EPD) | ({ type: "reference" } & Reference);
-
-export type SubType = "generic" | "specific" | "industry" | "representative";
-
-export type Standard = "en15804a1" | "en15804a2" | "unknown";
-
-export interface EPD {
-    id: string;
-    name: string;
-    declaredUnit: Unit;
-    version: string;
-    publishedDate: NaiveDate;
-    validUntil: NaiveDate;
-    formatVersion: string;
-    source: Source | null;
-    referenceServiceLife: number | null;
-    standard: Standard;
-    comment: string | null;
-    location: Country;
-    subtype: SubType;
-    conversions: Conversion[] | null;
-    impacts: Impacts;
     metaData: MetaData | null;
 }
 

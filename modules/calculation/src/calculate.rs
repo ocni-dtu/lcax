@@ -78,30 +78,32 @@ pub fn calculate_product(
     for impact_category_key in &options.impact_categories {
         let mut impact_category = ImpactCategory::new();
         for life_cycle_stage in &options.life_cycle_stages {
-            match &product.impact_data {
-                ImpactData::EPD(epd) => {
-                    let impacts = epd.resolve()?.impacts;
-                    impact_category.insert(
-                        life_cycle_stage.clone(),
-                        Some(add_impact_result(
-                            &impacts,
-                            impact_category_key,
-                            life_cycle_stage,
-                            product,
-                        )),
-                    );
-                }
-                ImpactData::GenericData(data) => {
-                    let impacts = data.resolve()?.impacts;
-                    impact_category.insert(
-                        life_cycle_stage.clone(),
-                        Some(add_impact_result(
-                            &impacts,
-                            impact_category_key,
-                            life_cycle_stage,
-                            product,
-                        )),
-                    );
+            for impact_data in &product.impact_data {
+                match impact_data {
+                    ImpactData::EPD(epd) => {
+                        let impacts = epd.resolve()?.impacts;
+                        impact_category.insert(
+                            life_cycle_stage.clone(),
+                            Some(add_impact_result(
+                                &impacts,
+                                impact_category_key,
+                                life_cycle_stage,
+                                product,
+                            )),
+                        );
+                    }
+                    ImpactData::GenericData(data) => {
+                        let impacts = data.resolve()?.impacts;
+                        impact_category.insert(
+                            life_cycle_stage.clone(),
+                            Some(add_impact_result(
+                                &impacts,
+                                impact_category_key,
+                                life_cycle_stage,
+                                product,
+                            )),
+                        );
+                    }
                 }
             }
         }
