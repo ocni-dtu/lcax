@@ -17,25 +17,19 @@ crate-type = ["cdylib", "rlib"]
 
 [[bin]]
 name = "export-schema"
-path = "src/bin/schemars.rs"
+path = "src/schemars.rs"
 test = false
 bench = false
 
-[lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
-
 [features]
 default = []
-pybindings = ["pyo3", "pyo3/extension-module", "lcax_models/pybindings", "lcax_core/pybindings", "lcax_convert/pybindings"]
+pybindings = ["pyo3", "pyo3/extension-module", "lcax_models/pybindings"]
 jsbindings = [
     "wee_alloc",
     "wasm-bindgen",
     "serde-wasm-bindgen",
     "console_error_panic_hook",
-    "tsify", "getrandom", 
-    "lcax_models/jsbindings",
-    "lcax_core/jsbindings",
-    "lcax_convert/jsbindings"
+    "tsify", "getrandom", "lcax_models/jsbindings"
 ]
 
 [dependencies]
@@ -48,7 +42,7 @@ lcax_convert = { path = "../convert", version = ">2.0.0" }
 lcax_calculation = { path = "../calculation", version = ">2.0.0" }
 
 # Python Bindings
-pyo3 = { version = "0.23.4", features = ["abi3-py310", "chrono"], optional = true }
+pyo3 = { version = "0.22.3", features = ["abi3-py310"], optional = true }
 
 # JS Bindings
 wee_alloc = { version = "0.4.5", optional = true }
@@ -57,3 +51,4 @@ serde-wasm-bindgen = { version = "0.6.5", optional = true }
 console_error_panic_hook = { version = "0.1.7", optional = true }
 tsify = { version = "0.4.5", optional = true }
 getrandom = { version = "0.2", features = ["js"], optional = true }
+

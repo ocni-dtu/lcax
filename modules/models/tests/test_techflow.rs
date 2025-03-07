@@ -1,9 +1,9 @@
-use lcax_models::generic_impact_data;
+use lcax_models::techflow;
 
 #[test]
-fn test_generic_data() -> Result<(), String> {
-    let generic_data = generic_impact_data::GenericData::default();
-    assert!(!generic_data.id.is_empty());
+fn test_tech_flow() -> Result<(), String> {
+    let tech_flow = techflow::TechFlow::new();
+    assert!(!tech_flow.id.is_empty());
 
     Ok(())
 }

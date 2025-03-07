@@ -15,6 +15,7 @@ name = "lcax_calculation"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+lcax_core = { path = "../core", version = ">2.0.0" }
 lcax_models = { path = "../models", version = ">2.0.0" }
 
 [dev-dependencies]

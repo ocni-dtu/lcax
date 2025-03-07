@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - v3.0
   pull_request:
     branches:
       - main
-      - v3.0
   workflow_dispatch:
 
 permissions:
@@ -29,14 +27,18 @@ jobs:
 
   buildPython:
     uses: ./.github/workflows/build_python.yaml
+    needs:
+      - buildRust
 
   buildTypeScript:
     uses: ./.github/workflows/build_javascript.yaml
+    needs:
+      - buildRust
 
-#  buildCSharp:
-#    uses: ./.github/workflows/build_csharp.yaml
-#    needs:
-#      - buildRust
+  buildCSharp:
+    uses: ./.github/workflows/build_csharp.yaml
+    needs:
+      - buildRust
 
   createRelease:
     uses: ./.github/workflows/create_release.yaml
@@ -44,7 +46,7 @@ jobs:
       - buildRust
       - buildPython
       - buildTypeScript
-#      - buildCSharp
+      - buildCSharp
     secrets:
       cargo_token: ${{ secrets.CARGO_TOKEN }}
 
@@ -52,9 +54,6 @@ jobs:
     needs:
       - createRelease
     uses: ./.github/workflows/release_docs.yaml
-    secrets:
-      access_key: ${{ secrets.ACCESS_KEY }}
-      secret_key: ${{ secrets.SECRET_KEY }}
 
   publishPython:
     uses: ./.github/workflows/publish_python.yaml
@@ -74,11 +73,11 @@ jobs:
     with:
       release_version: ${{ needs.createRelease.outputs.version }}
 
-#  publishCSharp:
-#    uses: ./.github/workflows/publish_csharp.yaml
-#    needs:
-#      - createRelease
-#    with:
-#      release_version: ${{ needs.createRelease.outputs.version }}
-#    secrets:
-#      nuget_token: ${{ secrets.NUGET_TOKEN }}
+  publishCSharp:
+    uses: ./.github/workflows/publish_csharp.yaml
+    needs:
+      - createRelease
+    with:
+      release_version: ${{ needs.createRelease.outputs.version }}
+    secrets:
+      nuget_token: ${{ secrets.NUGET_TOKEN }}

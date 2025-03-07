@@ -14,7 +14,6 @@ pub struct LCAbygResults {
 #[serde(rename_all = "snake_case", untagged)]
 pub enum Model {
     InstanceModel(InstanceModel),
-    OperationUtilityInstance(OperationUtilityInstance),
     Other(OtherModel),
 }
 
@@ -26,18 +25,6 @@ pub struct InstanceModel {
     pub parent: String,
     pub model_id: String,
     pub name: String,
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "snake_case")]
-pub struct OperationUtilityInstance {
-    pub id: String,
-    pub node_type: InstanceModelType,
-    pub parent: String,
-    pub model_id: String,
-    pub name: String,
-    pub operation_util_floor_area: f64,
-    pub operation_calc_mode: String,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -64,11 +51,9 @@ pub enum InstanceModelType {
 pub struct ModelResult {
     #[serde(alias = "a1to3")]
     pub a1a3: Option<YearResult>,
-    pub b4: Option<YearResult>,
-    pub b6: Option<YearResult>,
+    pub d: Option<YearResult>,
     pub c3: Option<YearResult>,
     pub c4: Option<YearResult>,
-    pub d: Option<YearResult>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -86,8 +71,6 @@ pub struct ImpactResult {
     pub adpe: f64,
     pub odp: f64,
     pub gwp: f64,
-    pub gwp_fossil: f64,
-    pub gwp_iobc: f64,
     pub penr: f64,
     pub per: f64,
     pub ep: f64,

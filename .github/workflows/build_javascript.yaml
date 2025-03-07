@@ -35,3 +35,9 @@ jobs:
       - name: Run Tests
         working-directory: 'packages/javascript'
         run: npm run test
+
+      - name: Upload Generated Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: typescript-schema
+          path: 'packages/javascript/src/lcax*'
