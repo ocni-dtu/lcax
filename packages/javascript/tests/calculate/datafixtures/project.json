@@ -11,7 +11,7 @@
   "owner": "Test",
   "formatVersion": "2.6.3",
   "lciaMethod": null,
-  "classificationSystem": "LCAByg",
+  "classificationSystems": ["LCAByg"],
   "referenceStudyPeriod": 50,
   "lifeCycleStages": [
     "a1a3",
@@ -53,7 +53,7 @@
           "name": "Test produkt",
           "description": "",
           "referenceServiceLife": 80,
-          "impactData": {
+          "impactData": [{
             "type": "EPD",
             "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
             "name": "Test fase (A1-A3)",
@@ -108,7 +108,7 @@
               }
             },
             "metaData": null
-          },
+          }],
           "quantity": 0.5,
           "unit": "kg",
           "transport": null,

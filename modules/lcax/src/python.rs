@@ -1,4 +1,6 @@
 use lcax_calculation::calculate::calculate_project as _calculate_project;
+use lcax_convert::lcabyg::parse::LCABygResult;
+use lcax_convert::lcabyg::serialize::to_lcabyg as _to_lcabyg;
 use lcax_convert::{ilcd, lcabyg};
 use lcax_core::country::Country;
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
@@ -13,7 +15,7 @@ use pyo3::prelude::*;
 
 #[pyfunction]
 #[pyo3(signature = (data, result_data=None))]
-pub fn convert_lcabyg(data: String, result_data: Option<String>) -> PyResult<Project> {
+pub fn convert_lcabyg(data: String, result_data: Option<String>) -> PyResult<LCABygResult> {
     let project = lcabyg::parse::parse_lcabyg(&data, result_data.as_deref());
     match project {
         Ok(project) => Ok(project),
@@ -34,6 +36,14 @@ pub fn convert_ilcd(data: String) -> PyResult<EPD> {
 pub fn calculate_project(project: &mut Project) -> PyResult<Project> {
     match _calculate_project(project, None) {
         Ok(project) => Ok(project.clone()),
+        Err(error) => Err(PyTypeError::new_err(error.to_string())),
+    }
+}
+
+#[pyfunction]
+pub fn to_lcabyg(objects: &LCABygResult) -> PyResult<String> {
+    match _to_lcabyg(objects) {
+        Ok(result) => Ok(result),
         Err(error) => Err(PyTypeError::new_err(error.to_string())),
     }
 }
@@ -75,5 +85,6 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(convert_lcabyg, m)?)?;
     m.add_function(wrap_pyfunction!(convert_ilcd, m)?)?;
     m.add_function(wrap_pyfunction!(calculate_project, m)?)?;
+    m.add_function(wrap_pyfunction!(to_lcabyg, m)?)?;
     Ok(())
 }

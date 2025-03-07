@@ -22,6 +22,16 @@ pub enum AnyValue {
     Object(HashMap<String, AnyValue>),
 }
 
+impl AnyValue {
+    pub fn as_f64(&self) -> Option<f64> {
+        match self {
+            AnyValue::Number(Number::Float(n)) => Some(*n),
+            AnyValue::Number(Number::Int(n)) => Some(*n as f64),
+            _ => None,
+        }
+    }
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]

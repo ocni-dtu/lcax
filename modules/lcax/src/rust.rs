@@ -1,11 +1,11 @@
+use lcax_convert::lcabyg::parse::LCABygResult;
 use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
-use lcax_models::project::Project;
 
 #[cfg(feature = "default")]
-pub fn convert_lcabyg(data: String, result_data: Option<String>) -> Result<Project, String> {
+pub fn convert_lcabyg(data: String, result_data: Option<String>) -> Result<LCABygResult, String> {
     match lcabyg::parse::parse_lcabyg(&data, result_data.as_deref()) {
-        Ok(project) => Ok(project),
+        Ok(result) => Ok(result),
         Err(_) => panic!("Error parsing LCAbyg data"),
     }
 }

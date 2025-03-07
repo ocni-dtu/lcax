@@ -26,13 +26,16 @@ unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test
 
 [features]
 default = []
-pybindings = ["pyo3", "pyo3/extension-module", "lcax_models/pybindings", "lcax_core/pybindings"]
+pybindings = ["pyo3", "pyo3/extension-module", "lcax_models/pybindings", "lcax_core/pybindings", "lcax_convert/pybindings"]
 jsbindings = [
     "wee_alloc",
     "wasm-bindgen",
     "serde-wasm-bindgen",
     "console_error_panic_hook",
-    "tsify", "getrandom", "lcax_models/jsbindings", "lcax_core/jsbindings"
+    "tsify", "getrandom", 
+    "lcax_models/jsbindings",
+    "lcax_core/jsbindings",
+    "lcax_convert/jsbindings"
 ]
 
 [dependencies]

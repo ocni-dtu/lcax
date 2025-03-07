@@ -11,7 +11,9 @@
   "owner": "Test",
   "formatVersion": "2.6.3",
   "lciaMethod": null,
-  "classificationSystem": "LCAByg",
+  "classificationSystems": [
+    "LCAByg"
+  ],
   "referenceStudyPeriod": 50,
   "lifeCycleStages": [
     "a1a3",
@@ -53,62 +55,64 @@
           "name": "Test produkt",
           "description": "",
           "referenceServiceLife": 80,
-          "impactData": {
-            "type": "EPD",
-            "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
-            "name": "Test fase (A1-A3)",
-            "declaredUnit": "m3",
-            "version": "00.02.000",
-            "publishedDate": "1970-01-01",
-            "validUntil": "1970-01-01",
-            "formatVersion": "2.6.3",
-            "source": {
-              "name": "Ökobau.dat",
-              "url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en"
-            },
-            "referenceServiceLife": null,
-            "standard": "en15804a1",
-            "comment": "",
-            "location": "dnk",
-            "subtype": "specific",
-            "conversions": [
-              {
-                "value": 7850.0,
-                "to": "kg",
-                "metaData": null
-              }
-            ],
-            "impacts": {
-              "ep": {
-                "a1a3": 0.1557
+          "impactData": [
+            {
+              "type": "EPD",
+              "id": "d61fc8da-1a0d-4baa-a0fa-194c1f8a5218",
+              "name": "Test fase (A1-A3)",
+              "declaredUnit": "m3",
+              "version": "00.02.000",
+              "publishedDate": "1970-01-01",
+              "validUntil": "1970-01-01",
+              "formatVersion": "2.6.3",
+              "source": {
+                "name": "Ökobau.dat",
+                "url": "https://oekobaudat.de/OEKOBAU.DAT/datasetdetail/process.xhtml?uuid=5aa09d72-e200-40dc-b8da-959a72e32bc3&version=00.02.000&stock=OBD_2021_II&lang=en"
               },
-              "pert": {
-                "a1a3": 512.5
+              "referenceServiceLife": null,
+              "standard": "en15804a1",
+              "comment": "",
+              "location": "dnk",
+              "subtype": "specific",
+              "conversions": [
+                {
+                  "value": 7850.0,
+                  "to": "kg",
+                  "metaData": null
+                }
+              ],
+              "impacts": {
+                "ep": {
+                  "a1a3": 0.1557
+                },
+                "pert": {
+                  "a1a3": 512.5
+                },
+                "adpe": {
+                  "a1a3": 0.00008897
+                },
+                "gwp": {
+                  "a1a3": 818.0
+                },
+                "ap": {
+                  "a1a3": 1.65
+                },
+                "odp": {
+                  "a1a3": 2.148e-12
+                },
+                "pocp": {
+                  "a1a3": 0.1334
+                },
+                "adpf": {
+                  "a1a3": 8430.0
+                },
+                "penrt": {
+                  "a1a3": 9067.0
+                }
               },
-              "adpe": {
-                "a1a3": 0.00008897
-              },
-              "gwp": {
-                "a1a3": 818.0
-              },
-              "ap": {
-                "a1a3": 1.65
-              },
-              "odp": {
-                "a1a3": 2.148e-12
-              },
-              "pocp": {
-                "a1a3": 0.1334
-              },
-              "adpf": {
-                "a1a3": 8430.0
-              },
-              "penrt": {
-                "a1a3": 9067.0
-              }
-            },
-            "metaData": null
-          },
+              "metaData": null
+            }
+          ],
           "quantity": 0.5,
           "unit": "kg",
           "transport": null,

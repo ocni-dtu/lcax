@@ -1,8 +1,8 @@
 use lcax_core::value::AnyValue;
-#[allow(dead_code)]
-use std::collections::HashMap;
 use serde::{Deserialize, Deserializer, Serialize};
 use serde_json::Value;
+#[allow(dead_code)]
+use std::collections::HashMap;
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]

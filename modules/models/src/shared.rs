@@ -2,7 +2,7 @@ use lcax_core::value::AnyValue;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
-
+use std::fmt;
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
@@ -47,6 +47,11 @@ impl From<&String> for Unit {
             "kgm3" => Unit::KGM3,
             _ => Unit::UNKNOWN,
         }
+    }
+}
+impl fmt::Display for Unit {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
     }
 }
 

@@ -55,7 +55,7 @@ fn test_calculate_product() -> Result<(), String> {
         name: "Product 1".to_string(),
         description: None,
         reference_service_life: 20,
-        impact_data: ImpactData::EPD(EPDReference::EPD(EPD {
+        impact_data: vec![ImpactData::EPD(EPDReference::EPD(EPD {
             id: "1".to_string(),
             name: "EPD 1".to_string(),
             declared_unit: Unit::M,
@@ -75,7 +75,7 @@ fn test_calculate_product() -> Result<(), String> {
                 ImpactCategory::from([(LifeCycleStage::A1A3, Some(3.0))]),
             )]),
             meta_data: None,
-        })),
+        }))],
         quantity: 5.0,
         unit: Unit::M,
         transport: None,
