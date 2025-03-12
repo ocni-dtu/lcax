@@ -1,0 +1,38 @@
+[package]
+name = "lcax_validation"
+description.workspace = true
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+readme.workspace = true
+license-file.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+repository.workspace = true
+
+[lib]
+name = "lcax_validation"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "export-schema"
+path = "src/bin/schemars.rs"
+test = false
+bench = false
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
+
+[features]
+default = []
+
+[dependencies]
+valitron = { version = "0.5.4", features = ["full"]  }
+serde = { version = "1.0.217", features = ["derive"] }
+schemars = { version = "0.8.19", features = ["chrono"] }
+serde_json = "1.0.116"
+lcax_models = { path = "../models", version = ">2.0.0" }
+field_access = "0.1.4"
+
+[dev-dependencies]
+serde_yml = "0.0.12"

@@ -1,0 +1,7 @@
+name: required
+referenceStudyPeriod:
+  range:
+    min: 50
+    max: 50
+location:
+  city: required
