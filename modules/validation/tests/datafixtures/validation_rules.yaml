@@ -1,7 +1,8 @@
 name: required
-referenceStudyPeriod:
-  range:
-    min: 50
-    max: 50
+comment: required
+classificationSystems:
+  !contains l
 location:
+  address:
+    !contains h
   city: required
