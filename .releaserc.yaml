@@ -1,7 +1,10 @@
 branches:
   - "main"
+  - name: "v3.0"
+    prerelease: true
 
 preset: "conventionalcommits"
+
 
 plugins:
   - "@semantic-release/commit-analyzer"
