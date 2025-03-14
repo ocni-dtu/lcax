@@ -1,3 +1,9 @@
+## [3.0.0-beta.2](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2025-03-14)
+
+### Bug Fixes
+
+* fixing cargo build ([229b635](https://github.com/ocni-dtu/lcax/commit/229b6357cbf07e097bbeb4cc6eaad6c4f7a1f03d))
+
 ## [3.0.0-beta.1](https://github.com/ocni-dtu/lcax/compare/v2.6.4...v3.0.0-beta.1) (2025-03-14)
 
 ### ⚠ BREAKING CHANGES
