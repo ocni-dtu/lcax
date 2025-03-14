@@ -3,6 +3,7 @@ use crate::br_standard::models::{
 };
 use crate::br_standard::translations::GENERAL_INFORMATION_TRANSLATION;
 use calamine::{open_workbook, Data, DataType, Error, Reader, Xlsx};
+use lcax_models::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleStage};
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::BufReader;
@@ -184,25 +185,78 @@ fn read_operations(workbook: &mut Xlsx<BufReader<File>>) -> Result<Vec<BROperati
                     expiration_data: row[10].to_string(),
                     standard: row[11].to_string(),
                 },
-                results: BRResults {
-                    gwp: row[13].as_f64().unwrap_or(0.0),
-                    gwp_fos: row[14].as_f64().unwrap_or(0.0),
-                    gwp_bio: row[15].as_f64().unwrap_or(0.0),
-                    gwp_lul: row[16].as_f64().unwrap_or(0.0),
-                    odp: row[17].as_f64().unwrap_or(0.0),
-                    ap: row[18].as_f64().unwrap_or(0.0),
-                    ep_fw: row[19].as_f64().unwrap_or(0.0),
-                    ep_mar: row[20].as_f64().unwrap_or(0.0),
-                    ep_ter: row[21].as_f64().unwrap_or(0.0),
-                    pocp: row[22].as_f64().unwrap_or(0.0),
-                    adpe: row[23].as_f64().unwrap_or(0.0),
-                    adpf: row[24].as_f64().unwrap_or(0.0),
-                    wdp: row[25].as_f64().unwrap_or(0.0),
-                },
+                results: Impacts::from_br((row, 14)),
+                // results: BRResults {
+              //     gwp: row[13].as_f64().unwrap_or(0.0),
+              //     gwp_fos: row[14].as_f64().unwrap_or(0.0),
+              //     gwp_bio: row[15].as_f64().unwrap_or(0.0),
+              //     gwp_lul: row[16].as_f64().unwrap_or(0.0),
+              //     odp: row[17].as_f64().unwrap_or(0.0),
+              //     ap: row[18].as_f64().unwrap_or(0.0),
+              //     ep_fw: row[19].as_f64().unwrap_or(0.0),
+              //     ep_mar: row[20].as_f64().unwrap_or(0.0),
+              //     ep_ter: row[21].as_f64().unwrap_or(0.0),
+              //     pocp: row[22].as_f64().unwrap_or(0.0),
+              //     adpe: row[23].as_f64().unwrap_or(0.0),
+              //     adpf: row[24].as_f64().unwrap_or(0.0),
+              //     wdp: row[25].as_f64().unwrap_or(0.0),
+              // },
             })
         }
     }
     Ok(operations)
+}
+
+trait FromBR<T> {
+    fn from_br(_: T) -> Self;
+}
+
+impl FromBR<(&[Data], i32)> for Impacts {
+    fn from_br((row, start_index): (&[Data], i32)) -> Self {
+        let categories = [
+            ImpactCategoryKey::GWP,
+            ImpactCategoryKey::GWP_FOS,
+            ImpactCategoryKey::GWP_BIO,
+            ImpactCategoryKey::GWP_LUL,
+            ImpactCategoryKey::ODP,
+            ImpactCategoryKey::AP,
+            ImpactCategoryKey::EP_FW,
+            ImpactCategoryKey::EP_MAR,
+            ImpactCategoryKey::EP_TER,
+            ImpactCategoryKey::POCP,
+            ImpactCategoryKey::ADPE,
+            ImpactCategoryKey::ADPF,
+            ImpactCategoryKey::WDP,
+        ];
+        let stages = [
+            LifeCycleStage::A1A3,
+            LifeCycleStage::A4,
+            LifeCycleStage::A5,
+            LifeCycleStage::B1,
+            LifeCycleStage::B2,
+            LifeCycleStage::B3,
+            LifeCycleStage::B4,
+            LifeCycleStage::B5,
+            LifeCycleStage::B6,
+            LifeCycleStage::B7,
+            LifeCycleStage::C1,
+            LifeCycleStage::C2,
+            LifeCycleStage::C3,
+            LifeCycleStage::C4,
+            LifeCycleStage::D,
+        ];
+        let mut results = HashMap::new();
+        for (c_index, category) in categories.iter().enumerate() {
+            let mut result_category = HashMap::new();
+            for (s_index, stage) in stages.iter().enumerate() {
+                let index = start_index + (c_index as i32 * 15) + s_index as i32;
+                let data = &row[index as usize];
+                result_category.insert(stage.clone(), data.as_f64());
+            }
+            results.insert(category.clone(), result_category);
+        }
+        results
+    }
 }
 
 fn read_components(workbook: &mut Xlsx<BufReader<File>>) -> Result<Vec<BRComponents>, Error> {

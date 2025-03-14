@@ -1,3 +1,4 @@
+use lcax_models::life_cycle_base::Impacts;
 
 pub struct BRProjectInfo {
     // General Info
@@ -81,7 +82,7 @@ pub struct BROperation {
     pub quantity: f64,
     pub unit: String,
     pub environmental_data: BREnvironmentalData,
-    pub results: BRResults
+    pub results: Impacts
 }
 
 pub struct BREnvironmentalData {

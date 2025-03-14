@@ -29,9 +29,7 @@ use log;
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
 
-use crate::lcabyg::br18_generic_data::{
-    get_district_heating_data, get_electricity_data, get_lng_data,
-};
+use crate::br_standard::br18_generic_data::{get_district_heating_data, get_electricity_data, get_energy_data, get_lng_data};
 use lcax_core::value::AnyValue;
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
 #[cfg(feature = "jsbindings")]
@@ -320,39 +318,6 @@ fn construct_operation_products(
     }
 
     lcax_products
-}
-
-fn get_energy_data(year: &u16, data: HashMap<u16, GenericData>) -> Vec<GenericData> {
-    match year {
-        year if year < &2025 => {
-            vec![
-                data[&2023].clone(),
-                data[&2025].clone(),
-                data[&2030].clone(),
-                data[&2035].clone(),
-                data[&2040].clone(),
-            ]
-        }
-        year if year < &2030 => {
-            vec![
-                data[&2025].clone(),
-                data[&2030].clone(),
-                data[&2035].clone(),
-                data[&2040].clone(),
-            ]
-        }
-        year if year < &2035 => {
-            vec![
-                data[&2030].clone(),
-                data[&2035].clone(),
-                data[&2040].clone(),
-            ]
-        }
-        year if year < &2040 => {
-            vec![data[&2035].clone(), data[&2040].clone()]
-        }
-        _ => vec![data[&2040].clone()],
-    }
 }
 
 fn construct_impact_data(project_completion_year: &u16, energy_type_id: &str) -> Vec<GenericData> {

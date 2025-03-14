@@ -4,9 +4,12 @@ use crate::br_standard::models::{BRComponents, BROperation, BRProjectInfo};
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_core::value::AnyValue;
-use lcax_models::assembly::{Assembly, AssemblyReference};
+use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
+use lcax_models::generic_impact_data::GenericDataReference;
+use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project, ProjectInfo, ProjectPhase, RoofType, SoftwareInfo};
 use lcax_models::shared::Unit;
+use crate::br_standard::br18_generic_data::{get_district_heating_data, get_electricity_data, get_energy_data, get_lng_data};
 
 /// Parse an LCAByg project exported as json files.
 ///
@@ -26,6 +29,10 @@ pub fn parse_br_standard(
 
 trait FromBR<T> {
     fn from_br(_: T) -> Self;
+}
+
+trait FromBROperation {
+    fn from_br_operation(_: &BROperation, _: &u16) -> Self;
 }
 
 impl FromBR<(&BRProjectInfo, &Vec<BRComponents>, &Vec<BROperation>)> for Project {
@@ -56,6 +63,8 @@ impl FromBR<(&BRProjectInfo, &Vec<BRComponents>, &Vec<BROperation>)> for Project
             assemblies: construct_assemblies(
                 components,
                 operations,
+                &project_info.heated_area,
+                &date_to_year(&project_info.building_operation_date).unwrap_or(Utc::now().year() as u16)
             )
                 .iter()
                 .map(|assembly| AssemblyReference::Assembly(assembly.to_owned()))
@@ -114,26 +123,160 @@ impl FromBR<(&BRProjectInfo, &Vec<BRComponents>, &Vec<BROperation>)> for Project
 
 impl FromBR<&str> for BuildingTypology {
     fn from_br(typology: &str) -> Self {
-        unimplemented!();
+        let _slice = &typology[0..3];
+        match _slice {
+            "110" | "120" | "121" | "122" | "130" | "131" | "132" | "140" | "150" | "160" | "185" | "190"=> Self::RESIDENTIAL,
+            "210" | "211" | "212" | "213" | "214" | "215" | "216" | "217" | "218" | "219" => Self::AGRICULTURAL,
+            "220" | "221" | "222" | "223" | "229" | "290" => Self::INDUSTRIAL,
+            "230" | "231" | "232" | "233" | "234" | "239" => Self::INFRASTRUCTURE,
+            "310" | "311" | "312" | "313" | "314" | "315" | "319" => Self::INFRASTRUCTURE,
+            "320" | "321" => Self::OFFICE,
+            "322" | "323" | "324" | "325" | "329" | "330" | "331" | "332" | "333" | "334" | "339" => Self::COMMERCIAL,
+            "410" | "411" | "412" | "413" | "414" | "415" | "416" | "419" => Self::PUBLIC,
+            "420" | "421" | "422" | "429" => Self::EDUCATIONAL,
+            "430" | "431" | "432" | "433" | "439" => Self::HEALTH,
+            "440" | "441" | "442" | "443" | "444" | "449" => Self::PUBLIC,
+            "530" | "531" | "532" | "533" | "534" | "535" | "539" => Self::OTHER,
+            "510" | "520" | "521" | "522" | "523" | "529" | "540" | "585" | "590" => Self::OTHER,
+            "910" | "920" | "930" | "940" | "950" | "960" | "970" | "990" => Self::OTHER,
+            "999" => Self::UNKNOWN,
+            _ => panic!("Unknown typology: {typology}")
+        }
     }
 }
 
 impl FromBR<&str> for BuildingType {
     fn from_br(_type: &str) -> Self {
-        unimplemented!();
+        match _type {
+            "Nybyggeri" => Self::NEW_CONSTRUCTION_WORKS,
+            "Tilbygning" => Self::EXTENSION_WORKS,
+            "Transformation" => Self::RETROFIT_WORKS,
+            "Renovering" => Self::RETROFIT_AND_EXTENSION_WORKS,
+            _ => panic!("Unknown type: {_type}")
+        }
     }
 }
 
+
+
 fn date_to_year(date: &Option<String>) -> Option<u16> {
     match date {
-        None => None,
-        Some(date) => {
+        _ => None,
+        Some(date) if !date.is_empty() => {
+            println!("{date}");
             let time = DateTime::parse_from_str(date, "%Y-%m-%d");
             Some(time.unwrap().year() as u16)
         }
     }
 }
 
-fn construct_assemblies(components: &Vec<BRComponents>, operations: &Vec<BROperation>,) -> Vec<Assembly> {
-    unimplemented!();
+fn construct_assemblies(components: &Vec<BRComponents>, operations: &Vec<BROperation>, heated_floor_area: &f64, project_completion_year: &u16) -> Vec<Assembly> {
+    let mut assemblies = vec![];
+
+    assemblies.push(    Assembly {
+        id: uuid::Uuid::new_v4().to_string(),
+        name: "Drift".to_string(),
+        description: None,
+        comment: None,
+        unit: Unit::M2,
+        quantity: heated_floor_area.clone(),
+        classification: Some(vec![Classification { system: "BR18".to_string(), code: "".to_string(), name: "Drift".to_string()}]),
+        products: construct_operation_products(
+            operations,
+            project_completion_year
+        )
+            .iter()
+            .map(|product| ProductReference::Product(product.to_owned()))
+            .collect(),
+        results: None,
+        meta_data: None,
+    });
+    add_components(components, &assemblies);
+    assemblies
+}
+
+fn construct_operation_products(operations: &Vec<BROperation>, project_completion_year: &u16) -> Vec<Product>{
+    let mut products = vec![];
+    for operation in operations {
+        products.push(Product::from_br_operation(operation, project_completion_year))
+    }
+    products
+}
+
+impl FromBROperation for Product {
+    fn from_br_operation(operation: &BROperation, project_completion_year: &u16) -> Self {
+        match operation.product.as_str() {
+            "El" | "El - Fremskrivning" => {
+                Self {
+                    id: uuid::Uuid::new_v4().to_string(),
+                    name: "Electricity".to_string(),
+                    description: Some("Impact data should be linearly interpolated".to_string()),
+                    reference_service_life: 50,
+                    impact_data: get_energy_data(project_completion_year, get_electricity_data())
+                        .iter()
+                        .map(|impact| {
+                            ImpactData::GenericData(GenericDataReference::GenericData(
+                                impact.to_owned(),
+                            ))
+                        })
+                        .collect(),
+                    quantity: operation.quantity,
+                    unit: Unit::KWH,
+                    transport: None,
+                    results: Some(operation.results.clone()),
+                    meta_data: None,
+                }
+            }
+            "Fjernvarme" | "Fjernvarme - Fremskrivning" => {
+                Self {
+                    id: uuid::Uuid::new_v4().to_string(),
+                    name: "Heating".to_string(),
+                    description: Some("Impact data should be linearly interpolated".to_string()),
+                    reference_service_life: 50,
+                    impact_data: get_energy_data(project_completion_year, get_district_heating_data())
+                        .iter()
+                        .map(|impact| {
+                            ImpactData::GenericData(GenericDataReference::GenericData(
+                                impact.to_owned(),
+                            ))
+                        })
+                        .collect(),
+                    quantity: operation.quantity,
+                    unit: Unit::KWH,
+                    transport: None,
+                    results: Some(operation.results.clone()),
+                    meta_data: None,
+                }
+            }
+            "Ledningsgas" => {
+                Self {
+                    id: uuid::Uuid::new_v4().to_string(),
+                    name: "Gas".to_string(),
+                    description: Some("Impact data should be linearly interpolated".to_string()),
+                    reference_service_life: 50,
+                    impact_data: get_energy_data(project_completion_year, get_lng_data())
+                        .iter()
+                        .map(|impact| {
+                            ImpactData::GenericData(GenericDataReference::GenericData(
+                                impact.to_owned(),
+                            ))
+                        })
+                        .collect(),
+                    quantity: operation.quantity,
+                    unit: Unit::KWH,
+                    transport: None,
+                    results: Some(operation.results.clone()),
+                    meta_data: None,
+                }
+            }
+            "Andet energi" => {
+                todo!()
+            }
+            _else => panic!("Unknown operation type: {_else}")
+        }
+    }
+}
+
+fn add_components(components: &Vec<BRComponents>, assemblies: &Vec<Assembly>) {
+    todo!()
 }

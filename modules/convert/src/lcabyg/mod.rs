@@ -1,4 +1,3 @@
-mod br18_generic_data;
 mod categories;
 mod edges;
 pub mod nodes;

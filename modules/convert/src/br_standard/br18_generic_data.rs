@@ -259,3 +259,36 @@ pub fn get_lng_data() -> HashMap<u16, GenericData> {
         })
     ])
 }
+
+pub fn get_energy_data(year: &u16, data: HashMap<u16, GenericData>) -> Vec<GenericData> {
+    match year {
+        year if year < &2025 => {
+            vec![
+                data[&2023].clone(),
+                data[&2025].clone(),
+                data[&2030].clone(),
+                data[&2035].clone(),
+                data[&2040].clone(),
+            ]
+        }
+        year if year < &2030 => {
+            vec![
+                data[&2025].clone(),
+                data[&2030].clone(),
+                data[&2035].clone(),
+                data[&2040].clone(),
+            ]
+        }
+        year if year < &2035 => {
+            vec![
+                data[&2030].clone(),
+                data[&2035].clone(),
+                data[&2040].clone(),
+            ]
+        }
+        year if year < &2040 => {
+            vec![data[&2035].clone(), data[&2040].clone()]
+        }
+        _ => vec![data[&2040].clone()],
+    }
+}
