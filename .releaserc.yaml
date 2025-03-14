@@ -15,7 +15,7 @@ plugins:
       check: true
       publishArgs: [ "-p", "lcax_core" ]
   - - "semantic-release-cargo"
-    - allFeatures: true
+    - allFeatures: false
       check: true
       publishArgs: [ "-p", "lcax_models" ]
   - - "semantic-release-cargo"
@@ -23,7 +23,7 @@ plugins:
       check: true
       publishArgs: [ "-p", "lcax_calculation" ]
   - - "semantic-release-cargo"
-    - allFeatures: true
+    - allFeatures: false
       check: true
       publishArgs: [ "-p", "lcax_convert" ]
   - - "semantic-release-cargo"
