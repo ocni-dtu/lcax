@@ -25,8 +25,8 @@ unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test
 [dependencies]
 serde = { version = "1.0.200", features = ["derive"] }
 field_access = "0.1.4"
-lcax_core = { path = "../core", version = "*" }
-lcax_models = { path = "../models", version = "*" }
+lcax_core = { path = "../core", version = ">=3.0.0-beta.1" }
+lcax_models = { path = "../models", version = ">=3.0.0-beta.1" }
 chrono = "0.4.38"
 serde_json = "1.0.125"
 log = "0.4.22"
