@@ -1,7 +1,6 @@
 branches:
   - "main"
   - name: "v3.0"
-    range: 3.x
     prerelease: beta
 
 preset: "conventionalcommits"
