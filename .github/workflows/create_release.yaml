@@ -15,7 +15,7 @@ permissions:
   issues: write
 
 env:
-  NODE_VERSION: 20.x
+  NODE_VERSION: 22.x
 
 jobs:
   release:
@@ -70,17 +70,17 @@ jobs:
       - name: Echo next version
         run: echo "${{ steps.nextVersion.outputs.version }}"
 
-      - name: Run Semantic-Release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CARGO_REGISTRY_TOKEN: ${{ secrets.cargo_token }}
-
-      - name: Upload Cargo
-        uses: actions/upload-artifact@v4
-        with:
-          name: cargo
-          path: 'Cargo*'
+#      - name: Run Semantic-Release
+#        run: npx semantic-release
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          CARGO_REGISTRY_TOKEN: ${{ secrets.cargo_token }}
+#
+#      - name: Upload Cargo
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: cargo
+#          path: 'Cargo*'
 
       - name: Upload CHANGELOG
         uses: actions/upload-artifact@v4
