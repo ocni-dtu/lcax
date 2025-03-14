@@ -1,8 +1,9 @@
 branches:
   - "main"
   - name: "v3.0"
-    channel: beta
-    prerelease: true
+    range: 3.x
+    channel: 3.x
+    prerelease: beta
 
 preset: "conventionalcommits"
 

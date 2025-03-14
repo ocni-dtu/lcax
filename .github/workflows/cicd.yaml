@@ -48,31 +48,31 @@ jobs:
     secrets:
       cargo_token: ${{ secrets.CARGO_TOKEN }}
 
-  releaseDocs:
-    needs:
-      - createRelease
-    uses: ./.github/workflows/release_docs.yaml
-    secrets:
-      access_key: ${{ secrets.ACCESS_KEY }}
-      secret_key: ${{ secrets.SECRET_KEY }}
-
-  publishPython:
-    uses: ./.github/workflows/publish_python.yaml
-    needs:
-      - createRelease
-    secrets:
-      pypi_token: ${{ secrets.PYPI_TOKEN }}
-    with:
-      release_version: ${{ needs.createRelease.outputs.version }}
-
-  publishJavascript:
-    uses: ./.github/workflows/publish_javascript.yaml
-    needs:
-      - createRelease
-    secrets:
-      npm_token: ${{ secrets.NPM_TOKEN }}
-    with:
-      release_version: ${{ needs.createRelease.outputs.version }}
+#  releaseDocs:
+#    needs:
+#      - createRelease
+#    uses: ./.github/workflows/release_docs.yaml
+#    secrets:
+#      access_key: ${{ secrets.ACCESS_KEY }}
+#      secret_key: ${{ secrets.SECRET_KEY }}
+#
+#  publishPython:
+#    uses: ./.github/workflows/publish_python.yaml
+#    needs:
+#      - createRelease
+#    secrets:
+#      pypi_token: ${{ secrets.PYPI_TOKEN }}
+#    with:
+#      release_version: ${{ needs.createRelease.outputs.version }}
+#
+#  publishJavascript:
+#    uses: ./.github/workflows/publish_javascript.yaml
+#    needs:
+#      - createRelease
+#    secrets:
+#      npm_token: ${{ secrets.NPM_TOKEN }}
+#    with:
+#      release_version: ${{ needs.createRelease.outputs.version }}
 
 #  publishCSharp:
 #    uses: ./.github/workflows/publish_csharp.yaml
