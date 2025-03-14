@@ -42,4 +42,3 @@ plugins:
         - "CHANGELOG.md"
         - "Cargo.toml"
         - "Cargo.lock"
-#        - "packages/python/src/lcax/pydantic.py"
