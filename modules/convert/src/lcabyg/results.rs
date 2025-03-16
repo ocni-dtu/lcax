@@ -62,7 +62,7 @@ pub enum InstanceModelType {
 #[derive(Serialize, Deserialize, FieldAccess)]
 #[serde(rename_all = "PascalCase")]
 pub struct ModelResult {
-    #[serde(alias = "a1to3")]
+    #[serde(alias = "A1to3")]
     pub a1a3: Option<YearResult>,
     pub b4: Option<YearResult>,
     pub b6: Option<YearResult>,
