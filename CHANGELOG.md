@@ -1,3 +1,9 @@
+## [3.0.0-beta.3](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2025-03-16)
+
+### Bug Fixes
+
+* **convert:** Added more LCAbyg test examples ([#106](https://github.com/ocni-dtu/lcax/issues/106)) ([007c08d](https://github.com/ocni-dtu/lcax/commit/007c08d278900dc9ca79e7f113229ab06fca7c6f))
+
 ## [3.0.0-beta.2](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2025-03-14)
 
 ### Bug Fixes
