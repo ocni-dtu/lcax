@@ -230,6 +230,16 @@ export function __wbindgen_string_get(arg0, arg1) {
     getDataViewMemory0().setInt32(arg0 + 4 * 0, ptr1, true);
 };
 
+export function __wbg_getTime_91058879093a1589(arg0) {
+    const ret = getObject(arg0).getTime();
+    return ret;
+};
+
+export function __wbg_new0_65387337a95cf44d() {
+    const ret = new Date();
+    return addHeapObject(ret);
+};
+
 export function __wbg_parse_52202f117ec9ecfa() { return handleError(function (arg0, arg1) {
     const ret = JSON.parse(getStringFromWasm0(arg0, arg1));
     return addHeapObject(ret);

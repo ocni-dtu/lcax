@@ -24,6 +24,13 @@ pub enum Node {
     Operation(Operation),
     ProductTransportRoot(ProductTransportRoot),
     Project(Project),
+    Transport(Transport),
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub struct Transport {
+    pub id: String,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -206,6 +213,22 @@ pub struct Languages {
     pub german: Option<String>,
     pub norwegian: Option<String>,
     pub danish: Option<String>,
+}
+
+impl Languages {
+    pub fn get(&self) -> String {
+        if self.english != None {
+            self.english.clone().unwrap()
+        } else if self.danish != None {
+            self.danish.clone().unwrap()
+        } else if self.german != None {
+            self.german.clone().unwrap()
+        } else if self.norwegian != None {
+            self.norwegian.clone().unwrap()
+        } else {
+            "".to_string()
+        }
+    }
 }
 
 #[derive(Serialize, Deserialize, Clone)]

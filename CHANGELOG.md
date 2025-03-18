@@ -1,3 +1,30 @@
+## [3.0.0-beta.3](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2025-03-16)
+
+### Bug Fixes
+
+* **convert:** Added more LCAbyg test examples ([#106](https://github.com/ocni-dtu/lcax/issues/106)) ([007c08d](https://github.com/ocni-dtu/lcax/commit/007c08d278900dc9ca79e7f113229ab06fca7c6f))
+
+## [3.0.0-beta.2](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2025-03-14)
+
+### Bug Fixes
+
+* fixing cargo build ([229b635](https://github.com/ocni-dtu/lcax/commit/229b6357cbf07e097bbeb4cc6eaad6c4f7a1f03d))
+
+## [3.0.0-beta.1](https://github.com/ocni-dtu/lcax/compare/v2.6.4...v3.0.0-beta.1) (2025-03-14)
+
+### ⚠ BREAKING CHANGES
+
+* Bumping to v3.0
+
+### Features
+
+* Added software version ([#90](https://github.com/ocni-dtu/lcax/issues/90)) ([96dd984](https://github.com/ocni-dtu/lcax/commit/96dd984534a88a13c71e3671b2d451fb3c624e1c))
+* Renamed TechFlow to GenericData ([#91](https://github.com/ocni-dtu/lcax/issues/91)) ([60b8e20](https://github.com/ocni-dtu/lcax/commit/60b8e202ea948e36bbf56ad2f4ee4e5cc57d2208))
+
+### Continuous Integration
+
+* semantic-release v3.0-beta ([4e1376a](https://github.com/ocni-dtu/lcax/commit/4e1376a9a71598467476a4ecc291ff70aa5d3ac7))
+
 ## [2.6.4](https://github.com/ocni-dtu/lcax/compare/v2.6.3...v2.6.4) (2025-01-24)
 
 ### Bug Fixes

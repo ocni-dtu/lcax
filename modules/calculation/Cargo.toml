@@ -15,7 +15,7 @@ name = "lcax_calculation"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-lcax_models = { path = "../models", version = ">2.0.0" }
+lcax_models = { path = "../models", version = ">=3.0.0-beta.1" }
 
 [dev-dependencies]
 serde_json = "1.0.116"

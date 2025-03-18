@@ -41,6 +41,7 @@ type Edge = (EdgeType, String, String);
 pub enum NodesAndEdges {
     Node(Node),
     Edge(Edge),
+    Secret(Vec<i32>),
 }
 
 #[derive(Deserialize, Serialize, PartialEq)]
@@ -108,6 +109,7 @@ fn lcax_from_lcabyg(
                 }
                 _ => edges.append(&mut vec![edge]),
             },
+            _ => continue,
         }
     }
 
@@ -224,16 +226,17 @@ fn construct_products(
     let mut lcax_products = vec![];
 
     for construction in constructions {
-        let construction_edges = connections.get(&construction.id).unwrap();
+        let construction_edges = match connections.get(&construction.id) {
+            Some(edges) => edges,
+            None => continue,
+        };
         let mut _products = vec![];
         for edge in &*construction_edges {
             let product_id = &edge.2;
-            _products.push(
-                products
-                    .iter()
-                    .find(|_product| _product.id == *product_id)
-                    .unwrap(),
-            )
+            match products.iter().find(|_product| _product.id == *product_id) {
+                Some(_product) => _products.push(_product),
+                None => {}
+            };
         }
         lcax_products.push(Product::from_lcabyg((
             &connections,
@@ -325,6 +328,9 @@ fn construct_impact_data(project_completion_year: &u16, energy_type_id: &str) ->
         "e967c8e7-e73d-47f3-8cba-19569ad76b4d" => {
             get_energy_data(project_completion_year, get_electricity_data())
         }
+        "84ddd0e5-85a1-48cb-ab90-aa19b3359458" => {
+            get_energy_data(project_completion_year, get_electricity_data())
+        }
         "6cdeb050-90e5-46b3-89ad-bfcc8e246b47" => {
             get_energy_data(project_completion_year, get_district_heating_data())
         }
@@ -347,9 +353,14 @@ fn construct_epds(
         let mut _stages = vec![];
         for edge in &*product_edges {
             let stage_id = &edge.2;
-            _stages.push(stages.iter().find(|s| s.id == *stage_id).unwrap())
+            match stages.iter().find(|s| s.id == *stage_id) {
+                Some(_stage) => _stages.push(_stage),
+                None => {}
+            }
         }
-        epds.push(EPD::from_lcabyg((&product, &_stages)))
+        if !_stages.is_empty() {
+            epds.push(EPD::from_lcabyg((&product, &_stages)))
+        }
     }
 
     epds
@@ -538,9 +549,9 @@ impl
 
         Self {
             id: element.id.clone().to_string(),
-            name: element.name.english.clone().unwrap(),
+            name: element.name.get(),
             description: Some("".to_string()),
-            comment: element.comment.english.clone(),
+            comment: Some(element.comment.get()),
             quantity,
             unit: Unit::M,
             classification: Some(vec![Classification::from_lcabyg(category_id)]),
@@ -641,7 +652,7 @@ impl
         }
         Self {
             id: construction.id.clone().to_string(),
-            name: construction.name.english.clone().unwrap(),
+            name: construction.name.get(),
             description: Some("".to_string()),
             reference_service_life,
             quantity,
@@ -719,12 +730,12 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
         let node = &stages[0];
         Self {
             id: product.id.to_string(),
-            name: product.name.english.clone().unwrap(),
+            name: product.name.get(),
             declared_unit: Unit::from(&node.stage_unit),
             version: node.external_version.clone(),
             published_date: Default::default(),
             valid_until: NaiveDate::parse_from_str(&node.valid_to, "%Y-%m-%d").unwrap(),
-            comment: node.comment.english.clone(),
+            comment: Some(node.comment.get()),
             source: Some(Source {
                 name: node.external_source.clone(),
                 url: Some(node.external_url.clone()),
