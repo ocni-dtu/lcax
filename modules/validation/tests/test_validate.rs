@@ -1,7 +1,7 @@
 use std::fs;
 use std::path::Path;
 use serde::Serialize;
-use valitron::available::{Gt, Range, Required, StartWith};
+use valitron::available::{Gt, Range, Required, StartWith, Contains};
 use valitron::{RuleExt, Validator};
 use lcax_models::project::{Project as LCAxProject};
 use lcax_validation::model::ValidationSchema;
@@ -59,6 +59,29 @@ fn test_validate_pure() -> Result<(), String> {
         introduce: "".to_string(),
         age: Some(18),
         weight: 20.0,
+    };
+
+    let res = validator.validate(person).unwrap_err();
+    println!("{:?}", res);
+    assert_eq!(res.len(), 1);
+    Ok(())
+}
+
+#[test]
+fn test_validate_list() -> Result<(), String> {
+    #[derive(Serialize, Debug)]
+    struct Person {
+        name: String,
+        hobbies: Vec<String>
+    }
+
+    let validator = Validator::new()
+        .rule("hobbies", Required.and(Contains("Tennis".to_string())));
+
+
+    let person = Person {
+        name: "Michael".to_string(),
+        hobbies: vec!["Piano".to_string(), "Tennis".to_string()]
     };
 
     let res = validator.validate(person).unwrap_err();
