@@ -1,13 +1,13 @@
 use lcax_models::assembly::Assembly as LCAxAssembly;
 use lcax_models::life_cycle_base::{
-    ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleStage, NewResults,
+    ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule, NewResults,
 };
 use lcax_models::product::{ImpactData, Product as LCAxProduct, Product};
 use lcax_models::project::Project as LCAxProject;
 
 pub struct CalculationOptions {
     pub reference_study_period: Option<u8>,
-    pub life_cycle_stages: Vec<LifeCycleStage>,
+    pub life_cycle_modules: Vec<LifeCycleModule>,
     pub impact_categories: Vec<ImpactCategoryKey>,
     pub overwrite_existing_results: bool,
 }
@@ -20,7 +20,7 @@ pub fn calculate_project(
         Some(options) => options,
         None => CalculationOptions {
             reference_study_period: project.reference_study_period.clone(),
-            life_cycle_stages: project.life_cycle_stages.clone(),
+            life_cycle_modules: project.life_cycle_modules.clone(),
             impact_categories: project.impact_categories.clone(),
             overwrite_existing_results: true,
         },
@@ -31,7 +31,7 @@ pub fn calculate_project(
     }
 
     let mut project_results =
-        Impacts::new_results(&_options.impact_categories, &_options.life_cycle_stages);
+        Impacts::new_results(&_options.impact_categories, &_options.life_cycle_modules);
     for assembly in &mut project.assemblies {
         let results = calculate_assembly(assembly.resolve_mut()?, &_options)?;
         add_results(&mut project_results, &results);
@@ -49,7 +49,7 @@ pub fn calculate_assembly(
     }
 
     let mut assembly_results =
-        Impacts::new_results(&options.impact_categories, &options.life_cycle_stages);
+        Impacts::new_results(&options.impact_categories, &options.life_cycle_modules);
 
     for product in &mut assembly.products {
         let results = calculate_product(product.resolve_mut()?, options)?;
@@ -57,9 +57,9 @@ pub fn calculate_assembly(
     }
 
     for impact_category_key in &options.impact_categories {
-        for life_cycle_stage in &options.life_cycle_stages {
+        for life_cycle_module in &options.life_cycle_modules {
             let value = match assembly_results.get(impact_category_key) {
-                Some(_impact) => match _impact.get(life_cycle_stage) {
+                Some(_impact) => match _impact.get(life_cycle_module) {
                     Some(value) => match value {
                         Some(value) => value,
                         None => &0.0,
@@ -71,7 +71,7 @@ pub fn calculate_assembly(
             *assembly_results
                 .get_mut(impact_category_key)
                 .unwrap()
-                .get_mut(life_cycle_stage)
+                .get_mut(life_cycle_module)
                 .unwrap() = Some(value * assembly.quantity)
         }
     }
@@ -91,17 +91,17 @@ pub fn calculate_product(
 
     for impact_category_key in &options.impact_categories {
         let mut impact_category = ImpactCategory::new();
-        for life_cycle_stage in &options.life_cycle_stages {
+        for life_cycle_module in &options.life_cycle_modules {
             for impact_data in &product.impact_data {
                 match impact_data {
                     ImpactData::EPD(epd) => {
                         let impacts = &epd.resolve()?.impacts;
                         impact_category.insert(
-                            life_cycle_stage.clone(),
+                            life_cycle_module.clone(),
                             Some(add_impact_result(
                                 &impacts,
                                 impact_category_key,
-                                life_cycle_stage,
+                                life_cycle_module,
                                 product,
                             )),
                         );
@@ -109,11 +109,11 @@ pub fn calculate_product(
                     ImpactData::GenericData(data) => {
                         let impacts = data.resolve()?.impacts;
                         impact_category.insert(
-                            life_cycle_stage.clone(),
+                            life_cycle_module.clone(),
                             Some(add_impact_result(
                                 &impacts,
                                 impact_category_key,
-                                life_cycle_stage,
+                                life_cycle_module,
                                 product,
                             )),
                         );
@@ -130,11 +130,11 @@ pub fn calculate_product(
 fn add_impact_result(
     impacts: &Impacts,
     impact_category_key: &ImpactCategoryKey,
-    life_cycle_stage: &LifeCycleStage,
+    life_cycle_module: &LifeCycleModule,
     product: &Product,
 ) -> f64 {
     match impacts.get(impact_category_key) {
-        Some(impact) => match impact.get(life_cycle_stage) {
+        Some(impact) => match impact.get(life_cycle_module) {
             Some(value) => value.unwrap() * product.quantity,
             None => 0.0,
         },
@@ -148,15 +148,15 @@ fn add_results(existing_results: &mut Impacts, new_results: &Impacts) {
         .for_each(|(impact_category_key, impact_category)| {
             impact_category
                 .iter()
-                .for_each(|(life_cycle_stage, value)| {
+                .for_each(|(life_cycle_module, value)| {
                     match existing_results.get_mut(impact_category_key) {
                         Some(impact_result) => {
-                            match impact_result.get_mut(life_cycle_stage) {
+                            match impact_result.get_mut(life_cycle_module) {
                                 Some(life_cycle_result) => {
                                     *life_cycle_result = Some(life_cycle_result.unwrap() + value.unwrap());
                                 }
                                 None => {
-                                    impact_result.insert(life_cycle_stage.clone(), Some(value.unwrap()));
+                                    impact_result.insert(life_cycle_module.clone(), Some(value.unwrap()));
                                 }
                             }
                         }

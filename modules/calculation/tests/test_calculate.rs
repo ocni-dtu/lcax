@@ -7,7 +7,7 @@ use lcax_calculation::calculate::{
 };
 use lcax_models::assembly::AssemblyReference;
 use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product};
 use lcax_models::project::Project;
 use lcax_models::shared::Unit;
@@ -39,7 +39,7 @@ fn test_calculate_assembly() -> Result<(), String> {
     };
     let options = CalculationOptions {
         reference_study_period: project.reference_study_period.clone(),
-        life_cycle_stages: project.life_cycle_stages.clone(),
+        life_cycle_modules: project.life_cycle_modules.clone(),
         impact_categories: project.impact_categories.clone(),
     };
 
@@ -72,7 +72,7 @@ fn test_calculate_product() -> Result<(), String> {
             conversions: None,
             impacts: HashMap::from([(
                 ImpactCategoryKey::GWP,
-                ImpactCategory::from([(LifeCycleStage::A1A3, Some(3.0))]),
+                ImpactCategory::from([(LifeCycleModule::A1A3, Some(3.0))]),
             )]),
             meta_data: None,
         }))],
@@ -85,12 +85,12 @@ fn test_calculate_product() -> Result<(), String> {
 
     let options = lcax_calculation::calculate::CalculationOptions {
         reference_study_period: None,
-        life_cycle_stages: vec![LifeCycleStage::A1A3],
+        life_cycle_modules: vec![LifeCycleModule::A1A3],
         impact_categories: vec![ImpactCategoryKey::GWP],
     };
     let result = calculate_product(&mut product, &options).unwrap();
     assert_eq!(
-        result[&ImpactCategoryKey::GWP][&LifeCycleStage::A1A3],
+        result[&ImpactCategoryKey::GWP][&LifeCycleModule::A1A3],
         Some(15.0)
     );
     Ok(())

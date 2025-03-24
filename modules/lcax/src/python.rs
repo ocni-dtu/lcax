@@ -6,7 +6,7 @@ use lcax_core::country::Country;
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
 use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
-use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference, Transport};
 use lcax_models::project::{Location, Project, ProjectInfo, ProjectPhase, SoftwareInfo};
 use lcax_models::shared::{Conversion, Reference, Source, Unit};
@@ -62,7 +62,7 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<Country>()?;
     m.add_class::<SubType>()?;
     m.add_class::<ImpactCategoryKey>()?;
-    m.add_class::<LifeCycleStage>()?;
+    m.add_class::<LifeCycleModule>()?;
     m.add_class::<Project>()?;
     m.add_class::<Location>()?;
     m.add_class::<ProjectInfo>()?;

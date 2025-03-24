@@ -104,7 +104,7 @@ export interface Project {
     lciaMethod: string | null;
     classificationSystems: string[] | null;
     referenceStudyPeriod: number | null;
-    lifeCycleStages: LifeCycleStage[];
+    lifeCycleModules: LifeCycleModule[];
     impactCategories: ImpactCategoryKey[];
     assemblies: AssemblyReference[];
     results: Impacts | null;
@@ -133,7 +133,7 @@ export type ImpactData = EPDReference | GenericDataReference;
 export interface Transport {
     id: string;
     name: string;
-    lifeCycleStages: LifeCycleStage[];
+    lifeCycleStages: LifeCycleModule[];
     distance: number;
     distanceUnit: Unit;
     impactData: ImpactData;
@@ -197,7 +197,7 @@ export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m
 
 export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
 
-export type LifeCycleStage = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
+export type LifeCycleModule = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
 
 export type EPDReference = ({ type: "EPD" } & EPD) | ({ type: "reference" } & Reference);
 

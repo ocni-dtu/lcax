@@ -8,7 +8,7 @@ use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
 use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{
     AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
@@ -487,7 +487,7 @@ impl
                     building_users: Some(building.person_count as u32),
                 },
             }),
-            life_cycle_stages: vec![],
+            life_cycle_modules: vec![],
             owner: Some(project.owner.to_string()),
             format_version: get_version(),
             lcia_method: None,
@@ -692,11 +692,11 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
                 } else if category_name == "pert" {
                     category_name = String::from("per");
                 }
-                match impact_category.get(&LifeCycleStage::try_from(stage.stage.as_str()).unwrap())
+                match impact_category.get(&LifeCycleModule::try_from(stage.stage.as_str()).unwrap())
                 {
                     None => {
                         impact_category.insert(
-                            LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                            LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                             Some(
                                 stage
                                     .indicators
@@ -716,11 +716,11 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
                             .unwrap();
                         match stage_value {
                             None => impact_category.insert(
-                                LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                                LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                                 Some(value),
                             ),
                             Some(_stage_value) => impact_category.insert(
-                                LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                                LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                                 Some(value + _stage_value),
                             ),
                         };
@@ -788,7 +788,7 @@ impl FromLCAByg<(&str, &LCAbygResults)> for Impacts {
                                     .entry(ImpactCategoryKey::from_lcabyg(category_key))
                                     .or_insert_with(HashMap::new)
                                     .insert(
-                                        LifeCycleStage::try_from(stage_key).unwrap(),
+                                        LifeCycleModule::try_from(stage_key).unwrap(),
                                         Some(*value),
                                     );
                             }

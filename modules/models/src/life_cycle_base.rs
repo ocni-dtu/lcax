@@ -13,7 +13,7 @@ use tsify::Tsify;
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]
-pub enum LifeCycleStage {
+pub enum LifeCycleModule {
     A0,
     A1A3,
     A4,
@@ -33,54 +33,54 @@ pub enum LifeCycleStage {
     D,
 }
 
-impl fmt::Display for LifeCycleStage {
+impl fmt::Display for LifeCycleModule {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
-            LifeCycleStage::A0 => write!(f, "A0"),
-            LifeCycleStage::A1A3 => write!(f, "A1A3"),
-            LifeCycleStage::A4 => write!(f, "A4"),
-            LifeCycleStage::A5 => write!(f, "A5"),
-            LifeCycleStage::B1 => write!(f, "B1"),
-            LifeCycleStage::B2 => write!(f, "B2"),
-            LifeCycleStage::B3 => write!(f, "B3"),
-            LifeCycleStage::B4 => write!(f, "B4"),
-            LifeCycleStage::B5 => write!(f, "B5"),
-            LifeCycleStage::B6 => write!(f, "B6"),
-            LifeCycleStage::B7 => write!(f, "B7"),
-            LifeCycleStage::B8 => write!(f, "B8"),
-            LifeCycleStage::C1 => write!(f, "C1"),
-            LifeCycleStage::C2 => write!(f, "C2"),
-            LifeCycleStage::C3 => write!(f, "C3"),
-            LifeCycleStage::C4 => write!(f, "C4"),
-            LifeCycleStage::D => write!(f, "D"),
+            LifeCycleModule::A0 => write!(f, "A0"),
+            LifeCycleModule::A1A3 => write!(f, "A1A3"),
+            LifeCycleModule::A4 => write!(f, "A4"),
+            LifeCycleModule::A5 => write!(f, "A5"),
+            LifeCycleModule::B1 => write!(f, "B1"),
+            LifeCycleModule::B2 => write!(f, "B2"),
+            LifeCycleModule::B3 => write!(f, "B3"),
+            LifeCycleModule::B4 => write!(f, "B4"),
+            LifeCycleModule::B5 => write!(f, "B5"),
+            LifeCycleModule::B6 => write!(f, "B6"),
+            LifeCycleModule::B7 => write!(f, "B7"),
+            LifeCycleModule::B8 => write!(f, "B8"),
+            LifeCycleModule::C1 => write!(f, "C1"),
+            LifeCycleModule::C2 => write!(f, "C2"),
+            LifeCycleModule::C3 => write!(f, "C3"),
+            LifeCycleModule::C4 => write!(f, "C4"),
+            LifeCycleModule::D => write!(f, "D"),
         }
     }
 }
 
-impl TryFrom<&str> for LifeCycleStage {
+impl TryFrom<&str> for LifeCycleModule {
     type Error = String;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         match value.to_lowercase().as_str() {
-            "a0" => Ok(LifeCycleStage::A0),
-            "a1to3" => Ok(LifeCycleStage::A1A3),
-            "a1a3" => Ok(LifeCycleStage::A1A3),
-            "a1-3" => Ok(LifeCycleStage::A1A3),
-            "a4" => Ok(LifeCycleStage::A4),
-            "a5" => Ok(LifeCycleStage::A5),
-            "b1" => Ok(LifeCycleStage::B1),
-            "b2" => Ok(LifeCycleStage::B2),
-            "b3" => Ok(LifeCycleStage::B3),
-            "b4" => Ok(LifeCycleStage::B4),
-            "b5" => Ok(LifeCycleStage::B5),
-            "b6" => Ok(LifeCycleStage::B6),
-            "b7" => Ok(LifeCycleStage::B7),
-            "b8" => Ok(LifeCycleStage::B8),
-            "c1" => Ok(LifeCycleStage::C1),
-            "c2" => Ok(LifeCycleStage::C2),
-            "c3" => Ok(LifeCycleStage::C3),
-            "c4" => Ok(LifeCycleStage::C4),
-            "d" => Ok(LifeCycleStage::D),
+            "a0" => Ok(LifeCycleModule::A0),
+            "a1to3" => Ok(LifeCycleModule::A1A3),
+            "a1a3" => Ok(LifeCycleModule::A1A3),
+            "a1-3" => Ok(LifeCycleModule::A1A3),
+            "a4" => Ok(LifeCycleModule::A4),
+            "a5" => Ok(LifeCycleModule::A5),
+            "b1" => Ok(LifeCycleModule::B1),
+            "b2" => Ok(LifeCycleModule::B2),
+            "b3" => Ok(LifeCycleModule::B3),
+            "b4" => Ok(LifeCycleModule::B4),
+            "b5" => Ok(LifeCycleModule::B5),
+            "b6" => Ok(LifeCycleModule::B6),
+            "b7" => Ok(LifeCycleModule::B7),
+            "b8" => Ok(LifeCycleModule::B8),
+            "c1" => Ok(LifeCycleModule::C1),
+            "c2" => Ok(LifeCycleModule::C2),
+            "c3" => Ok(LifeCycleModule::C3),
+            "c4" => Ok(LifeCycleModule::C4),
+            "d" => Ok(LifeCycleModule::D),
             value => Err(format!("Unknown lifecycle stage: '{}'", value)),
         }
     }
@@ -185,20 +185,20 @@ impl fmt::Display for ImpactCategoryKey {
     }
 }
 
-pub type ImpactCategory = HashMap<LifeCycleStage, Option<f64>>;
+pub type ImpactCategory = HashMap<LifeCycleModule, Option<f64>>;
 
 pub type Impacts = HashMap<ImpactCategoryKey, ImpactCategory>;
 
 pub trait NewResults {
     fn new_results(
         impact_categories: &Vec<ImpactCategoryKey>,
-        life_cycle_stage: &Vec<LifeCycleStage>,
+        life_cycle_stage: &Vec<LifeCycleModule>,
     ) -> Self;
 }
 impl NewResults for Impacts {
     fn new_results(
         impact_categories: &Vec<ImpactCategoryKey>,
-        life_cycle_stage: &Vec<LifeCycleStage>,
+        life_cycle_stage: &Vec<LifeCycleModule>,
     ) -> Self {
         let mut results = HashMap::new();
         impact_categories.iter().for_each(|impact_category_key| {

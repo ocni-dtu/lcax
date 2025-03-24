@@ -7,7 +7,7 @@ use tsify::Tsify;
 
 use crate::epd::{EPDReference, Standard, SubType};
 use crate::generic_impact_data::GenericDataReference;
-use crate::life_cycle_base::{Impacts, LifeCycleStage};
+use crate::life_cycle_base::{Impacts, LifeCycleModule};
 use crate::shared::{Conversion, MetaData, Reference, Source, Unit};
 use lcax_core::country::Country;
 #[cfg(feature = "pybindings")]
@@ -124,7 +124,7 @@ impl ProductReference {
 pub struct Transport {
     pub id: String,
     pub name: String,
-    pub life_cycle_stages: Vec<LifeCycleStage>,
+    pub life_cycle_modules: Vec<LifeCycleModule>,
     pub distance: f64,
     pub distance_unit: Unit,
     pub impact_data: ImpactData,
