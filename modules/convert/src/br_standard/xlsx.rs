@@ -1,24 +1,34 @@
 use crate::br_standard::models::{BRComponent, BREnvironmentalData, BROperation, BRProjectInfo};
+use crate::br_standard::parse::parse_br_standard;
 use crate::br_standard::translations::GENERAL_INFORMATION_TRANSLATION;
 use calamine::{open_workbook, open_workbook_from_rs, Data, DataType, Error, Reader, Xlsx};
-use lcax_models::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleModule};
+use lcax_models::project::Project;
 use std::collections::HashMap;
 use std::io::{Cursor, Seek};
 use std::path::PathBuf;
-use lcax_models::project::Project;
-use crate::br_standard::parse::parse_br_standard;
 
 pub fn br_standard_from_file(file_path: PathBuf) -> Result<Project, String> {
     let (project_info, components, operations) = read_br_standard_from_file(&file_path).unwrap();
     let file_name = file_path.file_name().unwrap().to_str().unwrap();
-    Ok(parse_br_standard(file_name, &project_info, &components, &operations)?)
+    Ok(parse_br_standard(
+        file_name,
+        &project_info,
+        &components,
+        &operations,
+    )?)
 }
 
-pub fn read_br_standard<T>(workbook: &mut Xlsx<T>
-) -> Result<(BRProjectInfo, Vec<BRComponent>, Vec<BROperation>), Error> where T: Seek, T: std::io::Read {
+pub fn read_br_standard<T>(
+    workbook: &mut Xlsx<T>,
+) -> Result<(BRProjectInfo, Vec<BRComponent>, Vec<BROperation>), Error>
+where
+    T: Seek,
+    T: std::io::Read,
+{
     let project_info = read_project_info(workbook)?;
-    let components = read_components(workbook)?;
-    let operations = read_operations(workbook)?;
+    let components = read_components(workbook, &project_info.gross_floor_area, &50.0)?;
+    let operations = read_operations(workbook, &50.0)?;
     Ok((project_info, components, operations))
 }
 
@@ -37,7 +47,11 @@ pub fn read_br_standard_from_bytes(
     Ok(read_br_standard(&mut workbook)?)
 }
 
-fn read_project_info<T>(workbook: &mut Xlsx<T>) -> Result<BRProjectInfo, Error> where T: Seek, T: std::io::Read {
+fn read_project_info<T>(workbook: &mut Xlsx<T>) -> Result<BRProjectInfo, Error>
+where
+    T: Seek,
+    T: std::io::Read,
+{
     let mut project_info_map: HashMap<&str, Data> = HashMap::new();
 
     for name in vec!["General information", "Generel information"] {
@@ -190,7 +204,14 @@ fn read_project_info<T>(workbook: &mut Xlsx<T>) -> Result<BRProjectInfo, Error> 
     })
 }
 
-fn read_operations<T>(workbook: &mut Xlsx<T>) -> Result<Vec<BROperation>, Error> where T: Seek, T: std::io::Read {
+fn read_operations<T>(
+    workbook: &mut Xlsx<T>,
+    reference_service_life: &f64,
+) -> Result<Vec<BROperation>, Error>
+where
+    T: Seek,
+    T: std::io::Read,
+{
     let mut operations = vec![];
 
     if let Ok(r) = workbook.worksheet_range("Drift") {
@@ -215,7 +236,13 @@ fn read_operations<T>(workbook: &mut Xlsx<T>) -> Result<Vec<BROperation>, Error>
                     expiration_data: row[10].to_string(),
                     standard: row[11].to_string(),
                 },
-                results: Impacts::from_br((row, 14)),
+                results: HashMap::from([(
+                    ImpactCategoryKey::GWP,
+                    HashMap::from([(
+                        LifeCycleModule::B6,
+                        Some(row[13].as_f64().unwrap_or(0.0) * reference_service_life),
+                    )]),
+                )]),
             })
         }
     }
@@ -226,8 +253,10 @@ trait FromBR<T> {
     fn from_br(_: T) -> Self;
 }
 
-impl FromBR<(&[Data], i32)> for Impacts {
-    fn from_br((row, start_index): (&[Data], i32)) -> Self {
+impl FromBR<(&[Data], i32, &f64, &f64)> for Impacts {
+    fn from_br(
+        (row, start_index, gross_floor_area, reference_service_life): (&[Data], i32, &f64, &f64),
+    ) -> Self {
         let categories = [
             ImpactCategoryKey::GWP,
             ImpactCategoryKey::GWP_FOS,
@@ -244,21 +273,21 @@ impl FromBR<(&[Data], i32)> for Impacts {
             ImpactCategoryKey::WDP,
         ];
         let stages = [
-            LifeCycleStage::A1A3,
-            LifeCycleStage::A4,
-            LifeCycleStage::A5,
-            LifeCycleStage::B1,
-            LifeCycleStage::B2,
-            LifeCycleStage::B3,
-            LifeCycleStage::B4,
-            LifeCycleStage::B5,
-            LifeCycleStage::B6,
-            LifeCycleStage::B7,
-            LifeCycleStage::C1,
-            LifeCycleStage::C2,
-            LifeCycleStage::C3,
-            LifeCycleStage::C4,
-            LifeCycleStage::D,
+            LifeCycleModule::A1A3,
+            LifeCycleModule::A4,
+            LifeCycleModule::A5,
+            LifeCycleModule::B1,
+            LifeCycleModule::B2,
+            LifeCycleModule::B3,
+            LifeCycleModule::B4,
+            LifeCycleModule::B5,
+            LifeCycleModule::B6,
+            LifeCycleModule::B7,
+            LifeCycleModule::C1,
+            LifeCycleModule::C2,
+            LifeCycleModule::C3,
+            LifeCycleModule::C4,
+            LifeCycleModule::D,
         ];
         let mut results = HashMap::new();
         for (c_index, category) in categories.iter().enumerate() {
@@ -267,7 +296,10 @@ impl FromBR<(&[Data], i32)> for Impacts {
                 let index = start_index + (c_index as i32 * 15) + s_index as i32;
                 let data = &row[index as usize];
                 if !data.is_empty() {
-                    result_category.insert(stage.clone(), data.as_f64());
+                    result_category.insert(
+                        stage.clone(),
+                        Some(data.as_f64().unwrap() * gross_floor_area * reference_service_life),
+                    );
                 }
             }
             results.insert(category.clone(), result_category);
@@ -276,7 +308,15 @@ impl FromBR<(&[Data], i32)> for Impacts {
     }
 }
 
-fn read_components<T>(workbook: &mut Xlsx<T>) -> Result<Vec<BRComponent>, Error> where T: Seek, T: std::io::Read {
+fn read_components<T>(
+    workbook: &mut Xlsx<T>,
+    gross_floor_area: &f64,
+    reference_service_life: &f64,
+) -> Result<Vec<BRComponent>, Error>
+where
+    T: Seek,
+    T: std::io::Read,
+{
     let mut components = vec![];
 
     for name in vec!["Bygningsdele", "BR18 vejledning"] {
@@ -315,7 +355,12 @@ fn read_components<T>(workbook: &mut Xlsx<T>) -> Result<Vec<BRComponent>, Error>
                             expiration_data: row[24].to_string(),
                             standard: row[25].to_string(),
                         },
-                        results: Impacts::from_br((row, 27)),
+                        results: Impacts::from_br((
+                            row,
+                            28,
+                            gross_floor_area,
+                            reference_service_life,
+                        )),
                     })
                 }
             }

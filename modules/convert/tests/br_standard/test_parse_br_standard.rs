@@ -7,9 +7,7 @@ use std::path::Path;
 #[test]
 fn test_parse_br_standard() -> Result<(), String> {
     let root_dir = Path::new(env!("CARGO_MANIFEST_DIR"));
-    let file_path =
-        root_dir.join("tests/br_standard/datafixtures/914a0b0b-4b7f-498f-9349-16cf0d644766.xlsx");
-    //let file_path = root_dir.join("tests/br_standard/datafixtures/Traditionelt_Etagehus.xlsx");
+    let file_path = root_dir.join("tests/br_standard/datafixtures/Traditionelt_Etagehus.xlsx");
 
     let (project_info, components, operations) = read_br_standard_from_file(&file_path).unwrap();
     let project = parse_br_standard(
@@ -21,7 +19,7 @@ fn test_parse_br_standard() -> Result<(), String> {
 
     assert!(!project.id.is_empty());
     assert!(!project.name.is_empty());
-    assert!(!project.results.unwrap().is_empty());
+    assert!(!project.results.as_ref().unwrap().is_empty());
 
     // Assert Assembly Info
     assert!(!project.assemblies.is_empty());

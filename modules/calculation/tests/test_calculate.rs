@@ -41,6 +41,7 @@ fn test_calculate_assembly() -> Result<(), String> {
         reference_study_period: project.reference_study_period.clone(),
         life_cycle_modules: project.life_cycle_modules.clone(),
         impact_categories: project.impact_categories.clone(),
+        overwrite_existing_results: true,
     };
 
     calculate_assembly(assembly, &options)?;
@@ -87,6 +88,7 @@ fn test_calculate_product() -> Result<(), String> {
         reference_study_period: None,
         life_cycle_modules: vec![LifeCycleModule::A1A3],
         impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
     };
     let result = calculate_product(&mut product, &options).unwrap();
     assert_eq!(

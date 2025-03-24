@@ -150,18 +150,19 @@ fn add_results(existing_results: &mut Impacts, new_results: &Impacts) {
                 .iter()
                 .for_each(|(life_cycle_module, value)| {
                     match existing_results.get_mut(impact_category_key) {
-                        Some(impact_result) => {
-                            match impact_result.get_mut(life_cycle_module) {
-                                Some(life_cycle_result) => {
-                                    *life_cycle_result = Some(life_cycle_result.unwrap() + value.unwrap());
-                                }
-                                None => {
-                                    impact_result.insert(life_cycle_module.clone(), Some(value.unwrap()));
-                                }
+                        Some(impact_result) => match impact_result.get_mut(life_cycle_module) {
+                            Some(life_cycle_result) => {
+                                *life_cycle_result =
+                                    Some(life_cycle_result.unwrap() + value.unwrap());
                             }
-                        }
+                            None => {
+                                impact_result
+                                    .insert(life_cycle_module.clone(), Some(value.unwrap()));
+                            }
+                        },
                         None => {
-                            existing_results.insert(impact_category_key.clone(), impact_category.clone());
+                            existing_results
+                                .insert(impact_category_key.clone(), impact_category.clone());
                         }
                     }
                 });

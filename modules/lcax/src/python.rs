@@ -1,3 +1,4 @@
+use std::path::PathBuf;
 use lcax_calculation::calculate::calculate_project as _calculate_project;
 use lcax_convert::lcabyg::parse::LCABygResult;
 use lcax_convert::lcabyg::serialize::to_lcabyg as _to_lcabyg;
@@ -12,6 +13,7 @@ use lcax_models::project::{Location, Project, ProjectInfo, ProjectPhase, Softwar
 use lcax_models::shared::{Conversion, Reference, Source, Unit};
 use pyo3::exceptions::PyTypeError;
 use pyo3::prelude::*;
+use lcax_convert::br_standard::xlsx::br_standard_from_file;
 
 #[pyfunction]
 #[pyo3(signature = (data, result_data=None))]
@@ -28,6 +30,15 @@ pub fn convert_ilcd(data: String) -> PyResult<EPD> {
     let epd = ilcd::parse::parse_ilcd(&data);
     match epd {
         Ok(epd) => Ok(epd),
+        Err(error) => Err(PyTypeError::new_err(error.to_string())),
+    }
+}
+
+#[pyfunction]
+pub fn convert_br_standard(file_path: PathBuf) -> PyResult<Project> {
+    // match br_standard_from_file(PathBuf::from(file_path)) {
+    match br_standard_from_file(file_path) {
+        Ok(project) => Ok(project),
         Err(error) => Err(PyTypeError::new_err(error.to_string())),
     }
 }
@@ -55,6 +66,7 @@ pub fn to_lcabyg(objects: &LCABygResult) -> PyResult<String> {
 fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     // Classes
     m.add_class::<EPD>()?;
+    m.add_class::<LCABygResult>()?;
     m.add_class::<Conversion>()?;
     m.add_class::<Unit>()?;
     m.add_class::<Source>()?;
@@ -86,5 +98,6 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(convert_ilcd, m)?)?;
     m.add_function(wrap_pyfunction!(calculate_project, m)?)?;
     m.add_function(wrap_pyfunction!(to_lcabyg, m)?)?;
+    m.add_function(wrap_pyfunction!(convert_br_standard, m)?)?;
     Ok(())
 }

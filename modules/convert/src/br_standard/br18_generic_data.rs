@@ -1,6 +1,6 @@
 use lcax_core::utils::get_version;
 use lcax_models::generic_impact_data::GenericData;
-use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleModule};
 use lcax_models::shared::{Source, Unit};
 use std::collections::HashMap;
 use std::string::ToString;
@@ -19,7 +19,7 @@ pub fn get_electricity_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.187))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.187))])),
             ]),
             meta_data: None,
         }),
@@ -35,7 +35,7 @@ pub fn get_electricity_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.135))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.135))])),
             ]),
             meta_data: None,
         }),
@@ -51,7 +51,7 @@ pub fn get_electricity_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.047))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.047))])),
             ]),
             meta_data: None,
         }),
@@ -67,7 +67,7 @@ pub fn get_electricity_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.0414))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.0414))])),
             ]),
             meta_data: None,
         }),
@@ -83,7 +83,7 @@ pub fn get_electricity_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.0403))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.0403))])),
             ]),
             meta_data: None,
         })
@@ -104,7 +104,7 @@ pub fn get_district_heating_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.105))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.105))])),
             ]),
             meta_data: None,
         }),
@@ -120,7 +120,7 @@ pub fn get_district_heating_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.0878))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.0878))])),
             ]),
             meta_data: None,
         }),
@@ -136,7 +136,7 @@ pub fn get_district_heating_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.0713))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.0713))])),
             ]),
             meta_data: None,
         }),
@@ -152,7 +152,7 @@ pub fn get_district_heating_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.0688))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.0688))])),
             ]),
             meta_data: None,
         }),
@@ -168,7 +168,7 @@ pub fn get_district_heating_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.068))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.068))])),
             ]),
             meta_data: None,
         })
@@ -189,7 +189,7 @@ pub fn get_lng_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.105))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.105))])),
             ]),
             meta_data: None,
         }),
@@ -205,7 +205,7 @@ pub fn get_lng_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.0878))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.0878))])),
             ]),
             meta_data: None,
         }),
@@ -221,7 +221,7 @@ pub fn get_lng_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.0713))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.0713))])),
             ]),
             meta_data: None,
         }),
@@ -237,7 +237,7 @@ pub fn get_lng_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.0688))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.0688))])),
             ]),
             meta_data: None,
         }),
@@ -253,7 +253,7 @@ pub fn get_lng_data() -> HashMap<u16, GenericData> {
             comment: None,
             conversions: None,
             impacts: HashMap::from([
-                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleStage::B6, Some(0.068))])),
+                (ImpactCategoryKey::GWP, HashMap::from([(LifeCycleModule::B6, Some(0.068))])),
             ]),
             meta_data: None,
         })

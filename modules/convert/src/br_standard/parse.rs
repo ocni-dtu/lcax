@@ -9,7 +9,7 @@ use lcax_core::utils::get_version;
 use lcax_core::value::AnyValue;
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
-use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{
     AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
@@ -19,14 +19,16 @@ use lcax_models::shared::{Source, Unit};
 use std::collections::HashMap;
 use uuid::Uuid;
 
-/// Parse an LCAByg project exported as json files.
+/// Parse data from BR Standard Format in to a LCAx Project
 ///
 /// # Arguments
 ///
-/// * `project_data`: JSON formatted string containing the LCAbyg project data
-/// * `result_data`: Optional JSON formatted string containing the result data from the LCAByg project
+/// * `project_name`: Project Name
+/// * `project_info`: Project info from the "General information" tab
+/// * `components`: Component info from the "BR18 vejledning" tab
+/// * `operations`: Operation info from the "Drift" tab
 ///
-/// returns: LCAxProject
+/// returns: Result<LCAxProject, String>
 pub fn parse_br_standard(
     project_name: &str,
     project_info: &BRProjectInfo,
@@ -79,7 +81,7 @@ impl TryFromBR<(&str, &BRProjectInfo, &Vec<BRComponent>, &Vec<BROperation>)> for
             lcia_method: None,
             classification_systems: Some(vec!["BR18".to_string()]),
             reference_study_period: Some(50),
-            life_cycle_stages: vec![],
+            life_cycle_modules: vec![],
             impact_categories: vec![],
             assemblies: construct_assemblies(
                 components,
@@ -141,12 +143,12 @@ impl TryFromBR<(&str, &BRProjectInfo, &Vec<BRComponent>, &Vec<BROperation>)> for
         };
         let calc_options = CalculationOptions {
             reference_study_period: Some(50),
-            life_cycle_stages: vec![
-                LifeCycleStage::A1A3,
-                LifeCycleStage::B4,
-                LifeCycleStage::B6,
-                LifeCycleStage::C3,
-                LifeCycleStage::C4,
+            life_cycle_modules: vec![
+                LifeCycleModule::A1A3,
+                LifeCycleModule::B4,
+                LifeCycleModule::B6,
+                LifeCycleModule::C3,
+                LifeCycleModule::C4,
             ],
             impact_categories: vec![ImpactCategoryKey::GWP],
             overwrite_existing_results: false,

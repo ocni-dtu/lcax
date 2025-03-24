@@ -1,5 +1,6 @@
 import datetime
 from enum import Enum
+from pathlib import Path
 from typing import Any, Self
 
 
@@ -586,7 +587,7 @@ class Assembly:
 class Transport:
     id: str
     name: str
-    life_cycle_stages: list[LifeCycleStage]
+    life_cycle_modules: list[LifeCycleModule]
     distance: float
     distance_unit: Unit
     impact_data: ImpactData
@@ -603,7 +604,7 @@ class ImpactData:
         ...
 
 
-type ImpactCategory = dict[LifeCycleStage, float | None]
+type ImpactCategory = dict[LifeCycleModule, float | None]
 type ProjectInfo = BuildingInfo | dict[str, str]
 type Impacts = dict[ImpactCategoryKey, ImpactCategory]
 type MetaData = dict[str, Any]
@@ -643,12 +644,22 @@ class Project:
         ...
 
 
-def convert_lcabyg(data: str, result_data: str | None = None) -> Project:
+class LCABygResult:
+
+    def __getitem__(self, item) -> Project | list[Assembly] | list[Product] | list[EPD]:
+        pass
+
+
+def convert_lcabyg(data: str, result_data: str | None = None) -> LCABygResult:
     """Converts a json formatted LCAByg project into a LCAx Project"""
 
 
 def convert_ilcd(data: str) -> EPD:
     """Converts a json formatted ILCD+EPD data string into a LCAx EPD"""
+
+
+def convert_br_standard(file_path: Path) -> Project:
+    """Converts a BR Standard Format .xlsx file into a LCAx Project"""
 
 
 def calculate_project(project: Project) -> Project:
