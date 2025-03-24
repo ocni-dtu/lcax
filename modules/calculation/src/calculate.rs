@@ -142,25 +142,6 @@ fn add_impact_result(
     }
 }
 
-// fn add_results(existing_results: &mut Impacts, new_results: &Impacts) {
-//     new_results
-//         .iter()
-//         .for_each(|(impact_category_key, impact_category)| {
-//             impact_category
-//                 .iter()
-//                 .for_each(|(life_cycle_stage, value)| {
-//                     *existing_results
-//                         .get_mut(impact_category_key)
-//                         .unwrap()
-//                         .get_mut(life_cycle_stage)
-//                         .unwrap() = Some(
-//                         existing_results[impact_category_key][life_cycle_stage].unwrap() // TODO fix
-//                             + value.unwrap(),
-//                     );
-//                 });
-//         });
-// }
-
 fn add_results(existing_results: &mut Impacts, new_results: &Impacts) {
     new_results
         .iter()
