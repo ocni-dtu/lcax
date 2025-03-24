@@ -15,7 +15,7 @@ permissions:
   issues: write
 
 env:
-  NODE_VERSION: 22.x
+  NODE_VERSION: 20.x
 
 jobs:
   release:
