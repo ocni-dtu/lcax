@@ -49,14 +49,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Semantic-Release
-        run: |
-          npm install \
-            semantic-release \
-            @semantic-release/changelog \
-            @semantic-release/git \
-            @semantic-release/github \
-            semantic-release-cargo \
-            conventional-changelog-conventionalcommits
+        run: npm ci
 
       - name: Set next version
         id: nextVersion
