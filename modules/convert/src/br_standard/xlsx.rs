@@ -1,48 +1,73 @@
-use crate::br_standard::models::{
-    BRComponents, BREnvironmentalData, BROperation, BRProjectInfo, BRResults,
-};
+use crate::br_standard::models::{BRComponent, BREnvironmentalData, BROperation, BRProjectInfo};
 use crate::br_standard::translations::GENERAL_INFORMATION_TRANSLATION;
-use calamine::{open_workbook, Data, DataType, Error, Reader, Xlsx};
+use calamine::{open_workbook, open_workbook_from_rs, Data, DataType, Error, Reader, Xlsx};
 use lcax_models::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleStage};
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::BufReader;
+use std::io::{Cursor, Seek};
 use std::path::PathBuf;
-// pub fn br_standard_from_file(file_path: PathBuf) -> Result<Project, Error> {
-//     let (project_info, components, operations) = read_br_standard_from_file(file_path)?;
-//
-//     Ok(parse_br_standard(&project_info, &components, &operations))
-// }
+use lcax_models::project::Project;
+use crate::br_standard::parse::parse_br_standard;
 
-pub fn read_br_standard_from_file(
-    file_path: PathBuf,
-) -> Result<(BRProjectInfo, Vec<BRComponents>, Vec<BROperation>), Error> {
-    let mut workbook: Xlsx<_> = open_workbook(file_path)?;
-    let project_info = read_project_info(&mut workbook)?;
-    let components = read_components(&mut workbook)?;
-    let operations = read_operations(&mut workbook)?;
+pub fn br_standard_from_file(file_path: PathBuf) -> Result<Project, String> {
+    let (project_info, components, operations) = read_br_standard_from_file(&file_path).unwrap();
+    let file_name = file_path.file_name().unwrap().to_str().unwrap();
+    Ok(parse_br_standard(file_name, &project_info, &components, &operations)?)
+}
+
+pub fn read_br_standard<T>(workbook: &mut Xlsx<T>
+) -> Result<(BRProjectInfo, Vec<BRComponent>, Vec<BROperation>), Error> where T: Seek, T: std::io::Read {
+    let project_info = read_project_info(workbook)?;
+    let components = read_components(workbook)?;
+    let operations = read_operations(workbook)?;
     Ok((project_info, components, operations))
 }
 
-fn read_project_info(workbook: &mut Xlsx<BufReader<File>>) -> Result<BRProjectInfo, Error> {
+pub fn read_br_standard_from_file(
+    file_path: &PathBuf,
+) -> Result<(BRProjectInfo, Vec<BRComponent>, Vec<BROperation>), Error> {
+    let mut workbook: Xlsx<_> = open_workbook(file_path)?;
+    Ok(read_br_standard(&mut workbook)?)
+}
+
+pub fn read_br_standard_from_bytes(
+    file: Vec<u8>,
+) -> Result<(BRProjectInfo, Vec<BRComponent>, Vec<BROperation>), Error> {
+    let buffer: Cursor<Vec<u8>> = Cursor::new(file);
+    let mut workbook: Xlsx<_> = open_workbook_from_rs(buffer)?;
+    Ok(read_br_standard(&mut workbook)?)
+}
+
+fn read_project_info<T>(workbook: &mut Xlsx<T>) -> Result<BRProjectInfo, Error> where T: Seek, T: std::io::Read {
     let mut project_info_map: HashMap<&str, Data> = HashMap::new();
 
-    if let Ok(r) = workbook.worksheet_range("General information") {
-        for row in r.rows() {
-            match &row[0] {
-                Data::String(name) => {
-                    match GENERAL_INFORMATION_TRANSLATION.get(name) {
-                        Some(key) => project_info_map.insert(*key, row[1].clone()),
-                        None => continue,
-                    };
+    for name in vec!["General information", "Generel information"] {
+        match workbook.worksheet_range(name) {
+            Ok(range) => {
+                for row in range.rows() {
+                    match &row[0] {
+                        Data::String(name) => {
+                            match GENERAL_INFORMATION_TRANSLATION.get(&name) {
+                                Some(key) => project_info_map.insert(*key, row[1].clone()),
+                                None => continue,
+                            };
+                        }
+                        _ => continue,
+                    }
                 }
-                _ => continue,
             }
+            Err(_) => continue,
         }
     }
+
     Ok(BRProjectInfo {
-        typology: project_info_map.get("typology").unwrap().to_string(),
-        building_type: project_info_map.get("building_type").unwrap().to_string(),
+        typology: project_info_map
+            .get("typology")
+            .unwrap_or(&Data::String("unknown".to_string()))
+            .to_string(),
+        building_type: project_info_map
+            .get("building_type")
+            .unwrap_or(&Data::String("unknown".to_string()))
+            .to_string(),
         floors_above_ground: project_info_map
             .get("floors_above_ground")
             .unwrap()
@@ -53,7 +78,10 @@ fn read_project_info(workbook: &mut Xlsx<BufReader<File>>) -> Result<BRProjectIn
             .unwrap()
             .as_f64()
             .unwrap() as u16,
-        address: project_info_map.get("address").unwrap().to_string(),
+        address: project_info_map
+            .get("address")
+            .unwrap_or(&Data::String("unknown".to_string()))
+            .to_string(),
         building_permission_date: Some(
             project_info_map
                 .get("building_permission_date")
@@ -104,31 +132,31 @@ fn read_project_info(workbook: &mut Xlsx<BufReader<File>>) -> Result<BRProjectIn
             .get("gross_floor_area")
             .unwrap()
             .as_f64()
-            .unwrap(),
+            .unwrap_or(0.0),
         basement_area: project_info_map.get("basement_area").unwrap().as_f64(),
         staircase_area: project_info_map
             .get("staircase_area")
             .unwrap()
             .as_f64()
-            .unwrap(),
+            .unwrap_or(0.0),
         garage_area: project_info_map
             .get("garage_area")
             .unwrap()
             .as_f64()
-            .unwrap(),
+            .unwrap_or(0.0),
         carport_area: project_info_map.get("carport_area").unwrap().as_f64(),
         walk_on_ceilings: project_info_map.get("walk_on_ceilings").unwrap().as_f64(),
         total_area: project_info_map
             .get("total_area")
             .unwrap()
             .as_f64()
-            .unwrap(),
+            .unwrap_or(0.0),
         exterior_area: project_info_map.get("exterior_area").unwrap().as_f64(),
         heated_area: project_info_map
             .get("heated_area")
             .unwrap()
             .as_f64()
-            .unwrap(),
+            .unwrap_or(0.0),
         pv_area: project_info_map.get("pv_area").unwrap().as_f64(),
         energy_class: Some(project_info_map.get("energy_class").unwrap().to_string()),
         heating_no_modifiers: project_info_map
@@ -145,29 +173,31 @@ fn read_project_info(workbook: &mut Xlsx<BufReader<File>>) -> Result<BRProjectIn
             .get("heating_with_modifiers")
             .unwrap()
             .as_f64()
-            .unwrap(),
+            .unwrap_or(0.0),
         electricity_with_modifiers: project_info_map
             .get("electricity_with_modifiers")
             .unwrap()
             .as_f64()
-            .unwrap(),
+            .unwrap_or(0.0),
         electricity_production: project_info_map
             .get("electricity_production")
             .unwrap()
             .as_f64()
-            .unwrap(),
+            .unwrap_or(0.0),
         bbr_code: Some(project_info_map.get("bbr_code").unwrap().to_string()),
         lca_software: project_info_map.get("lca_software").unwrap().to_string(),
         lca_version: project_info_map.get("lca_version").unwrap().to_string(),
     })
 }
 
-fn read_operations(workbook: &mut Xlsx<BufReader<File>>) -> Result<Vec<BROperation>, Error> {
+fn read_operations<T>(workbook: &mut Xlsx<T>) -> Result<Vec<BROperation>, Error> where T: Seek, T: std::io::Read {
     let mut operations = vec![];
 
     if let Ok(r) = workbook.worksheet_range("Drift") {
         for (index, row) in r.rows().enumerate() {
             if index < 2 {
+                continue;
+            } else if row[1] == Data::Empty || row[1] == "Type" {
                 continue;
             }
 
@@ -186,21 +216,6 @@ fn read_operations(workbook: &mut Xlsx<BufReader<File>>) -> Result<Vec<BROperati
                     standard: row[11].to_string(),
                 },
                 results: Impacts::from_br((row, 14)),
-                // results: BRResults {
-              //     gwp: row[13].as_f64().unwrap_or(0.0),
-              //     gwp_fos: row[14].as_f64().unwrap_or(0.0),
-              //     gwp_bio: row[15].as_f64().unwrap_or(0.0),
-              //     gwp_lul: row[16].as_f64().unwrap_or(0.0),
-              //     odp: row[17].as_f64().unwrap_or(0.0),
-              //     ap: row[18].as_f64().unwrap_or(0.0),
-              //     ep_fw: row[19].as_f64().unwrap_or(0.0),
-              //     ep_mar: row[20].as_f64().unwrap_or(0.0),
-              //     ep_ter: row[21].as_f64().unwrap_or(0.0),
-              //     pocp: row[22].as_f64().unwrap_or(0.0),
-              //     adpe: row[23].as_f64().unwrap_or(0.0),
-              //     adpf: row[24].as_f64().unwrap_or(0.0),
-              //     wdp: row[25].as_f64().unwrap_or(0.0),
-              // },
             })
         }
     }
@@ -251,7 +266,9 @@ impl FromBR<(&[Data], i32)> for Impacts {
             for (s_index, stage) in stages.iter().enumerate() {
                 let index = start_index + (c_index as i32 * 15) + s_index as i32;
                 let data = &row[index as usize];
-                result_category.insert(stage.clone(), data.as_f64());
+                if !data.is_empty() {
+                    result_category.insert(stage.clone(), data.as_f64());
+                }
             }
             results.insert(category.clone(), result_category);
         }
@@ -259,57 +276,50 @@ impl FromBR<(&[Data], i32)> for Impacts {
     }
 }
 
-fn read_components(workbook: &mut Xlsx<BufReader<File>>) -> Result<Vec<BRComponents>, Error> {
+fn read_components<T>(workbook: &mut Xlsx<T>) -> Result<Vec<BRComponent>, Error> where T: Seek, T: std::io::Read {
     let mut components = vec![];
 
-    if let Ok(r) = workbook.worksheet_range("Bygningsdele") {
-        for (index, row) in r.rows().enumerate() {
-            if index < 3 {
-                continue;
-            }
+    for name in vec!["Bygningsdele", "BR18 vejledning"] {
+        match workbook.worksheet_range(name) {
+            Ok(range) => {
+                for (index, row) in range.rows().enumerate() {
+                    if index < 4 {
+                        continue;
+                    } else if row[1] == Data::Empty {
+                        continue;
+                    }
 
-            components.push(BRComponents {
-                category: row[0].to_string(),
-                _type: row[1].to_string(),
-                building_part: row[2].to_string(),
-                building_part_main: row[3].to_string(),
-                building_part_sub: row[4].to_string(),
-                construction: row[5].to_string(),
-                product: row[6].to_string(),
-                included: row[7].to_string() == "Ja".to_string(),
-                recycled: row[8].to_string() == "Ja".to_string(),
-                structural: row[9].to_string() == "Ja".to_string(),
-                input_quantity: row[10].as_f64().unwrap_or(0.0),
-                input_unit: row[11].to_string(),
-                computed_quantity: row[12].as_f64().unwrap_or(0.0),
-                computed_unit: row[13].to_string(),
-                reference_service_life: row[14].as_f64().unwrap_or(0.0) as u16,
-                delayed_start: row[15].as_f64().unwrap_or(0.0) as u16,
-                replacements: row[16].as_f64().unwrap_or(0.0) as u16,
-                weight: row[17].as_f64().unwrap_or(0.0),
-                weight_unit: row[18].to_string(),
-                environmental_data: BREnvironmentalData {
-                    link: row[22].to_string(),
-                    epd_number: row[23].to_string(),
-                    expiration_data: row[24].to_string(),
-                    standard: row[25].to_string(),
-                },
-                results: BRResults {
-                    gwp: row[27].as_f64().unwrap_or(0.0),
-                    gwp_fos: row[28].as_f64().unwrap_or(0.0),
-                    gwp_bio: row[29].as_f64().unwrap_or(0.0),
-                    gwp_lul: row[30].as_f64().unwrap_or(0.0),
-                    odp: row[31].as_f64().unwrap_or(0.0),
-                    ap: row[32].as_f64().unwrap_or(0.0),
-                    ep_fw: row[33].as_f64().unwrap_or(0.0),
-                    ep_mar: row[34].as_f64().unwrap_or(0.0),
-                    ep_ter: row[35].as_f64().unwrap_or(0.0),
-                    pocp: row[36].as_f64().unwrap_or(0.0),
-                    adpe: row[37].as_f64().unwrap_or(0.0),
-                    adpf: row[38].as_f64().unwrap_or(0.0),
-                    wdp: row[39].as_f64().unwrap_or(0.0),
-                },
-            })
+                    components.push(BRComponent {
+                        category: row[0].to_string(),
+                        _type: row[1].to_string(),
+                        building_part: row[2].to_string(),
+                        building_part_main: row[3].to_string(),
+                        building_part_sub: row[4].to_string(),
+                        construction: row[5].to_string(),
+                        product: row[6].to_string(),
+                        included: row[7].to_string() == "Ja".to_string(),
+                        recycled: row[8].to_string() == "Ja".to_string(),
+                        structural: row[9].to_string() == "Ja".to_string(),
+                        input_quantity: row[10].as_f64().unwrap_or(0.0),
+                        input_unit: row[11].to_string(),
+                        computed_quantity: row[12].as_f64().unwrap_or(0.0),
+                        computed_unit: row[13].to_string(),
+                        reference_service_life: row[14].as_f64().unwrap_or(0.0) as u16,
+                        delayed_start: row[15].as_f64().unwrap_or(0.0) as u16,
+                        replacements: row[16].as_f64().unwrap_or(0.0) as u16,
+                        weight: row[17].as_f64().unwrap_or(0.0),
+                        weight_unit: row[18].to_string(),
+                        environmental_data: BREnvironmentalData {
+                            link: row[22].to_string(),
+                            epd_number: row[23].to_string(),
+                            expiration_data: row[24].to_string(),
+                            standard: row[25].to_string(),
+                        },
+                        results: Impacts::from_br((row, 27)),
+                    })
+                }
+            }
+            Err(_) => continue,
         }
     }
     Ok(components)

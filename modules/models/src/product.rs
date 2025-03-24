@@ -102,16 +102,16 @@ pub enum ProductReference {
 }
 
 impl ProductReference {
-    pub fn resolve(&self) -> Result<Product, String> {
+    pub fn resolve(&self) -> Result<&Product, String> {
         match self {
-            ProductReference::Product(data) => Ok(data.clone()),
+            ProductReference::Product(data) => Ok(data),
             _ => Err("Handling of references not implemented yet!".to_string()),
         }
     }
 
-    pub fn resolve_mut(&mut self) -> Result<Product, String> {
+    pub fn resolve_mut(&mut self) -> Result<&mut Product, String> {
         match self {
-            ProductReference::Product(data) => Ok(data.clone()),
+            ProductReference::Product(data) => Ok(data),
             _ => Err("Handling of references not implemented yet!".to_string()),
         }
     }

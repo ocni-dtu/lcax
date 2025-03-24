@@ -49,7 +49,7 @@ pub struct BRProjectInfo {
     pub lca_version: String,
 }
 
-pub struct BRComponents {
+pub struct BRComponent {
     pub category: String,
     pub _type: String,
     pub building_part: String,
@@ -70,7 +70,7 @@ pub struct BRComponents {
     pub weight: f64,
     pub weight_unit: String,
     pub environmental_data: BREnvironmentalData,
-    pub results: BRResults
+    pub results: Impacts,
 }
 
 pub struct BROperation {
@@ -82,7 +82,7 @@ pub struct BROperation {
     pub quantity: f64,
     pub unit: String,
     pub environmental_data: BREnvironmentalData,
-    pub results: Impacts
+    pub results: Impacts,
 }
 
 pub struct BREnvironmentalData {
@@ -90,20 +90,4 @@ pub struct BREnvironmentalData {
     pub epd_number: String,
     pub expiration_data: String,
     pub standard: String,
-}
-
-pub struct BRResults {
-    pub gwp: f64,
-    pub gwp_fos: f64,
-    pub gwp_bio: f64,
-    pub gwp_lul: f64,
-    pub odp: f64,
-    pub ap: f64,
-    pub ep_fw: f64,
-    pub ep_mar: f64,
-    pub ep_ter: f64,
-    pub pocp: f64,
-    pub adpe: f64,
-    pub adpf: f64,
-    pub wdp: f64
 }

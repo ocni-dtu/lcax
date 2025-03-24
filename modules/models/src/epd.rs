@@ -259,9 +259,9 @@ pub enum EPDReference {
 }
 
 impl EPDReference {
-    pub fn resolve(&self) -> Result<EPD, String> {
+    pub fn resolve(&self) -> Result<&EPD, String> {
         match self {
-            EPDReference::EPD(epd) => Ok(epd.clone()),
+            EPDReference::EPD(epd) => Ok(epd),
             _ => Err("Handling of references not implemented yet!".to_string()),
         }
     }

@@ -342,6 +342,7 @@ dependencies = [
  "chrono",
  "console_error_panic_hook",
  "field_access",
+ "lcax_calculation",
  "lcax_core",
  "lcax_models",
  "log",

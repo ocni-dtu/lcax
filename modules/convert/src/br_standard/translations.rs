@@ -1,4 +1,4 @@
-use phf::{phf_map};
+use phf::phf_map;
 
 pub static GENERAL_INFORMATION_TRANSLATION: phf::Map<&'static str, &'static str> = phf_map! {
     "Bygningstypologi (BBR kode)" => "typology",
@@ -35,8 +35,3 @@ pub static GENERAL_INFORMATION_TRANSLATION: phf::Map<&'static str, &'static str>
     "LCA software" => "lca_software",
     "LCA version" => "lca_version",
 };
-
-
-
-
-

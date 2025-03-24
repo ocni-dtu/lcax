@@ -29,7 +29,9 @@ use log;
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
 
-use crate::br_standard::br18_generic_data::{get_district_heating_data, get_electricity_data, get_energy_data, get_lng_data};
+use crate::br_standard::br18_generic_data::{
+    get_district_heating_data, get_electricity_data, get_energy_data, get_lng_data,
+};
 use lcax_core::value::AnyValue;
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
 #[cfg(feature = "jsbindings")]

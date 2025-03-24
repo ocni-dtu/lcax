@@ -9,6 +9,7 @@ pub struct CalculationOptions {
     pub reference_study_period: Option<u8>,
     pub life_cycle_stages: Vec<LifeCycleStage>,
     pub impact_categories: Vec<ImpactCategoryKey>,
+    pub overwrite_existing_results: bool,
 }
 
 pub fn calculate_project(
@@ -21,13 +22,18 @@ pub fn calculate_project(
             reference_study_period: project.reference_study_period.clone(),
             life_cycle_stages: project.life_cycle_stages.clone(),
             impact_categories: project.impact_categories.clone(),
+            overwrite_existing_results: true,
         },
     };
+
+    if !_options.overwrite_existing_results && project.results.is_some() {
+        return Ok(project);
+    }
 
     let mut project_results =
         Impacts::new_results(&_options.impact_categories, &_options.life_cycle_stages);
     for assembly in &mut project.assemblies {
-        let results = calculate_assembly(&mut assembly.resolve_mut()?, &_options)?;
+        let results = calculate_assembly(assembly.resolve_mut()?, &_options)?;
         add_results(&mut project_results, &results);
     }
     project.results = Some(project_results.clone());
@@ -38,11 +44,15 @@ pub fn calculate_assembly(
     assembly: &mut LCAxAssembly,
     options: &CalculationOptions,
 ) -> Result<Impacts, String> {
+    if !options.overwrite_existing_results && assembly.results.is_some() {
+        return Ok(assembly.results.clone().unwrap());
+    }
+
     let mut assembly_results =
         Impacts::new_results(&options.impact_categories, &options.life_cycle_stages);
 
     for product in &mut assembly.products {
-        let results = calculate_product(&mut product.resolve()?, options)?;
+        let results = calculate_product(product.resolve_mut()?, options)?;
         add_results(&mut assembly_results, &results);
     }
 
@@ -73,6 +83,10 @@ pub fn calculate_product(
     product: &mut LCAxProduct,
     options: &CalculationOptions,
 ) -> Result<Impacts, String> {
+    if !options.overwrite_existing_results && product.results.is_some() {
+        return Ok(product.results.clone().unwrap());
+    }
+
     let mut product_results = Impacts::new();
 
     for impact_category_key in &options.impact_categories {
@@ -81,7 +95,7 @@ pub fn calculate_product(
             for impact_data in &product.impact_data {
                 match impact_data {
                     ImpactData::EPD(epd) => {
-                        let impacts = epd.resolve()?.impacts;
+                        let impacts = &epd.resolve()?.impacts;
                         impact_category.insert(
                             life_cycle_stage.clone(),
                             Some(add_impact_result(
@@ -128,6 +142,25 @@ fn add_impact_result(
     }
 }
 
+// fn add_results(existing_results: &mut Impacts, new_results: &Impacts) {
+//     new_results
+//         .iter()
+//         .for_each(|(impact_category_key, impact_category)| {
+//             impact_category
+//                 .iter()
+//                 .for_each(|(life_cycle_stage, value)| {
+//                     *existing_results
+//                         .get_mut(impact_category_key)
+//                         .unwrap()
+//                         .get_mut(life_cycle_stage)
+//                         .unwrap() = Some(
+//                         existing_results[impact_category_key][life_cycle_stage].unwrap() // TODO fix
+//                             + value.unwrap(),
+//                     );
+//                 });
+//         });
+// }
+
 fn add_results(existing_results: &mut Impacts, new_results: &Impacts) {
     new_results
         .iter()
@@ -135,14 +168,21 @@ fn add_results(existing_results: &mut Impacts, new_results: &Impacts) {
             impact_category
                 .iter()
                 .for_each(|(life_cycle_stage, value)| {
-                    *existing_results
-                        .get_mut(impact_category_key)
-                        .unwrap()
-                        .get_mut(life_cycle_stage)
-                        .unwrap() = Some(
-                        existing_results[impact_category_key][life_cycle_stage].unwrap()
-                            + value.unwrap(),
-                    );
+                    match existing_results.get_mut(impact_category_key) {
+                        Some(impact_result) => {
+                            match impact_result.get_mut(life_cycle_stage) {
+                                Some(life_cycle_result) => {
+                                    *life_cycle_result = Some(life_cycle_result.unwrap() + value.unwrap());
+                                }
+                                None => {
+                                    impact_result.insert(life_cycle_stage.clone(), Some(value.unwrap()));
+                                }
+                            }
+                        }
+                        None => {
+                            existing_results.insert(impact_category_key.clone(), impact_category.clone());
+                        }
+                    }
                 });
         });
 }
