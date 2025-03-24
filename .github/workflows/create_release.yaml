@@ -48,6 +48,9 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: LS
+        run: ls
+
       - name: Install Semantic-Release
         run: npm ci
 
