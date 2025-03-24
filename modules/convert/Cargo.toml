@@ -23,14 +23,17 @@ jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify"]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
 
 [dependencies]
-serde = { version = "1.0.200", features = ["derive"] }
+serde = { version = "1.0.219", features = ["derive"] }
 field_access = "0.1.4"
 lcax_core = { path = "../core", version = ">=3.0.0-beta.1" }
 lcax_models = { path = "../models", version = ">=3.0.0-beta.1" }
+lcax_calculation = { path = "../calculation", version = ">=3.0.0-beta.1" }
 chrono = "0.4.38"
-serde_json = "1.0.125"
+serde_json = "1.0.140"
 log = "0.4.22"
 uuid = { version = "1.8.0", features = ["v4", "v5"] }
+calamine = "0.26.1"
+phf = { version = "0.11", features = ["macros"] }
 
 # Python Bindings
 pyo3 = { version = "0.23.4", features = ["abi3-py310", "chrono"], optional = true }

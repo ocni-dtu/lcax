@@ -2,7 +2,7 @@ use field_access::FieldAccess;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleModule};
 use lcax_models::shared::{Conversion, Source, Unit};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -323,10 +323,10 @@ pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
             } else if category_name == "pert" {
                 category_name = String::from("per");
             }
-            match impact_category.get(&LifeCycleStage::try_from(stage.stage.as_str()).unwrap()) {
+            match impact_category.get(&LifeCycleModule::try_from(stage.stage.as_str()).unwrap()) {
                 None => {
                     impact_category.insert(
-                        LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                        LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                         Some(
                             stage
                                 .indicators
@@ -346,11 +346,11 @@ pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
                         .unwrap();
                     match stage_value {
                         None => impact_category.insert(
-                            LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                            LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                             Some(value),
                         ),
                         Some(_stage_value) => impact_category.insert(
-                            LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                            LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                             Some(value + _stage_value),
                         ),
                     };

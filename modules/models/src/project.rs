@@ -1,5 +1,5 @@
 use crate::assembly::AssemblyReference;
-use crate::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleStage};
+use crate::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleModule};
 use crate::shared::{MetaData, Unit};
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
@@ -38,7 +38,7 @@ pub struct Project {
     pub lcia_method: Option<String>,
     pub classification_systems: Option<Vec<String>>,
     pub reference_study_period: Option<u8>,
-    pub life_cycle_stages: Vec<LifeCycleStage>,
+    pub life_cycle_modules: Vec<LifeCycleModule>,
     pub impact_categories: Vec<ImpactCategoryKey>,
     pub assemblies: Vec<AssemblyReference>,
     pub results: Option<Impacts>,
@@ -58,7 +58,7 @@ impl Project {
         location: Location,
         project_phase: ProjectPhase,
         software_info: SoftwareInfo,
-        life_cycle_stages: Vec<LifeCycleStage>,
+        life_cycle_stages: Vec<LifeCycleModule>,
         impact_categories: Vec<ImpactCategoryKey>,
         assemblies: Vec<AssemblyReference>,
         id: Option<String>,
@@ -127,7 +127,7 @@ impl Project {
         lcia_method: Option<String>,
         classification_systems: Option<Vec<String>>,
         reference_study_period: Option<u8>,
-        life_cycle_stages: Vec<LifeCycleStage>,
+        life_cycle_modules: Vec<LifeCycleModule>,
         impact_categories: Vec<ImpactCategoryKey>,
         assemblies: Vec<AssemblyReference>,
         results: Option<Impacts>,
@@ -149,7 +149,7 @@ impl Project {
             lcia_method,
             classification_systems,
             reference_study_period,
-            life_cycle_stages,
+            life_cycle_modules,
             impact_categories,
             assemblies,
             results,
@@ -181,7 +181,7 @@ impl Project {
         }
     }
     pub fn resolve_life_cycle_stages(&mut self) {
-        self.life_cycle_stages = match self.results {
+        self.life_cycle_modules = match self.results {
             Some(ref results) => {
                 let mut keys = Vec::new();
                 for (_, value) in results.iter() {

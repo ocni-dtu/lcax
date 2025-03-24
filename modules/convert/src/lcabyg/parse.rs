@@ -8,7 +8,7 @@ use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
 use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{
     AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
@@ -29,8 +29,8 @@ use log;
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
 
-use crate::lcabyg::br18_generic_data::{
-    get_district_heating_data, get_electricity_data, get_lng_data,
+use crate::br_standard::br18_generic_data::{
+    get_district_heating_data, get_electricity_data, get_energy_data, get_lng_data,
 };
 use lcax_core::value::AnyValue;
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
@@ -325,39 +325,6 @@ fn construct_operation_products(
     lcax_products
 }
 
-fn get_energy_data(year: &u16, data: HashMap<u16, GenericData>) -> Vec<GenericData> {
-    match year {
-        year if year < &2025 => {
-            vec![
-                data[&2023].clone(),
-                data[&2025].clone(),
-                data[&2030].clone(),
-                data[&2035].clone(),
-                data[&2040].clone(),
-            ]
-        }
-        year if year < &2030 => {
-            vec![
-                data[&2025].clone(),
-                data[&2030].clone(),
-                data[&2035].clone(),
-                data[&2040].clone(),
-            ]
-        }
-        year if year < &2035 => {
-            vec![
-                data[&2030].clone(),
-                data[&2035].clone(),
-                data[&2040].clone(),
-            ]
-        }
-        year if year < &2040 => {
-            vec![data[&2035].clone(), data[&2040].clone()]
-        }
-        _ => vec![data[&2040].clone()],
-    }
-}
-
 fn construct_impact_data(project_completion_year: &u16, energy_type_id: &str) -> Vec<GenericData> {
     match energy_type_id {
         "e967c8e7-e73d-47f3-8cba-19569ad76b4d" => {
@@ -520,7 +487,7 @@ impl
                     building_users: Some(building.person_count as u32),
                 },
             }),
-            life_cycle_stages: vec![],
+            life_cycle_modules: vec![],
             owner: Some(project.owner.to_string()),
             format_version: get_version(),
             lcia_method: None,
@@ -725,11 +692,11 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
                 } else if category_name == "pert" {
                     category_name = String::from("per");
                 }
-                match impact_category.get(&LifeCycleStage::try_from(stage.stage.as_str()).unwrap())
+                match impact_category.get(&LifeCycleModule::try_from(stage.stage.as_str()).unwrap())
                 {
                     None => {
                         impact_category.insert(
-                            LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                            LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                             Some(
                                 stage
                                     .indicators
@@ -749,11 +716,11 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
                             .unwrap();
                         match stage_value {
                             None => impact_category.insert(
-                                LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                                LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                                 Some(value),
                             ),
                             Some(_stage_value) => impact_category.insert(
-                                LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                                LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                                 Some(value + _stage_value),
                             ),
                         };
@@ -821,7 +788,7 @@ impl FromLCAByg<(&str, &LCAbygResults)> for Impacts {
                                     .entry(ImpactCategoryKey::from_lcabyg(category_key))
                                     .or_insert_with(HashMap::new)
                                     .insert(
-                                        LifeCycleStage::try_from(stage_key).unwrap(),
+                                        LifeCycleModule::try_from(stage_key).unwrap(),
                                         Some(*value),
                                     );
                             }

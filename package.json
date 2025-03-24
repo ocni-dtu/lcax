@@ -1,10 +1,3 @@
-{
-  "dependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^10.3.4",
-    "conventional-changelog-conventionalcommits": "^8.0.0",
-    "semantic-release": "^24.1.1",
-    "semantic-release-cargo": "2.2.14"
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:179b6906b02a4f228def264a789414aacf839ed8776755302cb61c005e0cbe7b
+size 290
