@@ -1049,9 +1049,9 @@ dependencies = [
 
 [[package]]
 name = "valitron"
-version = "0.5.4"
+version = "0.5.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4ed41690a1146b113117d1797ae453dd593b13d6775de47f7b05a7a3d8f6af48"
+checksum = "631ca23e77ce4f7a129fe0a0ac651558f60faf353d2fd8922e7d0e5a4cabc616"
 dependencies = [
  "idna",
  "regex",

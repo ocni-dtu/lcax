@@ -1,8 +1,20 @@
 name: required
 comment: required
+referenceStudyPeriod:
+  !equal 50
 classificationSystems:
-  !contains l
+  !includes LCAByg
 location:
   address:
-    !contains h
+    !includes Testvej
   city: required
+lifeCycleStages:
+  !includes a1a3
+projectInfo:
+  buildingType:
+    !equal new_construction_works
+  grossFloorArea:
+    value:
+      !greater 50
+    unit:
+      !equal m2

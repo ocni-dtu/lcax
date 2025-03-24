@@ -13,8 +13,9 @@ pub struct Range {
 #[serde(rename_all = "camelCase")]
 pub enum ValidationRules {
     Range(Range),
-    Contains(String),
+    Includes(String),
     Required,
+    Equal(f64),
 }
 
 // #[derive(Deserialize, Serialize, JsonSchema, Debug)]
@@ -42,9 +43,9 @@ pub struct ValidationSchema {
     pub impact_categories: Option<ValidationRules>,
     // pub assemblies: Option<NestedValidationRules<AssemblyReference>>,
     // pub results: Option<NestedValidationRules<Impacts>>,
-    // pub project_info: Option<NestedValidationRules<ProjectInfo>>,
+    pub project_info: Option<BuildingInfo>,
     pub project_phase: Option<ValidationRules>,
-    pub software_info: Option<ValidationRules>,
+    pub software_info: Option<SoftwareInfo>,
     pub meta_data: Option<ValidationRules>,
 }
 
@@ -53,4 +54,52 @@ pub struct Location {
     pub country: Option<ValidationRules>,
     pub city: Option<ValidationRules>,
     pub address: Option<ValidationRules>,
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, FieldAccess)]
+pub struct SoftwareInfo {
+    pub lca_software: Option<ValidationRules>,
+    pub lca_software_version: Option<ValidationRules>,
+    pub goal_and_scope_definition: Option<ValidationRules>,
+    pub calculation_type: Option<ValidationRules>,
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, FieldAccess)]
+pub struct BuildingInfo {
+    pub building_type: Option<ValidationRules>,
+    pub building_typology: Option<ValidationRules>,
+    pub certifications: Option<ValidationRules>,
+    pub building_mass: Option<ValueUnit>,
+    pub building_height: Option<ValueUnit>,
+    pub gross_floor_area: Option<AreaType>,
+    pub heated_floor_area: Option<AreaType>,
+    pub building_footprint: Option<ValueUnit>,
+    pub floors_above_ground: Option<ValidationRules>,
+    pub floors_below_ground: Option<ValidationRules>,
+    pub roof_type: Option<ValidationRules>,
+    pub frame_type: Option<ValidationRules>,
+    pub building_completion_year: Option<ValidationRules>,
+    pub building_permit_year: Option<ValidationRules>,
+    pub energy_demand_heating: Option<ValidationRules>,
+    pub energy_supply_heating: Option<ValidationRules>,
+    pub energy_demand_electricity: Option<ValidationRules>,
+    pub energy_supply_electricity: Option<ValidationRules>,
+    pub exported_electricity: Option<ValidationRules>,
+    pub general_energy_class: Option<ValidationRules>,
+    pub local_energy_class: Option<ValidationRules>,
+    pub building_users: Option<ValidationRules>,
+    pub building_model_scope: Option<ValidationRules>,
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, FieldAccess)]
+pub struct ValueUnit {
+    pub value: Option<ValidationRules>,
+    pub unit: Option<ValidationRules>,
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, FieldAccess)]
+pub struct AreaType {
+    pub value: Option<ValidationRules>,
+    pub unit: Option<ValidationRules>,
+    pub definition: Option<ValidationRules>,
 }

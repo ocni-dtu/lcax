@@ -351,8 +351,8 @@ pub struct AreaType {
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
 pub struct ValueUnit {
-    value: f64,
-    unit: Unit,
+    pub value: f64,
+    pub unit: Unit,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
