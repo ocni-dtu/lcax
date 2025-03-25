@@ -308,7 +308,7 @@ dependencies = [
 
 [[package]]
 name = "lcax"
-version = "3.0.0-beta.4"
+version = "3.0.0-beta.5"
 dependencies = [
  "console_error_panic_hook",
  "getrandom",
@@ -328,7 +328,7 @@ dependencies = [
 
 [[package]]
 name = "lcax_calculation"
-version = "3.0.0-beta.4"
+version = "3.0.0-beta.5"
 dependencies = [
  "lcax_models",
  "serde_json",
@@ -336,7 +336,7 @@ dependencies = [
 
 [[package]]
 name = "lcax_convert"
-version = "3.0.0-beta.4"
+version = "3.0.0-beta.5"
 dependencies = [
  "calamine",
  "chrono",
@@ -357,7 +357,7 @@ dependencies = [
 
 [[package]]
 name = "lcax_core"
-version = "3.0.0-beta.4"
+version = "3.0.0-beta.5"
 dependencies = [
  "chrono",
  "console_error_panic_hook",
@@ -372,7 +372,7 @@ dependencies = [
 
 [[package]]
 name = "lcax_models"
-version = "3.0.0-beta.4"
+version = "3.0.0-beta.5"
 dependencies = [
  "chrono",
  "console_error_panic_hook",

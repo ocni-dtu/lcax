@@ -1,3 +1,9 @@
+## [3.0.0-beta.5](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2025-03-25)
+
+### Bug Fixes
+
+* Included comments from ILCD ([#109](https://github.com/ocni-dtu/lcax/issues/109)) ([515b083](https://github.com/ocni-dtu/lcax/commit/515b083250d1d53ff38bab6e5023fabc7cb35b65)), closes [#107](https://github.com/ocni-dtu/lcax/issues/107)
+
 ## [3.0.0-beta.4](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2025-03-25)
 
 ### Bug Fixes
