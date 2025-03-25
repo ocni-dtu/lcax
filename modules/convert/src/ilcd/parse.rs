@@ -42,6 +42,8 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
         None => generic_anie,
     };
 
+    let comment = collect_comment(&ilcd_epd);
+
     let mut impacts = collect_from_lcia_result(&ilcd_epd.lcia_results.lcia_result);
 
     let (declared_unit, conversions) =
@@ -60,7 +62,7 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
         reference_service_life: None,
         conversions: Some(conversions),
         standard: get_ilcd_standard(&ilcd_epd),
-        comment: None,
+        comment,
         meta_data: None,
         source: None,
         published_date: get_date(&ilcd_epd.process_information.time.reference_year),
@@ -464,4 +466,33 @@ fn get_name(base_name: &DataSetName) -> String {
         Some(name) if name.value.is_some() => name.value.clone().unwrap(),
         _ => "".to_string(),
     }
+}
+
+fn collect_comment(epd: &ILCD) -> Option<String> {
+    let mut comment = None;
+    if let Some(general_comments) = &epd.process_information.data_set_information.general_comment {
+        comment = match general_comments
+            .iter()
+            .find(|comment| comment.lang == "en".to_string())
+        {
+            Some(comment) => comment.value.clone(),
+            None if general_comments.len() > 0 => general_comments[0].value.clone(),
+            None => None,
+        };
+    }
+    if comment.is_none() {
+        if let Some(technology) = &epd.process_information.technology {
+            comment = match technology
+                .description
+                .iter()
+                .find(|comment| comment.lang == "en".to_string())
+            {
+                Some(comment) => comment.value.clone(),
+                None if technology.description.len() > 0 => technology.description[0].value.clone(),
+                None => None,
+            };
+        }
+    }
+
+    comment
 }
