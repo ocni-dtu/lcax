@@ -215,7 +215,7 @@ pub struct ProcessInformation {
     pub data_set_information: DataSetInformation,
     pub time: TimeData,
     pub geography: Geography,
-    pub technology: Option<Technology>
+    pub technology: Option<Technology>,
 }
 
 #[derive(Deserialize)]
