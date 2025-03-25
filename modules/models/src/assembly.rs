@@ -164,9 +164,9 @@ impl AssemblyReference {
         }
     }
 
-    pub fn resolve_mut(&mut self) -> Result<Assembly, String> {
+    pub fn resolve_mut(&mut self) -> Result<&mut Assembly, String> {
         match self {
-            AssemblyReference::Assembly(data) => Ok(data.clone()),
+            AssemblyReference::Assembly(data) => Ok(data),
             _ => Err("Handling of references not implemented yet!".to_string()),
         }
     }

@@ -2,6 +2,7 @@
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
 export function convertLCAbyg(a: number, b: number, c: number, d: number, e: number): void;
+export function convertBRStandard(a: number, b: number, c: number, d: number, e: number): void;
 export function convertIlcd(a: number, b: number, c: number): void;
 export function calculateProject(a: number, b: number): void;
 export function __wbindgen_malloc(a: number, b: number): number;

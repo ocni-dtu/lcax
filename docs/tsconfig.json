@@ -1,6 +1,3 @@
-{
-  "extends": "astro/tsconfigs/strict",
-  "exclude": [
-    "src/content/code/**"
-  ]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9771c636ad4c8cacdf9f5011b93c76ed0db8721e0f989280a285e729ef517e8a
+size 87

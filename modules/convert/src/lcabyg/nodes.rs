@@ -2,7 +2,7 @@ use field_access::FieldAccess;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleModule};
 use lcax_models::shared::{Conversion, Source, Unit};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -24,6 +24,13 @@ pub enum Node {
     Operation(Operation),
     ProductTransportRoot(ProductTransportRoot),
     Project(Project),
+    Transport(Transport),
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub struct Transport {
+    pub id: String,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -208,6 +215,22 @@ pub struct Languages {
     pub danish: Option<String>,
 }
 
+impl Languages {
+    pub fn get(&self) -> String {
+        if self.english != None {
+            self.english.clone().unwrap()
+        } else if self.danish != None {
+            self.danish.clone().unwrap()
+        } else if self.german != None {
+            self.german.clone().unwrap()
+        } else if self.norwegian != None {
+            self.norwegian.clone().unwrap()
+        } else {
+            "".to_string()
+        }
+    }
+}
+
 #[derive(Serialize, Deserialize, Clone)]
 #[serde(rename_all = "snake_case")]
 pub struct Stage {
@@ -300,10 +323,10 @@ pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
             } else if category_name == "pert" {
                 category_name = String::from("per");
             }
-            match impact_category.get(&LifeCycleStage::try_from(stage.stage.as_str()).unwrap()) {
+            match impact_category.get(&LifeCycleModule::try_from(stage.stage.as_str()).unwrap()) {
                 None => {
                     impact_category.insert(
-                        LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                        LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                         Some(
                             stage
                                 .indicators
@@ -323,11 +346,11 @@ pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
                         .unwrap();
                     match stage_value {
                         None => impact_category.insert(
-                            LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                            LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                             Some(value),
                         ),
                         Some(_stage_value) => impact_category.insert(
-                            LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                            LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                             Some(value + _stage_value),
                         ),
                     };

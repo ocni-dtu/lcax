@@ -7,7 +7,7 @@ use tsify::Tsify;
 
 use crate::epd::{EPDReference, Standard, SubType};
 use crate::generic_impact_data::GenericDataReference;
-use crate::life_cycle_base::{Impacts, LifeCycleStage};
+use crate::life_cycle_base::{Impacts, LifeCycleModule};
 use crate::shared::{Conversion, MetaData, Reference, Source, Unit};
 use lcax_core::country::Country;
 #[cfg(feature = "pybindings")]
@@ -102,16 +102,16 @@ pub enum ProductReference {
 }
 
 impl ProductReference {
-    pub fn resolve(&self) -> Result<Product, String> {
+    pub fn resolve(&self) -> Result<&Product, String> {
         match self {
-            ProductReference::Product(data) => Ok(data.clone()),
+            ProductReference::Product(data) => Ok(data),
             _ => Err("Handling of references not implemented yet!".to_string()),
         }
     }
 
-    pub fn resolve_mut(&mut self) -> Result<Product, String> {
+    pub fn resolve_mut(&mut self) -> Result<&mut Product, String> {
         match self {
-            ProductReference::Product(data) => Ok(data.clone()),
+            ProductReference::Product(data) => Ok(data),
             _ => Err("Handling of references not implemented yet!".to_string()),
         }
     }
@@ -124,7 +124,7 @@ impl ProductReference {
 pub struct Transport {
     pub id: String,
     pub name: String,
-    pub life_cycle_stages: Vec<LifeCycleStage>,
+    pub life_cycle_modules: Vec<LifeCycleModule>,
     pub distance: f64,
     pub distance_unit: Unit,
     pub impact_data: ImpactData,

@@ -1,5 +1,6 @@
 import datetime
 from enum import Enum
+from pathlib import Path
 from typing import Any, Self
 
 
@@ -55,7 +56,7 @@ class ImpactCategoryKey(Enum):
     EET = "EET",
 
 
-class LifeCycleStage(Enum):
+class LifeCycleModule(Enum):
     A0 = "A0",
     A1A3 = "A1A3",
     A4 = "A4",
@@ -586,7 +587,7 @@ class Assembly:
 class Transport:
     id: str
     name: str
-    life_cycle_stages: list[LifeCycleStage]
+    life_cycle_modules: list[LifeCycleModule]
     distance: float
     distance_unit: Unit
     impact_data: ImpactData
@@ -603,8 +604,7 @@ class ImpactData:
         ...
 
 
-type ImpactCategory = dict[LifeCycleStage, float | None]
-# type ImpactData = EPD | GenericData | Reference
+type ImpactCategory = dict[LifeCycleModule, float | None]
 type ProjectInfo = BuildingInfo | dict[str, str]
 type Impacts = dict[ImpactCategoryKey, ImpactCategory]
 type MetaData = dict[str, Any]
@@ -621,7 +621,7 @@ class Project:
     lcia_method: str | None
     classification_systems: list[str] | None
     reference_study_period: int | None
-    life_cycle_stages: list[LifeCycleStage]
+    life_cycle_modules: list[LifeCycleModule]
     impact_categories: list[ImpactCategoryKey]
     assemblies: list[Assembly | Reference]
     results: Impacts | None
@@ -631,8 +631,8 @@ class Project:
     meta_data: MetaData | None
 
     def __init__(self, id: str, name: str, location: Location, project_phase: ProjectPhase, software_info,
-                 life_cycle_stages, impact_categories, assemblies, description=None, comment=None, owner=None,
-                 format_version=None, lcia_method=None, classification_system=None, reference_study_period=None,
+                 life_cycle_modules, impact_categories, assemblies, description=None, comment=None, owner=None,
+                 format_version=None, lcia_method=None, classification_systems=None, reference_study_period=None,
                  results=None, project_info=None, meta_data=None):
         ...
 
@@ -644,12 +644,22 @@ class Project:
         ...
 
 
-def convert_lcabyg(data: str, result_data: str | None = None) -> Project:
+class LCABygResult:
+
+    def __getitem__(self, item) -> Project | list[Assembly] | list[Product] | list[EPD]:
+        pass
+
+
+def convert_lcabyg(data: str, result_data: str | None = None) -> LCABygResult:
     """Converts a json formatted LCAByg project into a LCAx Project"""
 
 
 def convert_ilcd(data: str) -> EPD:
     """Converts a json formatted ILCD+EPD data string into a LCAx EPD"""
+
+
+def convert_br_standard(file_path: Path) -> Project:
+    """Converts a BR Standard Format .xlsx file into a LCAx Project"""
 
 
 def calculate_project(project: Project) -> Project:

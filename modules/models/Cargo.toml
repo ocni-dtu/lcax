@@ -23,11 +23,11 @@ pybindings = ["pyo3", "pyo3/extension-module"]
 jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify"]
 
 [dependencies]
-serde = { version = "1.0.200", features = ["derive"] }
-schemars = { version = "0.8.19", features = ["chrono"] }
-serde_json = "1.0.116"
+serde = { version = "1.0.219", features = ["derive"] }
+schemars = { version = "0.8.21", features = ["chrono"] }
+serde_json = "1.0.140"
 uuid = { version = "1.8.0", features = ["v4", "v5"] }
-lcax_core = { path = "../core", version = ">2.0.0" }
+lcax_core = { path = "../core", version = ">=3.0.0-beta.1" }
 chrono = "0.4.38"
 
 # Python Bindings

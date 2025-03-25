@@ -183,3 +183,4 @@ package.json
 package-lock.json
 /packages/csharp/lcax/bin/
 /packages/csharp/lcax/obj/
+/modules/convert/tests/br_standard/datafixtures/914a0b0b-4b7f-498f-9349-16cf0d644766.xlsx

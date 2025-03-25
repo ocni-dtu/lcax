@@ -8,7 +8,7 @@ use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
 use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{
     AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
@@ -29,8 +29,8 @@ use log;
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
 
-use crate::lcabyg::br18_generic_data::{
-    get_district_heating_data, get_electricity_data, get_lng_data,
+use crate::br_standard::br18_generic_data::{
+    get_district_heating_data, get_electricity_data, get_energy_data, get_lng_data,
 };
 use lcax_core::value::AnyValue;
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
@@ -43,6 +43,7 @@ type Edge = (EdgeType, String, String);
 pub enum NodesAndEdges {
     Node(Node),
     Edge(Edge),
+    Secret(Vec<i32>),
 }
 
 #[derive(Deserialize, Serialize, PartialEq)]
@@ -110,6 +111,7 @@ fn lcax_from_lcabyg(
                 }
                 _ => edges.append(&mut vec![edge]),
             },
+            _ => continue,
         }
     }
 
@@ -226,16 +228,17 @@ fn construct_products(
     let mut lcax_products = vec![];
 
     for construction in constructions {
-        let construction_edges = connections.get(&construction.id).unwrap();
+        let construction_edges = match connections.get(&construction.id) {
+            Some(edges) => edges,
+            None => continue,
+        };
         let mut _products = vec![];
         for edge in &*construction_edges {
             let product_id = &edge.2;
-            _products.push(
-                products
-                    .iter()
-                    .find(|_product| _product.id == *product_id)
-                    .unwrap(),
-            )
+            match products.iter().find(|_product| _product.id == *product_id) {
+                Some(_product) => _products.push(_product),
+                None => {}
+            };
         }
         lcax_products.push(Product::from_lcabyg((
             &connections,
@@ -322,42 +325,12 @@ fn construct_operation_products(
     lcax_products
 }
 
-fn get_energy_data(year: &u16, data: HashMap<u16, GenericData>) -> Vec<GenericData> {
-    match year {
-        year if year < &2025 => {
-            vec![
-                data[&2023].clone(),
-                data[&2025].clone(),
-                data[&2030].clone(),
-                data[&2035].clone(),
-                data[&2040].clone(),
-            ]
-        }
-        year if year < &2030 => {
-            vec![
-                data[&2025].clone(),
-                data[&2030].clone(),
-                data[&2035].clone(),
-                data[&2040].clone(),
-            ]
-        }
-        year if year < &2035 => {
-            vec![
-                data[&2030].clone(),
-                data[&2035].clone(),
-                data[&2040].clone(),
-            ]
-        }
-        year if year < &2040 => {
-            vec![data[&2035].clone(), data[&2040].clone()]
-        }
-        _ => vec![data[&2040].clone()],
-    }
-}
-
 fn construct_impact_data(project_completion_year: &u16, energy_type_id: &str) -> Vec<GenericData> {
     match energy_type_id {
         "e967c8e7-e73d-47f3-8cba-19569ad76b4d" => {
+            get_energy_data(project_completion_year, get_electricity_data())
+        }
+        "84ddd0e5-85a1-48cb-ab90-aa19b3359458" => {
             get_energy_data(project_completion_year, get_electricity_data())
         }
         "6cdeb050-90e5-46b3-89ad-bfcc8e246b47" => {
@@ -382,9 +355,14 @@ fn construct_epds(
         let mut _stages = vec![];
         for edge in &*product_edges {
             let stage_id = &edge.2;
-            _stages.push(stages.iter().find(|s| s.id == *stage_id).unwrap())
+            match stages.iter().find(|s| s.id == *stage_id) {
+                Some(_stage) => _stages.push(_stage),
+                None => {}
+            }
         }
-        epds.push(EPD::from_lcabyg((&product, &_stages)))
+        if !_stages.is_empty() {
+            epds.push(EPD::from_lcabyg((&product, &_stages)))
+        }
     }
 
     epds
@@ -509,7 +487,7 @@ impl
                     building_users: Some(building.person_count as u32),
                 },
             }),
-            life_cycle_stages: vec![],
+            life_cycle_modules: vec![],
             owner: Some(project.owner.to_string()),
             format_version: get_version(),
             lcia_method: None,
@@ -573,9 +551,9 @@ impl
 
         Self {
             id: element.id.clone().to_string(),
-            name: element.name.english.clone().unwrap(),
+            name: element.name.get(),
             description: Some("".to_string()),
-            comment: element.comment.english.clone(),
+            comment: Some(element.comment.get()),
             quantity,
             unit: Unit::M,
             classification: Some(vec![Classification::from_lcabyg(category_id)]),
@@ -676,7 +654,7 @@ impl
         }
         Self {
             id: construction.id.clone().to_string(),
-            name: construction.name.english.clone().unwrap(),
+            name: construction.name.get(),
             description: Some("".to_string()),
             reference_service_life,
             quantity,
@@ -714,11 +692,11 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
                 } else if category_name == "pert" {
                     category_name = String::from("per");
                 }
-                match impact_category.get(&LifeCycleStage::try_from(stage.stage.as_str()).unwrap())
+                match impact_category.get(&LifeCycleModule::try_from(stage.stage.as_str()).unwrap())
                 {
                     None => {
                         impact_category.insert(
-                            LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                            LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                             Some(
                                 stage
                                     .indicators
@@ -738,11 +716,11 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
                             .unwrap();
                         match stage_value {
                             None => impact_category.insert(
-                                LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                                LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                                 Some(value),
                             ),
                             Some(_stage_value) => impact_category.insert(
-                                LifeCycleStage::try_from(stage.stage.as_str()).unwrap(),
+                                LifeCycleModule::try_from(stage.stage.as_str()).unwrap(),
                                 Some(value + _stage_value),
                             ),
                         };
@@ -754,12 +732,12 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
         let node = &stages[0];
         Self {
             id: product.id.to_string(),
-            name: product.name.english.clone().unwrap(),
+            name: product.name.get(),
             declared_unit: Unit::from(&node.stage_unit),
             version: node.external_version.clone(),
             published_date: Default::default(),
             valid_until: NaiveDate::parse_from_str(&node.valid_to, "%Y-%m-%d").unwrap(),
-            comment: node.comment.english.clone(),
+            comment: Some(node.comment.get()),
             source: Some(Source {
                 name: node.external_source.clone(),
                 url: Some(node.external_url.clone()),
@@ -810,7 +788,7 @@ impl FromLCAByg<(&str, &LCAbygResults)> for Impacts {
                                     .entry(ImpactCategoryKey::from_lcabyg(category_key))
                                     .or_insert_with(HashMap::new)
                                     .insert(
-                                        LifeCycleStage::try_from(stage_key).unwrap(),
+                                        LifeCycleModule::try_from(stage_key).unwrap(),
                                         Some(*value),
                                     );
                             }

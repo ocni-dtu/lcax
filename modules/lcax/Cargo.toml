@@ -39,13 +39,13 @@ jsbindings = [
 ]
 
 [dependencies]
-schemars = { version = "0.8.19", features = ["chrono"] }
-serde = { version = "1.0.200", features = ["derive"] }
-serde_json = "1.0.116"
-lcax_core = { path = "../core", version = ">2.0.0" }
-lcax_models = { path = "../models", version = ">2.0.0" }
-lcax_convert = { path = "../convert", version = ">2.0.0" }
-lcax_calculation = { path = "../calculation", version = ">2.0.0" }
+schemars = { version = "0.8.21", features = ["chrono"] }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+lcax_core = { path = "../core", version = ">=3.0.0-beta.1" }
+lcax_models = { path = "../models", version = ">=3.0.0-beta.1" }
+lcax_convert = { path = "../convert", version = ">=3.0.0-beta.1" }
+lcax_calculation = { path = "../calculation", version = ">=3.0.0-beta.1" }
 
 # Python Bindings
 pyo3 = { version = "0.23.4", features = ["abi3-py310", "chrono"], optional = true }

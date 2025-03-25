@@ -2,6 +2,8 @@ extern crate console_error_panic_hook;
 use wasm_bindgen::prelude::*;
 
 use lcax_calculation::calculate::calculate_project;
+use lcax_convert::br_standard::parse::parse_br_standard;
+use lcax_convert::br_standard::xlsx::read_br_standard_from_bytes;
 use lcax_convert::lcabyg::parse::LCABygResult;
 use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
@@ -24,6 +26,19 @@ pub fn convertLCAbyg(data: String, resultData: Option<String>) -> Result<LCABygR
     match lcabyg::parse::parse_lcabyg(&data, resultData.as_deref()) {
         Ok(result) => Ok(result),
         Err(error) => Err(JsError::new(error.to_string().as_str())),
+    }
+}
+
+/// Converts a BR Standard Format file into a LCAx `Project`.
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn convertBRStandard(project_name: &str, file: Vec<u8>) -> Result<Project, JsError> {
+    console_error_panic_hook::set_once();
+
+    let (project_info, components, operations) = read_br_standard_from_bytes(file)?;
+    match parse_br_standard(project_name, &project_info, &components, &operations) {
+        Ok(project) => Ok(project),
+        Err(error) => Err(JsError::new(error.as_str())),
     }
 }
 

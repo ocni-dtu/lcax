@@ -23,6 +23,15 @@ pub enum EdgeType {
     CategoryToElement(CategoryToElementEdge),
     CategoryToConstruction(CategoryToConstructionEdge),
     MainBuilding(String),
+    ExtraBuilding(String),
+    ConstructionTransport(ConstructionTransport),
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub struct ConstructionTransport {
+    pub id: String,
+    pub mass: f64,
 }
 
 #[derive(Serialize, Deserialize)]

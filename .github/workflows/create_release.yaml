@@ -15,7 +15,7 @@ permissions:
   issues: write
 
 env:
-  NODE_VERSION: 20.x
+  NODE_VERSION: 22.x
 
 jobs:
   release:
@@ -26,6 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          lfs: true
           fetch-depth: 0
 
       - uses: actions/download-artifact@v4
@@ -49,14 +50,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Semantic-Release
-        run: |
-          npm install \
-            semantic-release \
-            @semantic-release/changelog \
-            @semantic-release/git \
-            @semantic-release/github \
-            semantic-release-cargo \
-            conventional-changelog-conventionalcommits
+        run: npm i
 
       - name: Set next version
         id: nextVersion

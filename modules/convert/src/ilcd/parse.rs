@@ -3,7 +3,7 @@ use chrono::NaiveDate;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleModule};
 use lcax_models::shared::{Conversion, Unit};
 use serde_json::Error;
 use std::collections::HashMap;
@@ -106,7 +106,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a1-a3") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::A1A3, Some(value));
+                        category.insert(LifeCycleModule::A1A3, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -114,7 +114,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a4") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::A4, Some(value));
+                        category.insert(LifeCycleModule::A4, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -122,7 +122,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a5") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::A5, Some(value));
+                        category.insert(LifeCycleModule::A5, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -130,7 +130,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b1") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B1, Some(value));
+                        category.insert(LifeCycleModule::B1, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -138,7 +138,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b2") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B2, Some(value));
+                        category.insert(LifeCycleModule::B2, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -146,7 +146,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b3") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B3, Some(value));
+                        category.insert(LifeCycleModule::B3, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -154,7 +154,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b4") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B4, Some(value));
+                        category.insert(LifeCycleModule::B4, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -162,7 +162,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b5") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B5, Some(value));
+                        category.insert(LifeCycleModule::B5, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -170,7 +170,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b6") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B6, Some(value));
+                        category.insert(LifeCycleModule::B6, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -178,7 +178,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b7") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B7, Some(value));
+                        category.insert(LifeCycleModule::B7, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -186,7 +186,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c1") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::C1, Some(value));
+                        category.insert(LifeCycleModule::C1, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -194,7 +194,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c2") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::C2, Some(value));
+                        category.insert(LifeCycleModule::C2, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -202,7 +202,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c3") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::C3, Some(value));
+                        category.insert(LifeCycleModule::C3, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -210,7 +210,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c4") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::C4, Some(value));
+                        category.insert(LifeCycleModule::C4, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -218,7 +218,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("d") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::D, Some(value));
+                        category.insert(LifeCycleModule::D, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -226,8 +226,8 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             _ => continue,
         }
     }
-    if composite_a1a3.is_some() && category.get(&LifeCycleStage::A1A3).is_none() {
-        category.insert(LifeCycleStage::A1A3, composite_a1a3);
+    if composite_a1a3.is_some() && category.get(&LifeCycleModule::A1A3).is_none() {
+        category.insert(LifeCycleModule::A1A3, composite_a1a3);
     }
     category
 }
