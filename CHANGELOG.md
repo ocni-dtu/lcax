@@ -1,3 +1,9 @@
+## [3.0.0-beta.4](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2025-03-25)
+
+### Bug Fixes
+
+* Fixed issues in LCAByg converter ([309b298](https://github.com/ocni-dtu/lcax/commit/309b298594d17cdb6a6324baca47045ccd524de9))
+
 ## [3.0.0-beta.3](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2025-03-16)
 
 ### Bug Fixes
