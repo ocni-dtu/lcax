@@ -28,12 +28,12 @@ default = []
 
 [dependencies]
 valitron = { version = "0.5.5", features = ["full"]  }
-serde = { version = "1.0.217", features = ["derive"] }
-schemars = { version = "0.8.19", features = ["chrono"] }
-serde_json = "1.0.116"
-lcax_models = { path = "../models", version = ">2.0.0" }
-field_access = "0.1.4"
-log = "0.4.22"
+serde = { version = "1.0.219", features = ["derive"] }
+schemars = { version = "0.8.21", features = ["chrono"] }
+serde_json = "1.0.140"
+lcax_models = { path = "../models", version = ">=3.0.0-beta.3" }
+field_access = "0.1.8"
+log = "0.4.27"
 convert_case = "0.8.0"
 
 [dev-dependencies]

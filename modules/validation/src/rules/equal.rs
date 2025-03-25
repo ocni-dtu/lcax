@@ -14,8 +14,7 @@ where
     }
 }
 
-
-impl Rule for Equal<f64> {
+impl Rule for Equal<String> {
     type Message = Message;
 
     const NAME: &'static str = "Equal";
@@ -25,13 +24,29 @@ impl Rule for Equal<f64> {
     }
     fn call(&mut self, data: &mut Value) -> bool {
         match data {
-            Value::Uint8(_value) => {
-                if _value.to_owned() as f64 == self.0 {
+            Value::String(_value) => {
+                if _value.to_owned() == self.0 {
                     true
-                } else { false }
+                } else {
+                    false
+                }
+            }
+            Value::Uint8(_value) => {
+                if _value.to_owned() == self.0.parse::<u8>().unwrap() {
+                    true
+                } else {
+                    false
+                }
             }
             Value::Float64(_value) => {
-                if _value.get().eq(&self.0) {
+                if _value.get().eq(&self.0.parse::<f64>().unwrap()) {
+                    true
+                } else {
+                    false
+                }
+            }
+            Value::EnumUnit(_value) => {
+                if _value.to_string().eq(&self.0) {
                     true
                 } else {
                     false
@@ -39,17 +54,33 @@ impl Rule for Equal<f64> {
             }
             Value::Option(_option) => match &**_option {
                 Some(_value) => match _value {
-                    Value::Float64(_value) => {
-                        if _value.get().eq(&self.0) {
+                    Value::String(_value) => {
+                        if _value.to_owned() == self.0 {
                             true
                         } else {
                             false
                         }
                     }
                     Value::Uint8(_value) => {
-                        if _value.to_owned() as f64 == self.0 {
+                        if _value.to_owned() == self.0.parse::<u8>().unwrap() {
                             true
-                        } else { false }
+                        } else {
+                            false
+                        }
+                    }
+                    Value::Float64(_value) => {
+                        if _value.get().eq(&self.0.parse::<f64>().unwrap()) {
+                            true
+                        } else {
+                            false
+                        }
+                    }
+                    Value::EnumUnit(_value) => {
+                        if _value.to_string().eq(&self.0) {
+                            true
+                        } else {
+                            false
+                        }
                     }
                     _ => false,
                 },

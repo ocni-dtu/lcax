@@ -1,0 +1,28 @@
+name: required
+comment: required
+referenceStudyPeriod:
+  !equal 50
+classificationSystems:
+  !includes LCAByg
+location:
+  address:
+    !includes Testvej
+  city: required
+lifeCycleModules:
+  !includes a1a3
+softwareInfo:
+  lcaSoftware: 
+    !equal LCAByg
+assemblies:
+  !assembly
+    id: required
+#projectInfo:
+#  roof_type:
+#    !equal other
+#  buildingType:
+#    !equal new_construction_works
+#  grossFloorArea:
+##    value:
+##      !greater 50
+#    unit:
+#      !equal m2

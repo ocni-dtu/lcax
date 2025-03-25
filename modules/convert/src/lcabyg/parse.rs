@@ -12,7 +12,7 @@ use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, L
 use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{
     AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
-    ProjectInfo, RoofType, SoftwareInfo,
+    RoofType, SoftwareInfo,
 };
 use lcax_models::shared::{Conversion, Source, Unit};
 
@@ -446,8 +446,7 @@ impl
             .map(|assembly| AssemblyReference::Assembly(assembly.to_owned()))
             .collect(),
             results,
-            project_info: Some(ProjectInfo::BuildingInfo {
-                0: BuildingInfo {
+            project_info: Some(BuildingInfo {
                     building_type: BuildingType::from_lcabyg(
                         building
                             .project_type
@@ -485,7 +484,6 @@ impl
                     local_energy_class: None,
                     building_model_scope: None,
                     building_users: Some(building.person_count as u32),
-                },
             }),
             life_cycle_modules: vec![],
             owner: Some(project.owner.to_string()),

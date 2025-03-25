@@ -12,8 +12,8 @@ use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
 use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{
-    AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
-    ProjectInfo, ProjectPhase, RoofType, SoftwareInfo,
+    AreaType, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
+    BuildingInfo, ProjectPhase, RoofType, SoftwareInfo,
 };
 use lcax_models::shared::{Source, Unit};
 use std::collections::HashMap;
@@ -94,8 +94,7 @@ impl TryFromBR<(&str, &BRProjectInfo, &Vec<BRComponent>, &Vec<BROperation>)> for
             .map(|assembly| AssemblyReference::Assembly(assembly.to_owned()))
             .collect(),
             results: None,
-            project_info: Some(ProjectInfo::BuildingInfo {
-                0: BuildingInfo {
+            project_info: Some(BuildingInfo {
                     building_type: BuildingType::from_br(&project_info.building_type),
                     building_typology: vec![BuildingTypology::from_br(&project_info.typology)],
                     certifications: None,
@@ -127,7 +126,6 @@ impl TryFromBR<(&str, &BRProjectInfo, &Vec<BRComponent>, &Vec<BROperation>)> for
                     local_energy_class: project_info.energy_class.clone(),
                     building_users: None,
                     building_model_scope: None,
-                },
             }),
             project_phase: ProjectPhase::TECHNICAL_DESIGN,
             software_info: SoftwareInfo {
