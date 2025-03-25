@@ -351,7 +351,10 @@ fn construct_epds(
     let mut epds = vec![];
 
     for product in products {
-        let product_edges = connections.get(&product.id).unwrap();
+        let product_edges = match connections.get(&product.id) {
+            Some(edges) => edges,
+            None => continue,
+        };
         let mut _stages = vec![];
         for edge in &*product_edges {
             let stage_id = &edge.2;
@@ -736,7 +739,11 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
             declared_unit: Unit::from(&node.stage_unit),
             version: node.external_version.clone(),
             published_date: Default::default(),
-            valid_until: NaiveDate::parse_from_str(&node.valid_to, "%Y-%m-%d").unwrap(),
+            valid_until: NaiveDate::parse_from_str(
+                &node.valid_to.clone().unwrap_or("2020-01-01".to_string()),
+                "%Y-%m-%d",
+            )
+            .unwrap(),
             comment: Some(node.comment.get()),
             source: Some(Source {
                 name: node.external_source.clone(),

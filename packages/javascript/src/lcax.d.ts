@@ -133,7 +133,7 @@ export type ImpactData = EPDReference | GenericDataReference;
 export interface Transport {
     id: string;
     name: string;
-    lifeCycleStages: LifeCycleModule[];
+    lifeCycleModules: LifeCycleModule[];
     distance: number;
     distanceUnit: Unit;
     impactData: ImpactData;

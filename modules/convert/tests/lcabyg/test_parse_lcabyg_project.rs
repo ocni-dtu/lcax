@@ -63,7 +63,6 @@ macro_rules! parse_lcabyg_project_tests {
 }
 parse_lcabyg_project_tests! {
     project_test: "lcabyg_project"
-    //project_engdraget: "ef-02_engdraget"
 }
 
 macro_rules! parse_lcabyg_project_result_tests {
@@ -126,4 +125,6 @@ parse_lcabyg_project_result_tests! {
     project_2f95c41e: "2f95c41e"
     dtu_science_park: "dtu-science-park-kt-02"
     project_erlev_skole: "erlev-skole-sk-01"
+    project_jysk_soedalsparken: "jysk-soedalsparken-kt-03"
+    project_lisbjerg_bakke: "lisbjerg-bakke-eb-02"
 }
