@@ -1,17 +1,25 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use std::collections::hash_map::{Entry, IterMut};
 use std::collections::HashMap;
 use std::fmt;
+use std::hash::Hash;
 
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
 
+#[cfg(feature = "pybindings")]
+use pyo3::types::PyType;
+
 #[cfg(feature = "jsbindings")]
 use tsify::Tsify;
 
+#[cfg(feature = "jsbindings")]
+use wasm_bindgen::prelude::*;
+
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone, Debug)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(feature = "jsbindings", derive(Tsify), wasm_bindgen)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]
 pub enum LifeCycleModule {
     A0,
@@ -88,7 +96,11 @@ impl TryFrom<&str> for LifeCycleModule {
 
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone, Debug)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]
 pub enum ImpactCategoryKey {
     GWP,
@@ -185,9 +197,160 @@ impl fmt::Display for ImpactCategoryKey {
     }
 }
 
-pub type ImpactCategory = HashMap<LifeCycleModule, Option<f64>>;
+#[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq, Debug)]
+#[serde(rename_all = "camelCase")]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
+#[cfg_attr(feature = "pybindings", pyclass)]
+pub struct ImpactCategory(HashMap<LifeCycleModule, Option<f64>>);
 
-pub type Impacts = HashMap<ImpactCategoryKey, ImpactCategory>;
+impl ImpactCategory {
+    pub fn new() -> Self {
+        ImpactCategory(HashMap::new())
+    }
+    pub fn insert(&mut self, key: LifeCycleModule, value: Option<f64>) -> Option<Option<f64>> {
+        self.0.insert(key, value)
+    }
+    pub fn iter(&self) -> impl Iterator<Item = (&LifeCycleModule, &Option<f64>)> {
+        self.0.iter()
+    }
+    pub fn iter_mut(&mut self) -> IterMut<LifeCycleModule, Option<f64>> {
+        self.0.iter_mut()
+    }
+
+    pub fn get(&self, key: &LifeCycleModule) -> Option<&Option<f64>> {
+        self.0.get(key)
+    }
+
+    pub fn get_mut(&mut self, key: &LifeCycleModule) -> Option<&mut Option<f64>> {
+        self.0.get_mut(key)
+    }
+    pub fn remove(&mut self, key: &LifeCycleModule) -> Option<Option<f64>> {
+        self.0.remove(key)
+    }
+    pub fn is_empty(&self) -> bool {
+        self.0.is_empty()
+    }
+}
+
+impl<const N: usize> From<[(LifeCycleModule, Option<f64>); N]> for ImpactCategory {
+    fn from(value: [(LifeCycleModule, Option<f64>); N]) -> Self {
+        ImpactCategory(HashMap::from(value))
+    }
+}
+
+#[cfg_attr(feature = "pybindings", pymethods)]
+impl ImpactCategory {
+    #[cfg(feature = "pybindings")]
+    #[new]
+    #[pyo3(signature = (value=None))]
+    pub fn new_py(value: Option<HashMap<LifeCycleModule, Option<f64>>>) -> Self {
+        let mut category = Self::new();
+        if value.is_none() {
+            return category;
+        }
+        category.0 = value.unwrap();
+        category
+    }
+
+    #[cfg(feature = "pybindings")]
+    #[classmethod]
+    fn from_dict(_cls: &Bound<'_, PyType>, value: HashMap<LifeCycleModule, Option<f64>>) -> Self {
+        let mut category = ImpactCategory::new();
+        category.0 = value;
+        category
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn dict(&self) -> HashMap<LifeCycleModule, Option<f64>> {
+        self.0.clone()
+    }
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
+#[serde(rename_all = "camelCase")]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
+#[cfg_attr(feature = "pybindings", pyclass)]
+pub struct Impacts(HashMap<ImpactCategoryKey, ImpactCategory>);
+
+impl Impacts {
+    pub fn new() -> Self {
+        Impacts(HashMap::new())
+    }
+    pub fn insert(
+        &mut self,
+        key: ImpactCategoryKey,
+        value: ImpactCategory,
+    ) -> Option<ImpactCategory> {
+        self.0.insert(key, value)
+    }
+    pub fn iter(&self) -> impl Iterator<Item = (&ImpactCategoryKey, &ImpactCategory)> {
+        self.0.iter()
+    }
+    pub fn iter_mut(&mut self) -> IterMut<ImpactCategoryKey, ImpactCategory> {
+        self.0.iter_mut()
+    }
+    pub fn get(&self, key: &ImpactCategoryKey) -> Option<&ImpactCategory> {
+        self.0.get(key)
+    }
+    pub fn entry(&mut self, key: ImpactCategoryKey) -> Entry<ImpactCategoryKey, ImpactCategory> {
+        self.0.entry(key)
+    }
+
+    pub fn get_mut(&mut self, key: &ImpactCategoryKey) -> Option<&mut ImpactCategory> {
+        self.0.get_mut(key)
+    }
+    pub fn remove(&mut self, key: &ImpactCategoryKey) -> Option<ImpactCategory> {
+        self.0.remove(key)
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.0.is_empty()
+    }
+}
+
+impl<const N: usize> From<[(ImpactCategoryKey, ImpactCategory); N]> for Impacts {
+    fn from(value: [(ImpactCategoryKey, ImpactCategory); N]) -> Self {
+        Impacts(HashMap::from(value))
+    }
+}
+
+#[cfg_attr(feature = "pybindings", pymethods)]
+impl Impacts {
+    #[cfg(feature = "pybindings")]
+    #[new]
+    #[pyo3(signature = (value=None))]
+    pub fn new_py(value: Option<HashMap<ImpactCategoryKey, ImpactCategory>>) -> Self {
+        let mut impacts = Self::new();
+        if value.is_none() {
+            return impacts;
+        }
+        impacts.0 = value.unwrap();
+        impacts
+    }
+
+    #[cfg(feature = "pybindings")]
+    #[classmethod]
+    fn from_dict(
+        _cls: &Bound<'_, PyType>,
+        value: HashMap<ImpactCategoryKey, ImpactCategory>,
+    ) -> Self {
+        let mut impacts = Self::new();
+        impacts.0 = value;
+        impacts
+    }
+    #[cfg(feature = "pybindings")]
+    fn dict(&self) -> HashMap<ImpactCategoryKey, ImpactCategory> {
+        self.0.clone()
+    }
+}
 
 pub trait NewResults {
     fn new_results(
@@ -200,9 +363,9 @@ impl NewResults for Impacts {
         impact_categories: &Vec<ImpactCategoryKey>,
         life_cycle_stage: &Vec<LifeCycleModule>,
     ) -> Self {
-        let mut results = HashMap::new();
+        let mut results = Impacts::new();
         impact_categories.iter().for_each(|impact_category_key| {
-            let mut impact_category = HashMap::new();
+            let mut impact_category = ImpactCategory::new();
             life_cycle_stage.iter().for_each(|life_cycle_stage| {
                 impact_category.insert(life_cycle_stage.clone(), Some(0.0));
             });

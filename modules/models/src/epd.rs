@@ -69,7 +69,7 @@ impl Default for EPD {
             location: Country::UNKNOWN,
             subtype: SubType::GENERIC,
             conversions: None,
-            impacts: Default::default(),
+            impacts: Impacts::new(),
             meta_data: None,
         }
     }

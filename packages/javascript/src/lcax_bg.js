@@ -53,6 +53,19 @@ function takeObject(idx) {
     return ret;
 }
 
+function isLikeNone(x) {
+    return x === undefined || x === null;
+}
+
+let cachedDataViewMemory0 = null;
+
+function getDataViewMemory0() {
+    if (cachedDataViewMemory0 === null || cachedDataViewMemory0.buffer.detached === true || (cachedDataViewMemory0.buffer.detached === undefined && cachedDataViewMemory0.buffer !== wasm.memory.buffer)) {
+        cachedDataViewMemory0 = new DataView(wasm.memory.buffer);
+    }
+    return cachedDataViewMemory0;
+}
+
 let WASM_VECTOR_LEN = 0;
 
 const lTextEncoder = typeof TextEncoder === 'undefined' ? (0, module.require)('util').TextEncoder : TextEncoder;
@@ -109,19 +122,6 @@ function passStringToWasm0(arg, malloc, realloc) {
 
     WASM_VECTOR_LEN = offset;
     return ptr;
-}
-
-function isLikeNone(x) {
-    return x === undefined || x === null;
-}
-
-let cachedDataViewMemory0 = null;
-
-function getDataViewMemory0() {
-    if (cachedDataViewMemory0 === null || cachedDataViewMemory0.buffer.detached === true || (cachedDataViewMemory0.buffer.detached === undefined && cachedDataViewMemory0.buffer !== wasm.memory.buffer)) {
-        cachedDataViewMemory0 = new DataView(wasm.memory.buffer);
-    }
-    return cachedDataViewMemory0;
 }
 /**
 * Converts a json formatted LCAByg project into a LCAx Project
@@ -226,6 +226,86 @@ export function calculateProject(project) {
     }
 }
 
+function passArrayJsValueToWasm0(array, malloc) {
+    const ptr = malloc(array.length * 4, 4) >>> 0;
+    const mem = getDataViewMemory0();
+    for (let i = 0; i < array.length; i++) {
+        mem.setUint32(ptr + 4 * i, addHeapObject(array[i]), true);
+    }
+    WASM_VECTOR_LEN = array.length;
+    return ptr;
+}
+/**
+*Get the total impact
+* @param {Impacts} impacts
+* @param {ImpactCategoryKey} category
+* @param {any[] | undefined} [exclude_modules]
+* @returns {number}
+*/
+export function getImpactTotal(impacts, category, exclude_modules) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        var ptr0 = isLikeNone(exclude_modules) ? 0 : passArrayJsValueToWasm0(exclude_modules, wasm.__wbindgen_malloc);
+        var len0 = WASM_VECTOR_LEN;
+        wasm.getImpactTotal(retptr, addHeapObject(impacts), addHeapObject(category), ptr0, len0);
+        var r0 = getDataViewMemory0().getFloat64(retptr + 8 * 0, true);
+        var r2 = getDataViewMemory0().getInt32(retptr + 4 * 2, true);
+        var r3 = getDataViewMemory0().getInt32(retptr + 4 * 3, true);
+        if (r3) {
+            throw takeObject(r2);
+        }
+        return r0;
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+/**
+* @param {number} result
+* @param {number} normalizing_factor
+* @returns {number}
+*/
+export function normalizeResult(result, normalizing_factor) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        wasm.normalizeResult(retptr, result, normalizing_factor);
+        var r0 = getDataViewMemory0().getFloat64(retptr + 8 * 0, true);
+        var r2 = getDataViewMemory0().getInt32(retptr + 4 * 2, true);
+        var r3 = getDataViewMemory0().getInt32(retptr + 4 * 3, true);
+        if (r3) {
+            throw takeObject(r2);
+        }
+        return r0;
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+/**
+* @param {Impacts} impacts
+* @param {ImpactCategoryKey} category
+* @param {any[] | undefined} [exclude_modules]
+* @param {number | undefined} [normalizing_factor]
+* @returns {ImpactCategory | undefined}
+*/
+export function getImpactsByLifeCycleModule(impacts, category, exclude_modules, normalizing_factor) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        var ptr0 = isLikeNone(exclude_modules) ? 0 : passArrayJsValueToWasm0(exclude_modules, wasm.__wbindgen_malloc);
+        var len0 = WASM_VECTOR_LEN;
+        wasm.getImpactsByLifeCycleModule(retptr, addHeapObject(impacts), addHeapObject(category), ptr0, len0, !isLikeNone(normalizing_factor), isLikeNone(normalizing_factor) ? 0 : normalizing_factor);
+        var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true);
+        var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true);
+        var r2 = getDataViewMemory0().getInt32(retptr + 4 * 2, true);
+        if (r2) {
+            throw takeObject(r1);
+        }
+        return takeObject(r0);
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
 function handleError(f, args) {
     try {
         return f.apply(this, args);
@@ -233,6 +313,9 @@ function handleError(f, args) {
         wasm.__wbindgen_exn_store(addHeapObject(e));
     }
 }
+/**
+*/
+export const LifeCycleModule = Object.freeze({ A0:0,"0":"A0",A1A3:1,"1":"A1A3",A4:2,"2":"A4",A5:3,"3":"A5",B1:4,"4":"B1",B2:5,"5":"B2",B3:6,"6":"B3",B4:7,"7":"B4",B5:8,"8":"B5",B6:9,"9":"B6",B7:10,"10":"B7",B8:11,"11":"B8",C1:12,"12":"C1",C2:13,"13":"C2",C3:14,"14":"C3",C4:15,"15":"C4",D:16,"16":"D", });
 
 export function __wbindgen_error_new(arg0, arg1) {
     const ret = new Error(getStringFromWasm0(arg0, arg1));
@@ -251,6 +334,20 @@ export function __wbindgen_object_clone_ref(arg0) {
 
 export function __wbindgen_object_drop_ref(arg0) {
     takeObject(arg0);
+};
+
+export function __wbindgen_try_into_number(arg0) {
+    let result;
+try { result = +getObject(arg0) } catch (e) { result = e }
+const ret = result;
+return addHeapObject(ret);
+};
+
+export function __wbindgen_number_get(arg0, arg1) {
+    const obj = getObject(arg1);
+    const ret = typeof(obj) === 'number' ? obj : undefined;
+    getDataViewMemory0().setFloat64(arg0 + 8 * 1, isLikeNone(ret) ? 0 : ret, true);
+    getDataViewMemory0().setInt32(arg0 + 4 * 0, !isLikeNone(ret), true);
 };
 
 export function __wbg_crypto_1d1f22824a6a080c(arg0) {

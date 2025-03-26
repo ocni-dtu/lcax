@@ -3,10 +3,9 @@ use chrono::NaiveDate;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleModule};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::shared::{Conversion, Unit};
 use serde_json::Error;
-use std::collections::HashMap;
 
 /// Parse a ILCD formatted EPD in an EPDx struct
 ///
@@ -42,6 +41,8 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
         None => generic_anie,
     };
 
+    let comment = collect_comment(&ilcd_epd);
+
     let mut impacts = collect_from_lcia_result(&ilcd_epd.lcia_results.lcia_result);
 
     let (declared_unit, conversions) =
@@ -60,7 +61,7 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
         reference_service_life: None,
         conversions: Some(conversions),
         standard: get_ilcd_standard(&ilcd_epd),
-        comment: None,
+        comment,
         meta_data: None,
         source: None,
         published_date: get_date(&ilcd_epd.process_information.time.reference_year),
@@ -83,7 +84,7 @@ fn get_date(year: &i32) -> NaiveDate {
 }
 
 fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
-    let mut category = ImpactCategory::default();
+    let mut category = ImpactCategory::new();
     let mut composite_a1a3: Option<f64> = None;
 
     for anie in anies {
@@ -295,10 +296,8 @@ fn get_ilcd_declared_unit(exchange: &Exchange) -> Unit {
     Unit::UNKNOWN
 }
 
-fn collect_from_lcia_result(
-    lcia_result: &Vec<LCIAResult>,
-) -> HashMap<ImpactCategoryKey, ImpactCategory> {
-    let mut impacts: HashMap<ImpactCategoryKey, ImpactCategory> = HashMap::new();
+fn collect_from_lcia_result(lcia_result: &Vec<LCIAResult>) -> Impacts {
+    let mut impacts = Impacts::new();
 
     for lcia_result in lcia_result {
         for description in &lcia_result
@@ -377,7 +376,7 @@ fn collect_from_lcia_result(
 
 fn collect_from_exchanges(
     exchanges: &Vec<Exchange>,
-    impacts: &mut HashMap<ImpactCategoryKey, ImpactCategory>,
+    impacts: &mut Impacts,
 ) -> (Unit, Vec<Conversion>) {
     let mut declared_unit = Unit::UNKNOWN;
     let mut conversions: Vec<Conversion> = vec![];
@@ -464,4 +463,33 @@ fn get_name(base_name: &DataSetName) -> String {
         Some(name) if name.value.is_some() => name.value.clone().unwrap(),
         _ => "".to_string(),
     }
+}
+
+fn collect_comment(epd: &ILCD) -> Option<String> {
+    let mut comment = None;
+    if let Some(general_comments) = &epd.process_information.data_set_information.general_comment {
+        comment = match general_comments
+            .iter()
+            .find(|comment| comment.lang == "en".to_string())
+        {
+            Some(comment) => comment.value.clone(),
+            None if general_comments.len() > 0 => general_comments[0].value.clone(),
+            None => None,
+        };
+    }
+    if comment.is_none() {
+        if let Some(technology) = &epd.process_information.technology {
+            comment = match technology
+                .description
+                .iter()
+                .find(|comment| comment.lang == "en".to_string())
+            {
+                Some(comment) => comment.value.clone(),
+                None if technology.description.len() > 0 => technology.description[0].value.clone(),
+                None => None,
+            };
+        }
+    }
+
+    comment
 }

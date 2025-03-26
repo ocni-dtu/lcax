@@ -215,6 +215,14 @@ pub struct ProcessInformation {
     pub data_set_information: DataSetInformation,
     pub time: TimeData,
     pub geography: Geography,
+    pub technology: Option<Technology>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Technology {
+    #[serde(alias = "technologyDescriptionAndIncludedProcesses")]
+    pub description: Vec<ValueLang>,
 }
 
 #[derive(Deserialize)]
@@ -242,6 +250,7 @@ pub struct DataSetInformation {
     #[serde(alias = "UUID")]
     pub uuid: String,
     pub name: DataSetName,
+    pub general_comment: Option<Vec<ValueLang>>,
 }
 
 #[derive(Deserialize)]

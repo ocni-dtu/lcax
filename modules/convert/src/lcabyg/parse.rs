@@ -351,7 +351,10 @@ fn construct_epds(
     let mut epds = vec![];
 
     for product in products {
-        let product_edges = connections.get(&product.id).unwrap();
+        let product_edges = match connections.get(&product.id) {
+            Some(edges) => edges,
+            None => continue,
+        };
         let mut _stages = vec![];
         for edge in &*product_edges {
             let stage_id = &edge.2;
@@ -670,7 +673,7 @@ impl
 
 impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
     fn from_lcabyg((product, stages): (&LCAbygProduct, &Vec<&LCAbygStage>)) -> Self {
-        let mut impacts = HashMap::from([
+        let mut impacts = Impacts::from([
             (ImpactCategoryKey::EP, ImpactCategory::new()),
             (ImpactCategoryKey::ODP, ImpactCategory::new()),
             (ImpactCategoryKey::POCP, ImpactCategory::new()),
@@ -683,7 +686,7 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
         ]);
 
         for stage in stages {
-            for (category_key, impact_category) in &mut impacts {
+            for (category_key, impact_category) in impacts.iter_mut() {
                 let mut category_name = category_key.to_string().to_lowercase();
                 if category_name == "penrt" {
                     category_name = String::from("penr");
@@ -734,7 +737,11 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
             declared_unit: Unit::from(&node.stage_unit),
             version: node.external_version.clone(),
             published_date: Default::default(),
-            valid_until: NaiveDate::parse_from_str(&node.valid_to, "%Y-%m-%d").unwrap(),
+            valid_until: NaiveDate::parse_from_str(
+                &node.valid_to.clone().unwrap_or("2020-01-01".to_string()),
+                "%Y-%m-%d",
+            )
+            .unwrap(),
             comment: Some(node.comment.get()),
             source: Some(Source {
                 name: node.external_source.clone(),
@@ -774,7 +781,7 @@ impl FromLCAByg<(&str, &LCAbygResults)> for Impacts {
     fn from_lcabyg((object_id, results): (&str, &LCAbygResults)) -> Self {
         match results.results.get(object_id) {
             Some(object_result) => {
-                let mut result = HashMap::new();
+                let mut result = Impacts::new();
 
                 for (stage_key, field) in object_result.fields() {
                     match field.get::<Option<YearResult>>().unwrap() {
@@ -784,7 +791,7 @@ impl FromLCAByg<(&str, &LCAbygResults)> for Impacts {
                                 let value = result_field.get::<f64>().unwrap();
                                 result
                                     .entry(ImpactCategoryKey::from_lcabyg(category_key))
-                                    .or_insert_with(HashMap::new)
+                                    .or_insert_with(ImpactCategory::new)
                                     .insert(
                                         LifeCycleModule::try_from(stage_key).unwrap(),
                                         Some(*value),
@@ -796,7 +803,7 @@ impl FromLCAByg<(&str, &LCAbygResults)> for Impacts {
                 }
                 result
             }
-            None => HashMap::new(),
+            None => Impacts::new(),
         }
     }
 }
