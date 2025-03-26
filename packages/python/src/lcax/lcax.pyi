@@ -710,3 +710,46 @@ def get_impacts_by_life_cycle_module(impacts: Impacts, category: ImpactCategoryK
     Get the impacts by life cycle module.
     The results can be normalized by a factor.
     """
+
+
+class Level(Enum):
+    Project = "PROJECT",
+    Assembly = "ASSEMBLY",
+    Product = "PRODUCT",
+    ImpactData = "IMPACT_DATA",
+
+
+class ValidationRules:
+    range: list[float] | None
+    includes: str | None
+    required: bool | None
+    equal: str | None
+    equal: str | None
+    greater: float | None
+    less: float | None
+    one_of: list[str] | None
+
+    def __init__(
+            self,
+            range: list[float] | None = None,
+            includes: str | None = None,
+            required: bool | None = None,
+            equal: str | None = None,
+            greater: float | None = None,
+            less: float | None = None,
+            one_of: list[str] | None = None
+    ):
+        ...
+
+
+class ValidationSchema:
+    level: Level
+    field: str
+    rule: ValidationRules
+
+    def __init__(self, level: Level, field: str, rule: ValidationRules):
+        ...
+
+
+def validate(project: Project, validation_schemas: list[ValidationSchema]):
+    """Validate a LCAx Project"""

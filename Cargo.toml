@@ -4,7 +4,8 @@ members = [
     "modules/convert",
     "modules/core",
     "modules/lcax",
-    "modules/models"
+    "modules/models",
+    "modules/validation"
 ]
 
 resolver = "2"

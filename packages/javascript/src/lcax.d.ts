@@ -1,76 +1,66 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* Converts a json formatted LCAByg project into a LCAx Project
-* @param {string} data
-* @param {string | undefined} [resultData]
-* @returns {LCABygResult}
-*/
-export function convertLCAbyg(data: string, resultData?: string): LCABygResult;
+ * Converts a json formatted LCAByg project into a LCAx Project
+ */
+export function convertLCAbyg(data: string, resultData?: string | null): LCABygResult;
 /**
-* Converts a BR Standard Format file into a LCAx `Project`.
-* @param {string} project_name
-* @param {Uint8Array} file
-* @returns {Project}
-*/
+ * Converts a BR Standard Format file into a LCAx `Project`.
+ */
 export function convertBRStandard(project_name: string, file: Uint8Array): Project;
 /**
-*Converts a json formatted ILCD+EPD data string into a LCAx EPD
-* @param {string} data
-* @returns {EPD}
-*/
+ * Converts a json formatted ILCD+EPD data string into a LCAx EPD
+ */
 export function convertIlcd(data: string): EPD;
 /**
-*Calculate the impact results for a Project.
-*The impact results for the project will be added to the `results` property.
-* @param {Project} project
-* @returns {Project}
-*/
+ * Calculate the impact results for a Project.
+ * The impact results for the project will be added to the `results` property.
+ */
 export function calculateProject(project: Project): Project;
 /**
-*Get the total impact
-* @param {Impacts} impacts
-* @param {ImpactCategoryKey} category
-* @param {any[] | undefined} [exclude_modules]
-* @returns {number}
-*/
-export function getImpactTotal(impacts: Impacts, category: ImpactCategoryKey, exclude_modules?: any[]): number;
+ * Get the total impact
+ */
+export function getImpactTotal(impacts: Impacts, category: ImpactCategoryKey, exclude_modules?: LifeCycleModule[] | null): number;
 /**
-* @param {number} result
-* @param {number} normalizing_factor
-* @returns {number}
-*/
+ * Normalize a result with e.g. the reference study period and gross floor area
+ */
 export function normalizeResult(result: number, normalizing_factor: number): number;
 /**
-* @param {Impacts} impacts
-* @param {ImpactCategoryKey} category
-* @param {any[] | undefined} [exclude_modules]
-* @param {number | undefined} [normalizing_factor]
-* @returns {ImpactCategory | undefined}
-*/
-export function getImpactsByLifeCycleModule(impacts: Impacts, category: ImpactCategoryKey, exclude_modules?: any[], normalizing_factor?: number): ImpactCategory | undefined;
+ * Get the impacts by life cycle module.
+ * The results can be normalized by a factor.
+ */
+export function getImpactsByLifeCycleModule(impacts: Impacts, category: ImpactCategoryKey, exclude_modules?: LifeCycleModule[] | null, normalizing_factor?: number | null): ImpactCategory | undefined;
 /**
-*/
-export enum LifeCycleModule {
-  A0 = 0,
-  A1A3 = 1,
-  A4 = 2,
-  A5 = 3,
-  B1 = 4,
-  B2 = 5,
-  B3 = 6,
-  B4 = 7,
-  B5 = 8,
-  B6 = 9,
-  B7 = 10,
-  B8 = 11,
-  C1 = 12,
-  C2 = 13,
-  C3 = 14,
-  C4 = 15,
-  D = 16,
+ * Validate a LCAx Project
+ */
+export function validate(project: Project, validation_schemas: ValidationSchema[]): boolean;
+export interface ValidationRules {
+    range: [number, number] | null;
+    includes: string | null;
+    required: boolean | null;
+    equal: string | null;
+    greater: number | null;
+    less: number | null;
+    oneOf: string[] | null;
 }
+
+export interface ValidationSchema {
+    level: Level;
+    field: string;
+    rule: ValidationRules;
+}
+
+export type Level = "project" | "assembly" | "product" | "impactData";
+
 export type LCABygResult = { project: Project } | { assemblies: Assembly[] } | { products: Product[] } | { epds: EPD[] };
+
+export type LifeCycleModule = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
+
+export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+
+export type ImpactCategory = Record<LifeCycleModule, number | null>;
+
+export type Impacts = Record<ImpactCategoryKey, ImpactCategory>;
 
 export type BuildingTypology = "office" | "residential" | "public" | "commercial" | "industrial" | "infrastructure" | "agricultural" | "educational" | "health" | "unknown" | "other";
 
@@ -119,8 +109,6 @@ export interface BuildingInfo {
     buildingModelScope: BuildingModelScope[] | null;
 }
 
-export type ProjectInfo = ({ type: "buildingInfo" } & BuildingInfo) | ({ type: "infrastructureInfo" } & Record<string, string>);
-
 export interface Location {
     country: Country;
     city: string | null;
@@ -151,19 +139,33 @@ export interface Project {
     impactCategories: ImpactCategoryKey[];
     assemblies: AssemblyReference[];
     results: Impacts | null;
-    projectInfo: ProjectInfo | null;
+    projectInfo: BuildingInfo | null;
     projectPhase: ProjectPhase;
     softwareInfo: SoftwareInfo;
     metaData: MetaData | null;
 }
 
-export type LifeCycleModule = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
+export type MetaData = Record<string, AnyValue>;
 
-export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+export interface Reference {
+    uri: string;
+    format: string | null;
+    version: string | null;
+    overrides: Record<string, AnyValue> | null;
+}
 
-export type ImpactCategory = Record<LifeCycleModule, number | null>;
+export interface Source {
+    name: string;
+    url: string | null;
+}
 
-export type Impacts = Record<ImpactCategoryKey, ImpactCategory>;
+export interface Conversion {
+    value: number;
+    to: Unit;
+    metaData: MetaData | null;
+}
+
+export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
 
 export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
 
@@ -190,8 +192,8 @@ export interface EPD {
     name: string;
     declaredUnit: Unit;
     version: string;
-    publishedDate: NaiveDate;
-    validUntil: NaiveDate;
+    publishedDate: Date;
+    validUntil: Date;
     formatVersion: string;
     source: Source | null;
     referenceServiceLife: number | null;
@@ -250,26 +252,6 @@ export interface Assembly {
     results: Impacts | null;
     metaData: MetaData | null;
 }
-
-export interface Reference {
-    uri: string;
-    format: string | null;
-    version: string | null;
-    overrides: Record<string, AnyValue> | null;
-}
-
-export interface Source {
-    name: string;
-    url: string | null;
-}
-
-export interface Conversion {
-    value: number;
-    to: Unit;
-    metaData: MetaData | null;
-}
-
-export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
 
 export type Country = "unknown" | "afg" | "ala" | "alb" | "dza" | "asm" | "and" | "ago" | "aia" | "ata" | "atg" | "arg" | "arm" | "abw" | "aus" | "aut" | "aze" | "bhs" | "bhr" | "bgd" | "brb" | "blr" | "bel" | "blz" | "ben" | "bmu" | "btn" | "bol" | "bes" | "bih" | "bwa" | "bvt" | "bra" | "iot" | "brn" | "bgr" | "bfa" | "bdi" | "cpv" | "khm" | "cmr" | "can" | "cym" | "caf" | "tcd" | "chl" | "chn" | "cxr" | "cck" | "col" | "com" | "cog" | "cod" | "cok" | "cri" | "civ" | "hrv" | "cub" | "cuw" | "cyp" | "cze" | "dnk" | "dji" | "dma" | "dom" | "ecu" | "egy" | "slv" | "gnq" | "eri" | "est" | "swz" | "eth" | "flk" | "fro" | "fji" | "fin" | "fra" | "guf" | "pyf" | "atf" | "gab" | "gmb" | "geo" | "deu" | "gha" | "gib" | "grc" | "grl" | "grd" | "glp" | "gum" | "gtm" | "ggy" | "gin" | "gnb" | "guy" | "hti" | "hmd" | "vat" | "hnd" | "hkg" | "hun" | "isl" | "ind" | "idn" | "irn" | "irq" | "irl" | "imn" | "isr" | "ita" | "jam" | "jpn" | "jey" | "jor" | "kaz" | "ken" | "kir" | "prk" | "kor" | "kwt" | "kgz" | "lao" | "lva" | "lbn" | "lso" | "lbr" | "lby" | "lie" | "ltu" | "lux" | "mac" | "mdg" | "mwi" | "mys" | "mdv" | "mli" | "mlt" | "mhl" | "mtq" | "mrt" | "mus" | "myt" | "mex" | "fsm" | "mda" | "mco" | "mng" | "mne" | "msr" | "mar" | "moz" | "mmr" | "nam" | "nru" | "npl" | "nld" | "ncl" | "nzl" | "nic" | "ner" | "nga" | "niu" | "nfk" | "mkd" | "mnp" | "nor" | "omn" | "pak" | "plw" | "pse" | "pan" | "png" | "pry" | "per" | "phl" | "pcn" | "pol" | "prt" | "pri" | "qat" | "reu" | "rou" | "rus" | "rwa" | "blm" | "shn" | "kna" | "lca" | "maf" | "spm" | "vct" | "wsm" | "smr" | "stp" | "sau" | "sen" | "srb" | "syc" | "sle" | "sgp" | "sxm" | "svk" | "svn" | "slb" | "som" | "zaf" | "sgs" | "ssd" | "esp" | "lka" | "sdn" | "sur" | "sjm" | "swe" | "che" | "syr" | "twn" | "tjk" | "tza" | "tha" | "tls" | "tgo" | "tkl" | "ton" | "tto" | "tun" | "tur" | "tkm" | "tca" | "tuv" | "uga" | "ukr" | "are" | "gbr" | "usa" | "umi" | "ury" | "uzb" | "vut" | "ven" | "vnm" | "vgb" | "vir" | "wlf" | "esh" | "yem" | "zmb" | "zwe";
 

@@ -10,9 +10,11 @@ use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference, Transport};
-use lcax_models::project::{Location, Project, ProjectInfo, ProjectPhase, SoftwareInfo};
+use lcax_models::project::{BuildingInfo, Location, Project, ProjectPhase, SoftwareInfo};
 use lcax_models::shared::{Conversion, Reference, Source, Unit};
-use pyo3::exceptions::PyTypeError;
+use lcax_validation::model::{Level, ValidationRules};
+use lcax_validation::ValidationSchema;
+use pyo3::exceptions::{PyTypeError, PyValueError};
 use pyo3::prelude::*;
 use std::path::PathBuf;
 
@@ -95,6 +97,16 @@ pub fn get_impacts_by_life_cycle_module(
     ))
 }
 
+#[pyfunction]
+pub fn validate(project: Project, validation_schema: Vec<ValidationSchema>) -> PyResult<bool> {
+    match lcax_validation::validate(&project, &validation_schema) {
+        Ok(_) => Ok(true),
+        Err(error) => Err(PyValueError::new_err(
+            serde_json::to_string(&error).unwrap(),
+        )),
+    }
+}
+
 /// A Python module implemented in Rust. The name of this function must match
 /// the `lib.name` setting in the `Cargo.toml`, else Python will not be able to
 /// import the module.
@@ -108,6 +120,7 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<Source>()?;
     m.add_class::<Standard>()?;
     m.add_class::<Country>()?;
+    m.add_class::<BuildingInfo>()?;
     m.add_class::<SubType>()?;
     m.add_class::<Impacts>()?;
     m.add_class::<ImpactCategory>()?;
@@ -115,7 +128,6 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<LifeCycleModule>()?;
     m.add_class::<Project>()?;
     m.add_class::<Location>()?;
-    m.add_class::<ProjectInfo>()?;
     m.add_class::<ProjectPhase>()?;
     m.add_class::<SoftwareInfo>()?;
     m.add_class::<Reference>()?;
@@ -130,6 +142,9 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<EPD>()?;
     m.add_class::<GenericDataReference>()?;
     m.add_class::<GenericData>()?;
+    m.add_class::<ValidationSchema>()?;
+    m.add_class::<Level>()?;
+    m.add_class::<ValidationRules>()?;
 
     // Functions
     m.add_function(wrap_pyfunction!(convert_lcabyg, m)?)?;
@@ -140,5 +155,6 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(get_impact_total, m)?)?;
     m.add_function(wrap_pyfunction!(normalize_result, m)?)?;
     m.add_function(wrap_pyfunction!(get_impacts_by_life_cycle_module, m)?)?;
+    m.add_function(wrap_pyfunction!(validate, m)?)?;
     Ok(())
 }

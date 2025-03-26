@@ -5,10 +5,9 @@ use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 
 #[cfg(feature = "jsbindings")]
-use tsify::Tsify;
+use tsify_next::Tsify;
 
 #[cfg(feature = "pybindings")]
 use pyo3::exceptions::PyTypeError;
@@ -42,7 +41,7 @@ pub struct Project {
     pub impact_categories: Vec<ImpactCategoryKey>,
     pub assemblies: Vec<AssemblyReference>,
     pub results: Option<Impacts>,
-    pub project_info: Option<ProjectInfo>,
+    pub project_info: Option<BuildingInfo>,
     pub project_phase: ProjectPhase,
     pub software_info: SoftwareInfo,
     pub meta_data: Option<MetaData>,
@@ -70,7 +69,7 @@ impl Project {
         classification_systems: Option<Vec<String>>,
         reference_study_period: Option<u8>,
         results: Option<Impacts>,
-        project_info: Option<ProjectInfo>,
+        project_info: Option<BuildingInfo>,
         meta_data: Option<MetaData>,
     ) -> Project {
         Project::new(
@@ -131,7 +130,7 @@ impl Project {
         impact_categories: Vec<ImpactCategoryKey>,
         assemblies: Vec<AssemblyReference>,
         results: Option<Impacts>,
-        project_info: Option<ProjectInfo>,
+        project_info: Option<BuildingInfo>,
         project_phase: ProjectPhase,
         software_info: SoftwareInfo,
         meta_data: Option<MetaData>,
@@ -298,16 +297,6 @@ impl Location {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
-#[serde(tag = "type")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(eq))]
-pub enum ProjectInfo {
-    BuildingInfo(BuildingInfo),
-    InfrastructureInfo(HashMap<String, String>),
-}
-
-#[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
-#[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
 pub struct BuildingInfo {
@@ -351,8 +340,8 @@ pub struct AreaType {
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
 pub struct ValueUnit {
-    value: f64,
-    unit: Unit,
+    pub value: f64,
+    pub unit: Unit,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]

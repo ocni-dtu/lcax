@@ -12,7 +12,7 @@ use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, L
 use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{
     AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
-    ProjectInfo, RoofType, SoftwareInfo,
+    RoofType, SoftwareInfo,
 };
 use lcax_models::shared::{Conversion, Source, Unit};
 
@@ -35,7 +35,7 @@ use crate::br_standard::br18_generic_data::{
 use lcax_core::value::AnyValue;
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
 #[cfg(feature = "jsbindings")]
-use tsify::Tsify;
+use tsify_next::Tsify;
 
 type Edge = (EdgeType, String, String);
 
@@ -449,46 +449,44 @@ impl
             .map(|assembly| AssemblyReference::Assembly(assembly.to_owned()))
             .collect(),
             results,
-            project_info: Some(ProjectInfo::BuildingInfo {
-                0: BuildingInfo {
-                    building_type: BuildingType::from_lcabyg(
-                        building
-                            .project_type
-                            .clone()
-                            .unwrap_or("".to_string())
-                            .as_str(),
-                    ),
-                    building_typology: vec![BuildingTypology::from(&building.building_type)],
-                    certifications: None,
-                    building_mass: None,
-                    building_height: None,
-                    gross_floor_area: Some(AreaType {
-                        value: building.gross_area,
-                        unit: Unit::M2,
-                        definition: "".to_string(),
-                    }),
-                    heated_floor_area: Some(AreaType {
-                        value: building.heated_floor_area,
-                        unit: Unit::M2,
-                        definition: "".to_string(),
-                    }),
-                    building_footprint: None,
-                    floors_above_ground: building.storeys_above_ground,
-                    floors_below_ground: Some(building.storeys_below_ground),
-                    roof_type: RoofType::OTHER,
-                    frame_type: Some("".to_string()),
-                    building_completion_year: Some(building.initial_year as u16),
-                    building_permit_year: None,
-                    energy_demand_heating: Some(0.0),
-                    energy_supply_heating: Some(0.0),
-                    energy_demand_electricity: Some(0.0),
-                    energy_supply_electricity: Some(0.0),
-                    exported_electricity: Some(0.0),
-                    general_energy_class: GeneralEnergyClass::from(&building.energy_class),
-                    local_energy_class: None,
-                    building_model_scope: None,
-                    building_users: Some(building.person_count as u32),
-                },
+            project_info: Some(BuildingInfo {
+                building_type: BuildingType::from_lcabyg(
+                    building
+                        .project_type
+                        .clone()
+                        .unwrap_or("".to_string())
+                        .as_str(),
+                ),
+                building_typology: vec![BuildingTypology::from(&building.building_type)],
+                certifications: None,
+                building_mass: None,
+                building_height: None,
+                gross_floor_area: Some(AreaType {
+                    value: building.gross_area,
+                    unit: Unit::M2,
+                    definition: "".to_string(),
+                }),
+                heated_floor_area: Some(AreaType {
+                    value: building.heated_floor_area,
+                    unit: Unit::M2,
+                    definition: "".to_string(),
+                }),
+                building_footprint: None,
+                floors_above_ground: building.storeys_above_ground,
+                floors_below_ground: Some(building.storeys_below_ground),
+                roof_type: RoofType::OTHER,
+                frame_type: Some("".to_string()),
+                building_completion_year: Some(building.initial_year as u16),
+                building_permit_year: None,
+                energy_demand_heating: Some(0.0),
+                energy_supply_heating: Some(0.0),
+                energy_demand_electricity: Some(0.0),
+                energy_supply_electricity: Some(0.0),
+                exported_electricity: Some(0.0),
+                general_energy_class: GeneralEnergyClass::from(&building.energy_class),
+                local_energy_class: None,
+                building_model_scope: None,
+                building_users: Some(building.person_count as u32),
             }),
             life_cycle_modules: vec![],
             owner: Some(project.owner.to_string()),

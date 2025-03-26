@@ -2,7 +2,7 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "jsbindings")]
-use tsify::Tsify;
+use tsify_next::Tsify;
 
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;

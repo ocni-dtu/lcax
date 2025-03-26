@@ -13,7 +13,7 @@ use lcax_models::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{
     AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
-    ProjectInfo, ProjectPhase, RoofType, SoftwareInfo,
+    ProjectPhase, RoofType, SoftwareInfo,
 };
 use lcax_models::shared::{Source, Unit};
 use std::collections::HashMap;
@@ -94,40 +94,38 @@ impl TryFromBR<(&str, &BRProjectInfo, &Vec<BRComponent>, &Vec<BROperation>)> for
             .map(|assembly| AssemblyReference::Assembly(assembly.to_owned()))
             .collect(),
             results: None,
-            project_info: Some(ProjectInfo::BuildingInfo {
-                0: BuildingInfo {
-                    building_type: BuildingType::from_br(&project_info.building_type),
-                    building_typology: vec![BuildingTypology::from_br(&project_info.typology)],
-                    certifications: None,
-                    building_mass: None,
-                    building_height: None,
-                    gross_floor_area: Some(AreaType {
-                        value: project_info.gross_floor_area,
-                        unit: Unit::M2,
-                        definition: "".to_string(),
-                    }),
-                    heated_floor_area: Some(AreaType {
-                        value: project_info.heated_area,
-                        unit: Unit::M2,
-                        definition: "".to_string(),
-                    }),
-                    building_footprint: None,
-                    floors_above_ground: project_info.floors_above_ground,
-                    floors_below_ground: Some(project_info.floors_below_ground),
-                    roof_type: RoofType::UNKNOWN,
-                    frame_type: None,
-                    building_completion_year: date_to_year(&project_info.building_operation_date),
-                    building_permit_year: date_to_year(&project_info.building_permission_date),
-                    energy_demand_heating: Some(project_info.heating_no_modifiers.clone()),
-                    energy_supply_heating: None,
-                    energy_demand_electricity: Some(project_info.electricity_no_modifiers.clone()),
-                    energy_supply_electricity: None,
-                    exported_electricity: Some(project_info.electricity_production.clone()),
-                    general_energy_class: GeneralEnergyClass::STANDARD,
-                    local_energy_class: project_info.energy_class.clone(),
-                    building_users: None,
-                    building_model_scope: None,
-                },
+            project_info: Some(BuildingInfo {
+                building_type: BuildingType::from_br(&project_info.building_type),
+                building_typology: vec![BuildingTypology::from_br(&project_info.typology)],
+                certifications: None,
+                building_mass: None,
+                building_height: None,
+                gross_floor_area: Some(AreaType {
+                    value: project_info.gross_floor_area,
+                    unit: Unit::M2,
+                    definition: "".to_string(),
+                }),
+                heated_floor_area: Some(AreaType {
+                    value: project_info.heated_area,
+                    unit: Unit::M2,
+                    definition: "".to_string(),
+                }),
+                building_footprint: None,
+                floors_above_ground: project_info.floors_above_ground,
+                floors_below_ground: Some(project_info.floors_below_ground),
+                roof_type: RoofType::UNKNOWN,
+                frame_type: None,
+                building_completion_year: date_to_year(&project_info.building_operation_date),
+                building_permit_year: date_to_year(&project_info.building_permission_date),
+                energy_demand_heating: Some(project_info.heating_no_modifiers.clone()),
+                energy_supply_heating: None,
+                energy_demand_electricity: Some(project_info.electricity_no_modifiers.clone()),
+                energy_supply_electricity: None,
+                exported_electricity: Some(project_info.electricity_production.clone()),
+                general_energy_class: GeneralEnergyClass::STANDARD,
+                local_energy_class: project_info.energy_class.clone(),
+                building_users: None,
+                building_model_scope: None,
             }),
             project_phase: ProjectPhase::TECHNICAL_DESIGN,
             software_info: SoftwareInfo {

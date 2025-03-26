@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 use pyo3::prelude::*;
 
 #[cfg(feature = "jsbindings")]
-use tsify::Tsify;
+use tsify_next::Tsify;
 
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
