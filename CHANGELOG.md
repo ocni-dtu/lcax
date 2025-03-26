@@ -1,3 +1,9 @@
+## [3.0.0-beta.6](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2025-03-26)
+
+### Features
+
+* add methods to deal with impacts ([#110](https://github.com/ocni-dtu/lcax/issues/110)) ([825c325](https://github.com/ocni-dtu/lcax/commit/825c325cd15e262cd3cf134ff302686196669b96))
+
 ## [3.0.0-beta.5](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2025-03-25)
 
 ### Bug Fixes
