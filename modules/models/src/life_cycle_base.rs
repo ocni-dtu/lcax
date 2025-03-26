@@ -12,14 +12,18 @@ use pyo3::prelude::*;
 use pyo3::types::PyType;
 
 #[cfg(feature = "jsbindings")]
-use tsify::Tsify;
+use tsify_next::Tsify;
 
 #[cfg(feature = "jsbindings")]
 use wasm_bindgen::prelude::*;
 
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone, Debug)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify), wasm_bindgen)]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]
 pub enum LifeCycleModule {
     A0,

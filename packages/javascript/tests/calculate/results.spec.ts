@@ -1,9 +1,9 @@
 import {describe, expect, it} from "vitest";
-import {getImpactTotal, normalizeResult, getImpactsByLifeCycleModule} from "../../src/lcax";
+import {getImpactTotal, normalizeResult, getImpactsByLifeCycleModule, Impacts} from "../../src/lcax";
 
 describe("getImpactTotal", () => {
     it("Get total from impacts", async () => {
-        const result = getImpactTotal({gwp: {a1a3: 10}}, 'gwp', undefined)
+        const result = getImpactTotal({gwp: {a1a3: 10}} as Impacts, 'gwp', undefined)
 
         expect(result).toBe(10)
     })
@@ -19,7 +19,7 @@ describe("normalizeResult", () => {
 
 describe("getImpactsByLifeCycleModule", () => {
     it("Normalize result", async () => {
-        const result = getImpactsByLifeCycleModule({gwp: {a1a3: 10}}, 'gwp', undefined, 2)
+        const result = getImpactsByLifeCycleModule({gwp: {a1a3: 10}} as Impacts, 'gwp', undefined, 2)
 
         expect(result.a1a3).toBe(5)
     })

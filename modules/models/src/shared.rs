@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fmt;
 #[cfg(feature = "jsbindings")]
-use tsify::Tsify;
+use tsify_next::{declare, Tsify};
 
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
@@ -90,4 +90,5 @@ pub struct Reference {
     pub overrides: Option<HashMap<String, AnyValue>>,
 }
 
+#[cfg_attr(feature = "jsbindings", declare)]
 pub type MetaData = HashMap<String, AnyValue>;

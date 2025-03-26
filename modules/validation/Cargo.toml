@@ -25,16 +25,31 @@ unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test
 
 [features]
 default = []
+pybindings = ["pyo3", "pyo3/extension-module", "lcax_models/pybindings",]
+jsbindings = [
+    "wasm-bindgen",
+    "serde-wasm-bindgen",
+    "console_error_panic_hook",
+    "tsify-next",
+    "lcax_models/jsbindings",
+]
 
 [dependencies]
-valitron = { version = "0.5.5", features = ["full"]  }
+valitron = { version = "0.5.6", features = ["full"]  }
 serde = { version = "1.0.219", features = ["derive"] }
 schemars = { version = "0.8.21", features = ["chrono"] }
 serde_json = "1.0.140"
 lcax_models = { path = "../models", version = ">=3.0.0-beta.3" }
-field_access = "0.1.8"
 log = "0.4.27"
-convert_case = "0.8.0"
+
+# Python Bindings
+pyo3 = { version = "0.24", features = ["abi3-py310", "chrono"], optional = true }
+
+# JS Bindings
+wasm-bindgen = { version = "0.2.100", optional = true }
+serde-wasm-bindgen = { version = "0.6.5", optional = true }
+console_error_panic_hook = { version = "0.1.7", optional = true }
+tsify-next = { version = "0.5.5", optional = true }
 
 [dev-dependencies]
 serde_yml = "0.0.12"

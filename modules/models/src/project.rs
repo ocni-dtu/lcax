@@ -7,7 +7,7 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "jsbindings")]
-use tsify::Tsify;
+use tsify_next::Tsify;
 
 #[cfg(feature = "pybindings")]
 use pyo3::exceptions::PyTypeError;
@@ -294,16 +294,6 @@ impl Location {
         }
     }
 }
-
-// #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
-// #[serde(rename_all = "camelCase")]
-// #[serde(tag = "type")]
-// #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-// #[cfg_attr(feature = "pybindings", pyclass(eq))]
-// pub enum ProjectInfo {
-//     BuildingInfo(BuildingInfo),
-//     InfrastructureInfo(HashMap<String, String>),
-// }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]

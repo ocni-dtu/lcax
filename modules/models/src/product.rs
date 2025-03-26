@@ -3,7 +3,7 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "jsbindings")]
-use tsify::Tsify;
+use tsify_next::Tsify;
 
 use crate::epd::{EPDReference, Standard, SubType};
 use crate::generic_impact_data::GenericDataReference;

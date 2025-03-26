@@ -3,7 +3,7 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "jsbindings")]
-use tsify::Tsify;
+use tsify_next::Tsify;
 
 use crate::life_cycle_base::Impacts;
 use crate::shared::{Conversion, MetaData, Reference, Source, Unit};
@@ -34,10 +34,12 @@ pub struct EPD {
 
     #[serde(serialize_with = "serialize_yyyy_mm_dd")]
     #[serde(deserialize_with = "deserialize_yyyy_mm_dd")]
+    #[cfg_attr(feature = "jsbindings", tsify(type = "Date"))]
     pub published_date: NaiveDate,
 
     #[serde(serialize_with = "serialize_yyyy_mm_dd")]
     #[serde(deserialize_with = "deserialize_yyyy_mm_dd")]
+    #[cfg_attr(feature = "jsbindings", tsify(type = "Date"))]
     pub valid_until: NaiveDate,
 
     pub format_version: String,

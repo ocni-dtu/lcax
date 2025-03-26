@@ -14,12 +14,16 @@
   field: location.address
   rule:
     includes: Testvej
-#- level: project
-#  field: projectInfo.grossFloorArea.value
-#  rule:
-#    greater: 50
 - level: project
-  field: projectInfo.buildingType
+  field: projectInfo?.grossFloorArea?.value
+  rule:
+    greater: 50
+- level: project
+  field: projectInfo?.floorsAboveGround
+  rule:
+    less: 2
+- level: project
+  field: projectInfo?.buildingType
   rule:
     equal: new_construction_works
 - level: assembly
@@ -30,8 +34,8 @@
   field: quantity
   rule:
     range:
-      min: 1
-      max: 100
+      - 1
+      - 100
 #- level: assembly
 #  field: classification.system
 #  rule:
@@ -52,15 +56,15 @@
 #  field: type
 #  rule:
 #    equal: EPD
+- level: impactData
+  field: source?.name
+  rule:
+    equal: "Ökobau.dat"
+- level: impactData
+  field: subtype
+  rule:
+    oneOf: ["generic", "specific"]
 #- level: impactData
-#  field: source.name
-#  rule:
-#    equal: "Ökobau.dat"
-#- level: impactData
-#  field: subtype
-#  rule:
-#    oneOf: ["generic", "specific"]
-#- level: impactData
-#  field: impacts.gwp.a1a3
+#  field: impacts.gwp?.a1a3?
 #  rule:
 #    greater: 0

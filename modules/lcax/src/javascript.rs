@@ -12,6 +12,8 @@ use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::project::Project;
+use lcax_validation;
+use lcax_validation::model::ValidationSchema;
 
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
@@ -105,4 +107,17 @@ pub fn getImpactsByLifeCycleModule(
         &exclude_modules,
         normalizing_factor,
     ))
+}
+
+///Validate a LCAx Project
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn validate(
+    project: Project,
+    validation_schemas: Vec<ValidationSchema>,
+) -> Result<bool, JsError> {
+    match lcax_validation::validate(&project, &validation_schemas) {
+        Ok(_) => Ok(true),
+        Err(error) => Err(JsError::new(&serde_json::to_string(&error).unwrap())),
+    }
 }

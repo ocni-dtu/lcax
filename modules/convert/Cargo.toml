@@ -17,7 +17,7 @@ crate-type = ["cdylib", "rlib"]
 [features]
 default = []
 pybindings = ["pyo3", "pyo3/extension-module"]
-jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify"]
+jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify-next"]
 
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
@@ -36,9 +36,9 @@ calamine = "0.26.1"
 phf = { version = "0.11", features = ["macros"] }
 
 # Python Bindings
-pyo3 = { version = "0.23.4", features = ["abi3-py310", "chrono"], optional = true }
+pyo3 = { version = "0.24", features = ["abi3-py310", "chrono"], optional = true }
 
 # JS Bindings
-wasm-bindgen = { version = "0.2.92", optional = true }
+wasm-bindgen = { version = "0.2.100", optional = true }
 console_error_panic_hook = { version = "0.1.7", optional = true }
-tsify = { version = "0.4.5", optional = true }
+tsify-next = { version = "0.5.5", optional = true }
