@@ -713,10 +713,10 @@ def get_impacts_by_life_cycle_module(impacts: Impacts, category: ImpactCategoryK
 
 
 class Level(Enum):
-    PROJECT = "PROJECT",
-    ASSEMBLY = "ASSEMBLY",
-    PRODUCT = "PRODUCT",
-    IMPACT_DATA = "IMPACT_DATA",
+    Project = "PROJECT",
+    Assembly = "ASSEMBLY",
+    Product = "PRODUCT",
+    ImpactData = "IMPACT_DATA",
 
 
 class ValidationRules:

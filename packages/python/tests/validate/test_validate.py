@@ -4,7 +4,7 @@ import pytest
 
 def test_validate_project(project):
     schemas = [ValidationSchema(
-        **{ "level": Level.PROJECT, "field": "name", "rule": ValidationRules(**{ "equal": "Test eksempel"}) }
+        **{ "level": Level.Project, "field": "name", "rule": ValidationRules(**{ "equal": "Test eksempel"}) }
     )]
     result = validate(project, schemas)
 
@@ -13,7 +13,7 @@ def test_validate_project(project):
 
 def test_validate_project_fail(project):
     schemas = [ValidationSchema(
-        **{ "level": Level.PROJECT, "field": "name", "rule": ValidationRules(**{ "equal": "Te eksempel"}) }
+        **{ "level": Level.Project, "field": "name", "rule": ValidationRules(**{ "equal": "Te eksempel"}) }
     )]
 
     with pytest.raises(ValueError):

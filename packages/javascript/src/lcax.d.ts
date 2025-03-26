@@ -50,7 +50,7 @@ export interface ValidationSchema {
     rule: ValidationRules;
 }
 
-export type Level = "project" | "assembly" | "product" | "impact_data";
+export type Level = "project" | "assembly" | "product" | "impactData";
 
 export type LCABygResult = { project: Project } | { assemblies: Assembly[] } | { products: Product[] } | { epds: EPD[] };
 

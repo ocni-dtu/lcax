@@ -10,13 +10,12 @@ use pyo3::prelude::*;
 #[derive(Deserialize, Serialize, JsonSchema, Debug, Clone)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "camelCase")]
 pub enum Level {
-    PROJECT,
-    ASSEMBLY,
-    PRODUCT,
-    #[allow(non_camel_case_types)]
-    IMPACT_DATA,
+    Project,
+    Assembly,
+    Product,
+    ImpactData,
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Debug, Clone)]

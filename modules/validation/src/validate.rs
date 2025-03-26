@@ -21,16 +21,16 @@ pub fn validate(
 
     for schema in validation_schema {
         match schema.level {
-            Level::PROJECT => {
+            Level::Project => {
                 project_validator = apply_rule(project_validator, schema);
             }
-            Level::ASSEMBLY => {
+            Level::Assembly => {
                 assembly_validator = apply_rule(assembly_validator, schema);
             }
-            Level::PRODUCT => {
+            Level::Product => {
                 product_validator = apply_rule(product_validator, schema);
             }
-            Level::IMPACT_DATA => {
+            Level::ImpactData => {
                 impact_validator = apply_rule(impact_validator, schema);
             }
         }
