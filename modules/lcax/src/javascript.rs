@@ -2,11 +2,15 @@ extern crate console_error_panic_hook;
 use wasm_bindgen::prelude::*;
 
 use lcax_calculation::calculate::calculate_project;
+use lcax_calculation::results::{
+    get_impact_total, get_impacts_by_life_cycle_module, normalize_result,
+};
 use lcax_convert::br_standard::parse::parse_br_standard;
 use lcax_convert::br_standard::xlsx::read_br_standard_from_bytes;
 use lcax_convert::lcabyg::parse::LCABygResult;
 use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::project::Project;
 
 #[global_allocator]
@@ -64,4 +68,41 @@ pub fn calculateProject(mut project: Project) -> Result<Project, JsError> {
         Ok(project) => Ok(project.clone()),
         Err(error) => Err(JsError::new(error.to_string().as_str())),
     }
+}
+
+///Get the total impact
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn getImpactTotal(
+    impacts: Impacts,
+    category: ImpactCategoryKey,
+    exclude_modules: Option<Vec<LifeCycleModule>>,
+) -> Result<f64, JsError> {
+    console_error_panic_hook::set_once();
+    Ok(get_impact_total(&impacts, &category, &exclude_modules))
+}
+
+///Normalize a result with e.g. the reference study period and gross floor area
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn normalizeResult(result: f64, normalizing_factor: f64) -> Result<f64, JsError> {
+    Ok(normalize_result(&result, &normalizing_factor))
+}
+
+///Get the impacts by life cycle module.
+///The results can be normalized by a factor.
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn getImpactsByLifeCycleModule(
+    impacts: Impacts,
+    category: ImpactCategoryKey,
+    exclude_modules: Option<Vec<LifeCycleModule>>,
+    normalizing_factor: Option<f64>,
+) -> Result<Option<ImpactCategory>, JsError> {
+    Ok(get_impacts_by_life_cycle_module(
+        &impacts,
+        &category,
+        &exclude_modules,
+        normalizing_factor,
+    ))
 }

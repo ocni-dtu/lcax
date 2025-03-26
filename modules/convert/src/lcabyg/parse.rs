@@ -675,7 +675,7 @@ impl
 
 impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
     fn from_lcabyg((product, stages): (&LCAbygProduct, &Vec<&LCAbygStage>)) -> Self {
-        let mut impacts = HashMap::from([
+        let mut impacts = Impacts::from([
             (ImpactCategoryKey::EP, ImpactCategory::new()),
             (ImpactCategoryKey::ODP, ImpactCategory::new()),
             (ImpactCategoryKey::POCP, ImpactCategory::new()),
@@ -688,7 +688,7 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
         ]);
 
         for stage in stages {
-            for (category_key, impact_category) in &mut impacts {
+            for (category_key, impact_category) in impacts.iter_mut() {
                 let mut category_name = category_key.to_string().to_lowercase();
                 if category_name == "penrt" {
                     category_name = String::from("penr");
@@ -783,7 +783,7 @@ impl FromLCAByg<(&str, &LCAbygResults)> for Impacts {
     fn from_lcabyg((object_id, results): (&str, &LCAbygResults)) -> Self {
         match results.results.get(object_id) {
             Some(object_result) => {
-                let mut result = HashMap::new();
+                let mut result = Impacts::new();
 
                 for (stage_key, field) in object_result.fields() {
                     match field.get::<Option<YearResult>>().unwrap() {
@@ -793,7 +793,7 @@ impl FromLCAByg<(&str, &LCAbygResults)> for Impacts {
                                 let value = result_field.get::<f64>().unwrap();
                                 result
                                     .entry(ImpactCategoryKey::from_lcabyg(category_key))
-                                    .or_insert_with(HashMap::new)
+                                    .or_insert_with(ImpactCategory::new)
                                     .insert(
                                         LifeCycleModule::try_from(stage_key).unwrap(),
                                         Some(*value),
@@ -805,7 +805,7 @@ impl FromLCAByg<(&str, &LCAbygResults)> for Impacts {
                 }
                 result
             }
-            None => HashMap::new(),
+            None => Impacts::new(),
         }
     }
 }

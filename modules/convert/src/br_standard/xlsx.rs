@@ -2,7 +2,7 @@ use crate::br_standard::models::{BRComponent, BREnvironmentalData, BROperation, 
 use crate::br_standard::parse::parse_br_standard;
 use crate::br_standard::translations::GENERAL_INFORMATION_TRANSLATION;
 use calamine::{open_workbook, open_workbook_from_rs, Data, DataType, Error, Reader, Xlsx};
-use lcax_models::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleModule};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::project::Project;
 use std::collections::HashMap;
 use std::io::{Cursor, Seek};
@@ -236,9 +236,9 @@ where
                     expiration_data: row[10].to_string(),
                     standard: row[11].to_string(),
                 },
-                results: HashMap::from([(
+                results: Impacts::from([(
                     ImpactCategoryKey::GWP,
-                    HashMap::from([(
+                    ImpactCategory::from([(
                         LifeCycleModule::B6,
                         Some(row[13].as_f64().unwrap_or(0.0) * reference_service_life),
                     )]),
@@ -289,9 +289,9 @@ impl FromBR<(&[Data], i32, &f64, &f64)> for Impacts {
             LifeCycleModule::C4,
             LifeCycleModule::D,
         ];
-        let mut results = HashMap::new();
+        let mut results = Impacts::new();
         for (c_index, category) in categories.iter().enumerate() {
-            let mut result_category = HashMap::new();
+            let mut result_category = ImpactCategory::new();
             for (s_index, stage) in stages.iter().enumerate() {
                 let index = start_index + (c_index as i32 * 15) + s_index as i32;
                 let data = &row[index as usize];

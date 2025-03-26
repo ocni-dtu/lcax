@@ -9,7 +9,7 @@ use lcax_core::utils::get_version;
 use lcax_core::value::AnyValue;
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
-use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleModule};
+use lcax_models::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::{
     AreaType, BuildingInfo, BuildingType, BuildingTypology, GeneralEnergyClass, Location, Project,
@@ -420,7 +420,7 @@ impl FromBR<&BRComponent> for GenericData {
             }),
             comment: None,
             conversions: None,
-            impacts: Default::default(),
+            impacts: Impacts::new(),
             meta_data: None,
         }
     }

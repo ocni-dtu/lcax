@@ -4,6 +4,7 @@ import json
 import pytest
 
 import lcax
+from lcax import Impacts
 
 
 def test_parse_ilcd(datafix_dir):
@@ -31,7 +32,7 @@ def test_parse_ilcd(datafix_dir):
     assert isinstance(epd.location, lcax.Country)
     assert epd.conversions
     assert epd.impacts
-    assert isinstance(epd.impacts, dict)
+    assert isinstance(epd.impacts, Impacts)
     assert hasattr(epd, "meta_data")
 
 

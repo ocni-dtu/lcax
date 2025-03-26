@@ -1,5 +1,8 @@
 from datetime import date
 
+from lcax import Impacts
+
+
 def test_product_import():
     from lcax import Product
 
@@ -22,7 +25,7 @@ def test_product_new():
             standard=Standard.EN15804A2,
             location=Country.FRA,
             subtype=SubType.INDUSTRY,
-            impacts={}
+            impacts=Impacts()
         )],
         quantity=1.0,
         unit=Unit.KG,

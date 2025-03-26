@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
 
@@ -7,7 +6,7 @@ use lcax_calculation::calculate::{
 };
 use lcax_models::assembly::AssemblyReference;
 use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleModule};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product};
 use lcax_models::project::Project;
 use lcax_models::shared::Unit;
@@ -71,7 +70,7 @@ fn test_calculate_product() -> Result<(), String> {
             location: Default::default(),
             subtype: SubType::GENERIC,
             conversions: None,
-            impacts: HashMap::from([(
+            impacts: Impacts::from([(
                 ImpactCategoryKey::GWP,
                 ImpactCategory::from([(LifeCycleModule::A1A3, Some(3.0))]),
             )]),
@@ -92,7 +91,11 @@ fn test_calculate_product() -> Result<(), String> {
     };
     let result = calculate_product(&mut product, &options).unwrap();
     assert_eq!(
-        result[&ImpactCategoryKey::GWP][&LifeCycleModule::A1A3],
+        *result
+            .get(&ImpactCategoryKey::GWP)
+            .unwrap()
+            .get(&LifeCycleModule::A1A3)
+            .unwrap(),
         Some(15.0)
     );
     Ok(())

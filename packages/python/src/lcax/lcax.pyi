@@ -1,7 +1,7 @@
 import datetime
 from enum import Enum
 from pathlib import Path
-from typing import Any, Self
+from typing import Any, Self, Type
 
 
 class SoftwareInfo:
@@ -604,10 +604,31 @@ class ImpactData:
         ...
 
 
-type ImpactCategory = dict[LifeCycleModule, float | None]
-type ProjectInfo = BuildingInfo | dict[str, str]
-type Impacts = dict[ImpactCategoryKey, ImpactCategory]
 type MetaData = dict[str, Any]
+
+
+class ImpactCategory:
+    def __init__(self, value: dict | None = None):
+        pass
+
+    @classmethod
+    def from_dict(cls: Type[Self], value: dict):
+        pass
+
+    def dict(self) -> dict:
+        pass
+
+
+class Impacts:
+    def __init__(self, value: dict | None = None):
+        pass
+
+    @classmethod
+    def from_dict(cls: Type[Self], value: dict):
+        pass
+
+    def dict(self) -> dict:
+        pass
 
 
 class Project:
@@ -625,7 +646,7 @@ class Project:
     impact_categories: list[ImpactCategoryKey]
     assemblies: list[Assembly | Reference]
     results: Impacts | None
-    project_info: ProjectInfo | None
+    project_info: BuildingInfo | None
     project_phase: ProjectPhase
     software_info: SoftwareInfo
     meta_data: MetaData | None
@@ -666,4 +687,26 @@ def calculate_project(project: Project) -> Project:
     """
     Calculate the impact results for a Project.
     The impact results for the project will be added to the `results` property.
+    """
+
+
+def get_impact_total(impacts: Impacts, category: ImpactCategoryKey,
+                     excluded_modules: list[LifeCycleModule] | None = None) -> float:
+    """
+    Get the total impact
+    """
+
+
+def normalize_result(result: float, normalizing_factor: float) -> float:
+    """
+    Normalize a result with e.g. the reference study period and gross floor area
+    """
+
+
+def get_impacts_by_life_cycle_module(impacts: Impacts, category: ImpactCategoryKey,
+                                     excluded_modules: list[LifeCycleModule] | None = None,
+                                     normalizing_factor: float | None = None):
+    """
+    Get the impacts by life cycle module.
+    The results can be normalized by a factor.
     """
