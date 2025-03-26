@@ -2,10 +2,9 @@ use field_access::FieldAccess;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleModule};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::shared::{Conversion, Source, Unit};
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
@@ -303,7 +302,7 @@ fn to_lcabyg_compliance(standard: &Standard) -> String {
 }
 
 pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
-    let mut impacts = HashMap::from([
+    let mut impacts = Impacts::from([
         (ImpactCategoryKey::EP, ImpactCategory::new()),
         (ImpactCategoryKey::ODP, ImpactCategory::new()),
         (ImpactCategoryKey::POCP, ImpactCategory::new()),
@@ -316,7 +315,7 @@ pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
     ]);
 
     for stage in stages {
-        for (category_key, impact_category) in &mut impacts {
+        for (category_key, impact_category) in impacts.iter_mut() {
             let mut category_name = category_key.to_string().to_lowercase();
             if category_name == "penrt" {
                 category_name = String::from("penr");

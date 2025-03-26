@@ -1,4 +1,5 @@
 use lcax_calculation::calculate::calculate_project as _calculate_project;
+use lcax_calculation::results;
 use lcax_convert::br_standard::xlsx::br_standard_from_file;
 use lcax_convert::lcabyg::parse::LCABygResult;
 use lcax_convert::lcabyg::serialize::to_lcabyg as _to_lcabyg;
@@ -7,7 +8,7 @@ use lcax_core::country::Country;
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
 use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
-use lcax_models::life_cycle_base::{ImpactCategoryKey, LifeCycleModule};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product, ProductReference, Transport};
 use lcax_models::project::{Location, Project, ProjectInfo, ProjectPhase, SoftwareInfo};
 use lcax_models::shared::{Conversion, Reference, Source, Unit};
@@ -59,6 +60,41 @@ pub fn to_lcabyg(objects: &LCABygResult) -> PyResult<String> {
     }
 }
 
+#[pyfunction]
+#[pyo3(signature = (impacts, category, exclude_modules=None))]
+pub fn get_impact_total(
+    impacts: Impacts,
+    category: ImpactCategoryKey,
+    exclude_modules: Option<Vec<LifeCycleModule>>,
+) -> PyResult<f64> {
+    Ok(results::get_impact_total(
+        &impacts,
+        &category,
+        &exclude_modules,
+    ))
+}
+
+#[pyfunction]
+pub fn normalize_result(result: f64, normalizing_factor: f64) -> PyResult<f64> {
+    Ok(results::normalize_result(&result, &normalizing_factor))
+}
+
+#[pyfunction]
+#[pyo3(signature = (impacts, category, exclude_modules=None, normalizing_factor=None))]
+pub fn get_impacts_by_life_cycle_module(
+    impacts: Impacts,
+    category: ImpactCategoryKey,
+    exclude_modules: Option<Vec<LifeCycleModule>>,
+    normalizing_factor: Option<f64>,
+) -> PyResult<Option<ImpactCategory>> {
+    Ok(results::get_impacts_by_life_cycle_module(
+        &impacts,
+        &category,
+        &exclude_modules,
+        normalizing_factor,
+    ))
+}
+
 /// A Python module implemented in Rust. The name of this function must match
 /// the `lib.name` setting in the `Cargo.toml`, else Python will not be able to
 /// import the module.
@@ -73,6 +109,8 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<Standard>()?;
     m.add_class::<Country>()?;
     m.add_class::<SubType>()?;
+    m.add_class::<Impacts>()?;
+    m.add_class::<ImpactCategory>()?;
     m.add_class::<ImpactCategoryKey>()?;
     m.add_class::<LifeCycleModule>()?;
     m.add_class::<Project>()?;
@@ -99,5 +137,8 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(calculate_project, m)?)?;
     m.add_function(wrap_pyfunction!(to_lcabyg, m)?)?;
     m.add_function(wrap_pyfunction!(convert_br_standard, m)?)?;
+    m.add_function(wrap_pyfunction!(get_impact_total, m)?)?;
+    m.add_function(wrap_pyfunction!(normalize_result, m)?)?;
+    m.add_function(wrap_pyfunction!(get_impacts_by_life_cycle_module, m)?)?;
     Ok(())
 }

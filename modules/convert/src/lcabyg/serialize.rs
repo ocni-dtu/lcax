@@ -49,8 +49,8 @@ fn serialize_epd(epd: &EPD) -> Vec<NodesAndEdges> {
     };
     nodes_and_edges.push(NodesAndEdges::Node(Node::Product(product.clone())));
 
-    for (impact_key, category) in &epd.impacts {
-        for (stage, value) in category {
+    for (impact_key, category) in epd.impacts.iter() {
+        for (stage, value) in category.iter() {
             for node_or_edge in &mut nodes_and_edges {
                 match node_or_edge {
                     NodesAndEdges::Node(ref mut node) => match node {

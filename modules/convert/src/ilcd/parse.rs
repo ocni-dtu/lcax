@@ -3,10 +3,9 @@ use chrono::NaiveDate;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleModule};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::shared::{Conversion, Unit};
 use serde_json::Error;
-use std::collections::HashMap;
 
 /// Parse a ILCD formatted EPD in an EPDx struct
 ///
@@ -85,7 +84,7 @@ fn get_date(year: &i32) -> NaiveDate {
 }
 
 fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
-    let mut category = ImpactCategory::default();
+    let mut category = ImpactCategory::new();
     let mut composite_a1a3: Option<f64> = None;
 
     for anie in anies {
@@ -297,10 +296,8 @@ fn get_ilcd_declared_unit(exchange: &Exchange) -> Unit {
     Unit::UNKNOWN
 }
 
-fn collect_from_lcia_result(
-    lcia_result: &Vec<LCIAResult>,
-) -> HashMap<ImpactCategoryKey, ImpactCategory> {
-    let mut impacts: HashMap<ImpactCategoryKey, ImpactCategory> = HashMap::new();
+fn collect_from_lcia_result(lcia_result: &Vec<LCIAResult>) -> Impacts {
+    let mut impacts = Impacts::new();
 
     for lcia_result in lcia_result {
         for description in &lcia_result
@@ -379,7 +376,7 @@ fn collect_from_lcia_result(
 
 fn collect_from_exchanges(
     exchanges: &Vec<Exchange>,
-    impacts: &mut HashMap<ImpactCategoryKey, ImpactCategory>,
+    impacts: &mut Impacts,
 ) -> (Unit, Vec<Conversion>) {
     let mut declared_unit = Unit::UNKNOWN;
     let mut conversions: Vec<Conversion> = vec![];

@@ -1,5 +1,8 @@
 from datetime import date
 
+from lcax import Impacts
+
+
 def test_epd_import():
     from lcax import EPD
 
@@ -10,7 +13,7 @@ def test_epd_new():
     from lcax import EPD, Unit, Standard, Country, SubType
 
     epd = EPD(name='Test', declared_unit=Unit.M3, version="0.0.3", published_date=date.today(), valid_until=date.today(),
-              standard=Standard.EN15804A2, location=Country.GBR, subtype=SubType.INDUSTRY, impacts={})
+              standard=Standard.EN15804A2, location=Country.GBR, subtype=SubType.INDUSTRY, impacts=Impacts())
 
     assert epd
 
@@ -39,6 +42,6 @@ def test_generic_data_import():
 def test_generic_data_new():
     from lcax import GenericData, Unit
 
-    data = GenericData(name='Test', declared_unit=Unit.KG, comment="Test Data", impacts={})
+    data = GenericData(name='Test', declared_unit=Unit.KG, comment="Test Data", impacts=Impacts())
 
     assert data
