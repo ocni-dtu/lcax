@@ -4,13 +4,18 @@ description: Introduction to LCAx's conversion functionality in Python.
 ---
 
 import { Code } from '@astrojs/starlight/components'
-import convertILCD from '../../../code/python/convert_ilcd.py?raw'
-import convertLCAByg from '../../../code/python/convert_lcabyg.py?raw'
+import convertILCD from '@/content/code/python/convert_ilcd.py?raw'
+import convertLCAByg from '@/content/code/python/convert_lcabyg.py?raw'
+import convertBRStandard from '@/content/code/python/convert_br_standard.py?raw'
 
-## Convert EPD
+## Convert ILCD
 
 <Code code={convertILCD} lang='py' title='Convert ILCD EPD'/>
 
 ## Convert LCAByg Project
 
 <Code code={convertLCAByg} lang='py' title='Convert LCAByg Project'/>
+
+## Convert BR18 Standard File Format
+
+<Code code={convertBRStandard} lang='py' title='Convert BR Standard Format'/>

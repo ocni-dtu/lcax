@@ -652,7 +652,7 @@ dependencies = [
 
 [[package]]
 name = "lcax_validation"
-version = "3.0.0-beta.5"
+version = "3.0.0-beta.6"
 dependencies = [
  "console_error_panic_hook",
  "env_logger",

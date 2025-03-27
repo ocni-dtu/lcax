@@ -1,0 +1,27 @@
+@import "@fontsource/inter-tight/700.css";
+@import "@fontsource/inter-tight/400.css";
+@import "@fontsource/inter-tight/500.css";
+@import "@fontsource/inter-tight/600.css";
+@import "@fontsource/jetbrains-mono";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root[data-theme="light"] {
+    --sl-font: 'Inter Tight', sans-serif;
+    --sl-font-mono: 'JetBrains Mono', monospace;
+    --sl-color-accent-low: #f4e3a4;
+    --sl-color-accent: #e8c547;
+    --sl-color-accent-high: #e4ba22;
+    --sl-color-text-accent: #e8c547;
+    --sl-color-black: #fff;
+    --sl-color-gray-7: #f5f5f5;
+    --sl-color-gray-6: #e7e7e7;
+    --sl-color-gray-5: #d9d9d9;
+    --sl-color-gray-4: #b2b2b2;
+    --sl-color-gray-3: #9a9a9a;
+    --sl-color-gray-2: #8b8b8b;
+    --sl-color-gray-1: #848484;
+    --sl-color-white: #000;
+}

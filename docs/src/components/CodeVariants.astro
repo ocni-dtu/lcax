@@ -1,0 +1,24 @@
+---
+import {Code, Tabs, TabItem } from '@astrojs/starlight/components'
+
+type Props = {
+    variants: CodeProps[],
+}
+
+type CodeProps = {
+    code: string
+    lang: string
+    label: string
+    title: string
+}
+
+const {variants} = Astro.props
+---
+
+<Tabs>
+    {variants.map(({code, lang, label, title}) => (
+            <TabItem label={label}>
+                <Code code={code} lang={lang} title={title}/>
+            </TabItem>
+    ))}
+</Tabs>

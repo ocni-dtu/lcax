@@ -1,0 +1,58 @@
+- level: project
+  field: name
+  rule:
+    required: true
+- level: project
+  field: referenceStudyPeriod
+  rule:
+    equal: "50"
+- level: project
+  field: lifeCycleModules
+  rule:
+    includes: a1a3
+- level: project
+  field: location.address
+  rule:
+    includes: Testvej
+- level: project
+  field: projectInfo?.grossFloorArea?.value
+  rule:
+    greater: 50
+- level: project
+  field: projectInfo?.floorsAboveGround
+  rule:
+    less: 2
+- level: project
+  field: projectInfo?.buildingType
+  rule:
+    equal: new_construction_works
+- level: assembly
+  field: id
+  rule:
+    required: true
+- level: assembly
+  field: quantity
+  rule:
+    range:
+      - 1
+      - 100
+- level: product
+  field: name
+  rule:
+    required: true
+- level: product
+  field: unit
+  rule:
+    equal: kg
+- level: impactData
+  field: name
+  rule:
+    required: true
+- level: impactData
+  field: source?.name
+  rule:
+    equal: "Ökobau.dat"
+- level: impactData
+  field: subtype
+  rule:
+    oneOf: ["generic", "specific"]
