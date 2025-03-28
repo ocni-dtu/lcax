@@ -1,4 +1,4 @@
-use crate::model::{Level, ValidationSchema};
+use crate::model::{Level, ValidationResult, ValidationSchema};
 use crate::rules;
 use lcax_models::assembly::AssemblyReference;
 use lcax_models::epd::EPDReference;
@@ -7,13 +7,12 @@ use lcax_models::product::{ImpactData, ProductReference};
 use lcax_models::project::Project as LCAxProject;
 use log;
 use valitron::available::{Message, Range, Required};
-use valitron::register::ValidatorError;
 use valitron::*;
 
 pub fn validate(
     project: &LCAxProject,
     validation_schema: &Vec<ValidationSchema>,
-) -> Result<(), Vec<ValidatorError<Message>>> {
+) -> Vec<ValidationResult> {
     let mut project_validator = Validator::new();
     let mut assembly_validator = Validator::new();
     let mut product_validator = Validator::new();
@@ -42,7 +41,15 @@ pub fn validate(
         Ok(()) => {
             log::debug!("Project validation successful - all checks passed");
         }
-        Err(msg) => errors.push(msg),
+        Err(msg) => {
+            log::info!("Validation failed for project");
+            for (field_name, message) in msg {
+                errors.push(ValidationResult {
+                    field: field_name.as_str().to_string(),
+                    message: message[0].to_string(),
+                })
+            }
+        }
     }
     for assembly in &project.assemblies {
         match assembly {
@@ -50,11 +57,19 @@ pub fn validate(
                 match assembly_validator.clone().validate(_assembly) {
                     Ok(()) => {
                         log::debug!(
-                            "Assembly: {0} validation successful - all checks passed",
+                            "Validation successful for Assembly: {0} - all checks passed",
                             _assembly.id
                         );
                     }
-                    Err(msg) => errors.push(msg),
+                    Err(msg) => {
+                        log::info!("Validation failed for Assembly: {0}", _assembly.id);
+                        for (field_name, message) in msg {
+                            errors.push(ValidationResult {
+                                field: field_name.as_str().to_string(),
+                                message: message[0].to_string(),
+                            })
+                        }
+                    }
                 }
                 for product in &_assembly.products {
                     match product {
@@ -62,11 +77,19 @@ pub fn validate(
                             match product_validator.clone().validate(_product) {
                                 Ok(()) => {
                                     log::debug!(
-                                        "Product: {0} validation successful - all checks passed",
+                                        "Validation successful for Product: {0} - all checks passed",
                                         _product.id
                                     );
                                 }
-                                Err(msg) => errors.push(msg),
+                                Err(msg) => {
+                                    log::info!("Validation failed for Product: {0}", _product.id);
+                                    for (field_name, message) in msg {
+                                        errors.push(ValidationResult {
+                                            field: field_name.as_str().to_string(),
+                                            message: message[0].to_string(),
+                                        })
+                                    }
+                                }
                             }
                             for impact in &_product.impact_data {
                                 match impact {
@@ -74,16 +97,38 @@ pub fn validate(
                                         _data,
                                     )) => match impact_validator.clone().validate(_data) {
                                         Ok(()) => {
-                                            log::debug!("ImpactData: {0} validation successful - all checks passed", _data.id);
+                                            log::debug!("Validation successful for ImpactData: {0} - all checks passed", _data.id);
                                         }
-                                        Err(msg) => errors.push(msg),
+                                        Err(msg) => {
+                                            log::info!(
+                                                "Validation failed for ImpactData: {0}",
+                                                _data.id
+                                            );
+                                            for (field_name, message) in msg {
+                                                errors.push(ValidationResult {
+                                                    field: field_name.as_str().to_string(),
+                                                    message: message[0].to_string(),
+                                                })
+                                            }
+                                        }
                                     },
                                     ImpactData::EPD(EPDReference::EPD(_data)) => {
                                         match impact_validator.clone().validate(_data) {
                                             Ok(()) => {
-                                                log::debug!("EPD: {0} validation successful - all checks passed", _data.id);
+                                                log::debug!("Validation successful for EPD: {0} - all checks passed", _data.id);
                                             }
-                                            Err(msg) => errors.push(msg),
+                                            Err(msg) => {
+                                                log::info!(
+                                                    "Validation failed for EPD: {0}",
+                                                    _data.id
+                                                );
+                                                for (field_name, message) in msg {
+                                                    errors.push(ValidationResult {
+                                                        field: field_name.as_str().to_string(),
+                                                        message: message[0].to_string(),
+                                                    })
+                                                }
+                                            }
                                         }
                                     }
                                     _ => {}
@@ -100,10 +145,10 @@ pub fn validate(
 
     if errors.is_empty() {
         log::info!("Validation successful - all checks passed");
-        Ok(())
     } else {
-        Err(errors)
+        log::info!("Validation failed");
     }
+    errors
 }
 
 fn apply_rule<'a>(

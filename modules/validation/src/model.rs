@@ -29,14 +29,14 @@ pub enum Level {
 pub struct ValidationSchema {
     pub level: Level,
     pub field: String,
-    pub rule: ValidationRules,
+    pub rule: ValidationRule,
 }
 
 #[cfg_attr(feature = "pybindings", pymethods)]
 impl ValidationSchema {
     #[cfg(feature = "pybindings")]
     #[new]
-    pub fn new_py(level: Level, field: String, rule: ValidationRules) -> Self {
+    pub fn new_py(level: Level, field: String, rule: ValidationRule) -> Self {
         Self { level, field, rule }
     }
 }
@@ -49,7 +49,7 @@ impl ValidationSchema {
     tsify(into_wasm_abi, from_wasm_abi)
 )]
 #[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
-pub struct ValidationRules {
+pub struct ValidationRule {
     pub range: Option<[f64; 2]>,
     pub includes: Option<String>,
     pub required: Option<bool>,
@@ -60,7 +60,7 @@ pub struct ValidationRules {
 }
 
 #[cfg_attr(feature = "pybindings", pymethods)]
-impl ValidationRules {
+impl ValidationRule {
     #[cfg(feature = "pybindings")]
     #[new]
     #[pyo3(signature=(range=None, includes=None, required=None, equal=None, greater=None, less=None, one_of=None))]
@@ -83,4 +83,17 @@ impl ValidationRules {
             one_of,
         }
     }
+}
+
+#[derive(Deserialize, Serialize, JsonSchema, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+pub struct ValidationResult {
+    pub field: String,
+    pub message: String,
 }

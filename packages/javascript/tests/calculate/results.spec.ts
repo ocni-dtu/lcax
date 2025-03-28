@@ -3,7 +3,7 @@ import {getImpactTotal, normalizeResult, getImpactsByLifeCycleModule, Impacts} f
 
 describe("getImpactTotal", () => {
     it("Get total from impacts", async () => {
-        const result = getImpactTotal({gwp: {a1a3: 10}} as Impacts, 'gwp', undefined)
+        const result = getImpactTotal({gwp: {a1a3: 10, d: -2}} as Impacts, 'gwp', ['d'])
 
         expect(result).toBe(10)
     })

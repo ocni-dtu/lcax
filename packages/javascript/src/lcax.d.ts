@@ -33,8 +33,13 @@ export function getImpactsByLifeCycleModule(impacts: Impacts, category: ImpactCa
 /**
  * Validate a LCAx Project
  */
-export function validate(project: Project, validation_schemas: ValidationSchema[]): boolean;
-export interface ValidationRules {
+export function validate(project: Project, validation_schemas: ValidationSchema[]): ValidationResult[];
+export interface ValidationResult {
+    field: string;
+    message: string;
+}
+
+export interface ValidationRule {
     range: [number, number] | null;
     includes: string | null;
     required: boolean | null;
@@ -47,7 +52,7 @@ export interface ValidationRules {
 export interface ValidationSchema {
     level: Level;
     field: string;
-    rule: ValidationRules;
+    rule: ValidationRule;
 }
 
 export type Level = "project" | "assembly" | "product" | "impactData";

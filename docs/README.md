@@ -24,7 +24,7 @@ Inside of your Astro + Starlight project, you'll see the following folders and f
 │   ├── assets/
 │   ├── content/
 │   │   ├── docs/
-│   │   └── config.ts
+│   │   └── content.config.ts
 │   └── env.d.ts
 ├── astro.config.mjs
 ├── package.json

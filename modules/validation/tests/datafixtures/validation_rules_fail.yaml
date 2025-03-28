@@ -1,0 +1,34 @@
+- level: project
+  field: referenceStudyPeriod
+  rule:
+    equal: "25"
+- level: project
+  field: lifeCycleModules
+  rule:
+    includes: b6
+- level: project
+  field: location.address
+  rule:
+    includes: Testvej
+- level: project
+  field: projectInfo?.grossFloorArea?.value
+  rule:
+    less: 50
+- level: project
+  field: projectInfo?.floorsAboveGround
+  rule:
+    greater: 2
+- level: assembly
+  field: quantity
+  rule:
+    range:
+      - 150
+      - 250
+- level: product
+  field: unit
+  rule:
+    equal: m2
+- level: impactData
+  field: name
+  rule:
+    required: false

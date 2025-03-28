@@ -245,20 +245,32 @@ export function getImpactsByLifeCycleModule(impacts, category, exclude_modules, 
     return takeFromExternrefTable0(ret[0]);
 }
 
+function getArrayJsValueFromWasm0(ptr, len) {
+    ptr = ptr >>> 0;
+    const mem = getDataViewMemory0();
+    const result = [];
+    for (let i = ptr; i < ptr + 4 * len; i += 4) {
+        result.push(wasm.__wbindgen_export_2.get(mem.getUint32(i, true)));
+    }
+    wasm.__externref_drop_slice(ptr, len);
+    return result;
+}
 /**
  * Validate a LCAx Project
  * @param {Project} project
  * @param {ValidationSchema[]} validation_schemas
- * @returns {boolean}
+ * @returns {ValidationResult[]}
  */
 export function validate(project, validation_schemas) {
     const ptr0 = passArrayJsValueToWasm0(validation_schemas, wasm.__wbindgen_malloc);
     const len0 = WASM_VECTOR_LEN;
     const ret = wasm.validate(project, ptr0, len0);
-    if (ret[2]) {
-        throw takeFromExternrefTable0(ret[1]);
+    if (ret[3]) {
+        throw takeFromExternrefTable0(ret[2]);
     }
-    return ret[0] !== 0;
+    var v2 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v2;
 }
 
 export function __wbg_buffer_aa30bbb65cb44323(arg0) {

@@ -13,7 +13,7 @@ use lcax_models::epd::EPD;
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::project::Project;
 use lcax_validation;
-use lcax_validation::model::ValidationSchema;
+use lcax_validation::model::{ValidationResult, ValidationSchema};
 
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
@@ -115,9 +115,6 @@ pub fn getImpactsByLifeCycleModule(
 pub fn validate(
     project: Project,
     validation_schemas: Vec<ValidationSchema>,
-) -> Result<bool, JsError> {
-    match lcax_validation::validate(&project, &validation_schemas) {
-        Ok(_) => Ok(true),
-        Err(error) => Err(JsError::new(&serde_json::to_string(&error).unwrap())),
-    }
+) -> Result<Vec<ValidationResult>, JsError> {
+    Ok(lcax_validation::validate(&project, &validation_schemas))
 }

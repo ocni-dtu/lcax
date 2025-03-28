@@ -1,0 +1,70 @@
+---
+title: Convert LCAByg Files
+description: How to convert LCAByg export files
+---
+
+import CodeVariants from '@/components/CodeVariants.astro'
+import convertProjectPY from '@/content/code/python/convert_lcabyg.py?raw'
+import convertProjectTS from '@/content/code/javascript/convertLCAbyg.ts?raw'
+import convertProjectRS from '@/content/code/rust/convert_lcabyg.rs?raw'
+import projectJSON from '@/content/code/data/lcabyg_project.json?raw'
+
+## LCAbyg
+
+LCAbyg is a software tool that calculates life cycle assessments for buildings.
+With LCAbyg, you can calculate a building's environmental profile and resource consumption.[<sup>1</sup>](https://lcabyg.dk/en)
+
+LCAbyg has been developed by the BUILD Institute at Aalborg University.
+
+## Exporting Files from LCAbyg
+
+In the video below you can see how to export JSON files from LCAbyg.
+
+<video controls width="720" height="auto">
+    <source src="/lcabyg-export.webm" type="video/webm"/>
+</video>
+
+## LCAByg Projects
+
+<CodeVariants variants={[
+    {label: 'Python', code: convertProjectPY, lang: 'py', title: 'convert_lcabyg.py'},
+    {label: 'TypeScript', code: convertProjectTS, lang: 'ts', title: 'convertLCAbyg.ts'},
+    {label: 'Rust', code: convertProjectRS, lang: 'rs', title: 'convert_lcabyg.rs'},
+    {label: 'LCAbyg Project', code: projectJSON, lang: 'json', title: 'lcabyg_project.json'},
+]}
+              syncKey='lang'
+/>
+
+## LCAByg Projects with Results
+
+<CodeVariants variants={[
+    {label: 'Python', code: convertProjectPY, lang: 'py', title: 'convert_ilcd.py'},
+    {label: 'TypeScript', code: convertProjectTS, lang: 'ts', title: 'convertILCD.ts'},
+    {label: 'Rust', code: convertProjectRS, lang: 'rs', title: 'convert_ilcd.rs'},
+    {label: 'LCAbyg Project', code: projectJSON, lang: 'json', title: 'lcabyg_project.json'},
+    {label: 'LCAbyg Results', code: projectJSON, lang: 'json', title: 'lcabyg_results.json'},
+]}
+              syncKey='lang'
+/>
+
+## LCAByg Stages
+
+<CodeVariants variants={[
+    {label: 'Python', code: convertProjectPY, lang: 'py', title: 'convert_ilcd.py'},
+    {label: 'TypeScript', code: convertProjectTS, lang: 'ts', title: 'convertILCD.ts'},
+    {label: 'Rust', code: convertProjectRS, lang: 'rs', title: 'convert_ilcd.rs'},
+    {label: 'LCAByg Stages', code: projectJSON, lang: 'json', title: 'ilcd.json'},
+]}
+              syncKey='lang'
+/>
+
+## LCAx to LCAByg
+
+<CodeVariants variants={[
+    {label: 'Python', code: convertProjectPY, lang: 'py', title: 'convert_ilcd.py'},
+    {label: 'TypeScript', code: convertProjectTS, lang: 'ts', title: 'convertILCD.ts'},
+    {label: 'Rust', code: convertProjectRS, lang: 'rs', title: 'convert_ilcd.rs'},
+    {label: 'LCAx EPD', code: projectJSON, lang: 'json', title: 'ilcd.json'},
+]}
+              syncKey='lang'
+/>
