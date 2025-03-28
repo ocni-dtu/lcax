@@ -12,9 +12,9 @@ use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, L
 use lcax_models::product::{ImpactData, Product, ProductReference, Transport};
 use lcax_models::project::{BuildingInfo, Location, Project, ProjectPhase, SoftwareInfo};
 use lcax_models::shared::{Conversion, Reference, Source, Unit};
-use lcax_validation::model::{Level, ValidationRules};
+use lcax_validation::model::{Level, ValidationResult, ValidationRule};
 use lcax_validation::ValidationSchema;
-use pyo3::exceptions::{PyTypeError, PyValueError};
+use pyo3::exceptions::PyTypeError;
 use pyo3::prelude::*;
 use std::path::PathBuf;
 
@@ -98,13 +98,11 @@ pub fn get_impacts_by_life_cycle_module(
 }
 
 #[pyfunction]
-pub fn validate(project: Project, validation_schema: Vec<ValidationSchema>) -> PyResult<bool> {
-    match lcax_validation::validate(&project, &validation_schema) {
-        Ok(_) => Ok(true),
-        Err(error) => Err(PyValueError::new_err(
-            serde_json::to_string(&error).unwrap(),
-        )),
-    }
+pub fn validate(
+    project: Project,
+    validation_schema: Vec<ValidationSchema>,
+) -> PyResult<Vec<ValidationResult>> {
+    Ok(lcax_validation::validate(&project, &validation_schema))
 }
 
 /// A Python module implemented in Rust. The name of this function must match
@@ -144,7 +142,8 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<GenericData>()?;
     m.add_class::<ValidationSchema>()?;
     m.add_class::<Level>()?;
-    m.add_class::<ValidationRules>()?;
+    m.add_class::<ValidationRule>()?;
+    m.add_class::<ValidationResult>()?;
 
     // Functions
     m.add_function(wrap_pyfunction!(convert_lcabyg, m)?)?;

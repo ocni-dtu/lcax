@@ -84,3 +84,16 @@ impl ValidationRule {
         }
     }
 }
+
+#[derive(Deserialize, Serialize, JsonSchema, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+pub struct ValidationResult {
+    pub field: String,
+    pub message: String,
+}

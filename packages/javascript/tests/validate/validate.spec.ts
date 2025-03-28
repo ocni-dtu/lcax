@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {validate, ValidationRules, ValidationSchema} from "../../src/lcax";
+import {validate, ValidationRule, ValidationSchema} from "../../src/lcax";
 import {promises as fs} from "fs";
 
 describe("Validate", () => {
@@ -9,11 +9,11 @@ describe("Validate", () => {
         const schemas: ValidationSchema[] = [{
             level: 'project',
             field: 'name',
-            rule: {equal: "Test eksempel"} as ValidationRules
+            rule: {equal: "Test eksempel"} as ValidationRule
         }]
         const result = validate(project, schemas)
 
-        expect(result).toBe(true)
+        expect(result).toStrictEqual([])
     })
 
     it("It should fail validating the project", async () => {
@@ -22,9 +22,12 @@ describe("Validate", () => {
         const schemas: ValidationSchema[] = [{
             level: 'project', field: 'name', rule: {
                 equal: "Te eksempel",
-            } as ValidationRules
+            } as ValidationRule
         }]
+        const result = validate(project, schemas)
 
-        expect(() => validate(project, schemas)).toThrowError()
+        expect(result.length).toBe(1)
+        expect(result[0].field).toBe('name')
+        expect(result[0].message).toBe('Field is not equal to: Te eksempel')
     })
 })

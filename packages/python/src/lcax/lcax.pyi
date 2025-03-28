@@ -719,7 +719,7 @@ class Level(Enum):
     ImpactData = "IMPACT_DATA",
 
 
-class ValidationRules:
+class ValidationRule:
     range: list[float] | None
     includes: str | None
     required: bool | None
@@ -745,11 +745,15 @@ class ValidationRules:
 class ValidationSchema:
     level: Level
     field: str
-    rule: ValidationRules
+    rule: ValidationRule
 
-    def __init__(self, level: Level, field: str, rule: ValidationRules):
+    def __init__(self, level: Level, field: str, rule: ValidationRule):
         ...
 
 
-def validate(project: Project, validation_schemas: list[ValidationSchema]):
+class ValidationResult:
+    field: str
+    message: str
+
+def validate(project: Project, validation_schemas: list[ValidationSchema]) -> list[ValidationResult]:
     """Validate a LCAx Project"""
