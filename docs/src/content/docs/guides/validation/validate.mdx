@@ -3,11 +3,15 @@ title: Validation
 description: A guide on how to use LCAx validation engine
 ---
 import CodeVariants from '@/components/CodeVariants.astro'
-import validatePY from '@/content/code/python/simple_validate.py?raw'
+import validatePY from '@/content/code/python/validate_simple.py?raw'
 import validateErrorPY from '@/content/code/python/validate_error.py?raw'
 import validateNestedPY from '@/content/code/python/validate_nested.py?raw'
-import validateTS from '@/content/code/javascript/validate.ts?raw'
-import validateRS from '@/content/code/rust/validate.rs?raw'
+import validateTS from '@/content/code/javascript/validateSimple.ts?raw'
+import validateErrorTS from '@/content/code/javascript/validateError.ts?raw'
+import validateNestedTS from '@/content/code/javascript/validateNested.ts?raw'
+import validateRS from '@/content/code/rust/validate_simple.rs?raw'
+import validateErrorRS from '@/content/code/rust/validate_error.rs?raw'
+import validateNestedRS from '@/content/code/rust/validate_nested.rs?raw'
 import projectJSON from '@/content/code/data/project.json?raw'
 
 LCAx's validation engine enables users to define and run custom rules to on a LCAx project.
@@ -61,6 +65,7 @@ When all validation rules pass the `validate` function will return `true`.
         {label: 'Rust', title: 'validate.rs', code: validateRS, lang: 'rs'},
         {label: 'Data', title: 'project.json', code: projectJSON, lang: 'json'},
     ]}
+    syncKey='lang'
 />
 
 ## Validation Errors
@@ -72,10 +77,11 @@ In this example we will validate that the project's name is equal to `Te eksempe
 <CodeVariants
     variants={[
         {label: 'Python', title: 'validate.py', code: validateErrorPY, lang: 'py'},
-        {label: 'TypeScript', title: 'validate.ts', code: validateTS, lang: 'ts'},
-        {label: 'Rust', title: 'validate.rs', code: validateRS, lang: 'rs'},
+        {label: 'TypeScript', title: 'validate.ts', code: validateErrorTS, lang: 'ts'},
+        {label: 'Rust', title: 'validate.rs', code: validateErrorRS, lang: 'rs'},
         {label: 'Data', title: 'project.json', code: projectJSON, lang: 'json'},
     ]}
+    syncKey='lang'
 />
 
 ## Nested and Optional Fields
@@ -89,8 +95,9 @@ Since `projectInfo` is an optional field (meaning it can be null), we have to in
 <CodeVariants
     variants={[
         {label: 'Python', title: 'validate.py', code: validateNestedPY, lang: 'py'},
-        {label: 'TypeScript', title: 'validate.ts', code: validateTS, lang: 'ts'},
-        {label: 'Rust', title: 'validate.rs', code: validateRS, lang: 'rs'},
+        {label: 'TypeScript', title: 'validate.ts', code: validateNestedTS, lang: 'ts'},
+        {label: 'Rust', title: 'validate.rs', code: validateNestedRS, lang: 'rs'},
         {label: 'Data', title: 'project.json', code: projectJSON, lang: 'json'},
     ]}
+    syncKey='lang'
 />

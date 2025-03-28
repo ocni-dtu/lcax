@@ -11,10 +11,10 @@ schemas = [
     }),
     ValidationSchema(**{
         "level": Level.Project,
-        "field": "projectInfo?.grossFloorArea.value",
+        "field": "projectInfo?.grossFloorArea?.value",
         "rule": ValidationRule(**{"greater": 50.0})
     })
 ]
 
-result = validate(project, schemas) # result = true
+result = validate(project, schemas) # result = []
 

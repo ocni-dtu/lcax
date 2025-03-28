@@ -10,8 +10,9 @@ import icon from 'astro-icon';
 // https://astro.build/config
 export default defineConfig({
     integrations: [starlight({
-        title: 'LCAx Docs',
+        title: 'Docs',
         favicon: '/favicon.svg',
+        logo: {src: './src/assets/logo.svg'},
         customCss: [
             './src/styles/global.css'
         ],
@@ -34,15 +35,14 @@ export default defineConfig({
             {
                 label: 'Guides',
                 items: [
-                    // Each item here is one entry in the navigation menu.
                     {label: 'Install LCAx', slug: 'guides/installation'},
-                    {label: 'Data Structure', slug: 'guides/validation/validate'},
+                    {label: 'Data Structure', slug: 'guides/data-structure'},
                     {
                         label: 'Conversion', items: [
-                            {label: 'ILCD', slug: 'guides/conversion/python'},
-                            {label: 'LCAByg', slug: 'guides/conversion/javascript'},
-                            {label: 'Real-Time LCA', slug: 'guides/conversion/rust'},
-                            {label: 'Custom Converter', slug: 'guides/conversion/rust'},
+                            {label: 'ILCD', slug: 'guides/conversion/ilcd'},
+                            {label: 'LCAByg', slug: 'guides/conversion/lcabyg'},
+                            {label: 'Real-Time LCA', slug: 'guides/conversion/realtimelca'},
+                            {label: 'Custom Converter', slug: 'guides/conversion/custom'},
                         ]
                     },
                     {
@@ -53,8 +53,8 @@ export default defineConfig({
                     },
                     {
                         label: 'Calculation', items: [
-                            {label: 'Calculate', slug: 'guides/validation/validate'},
-                            {label: 'Results', slug: 'guides/validation/advanced'},
+                            {label: 'Calculate', slug: 'guides/calculation/calculate'},
+                            {label: 'Results', slug: 'guides/calculation/results'},
                         ]
                     },
 
@@ -65,11 +65,16 @@ export default defineConfig({
                 items: [
                     {label: 'Changelog', slug: 'reference/changelog'},
                     {
+                        label: 'JSON Schemas', items: [
+                            {label: 'LCAx', slug: 'reference/schemas/lcax'},
+                            {label: 'Validation', slug: 'reference/schemas/validation'},
+                        ]
+                    },
+                    {
                         label: 'API', items: [
-                            {label: 'JSON Schema', slug: 'reference/schemas/json'},
-                            {label: 'Python', slug: 'reference/schemas/python'},
-                            {label: 'TypeScript', slug: 'reference/schemas/javascript'},
-                            {label: 'Rust', slug: 'reference/schemas/rust'},
+                            {label: 'Python', slug: 'reference/api/python'},
+                            {label: 'TypeScript', slug: 'reference/api/javascript'},
+                            {label: 'Rust', slug: 'reference/api/rust'},
                         ]
                     },
                 ]

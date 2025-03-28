@@ -12,5 +12,4 @@ schemas = [
 ]
 
 result = validate(project, schemas)
-# raises ValueError:
-# [{"name":[{"kind":"Field is not equal to: Te eksempel"}]}]
+# result = [{ field: "name", message: "Field is not equal to: Te eksempel" }]
