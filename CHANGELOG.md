@@ -1,3 +1,10 @@
+## [3.0.0-beta.7](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2025-03-30)
+
+### Features
+
+* added toLCAbyg for JS ([2f67e06](https://github.com/ocni-dtu/lcax/commit/2f67e06c6e09a363751c7c08df302fd2c57f0d5b))
+* changed inputs to to_lcabyg in Python ([ec7eea3](https://github.com/ocni-dtu/lcax/commit/ec7eea3626c1d19094656e177a3b4a74dd05221e))
+
 ## [3.0.0-beta.6](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2025-03-26)
 
 ### Features
