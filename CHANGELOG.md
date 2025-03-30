@@ -1,3 +1,9 @@
+## [3.0.1](https://github.com/ocni-dtu/lcax/compare/v3.0.0...v3.0.1) (2025-03-30)
+
+### Bug Fixes
+
+* fixed semantic release ([98e23a2](https://github.com/ocni-dtu/lcax/commit/98e23a2b7411d0ce6e45d051bd56d6768dcb2e8c))
+
 ## [3.0.0](https://github.com/ocni-dtu/lcax/compare/v2.6.4...v3.0.0) (2025-03-30)
 
 ### ⚠ BREAKING CHANGES
