@@ -2,6 +2,7 @@
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
 export const convertLCAbyg: (a: number, b: number, c: number, d: number) => [number, number, number];
+export const toLCAbyg: (a: any) => [number, number, number, number];
 export const convertBRStandard: (a: number, b: number, c: number, d: number) => [number, number, number];
 export const convertIlcd: (a: number, b: number) => [number, number, number];
 export const calculateProject: (a: any) => [number, number, number];

@@ -1,6 +1,9 @@
+import json
+
 import pytest
 
 import lcax
+from lcax import EPD
 
 
 def test_lcabyg_parse_project(datafix_dir):
@@ -30,10 +33,9 @@ def test_parse_lcabyg_product(datafix_dir):
 
 
 def test_serialize_to_lcabyg_product(datafix_dir):
-    lcabyg_file = datafix_dir / "stages.json"
+    lcax_file = datafix_dir / "epd.json"
+    epd = EPD.loads(lcax_file.read_text())
 
-    epd = lcax.convert_lcabyg(lcabyg_file.read_text())
-
-    product_string = lcax.to_lcabyg(epd)
+    product_string = lcax.to_lcabyg(epds=[epd])
 
     assert product_string

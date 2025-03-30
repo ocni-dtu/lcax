@@ -757,3 +757,6 @@ class ValidationResult:
 
 def validate(project: Project, validation_schemas: list[ValidationSchema]) -> list[ValidationResult]:
     """Validate a LCAx Project"""
+
+def to_lcabyg(*, project: Project | None = None, epds: list[EPD] | None = None) -> str:
+    """Converts LCAx objects into LCAbyg JSON"""

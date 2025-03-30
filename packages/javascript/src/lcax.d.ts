@@ -5,6 +5,10 @@
  */
 export function convertLCAbyg(data: string, resultData?: string | null): LCABygResult;
 /**
+ * Converts LCAx objects into LCAbyg
+ */
+export function toLCAbyg(data: LCABygResult): string;
+/**
  * Converts a BR Standard Format file into a LCAx `Project`.
  */
 export function convertBRStandard(project_name: string, file: Uint8Array): Project;

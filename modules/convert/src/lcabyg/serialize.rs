@@ -19,7 +19,7 @@ pub fn to_lcabyg(objects: &LCABygResult) -> serde_json::Result<String> {
 //     serde_json::to_string(&nodes_and_edges)
 // }
 
-fn serialize_epds(epds: &Vec<EPD>) -> serde_json::Result<String> {
+pub fn serialize_epds(epds: &Vec<EPD>) -> serde_json::Result<String> {
     let mut nodes_and_edges: Vec<NodesAndEdges> = Vec::new();
     for epd in epds {
         nodes_and_edges.append(&mut serialize_epd(&epd))
