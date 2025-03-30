@@ -35,6 +35,18 @@ pub fn convertLCAbyg(data: String, resultData: Option<String>) -> Result<LCABygR
     }
 }
 
+/// Converts LCAx objects into LCAbyg
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn toLCAbyg(data: LCABygResult) -> Result<String, JsError> {
+    console_error_panic_hook::set_once();
+
+    match lcabyg::serialize::to_lcabyg(&data) {
+        Ok(result) => Ok(result),
+        Err(error) => Err(JsError::new(error.to_string().as_str())),
+    }
+}
+
 /// Converts a BR Standard Format file into a LCAx `Project`.
 #[allow(non_snake_case)]
 #[wasm_bindgen]
