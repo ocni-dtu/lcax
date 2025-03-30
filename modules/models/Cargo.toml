@@ -1,40 +1,42 @@
 [package]
 name = "lcax_models"
-description = { workspace = true}
-version = { workspace = true}
-authors = { workspace = true}
-edition = { workspace = true}
-readme = { workspace = true}
-license-file = { workspace = true}
-homepage = { workspace = true}
-documentation = { workspace = true}
-repository = { workspace = true}
-
+description = { workspace = true }
+version = { workspace = true }
+authors = { workspace = true }
+edition = { workspace = true }
+readme = { workspace = true }
+license-file = { workspace = true }
+homepage = { workspace = true }
+documentation = { workspace = true }
+repository = { workspace = true }
 
 [lib]
 name = "lcax_models"
 crate-type = ["cdylib", "rlib"]
 
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
+
 [features]
 default = ["wee_alloc"]
 pybindings = ["pyo3", "pyo3/extension-module"]
-jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify"]
+jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify-next"]
 
 [dependencies]
-serde = { version = "1.0.200", features = ["derive"] }
-schemars = { version = "0.8.19", features = ["chrono"] }
-serde_json = "1.0.116"
+serde = { version = "1.0.219", features = ["derive"] }
+schemars = { version = "0.8.21", features = ["chrono"] }
+serde_json = "1.0.140"
 uuid = { version = "1.8.0", features = ["v4", "v5"] }
-lcax_core = { path = "../core", version = ">2.0.0" }
+lcax_core = { path = "../core", version = ">=3.0.0-beta.1" }
 chrono = "0.4.38"
 
 # Python Bindings
-pyo3 = { version = "0.22.3", features = ["abi3-py310"], optional = true }
+pyo3 = { version = "0.24", features = ["abi3-py310"], optional = true }
 
 # JS Bindings
 wee_alloc = { version = "0.4.5", optional = true }
-wasm-bindgen = { version = "0.2.92", optional = true }
+wasm-bindgen = { version = "0.2.100", optional = true }
 console_error_panic_hook = { version = "0.1.7", optional = true }
-tsify = { version = "0.4.5", optional = true }
+tsify-next = { version = "0.5.5", optional = true }
 
 

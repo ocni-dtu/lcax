@@ -17,38 +17,53 @@ crate-type = ["cdylib", "rlib"]
 
 [[bin]]
 name = "export-schema"
-path = "src/schemars.rs"
+path = "src/bin/schemars.rs"
 test = false
 bench = false
 
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
+
 [features]
 default = []
-pybindings = ["pyo3", "pyo3/extension-module", "lcax_models/pybindings"]
+pybindings = [
+    "pyo3",
+    "pyo3/extension-module",
+    "lcax_models/pybindings",
+    "lcax_core/pybindings",
+    "lcax_convert/pybindings",
+    "lcax_validation/pybindings",
+]
 jsbindings = [
     "wee_alloc",
     "wasm-bindgen",
     "serde-wasm-bindgen",
     "console_error_panic_hook",
-    "tsify", "getrandom", "lcax_models/jsbindings"
+    "tsify-next",
+    "getrandom",
+    "lcax_models/jsbindings",
+    "lcax_core/jsbindings",
+    "lcax_convert/jsbindings",
+    "lcax_validation/jsbindings",
 ]
 
 [dependencies]
-schemars = { version = "0.8.19", features = ["chrono"] }
-serde = { version = "1.0.200", features = ["derive"] }
-serde_json = "1.0.116"
-lcax_core = { path = "../core", version = ">2.0.0" }
-lcax_models = { path = "../models", version = ">2.0.0" }
-lcax_convert = { path = "../convert", version = ">2.0.0" }
-lcax_calculation = { path = "../calculation", version = ">2.0.0" }
+schemars = { version = "0.8.21", features = ["chrono"] }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+lcax_core = { path = "../core", version = ">=3.0.0-beta.1" }
+lcax_models = { path = "../models", version = ">=3.0.0-beta.1" }
+lcax_convert = { path = "../convert", version = ">=3.0.0-beta.1" }
+lcax_calculation = { path = "../calculation", version = ">=3.0.0-beta.1" }
+lcax_validation = { path = "../validation", version = ">=3.0.0-beta.1" }
 
 # Python Bindings
-pyo3 = { version = "0.22.3", features = ["abi3-py310"], optional = true }
+pyo3 = { version = "0.24", features = ["abi3-py310", "chrono"], optional = true }
 
 # JS Bindings
 wee_alloc = { version = "0.4.5", optional = true }
-wasm-bindgen = { version = "0.2.92", optional = true }
+wasm-bindgen = { version = "0.2.100", optional = true }
 serde-wasm-bindgen = { version = "0.6.5", optional = true }
 console_error_panic_hook = { version = "0.1.7", optional = true }
-tsify = { version = "0.4.5", optional = true }
+tsify-next = { version = "0.5.5", optional = true }
 getrandom = { version = "0.2", features = ["js"], optional = true }
-

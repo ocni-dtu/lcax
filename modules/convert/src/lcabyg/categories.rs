@@ -1,5 +1,5 @@
 pub fn category_id_to_names(category_id: &str) -> &str {
-    return match category_id {
+    match category_id {
         "a48092d1-8b5c-4fa9-9ada-69cec3fd1dca" => "Altanbund",
         "069983d0-d08b-405b-b816-d28ca9648956" => "Andet",
         "97145af4-423d-447f-a76e-b26feba645cd" => "Andet (El- og mekaniske anlæg)",
@@ -57,6 +57,7 @@ pub fn category_id_to_names(category_id: &str) -> &str {
         "58015317-c3ee-41d3-a9df-5fbea8fb2dd2" => "Ventilationskanaler",
         "dcbf55db-3189-4d22-9b2b-2e27c057b363" => "Vinduer",
         "10a52123-48d7-466a-9622-d463511a6df0" => "Ydervægge",
+        "drift" => "Drift",
         _ => "Andet",
-    };
+    }
 }

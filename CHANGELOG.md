@@ -1,3 +1,55 @@
+## [3.0.0-beta.7](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2025-03-30)
+
+### Features
+
+* added toLCAbyg for JS ([2f67e06](https://github.com/ocni-dtu/lcax/commit/2f67e06c6e09a363751c7c08df302fd2c57f0d5b))
+* changed inputs to to_lcabyg in Python ([ec7eea3](https://github.com/ocni-dtu/lcax/commit/ec7eea3626c1d19094656e177a3b4a74dd05221e))
+
+## [3.0.0-beta.6](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2025-03-26)
+
+### Features
+
+* add methods to deal with impacts ([#110](https://github.com/ocni-dtu/lcax/issues/110)) ([825c325](https://github.com/ocni-dtu/lcax/commit/825c325cd15e262cd3cf134ff302686196669b96))
+
+## [3.0.0-beta.5](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2025-03-25)
+
+### Bug Fixes
+
+* Included comments from ILCD ([#109](https://github.com/ocni-dtu/lcax/issues/109)) ([515b083](https://github.com/ocni-dtu/lcax/commit/515b083250d1d53ff38bab6e5023fabc7cb35b65)), closes [#107](https://github.com/ocni-dtu/lcax/issues/107)
+
+## [3.0.0-beta.4](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2025-03-25)
+
+### Bug Fixes
+
+* Fixed issues in LCAByg converter ([309b298](https://github.com/ocni-dtu/lcax/commit/309b298594d17cdb6a6324baca47045ccd524de9))
+
+## [3.0.0-beta.3](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2025-03-16)
+
+### Bug Fixes
+
+* **convert:** Added more LCAbyg test examples ([#106](https://github.com/ocni-dtu/lcax/issues/106)) ([007c08d](https://github.com/ocni-dtu/lcax/commit/007c08d278900dc9ca79e7f113229ab06fca7c6f))
+
+## [3.0.0-beta.2](https://github.com/ocni-dtu/lcax/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2025-03-14)
+
+### Bug Fixes
+
+* fixing cargo build ([229b635](https://github.com/ocni-dtu/lcax/commit/229b6357cbf07e097bbeb4cc6eaad6c4f7a1f03d))
+
+## [3.0.0-beta.1](https://github.com/ocni-dtu/lcax/compare/v2.6.4...v3.0.0-beta.1) (2025-03-14)
+
+### ⚠ BREAKING CHANGES
+
+* Bumping to v3.0
+
+### Features
+
+* Added software version ([#90](https://github.com/ocni-dtu/lcax/issues/90)) ([96dd984](https://github.com/ocni-dtu/lcax/commit/96dd984534a88a13c71e3671b2d451fb3c624e1c))
+* Renamed TechFlow to GenericData ([#91](https://github.com/ocni-dtu/lcax/issues/91)) ([60b8e20](https://github.com/ocni-dtu/lcax/commit/60b8e202ea948e36bbf56ad2f4ee4e5cc57d2208))
+
+### Continuous Integration
+
+* semantic-release v3.0-beta ([4e1376a](https://github.com/ocni-dtu/lcax/commit/4e1376a9a71598467476a4ecc291ff70aa5d3ac7))
+
 ## [2.6.4](https://github.com/ocni-dtu/lcax/compare/v2.6.3...v2.6.4) (2025-01-24)
 
 ### Bug Fixes

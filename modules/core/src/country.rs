@@ -1,8 +1,16 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize, JsonSchema, Default, Clone)]
+#[cfg(feature = "pybindings")]
+use pyo3::prelude::*;
+
+#[cfg(feature = "jsbindings")]
+use tsify_next::Tsify;
+
+#[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
+#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum Country {
     #[default]
     UNKNOWN,

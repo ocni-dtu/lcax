@@ -1,7 +1,10 @@
 branches:
   - "main"
+  - name: "v3.0"
+    prerelease: beta
 
 preset: "conventionalcommits"
+
 
 plugins:
   - "@semantic-release/commit-analyzer"
@@ -12,7 +15,7 @@ plugins:
       check: true
       publishArgs: [ "-p", "lcax_core" ]
   - - "semantic-release-cargo"
-    - allFeatures: true
+    - allFeatures: false
       check: true
       publishArgs: [ "-p", "lcax_models" ]
   - - "semantic-release-cargo"
@@ -20,7 +23,7 @@ plugins:
       check: true
       publishArgs: [ "-p", "lcax_calculation" ]
   - - "semantic-release-cargo"
-    - allFeatures: true
+    - allFeatures: false
       check: true
       publishArgs: [ "-p", "lcax_convert" ]
   - - "semantic-release-cargo"
@@ -30,13 +33,12 @@ plugins:
   - - "@semantic-release/github"
     - assets:
         - { path: 'artifacts/lcax.schema.json', label: 'LCAx JSON Schema' }
-        - { path: 'packages/python/src/lcax/pydantic.py', label: 'LCAx Python Classes' }
-        - { path: 'artifacts/lcax.d.ts', label: 'LCAx TypeScript Declarations' }
+#        - { path: 'packages/python/src/lcax/pydantic.py', label: 'LCAx Python Classes' }
+#        - { path: 'artifacts/lcax.d.ts', label: 'LCAx TypeScript Declarations' }
         - { path: 'artifacts/project.rs', label: 'LCAx Rust Structs' }
-        - { path: 'artifacts/lcax.cs', label: 'LCAx C# Classes' }
+#        - { path: 'artifacts/lcax.cs', label: 'LCAx C# Classes' }
   - - "@semantic-release/git"
     - assets:
         - "CHANGELOG.md"
         - "Cargo.toml"
         - "Cargo.lock"
-        - "packages/python/src/lcax/pydantic.py"

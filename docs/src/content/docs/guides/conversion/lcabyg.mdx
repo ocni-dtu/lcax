@@ -1,0 +1,97 @@
+---
+title: Convert LCAByg Files
+description: How to convert LCAByg export files
+---
+
+import CodeVariants from '@/components/CodeVariants.astro'
+// Project
+import convertProjectPY from '@/content/code/python/convert_lcabyg.py?raw'
+import convertProjectTS from '@/content/code/javascript/convertLCAbyg.ts?raw'
+import convertProjectRS from '@/content/code/rust/convert_lcabyg.rs?raw'
+import projectJSON from '@/content/code/data/lcabyg_project.json?raw'
+// Results
+import convertResultsPY from '@/content/code/python/convert_lcabyg_results.py?raw'
+import convertResultsTS from '@/content/code/javascript/convertLCAbygResults.ts?raw'
+import convertResultsRS from '@/content/code/rust/convert_lcabyg_results.rs?raw'
+import resultsJSON from '@/content/code/data/lcabyg_project_results.json?raw'
+// Stages
+import convertStagesPY from '@/content/code/python/convert_stages.py?raw'
+import convertStagesTS from '@/content/code/javascript/convertStages.ts?raw'
+import convertStagesRS from '@/content/code/rust/convert_stages.rs?raw'
+import stagesJSON from '@/content/code/data/lcabyg_stages.json?raw'
+
+## LCAbyg
+
+LCAbyg is a software tool that calculates life cycle assessments for buildings.
+With LCAbyg, you can calculate a building's environmental profile and resource consumption.[<sup>1</sup>](https://lcabyg.dk/en)
+
+LCAbyg has been developed by the BUILD Institute at Aalborg University.
+
+## Exporting Files from LCAbyg
+
+In the video below you can see how to export JSON files from LCAbyg.
+
+<video controls width="720" height="auto">
+    <source src="/lcabyg-export.webm" type="video/webm"/>
+</video>
+
+## LCAByg Projects
+
+An example of how to convert a LCAbyg project to LCAx can be seen below.
+You will notice how we need to unpack the return value from `convert_lcabyg`.
+
+The reason is that the function can convert multiple types of LCAbyg objects.
+Fx. it is also possible to only convert LCAbyg products into LCAx EPDs.
+An example of that can be found further down this page.
+
+<CodeVariants variants={[
+    {label: 'Python', code: convertProjectPY, lang: 'py', title: 'convert_lcabyg.py'},
+    {label: 'TypeScript', code: convertProjectTS, lang: 'ts', title: 'convertLCAbyg.ts'},
+    {label: 'Rust', code: convertProjectRS, lang: 'rs', title: 'convert_lcabyg.rs'},
+    {label: 'LCAbyg Project', code: projectJSON, lang: 'json', title: 'lcabyg_project.json'},
+]}
+              syncKey='lang'
+/>
+
+## LCAByg Projects with Results
+
+LCAbyg have separated their export into two files: `project` and `results`.
+In the example above we saw how to work with only the project file.
+
+In this example we add the result file to the conversion as well to get a LCAx project with impact results.
+
+<CodeVariants variants={[
+    {label: 'Python', code: convertResultsPY, lang: 'py', title: 'convert_ilcd.py'},
+    {label: 'TypeScript', code: convertResultsTS, lang: 'ts', title: 'convertILCD.ts'},
+    {label: 'Rust', code: convertResultsRS, lang: 'rs', title: 'convert_ilcd.rs'},
+    {label: 'LCAbyg Project', code: projectJSON, lang: 'json', title: 'lcabyg_project.json'},
+    {label: 'LCAbyg Results', code: resultsJSON, lang: 'json', title: 'lcabyg_results.json'},
+]}
+              syncKey='lang'
+/>
+
+## LCAByg Stages
+
+As mentioned above, it is also possible only convert LCAbyg products to LCAx EPDs.
+
+<CodeVariants variants={[
+    {label: 'Python', code: convertStagesPY, lang: 'py', title: 'convert_stages.py'},
+    {label: 'TypeScript', code: convertStagesTS, lang: 'ts', title: 'convertStages.ts'},
+    {label: 'Rust', code: convertStagesRS, lang: 'rs', title: 'convert_stages.rs'},
+    {label: 'LCAByg Stages', code: stagesJSON, lang: 'json', title: 'lcabyg_stages.json'},
+]}
+              syncKey='lang'
+/>
+
+## LCAx to LCAByg
+
+It is also possible to convert a LCAx EPD into a LCAbyg product.
+
+<CodeVariants variants={[
+    {label: 'Python', code: convertProjectPY, lang: 'py', title: 'convert_lcax.py'},
+    {label: 'TypeScript', code: convertProjectTS, lang: 'ts', title: 'convertLCAx.ts'},
+    {label: 'Rust', code: convertProjectRS, lang: 'rs', title: 'convert_lcax.rs'},
+    {label: 'LCAx EPD', code: projectJSON, lang: 'json', title: 'lcax_epd.json'},
+]}
+              syncKey='lang'
+/>

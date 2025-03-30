@@ -23,6 +23,15 @@ pub enum EdgeType {
     CategoryToElement(CategoryToElementEdge),
     CategoryToConstruction(CategoryToConstructionEdge),
     MainBuilding(String),
+    ExtraBuilding(String),
+    ConstructionTransport(ConstructionTransport),
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub struct ConstructionTransport {
+    pub id: String,
+    pub mass: f64,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -31,6 +40,16 @@ pub struct ProductToStageEdge {
     pub id: String,
     pub excluded_scenarios: Vec<String>,
     pub enabled: bool,
+}
+
+impl ProductToStageEdge {
+    pub fn new() -> Self {
+        Self {
+            id: uuid::Uuid::new_v4().to_string(),
+            excluded_scenarios: vec![],
+            enabled: true,
+        }
+    }
 }
 
 #[derive(Serialize, Deserialize)]

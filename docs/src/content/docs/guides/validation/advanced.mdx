@@ -1,0 +1,40 @@
+---
+title: Advanced Validation Example
+description: A guide on how to use LCAx validation engine
+---
+import CodeVariants from '@/components/CodeVariants.astro'
+import validatePY from '@/content/code/python/validate_yaml.py?raw'
+import rulesYAML from '@/content/code/data/validation_rules.yaml?raw'
+import validateTS from '@/content/code/javascript/validateYaml.ts?raw'
+import validateRS from '@/content/code/rust/validate_yaml.rs?raw'
+import projectJSON from '@/content/code/data/project.json?raw'
+
+In the previous section we saw how simple rules can be built using code.
+
+Sometimes when you want to create more elaborate validation schemas it might an advantage to so in text.
+For this you can i.e. use [YAML](https://en.wikipedia.org/wiki/YAML), which has a more readable syntax than fx. JSON.
+
+## Using YAML to Define Rules
+
+In the example below we create an elaborate set of validation schemas in YAML.
+In the code examples when then read the YAML file and pass the validation schema objects to the `validate` function.
+
+<CodeVariants
+    variants={[
+        {label: 'YAML', title: 'validation_rules.yaml', code: rulesYAML, lang: 'yaml'},
+        {label: 'Python', title: 'validate.py', code: validatePY, lang: 'py'},
+        {label: 'TypeScript', title: 'validate.ts', code: validateTS, lang: 'ts'},
+        {label: 'Rust', title: 'validate.rs', code: validateRS, lang: 'rs'},
+        {label: 'Data', title: 'project.json', code: projectJSON, lang: 'json'},
+    ]}
+    syncKey='lang'
+/>
+
+## Validation JSON Schema
+
+If you wish to write your validation rules in YAML, you can then use the JSON Schema
+for the validation to provide help and feedback on the available fields.
+
+If you use an editor like VS Code or PyCharm to write your YAML you can plug the validation JSON schema in there.
+
+You can find the validation JSON schema [here](/reference/schemas/validation).

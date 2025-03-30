@@ -3,10 +3,9 @@ use chrono::NaiveDate;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
-use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, LifeCycleStage};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::shared::{Conversion, Unit};
 use serde_json::Error;
-use std::collections::HashMap;
 
 /// Parse a ILCD formatted EPD in an EPDx struct
 ///
@@ -37,10 +36,12 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
     {
         Some(other) => match other.anies.iter().find(|&anie| anie.name == "subType") {
             Some(subtype) => subtype.clone(),
-            None => &generic_anie,
+            None => generic_anie,
         },
-        None => &generic_anie,
+        None => generic_anie,
     };
+
+    let comment = collect_comment(&ilcd_epd);
 
     let mut impacts = collect_from_lcia_result(&ilcd_epd.lcia_results.lcia_result);
 
@@ -60,7 +61,7 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
         reference_service_life: None,
         conversions: Some(conversions),
         standard: get_ilcd_standard(&ilcd_epd),
-        comment: None,
+        comment,
         meta_data: None,
         source: None,
         published_date: get_date(&ilcd_epd.process_information.time.reference_year),
@@ -83,7 +84,7 @@ fn get_date(year: &i32) -> NaiveDate {
 }
 
 fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
-    let mut category = ImpactCategory::default();
+    let mut category = ImpactCategory::new();
     let mut composite_a1a3: Option<f64> = None;
 
     for anie in anies {
@@ -106,7 +107,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a1-a3") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::A1A3, Some(value));
+                        category.insert(LifeCycleModule::A1A3, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -114,7 +115,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a4") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::A4, Some(value));
+                        category.insert(LifeCycleModule::A4, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -122,7 +123,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("a5") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::A5, Some(value));
+                        category.insert(LifeCycleModule::A5, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -130,7 +131,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b1") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B1, Some(value));
+                        category.insert(LifeCycleModule::B1, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -138,7 +139,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b2") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B2, Some(value));
+                        category.insert(LifeCycleModule::B2, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -146,7 +147,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b3") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B3, Some(value));
+                        category.insert(LifeCycleModule::B3, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -154,7 +155,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b4") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B4, Some(value));
+                        category.insert(LifeCycleModule::B4, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -162,7 +163,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b5") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B5, Some(value));
+                        category.insert(LifeCycleModule::B5, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -170,7 +171,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b6") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B6, Some(value));
+                        category.insert(LifeCycleModule::B6, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -178,7 +179,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("b7") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::B7, Some(value));
+                        category.insert(LifeCycleModule::B7, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -186,7 +187,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c1") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::C1, Some(value));
+                        category.insert(LifeCycleModule::C1, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -194,7 +195,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c2") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::C2, Some(value));
+                        category.insert(LifeCycleModule::C2, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -202,7 +203,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c3") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::C3, Some(value));
+                        category.insert(LifeCycleModule::C3, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -210,7 +211,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("c4") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::C4, Some(value));
+                        category.insert(LifeCycleModule::C4, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -218,7 +219,7 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             (Some(module), Some(value)) if module.to_lowercase() == String::from("d") => {
                 match f64::try_from(value) {
                     Ok(value) => {
-                        category.insert(LifeCycleStage::D, Some(value));
+                        category.insert(LifeCycleModule::D, Some(value));
                     }
                     Err(_) => {}
                 }
@@ -226,8 +227,8 @@ fn impact_category_from_anies(anies: &Vec<ModuleAnie>) -> ImpactCategory {
             _ => continue,
         }
     }
-    if composite_a1a3.is_some() && category.get(&LifeCycleStage::A1A3).is_none() {
-        category.insert(LifeCycleStage::A1A3, composite_a1a3);
+    if composite_a1a3.is_some() && category.get(&LifeCycleModule::A1A3).is_none() {
+        category.insert(LifeCycleModule::A1A3, composite_a1a3);
     }
     category
 }
@@ -295,10 +296,8 @@ fn get_ilcd_declared_unit(exchange: &Exchange) -> Unit {
     Unit::UNKNOWN
 }
 
-fn collect_from_lcia_result(
-    lcia_result: &Vec<LCIAResult>,
-) -> HashMap<ImpactCategoryKey, ImpactCategory> {
-    let mut impacts: HashMap<ImpactCategoryKey, ImpactCategory> = HashMap::new();
+fn collect_from_lcia_result(lcia_result: &Vec<LCIAResult>) -> Impacts {
+    let mut impacts = Impacts::new();
 
     for lcia_result in lcia_result {
         for description in &lcia_result
@@ -377,7 +376,7 @@ fn collect_from_lcia_result(
 
 fn collect_from_exchanges(
     exchanges: &Vec<Exchange>,
-    impacts: &mut HashMap<ImpactCategoryKey, ImpactCategory>,
+    impacts: &mut Impacts,
 ) -> (Unit, Vec<Conversion>) {
     let mut declared_unit = Unit::UNKNOWN;
     let mut conversions: Vec<Conversion> = vec![];
@@ -464,4 +463,33 @@ fn get_name(base_name: &DataSetName) -> String {
         Some(name) if name.value.is_some() => name.value.clone().unwrap(),
         _ => "".to_string(),
     }
+}
+
+fn collect_comment(epd: &ILCD) -> Option<String> {
+    let mut comment = None;
+    if let Some(general_comments) = &epd.process_information.data_set_information.general_comment {
+        comment = match general_comments
+            .iter()
+            .find(|comment| comment.lang == "en".to_string())
+        {
+            Some(comment) => comment.value.clone(),
+            None if general_comments.len() > 0 => general_comments[0].value.clone(),
+            None => None,
+        };
+    }
+    if comment.is_none() {
+        if let Some(technology) = &epd.process_information.technology {
+            comment = match technology
+                .description
+                .iter()
+                .find(|comment| comment.lang == "en".to_string())
+            {
+                Some(comment) => comment.value.clone(),
+                None if technology.description.len() > 0 => technology.description[0].value.clone(),
+                None => None,
+            };
+        }
+    }
+
+    comment
 }

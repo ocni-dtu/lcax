@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.os.runner }}
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.10"]
         os:
           - name: linux-amd64
             runner: ubuntu-latest
@@ -40,11 +40,6 @@ jobs:
         with:
           name: cargo
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: pydantic-schema
-          path: packages/python/src/lcax
-
       - name: Setup Rust
         run: rustup target add ${{ matrix.os.target }}
 
@@ -62,7 +57,7 @@ jobs:
           path: dist
 
   publishPython:
-    if: ${{ inputs.release_version != ''}}
+    if: ${{ github.event_name != 'pull_request'}}
     runs-on: ubuntu-latest
     needs: buildPython
     permissions:

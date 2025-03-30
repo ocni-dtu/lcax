@@ -4,14 +4,15 @@ members = [
     "modules/convert",
     "modules/core",
     "modules/lcax",
-    "modules/models"
+    "modules/models",
+    "modules/validation"
 ]
 
 resolver = "2"
 
 [workspace.package]
 description = "LCAx is an open, machine and human-readable data format for exchanging LCA results."
-version = "2.6.4"
+version = "3.0.0-beta.7"
 authors = ["Christian Kongsgaard <christian@kongsgaard.eu>"]
 edition = "2021"
 readme = "README.md"

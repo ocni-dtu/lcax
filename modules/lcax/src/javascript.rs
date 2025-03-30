@@ -1,13 +1,19 @@
-use tsify::Tsify;
+extern crate console_error_panic_hook;
 use wasm_bindgen::prelude::*;
 
-use lcax_calculation::calculate::{calculate_project, CalculationOptions};
-use lcax_convert::{ilcd, lcabyg, slice};
+use lcax_calculation::calculate::calculate_project;
+use lcax_calculation::results::{
+    get_impact_total, get_impacts_by_life_cycle_module, normalize_result,
+};
+use lcax_convert::br_standard::parse::parse_br_standard;
+use lcax_convert::br_standard::xlsx::read_br_standard_from_bytes;
+use lcax_convert::lcabyg::parse::LCABygResult;
+use lcax_convert::{ilcd, lcabyg};
 use lcax_models::epd::EPD;
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::project::Project;
-use serde::{Deserialize, Serialize};
-
-extern crate console_error_panic_hook;
+use lcax_validation;
+use lcax_validation::model::{ValidationResult, ValidationSchema};
 
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
@@ -17,17 +23,44 @@ extern "C" {
     fn alert(s: &str);
 }
 
+/// Converts a json formatted LCAByg project into a LCAx Project
 #[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn convertLCAbyg(data: String, resultData: Option<String>) -> Result<Project, JsError> {
+pub fn convertLCAbyg(data: String, resultData: Option<String>) -> Result<LCABygResult, JsError> {
     console_error_panic_hook::set_once();
-    let project = lcabyg::parse::parse_lcabyg(&data, resultData.as_deref());
-    match project {
-        Ok(project) => Ok(project),
+
+    match lcabyg::parse::parse_lcabyg(&data, resultData.as_deref()) {
+        Ok(result) => Ok(result),
         Err(error) => Err(JsError::new(error.to_string().as_str())),
     }
 }
 
+/// Converts LCAx objects into LCAbyg
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn toLCAbyg(data: LCABygResult) -> Result<String, JsError> {
+    console_error_panic_hook::set_once();
+
+    match lcabyg::serialize::to_lcabyg(&data) {
+        Ok(result) => Ok(result),
+        Err(error) => Err(JsError::new(error.to_string().as_str())),
+    }
+}
+
+/// Converts a BR Standard Format file into a LCAx `Project`.
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn convertBRStandard(project_name: &str, file: Vec<u8>) -> Result<Project, JsError> {
+    console_error_panic_hook::set_once();
+
+    let (project_info, components, operations) = read_br_standard_from_bytes(file)?;
+    match parse_br_standard(project_name, &project_info, &components, &operations) {
+        Ok(project) => Ok(project),
+        Err(error) => Err(JsError::new(error.as_str())),
+    }
+}
+
+///Converts a json formatted ILCD+EPD data string into a LCAx EPD
 #[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn convertIlcd(data: String) -> Result<EPD, JsError> {
@@ -39,30 +72,61 @@ pub fn convertIlcd(data: String) -> Result<EPD, JsError> {
     }
 }
 
-#[derive(Deserialize, Serialize, Tsify)]
-#[tsify(into_wasm_abi, from_wasm_abi)]
-pub struct JSProjects(Vec<Project>);
-
-#[allow(non_snake_case)]
-#[wasm_bindgen]
-pub fn convertSLiCE(file: Vec<u8>) -> Result<JSProjects, JsError> {
-    console_error_panic_hook::set_once();
-    match slice::parse::parse_slice(file) {
-        Ok(projects) => Ok(JSProjects(projects)),
-        Err(error) => Err(JsError::new(error.to_string().as_str())),
-    }
-}
-
+///Calculate the impact results for a Project.
+///The impact results for the project will be added to the `results` property.
 #[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn calculateProject(mut project: Project) -> Result<Project, JsError> {
     console_error_panic_hook::set_once();
-    calculate_project(&mut project, None).expect("TODO: panic message");
+    match calculate_project(&mut project, None) {
+        Ok(project) => Ok(project.clone()),
+        Err(error) => Err(JsError::new(error.to_string().as_str())),
+    }
+}
 
-    Ok(project)
+///Get the total impact
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn getImpactTotal(
+    impacts: Impacts,
+    category: ImpactCategoryKey,
+    exclude_modules: Option<Vec<LifeCycleModule>>,
+) -> Result<f64, JsError> {
+    console_error_panic_hook::set_once();
+    Ok(get_impact_total(&impacts, &category, &exclude_modules))
+}
 
-    // match calculate_project(&mut project, options) {
-    //     Ok(_project) => Ok(*_project),
-    //     Err(error) => Err(JsError::new(error.to_string().as_str())),
-    // }
+///Normalize a result with e.g. the reference study period and gross floor area
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn normalizeResult(result: f64, normalizing_factor: f64) -> Result<f64, JsError> {
+    Ok(normalize_result(&result, &normalizing_factor))
+}
+
+///Get the impacts by life cycle module.
+///The results can be normalized by a factor.
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn getImpactsByLifeCycleModule(
+    impacts: Impacts,
+    category: ImpactCategoryKey,
+    exclude_modules: Option<Vec<LifeCycleModule>>,
+    normalizing_factor: Option<f64>,
+) -> Result<Option<ImpactCategory>, JsError> {
+    Ok(get_impacts_by_life_cycle_module(
+        &impacts,
+        &category,
+        &exclude_modules,
+        normalizing_factor,
+    ))
+}
+
+///Validate a LCAx Project
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn validate(
+    project: Project,
+    validation_schemas: Vec<ValidationSchema>,
+) -> Result<Vec<ValidationResult>, JsError> {
+    Ok(lcax_validation::validate(&project, &validation_schemas))
 }
