@@ -12,7 +12,7 @@ resolver = "2"
 
 [workspace.package]
 description = "LCAx is an open, machine and human-readable data format for exchanging LCA results."
-version = "3.0.1"
+version = "3.0.2"
 authors = ["Christian Kongsgaard <christian@kongsgaard.eu>"]
 edition = "2021"
 readme = "README.md"

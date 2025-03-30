@@ -1,3 +1,9 @@
+## [3.0.2](https://github.com/ocni-dtu/lcax/compare/v3.0.1...v3.0.2) (2025-03-30)
+
+### Bug Fixes
+
+* fixed cargo features on release ([e92d5b2](https://github.com/ocni-dtu/lcax/commit/e92d5b2ec28e5e9063be5210f2541be1a3fef585))
+
 ## [3.0.1](https://github.com/ocni-dtu/lcax/compare/v3.0.0...v3.0.1) (2025-03-30)
 
 ### Bug Fixes
