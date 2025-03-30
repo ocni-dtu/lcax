@@ -29,6 +29,10 @@ plugins:
   - - "semantic-release-cargo"
     - allFeatures: true
       check: true
+      publishArgs: [ "-p", "lcax_validation" ]
+  - - "semantic-release-cargo"
+    - allFeatures: true
+      check: true
       publishArgs: [ "-p", "lcax" ]
   - - "@semantic-release/github"
     - assets:
