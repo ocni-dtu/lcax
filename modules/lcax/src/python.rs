@@ -2,7 +2,6 @@ use lcax_calculation::calculate::calculate_project as _calculate_project;
 use lcax_calculation::results;
 use lcax_convert::br_standard::xlsx::br_standard_from_file;
 use lcax_convert::lcabyg::parse::LCABygResult;
-use lcax_convert::lcabyg::serialize::to_lcabyg as _to_lcabyg;
 use lcax_convert::{ilcd, lcabyg};
 use lcax_core::country::Country;
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
@@ -14,7 +13,7 @@ use lcax_models::project::{BuildingInfo, Location, Project, ProjectPhase, Softwa
 use lcax_models::shared::{Conversion, Reference, Source, Unit};
 use lcax_validation::model::{Level, ValidationResult, ValidationRule};
 use lcax_validation::ValidationSchema;
-use pyo3::exceptions::PyTypeError;
+use pyo3::exceptions::{PyTypeError, PyValueError};
 use pyo3::prelude::*;
 use std::path::PathBuf;
 
@@ -54,11 +53,28 @@ pub fn calculate_project(project: &mut Project) -> PyResult<Project> {
     }
 }
 
+// #[pyfunction]
+// pub fn to_lcabyg(objects: &LCABygResult) -> PyResult<String> {
+//     match lcabyg::serialize::to_lcabyg(objects) {
+//         Ok(result) => Ok(result),
+//         Err(error) => Err(PyTypeError::new_err(error.to_string())),
+//     }
+// }
+
 #[pyfunction]
-pub fn to_lcabyg(objects: &LCABygResult) -> PyResult<String> {
-    match _to_lcabyg(objects) {
-        Ok(result) => Ok(result),
-        Err(error) => Err(PyTypeError::new_err(error.to_string())),
+#[pyo3(signature = (*, project=None, epds=None))]
+pub fn to_lcabyg(project: Option<Project>, epds: Option<Vec<EPD>>) -> PyResult<String> {
+    if project.is_some() {
+        todo!("Project serialization is not implemented yet")
+    } else if epds.is_some() {
+        match lcabyg::serialize::serialize_epds(&epds.unwrap()) {
+            Ok(epds) => Ok(epds),
+            Err(error) => Err(PyValueError::new_err(error.to_string())),
+        }
+    } else {
+        Err(PyValueError::new_err(
+            "Either project or epds should be given".to_string(),
+        ))
     }
 }
 
