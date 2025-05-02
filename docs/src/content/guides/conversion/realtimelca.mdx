@@ -1,0 +1,36 @@
+---
+title: Convert BR Standard Format from Real-Time LCA
+description: Introduction to LCAx's conversion functionality in Rust.
+---
+
+import { CodeHighlightTabs } from '@mantine/code-highlight'
+
+## Real-Time LCA
+
+Real-Time LCA is an online application that allows users to evaluate the environmental impact of buildings.
+Real-Time LCA integrates directly with common BIM and CAD software such as Revit, Rhino and ArchiCAD.[<sup>1</sup>](https://realtimelca.com/en-us)
+
+## Exporting Files from Real-Time LCA
+
+In the video below you can see how to export an XLSX file from Real-Time LCA.
+
+Real-Time LCA doesn't have a native export format that includes the complete LCA model, which is why we parse the BR Standard Format file.
+Not that this format is only available for projects in Denmark.
+
+<video controls width='720' height='auto'>
+  <source src='/realtimelca-export.webm' type='video/webm' />
+</video>
+
+## Bygningsreglementets (BR) Standard LCA Format
+
+## Real-Time LCA Projects
+
+The example below shows how to convert a Real-Time LCA export to LCAx.
+
+<CodeHighlightTabs
+  code={[
+    { code: convertBrStandardPY, language: 'py', fileName: 'convert_realtime.py' },
+    { code: convertrealtimelcaTS, language: 'ts', fileName: 'convertRealTime.ts' },
+    { code: convertRealtimelcaRS, language: 'rs', fileName: 'convert_realtime.rs' },
+  ]}
+/>

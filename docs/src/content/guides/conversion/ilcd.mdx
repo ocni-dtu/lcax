@@ -1,0 +1,39 @@
+---
+title: Convert ILCD+EPD JSON Files
+description: How to convert ILCD+EPD files with LCAx.
+---
+
+import { CodeHighlightTabs } from '@mantine/code-highlight'
+
+ILCD+EPD is a widely used digital EPD format. LCAx allows you to convert ILCD+EPD files into LCAx EPDs.
+
+## ILCD+EPD
+
+ILCD+EPD is a format for digital EPDs, which contain machine-readable EPD information stored in an XML format that can
+be used by building LCA tools. \
+ILCD is a widely used data format developed by the European Commission.[<sup>1</sup>](https://www.eco-platform.org/eco-epd-40.html)
+
+Even though ILCD+EPD originally was created as an XML data structure it can also be exported as JSON data,
+which is what LCAx converts.
+
+## ILCD+EPD Providers
+
+Several platforms used ILCD+EPD as their underlying data structure.
+The following platforms provide data in the ILCD+EPD format:
+
+- [ECO Portal](https://www.eco-platform.org/epd-data.html)
+- [Ökobau](https://www.oekobaudat.de/en.html)
+- [EPD Norway](https://www.epd-norge.no/)
+
+## Code Example
+
+In the following example we will take a look at how easy it is to convert an ILCD file into LCAx:
+
+<CodeHighlightTabs
+  code={[
+    { code: convertIlcdPY, language: 'py', fileName: 'convert_ilcd.py' },
+    { code: convertilcdTS, language: 'ts', fileName: 'convertILCD.ts' },
+    { code: convertIlcdRS, language: 'rs', fileName: 'convert_ilcd.rs' },
+    { code: ilcdJSON, language: 'json', fileName: 'ilcd.json' },
+  ]}
+/>

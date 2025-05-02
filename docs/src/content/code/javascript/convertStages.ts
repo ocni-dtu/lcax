@@ -1,4 +1,4 @@
-import {convertLCAbyg} from "lcax";
+import { convertLCAbyg } from 'lcax'
 import fs from 'fs'
 
 const lcabygData = fs.readFileSync('lcabyg_stages.json')

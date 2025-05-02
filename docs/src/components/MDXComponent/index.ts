@@ -1,0 +1,1 @@
+export { MDXComponent } from './MDXComponent'

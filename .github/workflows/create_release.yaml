@@ -36,14 +36,9 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          name: rust-schema
+          name: validation-schema
           path: artifacts
 #
-#      - uses: actions/download-artifact@v4
-#        with:
-#          name: csharp-schema
-#          path: artifacts
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:

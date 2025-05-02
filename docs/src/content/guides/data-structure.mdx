@@ -1,0 +1,36 @@
+---
+title: Data Structure
+description: A guide on how to work with LCAx's data structure
+---
+
+import { CodeHighlightTabs } from '@mantine/code-highlight'
+
+## EPD
+
+Let's imagine that you have downloaded an ILCD formatted EPD. \
+You can now convert it using LCAx's converter:
+
+<CodeHighlightTabs
+  code={[
+    { code: convertIlcdPY, language: 'py', fileName: 'convert_ilcd.py' },
+    { code: ilcdJSON, language: 'json', fileName: 'ilcd.json' },
+  ]}
+/>
+
+It is now possible to access the impact data on the EPD object.
+
+<CodeHighlightTabs
+  code={[
+    { code: epdImpactsPY, language: 'py', fileName: 'epd_impacts.py' },
+    { code: ilcdJSON, language: 'json', fileName: 'ilcd.json' },
+  ]}
+/>
+
+You can also save the EPD as a LCAx formatted JSON file and load it back into Python memory.
+
+<CodeHighlightTabs
+  code={[
+    { code: epdDumpsLoadsPY, language: 'py', fileName: 'epd_dumps_loads.py' },
+    { code: ilcdJSON, language: 'json', fileName: 'ilcd.json' },
+  ]}
+/>

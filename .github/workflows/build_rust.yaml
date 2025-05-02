@@ -18,8 +18,11 @@ jobs:
       - name: Run Tests
         run: cargo test --target x86_64-unknown-linux-gnu
 
-      - name: Run Export Schemas
+      - name: Export LCAx Schema
         run: cargo run --target x86_64-unknown-linux-gnu --package lcax --bin export-schema > lcax.schema.json
+
+      - name: Export Validation Schema
+        run: cargo run --target x86_64-unknown-linux-gnu --package lcax_validation --bin export-schema > validation.schema.json
 
       - name: Upload JSON Schema
         uses: actions/upload-artifact@v4
@@ -27,8 +30,8 @@ jobs:
           name: json-schema
           path: 'lcax.schema.json'
 
-      - name: Upload Rust Schema
+      - name: Upload Validation Schema
         uses: actions/upload-artifact@v4
         with:
-          name: rust-schema
-          path: 'modules/models/src/project.rs'
+          name: validation-schema
+          path: 'validation.schema.json'
