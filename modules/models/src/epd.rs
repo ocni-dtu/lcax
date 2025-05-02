@@ -145,7 +145,7 @@ impl EPD {
     fn __repr__(&self) -> String {
         format!("EPD: {}", self.id)
     }
-    
+
     #[cfg(feature = "pybindings")]
     fn __str__(&self) -> String {
         format!("EPD: {}", self.id)

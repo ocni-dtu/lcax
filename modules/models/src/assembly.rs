@@ -64,9 +64,8 @@ impl Assembly {
 
     #[cfg(feature = "pybindings")]
     fn __str__(&self) -> String {
-        self.__repr__()   
+        self.__repr__()
     }
-    
 }
 
 impl Assembly {

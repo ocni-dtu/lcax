@@ -121,7 +121,6 @@ impl Project {
     fn __str__(&self) -> String {
         self.__repr__()
     }
-    
 }
 
 impl Project {

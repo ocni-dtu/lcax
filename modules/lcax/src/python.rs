@@ -6,7 +6,7 @@ use lcax_convert::{ilcd, lcabyg};
 use lcax_core::country::Country;
 use lcax_models::assembly::{Assembly, Classification};
 use lcax_models::epd::{Standard, SubType, EPD};
-use lcax_models::generic_impact_data::{GenericData};
+use lcax_models::generic_impact_data::GenericData;
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{Product, Transport};
 use lcax_models::project::{BuildingInfo, Location, Project, ProjectPhase, SoftwareInfo};

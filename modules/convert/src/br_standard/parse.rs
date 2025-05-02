@@ -136,7 +136,10 @@ impl TryFromBR<(&str, &BRProjectInfo, &Vec<BRComponent>, &Vec<BROperation>)> for
             },
             meta_data: Some(HashMap::from([(
                 "convertedAt".to_string(),
-                Some(AnyValue::String(format!("{}", Utc::now().naive_utc().format("%Y-%m-%d")))),
+                Some(AnyValue::String(format!(
+                    "{}",
+                    Utc::now().naive_utc().format("%Y-%m-%d")
+                ))),
             )])),
         };
         let calc_options = CalculationOptions {

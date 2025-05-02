@@ -78,9 +78,13 @@ impl Conversion {
     #[new]
     #[pyo3(signature = (to, value, meta_data=None))]
     pub fn new_py(to: Unit, value: f64, meta_data: Option<MetaData>) -> Self {
-        Self { to, value, meta_data }
+        Self {
+            to,
+            value,
+            meta_data,
+        }
     }
-    
+
     #[cfg(feature = "pybindings")]
     fn __repr__(&self) -> String {
         format!("Conversion: {}", self.to)

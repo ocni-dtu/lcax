@@ -503,7 +503,10 @@ impl
             project_phase: Default::default(),
             meta_data: Some(HashMap::from([(
                 "convertedAt".to_string(),
-                Some(AnyValue::String(format!("{}", Utc::now().naive_utc().format("%Y-%m-%d")))),
+                Some(AnyValue::String(format!(
+                    "{}",
+                    Utc::now().naive_utc().format("%Y-%m-%d")
+                ))),
             )])),
         };
         project.resolve_impact_categories();

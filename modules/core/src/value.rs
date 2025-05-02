@@ -1,6 +1,6 @@
-use std::collections::HashMap;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
