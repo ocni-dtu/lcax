@@ -108,44 +108,11 @@ impl GenericData {
 #[serde(rename_all = "camelCase")]
 #[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(eq))]
+#[cfg_attr(feature = "pybindings", derive(FromPyObject, IntoPyObject))]
 pub enum GenericDataReference {
     #[serde(rename = "EPD")]
     GenericData(GenericData),
     Reference(Reference),
-}
-
-#[cfg_attr(feature = "pybindings", pymethods)]
-impl GenericDataReference {
-    #[cfg(feature = "pybindings")]
-    #[new]
-    #[pyo3(signature=(_type, name, declared_unit, impacts, id=None, format_version=None, source=None, comment=None, conversions=None, meta_data=None )
-    )]
-    pub fn new_py(
-        _type: &str,
-        name: String,
-        declared_unit: Unit,
-        impacts: Impacts,
-        id: Option<String>,
-        format_version: Option<String>,
-        source: Option<Source>,
-        comment: Option<String>,
-        conversions: Option<Vec<Conversion>>,
-        meta_data: Option<MetaData>,
-    ) -> GenericDataReference {
-        GenericDataReference::new(
-            _type,
-            id,
-            name,
-            declared_unit,
-            format_version,
-            source,
-            comment,
-            conversions,
-            impacts,
-            meta_data,
-        )
-    }
 }
 
 impl GenericDataReference {

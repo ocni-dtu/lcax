@@ -51,13 +51,13 @@ pub struct Project {
 impl Project {
     #[cfg(feature = "pybindings")]
     #[new]
-    #[pyo3(signature=(name, location, project_phase, software_info, life_cycle_stages, impact_categories, assemblies, id=None, description=None, comment=None, owner=None, format_version=None, lcia_method=None, classification_systems=None, reference_study_period=None, results=None, project_info=None, meta_data=None ))]
+    #[pyo3(signature=(name, location, project_phase, software_info, life_cycle_modules, impact_categories, assemblies, id=None, description=None, comment=None, owner=None, format_version=None, lcia_method=None, classification_systems=None, reference_study_period=None, results=None, project_info=None, meta_data=None ))]
     pub fn new_py(
         name: &str,
         location: Location,
         project_phase: ProjectPhase,
         software_info: SoftwareInfo,
-        life_cycle_stages: Vec<LifeCycleModule>,
+        life_cycle_modules: Vec<LifeCycleModule>,
         impact_categories: Vec<ImpactCategoryKey>,
         assemblies: Vec<AssemblyReference>,
         id: Option<String>,
@@ -83,7 +83,7 @@ impl Project {
             lcia_method,
             classification_systems,
             reference_study_period,
-            life_cycle_stages,
+            life_cycle_modules,
             impact_categories,
             assemblies,
             results,
@@ -112,6 +112,16 @@ impl Project {
             Err(error) => Err(PyTypeError::new_err(error.to_string())),
         }
     }
+    #[cfg(feature = "pybindings")]
+    fn __repr__(&self) -> String {
+        format!("Project: {}", self.id)
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __str__(&self) -> String {
+        self.__repr__()
+    }
+    
 }
 
 impl Project {

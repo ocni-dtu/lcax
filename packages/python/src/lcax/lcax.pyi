@@ -369,10 +369,16 @@ class Conversion:
     to: Unit
     meta_data: MetaData | None
 
+    def __init__(self, value: float, to: Unit, meta_data: MetaData | None = None):
+        ...
+
 
 class Source:
     name: str
     url: str | None
+
+    def __init__(self, name: str, url: str | None = None):
+        ...
 
 
 class Standard(Enum):
@@ -431,10 +437,12 @@ class EPD:
         ...
 
     def dumps(self) -> str:
+        """Serializes the EPD into a JSON string"""
         ...
 
     @classmethod
     def loads(cls, value: str) -> Self:
+        """Deserializes a JSON string into a LCAx EPD"""
         ...
 
 
@@ -551,14 +559,14 @@ class Product:
     name: str
     description: str | None
     reference_service_life: int
-    impact_data: list[ImpactData]
+    impact_data: list[EPD | GenericData | Reference]
     quantity: float
     unit: Unit
     transport: list[Transport] | None
     results: Impacts | None
     meta_data: MetaData | None
 
-    def __init__(self, name: str, reference_service_life: int, impact_data: ImpactData, quantity: float, unit: Unit,
+    def __init__(self, name: str, reference_service_life: int, impact_data: list[EPD | GenericData | Reference], quantity: float, unit: Unit,
                  id: str | None = None,
                  description: str | None = None, transport: list[Transport] | None = None,
                  results: Impacts | None = None, meta_data: MetaData | None = None):
@@ -577,7 +585,7 @@ class Assembly:
     results: Impacts | None
     meta_data: MetaData | None
 
-    def __init__(self, name: str, quantity: float, unit: Unit, products: dict[str, Product | Reference],
+    def __init__(self, name: str, quantity: float, unit: Unit, products: list[Product | Reference],
                  id: str | None = None,
                  description: str | None = None, comment: str | None = None,
                  classification: str | None = None, results: Impacts | None = None, meta_data: MetaData | None = None):
@@ -590,18 +598,7 @@ class Transport:
     life_cycle_modules: list[LifeCycleModule]
     distance: float
     distance_unit: Unit
-    impact_data: ImpactData
-
-
-class ImpactData:
-    def __init__(self, _type: str, name: str, declared_unit: Unit, version: str, published_date: datetime.date,
-                 valid_until: datetime.date, standard: Standard,
-                 location: Country, subtype: SubType, impacts: Impacts, id: str | None = None,
-                 format_version: str | None = None, source: Source | None = None,
-                 reference_service_life: int | None = None,
-                 comment: str | None = None, conversions: list[Conversion] | None = None,
-                 meta_data: MetaData | None = None) -> EPD | GenericData:
-        ...
+    impact_data: EPD | GenericData | Reference
 
 
 type MetaData = dict[str, Any]
@@ -621,6 +618,9 @@ class ImpactCategory:
 
 class Impacts:
     def __init__(self, value: dict | None = None):
+        pass
+
+    def __getitem__(self, item):
         pass
 
     @classmethod
@@ -665,13 +665,8 @@ class Project:
         ...
 
 
-class LCABygResult:
 
-    def __getitem__(self, item) -> Project | list[Assembly] | list[Product] | list[EPD]:
-        pass
-
-
-def convert_lcabyg(data: str, result_data: str | None = None) -> LCABygResult:
+def convert_lcabyg(data: str, result_data: str | None = None) -> Project | list[Assembly] | list[Product] | list[EPD]:
     """Converts a json formatted LCAByg project into a LCAx Project"""
 
 

@@ -3,6 +3,7 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fmt;
+
 #[cfg(feature = "jsbindings")]
 use tsify_next::{declare, Tsify};
 
@@ -71,6 +72,26 @@ pub struct Conversion {
     pub meta_data: Option<MetaData>,
 }
 
+#[cfg_attr(feature = "pybindings", pymethods)]
+impl Conversion {
+    #[cfg(feature = "pybindings")]
+    #[new]
+    #[pyo3(signature = (to, value, meta_data=None))]
+    pub fn new_py(to: Unit, value: f64, meta_data: Option<MetaData>) -> Self {
+        Self { to, value, meta_data }
+    }
+    
+    #[cfg(feature = "pybindings")]
+    fn __repr__(&self) -> String {
+        format!("Conversion: {}", self.to)
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __str__(&self) -> String {
+        format!("Conversion: {}", self.to)
+    }
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
@@ -80,6 +101,25 @@ pub struct Source {
     pub url: Option<String>,
 }
 
+#[cfg_attr(feature = "pybindings", pymethods)]
+impl Source {
+    #[cfg(feature = "pybindings")]
+    #[new]
+    #[pyo3(signature = (name, url=None))]
+    pub fn new_py(name: String, url: Option<String>) -> Self {
+        Self { name, url }
+    }
+    #[cfg(feature = "pybindings")]
+    fn __repr__(&self) -> String {
+        format!("Source: {}", self.name)
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __str__(&self) -> String {
+        format!("Source: {}", self.name)
+    }
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
 #[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
@@ -87,8 +127,8 @@ pub struct Reference {
     pub uri: String,
     pub format: Option<String>,
     pub version: Option<String>,
-    pub overrides: Option<HashMap<String, AnyValue>>,
+    pub overrides: Option<HashMap<String, Option<AnyValue>>>,
 }
 
 #[cfg_attr(feature = "jsbindings", declare)]
-pub type MetaData = HashMap<String, AnyValue>;
+pub type MetaData = HashMap<String, Option<AnyValue>>;
