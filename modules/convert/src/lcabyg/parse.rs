@@ -52,7 +52,7 @@ pub enum NodesAndEdges {
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[serde(rename_all = "lowercase")]
+#[serde(untagged)]
 #[cfg_attr(feature = "pybindings", derive(FromPyObject, IntoPyObject))]
 pub enum LCABygResult {
     Project(Project),
