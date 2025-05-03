@@ -8,7 +8,8 @@ const getCodeFiles = (dir: string) => {
 }
 
 const getCodeContent = (dir: string) => {
-  return getCodeFiles(dir).map((file) => {
+  return getCodeFiles(dir)
+    .map((file) => {
       const content = fs.readFileSync(path.join(dir, file), 'utf-8')
       const name =
         snakeCaseToCamelCase(path.basename(file, path.extname(file)).replace('.', '_')) +

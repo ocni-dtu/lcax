@@ -2,7 +2,7 @@ import { getCode, getDocsContent, Metadata } from '@/lib'
 import { DocsPage } from '@/components/DocsPage'
 
 export const generateStaticParams = () => {
-  return getDocsContent(['reference']).map((post) => ({slug: post.slug}))
+  return getDocsContent(['reference']).map((post) => ({ slug: post.slug }))
 }
 
 interface PageProps {
