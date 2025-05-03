@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { Container, Title } from '@mantine/core'
-import { baseUrl } from '@/app/sitemap'
+import { baseUrl } from '@/lib'
 import { MDXComponent } from '@/components'
 import { Metadata } from '@/lib'
 
