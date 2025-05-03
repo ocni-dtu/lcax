@@ -279,7 +279,7 @@ impl Stage {
             mass_factor: epd.conversions.to_owned().unwrap().first().unwrap().value,
             scale_factor: 1.0,
             external_source: epd.source.to_owned().unwrap().name,
-            external_url: epd.source.to_owned().unwrap().url.unwrap(),
+            external_url: epd.source.to_owned().unwrap().url.unwrap_or("".to_string()),
             external_id: "".to_string(),
             external_version: "".to_string(),
             compliance: to_lcabyg_compliance(&epd.standard),
