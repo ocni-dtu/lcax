@@ -61,15 +61,15 @@ pub struct MaterialProperty {
     pub unit_description: Option<String>,
 }
 
-impl Into<HashMap<String, AnyValue>> for MaterialProperty {
-    fn into(self) -> HashMap<String, AnyValue> {
+impl Into<HashMap<String, Option<AnyValue>>> for MaterialProperty {
+    fn into(self) -> HashMap<String, Option<AnyValue>> {
         HashMap::from([
-            ("name".to_string(), AnyValue::from(self.name)),
-            ("value".to_string(), AnyValue::from(self.value)),
-            ("unit".to_string(), AnyValue::from(self.unit)),
+            ("name".to_string(), Some(AnyValue::from(self.name))),
+            ("value".to_string(), Some(AnyValue::from(self.value))),
+            ("unit".to_string(), Some(AnyValue::from(self.unit))),
             (
                 "unit_description".to_string(),
-                AnyValue::from(self.unit_description),
+                Some(AnyValue::from(self.unit_description)),
             ),
         ])
     }

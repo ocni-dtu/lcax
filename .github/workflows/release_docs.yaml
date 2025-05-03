@@ -21,13 +21,13 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          name: rust-schema
-          path: docs/src/content/code/rust
+          name: validation-schema
+          path: docs/src/content/code
 
       - uses: actions/download-artifact@v4
         with:
           name: changelog
-          path: .
+          path: docs/src/content/reference
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -38,12 +38,11 @@ jobs:
         working-directory: docs
         run: npm ci
 
-      - name: Construct Changelog
-        run: cat CHANGELOG.md >> docs/src/content/docs/reference/changelog.md
-
       - name: Build Docs
         working-directory: docs
         run: npm run build
+        env:
+          DOMAIN: docs.lcax.org
 
       - name: Upload artifact for deployment job
         if: github.event_name != 'pull_request'

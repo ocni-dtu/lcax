@@ -57,6 +57,15 @@ impl Assembly {
             meta_data,
         )
     }
+    #[cfg(feature = "pybindings")]
+    fn __repr__(&self) -> String {
+        format!("Assembly: {}", self.id)
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __str__(&self) -> String {
+        self.__repr__()
+    }
 }
 
 impl Assembly {
@@ -116,44 +125,10 @@ impl Classification {
 #[serde(rename_all = "camelCase")]
 #[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(eq))]
+#[cfg_attr(feature = "pybindings", derive(FromPyObject, IntoPyObject))]
 pub enum AssemblyReference {
     Assembly(Assembly),
     Reference(Reference),
-}
-
-#[cfg_attr(feature = "pybindings", pymethods)]
-impl AssemblyReference {
-    #[cfg(feature = "pybindings")]
-    #[new]
-    #[pyo3(signature=(_type, name, quantity, unit, products, id=None, description=None, comment=None, classification=None, results=None, meta_data=None))]
-    pub fn new_py(
-        _type: &str,
-        name: String,
-        quantity: f64,
-        unit: Unit,
-        products: Vec<ProductReference>,
-        id: Option<String>,
-        description: Option<String>,
-        comment: Option<String>,
-        classification: Option<Vec<Classification>>,
-        results: Option<Impacts>,
-        meta_data: Option<MetaData>,
-    ) -> Self {
-        Self::new(
-            _type,
-            id,
-            name,
-            description,
-            comment,
-            quantity,
-            unit,
-            classification,
-            products,
-            results,
-            meta_data,
-        )
-    }
 }
 
 impl AssemblyReference {

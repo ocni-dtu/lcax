@@ -1,0 +1,1 @@
+export { CodeHighlightTabs } from './CodeHighlightTabs'

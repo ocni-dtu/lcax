@@ -1,0 +1,25 @@
+.heading {
+  overflow-wrap: break-word;
+  &:is(h1) {
+    @media screen and (min-width: $mantine-breakpoint-md) {
+      font-size: 3rem;
+    }
+    @media screen and (min-width: $mantine-breakpoint-xl) {
+      font-size: 4.5rem;
+    }
+    @media screen and (min-width: --mantine-breakpoint-xxl) {
+      font-size: 6rem;
+    }
+  }
+  &:is(h2) {
+    @media screen and (min-width: $mantine-breakpoint-md) {
+      font-size: 2.5rem;
+    }
+    @media screen and (min-width: $mantine-breakpoint-xl) {
+      font-size: 3rem;
+    }
+    @media screen and (min-width: --mantine-breakpoint-xxl) {
+      font-size: 4.5rem;
+    }
+  }
+}

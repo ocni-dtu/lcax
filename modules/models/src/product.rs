@@ -10,6 +10,7 @@ use crate::generic_impact_data::GenericDataReference;
 use crate::life_cycle_base::{Impacts, LifeCycleModule};
 use crate::shared::{Conversion, MetaData, Reference, Source, Unit};
 use lcax_core::country::Country;
+
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
 
@@ -60,6 +61,15 @@ impl Product {
             meta_data,
         )
     }
+    #[cfg(feature = "pybindings")]
+    fn __repr__(&self) -> String {
+        format!("Product: {}", self.id)
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __str__(&self) -> String {
+        self.__repr__()
+    }
 }
 
 impl Product {
@@ -95,7 +105,7 @@ impl Product {
 #[serde(rename_all = "camelCase")]
 #[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(eq))]
+#[cfg_attr(feature = "pybindings", derive(FromPyObject, IntoPyObject))]
 pub enum ProductReference {
     Product(Product),
     Reference(Reference),
@@ -134,7 +144,7 @@ pub struct Transport {
 #[serde(rename_all = "camelCase")]
 #[serde(untagged)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(eq))]
+#[cfg_attr(feature = "pybindings", derive(FromPyObject, IntoPyObject))]
 pub enum ImpactData {
     EPD(EPDReference),
     GenericData(GenericDataReference),
@@ -143,52 +153,6 @@ pub enum ImpactData {
 impl Default for ImpactData {
     fn default() -> ImpactData {
         ImpactData::GenericData(GenericDataReference::default())
-    }
-}
-
-#[cfg_attr(feature = "pybindings", pymethods)]
-impl ImpactData {
-    #[cfg(feature = "pybindings")]
-    #[new]
-    #[pyo3(signature=(_type, name, declared_unit, version, published_date, valid_until, standard, location, subtype, impacts, id=None, format_version=None, source=None, reference_service_life=None, comment=None, conversions=None, meta_data=None))]
-    pub fn new_py(
-        _type: &str,
-        name: String,
-        declared_unit: Unit,
-        version: String,
-        published_date: NaiveDate,
-        valid_until: NaiveDate,
-        standard: Standard,
-        location: Country,
-        subtype: SubType,
-        impacts: Impacts,
-        id: Option<String>,
-        format_version: Option<String>,
-        source: Option<Source>,
-        reference_service_life: Option<u32>,
-        comment: Option<String>,
-        conversions: Option<Vec<Conversion>>,
-        meta_data: Option<MetaData>,
-    ) -> ImpactData {
-        ImpactData::new(
-            _type,
-            id,
-            name,
-            declared_unit,
-            version,
-            published_date,
-            valid_until,
-            format_version,
-            source,
-            reference_service_life,
-            standard,
-            comment,
-            location,
-            subtype,
-            conversions,
-            impacts,
-            meta_data,
-        )
     }
 }
 

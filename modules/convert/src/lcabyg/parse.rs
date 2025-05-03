@@ -52,8 +52,8 @@ pub enum NodesAndEdges {
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "pybindings", pyclass, derive(FromPyObject))]
+#[serde(untagged)]
+#[cfg_attr(feature = "pybindings", derive(FromPyObject, IntoPyObject))]
 pub enum LCABygResult {
     Project(Project),
     Assemblies(Vec<Assembly>),
@@ -503,7 +503,10 @@ impl
             project_phase: Default::default(),
             meta_data: Some(HashMap::from([(
                 "convertedAt".to_string(),
-                AnyValue::String(format!("{}", Utc::now().naive_utc().format("%Y-%m-%d"))),
+                Some(AnyValue::String(format!(
+                    "{}",
+                    Utc::now().naive_utc().format("%Y-%m-%d")
+                ))),
             )])),
         };
         project.resolve_impact_categories();

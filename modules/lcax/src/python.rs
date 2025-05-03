@@ -4,11 +4,11 @@ use lcax_convert::br_standard::xlsx::br_standard_from_file;
 use lcax_convert::lcabyg::parse::LCABygResult;
 use lcax_convert::{ilcd, lcabyg};
 use lcax_core::country::Country;
-use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
-use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
-use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
+use lcax_models::assembly::{Assembly, Classification};
+use lcax_models::epd::{Standard, SubType, EPD};
+use lcax_models::generic_impact_data::GenericData;
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
-use lcax_models::product::{ImpactData, Product, ProductReference, Transport};
+use lcax_models::product::{Product, Transport};
 use lcax_models::project::{BuildingInfo, Location, Project, ProjectPhase, SoftwareInfo};
 use lcax_models::shared::{Conversion, Reference, Source, Unit};
 use lcax_validation::model::{Level, ValidationResult, ValidationRule};
@@ -52,14 +52,6 @@ pub fn calculate_project(project: &mut Project) -> PyResult<Project> {
         Err(error) => Err(PyTypeError::new_err(error.to_string())),
     }
 }
-
-// #[pyfunction]
-// pub fn to_lcabyg(objects: &LCABygResult) -> PyResult<String> {
-//     match lcabyg::serialize::to_lcabyg(objects) {
-//         Ok(result) => Ok(result),
-//         Err(error) => Err(PyTypeError::new_err(error.to_string())),
-//     }
-// }
 
 #[pyfunction]
 #[pyo3(signature = (*, project=None, epds=None))]
@@ -128,7 +120,6 @@ pub fn validate(
 fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     // Classes
     m.add_class::<EPD>()?;
-    m.add_class::<LCABygResult>()?;
     m.add_class::<Conversion>()?;
     m.add_class::<Unit>()?;
     m.add_class::<Source>()?;
@@ -145,16 +136,11 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<ProjectPhase>()?;
     m.add_class::<SoftwareInfo>()?;
     m.add_class::<Reference>()?;
-    m.add_class::<AssemblyReference>()?;
     m.add_class::<Assembly>()?;
     m.add_class::<Classification>()?;
-    m.add_class::<ProductReference>()?;
     m.add_class::<Product>()?;
     m.add_class::<Transport>()?;
-    m.add_class::<ImpactData>()?;
-    m.add_class::<EPDReference>()?;
     m.add_class::<EPD>()?;
-    m.add_class::<GenericDataReference>()?;
     m.add_class::<GenericData>()?;
     m.add_class::<ValidationSchema>()?;
     m.add_class::<Level>()?;

@@ -1,0 +1,36 @@
+---
+title: Advanced Validation Example
+description: A guide on how to use LCAx validation engine
+---
+
+import { CodeHighlightTabs } from '@mantine/code-highlight'
+
+In the previous section we saw how simple rules can be built using code.
+
+Sometimes when you want to create more elaborate validation schemas it might an advantage to so in text.
+For this you can i.e. use [YAML](https://en.wikipedia.org/wiki/YAML), which has a more readable syntax than fx. JSON.
+
+## Using YAML to Define Rules
+
+In the example below we create an elaborate set of validation schemas in YAML.
+In the code examples when then read the YAML file and pass the validation schema objects to the `validate` function.
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'validation_rules.yaml', code: validationRulesYAML, language: 'yaml' },
+    { fileName: 'validate.py', code: validateYamlPY, language: 'py' },
+    { fileName: 'validate.ts', code: validateyamlTS, language: 'ts' },
+    { fileName: 'validate.rs', code: validateYamlRS, language: 'rs' },
+    { fileName: 'project.json', code: projectJSON, language: 'json' },
+  ]}
+  syncKey='lang'
+/>
+
+## Validation JSON Schema
+
+If you wish to write your validation rules in YAML, you can then use the JSON Schema
+for the validation to provide help and feedback on the available fields.
+
+If you use an editor like VS Code or PyCharm to write your YAML you can plug the validation JSON schema in there.
+
+You can find the validation JSON schema [here](/reference/schemas/validation).

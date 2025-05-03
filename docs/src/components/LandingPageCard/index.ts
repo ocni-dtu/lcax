@@ -1,0 +1,1 @@
+export { LandingPageCard } from './LandingPageCard'

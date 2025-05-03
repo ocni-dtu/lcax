@@ -5,7 +5,7 @@
 - level: project
   field: referenceStudyPeriod
   rule:
-    equal: "50"
+    equal: '50'
 - level: project
   field: lifeCycleModules
   rule:
@@ -51,8 +51,8 @@
 - level: impactData
   field: source?.name
   rule:
-    equal: "Ökobau.dat"
+    equal: 'Ökobau.dat'
 - level: impactData
   field: subtype
   rule:
-    oneOf: ["generic", "specific"]
+    oneOf: ['generic', 'specific']

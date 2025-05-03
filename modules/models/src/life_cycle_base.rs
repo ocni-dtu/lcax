@@ -272,6 +272,21 @@ impl ImpactCategory {
     fn dict(&self) -> HashMap<LifeCycleModule, Option<f64>> {
         self.0.clone()
     }
+
+    #[cfg(feature = "pybindings")]
+    fn __getitem__(&self, key: &LifeCycleModule) -> Option<f64> {
+        self.0.get(key).cloned()?
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __repr__(&self) -> String {
+        "Impact Category".to_string()
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __str__(&self) -> String {
+        "Impact Category".to_string()
+    }
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
@@ -353,6 +368,21 @@ impl Impacts {
     #[cfg(feature = "pybindings")]
     fn dict(&self) -> HashMap<ImpactCategoryKey, ImpactCategory> {
         self.0.clone()
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __getitem__(&self, key: &ImpactCategoryKey) -> Option<ImpactCategory> {
+        self.0.get(key).cloned()
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __repr__(&self) -> String {
+        "Impacts".to_string()
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __str__(&self) -> String {
+        "Impacts".to_string()
     }
 }
 

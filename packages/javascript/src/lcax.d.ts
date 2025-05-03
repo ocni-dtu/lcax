@@ -61,7 +61,32 @@ export interface ValidationSchema {
 
 export type Level = "project" | "assembly" | "product" | "impactData";
 
-export type LCABygResult = { project: Project } | { assemblies: Assembly[] } | { products: Product[] } | { epds: EPD[] };
+export type LCABygResult = Project | Assembly[] | Product[] | EPD[];
+
+export type EPDReference = ({ type: "EPD" } & EPD) | ({ type: "reference" } & Reference);
+
+export type SubType = "generic" | "specific" | "industry" | "representative";
+
+export type Standard = "en15804a1" | "en15804a2" | "unknown";
+
+export interface EPD {
+    id: string;
+    name: string;
+    declaredUnit: Unit;
+    version: string;
+    publishedDate: Date;
+    validUntil: Date;
+    formatVersion: string;
+    source: Source | null;
+    referenceServiceLife: number | null;
+    standard: Standard;
+    comment: string | null;
+    location: Country;
+    subtype: SubType;
+    conversions: Conversion[] | null;
+    impacts: Impacts;
+    metaData: MetaData | null;
+}
 
 export type LifeCycleModule = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
 
@@ -154,67 +179,6 @@ export interface Project {
     metaData: MetaData | null;
 }
 
-export type MetaData = Record<string, AnyValue>;
-
-export interface Reference {
-    uri: string;
-    format: string | null;
-    version: string | null;
-    overrides: Record<string, AnyValue> | null;
-}
-
-export interface Source {
-    name: string;
-    url: string | null;
-}
-
-export interface Conversion {
-    value: number;
-    to: Unit;
-    metaData: MetaData | null;
-}
-
-export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
-
-export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
-
-export interface GenericData {
-    id: string;
-    name: string;
-    declaredUnit: Unit;
-    formatVersion: string;
-    source: Source | null;
-    comment: string | null;
-    conversions: Conversion[] | null;
-    impacts: Impacts;
-    metaData: MetaData | null;
-}
-
-export type EPDReference = ({ type: "EPD" } & EPD) | ({ type: "reference" } & Reference);
-
-export type SubType = "generic" | "specific" | "industry" | "representative";
-
-export type Standard = "en15804a1" | "en15804a2" | "unknown";
-
-export interface EPD {
-    id: string;
-    name: string;
-    declaredUnit: Unit;
-    version: string;
-    publishedDate: Date;
-    validUntil: Date;
-    formatVersion: string;
-    source: Source | null;
-    referenceServiceLife: number | null;
-    standard: Standard;
-    comment: string | null;
-    location: Country;
-    subtype: SubType;
-    conversions: Conversion[] | null;
-    impacts: Impacts;
-    metaData: MetaData | null;
-}
-
 export type ImpactData = EPDReference | GenericDataReference;
 
 export interface Transport {
@@ -241,6 +205,42 @@ export interface Product {
     metaData: MetaData | null;
 }
 
+export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
+
+export interface GenericData {
+    id: string;
+    name: string;
+    declaredUnit: Unit;
+    formatVersion: string;
+    source: Source | null;
+    comment: string | null;
+    conversions: Conversion[] | null;
+    impacts: Impacts;
+    metaData: MetaData | null;
+}
+
+export type MetaData = Record<string, AnyValue | null>;
+
+export interface Reference {
+    uri: string;
+    format: string | null;
+    version: string | null;
+    overrides: Record<string, AnyValue | null> | null;
+}
+
+export interface Source {
+    name: string;
+    url: string | null;
+}
+
+export interface Conversion {
+    value: number;
+    to: Unit;
+    metaData: MetaData | null;
+}
+
+export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
+
 export type AssemblyReference = ({ type: "assembly" } & Assembly) | ({ type: "reference" } & Reference);
 
 export interface Classification {
@@ -264,7 +264,7 @@ export interface Assembly {
 
 export type Country = "unknown" | "afg" | "ala" | "alb" | "dza" | "asm" | "and" | "ago" | "aia" | "ata" | "atg" | "arg" | "arm" | "abw" | "aus" | "aut" | "aze" | "bhs" | "bhr" | "bgd" | "brb" | "blr" | "bel" | "blz" | "ben" | "bmu" | "btn" | "bol" | "bes" | "bih" | "bwa" | "bvt" | "bra" | "iot" | "brn" | "bgr" | "bfa" | "bdi" | "cpv" | "khm" | "cmr" | "can" | "cym" | "caf" | "tcd" | "chl" | "chn" | "cxr" | "cck" | "col" | "com" | "cog" | "cod" | "cok" | "cri" | "civ" | "hrv" | "cub" | "cuw" | "cyp" | "cze" | "dnk" | "dji" | "dma" | "dom" | "ecu" | "egy" | "slv" | "gnq" | "eri" | "est" | "swz" | "eth" | "flk" | "fro" | "fji" | "fin" | "fra" | "guf" | "pyf" | "atf" | "gab" | "gmb" | "geo" | "deu" | "gha" | "gib" | "grc" | "grl" | "grd" | "glp" | "gum" | "gtm" | "ggy" | "gin" | "gnb" | "guy" | "hti" | "hmd" | "vat" | "hnd" | "hkg" | "hun" | "isl" | "ind" | "idn" | "irn" | "irq" | "irl" | "imn" | "isr" | "ita" | "jam" | "jpn" | "jey" | "jor" | "kaz" | "ken" | "kir" | "prk" | "kor" | "kwt" | "kgz" | "lao" | "lva" | "lbn" | "lso" | "lbr" | "lby" | "lie" | "ltu" | "lux" | "mac" | "mdg" | "mwi" | "mys" | "mdv" | "mli" | "mlt" | "mhl" | "mtq" | "mrt" | "mus" | "myt" | "mex" | "fsm" | "mda" | "mco" | "mng" | "mne" | "msr" | "mar" | "moz" | "mmr" | "nam" | "nru" | "npl" | "nld" | "ncl" | "nzl" | "nic" | "ner" | "nga" | "niu" | "nfk" | "mkd" | "mnp" | "nor" | "omn" | "pak" | "plw" | "pse" | "pan" | "png" | "pry" | "per" | "phl" | "pcn" | "pol" | "prt" | "pri" | "qat" | "reu" | "rou" | "rus" | "rwa" | "blm" | "shn" | "kna" | "lca" | "maf" | "spm" | "vct" | "wsm" | "smr" | "stp" | "sau" | "sen" | "srb" | "syc" | "sle" | "sgp" | "sxm" | "svk" | "svn" | "slb" | "som" | "zaf" | "sgs" | "ssd" | "esp" | "lka" | "sdn" | "sur" | "sjm" | "swe" | "che" | "syr" | "twn" | "tjk" | "tza" | "tha" | "tls" | "tgo" | "tkl" | "ton" | "tto" | "tun" | "tur" | "tkm" | "tca" | "tuv" | "uga" | "ukr" | "are" | "gbr" | "usa" | "umi" | "ury" | "uzb" | "vut" | "ven" | "vnm" | "vgb" | "vir" | "wlf" | "esh" | "yem" | "zmb" | "zwe";
 
-export type Number = { int: number } | { float: number };
+export type Number = number | number;
 
-export type AnyValue = { null: [] } | { bool: boolean } | { number: Number } | { string: string } | { array: AnyValue[] } | { object: Record<string, AnyValue> };
+export type AnyValue = boolean | Number | string | AnyValue[] | Record<string, AnyValue>;
 

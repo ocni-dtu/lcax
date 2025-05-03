@@ -140,6 +140,16 @@ impl EPD {
             Err(error) => Err(PyTypeError::new_err(error.to_string())),
         }
     }
+
+    #[cfg(feature = "pybindings")]
+    fn __repr__(&self) -> String {
+        format!("EPD: {}", self.id)
+    }
+
+    #[cfg(feature = "pybindings")]
+    fn __str__(&self) -> String {
+        format!("EPD: {}", self.id)
+    }
 }
 
 impl EPD {
@@ -253,7 +263,7 @@ impl Into<String> for SubType {
 #[serde(rename_all = "camelCase")]
 #[serde(tag = "type")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(eq))]
+#[cfg_attr(feature = "pybindings", derive(FromPyObject, IntoPyObject))]
 pub enum EPDReference {
     #[serde(rename = "EPD")]
     EPD(EPD),

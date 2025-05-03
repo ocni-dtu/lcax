@@ -1,0 +1,82 @@
+---
+title: Convert LCAByg Files
+description: How to convert LCAByg export files
+---
+
+import { CodeHighlightTabs } from '@mantine/code-highlight'
+
+## LCAbyg
+
+LCAbyg is a software tool that calculates life cycle assessments for buildings.
+With LCAbyg, you can calculate a building's environmental profile and resource consumption.[<sup>1</sup>](https://lcabyg.dk/en)
+
+LCAbyg has been developed by the BUILD Institute at Aalborg University.
+
+## Exporting Files from LCAbyg
+
+In the video below you can see how to export JSON files from LCAbyg.
+
+<video controls width='720' height='auto'>
+  <source src='/lcabyg-export.webm' type='video/webm' />
+</video>
+
+## LCAByg Projects
+
+An example of how to convert a LCAbyg project to LCAx can be seen below.
+You will notice how we need to unpack the return value from `convert_lcabyg`.
+
+The reason is that the function can convert multiple types of LCAbyg objects.
+Fx. it is also possible to only convert LCAbyg products into LCAx EPDs.
+An example of that can be found further down this page.
+
+<CodeHighlightTabs
+  code={[
+    { code: convertLcabygPY, language: 'py', fileName: 'convert_lcabyg.py' },
+    { code: convertlcabygTS, language: 'ts', fileName: 'convertLCAbyg.ts' },
+    { code: convertLcabygRS, language: 'rs', fileName: 'convert_lcabyg.rs' },
+    { code: lcabygProjectJSON, language: 'json', fileName: 'lcabyg_project.json' },
+  ]}
+/>
+
+## LCAByg Projects with Results
+
+LCAbyg have separated their export into two files: `project` and `results`.
+In the example above we saw how to work with only the project file.
+
+In this example we add the result file to the conversion as well to get a LCAx project with impact results.
+
+<CodeHighlightTabs
+  code={[
+    { code: convertLcabygResultsPY, language: 'py', fileName: 'convert_ilcd.py' },
+    { code: convertlcabygresultsTS, language: 'ts', fileName: 'convertILCD.ts' },
+    { code: convertLcabygResultsRS, language: 'rs', fileName: 'convert_ilcd.rs' },
+    { code: lcabygProjectJSON, language: 'json', fileName: 'lcabyg_project.json' },
+    { code: lcabygProjectResultsJSON, language: 'json', fileName: 'lcabyg_results.json' },
+  ]}
+/>
+
+## LCAByg Stages
+
+As mentioned above, it is also possible only convert LCAbyg products to LCAx EPDs.
+
+<CodeHighlightTabs
+  code={[
+    { code: convertStagesPY, language: 'py', fileName: 'convert_stages.py' },
+    { code: convertstagesTS, language: 'ts', fileName: 'convertStages.ts' },
+    { code: convertStagesRS, language: 'rs', fileName: 'convert_stages.rs' },
+    { code: lcabygStagesJSON, language: 'json', fileName: 'lcabyg_stages.json' },
+  ]}
+/>
+
+## LCAx to LCAByg
+
+It is also possible to convert a LCAx EPD into a LCAbyg product.
+
+<CodeHighlightTabs
+  code={[
+    { code: convertLcaxPY, language: 'py', fileName: 'convert_lcax.py' },
+    { code: convertlcaxTS, language: 'ts', fileName: 'convertLCAx.ts' },
+    { code: convertLcaxRS, language: 'rs', fileName: 'convert_lcax.rs' },
+    { code: lcaxEpdJSON, language: 'json', fileName: 'lcax_epd.json' },
+  ]}
+/>
