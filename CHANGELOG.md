@@ -1,3 +1,12 @@
+## [3.1.0](https://github.com/ocni-dtu/lcax/compare/v3.0.2...v3.1.0) (2025-05-03)
+
+### Features
+
+* **docs:** Added new documentation site ([051e0fe](https://github.com/ocni-dtu/lcax/commit/051e0fe16ae5ccdc201dbe2b124e236c2b2deb2b)), closes [#55](https://github.com/ocni-dtu/lcax/issues/55)
+* Improving interfaces and documentation site ([26b1354](https://github.com/ocni-dtu/lcax/commit/26b13541699061088bb01c63656c943c5e7a363a))
+* **js:** Improved JS interfaces. ([7e924da](https://github.com/ocni-dtu/lcax/commit/7e924daebb0b01ddbbd6ac958b8c813ca8cff663)), closes [#115](https://github.com/ocni-dtu/lcax/issues/115)
+* **python:** Improved Python interfaces. ([b015fc6](https://github.com/ocni-dtu/lcax/commit/b015fc6f5a1b340a92816b1cb36f13c1862ba1ab)), closes [#114](https://github.com/ocni-dtu/lcax/issues/114)
+
 ## [3.0.2](https://github.com/ocni-dtu/lcax/compare/v3.0.1...v3.0.2) (2025-03-30)
 
 ### Bug Fixes
