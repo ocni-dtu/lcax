@@ -3,8 +3,8 @@
 import '@mantine/core/styles.css'
 import '@mantine/code-highlight/styles.css'
 import { ReactNode } from 'react'
-import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core'
-import { AppLayout, theme } from '@/components'
+import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core'
+import { theme } from '@/components'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -17,9 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider theme={theme}>
-          <AppLayout>{children}</AppLayout>
-        </MantineProvider>
+        <MantineProvider theme={theme}>{children}</MantineProvider>
       </body>
     </html>
   )

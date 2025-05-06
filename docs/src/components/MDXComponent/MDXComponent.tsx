@@ -8,7 +8,7 @@ interface ImageProps extends Record<string, unknown> {
 
 const components = {
   CodeHighlightTabs,
-  img: (props: ImageProps) => <Image {...props} alt={props.alt} h='auto' w={720} />,
+  img: (props: ImageProps) => <Image {...props} alt={props.alt} h='auto' w='100%' />,
 }
 
 export const MDXComponent = (props: MDXRemoteProps) => (

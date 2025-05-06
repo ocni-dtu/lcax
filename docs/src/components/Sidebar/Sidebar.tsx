@@ -1,5 +1,8 @@
+'use client'
+
 import { NavLink, Stack } from '@mantine/core'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 interface NavigationProps {
   label: string
@@ -72,6 +75,7 @@ const navigation: NavigationProps[] = [
 ]
 
 const NavElement = ({ label, items, slug }: NavigationProps) => {
+  const pathname = usePathname()
   if (items && items.length > 0) {
     return (
       <NavLink component={Link} href={slug || ''} label={label} defaultOpened childrenOffset='lg' fw='bold' py='xs'>
@@ -81,8 +85,9 @@ const NavElement = ({ label, items, slug }: NavigationProps) => {
       </NavLink>
     )
   }
-  return <NavLink component={Link} href={slug || ''} label={label} defaultOpened py={0} />
+  return <NavLink component={Link} href={slug || ''} label={label} defaultOpened py={0} active={slug === pathname} />
 }
+
 export const Sidebar = () => {
   return (
     <Stack m='xl'>
