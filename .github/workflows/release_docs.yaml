@@ -43,6 +43,7 @@ jobs:
         run: npm run build
         env:
           DOMAIN: docs.lcax.org
+          UMAMI_ID: ${{ vars.UMAMI_ID }}
 
       - name: Upload artifact for deployment job
         if: github.event_name != 'pull_request'

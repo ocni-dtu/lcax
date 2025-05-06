@@ -14,6 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta charSet='UTF-8' />
         <link rel='icon' type='image/svg+xml' href='/lcax.svg' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        {process.env.UMAMI_ID? <script defer src="https://umami.kongsgaard.eu/script.js" data-website-id={process.env.UMAMI_ID}></script>: undefined}
         <ColorSchemeScript />
       </head>
       <body>

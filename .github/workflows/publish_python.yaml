@@ -57,7 +57,7 @@ jobs:
           path: dist
 
   publishPython:
-    if: ${{ github.event_name != 'pull_request'}}
+    if: ${{ inputs.release_version != ''}}
     runs-on: ubuntu-latest
     needs: buildPython
     permissions:
