@@ -6,6 +6,10 @@ on:
         required: true
       secret_key:
         required: true
+
+env:
+  NODE_VERSION: '22.x'
+
 jobs:
   buildDocs:
     runs-on: ubuntu-latest
