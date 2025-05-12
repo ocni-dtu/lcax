@@ -1,9 +1,11 @@
 import fs from 'fs'
 import path from 'path'
+import { default as matter } from 'gray-matter'
 
 export type Metadata = {
   title: string
   description: string
+  keywords: string[]
 }
 
 const parseFrontmatter = (fileContent: string) => {
@@ -13,17 +15,9 @@ const parseFrontmatter = (fileContent: string) => {
     const content = fileContent.trim()
     return { metadata: null, content }
   }
-  const frontMatterBlock = match![1]
-  const content = fileContent.replace(frontmatterRegex, '').trim()
-  const frontMatterLines = frontMatterBlock.trim().split('\n')
-  const metadata: Partial<Metadata> = {}
 
-  frontMatterLines.forEach((line) => {
-    const [key, ...valueArr] = line.split(': ')
-    let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
-  })
+  const content = fileContent.replace(frontmatterRegex, '').trim()
+  const metadata = matter(fileContent).data
 
   return { metadata: metadata as Metadata, content }
 }
