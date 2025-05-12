@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { IconSearch } from '@tabler/icons-react'
-import { rem, TextInput } from '@mantine/core'
+import { ActionIcon, rem, TextInput } from '@mantine/core'
 import { Spotlight, spotlight } from '@mantine/spotlight'
 import searchIndex from '@public/searchIndex.json'
 
@@ -22,7 +22,16 @@ export const Search = () => {
 
   return (
     <>
-      <TextInput leftSection={<IconSearch />} placeholder='Search' wrapperProps={{ onClick: handleOnClick }} />
+      {/* @ts-expect-error non-sense */}
+      <ActionIcon onClick={handleOnClick} variant='subtle' hiddenFrom='md'>
+        <IconSearch />
+      </ActionIcon>
+      <TextInput
+        leftSection={<IconSearch />}
+        placeholder='Search'
+        visibleFrom='md'
+        wrapperProps={{ onClick: handleOnClick }}
+      />
       <Spotlight
         shortcut={['mod + K', 'mod + P', '/']}
         actions={actions}
