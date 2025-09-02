@@ -60,17 +60,18 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
     needs: buildDocs
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: docs
 
-      - uses: BetaHuhn/do-spaces-action@v2
+      - uses: mc-actions/configure@v1
         with:
-          access_key: ${{ secrets.access_key }}
-          secret_key: ${{ secrets.secret_key }}
-          space_name: ${{ vars.SPACE_NAME }}
-          space_region: ${{ vars.SPACE_REGION }}
-          source: .
-          out_dir: lcax/${{ github.ref_name }}/docs
+          s3_server: 'https://minio.chrk.site'
+          s3_access_key: '${{ secrets.MINIO_ACCESS_KEY }}'
+          s3_secret_key: '${{ secrets.MINIO_SECRET_KEY }}'
+
+      - name: Upload to Bundle
+        run: mc cp -r ./ default/bundles/lcax/${{ github.ref_name }}/docs
