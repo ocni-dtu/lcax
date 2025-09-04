@@ -70,8 +70,8 @@ jobs:
       - uses: mc-actions/configure@v1
         with:
           s3_server: 'https://minio.chrk.site'
-          s3_access_key: '${{ secrets.MINIO_ACCESS_KEY }}'
-          s3_secret_key: '${{ secrets.MINIO_SECRET_KEY }}'
+          s3_access_key: '${{ secrets.access_key }}'
+          s3_secret_key: '${{ secrets.secret_key }}'
 
       - name: Upload to Bundle
         run: mc cp -r ./ default/bundles/lcax/${{ github.ref_name }}/docs

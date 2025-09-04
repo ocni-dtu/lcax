@@ -53,8 +53,8 @@ jobs:
       - createRelease
     uses: ./.github/workflows/release_docs.yaml
     secrets:
-      access_key: ${{ secrets.ACCESS_KEY }}
-      secret_key: ${{ secrets.SECRET_KEY }}
+      access_key: ${{ secrets.MINIO_ACCESS_KEY }}
+      secret_key: ${{ secrets.MINIO_SECRET_KEY }}
 
   publishPython:
     uses: ./.github/workflows/publish_python.yaml
