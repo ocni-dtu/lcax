@@ -319,7 +319,7 @@ pub struct BuildingInfo {
     pub building_footprint: Option<ValueUnit>,
     pub floors_above_ground: u16,
     pub floors_below_ground: Option<u16>,
-    pub roof_type: RoofType,
+    pub roof_type: Option<RoofType>,
     pub frame_type: Option<String>,
     pub building_completion_year: Option<u16>,
     pub building_permit_year: Option<u16>,

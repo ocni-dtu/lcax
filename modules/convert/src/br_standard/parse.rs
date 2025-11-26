@@ -113,7 +113,7 @@ impl TryFromBR<(&str, &BRProjectInfo, &Vec<BRComponent>, &Vec<BROperation>)> for
                 building_footprint: None,
                 floors_above_ground: project_info.floors_above_ground,
                 floors_below_ground: Some(project_info.floors_below_ground),
-                roof_type: RoofType::UNKNOWN,
+                roof_type: Some(RoofType::UNKNOWN),
                 frame_type: None,
                 building_completion_year: date_to_year(&project_info.building_operation_date),
                 building_permit_year: date_to_year(&project_info.building_permission_date),
