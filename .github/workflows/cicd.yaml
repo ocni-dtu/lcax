@@ -57,7 +57,7 @@ jobs:
       secret_key: ${{ secrets.MINIO_SECRET_KEY }}
 
   publishPython:
-  uses: ./.github/workflows/publish_python.yaml
+    uses: ./.github/workflows/publish_python.yaml
     needs:
       - createRelease
     secrets:
