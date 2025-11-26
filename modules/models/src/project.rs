@@ -7,6 +7,9 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "jsbindings")]
+use wasm_bindgen::prelude::*;
+
+#[cfg(feature = "jsbindings")]
 use tsify_next::Tsify;
 
 #[cfg(feature = "pybindings")]
@@ -17,6 +20,12 @@ use pyo3::prelude::*;
 
 #[cfg(feature = "pybindings")]
 use pyo3::types::PyType;
+
+#[cfg(feature = "jsbindings")]
+use strum::IntoEnumIterator;
+
+#[cfg(feature = "jsbindings")]
+use strum_macros::EnumIter;
 
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
@@ -256,7 +265,11 @@ impl SoftwareInfo {
 
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum ProjectPhase {
     #[allow(non_camel_case_types)]
@@ -272,6 +285,12 @@ pub enum ProjectPhase {
     IN_USE,
     #[default]
     OTHER,
+}
+
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn projectPhases() -> Vec<ProjectPhase> {
+    ProjectPhase::iter().collect()
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
@@ -355,7 +374,11 @@ pub struct ValueUnit {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum RoofType {
     FLAT,
@@ -366,15 +389,31 @@ pub enum RoofType {
     OTHER,
 }
 
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn roofTypes() -> Vec<RoofType> {
+    RoofType::iter().collect()
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum GeneralEnergyClass {
     EXISTING,
     STANDARD,
     ADVANCED,
     UNKNOWN,
+}
+
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn generalEnergyClasses() -> Vec<GeneralEnergyClass> {
+    GeneralEnergyClass::iter().collect()
 }
 
 impl From<&String> for GeneralEnergyClass {
@@ -388,7 +427,11 @@ impl From<&String> for GeneralEnergyClass {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum BuildingModelScope {
     #[allow(non_camel_case_types)]
@@ -409,9 +452,19 @@ pub enum BuildingModelScope {
     FF_E,
 }
 
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn buildingModelScopes() -> Vec<BuildingModelScope> {
+    BuildingModelScope::iter().collect()
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum BuildingType {
     #[allow(non_camel_case_types)]
@@ -432,9 +485,19 @@ pub enum BuildingType {
     OTHER,
 }
 
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn buildingTypes() -> Vec<BuildingType> {
+    BuildingType::iter().collect()
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum BuildingTypology {
     OFFICE,
@@ -448,6 +511,12 @@ pub enum BuildingTypology {
     HEALTH,
     UNKNOWN,
     OTHER,
+}
+
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn buildingTypologies() -> Vec<BuildingTypology> {
+    BuildingTypology::iter().collect()
 }
 
 impl From<&String> for BuildingTypology {

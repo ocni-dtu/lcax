@@ -17,11 +17,17 @@ use tsify_next::Tsify;
 #[cfg(feature = "jsbindings")]
 use wasm_bindgen::prelude::*;
 
+#[cfg(feature = "jsbindings")]
+use strum::IntoEnumIterator;
+
+#[cfg(feature = "jsbindings")]
+use strum_macros::EnumIter;
+
 #[derive(Deserialize, Serialize, JsonSchema, Hash, Eq, PartialEq, Clone, Debug)]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(
     feature = "jsbindings",
-    derive(Tsify),
+    derive(Tsify, EnumIter),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]
@@ -43,6 +49,12 @@ pub enum LifeCycleModule {
     C3,
     C4,
     D,
+}
+
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn lifeCycleModules() -> Vec<LifeCycleModule> {
+    LifeCycleModule::iter().collect()
 }
 
 impl fmt::Display for LifeCycleModule {
@@ -102,7 +114,7 @@ impl TryFrom<&str> for LifeCycleModule {
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(
     feature = "jsbindings",
-    derive(Tsify),
+    derive(Tsify, EnumIter),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int, frozen, hash))]
@@ -154,6 +166,12 @@ pub enum ImpactCategoryKey {
     MER,
     EEE,
     EET,
+}
+
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn impactCategories() -> Vec<ImpactCategoryKey> {
+    ImpactCategoryKey::iter().collect()
 }
 
 impl fmt::Display for ImpactCategoryKey {

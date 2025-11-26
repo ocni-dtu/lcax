@@ -38,6 +38,18 @@ export function getImpactsByLifeCycleModule(impacts: Impacts, category: ImpactCa
  * Validate a LCAx Project
  */
 export function validate(project: Project, validation_schemas: ValidationSchema[]): ValidationResult[];
+export function projectPhases(): ProjectPhase[];
+export function roofTypes(): RoofType[];
+export function generalEnergyClasses(): GeneralEnergyClass[];
+export function buildingModelScopes(): BuildingModelScope[];
+export function buildingTypes(): BuildingType[];
+export function buildingTypologies(): BuildingTypology[];
+export function lifeCycleModules(): LifeCycleModule[];
+export function impactCategories(): ImpactCategoryKey[];
+export function standards(): Standard[];
+export function subTypes(): SubType[];
+export function units(): Unit[];
+export function countries(): Country[];
 export interface ValidationResult {
     field: string;
     message: string;
@@ -63,101 +75,6 @@ export type Level = "project" | "assembly" | "product" | "impactData";
 
 export type LCABygResult = Project | Assembly[] | Product[] | EPD[];
 
-export type EPDReference = ({ type: "EPD" } & EPD) | ({ type: "reference" } & Reference);
-
-export type SubType = "generic" | "specific" | "industry" | "representative";
-
-export type Standard = "en15804a1" | "en15804a2" | "unknown";
-
-export interface EPD {
-    id: string;
-    name: string;
-    declaredUnit: Unit;
-    version: string;
-    publishedDate: Date;
-    validUntil: Date;
-    formatVersion: string;
-    source: Source | null;
-    referenceServiceLife: number | null;
-    standard: Standard;
-    comment: string | null;
-    location: Country;
-    subtype: SubType;
-    conversions: Conversion[] | null;
-    impacts: Impacts;
-    metaData: MetaData | null;
-}
-
-export type LifeCycleModule = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
-
-export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
-
-export type ImpactCategory = Record<LifeCycleModule, number | null>;
-
-export type Impacts = Record<ImpactCategoryKey, ImpactCategory>;
-
-export type BuildingTypology = "office" | "residential" | "public" | "commercial" | "industrial" | "infrastructure" | "agricultural" | "educational" | "health" | "unknown" | "other";
-
-export type BuildingType = "new_construction_works" | "demolition" | "deconstruction_and_new_construction_works" | "retrofit_works" | "extension_works" | "retrofit_and_extension_works" | "fit_out_works" | "operations" | "unknown" | "other";
-
-export type BuildingModelScope = "facilitating_works" | "substructure" | "superstructure_frame" | "superstructure_envelope" | "superstructure_internal_elements" | "finishes" | "building_services" | "external_works" | "ff_e";
-
-export type GeneralEnergyClass = "existing" | "standard" | "advanced" | "unknown";
-
-export type RoofType = "flat" | "pitched" | "saddle" | "pyramid" | "unknown" | "other";
-
-export interface ValueUnit {
-    value: number;
-    unit: Unit;
-}
-
-export interface AreaType {
-    value: number;
-    unit: Unit;
-    definition: string;
-}
-
-export interface BuildingInfo {
-    buildingType: BuildingType;
-    buildingTypology: BuildingTypology[];
-    certifications: string[] | null;
-    buildingMass: ValueUnit | null;
-    buildingHeight: ValueUnit | null;
-    grossFloorArea: AreaType | null;
-    heatedFloorArea: AreaType | null;
-    buildingFootprint: ValueUnit | null;
-    floorsAboveGround: number;
-    floorsBelowGround: number | null;
-    roofType: RoofType;
-    frameType: string | null;
-    buildingCompletionYear: number | null;
-    buildingPermitYear: number | null;
-    energyDemandHeating: number | null;
-    energySupplyHeating: number | null;
-    energyDemandElectricity: number | null;
-    energySupplyElectricity: number | null;
-    exportedElectricity: number | null;
-    generalEnergyClass: GeneralEnergyClass;
-    localEnergyClass: string | null;
-    buildingUsers: number | null;
-    buildingModelScope: BuildingModelScope[] | null;
-}
-
-export interface Location {
-    country: Country;
-    city: string | null;
-    address: string | null;
-}
-
-export type ProjectPhase = "strategic_design" | "concept_design" | "technical_design" | "construction" | "post_completion" | "in_use" | "other";
-
-export interface SoftwareInfo {
-    lcaSoftware: string;
-    lcaSoftwareVersion: string | null;
-    goalAndScopeDefinition: string | null;
-    calculationType: string | null;
-}
-
 export interface Project {
     id: string;
     name: string;
@@ -178,6 +95,158 @@ export interface Project {
     softwareInfo: SoftwareInfo;
     metaData: MetaData | null;
 }
+
+export interface SoftwareInfo {
+    lcaSoftware: string;
+    lcaSoftwareVersion: string | null;
+    goalAndScopeDefinition: string | null;
+    calculationType: string | null;
+}
+
+export type ProjectPhase = "strategic_design" | "concept_design" | "technical_design" | "construction" | "post_completion" | "in_use" | "other";
+
+export interface Location {
+    country: Country;
+    city: string | null;
+    address: string | null;
+}
+
+export interface BuildingInfo {
+    buildingType: BuildingType;
+    buildingTypology: BuildingTypology[];
+    certifications: string[] | null;
+    buildingMass: ValueUnit | null;
+    buildingHeight: ValueUnit | null;
+    grossFloorArea: AreaType | null;
+    heatedFloorArea: AreaType | null;
+    buildingFootprint: ValueUnit | null;
+    floorsAboveGround: number;
+    floorsBelowGround: number | null;
+    roofType: RoofType | null;
+    frameType: string | null;
+    buildingCompletionYear: number | null;
+    buildingPermitYear: number | null;
+    energyDemandHeating: number | null;
+    energySupplyHeating: number | null;
+    energyDemandElectricity: number | null;
+    energySupplyElectricity: number | null;
+    exportedElectricity: number | null;
+    generalEnergyClass: GeneralEnergyClass;
+    localEnergyClass: string | null;
+    buildingUsers: number | null;
+    buildingModelScope: BuildingModelScope[] | null;
+}
+
+export interface AreaType {
+    value: number;
+    unit: Unit;
+    definition: string;
+}
+
+export interface ValueUnit {
+    value: number;
+    unit: Unit;
+}
+
+export type RoofType = "flat" | "pitched" | "saddle" | "pyramid" | "unknown" | "other";
+
+export type GeneralEnergyClass = "existing" | "standard" | "advanced" | "unknown";
+
+export type BuildingModelScope = "facilitating_works" | "substructure" | "superstructure_frame" | "superstructure_envelope" | "superstructure_internal_elements" | "finishes" | "building_services" | "external_works" | "ff_e";
+
+export type BuildingType = "new_construction_works" | "demolition" | "deconstruction_and_new_construction_works" | "retrofit_works" | "extension_works" | "retrofit_and_extension_works" | "fit_out_works" | "operations" | "unknown" | "other";
+
+export type BuildingTypology = "office" | "residential" | "public" | "commercial" | "industrial" | "infrastructure" | "agricultural" | "educational" | "health" | "unknown" | "other";
+
+export type LifeCycleModule = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
+
+export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
+
+export type ImpactCategory = Record<LifeCycleModule, number | null>;
+
+export type Impacts = Record<ImpactCategoryKey, ImpactCategory>;
+
+export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
+
+export interface GenericData {
+    id: string;
+    name: string;
+    declaredUnit: Unit;
+    formatVersion: string;
+    source: Source | null;
+    comment: string | null;
+    conversions: Conversion[] | null;
+    impacts: Impacts;
+    metaData: MetaData | null;
+}
+
+export type AssemblyReference = ({ type: "assembly" } & Assembly) | ({ type: "reference" } & Reference);
+
+export interface Classification {
+    system: string;
+    code: string;
+    name: string;
+}
+
+export interface Assembly {
+    id: string;
+    name: string;
+    description: string | null;
+    comment: string | null;
+    quantity: number;
+    unit: Unit;
+    classification: Classification[] | null;
+    products: ProductReference[];
+    results: Impacts | null;
+    metaData: MetaData | null;
+}
+
+export interface EPD {
+    id: string;
+    name: string;
+    declaredUnit: Unit;
+    version: string;
+    publishedDate: Date;
+    validUntil: Date;
+    formatVersion: string;
+    source: Source | null;
+    referenceServiceLife: number | null;
+    standard: Standard;
+    comment: string | null;
+    location: Country;
+    subtype: SubType;
+    conversions: Conversion[] | null;
+    impacts: Impacts;
+    metaData: MetaData | null;
+}
+
+export type Standard = "en15804a1" | "en15804a2" | "unknown";
+
+export type SubType = "generic" | "specific" | "industry" | "representative";
+
+export type EPDReference = ({ type: "EPD" } & EPD) | ({ type: "reference" } & Reference);
+
+export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
+
+export interface Conversion {
+    value: number;
+    to: Unit;
+    metaData: MetaData | null;
+}
+
+export interface Source {
+    name: string;
+    url: string | null;
+}
+
+export interface Reference {
+    uri: string;
+    format: string | null;
+    version: string | null;
+    overrides: Record<string, AnyValue | null> | null;
+}
+
+export type MetaData = Record<string, AnyValue | null>;
 
 export type ImpactData = EPDReference | GenericDataReference;
 
@@ -201,63 +270,6 @@ export interface Product {
     quantity: number;
     unit: Unit;
     transport: Transport[] | null;
-    results: Impacts | null;
-    metaData: MetaData | null;
-}
-
-export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
-
-export interface GenericData {
-    id: string;
-    name: string;
-    declaredUnit: Unit;
-    formatVersion: string;
-    source: Source | null;
-    comment: string | null;
-    conversions: Conversion[] | null;
-    impacts: Impacts;
-    metaData: MetaData | null;
-}
-
-export type MetaData = Record<string, AnyValue | null>;
-
-export interface Reference {
-    uri: string;
-    format: string | null;
-    version: string | null;
-    overrides: Record<string, AnyValue | null> | null;
-}
-
-export interface Source {
-    name: string;
-    url: string | null;
-}
-
-export interface Conversion {
-    value: number;
-    to: Unit;
-    metaData: MetaData | null;
-}
-
-export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
-
-export type AssemblyReference = ({ type: "assembly" } & Assembly) | ({ type: "reference" } & Reference);
-
-export interface Classification {
-    system: string;
-    code: string;
-    name: string;
-}
-
-export interface Assembly {
-    id: string;
-    name: string;
-    description: string | null;
-    comment: string | null;
-    quantity: number;
-    unit: Unit;
-    classification: Classification[] | null;
-    products: ProductReference[];
     results: Impacts | null;
     metaData: MetaData | null;
 }

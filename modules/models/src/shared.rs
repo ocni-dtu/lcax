@@ -5,14 +5,27 @@ use std::collections::HashMap;
 use std::fmt;
 
 #[cfg(feature = "jsbindings")]
+use wasm_bindgen::prelude::*;
+
+#[cfg(feature = "jsbindings")]
 use tsify_next::{declare, Tsify};
 
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
 
+#[cfg(feature = "jsbindings")]
+use strum::IntoEnumIterator;
+
+#[cfg(feature = "jsbindings")]
+use strum_macros::EnumIter;
+
 #[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum Unit {
     M,
@@ -29,6 +42,12 @@ pub enum Unit {
     TONES_KM,
     KGM3,
     UNKNOWN,
+}
+
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn units() -> Vec<Unit> {
+    Unit::iter().collect()
 }
 
 impl From<&String> for Unit {

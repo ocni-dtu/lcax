@@ -15,3 +15,10 @@ def test_new_source():
     
 def test_source_str(source):
     assert str(source) == "Source: Ökobau"
+
+def test_source_subclass():
+    class MySource(Source):
+        pass
+
+    source = MySource(name="LCAx")
+    assert source
