@@ -1,3 +1,9 @@
+## [3.2.0](https://github.com/ocni-dtu/lcax/compare/v3.1.0...v3.2.0) (2025-11-26)
+
+### Features
+
+* add iterable enums and made roof_type optional ([8c84923](https://github.com/ocni-dtu/lcax/commit/8c8492358f0f067aba051b1d2d627154c934be83))
+
 ## [3.1.0](https://github.com/ocni-dtu/lcax/compare/v3.0.2...v3.1.0) (2025-05-03)
 
 ### Features
