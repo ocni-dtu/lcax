@@ -1,6 +1,15 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
+#[cfg(feature = "jsbindings")]
+use wasm_bindgen::prelude::*;
+
+#[cfg(feature = "jsbindings")]
+use strum::IntoEnumIterator;
+
+#[cfg(feature = "jsbindings")]
+use strum_macros::EnumIter;
+
 #[cfg(feature = "pybindings")]
 use pyo3::prelude::*;
 
@@ -9,7 +18,11 @@ use tsify_next::Tsify;
 
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum Country {
     #[default]
@@ -784,4 +797,10 @@ impl Country {
             _ => Country::UNKNOWN,
         }
     }
+}
+
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn countries() -> Vec<Country> {
+    Country::iter().collect()
 }

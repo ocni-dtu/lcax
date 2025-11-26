@@ -1,15 +1,23 @@
+use crate::life_cycle_base::Impacts;
+use crate::shared::{Conversion, MetaData, Reference, Source, Unit};
 use chrono::NaiveDate;
+use lcax_core::country::Country;
+use lcax_core::dates::{deserialize_yyyy_mm_dd, serialize_yyyy_mm_dd};
+use lcax_core::utils::get_version;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "jsbindings")]
+use wasm_bindgen::prelude::*;
+
+#[cfg(feature = "jsbindings")]
 use tsify_next::Tsify;
 
-use crate::life_cycle_base::Impacts;
-use crate::shared::{Conversion, MetaData, Reference, Source, Unit};
-use lcax_core::country::Country;
-use lcax_core::dates::{deserialize_yyyy_mm_dd, serialize_yyyy_mm_dd};
-use lcax_core::utils::get_version;
+#[cfg(feature = "jsbindings")]
+use strum::IntoEnumIterator;
+
+#[cfg(feature = "jsbindings")]
+use strum_macros::EnumIter;
 
 #[cfg(feature = "pybindings")]
 use pyo3::exceptions::PyTypeError;
@@ -204,12 +212,22 @@ impl EPD {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum Standard {
     EN15804A1,
     EN15804A2,
     UNKNOWN,
+}
+
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn standards() -> Vec<Standard> {
+    Standard::iter().collect()
 }
 
 impl From<&String> for Standard {
@@ -226,13 +244,23 @@ impl From<&String> for Standard {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "lowercase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify, EnumIter),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(eq, eq_int))]
 pub enum SubType {
     GENERIC,
     SPECIFIC,
     INDUSTRY,
     REPRESENTATIVE,
+}
+
+#[cfg(feature = "jsbindings")]
+#[wasm_bindgen]
+pub fn subTypes() -> Vec<SubType> {
+    SubType::iter().collect()
 }
 
 impl From<&Option<String>> for SubType {

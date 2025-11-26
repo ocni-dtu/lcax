@@ -474,7 +474,7 @@ impl
                 building_footprint: None,
                 floors_above_ground: building.storeys_above_ground,
                 floors_below_ground: Some(building.storeys_below_ground),
-                roof_type: RoofType::OTHER,
+                roof_type: Some(RoofType::OTHER),
                 frame_type: Some("".to_string()),
                 building_completion_year: Some(building.initial_year as u16),
                 building_permit_year: None,

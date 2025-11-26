@@ -1,3 +1,5 @@
+import pytest
+
 from lcax import Source
 
 
@@ -15,3 +17,11 @@ def test_new_source():
     
 def test_source_str(source):
     assert str(source) == "Source: Ökobau"
+
+@pytest.mark.skip("Not Implemented")
+def test_source_subclass():
+    class MySource(Source):
+        pass
+
+    source = MySource(name="LCAx")
+    assert source

@@ -297,6 +297,126 @@ export function validate(project, validation_schemas) {
     return v2;
 }
 
+/**
+ * @returns {ProjectPhase[]}
+ */
+export function projectPhases() {
+    const ret = wasm.projectPhases();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {RoofType[]}
+ */
+export function roofTypes() {
+    const ret = wasm.roofTypes();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {GeneralEnergyClass[]}
+ */
+export function generalEnergyClasses() {
+    const ret = wasm.generalEnergyClasses();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {BuildingModelScope[]}
+ */
+export function buildingModelScopes() {
+    const ret = wasm.buildingModelScopes();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {BuildingType[]}
+ */
+export function buildingTypes() {
+    const ret = wasm.buildingTypes();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {BuildingTypology[]}
+ */
+export function buildingTypologies() {
+    const ret = wasm.buildingTypologies();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {LifeCycleModule[]}
+ */
+export function lifeCycleModules() {
+    const ret = wasm.lifeCycleModules();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {ImpactCategoryKey[]}
+ */
+export function impactCategories() {
+    const ret = wasm.impactCategories();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {Standard[]}
+ */
+export function standards() {
+    const ret = wasm.standards();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {SubType[]}
+ */
+export function subTypes() {
+    const ret = wasm.subTypes();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {Unit[]}
+ */
+export function units() {
+    const ret = wasm.units();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {Country[]}
+ */
+export function countries() {
+    const ret = wasm.countries();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
 export function __wbg_buffer_aa30bbb65cb44323(arg0) {
     const ret = arg0.buffer;
     return ret;
