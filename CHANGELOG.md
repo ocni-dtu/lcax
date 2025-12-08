@@ -1,3 +1,9 @@
+## [3.3.0](https://github.com/ocni-dtu/lcax/compare/v3.2.0...v3.3.0) (2025-12-08)
+
+### Features
+
+* **calculation:** Add dependency lockfile and calculation options features ([#133](https://github.com/ocni-dtu/lcax/issues/133)) ([a5ee065](https://github.com/ocni-dtu/lcax/commit/a5ee0652fadb52e178b11520cd0027815ec107f7))
+
 ## [3.2.0](https://github.com/ocni-dtu/lcax/compare/v3.1.0...v3.2.0) (2025-11-26)
 
 ### Features
