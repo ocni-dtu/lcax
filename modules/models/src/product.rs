@@ -16,7 +16,11 @@ use pyo3::prelude::*;
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
-#[cfg_attr(feature = "jsbindings", derive(Tsify))]
+#[cfg_attr(
+    feature = "jsbindings",
+    derive(Tsify),
+    tsify(into_wasm_abi, from_wasm_abi)
+)]
 #[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
 pub struct Product {
     pub id: String,

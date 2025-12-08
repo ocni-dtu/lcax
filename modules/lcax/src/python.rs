@@ -1,4 +1,8 @@
-use lcax_calculation::calculate::calculate_project as _calculate_project;
+use lcax_calculation::calculate::{
+    calculate_assembly as _calculate_assembly, calculate_product as _calculate_product,
+    calculate_project as _calculate_project,
+};
+use lcax_calculation::models::CalculationOptions;
 use lcax_calculation::results;
 use lcax_convert::br_standard::xlsx::br_standard_from_file;
 use lcax_convert::lcabyg::parse::LCABygResult;
@@ -49,6 +53,25 @@ pub fn convert_br_standard(file_path: PathBuf) -> PyResult<Project> {
 pub fn calculate_project(project: &mut Project) -> PyResult<Project> {
     match _calculate_project(project, None) {
         Ok(project) => Ok(project.clone()),
+        Err(error) => Err(PyTypeError::new_err(error.to_string())),
+    }
+}
+
+#[pyfunction]
+pub fn calculate_assembly(
+    assembly: &mut Assembly,
+    options: &CalculationOptions,
+) -> PyResult<Impacts> {
+    match _calculate_assembly(assembly, options) {
+        Ok(results) => Ok(results.clone()),
+        Err(error) => Err(PyTypeError::new_err(error.to_string())),
+    }
+}
+
+#[pyfunction]
+pub fn calculate_product(product: &mut Product, options: &CalculationOptions) -> PyResult<Impacts> {
+    match _calculate_product(product, options) {
+        Ok(results) => Ok(results.clone()),
         Err(error) => Err(PyTypeError::new_err(error.to_string())),
     }
 }
@@ -151,6 +174,8 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(convert_lcabyg, m)?)?;
     m.add_function(wrap_pyfunction!(convert_ilcd, m)?)?;
     m.add_function(wrap_pyfunction!(calculate_project, m)?)?;
+    m.add_function(wrap_pyfunction!(calculate_assembly, m)?)?;
+    m.add_function(wrap_pyfunction!(calculate_product, m)?)?;
     m.add_function(wrap_pyfunction!(to_lcabyg, m)?)?;
     m.add_function(wrap_pyfunction!(convert_br_standard, m)?)?;
     m.add_function(wrap_pyfunction!(get_impact_total, m)?)?;

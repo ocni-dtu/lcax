@@ -10,3 +10,13 @@ def project(project_file):
     from lcax import Project
 
     yield Project.loads(project_file.read_text())
+
+
+@pytest.fixture
+def assembly(project):
+    yield project.assemblies[0]
+
+
+@pytest.fixture
+def product(project):
+    yield project.assemblies[0].products[0]

@@ -22,6 +22,16 @@ export function convertIlcd(data: string): EPD;
  */
 export function calculateProject(project: Project): Project;
 /**
+ * Calculate the impact results for an Assembly.
+ * The impact results for the assembly will be returned.
+ */
+export function calculateAssembly(assembly: Assembly, options: CalculationOptions): Impacts;
+/**
+ * Calculate the impact results for a Product.
+ * The impact results for the product will be returned.
+ */
+export function calculateProduct(product: Product, options: CalculationOptions): Impacts;
+/**
  * Get the total impact
  */
 export function getImpactTotal(impacts: Impacts, category: ImpactCategoryKey, exclude_modules?: LifeCycleModule[] | null): number;
@@ -44,10 +54,10 @@ export function generalEnergyClasses(): GeneralEnergyClass[];
 export function buildingModelScopes(): BuildingModelScope[];
 export function buildingTypes(): BuildingType[];
 export function buildingTypologies(): BuildingTypology[];
-export function lifeCycleModules(): LifeCycleModule[];
-export function impactCategories(): ImpactCategoryKey[];
 export function standards(): Standard[];
 export function subTypes(): SubType[];
+export function lifeCycleModules(): LifeCycleModule[];
+export function impactCategories(): ImpactCategoryKey[];
 export function units(): Unit[];
 export function countries(): Country[];
 export interface ValidationResult {
@@ -74,6 +84,13 @@ export interface ValidationSchema {
 export type Level = "project" | "assembly" | "product" | "impactData";
 
 export type LCABygResult = Project | Assembly[] | Product[] | EPD[];
+
+export interface CalculationOptions {
+    referenceStudyPeriod: number | null;
+    lifeCycleModules: LifeCycleModule[];
+    impactCategories: ImpactCategoryKey[];
+    overwriteExistingResults: boolean;
+}
 
 export interface Project {
     id: string;
@@ -158,49 +175,6 @@ export type BuildingType = "new_construction_works" | "demolition" | "deconstruc
 
 export type BuildingTypology = "office" | "residential" | "public" | "commercial" | "industrial" | "infrastructure" | "agricultural" | "educational" | "health" | "unknown" | "other";
 
-export type LifeCycleModule = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
-
-export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
-
-export type ImpactCategory = Record<LifeCycleModule, number | null>;
-
-export type Impacts = Record<ImpactCategoryKey, ImpactCategory>;
-
-export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
-
-export interface GenericData {
-    id: string;
-    name: string;
-    declaredUnit: Unit;
-    formatVersion: string;
-    source: Source | null;
-    comment: string | null;
-    conversions: Conversion[] | null;
-    impacts: Impacts;
-    metaData: MetaData | null;
-}
-
-export type AssemblyReference = ({ type: "assembly" } & Assembly) | ({ type: "reference" } & Reference);
-
-export interface Classification {
-    system: string;
-    code: string;
-    name: string;
-}
-
-export interface Assembly {
-    id: string;
-    name: string;
-    description: string | null;
-    comment: string | null;
-    quantity: number;
-    unit: Unit;
-    classification: Classification[] | null;
-    products: ProductReference[];
-    results: Impacts | null;
-    metaData: MetaData | null;
-}
-
 export interface EPD {
     id: string;
     name: string;
@@ -226,27 +200,13 @@ export type SubType = "generic" | "specific" | "industry" | "representative";
 
 export type EPDReference = ({ type: "EPD" } & EPD) | ({ type: "reference" } & Reference);
 
-export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
+export type LifeCycleModule = "a0" | "a1a3" | "a4" | "a5" | "b1" | "b2" | "b3" | "b4" | "b5" | "b6" | "b7" | "b8" | "c1" | "c2" | "c3" | "c4" | "d";
 
-export interface Conversion {
-    value: number;
-    to: Unit;
-    metaData: MetaData | null;
-}
+export type ImpactCategoryKey = "gwp" | "gwp_fos" | "gwp_bio" | "gwp_lul" | "odp" | "ap" | "ep" | "ep_fw" | "ep_mar" | "ep_ter" | "pocp" | "adpe" | "adpf" | "penre" | "pere" | "perm" | "pert" | "penrt" | "penrm" | "sm" | "pm" | "wdp" | "irp" | "etp_fw" | "htp_c" | "htp_nc" | "sqp" | "rsf" | "nrsf" | "fw" | "hwd" | "nhwd" | "rwd" | "cru" | "mrf" | "mer" | "eee" | "eet";
 
-export interface Source {
-    name: string;
-    url: string | null;
-}
+export type ImpactCategory = Record<LifeCycleModule, number | null>;
 
-export interface Reference {
-    uri: string;
-    format: string | null;
-    version: string | null;
-    overrides: Record<string, AnyValue | null> | null;
-}
-
-export type MetaData = Record<string, AnyValue | null>;
+export type Impacts = Record<ImpactCategoryKey, ImpactCategory>;
 
 export type ImpactData = EPDReference | GenericDataReference;
 
@@ -271,6 +231,63 @@ export interface Product {
     unit: Unit;
     transport: Transport[] | null;
     results: Impacts | null;
+    metaData: MetaData | null;
+}
+
+export type AssemblyReference = ({ type: "assembly" } & Assembly) | ({ type: "reference" } & Reference);
+
+export interface Classification {
+    system: string;
+    code: string;
+    name: string;
+}
+
+export interface Assembly {
+    id: string;
+    name: string;
+    description: string | null;
+    comment: string | null;
+    quantity: number;
+    unit: Unit;
+    classification: Classification[] | null;
+    products: ProductReference[];
+    results: Impacts | null;
+    metaData: MetaData | null;
+}
+
+export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
+
+export interface Conversion {
+    value: number;
+    to: Unit;
+    metaData: MetaData | null;
+}
+
+export interface Source {
+    name: string;
+    url: string | null;
+}
+
+export interface Reference {
+    uri: string;
+    format: string | null;
+    version: string | null;
+    overrides: Record<string, AnyValue | null> | null;
+}
+
+export type MetaData = Record<string, AnyValue | null>;
+
+export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
+
+export interface GenericData {
+    id: string;
+    name: string;
+    declaredUnit: Unit;
+    formatVersion: string;
+    source: Source | null;
+    comment: string | null;
+    conversions: Conversion[] | null;
+    impacts: Impacts;
     metaData: MetaData | null;
 }
 

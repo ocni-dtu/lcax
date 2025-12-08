@@ -1,7 +1,8 @@
 extern crate console_error_panic_hook;
 use wasm_bindgen::prelude::*;
 
-use lcax_calculation::calculate::calculate_project;
+use lcax_calculation::calculate::{calculate_assembly, calculate_product, calculate_project};
+use lcax_calculation::models::CalculationOptions;
 use lcax_calculation::results::{
     get_impact_total, get_impacts_by_life_cycle_module, normalize_result,
 };
@@ -9,8 +10,10 @@ use lcax_convert::br_standard::parse::parse_br_standard;
 use lcax_convert::br_standard::xlsx::read_br_standard_from_bytes;
 use lcax_convert::lcabyg::parse::LCABygResult;
 use lcax_convert::{ilcd, lcabyg};
+use lcax_models::assembly::Assembly;
 use lcax_models::epd::EPD;
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
+use lcax_models::product::Product;
 use lcax_models::project::Project;
 use lcax_validation;
 use lcax_validation::model::{ValidationResult, ValidationSchema};
@@ -80,6 +83,36 @@ pub fn calculateProject(mut project: Project) -> Result<Project, JsError> {
     console_error_panic_hook::set_once();
     match calculate_project(&mut project, None) {
         Ok(project) => Ok(project.clone()),
+        Err(error) => Err(JsError::new(error.to_string().as_str())),
+    }
+}
+
+///Calculate the impact results for an Assembly.
+///The impact results for the assembly will be returned.
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn calculateAssembly(
+    mut assembly: Assembly,
+    options: CalculationOptions,
+) -> Result<Impacts, JsError> {
+    console_error_panic_hook::set_once();
+    match calculate_assembly(&mut assembly, &options) {
+        Ok(assembly) => Ok(assembly.clone()),
+        Err(error) => Err(JsError::new(error.to_string().as_str())),
+    }
+}
+
+///Calculate the impact results for a Product.
+///The impact results for the product will be returned.
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn calculateProduct(
+    mut product: Product,
+    options: CalculationOptions,
+) -> Result<Impacts, JsError> {
+    console_error_panic_hook::set_once();
+    match calculate_product(&mut product, &options) {
+        Ok(product) => Ok(product.clone()),
         Err(error) => Err(JsError::new(error.to_string().as_str())),
     }
 }

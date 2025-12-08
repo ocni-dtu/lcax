@@ -3,7 +3,8 @@ use crate::br_standard::br18_generic_data::{
 };
 use crate::br_standard::models::{BRComponent, BROperation, BRProjectInfo};
 use chrono::{DateTime, Datelike, Utc};
-use lcax_calculation::calculate::{calculate_project, CalculationOptions};
+use lcax_calculation::calculate::calculate_project;
+use lcax_calculation::models::CalculationOptions;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_core::value::AnyValue;

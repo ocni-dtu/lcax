@@ -1,9 +1,8 @@
 use std::fs;
 use std::path::Path;
 
-use lcax_calculation::calculate::{
-    calculate_assembly, calculate_product, calculate_project, CalculationOptions,
-};
+use lcax_calculation::calculate::{calculate_assembly, calculate_product, calculate_project};
+use lcax_calculation::models::CalculationOptions;
 use lcax_models::assembly::AssemblyReference;
 use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
@@ -83,7 +82,7 @@ fn test_calculate_product() -> Result<(), String> {
         meta_data: None,
     };
 
-    let options = lcax_calculation::calculate::CalculationOptions {
+    let options = CalculationOptions {
         reference_study_period: None,
         life_cycle_modules: vec![LifeCycleModule::A1A3],
         impact_categories: vec![ImpactCategoryKey::GWP],

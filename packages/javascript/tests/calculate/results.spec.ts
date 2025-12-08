@@ -18,7 +18,7 @@ describe("normalizeResult", () => {
 })
 
 describe("getImpactsByLifeCycleModule", () => {
-    it("Normalize result", async () => {
+    it("Get value", async () => {
         const result = getImpactsByLifeCycleModule({gwp: {a1a3: 10}} as Impacts, 'gwp', undefined, 2)
 
         expect(result.a1a3).toBe(5)

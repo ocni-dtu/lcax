@@ -210,6 +210,36 @@ export function calculateProject(project) {
     return takeFromExternrefTable0(ret[0]);
 }
 
+/**
+ * Calculate the impact results for an Assembly.
+ * The impact results for the assembly will be returned.
+ * @param {Assembly} assembly
+ * @param {CalculationOptions} options
+ * @returns {Impacts}
+ */
+export function calculateAssembly(assembly, options) {
+    const ret = wasm.calculateAssembly(assembly, options);
+    if (ret[2]) {
+        throw takeFromExternrefTable0(ret[1]);
+    }
+    return takeFromExternrefTable0(ret[0]);
+}
+
+/**
+ * Calculate the impact results for a Product.
+ * The impact results for the product will be returned.
+ * @param {Product} product
+ * @param {CalculationOptions} options
+ * @returns {Impacts}
+ */
+export function calculateProduct(product, options) {
+    const ret = wasm.calculateProduct(product, options);
+    if (ret[2]) {
+        throw takeFromExternrefTable0(ret[1]);
+    }
+    return takeFromExternrefTable0(ret[0]);
+}
+
 function passArrayJsValueToWasm0(array, malloc) {
     const ptr = malloc(array.length * 4, 4) >>> 0;
     for (let i = 0; i < array.length; i++) {
@@ -358,26 +388,6 @@ export function buildingTypologies() {
 }
 
 /**
- * @returns {LifeCycleModule[]}
- */
-export function lifeCycleModules() {
-    const ret = wasm.lifeCycleModules();
-    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
-    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
-    return v1;
-}
-
-/**
- * @returns {ImpactCategoryKey[]}
- */
-export function impactCategories() {
-    const ret = wasm.impactCategories();
-    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
-    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
-    return v1;
-}
-
-/**
  * @returns {Standard[]}
  */
 export function standards() {
@@ -392,6 +402,26 @@ export function standards() {
  */
 export function subTypes() {
     const ret = wasm.subTypes();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {LifeCycleModule[]}
+ */
+export function lifeCycleModules() {
+    const ret = wasm.lifeCycleModules();
+    var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v1;
+}
+
+/**
+ * @returns {ImpactCategoryKey[]}
+ */
+export function impactCategories() {
+    const ret = wasm.impactCategories();
     var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
     wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
     return v1;

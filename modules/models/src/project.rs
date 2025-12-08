@@ -288,6 +288,7 @@ pub enum ProjectPhase {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn projectPhases() -> Vec<ProjectPhase> {
     ProjectPhase::iter().collect()
@@ -390,6 +391,7 @@ pub enum RoofType {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn roofTypes() -> Vec<RoofType> {
     RoofType::iter().collect()
@@ -411,6 +413,7 @@ pub enum GeneralEnergyClass {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn generalEnergyClasses() -> Vec<GeneralEnergyClass> {
     GeneralEnergyClass::iter().collect()
@@ -453,6 +456,7 @@ pub enum BuildingModelScope {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn buildingModelScopes() -> Vec<BuildingModelScope> {
     BuildingModelScope::iter().collect()
@@ -486,6 +490,7 @@ pub enum BuildingType {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn buildingTypes() -> Vec<BuildingType> {
     BuildingType::iter().collect()
@@ -514,6 +519,7 @@ pub enum BuildingTypology {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn buildingTypologies() -> Vec<BuildingTypology> {
     BuildingTypology::iter().collect()

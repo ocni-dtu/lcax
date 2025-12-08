@@ -33,6 +33,7 @@ pybindings = [
     "lcax_core/pybindings",
     "lcax_convert/pybindings",
     "lcax_validation/pybindings",
+    "lcax_calculation/pybindings",
 ]
 jsbindings = [
     "wee_alloc",
@@ -45,6 +46,7 @@ jsbindings = [
     "lcax_core/jsbindings",
     "lcax_convert/jsbindings",
     "lcax_validation/jsbindings",
+    "lcax_calculation/jsbindings",
 ]
 
 [dependencies]
