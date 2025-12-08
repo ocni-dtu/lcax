@@ -594,8 +594,15 @@ dependencies = [
 name = "lcax_calculation"
 version = "3.2.0"
 dependencies = [
+ "console_error_panic_hook",
  "lcax_models",
+ "pyo3",
+ "schemars",
+ "serde",
  "serde_json",
+ "tsify-next",
+ "wasm-bindgen",
+ "wee_alloc",
 ]
 
 [[package]]

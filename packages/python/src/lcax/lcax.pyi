@@ -665,6 +665,19 @@ class Project:
         ...
 
 
+class CalculationOptions:
+    reference_study_period: int | None
+    life_cycle_modules: list[LifeCycleModule]
+    impact_categories: list[ImpactCategoryKey]
+    overwrite_existing_results: bool
+
+    @classmethod
+    def from_dict(cls: Type[Self], value: dict[str, Any]):
+        pass
+
+    def dict(self) -> dict[str, Any]:
+        pass
+
 
 def convert_lcabyg(data: str, result_data: str | None = None) -> Project | list[Assembly] | list[Product] | list[EPD]:
     """Converts a json formatted LCAByg project into a LCAx Project"""
@@ -684,6 +697,17 @@ def calculate_project(project: Project) -> Project:
     The impact results for the project will be added to the `results` property.
     """
 
+def calculate_assembly(assembly: Assembly, options: dict | CalculationOptions) -> Impacts:
+    """
+    Calculate the impact results for an Assembly.
+    The impact results for the assembly will be returned.
+    """
+
+def calculate_product(product: Product, options: dict | CalculationOptions) -> Impacts:
+    """
+    Calculate the impact results for a Product.
+    The impact results for the product will be returned.
+    """
 
 def get_impact_total(impacts: Impacts, category: ImpactCategoryKey,
                      excluded_modules: list[LifeCycleModule] | None = None) -> float:

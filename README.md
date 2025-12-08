@@ -44,10 +44,6 @@ pip install maturin venv
 ```bash
 maturin develop --extras tests,codegen --target x86_64-unknown-linux-gnu
 source .venv/bin/activate .
-
-datamodel-codegen \
---input lcax.schema.json \
---output packages/python/src/lcax/pydantic.py
           
 cd packages/python
 pytest tests/

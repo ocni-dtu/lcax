@@ -225,6 +225,7 @@ pub enum Standard {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn standards() -> Vec<Standard> {
     Standard::iter().collect()
@@ -258,6 +259,7 @@ pub enum SubType {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn subTypes() -> Vec<SubType> {
     SubType::iter().collect()

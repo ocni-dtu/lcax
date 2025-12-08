@@ -52,6 +52,7 @@ pub enum LifeCycleModule {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn lifeCycleModules() -> Vec<LifeCycleModule> {
     LifeCycleModule::iter().collect()
@@ -169,6 +170,7 @@ pub enum ImpactCategoryKey {
 }
 
 #[cfg(feature = "jsbindings")]
+#[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn impactCategories() -> Vec<ImpactCategoryKey> {
     ImpactCategoryKey::iter().collect()
@@ -239,7 +241,7 @@ impl ImpactCategory {
     pub fn iter(&self) -> impl Iterator<Item = (&LifeCycleModule, &Option<f64>)> {
         self.0.iter()
     }
-    pub fn iter_mut(&mut self) -> IterMut<LifeCycleModule, Option<f64>> {
+    pub fn iter_mut(&mut self) -> IterMut<'_, LifeCycleModule, Option<f64>> {
         self.0.iter_mut()
     }
 
@@ -331,13 +333,16 @@ impl Impacts {
     pub fn iter(&self) -> impl Iterator<Item = (&ImpactCategoryKey, &ImpactCategory)> {
         self.0.iter()
     }
-    pub fn iter_mut(&mut self) -> IterMut<ImpactCategoryKey, ImpactCategory> {
+    pub fn iter_mut(&mut self) -> IterMut<'_, ImpactCategoryKey, ImpactCategory> {
         self.0.iter_mut()
     }
     pub fn get(&self, key: &ImpactCategoryKey) -> Option<&ImpactCategory> {
         self.0.get(key)
     }
-    pub fn entry(&mut self, key: ImpactCategoryKey) -> Entry<ImpactCategoryKey, ImpactCategory> {
+    pub fn entry(
+        &mut self,
+        key: ImpactCategoryKey,
+    ) -> Entry<'_, ImpactCategoryKey, ImpactCategory> {
         self.0.entry(key)
     }
 

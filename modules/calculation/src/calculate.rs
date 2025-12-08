@@ -1,16 +1,10 @@
+use crate::models::CalculationOptions;
 use lcax_models::assembly::Assembly as LCAxAssembly;
 use lcax_models::life_cycle_base::{
     ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule, NewResults,
 };
 use lcax_models::product::{ImpactData, Product as LCAxProduct, Product};
 use lcax_models::project::Project as LCAxProject;
-
-pub struct CalculationOptions {
-    pub reference_study_period: Option<u8>,
-    pub life_cycle_modules: Vec<LifeCycleModule>,
-    pub impact_categories: Vec<ImpactCategoryKey>,
-    pub overwrite_existing_results: bool,
-}
 
 pub fn calculate_project(
     project: &mut LCAxProject,
