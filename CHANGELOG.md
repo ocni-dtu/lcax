@@ -1,3 +1,9 @@
+## [3.4.2](https://github.com/ocni-dtu/lcax/compare/v3.4.1...v3.4.2) (2026-01-23)
+
+### Bug Fixes
+
+* **ci:** update node ([30d3c4d](https://github.com/ocni-dtu/lcax/commit/30d3c4d58d4db88398d95d013c575a6730953f94))
+
 ## [3.4.1](https://github.com/ocni-dtu/lcax/compare/v3.4.0...v3.4.1) (2026-01-23)
 
 ### Bug Fixes
