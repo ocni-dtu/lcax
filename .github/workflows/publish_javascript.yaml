@@ -10,7 +10,7 @@ on:
         required: true
 
 env:
-  NODE_VERSION: '20.x'
+  NODE_VERSION: '24'
 
 permissions:
   id-token: write
