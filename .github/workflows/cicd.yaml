@@ -69,8 +69,6 @@ jobs:
     uses: ./.github/workflows/publish_javascript.yaml
     needs:
       - createRelease
-    secrets:
-      npm_token: ${{ secrets.NPM_TOKEN }}
     with:
       release_version: ${{ needs.createRelease.outputs.version }}
 
