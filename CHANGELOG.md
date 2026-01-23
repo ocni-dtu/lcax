@@ -1,3 +1,9 @@
+## [3.4.1](https://github.com/ocni-dtu/lcax/compare/v3.4.0...v3.4.1) (2026-01-23)
+
+### Bug Fixes
+
+* **ci:** fixed npm token permissions ([21af941](https://github.com/ocni-dtu/lcax/commit/21af9411a2330e61b55831b5b795144631890b33))
+
 ## [3.4.0](https://github.com/ocni-dtu/lcax/compare/v3.3.0...v3.4.0) (2026-01-23)
 
 ### Features
