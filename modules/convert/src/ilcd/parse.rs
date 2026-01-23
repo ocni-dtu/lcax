@@ -4,8 +4,9 @@ use lcax_core::country::Country;
 use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
-use lcax_models::shared::{Conversion, Unit};
+use lcax_models::shared::{Conversion, MetaData, Unit};
 use serde_json::Error;
+use lcax_core::value::AnyValue;
 
 /// Parse a ILCD formatted EPD in an EPDx struct
 ///
@@ -56,13 +57,12 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
             .clone(),
         name: get_name(&ilcd_epd.process_information.data_set_information.name),
         version: ilcd_epd.version.clone(),
-        format_version: get_version(),
         declared_unit,
         reference_service_life: None,
         conversions: Some(conversions),
         standard: get_ilcd_standard(&ilcd_epd),
         comment,
-        meta_data: None,
+        meta_data: Some(MetaData::from([("format_version".to_string(), Some(AnyValue::String(get_version())))])),
         source: None,
         published_date: get_date(&ilcd_epd.process_information.time.reference_year),
         valid_until: get_date(&ilcd_epd.process_information.time.data_set_valid_until),

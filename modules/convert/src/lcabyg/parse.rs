@@ -757,7 +757,6 @@ impl FromLCAByg<(&LCAbygProduct, &Vec<&LCAbygStage>)> for EPD {
                 Standard::EN15804A2
             },
             impacts,
-            format_version: get_version(),
             reference_service_life: None,
             location: Country::DNK,
             conversions: Some(vec![Conversion {

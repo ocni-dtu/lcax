@@ -407,7 +407,6 @@ impl FromBR<&BRComponent> for GenericData {
             id: Uuid::new_v4().to_string(),
             name: component.product.to_owned(),
             declared_unit: Unit::from(&component.computed_unit),
-            format_version: get_version(),
             source: Some(Source {
                 name: component
                     .environmental_data
