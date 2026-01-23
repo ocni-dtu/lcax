@@ -1,3 +1,9 @@
+## [3.4.0](https://github.com/ocni-dtu/lcax/compare/v3.3.0...v3.4.0) (2026-01-23)
+
+### Features
+
+* remove `format_version` field from EPD and Generic Data ([#134](https://github.com/ocni-dtu/lcax/issues/134)) ([3463b03](https://github.com/ocni-dtu/lcax/commit/3463b032547f047d43f87e86ccc18f26c9900b37))
+
 ## [3.3.0](https://github.com/ocni-dtu/lcax/compare/v3.2.0...v3.3.0) (2025-12-08)
 
 ### Features
