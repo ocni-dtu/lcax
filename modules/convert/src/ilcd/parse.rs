@@ -2,11 +2,11 @@ use crate::ilcd::ilcd::{Anie, DataSetName, Exchange, LCIAResult, ModuleAnie, ILC
 use chrono::NaiveDate;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
+use lcax_core::value::AnyValue;
 use lcax_models::epd::{Standard, SubType, EPD};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::shared::{Conversion, MetaData, Unit};
 use serde_json::Error;
-use lcax_core::value::AnyValue;
 
 /// Parse a ILCD formatted EPD in an EPDx struct
 ///
@@ -62,7 +62,10 @@ fn epd_from_ilcd(ilcd_epd: ILCD) -> Result<EPD, Error> {
         conversions: Some(conversions),
         standard: get_ilcd_standard(&ilcd_epd),
         comment,
-        meta_data: Some(MetaData::from([("format_version".to_string(), Some(AnyValue::String(get_version())))])),
+        meta_data: Some(MetaData::from([(
+            "format_version".to_string(),
+            Some(AnyValue::String(get_version())),
+        )])),
         source: None,
         published_date: get_date(&ilcd_epd.process_information.time.reference_year),
         valid_until: get_date(&ilcd_epd.process_information.time.data_set_valid_until),
