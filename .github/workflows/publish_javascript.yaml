@@ -8,12 +8,13 @@ on:
         type: string
         default: ""
         required: true
-    secrets:
-      npm_token:
-        required: true
 
 env:
   NODE_VERSION: '20.x'
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   publishJavaScript:
@@ -41,5 +42,3 @@ jobs:
       - name: Publish
         working-directory: modules/lcax/pkg
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
