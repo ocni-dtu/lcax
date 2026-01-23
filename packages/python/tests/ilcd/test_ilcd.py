@@ -21,7 +21,6 @@ def test_parse_ilcd(datafix_dir):
     assert isinstance(epd.published_date, datetime.date)
     assert epd.valid_until
     assert isinstance(epd.valid_until, datetime.date)
-    assert epd.format_version
     assert hasattr(epd, "source")
     assert hasattr(epd, "reference_service_life")
     assert epd.standard

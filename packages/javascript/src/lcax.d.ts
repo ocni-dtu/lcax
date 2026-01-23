@@ -182,7 +182,6 @@ export interface EPD {
     version: string;
     publishedDate: Date;
     validUntil: Date;
-    formatVersion: string;
     source: Source | null;
     referenceServiceLife: number | null;
     standard: Standard;
@@ -255,6 +254,19 @@ export interface Assembly {
     metaData: MetaData | null;
 }
 
+export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
+
+export interface GenericData {
+    id: string;
+    name: string;
+    declaredUnit: Unit;
+    source: Source | null;
+    comment: string | null;
+    conversions: Conversion[] | null;
+    impacts: Impacts;
+    metaData: MetaData | null;
+}
+
 export type Unit = "m" | "m2" | "m3" | "kg" | "tones" | "pcs" | "kwh" | "l" | "m2r1" | "km" | "tones_km" | "kgm3" | "unknown";
 
 export interface Conversion {
@@ -276,20 +288,6 @@ export interface Reference {
 }
 
 export type MetaData = Record<string, AnyValue | null>;
-
-export type GenericDataReference = ({ type: "EPD" } & GenericData) | ({ type: "reference" } & Reference);
-
-export interface GenericData {
-    id: string;
-    name: string;
-    declaredUnit: Unit;
-    formatVersion: string;
-    source: Source | null;
-    comment: string | null;
-    conversions: Conversion[] | null;
-    impacts: Impacts;
-    metaData: MetaData | null;
-}
 
 export type Country = "unknown" | "afg" | "ala" | "alb" | "dza" | "asm" | "and" | "ago" | "aia" | "ata" | "atg" | "arg" | "arm" | "abw" | "aus" | "aut" | "aze" | "bhs" | "bhr" | "bgd" | "brb" | "blr" | "bel" | "blz" | "ben" | "bmu" | "btn" | "bol" | "bes" | "bih" | "bwa" | "bvt" | "bra" | "iot" | "brn" | "bgr" | "bfa" | "bdi" | "cpv" | "khm" | "cmr" | "can" | "cym" | "caf" | "tcd" | "chl" | "chn" | "cxr" | "cck" | "col" | "com" | "cog" | "cod" | "cok" | "cri" | "civ" | "hrv" | "cub" | "cuw" | "cyp" | "cze" | "dnk" | "dji" | "dma" | "dom" | "ecu" | "egy" | "slv" | "gnq" | "eri" | "est" | "swz" | "eth" | "flk" | "fro" | "fji" | "fin" | "fra" | "guf" | "pyf" | "atf" | "gab" | "gmb" | "geo" | "deu" | "gha" | "gib" | "grc" | "grl" | "grd" | "glp" | "gum" | "gtm" | "ggy" | "gin" | "gnb" | "guy" | "hti" | "hmd" | "vat" | "hnd" | "hkg" | "hun" | "isl" | "ind" | "idn" | "irn" | "irq" | "irl" | "imn" | "isr" | "ita" | "jam" | "jpn" | "jey" | "jor" | "kaz" | "ken" | "kir" | "prk" | "kor" | "kwt" | "kgz" | "lao" | "lva" | "lbn" | "lso" | "lbr" | "lby" | "lie" | "ltu" | "lux" | "mac" | "mdg" | "mwi" | "mys" | "mdv" | "mli" | "mlt" | "mhl" | "mtq" | "mrt" | "mus" | "myt" | "mex" | "fsm" | "mda" | "mco" | "mng" | "mne" | "msr" | "mar" | "moz" | "mmr" | "nam" | "nru" | "npl" | "nld" | "ncl" | "nzl" | "nic" | "ner" | "nga" | "niu" | "nfk" | "mkd" | "mnp" | "nor" | "omn" | "pak" | "plw" | "pse" | "pan" | "png" | "pry" | "per" | "phl" | "pcn" | "pol" | "prt" | "pri" | "qat" | "reu" | "rou" | "rus" | "rwa" | "blm" | "shn" | "kna" | "lca" | "maf" | "spm" | "vct" | "wsm" | "smr" | "stp" | "sau" | "sen" | "srb" | "syc" | "sle" | "sgp" | "sxm" | "svk" | "svn" | "slb" | "som" | "zaf" | "sgs" | "ssd" | "esp" | "lka" | "sdn" | "sur" | "sjm" | "swe" | "che" | "syr" | "twn" | "tjk" | "tza" | "tha" | "tls" | "tgo" | "tkl" | "ton" | "tto" | "tun" | "tur" | "tkm" | "tca" | "tuv" | "uga" | "ukr" | "are" | "gbr" | "usa" | "umi" | "ury" | "uzb" | "vut" | "ven" | "vnm" | "vgb" | "vir" | "wlf" | "esh" | "yem" | "zmb" | "zwe";
 

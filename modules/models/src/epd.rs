@@ -50,7 +50,6 @@ pub struct EPD {
     #[cfg_attr(feature = "jsbindings", tsify(type = "Date"))]
     pub valid_until: NaiveDate,
 
-    pub format_version: String,
     pub source: Option<Source>,
     pub reference_service_life: Option<u32>,
     pub standard: Standard,
@@ -71,7 +70,6 @@ impl Default for EPD {
             version: get_version(),
             published_date: NaiveDate::from_ymd_opt(2024, 1, 1).unwrap(),
             valid_until: NaiveDate::from_ymd_opt(2025, 1, 1).unwrap(),
-            format_version: "".to_string(),
             source: None,
             reference_service_life: None,
             standard: Standard::UNKNOWN,
@@ -89,7 +87,7 @@ impl Default for EPD {
 impl EPD {
     #[cfg(feature = "pybindings")]
     #[new]
-    #[pyo3(signature=(name, declared_unit, version, published_date, valid_until, standard, location, subtype, impacts, id=None, format_version=None, source=None, reference_service_life=None, comment=None, conversions=None, meta_data=None ))]
+    #[pyo3(signature=(name, declared_unit, version, published_date, valid_until, standard, location, subtype, impacts, id=None, source=None, reference_service_life=None, comment=None, conversions=None, meta_data=None ))]
     pub fn new_py(
         name: String,
         declared_unit: Unit,
@@ -101,7 +99,6 @@ impl EPD {
         subtype: SubType,
         impacts: Impacts,
         id: Option<String>,
-        format_version: Option<String>,
         source: Option<Source>,
         reference_service_life: Option<u32>,
         comment: Option<String>,
@@ -109,7 +106,6 @@ impl EPD {
         meta_data: Option<MetaData>,
     ) -> Self {
         let _id = id.unwrap_or_else(|| uuid::Uuid::new_v4().to_string());
-        let _format_version = format_version.unwrap_or_else(|| get_version().to_string());
         Self {
             id: _id,
             name,
@@ -117,7 +113,6 @@ impl EPD {
             version,
             published_date,
             valid_until,
-            format_version: _format_version,
             source,
             reference_service_life,
             standard,
@@ -168,7 +163,6 @@ impl EPD {
         version: String,
         published_date: NaiveDate,
         valid_until: NaiveDate,
-        format_version: Option<String>,
         source: Option<Source>,
         reference_service_life: Option<u32>,
         standard: Standard,
@@ -180,7 +174,6 @@ impl EPD {
         meta_data: Option<MetaData>,
     ) -> Self {
         let _id = id.unwrap_or_else(|| uuid::Uuid::new_v4().to_string());
-        let _format_version = format_version.unwrap_or_else(|| get_version().to_string());
         Self {
             id: _id,
             name,
@@ -188,7 +181,6 @@ impl EPD {
             version,
             published_date,
             valid_until,
-            format_version: _format_version,
             source,
             reference_service_life,
             standard,
@@ -316,7 +308,6 @@ impl EPDReference {
         version: String,
         published_date: NaiveDate,
         valid_until: NaiveDate,
-        format_version: Option<String>,
         source: Option<Source>,
         reference_service_life: Option<u32>,
         standard: Standard,
@@ -335,7 +326,6 @@ impl EPDReference {
                 version,
                 published_date,
                 valid_until,
-                format_version,
                 source,
                 reference_service_life,
                 standard,

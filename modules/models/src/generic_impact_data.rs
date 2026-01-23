@@ -9,7 +9,6 @@ use pyo3::prelude::*;
 
 use crate::life_cycle_base::Impacts;
 use crate::shared::{Conversion, MetaData, Reference, Source, Unit};
-use lcax_core::utils::get_version;
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
@@ -23,7 +22,6 @@ pub struct GenericData {
     pub id: String,
     pub name: String,
     pub declared_unit: Unit,
-    pub format_version: String,
     pub source: Option<Source>,
     pub comment: Option<String>,
     pub conversions: Option<Vec<Conversion>>,
@@ -37,7 +35,6 @@ impl Default for GenericData {
             id: uuid::Uuid::new_v4().to_string(),
             name: "".to_string(),
             declared_unit: Unit::UNKNOWN,
-            format_version: get_version(),
             source: None,
             comment: None,
             conversions: None,
@@ -51,13 +48,12 @@ impl Default for GenericData {
 impl GenericData {
     #[cfg(feature = "pybindings")]
     #[new]
-    #[pyo3(signature=(name, declared_unit, impacts, id=None, format_version=None, source=None, comment=None, conversions=None, meta_data=None ))]
+    #[pyo3(signature=(name, declared_unit, impacts, id=None, source=None, comment=None, conversions=None, meta_data=None ))]
     pub fn new_py(
         name: String,
         declared_unit: Unit,
         impacts: Impacts,
         id: Option<String>,
-        format_version: Option<String>,
         source: Option<Source>,
         comment: Option<String>,
         conversions: Option<Vec<Conversion>>,
@@ -67,7 +63,6 @@ impl GenericData {
             id,
             name,
             declared_unit,
-            format_version,
             source,
             comment,
             conversions,
@@ -82,7 +77,6 @@ impl GenericData {
         id: Option<String>,
         name: String,
         declared_unit: Unit,
-        format_version: Option<String>,
         source: Option<Source>,
         comment: Option<String>,
         conversions: Option<Vec<Conversion>>,
@@ -90,12 +84,10 @@ impl GenericData {
         meta_data: Option<MetaData>,
     ) -> Self {
         let _id = id.unwrap_or_else(|| uuid::Uuid::new_v4().to_string());
-        let _format_version = format_version.unwrap_or_else(|| get_version().to_string());
         Self {
             id: _id,
             name,
             declared_unit,
-            format_version: _format_version,
             source,
             comment,
             conversions,
@@ -128,7 +120,6 @@ impl GenericDataReference {
         id: Option<String>,
         name: String,
         declared_unit: Unit,
-        format_version: Option<String>,
         source: Option<Source>,
         comment: Option<String>,
         conversions: Option<Vec<Conversion>>,
@@ -140,7 +131,6 @@ impl GenericDataReference {
                 id,
                 name,
                 declared_unit,
-                format_version,
                 source,
                 comment,
                 conversions,

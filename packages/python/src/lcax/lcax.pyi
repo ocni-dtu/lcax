@@ -398,7 +398,6 @@ class GenericData:
     id: str
     name: str
     declared_unit: Unit
-    format_version: str
     source: Source | None
     comment: str | None
     conversions: list[Conversion] | None
@@ -406,7 +405,7 @@ class GenericData:
     meta_data: MetaData | None
 
     def __init__(self, name: str, declared_unit: Unit, impacts: Impacts, id: str | None = None,
-                 format_version: str | None = None, source: Source | None = None, comment: str | None = None,
+                 source: Source | None = None, comment: str | None = None,
                  conversions: list[Conversion] | None = None, meta_data: MetaData | None = None):
         ...
 
@@ -418,7 +417,6 @@ class EPD:
     version: str
     published_date: datetime.date
     valid_until: datetime.date
-    format_version: str
     source: Source | None
     reference_service_life: int | None
     standard: Standard
@@ -431,7 +429,7 @@ class EPD:
 
     def __init__(self, name: str, declared_unit: Unit, version: str, published_date: datetime.date,
                  valid_until: datetime.date, standard: Standard, location: Country, subtype: SubType, impacts: Impacts,
-                 id: str | None = None, format_version: str | None = None,
+                 id: str | None = None,
                  source: Source | None = None, reference_service_life: int | None = None, comment: str | None = None,
                  conversions: list[Conversion] | None = None, meta_data: MetaData | None = None):
         ...

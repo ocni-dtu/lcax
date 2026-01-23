@@ -61,7 +61,6 @@ fn test_calculate_product() -> Result<(), String> {
             version: "".to_string(),
             published_date: Default::default(),
             valid_until: Default::default(),
-            format_version: "".to_string(),
             source: None,
             reference_service_life: None,
             standard: Standard::EN15804A1,

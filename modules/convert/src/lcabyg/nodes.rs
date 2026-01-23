@@ -1,6 +1,5 @@
 use field_access::FieldAccess;
 use lcax_core::country::Country;
-use lcax_core::utils::get_version;
 use lcax_models::epd::{Standard, SubType, EPD};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::shared::{Conversion, Source, Unit};
@@ -378,7 +377,6 @@ pub fn epd_from_lcabyg_stages(stages: &Vec<Stage>) -> EPD {
             Standard::EN15804A2
         },
         impacts,
-        format_version: get_version(),
         reference_service_life: None,
         location: Country::DNK,
         conversions: Some(vec![Conversion {
