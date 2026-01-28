@@ -36,7 +36,6 @@ pybindings = [
     "lcax_calculation/pybindings",
 ]
 jsbindings = [
-    "wee_alloc",
     "wasm-bindgen",
     "serde-wasm-bindgen",
     "console_error_panic_hook",

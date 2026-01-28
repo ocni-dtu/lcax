@@ -18,9 +18,6 @@ use lcax_models::project::Project;
 use lcax_validation;
 use lcax_validation::model::{ValidationResult, ValidationSchema};
 
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-
 #[wasm_bindgen]
 extern "C" {
     fn alert(s: &str);

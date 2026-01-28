@@ -18,7 +18,6 @@ crate-type = ["cdylib", "rlib"]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
 
 [features]
-default = ["wee_alloc"]
 pybindings = ["pyo3", "pyo3/extension-module"]
 jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify-next", "strum", "strum_macros"]
 
