@@ -15,7 +15,6 @@ name = "lcax_calculation"
 crate-type = ["cdylib", "rlib"]
 
 [features]
-default = ["wee_alloc"]
 pybindings = ["pyo3", "pyo3/extension-module"]
 jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify-next"]
 
@@ -29,7 +28,6 @@ serde_json = "1.0.140"
 pyo3 = { version = "0.24", features = ["abi3-py310"], optional = true }
 
 # JS Bindings
-wee_alloc = { version = "0.4.5", optional = true }
 wasm-bindgen = { version = "0.2.100", optional = true }
 console_error_panic_hook = { version = "0.1.7", optional = true }
 tsify-next = { version = "0.5.5", optional = true }
