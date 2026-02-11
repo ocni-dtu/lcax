@@ -89,25 +89,67 @@ pub fn calculate_product(
             for impact_data in &product.impact_data {
                 match impact_data {
                     ImpactData::EPD(epd) => {
-                        let impacts = &epd.resolve()?.impacts;
+                        let _epd = &epd.resolve()?;
+                        let impacts = &_epd.impacts;
+                        let mut conversion_factor = 1.0;
+
+                        if product.unit != _epd.declared_unit {
+                            let conversions = _epd.conversions.as_ref().ok_or_else(|| {
+                                format!(
+                                    "Product and EPD does not share the same unit. EPD ({}) does not have any conversions.",
+                                    _epd.id
+                                )
+                            })?;
+
+                            conversion_factor = conversions
+                                .iter()
+                                .find(|_conversion| _conversion.to == product.unit)
+                                .map(|_conversion| _conversion.value)
+                                .ok_or_else(|| {
+                                    format!(
+                                        "Product and EPD does not share the same unit. Could not resolve conversion from EPD ({}) to Product ({}).",
+                                        _epd.id, product.id
+                                    )
+                                })?;
+                        }
+
                         impact_category.insert(
                             life_cycle_module.clone(),
                             Some(add_impact_result(
                                 &impacts,
                                 impact_category_key,
                                 life_cycle_module,
+                                &conversion_factor,
                                 product,
                             )),
                         );
                     }
                     ImpactData::GenericData(data) => {
-                        let impacts = data.resolve()?.impacts;
+                        let _data = &data.resolve()?;
+                        let impacts = &_data.impacts;
+                        let mut conversion_factor = 1.0;
+                        if product.unit != _data.declared_unit {
+                            match &_data.conversions {
+                                Some(conversions) => {
+                                    match conversions.iter().find(|_conversion| _conversion.to == product.unit) {
+                                        None => panic!(
+                                            "Product and Generic Data does not share the same unit. Could not resolve conversion from Generic Data ({}) to Product ({}).", _data.id, product.id
+                                        ),
+                                        Some(_conversion) => conversion_factor = _conversion.value
+                                    }
+                                }
+                                None => panic!(
+                                    "Product and Generic Data does not share the same unit. Generic Data ({}) does not have any conversions.", _data.id
+                                ),
+                            }
+                        }
                         impact_category.insert(
                             life_cycle_module.clone(),
                             Some(add_impact_result(
                                 &impacts,
                                 impact_category_key,
                                 life_cycle_module,
+                                &conversion_factor,
                                 product,
                             )),
                         );
@@ -125,11 +167,15 @@ fn add_impact_result(
     impacts: &Impacts,
     impact_category_key: &ImpactCategoryKey,
     life_cycle_module: &LifeCycleModule,
+    conversion_factor: &f64,
     product: &Product,
 ) -> f64 {
     match impacts.get(impact_category_key) {
         Some(impact) => match impact.get(life_cycle_module) {
-            Some(value) => value.unwrap() * product.quantity,
+            Some(value) => match value {
+                Some(value) => value * product.quantity * conversion_factor,
+                None => 0.0,
+            },
             None => 0.0,
         },
         None => 0.0,
