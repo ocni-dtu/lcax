@@ -1,3 +1,9 @@
+## [3.4.3](https://github.com/ocni-dtu/lcax/compare/v3.4.2...v3.4.3) (2026-02-11)
+
+### Bug Fixes
+
+* **calculation:** Update GWP calculations and improve unit handling in tests ([#137](https://github.com/ocni-dtu/lcax/issues/137)) ([3e99ded](https://github.com/ocni-dtu/lcax/commit/3e99ded93b8276376175cd27282909c18fb31732))
+
 ## [3.4.2](https://github.com/ocni-dtu/lcax/compare/v3.4.1...v3.4.2) (2026-01-23)
 
 ### Bug Fixes
