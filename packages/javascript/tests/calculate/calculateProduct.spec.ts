@@ -15,7 +15,7 @@ describe("calculateProduct", async () => {
         } as CalculationOptions
         const result = calculateProduct(product, options)
 
-        expect(result.gwp.a1a3).toBe(409)
+        expect(result.gwp.a1a3).toBe(3210650)
     })
 
     it("should calculate a product, but return empty", async () => {

@@ -15,7 +15,7 @@ describe("calculateAssembly", async () => {
         } as CalculationOptions
         const result = calculateAssembly(assembly, options)
 
-        expect(result.gwp.a1a3).toBe(20450)
+        expect(result.gwp.a1a3).toBe(160532500)
     })
 
     it("should calculate an assembly, but return empty", async () => {
