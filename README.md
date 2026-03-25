@@ -29,14 +29,15 @@ cargo test --package lcax --target x86_64-unknown-linux-gnu
 
 ## Export JSON Schema
 ```bash
-cargo run --target x86_64-unknown-linux-gnu --bin export-schema > lcax.schema.json
+cargo run -p lcax --target x86_64-unknown-linux-gnu --bin export-schema > lcax.schema.json
+cargo run -p lcax_validation --target x86_64-unknown-linux-gnu --bin export-schema > lcax.schema.json
 ```
 
 # Python
 
 ## Install Python Dependencies
 ```bash
-pip install maturin venv
+pip install maturin venv mkdocs
 ```
 
 ## Run Python Tests
