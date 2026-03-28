@@ -251,6 +251,9 @@ pub enum BuildingTypology {
     AGRICULTURAL,
     EDUCATIONAL,
     HEALTH,
+    SCIENCE,
+    CULTURE,
+    PARKING_LOGISTIC,
     UNKNOWN,
     OTHER,
 }
@@ -267,6 +270,9 @@ impl From<&String> for BuildingTypology {
             "agricultural" => BuildingTypology::AGRICULTURAL,
             "educational" => BuildingTypology::EDUCATIONAL,
             "health" => BuildingTypology::HEALTH,
+            "science" => BuildingTypology::SCIENCE,
+            "culture" => BuildingTypology::CULTURE,
+            "parking_logistic" => BuildingTypology::PARKING_LOGISTIC,
             _ => BuildingTypology::OTHER,
         }
     }
