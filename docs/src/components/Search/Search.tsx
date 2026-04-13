@@ -1,18 +1,17 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
-import { IconSearch } from '@tabler/icons-react'
+import { type MouseEvent } from 'react'
 import { ActionIcon, rem, TextInput } from '@mantine/core'
 import { Spotlight, spotlight } from '@mantine/spotlight'
-import searchIndex from '@public/searchIndex.json'
+import { IconSearch } from '@tabler/icons-react'
+import { useNavigate } from 'react-router'
+
+import searchIndex from '@/assets/searchIndex.json'
 
 export const Search = () => {
-  const router = useRouter()
-
+  const navigate = useNavigate()
   const actions = searchIndex.map((page) => ({
     ...page,
     id: page.slug,
-    onClick: () => router.push(page.slug),
+    onClick: () => navigate(page.slug),
   }))
 
   const handleOnClick = (e: MouseEvent) => {
@@ -22,7 +21,6 @@ export const Search = () => {
 
   return (
     <>
-      {/* @ts-expect-error non-sense */}
       <ActionIcon onClick={handleOnClick} variant='subtle' hiddenFrom='md'>
         <IconSearch />
       </ActionIcon>

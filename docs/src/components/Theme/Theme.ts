@@ -5,6 +5,7 @@ import '@fontsource/inter-tight/400.css'
 import '@fontsource/inter-tight/500.css'
 import '@fontsource/inter-tight/600.css'
 import '@fontsource/inter-tight/700.css'
+// @ts-expect-error font side-effect
 import '@fontsource/jetbrains-mono'
 import classes from './theme.module.css'
 
@@ -14,7 +15,6 @@ const CONTAINER_SIZES: Record<string, number> = {
   md: 960,
   lg: 1140,
   xl: 1320,
-  xxl: 1560,
 }
 
 const fontFamily = 'Inter Tight, sans-serif'

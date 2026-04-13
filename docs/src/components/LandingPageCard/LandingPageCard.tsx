@@ -1,5 +1,6 @@
+import type { ReactNode } from 'react'
+
 import { Card, Group, Text, Title } from '@mantine/core'
-import { ReactNode } from 'react'
 
 interface CardProps {
   title: string

@@ -76,9 +76,9 @@ pub fn convertIlcd(data: String) -> Result<EPD, JsError> {
 ///The impact results for the project will be added to the `results` property.
 #[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn calculateProject(mut project: Project) -> Result<Project, JsError> {
+pub fn calculateProject(mut project: Project, options: CalculationOptions) -> Result<Project, JsError> {
     console_error_panic_hook::set_once();
-    match calculate_project(&mut project, None) {
+    match calculate_project(&mut project, &options) {
         Ok(project) => Ok(project.clone()),
         Err(error) => Err(JsError::new(error.to_string().as_str())),
     }
