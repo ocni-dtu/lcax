@@ -1,0 +1,47 @@
+---
+title: Advanced Validation Example
+description: Learn how to create elaborate validation schemas using YAML for LCAx validation engine. This guide demonstrates how to define complex validation rules in a readable format and integrate them with validation functions across Python, TypeScript, and Rust.
+keywords:
+  - validation schemas
+  - YAML configuration
+  - advanced validation
+  - JSON Schema
+  - validation rules
+---
+
+import { CodeHighlightTabs } from '@/components'
+import validationRulesYAML from './code/validation_rules.yaml?raw'
+import validateYamlPY from './code/validate_yaml.py?raw'
+import validateYamlTS from './code/validateYaml.ts?raw'
+import validateYamlRS from './code/validate_yaml.rs?raw'
+import projectJSON from './code/project.json?raw'
+
+In the previous section we saw how simple rules can be built using code.
+
+Sometimes when you want to create more elaborate validation schemas it might an advantage to so in text.
+For this you can i.e. use [YAML](https://en.wikipedia.org/wiki/YAML), which has a more readable syntax than fx. JSON.
+
+## Using YAML to Define Rules
+
+In the example below we create an elaborate set of validation schemas in YAML.
+In the code examples when then read the YAML file and pass the validation schema objects to the `validate` function.
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'validation_rules.yaml', code: validationRulesYAML, language: 'yaml' },
+    { fileName: 'validate.py', code: validateYamlPY, language: 'py' },
+    { fileName: 'validate.ts', code: validateYamlTS, language: 'ts' },
+    { fileName: 'validate.rs', code: validateYamlRS, language: 'rs' },
+    { fileName: 'project.json', code: projectJSON, language: 'json' },
+  ]}
+  syncKey='lang'
+/>
+
+## Validation JSON Schema
+
+If you wish to write your validation rules in YAML, you can then use the JSON Schema
+for the validation to provide help and feedback on the available fields.
+
+If you use an editor like VS Code or PyCharm to write your YAML you can plug the validation JSON schema in there.
+
+You can find the validation JSON schema [here](/reference/schemas/validation).

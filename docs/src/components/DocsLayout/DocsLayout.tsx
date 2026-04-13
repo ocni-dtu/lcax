@@ -1,4 +1,3 @@
-import { ReactNode } from 'react'
 import {
   AppShell,
   rem,
@@ -8,9 +7,12 @@ import {
   Text,
   useMatches,
   Burger,
+  Container,
 } from '@mantine/core'
-import { Header, Sidebar } from '@/components'
 import { useDisclosure } from '@mantine/hooks'
+import { type ReactNode } from 'react'
+
+import { Header, Sidebar, ErrorBoundary } from '@/components'
 
 export const DocsLayout = ({ children }: { children: ReactNode }) => {
   const headerHeight = useMatches({ base: rem(50), lg: rem(65), xl: rem(100) })
@@ -27,20 +29,30 @@ export const DocsLayout = ({ children }: { children: ReactNode }) => {
       aside={{ width: 300, breakpoint: 'sm', collapsed: { desktop: false, mobile: true } }}
     >
       <AppShell.Header withBorder={true} pl='lg' bg='grey.0'>
-        <Header
-          MenuComponent={<Burger opened={mobileOpened} onClick={toggleMobile} hiddenFrom='sm' size='sm' />}
-          height={headerHeight}
-        />
+        <ErrorBoundary>
+          <Header
+            MenuComponent={<Burger opened={mobileOpened} onClick={toggleMobile} hiddenFrom='sm' size='sm' />}
+            height={headerHeight}
+          />
+        </ErrorBoundary>
       </AppShell.Header>
-      <AppShell.Main pt={`calc(${headerHeight}`}>{children}</AppShell.Main>
+      <AppShell.Main pt={`calc(${headerHeight}`} pl={'md'} pr={'md'}>
+        <ErrorBoundary>
+          <Container>{children}</Container>
+        </ErrorBoundary>
+      </AppShell.Main>
       <AppShell.Navbar>
         <AppShell.Section grow component={ScrollArea}>
-          <Sidebar />
+          <ErrorBoundary>
+            <Sidebar />
+          </ErrorBoundary>
         </AppShell.Section>
       </AppShell.Navbar>
       <AppShell.Aside>
         <AppShell.Section grow component={ScrollArea}>
-          <TableOfContents />
+          <ErrorBoundary>
+            <TableOfContents />
+          </ErrorBoundary>
         </AppShell.Section>
       </AppShell.Aside>
     </AppShell>

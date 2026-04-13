@@ -1,7 +1,12 @@
-'use client'
-
-import { CodeHighlightTabs as MantineCodeHighlight, CodeHighlightTabsProps } from '@mantine/code-highlight'
-import { IconBrandPython, IconBrandTypescript, IconBrandRust, IconJson, IconFileText } from '@tabler/icons-react'
+import { CodeHighlightTabs as MantineCodeHighlight } from '@mantine/code-highlight'
+import {
+  IconBrandPython,
+  IconBrandTypescript,
+  IconBrandRust,
+  IconJson,
+  IconFileText,
+  IconTerminal2,
+} from '@tabler/icons-react'
 
 const getFileIcon = (fileName: string) => {
   if (fileName.endsWith('.ts') || fileName.endsWith('.tsx')) {
@@ -24,10 +29,10 @@ const getFileIcon = (fileName: string) => {
     return <IconFileText size={18} />
   }
 
-  return null
+  return <IconTerminal2 size={18} />
 }
 
-export const CodeHighlightTabs = (props: CodeHighlightTabsProps) => {
+export const CodeHighlightTabs = (props: any) => {
   return (
     <MantineCodeHighlight
       {...props}
