@@ -12,7 +12,7 @@ export const GuidePage = () => {
 
   const { Content, title, description } = slugMap[location.pathname]
   return (
-    <DocsLayout>
+    <DocsLayout title={title} description={description}>
       <Title>{title}</Title>
       <Text size={'sm'} c='gray.5' mb='lg'>
         {description}

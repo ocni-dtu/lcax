@@ -1,7 +1,7 @@
-import { type MouseEvent } from 'react'
 import { ActionIcon, rem, TextInput } from '@mantine/core'
 import { Spotlight, spotlight } from '@mantine/spotlight'
 import { IconSearch } from '@tabler/icons-react'
+import { type MouseEvent } from 'react'
 import { useNavigate } from 'react-router'
 
 import searchIndex from '@/assets/searchIndex.json'

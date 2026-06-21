@@ -29,6 +29,7 @@ export const AppRouter = () => (
           <Route path='/guides/:topic/:slug' element={<GuidePage />} />
           <Route path='/reference/:topic' element={<ReferencePage />} />
           <Route path='/reference/:topic/:slug' element={<ReferencePage />} />
+          <Route path='/reference/:topic/:slug/:subpage' element={<ReferencePage />} />
           {/*<Route path='*' element={<NotFoundPage />} />*/}
         </Route>
       </Routes>

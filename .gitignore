@@ -196,5 +196,5 @@ package-lock.json
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
-/docs/.next/
+.junie/plans
+.junie/memory

@@ -42,12 +42,15 @@ jobs:
         working-directory: docs
         run: npm ci
 
+      - name: Check
+        working-directory: docs
+        run: npm run check
+
       - name: Build Docs
         working-directory: docs
         run: npm run build
         env:
-          DOMAIN: docs.lcax.org
-          UMAMI_ID: ${{ vars.UMAMI_ID }}
+          VITE_UMAMI_ID: ${{ vars.UMAMI_ID }}
 
       - name: Upload artifact for deployment job
         if: github.event_name != 'pull_request'

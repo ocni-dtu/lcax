@@ -7,6 +7,7 @@ import '@fontsource/inter-tight/600.css'
 import '@fontsource/inter-tight/700.css'
 // @ts-expect-error font side-effect
 import '@fontsource/jetbrains-mono'
+
 import classes from './theme.module.css'
 
 const CONTAINER_SIZES: Record<string, number> = {

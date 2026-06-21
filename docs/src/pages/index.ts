@@ -1,6 +1,6 @@
-import { conceptIndex } from './ConceptPages'
-import { guideIndex } from './GuidePage'
-import { referenceIndex } from './ReferencePages'
+import { conceptIndex } from './ConceptPages/pages'
+import { guideIndex } from './GuidePage/pages'
+import { referenceIndex } from './ReferencePages/pages'
 
 export interface PagesProps {
   label: string

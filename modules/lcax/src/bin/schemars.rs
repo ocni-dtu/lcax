@@ -1,3 +1,5 @@
+pub mod docs;
+
 use schemars::schema_for;
 
 use lcax_models::project::Project;
