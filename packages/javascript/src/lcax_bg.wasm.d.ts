@@ -3,7 +3,7 @@
 export const memory: WebAssembly.Memory;
 export const calculateAssembly: (a: any, b: any) => [number, number, number];
 export const calculateProduct: (a: any, b: any) => [number, number, number];
-export const calculateProject: (a: any) => [number, number, number];
+export const calculateProject: (a: any, b: number) => [number, number, number];
 export const convertBRStandard: (a: number, b: number, c: number, d: number) => [number, number, number];
 export const convertIlcd: (a: number, b: number) => [number, number, number];
 export const convertLCAbyg: (a: number, b: number, c: number, d: number) => [number, number, number];
@@ -24,6 +24,7 @@ export const units: () => [number, number];
 export const standards: () => [number, number];
 export const subTypes: () => [number, number];
 export const countries: () => [number, number];
+export const getCountryName: (a: number, b: number) => [number, number];
 export const __wbindgen_malloc: (a: number, b: number) => number;
 export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
 export const __wbindgen_free: (a: number, b: number, c: number) => void;
