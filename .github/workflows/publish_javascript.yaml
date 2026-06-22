@@ -21,9 +21,9 @@ jobs:
     if: ${{ inputs.release_version != ''}}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: cargo
 
@@ -34,7 +34,7 @@ jobs:
         working-directory: 'modules/lcax'
         run: wasm-pack build --features jsbindings
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'

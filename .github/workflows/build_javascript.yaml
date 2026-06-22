@@ -4,14 +4,14 @@ on:
   workflow_call:
 
 env:
-  NODE_VERSION: '20.x'
+  NODE_VERSION: '24.x'
 
 jobs:
   build:
     name: Build JavaScript
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           lfs: true
 
@@ -24,7 +24,7 @@ jobs:
           wasm-pack build --features jsbindings
           mv pkg/lcax* ../../packages/javascript/src
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 

@@ -34,9 +34,9 @@ jobs:
             runner: macos-latest
             target: aarch64-apple-darwin
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: cargo
 
@@ -51,7 +51,7 @@ jobs:
           args: --release -i python${{ matrix.python-version }} --out dist
 
       - name: Upload Wheel
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: lcax-${{ matrix.os.name }}-${{ matrix.python-version }}.whl
           path: dist
@@ -63,7 +63,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           path: dist
           pattern: '*.whl'
