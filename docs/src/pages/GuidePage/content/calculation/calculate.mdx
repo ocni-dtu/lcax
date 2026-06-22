@@ -1,0 +1,81 @@
+---
+title: Calculate a LCAx Project
+description: How to use LCAx's calculation engine to calculate environmental impacts for projects, assemblies, and products.
+keywords:
+  - calculation engine
+  - lca calculation
+  - project calculation
+  - impact calculation
+  - calculation options
+---
+
+import { CodeHighlightTabs } from '@/components'
+import calculateProjectPY from './code/calculate_project.py?raw'
+import calculateProjectTS from './code/calculateProject.ts?raw'
+import calculateProjectRS from './code/calculate_project.rs?raw'
+import projectJSON from './code/project.json?raw'
+import calculateAssemblyPY from './code/calculate_assembly.py?raw'
+import calculateAssemblyTS from './code/calculateAssembly.ts?raw'
+import calculateAssemblyRS from './code/calculate_assembly.rs?raw'
+import assemblyJSON from './code/assembly.json?raw'
+import calculateProductPY from './code/calculate_product.py?raw'
+import calculateProductTS from './code/calculateProduct.ts?raw'
+import calculateProductRS from './code/calculate_product.rs?raw'
+import productJSON from './code/product.json?raw'
+
+LCAx's calculation engine allows you to calculate environmental impacts for different levels of a project.
+
+The calculation functions take an object (Project, Assembly, or Product) and a `CalculationOptions` object.
+
+#### `CalculationOptions`
+
+**referenceStudyPeriod:** `number | null` \
+**lifeCycleModules:** `LifeCycleModule[]` \
+**impactCategories:** `ImpactCategoryKey[]` \
+**overwriteExistingResults:** `boolean`
+
+The fields are:
+
+- `referenceStudyPeriod`: The period over which the impacts are calculated. If null, the project's reference study period is used.
+- `lifeCycleModules`: A list of life cycle modules to include in the calculation (e.g., A1-A3, A4, B4, C3, C4).
+- `impactCategories`: A list of impact categories to calculate (e.g., GWP, ODP, POCP).
+- `overwriteExistingResults`: If true, existing results will be overwritten.
+
+## Project Calculation
+
+When calculating a project, the results are added directly to the project's `results` property.
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'calculate_project.py', code: calculateProjectPY, language: 'py' },
+    { fileName: 'calculateProject.ts', code: calculateProjectTS, language: 'ts' },
+    { fileName: 'calculate_project.rs', code: calculateProjectRS, language: 'rs' },
+    { fileName: 'project.json', code: projectJSON, language: 'json' },
+  ]}
+/>
+
+## Assembly and Product Calculation
+
+You can also calculate impacts for individual assemblies and products. These functions return the `Impacts` object instead of modifying the input.
+
+### Assembly
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'calculate_assembly.py', code: calculateAssemblyPY, language: 'py' },
+    { fileName: 'calculateAssembly.ts', code: calculateAssemblyTS, language: 'ts' },
+    { fileName: 'calculate_assembly.rs', code: calculateAssemblyRS, language: 'rs' },
+    { fileName: 'assembly.json', code: assemblyJSON, language: 'json' },
+  ]}
+/>
+
+### Product
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'calculate_product.py', code: calculateProductPY, language: 'py' },
+    { fileName: 'calculateProduct.ts', code: calculateProductTS, language: 'ts' },
+    { fileName: 'calculate_product.rs', code: calculateProductRS, language: 'rs' },
+    { fileName: 'product.json', code: productJSON, language: 'json' },
+  ]}
+/>

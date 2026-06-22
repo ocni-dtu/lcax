@@ -24,23 +24,23 @@ jobs:
     outputs:
       version: ${{ steps.nextVersion.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           lfs: true
           fetch-depth: 0
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: json-schema
           path: artifacts
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: validation-schema
           path: artifacts
 #
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -66,13 +66,13 @@ jobs:
           CARGO_REGISTRY_TOKEN: ${{ secrets.cargo_token }}
 
       - name: Upload Cargo
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cargo
           path: 'Cargo*'
 
       - name: Upload CHANGELOG
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: changelog
           path: 'CHANGELOG.md'

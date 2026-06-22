@@ -8,50 +8,53 @@ on:
         required: true
 
 env:
-  NODE_VERSION: '22.x'
+  NODE_VERSION: '24.x'
 
 jobs:
   buildDocs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           lfs: true
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: json-schema
           path: docs/src/content/code
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: validation-schema
           path: docs/src/content/code
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: changelog
           path: docs/src/content/reference
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Dependencies
         working-directory: docs
-        run: npm ci
+        run: npm i
+
+      - name: Check
+        working-directory: docs
+        run: npm run check
 
       - name: Build Docs
         working-directory: docs
         run: npm run build
         env:
-          DOMAIN: docs.lcax.org
-          UMAMI_ID: ${{ vars.UMAMI_ID }}
+          VITE_UMAMI_ID: ${{ vars.UMAMI_ID }}
 
       - name: Upload artifact for deployment job
         if: github.event_name != 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: docs
           path: docs/dist
@@ -63,15 +66,19 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: docs
 
-      - uses: mc-actions/configure@v1
-        with:
-          s3_server: 'https://minio.chrk.site'
-          s3_access_key: '${{ secrets.access_key }}'
-          s3_secret_key: '${{ secrets.secret_key }}'
+      - name: Install s5cmd
+        run: |
+          curl -L https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-64bit.tar.gz \
+            | tar xz
+          sudo mv s5cmd /usr/local/bin/
 
       - name: Upload to Bundle
-        run: mc cp -r ./ default/bundles/lcax/${{ github.ref_name }}/docs
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.access_key }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.secret_key }}
+          AWS_REGION: us-east-1
+        run: s5cmd --endpoint-url https://minio.chrk.site cp "./*" "s3://bundles/lcax/${{ github.ref_name }}/docs/"

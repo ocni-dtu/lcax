@@ -8,7 +8,7 @@ jobs:
   rust:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           lfs: true
 
@@ -25,13 +25,13 @@ jobs:
         run: cargo run --target x86_64-unknown-linux-gnu --package lcax_validation --bin export-schema > validation.schema.json
 
       - name: Upload JSON Schema
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: json-schema
           path: 'lcax.schema.json'
 
       - name: Upload Validation Schema
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: validation-schema
           path: 'validation.schema.json'

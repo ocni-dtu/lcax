@@ -338,6 +338,13 @@ class Country(Enum):
     ZMB = "ZMB",
     ZWE = "ZWE",
 
+    @classmethod
+    def from_string(cls, value: str) -> Country:
+        ...
+
+    def name(self) -> str:
+        ...
+
 
 class Location:
     country: Country

@@ -1,0 +1,47 @@
+---
+title: Extract Results
+description: A guide on how to extract and normalize impact results from LCAx's data structure using helper functions.
+keywords:
+  - extract results
+  - impact results
+  - normalize results
+  - result extraction
+  - helper functions
+---
+
+import { CodeHighlightTabs } from '@/components'
+import extractResultsPY from './code/extract_results.py?raw'
+import extractResultsTS from './code/extractResults.ts?raw'
+import extractResultsRS from './code/extract_results.rs?raw'
+
+After calculating a project, assembly, or product, you can use LCAx's helper functions to extract and normalize the results.
+
+LCAx provides several functions to work with the `Impacts` object.
+
+## Impact Extraction
+
+You can extract the total impact for a specific category or get a breakdown by life cycle module.
+
+### Total Impact
+
+The `getImpactTotal` function calculates the sum of all impacts for a given category across all life cycle modules.
+
+### Impacts by Module
+
+The `getImpactsByLifeCycleModule` function returns the impacts grouped by their life cycle module (e.g., A1-A3, A4, etc.) for a specific category.
+
+## Normalization
+
+To compare different projects, it is often useful to normalize the results. This can be done using the `normalizeResult` function, which divides the total impact by a normalizing factor, such as gross floor area and reference study period.
+
+## Example
+
+In the following example, we extract the total GWP impact from a project and normalize it.
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'extract_results.py', code: extractResultsPY, language: 'py' },
+    { fileName: 'extractResults.ts', code: extractResultsTS, language: 'ts' },
+    { fileName: 'extract_results.rs', code: extractResultsRS, language: 'rs' },
+  ]}
+/>

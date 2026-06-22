@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { default as matter } from 'gray-matter'
+import { parse as parseYaml } from 'yaml'
 
 export type Metadata = {
   title: string
@@ -17,7 +17,7 @@ const parseFrontmatter = (fileContent: string) => {
   }
 
   const content = fileContent.replace(frontmatterRegex, '').trim()
-  const metadata = matter(fileContent).data
+  const metadata = parseYaml(match[1])
 
   return { metadata: metadata as Metadata, content }
 }
@@ -32,13 +32,14 @@ const readMDXFile = (filePath: string) => {
   return parseFrontmatter(rawContent)
 }
 
-const getMDXData = (dir: string) => {
+const getMDXData = (dir: string, prefix: string) => {
   return getMDXFiles(dir).map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file))
-    const slug = file
+    const slug = `${prefix}/${file
       .replace(/\.md(x)?/, '')
+      .replace(/\\/g, '/')
       .toLowerCase()
-      .trim()
+      .trim()}`
 
     return {
       metadata,
@@ -49,5 +50,18 @@ const getMDXData = (dir: string) => {
 }
 
 export const getDocsContent = (folder: string[] | undefined = []) => {
-  return getMDXData(path.join(process.cwd(), 'src', 'content', ...folder))
+  const contentMap: Record<string, string> = {
+    concept: path.join(process.cwd(), 'src', 'pages', 'ConceptPages', 'content'),
+    guides: path.join(process.cwd(), 'src', 'pages', 'GuidePage', 'content'),
+    reference: path.join(process.cwd(), 'src', 'pages', 'ReferencePages', 'content'),
+  }
+
+  if (folder && folder.length > 0) {
+    const key = folder[0]
+    if (contentMap[key]) {
+      return getMDXData(contentMap[key], key)
+    }
+  }
+
+  return Object.entries(contentMap).flatMap(([key, dir]) => getMDXData(dir, key))
 }

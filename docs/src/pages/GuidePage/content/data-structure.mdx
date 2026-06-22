@@ -1,0 +1,46 @@
+---
+title: Data Structure
+description: A guide on working with EPDs in LCAx, covering data conversion, access, and persistence. Learn how to convert ILCD formats, access impact data, and manage EPD JSON files across different programming environments.
+keywords:
+  - EPD data structure
+  - ILCD conversion
+  - environmental product declarations
+  - impact data access
+  - LCAx JSON format
+---
+
+import { CodeHighlightTabs } from '@/components'
+import convertIlcdPY from './conversion/code/ilcd/convert_ilcd.py?raw'
+import ilcdJSON from './conversion/code/ilcd/ilcd.json?raw'
+import epdImpactsPY from './conversion/code/epd_impacts.py?raw'
+import epdDumpsLoadsPY from './conversion/code/epd_dumps_loads.py?raw'
+
+## EPD
+
+Let's imagine that you have downloaded an ILCD formatted EPD. \
+You can now convert it using LCAx's converter:
+
+<CodeHighlightTabs
+  code={[
+    { code: convertIlcdPY, language: 'py', fileName: 'convert_ilcd.py' },
+    { code: ilcdJSON, language: 'json', fileName: 'ilcd.json' },
+  ]}
+/>
+
+It is now possible to access the impact data on the EPD object.
+
+<CodeHighlightTabs
+  code={[
+    { code: epdImpactsPY, language: 'py', fileName: 'epd_impacts.py' },
+    { code: ilcdJSON, language: 'json', fileName: 'ilcd.json' },
+  ]}
+/>
+
+You can also save the EPD as a LCAx formatted JSON file and load it back into Python memory.
+
+<CodeHighlightTabs
+  code={[
+    { code: epdDumpsLoadsPY, language: 'py', fileName: 'epd_dumps_loads.py' },
+    { code: ilcdJSON, language: 'json', fileName: 'ilcd.json' },
+  ]}
+/>

@@ -1,6 +1,7 @@
 import { Group } from '@mantine/core'
-import { GitHubLink, Logo, Search } from '@/components'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
+
+import { GitHubLink, Logo, Search, GitHubDiscussions } from '@/components'
 
 interface HeaderProps {
   height?: string
@@ -13,7 +14,10 @@ export const Header = ({ height, MenuComponent }: HeaderProps) => {
       {MenuComponent}
       <Logo height={height} />
       <Search />
-      <GitHubLink />
+      <Group>
+        <GitHubLink />
+        <GitHubDiscussions />
+      </Group>
     </Group>
   )
 }

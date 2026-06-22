@@ -1,5 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
+
+export class Country {
+    constructor(value: string);
+    static fromString(value: string): string;
+    toString(): string;
+    toJSON(): string;
+}
+
+
 export interface AreaType {
     value: number;
     unit: Unit;
@@ -258,7 +267,7 @@ export function calculateProduct(product: Product, options: CalculationOptions):
  * Calculate the impact results for a Project.
  * The impact results for the project will be added to the `results` property.
  */
-export function calculateProject(project: Project): Project;
+export function calculateProject(project: Project, options?: CalculationOptions | null): Project;
 
 /**
  * Converts a BR Standard Format file into a LCAx `Project`.
@@ -278,6 +287,8 @@ export function convertLCAbyg(data: string, resultData?: string | null): LCABygR
 export function countries(): Country[];
 
 export function generalEnergyClasses(): GeneralEnergyClass[];
+
+export function getCountryName(value: string): string;
 
 /**
  * Get the total impact

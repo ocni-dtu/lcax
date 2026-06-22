@@ -1,6 +1,5 @@
 import { Alert, Center } from '@mantine/core'
 import { IconAlertCircle } from '@tabler/icons-react'
-import React from 'react'
 
 interface ErrorMessageProps {
   error?: { message: string } | null

@@ -20,12 +20,17 @@ name = "export-schema"
 path = "src/bin/schemars.rs"
 test = false
 bench = false
+doc = false
 
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
 
 [features]
 default = []
+docs = [
+    "rustdoc-md",
+    "rustdoc-types"
+]
 pybindings = [
     "pyo3",
     "pyo3/extension-module",
@@ -57,6 +62,8 @@ lcax_models = { path = "../models", version = ">=3.0.0-beta.1" }
 lcax_convert = { path = "../convert", version = ">=3.0.0-beta.1" }
 lcax_calculation = { path = "../calculation", version = ">=3.0.0-beta.1" }
 lcax_validation = { path = "../validation", version = ">=3.0.0-beta.1" }
+rustdoc-md = { version = "0.2.0", optional = true}
+rustdoc-types = { version = "0.56", optional = true }
 
 # Python Bindings
 pyo3 = { version = "0.24", features = ["abi3-py310", "chrono"], optional = true }

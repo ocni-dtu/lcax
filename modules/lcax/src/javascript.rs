@@ -18,10 +18,15 @@ use lcax_models::project::Project;
 use lcax_validation;
 use lcax_validation::model::{ValidationResult, ValidationSchema};
 
-#[wasm_bindgen]
-extern "C" {
-    fn alert(s: &str);
+#[wasm_bindgen(typescript_custom_section)]
+const COUNTRY_TS: &'static str = r#"
+export class Country {
+    constructor(value: string);
+    static fromString(value: string): string;
+    toString(): string;
+    toJSON(): string;
 }
+"#;
 
 /// Converts a json formatted LCAByg project into a LCAx Project
 #[allow(non_snake_case)]
@@ -76,9 +81,12 @@ pub fn convertIlcd(data: String) -> Result<EPD, JsError> {
 ///The impact results for the project will be added to the `results` property.
 #[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn calculateProject(mut project: Project) -> Result<Project, JsError> {
+pub fn calculateProject(
+    mut project: Project,
+    options: Option<CalculationOptions>,
+) -> Result<Project, JsError> {
     console_error_panic_hook::set_once();
-    match calculate_project(&mut project, None) {
+    match calculate_project(&mut project, options) {
         Ok(project) => Ok(project.clone()),
         Err(error) => Err(JsError::new(error.to_string().as_str())),
     }

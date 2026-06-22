@@ -37,3 +37,11 @@ manifest-path = "modules/lcax/Cargo.toml"
 [tool.pytest.ini_options]
 pythonpath = "packages/python/src"
 testpaths = ["packages/python/tests/"]
+
+[tool.griffe2md]
+summary = false
+show_docstring_classes = false
+show_docstring_functions = false
+show_docstring_modules = false
+search_paths = ["packages/python/src"]
+show_root_heading = true

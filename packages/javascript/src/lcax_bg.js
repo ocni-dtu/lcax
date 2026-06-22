@@ -62,10 +62,11 @@ export function calculateProduct(product, options) {
  * Calculate the impact results for a Project.
  * The impact results for the project will be added to the `results` property.
  * @param {Project} project
+ * @param {CalculationOptions | null} [options]
  * @returns {Project}
  */
-export function calculateProject(project) {
-    const ret = wasm.calculateProject(project);
+export function calculateProject(project, options) {
+    const ret = wasm.calculateProject(project, isLikeNone(options) ? 0 : addToExternrefTable0(options));
     if (ret[2]) {
         throw takeFromExternrefTable0(ret[1]);
     }
@@ -141,6 +142,25 @@ export function generalEnergyClasses() {
     var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
     wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
     return v1;
+}
+
+/**
+ * @param {string} value
+ * @returns {string}
+ */
+export function getCountryName(value) {
+    let deferred2_0;
+    let deferred2_1;
+    try {
+        const ptr0 = passStringToWasm0(value, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.getCountryName(ptr0, len0);
+        deferred2_0 = ret[0];
+        deferred2_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
+    }
 }
 
 /**
