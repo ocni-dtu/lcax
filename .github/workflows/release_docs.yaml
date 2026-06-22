@@ -8,7 +8,7 @@ on:
         required: true
 
 env:
-  NODE_VERSION: '22.x'
+  NODE_VERSION: '24.x'
 
 jobs:
   buildDocs:
@@ -40,7 +40,7 @@ jobs:
 
       - name: Install Dependencies
         working-directory: docs
-        run: npm ci
+        run: npm i
 
       - name: Check
         working-directory: docs
