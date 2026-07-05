@@ -22,6 +22,14 @@ test = false
 bench = false
 doc = false
 
+[[bin]]
+name = "docs"
+path = "src/bin/docs.rs"
+test = false
+bench = false
+doc = false
+required-features = ['docs']
+
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
 
