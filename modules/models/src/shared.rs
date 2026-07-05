@@ -84,7 +84,7 @@ impl Default for Unit {
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct Conversion {
     pub value: f64,
     pub to: Unit,
@@ -118,7 +118,7 @@ impl Conversion {
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct Source {
     pub name: String,
     pub url: Option<String>,
@@ -145,12 +145,32 @@ impl Source {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct Reference {
     pub uri: String,
     pub format: Option<String>,
     pub version: Option<String>,
     pub overrides: Option<HashMap<String, Option<AnyValue>>>,
+}
+
+#[cfg_attr(feature = "pybindings", pymethods)]
+impl Reference {
+    #[cfg(feature = "pybindings")]
+    #[new]
+    #[pyo3(signature = (uri, format=None, version=None, overrides=None))]
+    pub fn new_py(
+        uri: String,
+        format: Option<String>,
+        version: Option<String>,
+        overrides: Option<HashMap<String, Option<AnyValue>>>,
+    ) -> Self {
+        Self {
+            uri,
+            format,
+            version,
+            overrides,
+        }
+    }
 }
 
 #[cfg_attr(feature = "jsbindings", declare)]

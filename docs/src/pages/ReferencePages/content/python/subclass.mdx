@@ -1,0 +1,470 @@
+---
+title: Python Subclassing Guide
+description: Learn how to subclass LCAx classes in Python to extend functionality
+---
+
+import { CodeHighlightTabs } from '@/components'
+
+# Python Subclassing Guide
+
+LCAx Python classes are implemented in Rust using PyO3 and support subclassing. This allows you to extend LCAx classes with custom methods, attributes, and inheritance hierarchies while maintaining full compatibility with the original functionality.
+
+## Overview
+
+All Python classes exported from LCAx can be subclassed. This includes:
+
+- **Core Classes**: `EPD`, `Product`, `Assembly`, `Project`
+- **Impact Classes**: `ImpactCategory`, `Impacts`, `GenericData`
+- **Validation Classes**: `ValidationSchema`, `ValidationRule`, `ValidationResult`
+- **Project Classes**: `BuildingInfo`, `Location`, `SoftwareInfo`
+- **Classification Classes**: `Classification`, `Transport`
+- **Utility Classes**: `AreaType`, `ValueUnit`
+
+## Basic Subclassing
+
+### Creating a Simple Subclass
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import EPD, Unit, Standard, Country
+from datetime import date
+
+class CustomEPD(EPD):
+def custom_method(self):
+return f"Custom EPD: {self.name}"
+
+# Create an instance of the subclass
+
+custom_epd = CustomEPD(
+name='Test EPD',
+declared_unit=Unit.KG,
+version="1.0",
+published_date=date.today(),
+valid_until=date.today(),
+standard=Standard.EN15804A2,
+location=Country.GBR,
+subtype=SubType.INDUSTRY,
+impacts=Impacts()
+)
+
+# Access both original and custom functionality
+
+print(custom_epd.name) # Original EPD method
+print(custom_epd.custom_method()) # Custom method`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Adding Custom Attributes
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import Product, Unit
+
+class EnhancedProduct(Product):
+def **init**(self, *args, \*\*kwargs):
+super().**init**(*args, \*\*kwargs)
+self.custom_field = "default_value"
+
+# Create instance and access custom attribute
+
+product = EnhancedProduct(
+name='Test Product',
+reference_service_life=50,
+impact_data=[],
+quantity=10.0,
+unit=Unit.KG
+)
+
+product.custom_field = "test_value"
+print(product.custom_field) # Output: test_value`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Inheritance Hierarchies
+
+### Creating Multi-level Inheritance
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import Assembly, Unit
+
+class BaseAssembly(Assembly):
+def base_method(self):
+return "Base Assembly method"
+
+class SpecializedAssembly(BaseAssembly):
+def specialized_method(self):
+return "Specialized Assembly method"
+
+# Create instance
+
+assembly = SpecializedAssembly(
+name='Test Assembly',
+quantity=1.0,
+unit=Unit.KG,
+products=[]
+)
+
+# Access methods from all levels
+
+print(assembly.base_method()) # From BaseAssembly
+print(assembly.specialized_method()) # From SpecializedAssembly`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Multiple Inheritance
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import Product, Unit
+
+class MixinClass:
+def mixin_method(self):
+return "Mixin functionality"
+
+class MixedProduct(MixinClass, Product):
+def custom_method(self):
+return "Custom Product method"
+
+# Create instance
+
+product = MixedProduct(
+name='Test Product',
+reference_service_life=50,
+impact_data=[],
+quantity=10.0,
+unit=Unit.KG
+)
+
+print(product.mixin_method()) # From MixinClass
+print(product.custom_method()) # From MixedProduct`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Method Overriding
+
+### Overriding Existing Methods
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import Project, Location, Country, SoftwareInfo, ProjectPhase
+
+class CustomProject(Project):
+def **str**(self): # Override string representation
+return f"CustomProject: {self.name} (Phase: {self.project_phase.value})"
+
+# Create instance
+
+location = Location(country=Country.GBR, city="London")
+software_info = SoftwareInfo(lca_software="Test Software", lca_software_version="1.0")
+
+project = CustomProject(
+name='Test Project',
+location=location,
+project_phase=ProjectPhase.CONCEPT_DESIGN,
+software_info=software_info,
+life_cycle_modules=[],
+impact_categories=[],
+assemblies=[]
+)
+
+print(str(project)) # Uses custom **str** method`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Extending Existing Methods
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import EPD, Unit, Standard, Country, Impacts
+from datetime import date
+
+class ExtendedEPD(EPD):
+def get_info(self): # Extend original functionality
+base_info = f"EPD: {self.name} (v{self.version})"
+custom_info = f"Published: {self.published_date}"
+return f"{base_info}\n{custom_info}"
+
+# Create instance
+
+epd = ExtendedEPD(
+name='Test EPD',
+declared_unit=Unit.KG,
+version="1.0",
+published_date=date.today(),
+valid_until=date.today(),
+standard=Standard.EN15804A2,
+location=Country.GBR,
+subtype=SubType.INDUSTRY,
+impacts=Impacts()
+)
+
+print(epd.get_info())`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Practical Examples
+
+### Example: Custom Validation Logic
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import ValidationResult
+
+class CustomValidationResult(ValidationResult):
+def is_critical(self):
+"""Custom method to determine if validation result is critical"""
+critical_keywords = ["error", "failed", "critical"]
+return any(keyword in self.message.lower() for keyword in critical_keywords)
+
+# Create instance
+
+result = CustomValidationResult(
+field="test_field",
+message="Critical error detected"
+)
+
+print(result.is_critical()) # Output: True`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Example: Enhanced Building Information
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import BuildingInfo, BuildingType, GeneralEnergyClass
+
+class SmartBuildingInfo(BuildingInfo):
+def calculate_energy_efficiency(self):
+"""Custom method to calculate energy efficiency rating"""
+if self.general_energy_class == GeneralEnergyClass.A:
+return "High efficiency"
+elif self.general_energy_class == GeneralEnergyClass.B:
+return "Good efficiency"
+else:
+return "Standard efficiency"
+
+# Create instance
+
+building = SmartBuildingInfo(
+building_type=BuildingType.RESIDENTIAL,
+building_typology=[],
+certifications=None,
+building_mass=None,
+building_height=None,
+gross_floor_area=None,
+heated_floor_area=None,
+building_footprint=None,
+floors_above_ground=1,
+floors_below_ground=None,
+roof_type=None,
+frame_type=None,
+building_completion_year=None,
+building_permit_year=None,
+energy_demand_heating=None,
+energy_supply_heating=None,
+energy_demand_electricity=None,
+energy_supply_electricity=None,
+exported_electricity=None,
+general_energy_class=GeneralEnergyClass.A,
+local_energy_class=None,
+building_users=None,
+building_model_scope=None
+)
+
+print(building.calculate_energy_efficiency()) # Output: High efficiency`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Example: Custom Transport Logic
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import Transport, Unit, LifeCycleModule, GenericData, Impacts
+
+class EcoTransport(Transport):
+def calculate_carbon_footprint(self):
+"""Custom method to calculate carbon footprint""" # This is a simplified example
+if hasattr(self, 'impact_data') and self.impact_data: # Access impact data for calculation
+return self.distance \* 0.1 # kg CO2 per km
+return 0.0
+
+# Create instance
+
+generic_data = GenericData(
+name="Transport Impact Data",
+declared_unit=Unit.KG,
+impacts=Impacts()
+)
+
+transport = EcoTransport(
+id="eco_transport",
+name="Eco Transport",
+life_cycle_modules=[LifeCycleModule.A1_A3],
+distance=100.0,
+distance_unit=Unit.KM,
+impact_data=generic_data
+)
+
+print(f"Carbon footprint: {transport.calculate_carbon_footprint()} kg CO2")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Best Practices
+
+### Type Checking
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import Product, Unit
+
+class CustomProduct(Product):
+def custom_method(self):
+return "Custom method"
+
+# Type checking works as expected
+
+product = CustomProduct(
+name='Test Product',
+reference_service_life=50,
+impact_data=[],
+quantity=10.0,
+unit=Unit.KG
+)
+
+print(isinstance(product, CustomProduct)) # True
+print(isinstance(product, Product)) # True`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Maintaining Compatibility
+
+When subclassing LCAx classes:
+
+1. **Preserve original constructors**: Always call `super().__init__()` with required parameters
+2. **Maintain type signatures**: Keep method signatures compatible with parent classes
+3. **Use proper inheritance**: Ensure your subclass inherits from the correct LCAx class
+4. **Test thoroughly**: Verify that both original and custom functionality works correctly
+
+### Performance Considerations
+
+- Subclassing adds minimal overhead to LCAx classes
+- Custom methods are executed in Python, while original methods remain in Rust for performance
+- Memory usage is slightly increased for custom attributes
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue: AttributeError when accessing custom attributes**
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `# Solution: Ensure you're accessing the attribute on the correct instance
+class CustomEPD(EPD):
+    pass
+
+epd = CustomEPD(...) # Create instance first
+epd.custom_field = "value" # Then add attribute`, language: 'python' },
+]}
+expanded={true}
+/>
+
+**Issue: TypeError when calling super().**init**()**
+
+<CodeHighlightTabs
+  code={[
+    {
+      fileName: 'Python',
+      code: `# Solution: Provide all required constructor parameters
+class CustomProduct(Product):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)  # Pass all parameters`,
+      language: 'python',
+    },
+  ]}
+  expanded={true}
+/>
+
+## Complete Example
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from lcax import (
+    EPD, Product, Assembly, Project,
+    Unit, Standard, Country, 
+    Impacts, SubType, 
+    Location, SoftwareInfo, ProjectPhase
+)
+from datetime import date
+
+# Custom EPD with extended functionality
+
+class SustainableEPD(EPD):
+def **init**(self, *args, \*\*kwargs):
+super().**init**(*args, \*\*kwargs)
+self.sustainability_rating = "A"
+
+    def get_sustainability_info(self):
+        return f"{self.name} - Rating: {self.sustainability_rating}"
+
+# Custom Product with lifecycle analysis
+
+class EcoProduct(Product):
+def calculate_lifecycle_impact(self):
+total_impact = sum(
+impact.total() for impact in self.impact_data
+if hasattr(impact, 'total')
+)
+return total_impact
+
+# Custom Assembly with validation
+
+class ValidatedAssembly(Assembly):
+def validate(self):
+if not self.products:
+return False
+return all(
+hasattr(product, 'name') and product.name
+for product in self.products
+)
+
+# Usage examples
+
+sustainable_epd = SustainableEPD(
+name='Sustainable Product EPD',
+declared_unit=Unit.KG,
+version="2.0",
+published_date=date.today(),
+valid_until=date.today(),
+standard=Standard.EN15804A2,
+location=Country.GBR,
+subtype=SubType.INDUSTRY,
+impacts=Impacts()
+)
+
+print(sustainable_epd.get_sustainability_info())
+
+# All custom classes maintain full compatibility with LCAx ecosystem
+
+print(isinstance(sustainable_epd, EPD)) # True
+print(isinstance(sustainable_epd, SustainableEPD)) # True`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Conclusion
+
+Subclassing LCAx classes provides a powerful way to extend functionality while maintaining compatibility with the core library. Whether you need to add custom methods, create specialized classes, or implement complex inheritance hierarchies, subclassing offers the flexibility to adapt LCAx to your specific requirements.
+
+For more advanced use cases, refer to the [LCAx Python API Reference](../api/python) and the [PyO3 documentation](https://pyo3.rs/) on Python-Rust interoperability.

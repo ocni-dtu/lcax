@@ -16,6 +16,8 @@ import { frontmatter as RustLCAxValidationFrontmatter } from './content/api/rust
 import Changelog from './content/CHANGELOG.md'
 import Migration from './content/migration.md'
 import { frontmatter as migrationFrontmatter } from './content/migration.md'
+import PythonSubclass from './content/python/subclass.mdx'
+import { frontmatter as subclassFrontmatter } from './content/python/subclass.mdx'
 import LCAxSchema from './content/schemas/lcax.mdx'
 import { frontmatter as lcaxFrontmatter } from './content/schemas/lcax.mdx'
 import ValidationSchema from './content/schemas/validation.mdx'
@@ -37,6 +39,18 @@ export const referenceIndex = {
       content: Migration,
       title: migrationFrontmatter.title,
       description: migrationFrontmatter.description,
+    },
+    {
+      label: 'Python',
+      items: [
+        {
+          label: 'Subclassing',
+          slug: '/reference/python/subclass',
+          content: PythonSubclass,
+          title: subclassFrontmatter.title,
+          description: subclassFrontmatter.description,
+        },
+      ],
     },
     {
       label: 'JSON Schemas',

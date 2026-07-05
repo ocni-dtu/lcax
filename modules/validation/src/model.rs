@@ -25,7 +25,7 @@ pub enum Level {
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct ValidationSchema {
     pub level: Level,
     pub field: String,
@@ -48,7 +48,7 @@ impl ValidationSchema {
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct ValidationRule {
     pub range: Option<[f64; 2]>,
     pub includes: Option<String>,
@@ -85,6 +85,15 @@ impl ValidationRule {
     }
 }
 
+#[cfg_attr(feature = "pybindings", pymethods)]
+impl ValidationResult {
+    #[cfg(feature = "pybindings")]
+    #[new]
+    pub fn new_py(field: String, message: String) -> Self {
+        Self { field, message }
+    }
+}
+
 #[derive(Deserialize, Serialize, JsonSchema, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(
@@ -92,7 +101,7 @@ impl ValidationRule {
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct ValidationResult {
     pub field: String,
     pub message: String,

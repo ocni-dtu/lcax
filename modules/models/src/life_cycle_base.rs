@@ -228,7 +228,7 @@ impl fmt::Display for ImpactCategoryKey {
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[cfg_attr(feature = "pybindings", pyclass)]
+#[cfg_attr(feature = "pybindings", pyclass(subclass))]
 pub struct ImpactCategory(HashMap<LifeCycleModule, Option<f64>>);
 
 impl ImpactCategory {
@@ -316,7 +316,7 @@ impl ImpactCategory {
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[cfg_attr(feature = "pybindings", pyclass)]
+#[cfg_attr(feature = "pybindings", pyclass(subclass))]
 pub struct Impacts(HashMap<ImpactCategoryKey, ImpactCategory>);
 
 impl Impacts {

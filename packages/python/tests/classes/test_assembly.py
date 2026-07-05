@@ -11,3 +11,11 @@ def test_assembly_new():
 
 def test_assembly_str(assembly):
     assert str(assembly) == f"Assembly: {assembly.id}"
+
+def test_assembly_subclass():
+    class SubAssembly(Assembly):
+        pass
+
+    subassembly = SubAssembly(name='Test', description="Test Assembly", quantity=4.0, unit=Unit.M, products=[])
+
+    assert subassembly

@@ -33,7 +33,7 @@ use pyo3::types::PyType;
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct EPD {
     pub id: String,
     pub name: String,
