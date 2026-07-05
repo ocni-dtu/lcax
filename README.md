@@ -37,24 +37,21 @@ cargo run -p lcax --target x86_64-unknown-linux-gnu --bin export-schema > lcax.s
 
 ## Install Python Dependencies
 ```bash
-pip install maturin venv mkdocs mkdocs-material
+uv tool install maturin
+uv sync --dev
 ```
 
 ## Run Python Tests
 
 ```bash
-maturin develop --extras tests,codegen --target x86_64-unknown-linux-gnu
-source .venv/bin/activate .
-          
-cd packages/python
-pytest tests/
+uv run pytest
 ```
 
-## Build Documentation
+## Documentation Dev Server
 
 ```bash
-maturin develop --extras doc --target x86_64-unknown-linux-gnu
-mkdocs serve
+cd docs
+npm run dev
 ```
 
 # JavaScript/TypeScript
