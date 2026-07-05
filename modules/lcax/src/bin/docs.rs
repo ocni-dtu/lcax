@@ -1,11 +1,9 @@
-#[cfg(feature = "docs")]
+#![cfg(feature = "docs")]
 use rustdoc_md::rustdoc_json_to_markdown;
-#[cfg(feature = "docs")]
 use rustdoc_types::Crate;
 use std::fs;
 use std::path::Path;
 
-#[cfg(feature = "docs")]
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let root_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
     let target_dir = root_dir.join("target/doc");

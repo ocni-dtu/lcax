@@ -16,6 +16,8 @@ import { frontmatter as RustLCAxValidationFrontmatter } from './content/api/rust
 import Changelog from './content/CHANGELOG.md'
 import Migration from './content/migration.md'
 import { frontmatter as migrationFrontmatter } from './content/migration.md'
+import Pydantic from './content/python/pydantic.mdx'
+import { frontmatter as pydanticFrontmatter } from './content/python/pydantic.mdx'
 import PythonSubclass from './content/python/subclass.mdx'
 import { frontmatter as subclassFrontmatter } from './content/python/subclass.mdx'
 import LCAxSchema from './content/schemas/lcax.mdx'
@@ -49,6 +51,13 @@ export const referenceIndex = {
           content: PythonSubclass,
           title: subclassFrontmatter.title,
           description: subclassFrontmatter.description,
+        },
+        {
+          label: 'Pydantic',
+          slug: '/reference/python/pydantic',
+          content: Pydantic,
+          title: pydanticFrontmatter.title,
+          description: pydanticFrontmatter.description,
         },
       ],
     },

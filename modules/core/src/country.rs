@@ -810,6 +810,7 @@ impl Country {
             _ => Country::UNKNOWN,
         }
     }
+    #[allow(dead_code)]
     fn get_name(&self) -> String {
         match self {
             Country::UNKNOWN => "Unknown",

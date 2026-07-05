@@ -13,10 +13,11 @@ dependencies = [
     "cffi",
 ]
 
-[project.optional-dependencies]
-tests = [
-    'pytest',
-    "pytest-datafixtures"
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-datafixtures",
+    "pydantic>=2.0"
 ]
 
 [project.urls]
