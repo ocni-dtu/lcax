@@ -1,3 +1,9 @@
+## [3.5.0](https://github.com/ocni-dtu/lcax/compare/v3.4.3...v3.5.0) (2026-07-05)
+
+### Features
+
+* **python:** enable subclassing for PyO3-exported classes ([#142](https://github.com/ocni-dtu/lcax/issues/142)) ([608bb23](https://github.com/ocni-dtu/lcax/commit/608bb2397d12f6231826953f577ac6edd54b2314))
+
 ## [3.4.3](https://github.com/ocni-dtu/lcax/compare/v3.4.2...v3.4.3) (2026-02-11)
 
 ### Bug Fixes
