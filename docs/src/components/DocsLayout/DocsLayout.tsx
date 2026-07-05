@@ -27,11 +27,12 @@ export const DocsLayout = ({
 }) => {
   const headerHeight = useMatches({ base: rem(50), lg: rem(65), xl: rem(100) })
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
+  const _title = `${title} | LCAx Docs`
 
   return (
     <>
       <Helmet key={title}>
-        <title>{title} | LCAx Docs</title>
+        <title>{_title}</title>
         <meta name='description' content={description} />
       </Helmet>
       <AppShell

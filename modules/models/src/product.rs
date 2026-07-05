@@ -21,7 +21,7 @@ use pyo3::prelude::*;
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct Product {
     pub id: String,
     pub name: String,
@@ -134,7 +134,7 @@ impl ProductReference {
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct Transport {
     pub id: String,
     pub name: String,
@@ -142,6 +142,29 @@ pub struct Transport {
     pub distance: f64,
     pub distance_unit: Unit,
     pub impact_data: ImpactData,
+}
+
+#[cfg_attr(feature = "pybindings", pymethods)]
+impl Transport {
+    #[cfg(feature = "pybindings")]
+    #[new]
+    pub fn new_py(
+        id: String,
+        name: String,
+        life_cycle_modules: Vec<LifeCycleModule>,
+        distance: f64,
+        distance_unit: Unit,
+        impact_data: ImpactData,
+    ) -> Self {
+        Self {
+            id,
+            name,
+            life_cycle_modules,
+            distance,
+            distance_unit,
+            impact_data,
+        }
+    }
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]

@@ -17,7 +17,7 @@ use crate::shared::{MetaData, Reference, Unit};
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct Assembly {
     pub id: String,
     pub name: String,
@@ -103,7 +103,7 @@ impl Assembly {
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct Classification {
     pub system: String,
     pub code: String,

@@ -198,3 +198,4 @@ package-lock.json
 *.tsbuildinfo
 .junie/plans
 .junie/memory
+.junie/models

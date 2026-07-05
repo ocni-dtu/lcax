@@ -34,7 +34,7 @@ use strum_macros::EnumIter;
     derive(Tsify),
     tsify(into_wasm_abi, from_wasm_abi)
 )]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct Project {
     pub id: String,
     pub name: String,
@@ -219,7 +219,7 @@ impl Project {
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct SoftwareInfo {
     pub lca_software: String,
     pub lca_software_version: Option<String>,
@@ -297,7 +297,7 @@ pub fn projectPhases() -> Vec<ProjectPhase> {
 #[derive(Deserialize, Serialize, JsonSchema, Default, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct Location {
     pub country: Country,
     pub city: Option<String>,
@@ -327,7 +327,7 @@ impl Location {
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "jsbindings", derive(Tsify))]
-#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all))]
+#[cfg_attr(feature = "pybindings", pyclass(get_all, set_all, subclass))]
 pub struct BuildingInfo {
     pub building_type: BuildingType,
     pub building_typology: Vec<BuildingTypology>,
@@ -352,6 +352,89 @@ pub struct BuildingInfo {
     pub local_energy_class: Option<String>,
     pub building_users: Option<u32>,
     pub building_model_scope: Option<Vec<BuildingModelScope>>,
+}
+
+#[cfg_attr(feature = "pybindings", pymethods)]
+impl BuildingInfo {
+    #[cfg(feature = "pybindings")]
+    #[new]
+    #[pyo3(signature = (
+        building_type,
+        building_typology,
+        certifications=None,
+        building_mass=None,
+        building_height=None,
+        gross_floor_area=None,
+        heated_floor_area=None,
+        building_footprint=None,
+        floors_above_ground=1,
+        floors_below_ground=None,
+        roof_type=None,
+        frame_type=None,
+        building_completion_year=None,
+        building_permit_year=None,
+        energy_demand_heating=None,
+        energy_supply_heating=None,
+        energy_demand_electricity=None,
+        energy_supply_electricity=None,
+        exported_electricity=None,
+        general_energy_class=None,
+        local_energy_class=None,
+        building_users=None,
+        building_model_scope=None
+    ))]
+    pub fn new_py(
+        building_type: BuildingType,
+        building_typology: Vec<BuildingTypology>,
+        certifications: Option<Vec<String>>,
+        building_mass: Option<ValueUnit>,
+        building_height: Option<ValueUnit>,
+        gross_floor_area: Option<AreaType>,
+        heated_floor_area: Option<AreaType>,
+        building_footprint: Option<ValueUnit>,
+        floors_above_ground: u16,
+        floors_below_ground: Option<u16>,
+        roof_type: Option<RoofType>,
+        frame_type: Option<String>,
+        building_completion_year: Option<u16>,
+        building_permit_year: Option<u16>,
+        energy_demand_heating: Option<f64>,
+        energy_supply_heating: Option<f64>,
+        energy_demand_electricity: Option<f64>,
+        energy_supply_electricity: Option<f64>,
+        exported_electricity: Option<f64>,
+        general_energy_class: Option<GeneralEnergyClass>,
+        local_energy_class: Option<String>,
+        building_users: Option<u32>,
+        building_model_scope: Option<Vec<BuildingModelScope>>,
+    ) -> Self {
+        let general_energy_class = general_energy_class.unwrap_or(GeneralEnergyClass::UNKNOWN);
+        Self {
+            building_type,
+            building_typology,
+            certifications,
+            building_mass,
+            building_height,
+            gross_floor_area,
+            heated_floor_area,
+            building_footprint,
+            floors_above_ground,
+            floors_below_ground,
+            roof_type,
+            frame_type,
+            building_completion_year,
+            building_permit_year,
+            energy_demand_heating,
+            energy_supply_heating,
+            energy_demand_electricity,
+            energy_supply_electricity,
+            exported_electricity,
+            general_energy_class,
+            local_energy_class,
+            building_users,
+            building_model_scope,
+        }
+    }
 }
 
 #[derive(Deserialize, Serialize, JsonSchema, Clone, PartialEq)]
