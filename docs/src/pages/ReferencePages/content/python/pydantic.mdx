@@ -1,0 +1,749 @@
+---
+title: Python Pydantic Integration Guide
+description: Learn how to use LCAx with Pydantic for data validation and serialization
+---
+
+import { CodeHighlightTabs } from '@/components'
+
+# Python Pydantic Integration Guide
+
+LCAx Python classes can be seamlessly integrated with Pydantic for enhanced data validation, serialization, and deserialization. This guide demonstrates how to leverage Pydantic's powerful features with LCAx classes.
+
+## Overview
+
+Pydantic integration with LCAx provides:
+
+- **Data Validation**: Ensure data conforms to expected schemas
+- **Serialization**: Convert LCAx objects to JSON and other formats
+- **Deserialization**: Create LCAx objects from JSON and other formats
+- **Type Safety**: Maintain type consistency across your application
+- **Integration**: Combine LCAx functionality with Pydantic models
+
+## Basic Integration
+
+### Creating Pydantic Models with LCAx Types
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from pydantic import BaseModel
+from typing import Optional
+from lcax import EPD, Unit, Standard, Country
+from datetime import date
+
+class EPDModel(BaseModel):
+name: str
+declared_unit: Unit
+version: str
+published_date: date
+valid_until: date
+standard: Standard
+location: Country
+
+    def to_epd(self) -> EPD:
+        """Convert Pydantic model to LCAx EPD"""
+        return EPD(
+            name=self.name,
+            declared_unit=self.declared_unit,
+            version=self.version,
+            published_date=self.published_date,
+            valid_until=self.valid_until,
+            standard=self.standard,
+            location=self.location
+        )
+
+# Create and validate EPD data
+
+epd_data = EPDModel(
+name='Test EPD',
+declared_unit=Unit.KG,
+version="1.0",
+published_date=date.today(),
+valid_until=date.today(),
+standard=Standard.EN15804A2,
+location=Country.GBR
+)
+
+# Convert to LCAx EPD
+
+epd = epd_data.to_epd()
+print(f"Created EPD: {epd.name}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Validating LCAx Objects with Pydantic
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from pydantic import BaseModel, validator
+from lcax import Product, Unit
+
+class ValidatedProduct(BaseModel):
+name: str
+reference_service_life: int
+quantity: float
+unit: Unit
+
+    @validator('reference_service_life')
+    def validate_service_life(cls, v):
+        if v <= 0:
+            raise ValueError('Service life must be positive')
+        return v
+
+    def to_product(self) -> Product:
+        """Convert validated model to LCAx Product"""
+        return Product(
+            name=self.name,
+            reference_service_life=self.reference_service_life,
+            impact_data=[],
+            quantity=self.quantity,
+            unit=self.unit
+        )
+
+# Validate and create product
+
+try:
+product_data = ValidatedProduct(
+name='Test Product',
+reference_service_life=50,
+quantity=10.0,
+unit=Unit.KG
+)
+product = product_data.to_product()
+print(f"Valid product created: {product.name}")
+except ValueError as e:
+print(f"Validation error: {e}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Advanced Integration
+
+### Using Pydantic for Data Serialization
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from pydantic import BaseModel
+from typing import List
+from lcax import Assembly, Unit, Product
+import json
+
+class AssemblyModel(BaseModel):
+name: str
+quantity: float
+unit: Unit
+products: List[str] # Product names for simplicity
+
+    def to_assembly(self) -> Assembly:
+        """Convert model to LCAx Assembly"""
+        # Create dummy products for demonstration
+        products = [
+            Product(
+                name=name,
+                reference_service_life=50,
+                impact_data=[],
+                quantity=1.0,
+                unit=Unit.KG
+            )
+            for name in self.products
+        ]
+
+        return Assembly(
+            name=self.name,
+            quantity=self.quantity,
+            unit=self.unit,
+            products=products
+        )
+
+    @classmethod
+    def from_assembly(cls, assembly: Assembly) -> 'AssemblyModel':
+        """Convert LCAx Assembly to model"""
+        return cls(
+            name=assembly.name,
+            quantity=assembly.quantity,
+            unit=assembly.unit,
+            products=[product.name for product in assembly.products]
+        )
+
+# Create and serialize assembly
+
+assembly = Assembly(
+name='Test Assembly',
+quantity=1.0,
+unit=Unit.KG,
+products=[
+Product(name='Product1', reference_service_life=50, impact_data=[], quantity=1.0, unit=Unit.KG),
+Product(name='Product2', reference_service_life=50, impact_data=[], quantity=1.0, unit=Unit.KG)
+]
+)
+
+# Convert to model and serialize
+
+model = AssemblyModel.from_assembly(assembly)
+json_data = model.model_dump_json()
+print(f"Serialized: {json_data}")
+
+# Deserialize and convert back
+
+deserialized = AssemblyModel.model_validate_json(json_data)
+new_assembly = deserialized.to_assembly()
+print(f"Deserialized assembly: {new_assembly.name}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Combining LCAx and Pydantic in Complex Models
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from pydantic import BaseModel
+from typing import Optional, List
+from lcax import Project, Location, Country, SoftwareInfo, ProjectPhase, Assembly
+
+class ProjectModel(BaseModel):
+name: str
+location_country: Country
+location_city: Optional[str] = None
+project_phase: ProjectPhase
+software_name: str
+software_version: str
+assemblies: List[str] # Assembly names
+
+    def to_project(self) -> Project:
+        """Convert model to LCAx Project"""
+        location = Location(
+            country=self.location_country,
+            city=self.location_city
+        )
+
+        software_info = SoftwareInfo(
+            lca_software=self.software_name,
+            lca_software_version=self.software_version
+        )
+
+        # Create dummy assemblies for demonstration
+        assemblies = [
+            Assembly(
+                name=name,
+                quantity=1.0,
+                unit=Unit.KG,
+                products=[]
+            )
+            for name in self.assemblies
+        ]
+
+        return Project(
+            name=self.name,
+            location=location,
+            project_phase=self.project_phase,
+            software_info=software_info,
+            life_cycle_modules=[],
+            impact_categories=[],
+            assemblies=assemblies
+        )
+
+# Create complex project model
+
+project_data = ProjectModel(
+name='Test Project',
+location_country=Country.GBR,
+location_city='London',
+project_phase=ProjectPhase.CONCEPT_DESIGN,
+software_name='Test Software',
+software_version='1.0',
+assemblies=['Assembly1', 'Assembly2']
+)
+
+# Convert to LCAx Project
+
+project = project_data.to_project()
+print(f"Project created: {project.name} in {project.location.city}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Practical Examples
+
+### Example: Data Validation Pipeline
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from pydantic import BaseModel, validator
+from typing import List
+from lcax import EPD, Unit, Standard, Country, Impacts
+from datetime import date
+
+class EPDValidationModel(BaseModel):
+name: str
+declared_unit: Unit
+version: str
+published_date: date
+valid_until: date
+standard: Standard
+location: Country
+
+    @validator('valid_until')
+    def validate_dates(cls, v, values):
+        if 'published_date' in values and v < values['published_date']:
+            raise ValueError('Valid until date must be after published date')
+        return v
+
+    @validator('version')
+    def validate_version(cls, v):
+        # Simple version format validation
+        if not v or len(v.strip()) == 0:
+            raise ValueError('Version cannot be empty')
+        return v
+
+    def to_epd(self) -> EPD:
+        """Create validated EPD"""
+        return EPD(
+            name=self.name,
+            declared_unit=self.declared_unit,
+            version=self.version,
+            published_date=self.published_date,
+            valid_until=self.valid_until,
+            standard=self.standard,
+            location=self.location,
+            impacts=Impacts()
+        )
+
+# Validate and create EPD
+
+try:
+epd_data = EPDValidationModel(
+name='Validated EPD',
+declared_unit=Unit.KG,
+version="1.0.0",
+published_date=date.today(),
+valid_until=date(2025, 12, 31), # Future date
+standard=Standard.EN15804A2,
+location=Country.GBR
+)
+
+    epd = epd_data.to_epd()
+    print(f"Successfully created validated EPD: {epd.name}")
+
+except ValueError as e:
+print(f"Validation failed: {e}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Example: API Integration with Pydantic
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from pydantic import BaseModel
+from typing import Optional
+from lcax import Product, Unit
+import json
+
+class APIProductModel(BaseModel):
+id: str
+name: str
+description: Optional[str] = None
+quantity: float
+unit: str # Will be converted to Unit enum
+
+    def to_product(self) -> Product:
+        """Convert API model to LCAx Product"""
+        # Convert string unit to Unit enum
+        unit_map = {
+            'kg': Unit.KG,
+            'm2': Unit.M2,
+            'm3': Unit.M3,
+            'l': Unit.L,
+            'kwh': Unit.KWH
+        }
+
+        lcax_unit = unit_map.get(self.unit.lower(), Unit.KG)
+
+        return Product(
+            name=self.name,
+            reference_service_life=50,  # Default value
+            impact_data=[],
+            quantity=self.quantity,
+            unit=lcax_unit
+        )
+
+    @classmethod
+    def from_product(cls, product: Product, product_id: str) -> 'APIProductModel':
+        """Convert LCAx Product to API model"""
+        # Convert Unit enum to string
+        unit_map = {
+            Unit.KG: 'kg',
+            Unit.M2: 'm2',
+            Unit.M3: 'm3',
+            Unit.L: 'l',
+            Unit.KWH: 'kwh'
+        }
+
+        return cls(
+            id=product_id,
+            name=product.name,
+            quantity=product.quantity,
+            unit=unit_map.get(product.unit, 'kg')
+        )
+
+# Simulate API response
+
+api_response = '''
+{
+"id": "prod_123",
+"name": "API Product",
+"description": "Product from API",
+"quantity": 25.5,
+"unit": "kg"
+}
+'''
+
+# Deserialize API response and convert to LCAx
+
+api_product = APIProductModel.model_validate_json(api_response)
+product = api_product.to_product()
+print(f"API Product: {product.name}, Quantity: {product.quantity}")
+
+# Convert LCAx product back to API model
+
+back_to_api = APIProductModel.from_product(product, "prod_456")
+print(f"Back to API: {back_to_api.model_dump_json()}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Best Practices
+
+### Type Safety and Validation
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from pydantic import BaseModel, Field
+from lcax import BuildingInfo, BuildingType, GeneralEnergyClass
+
+class BuildingInfoModel(BaseModel):
+building_type: BuildingType = Field(..., description="Type of building")
+general_energy_class: GeneralEnergyClass = Field(..., description="Energy efficiency class")
+gross_floor_area: Optional[float] = Field(None, description="Gross floor area in m²")
+
+    def to_building_info(self) -> BuildingInfo:
+        """Convert model to LCAx BuildingInfo"""
+        return BuildingInfo(
+            building_type=self.building_type,
+            building_typology=[],
+            certifications=None,
+            building_mass=None,
+            building_height=None,
+            gross_floor_area=self.gross_floor_area,
+            heated_floor_area=None,
+            building_footprint=None,
+            floors_above_ground=1,
+            floors_below_ground=None,
+            roof_type=None,
+            frame_type=None,
+            building_completion_year=None,
+            building_permit_year=None,
+            energy_demand_heating=None,
+            energy_supply_heating=None,
+            energy_demand_electricity=None,
+            energy_supply_electricity=None,
+            exported_electricity=None,
+            general_energy_class=self.general_energy_class,
+            local_energy_class=None,
+            building_users=None,
+            building_model_scope=None
+        )
+
+# Create validated building info
+
+building_data = BuildingInfoModel(
+building_type=BuildingType.RESIDENTIAL,
+general_energy_class=GeneralEnergyClass.A,
+gross_floor_area=150.5
+)
+
+building_info = building_data.to_building_info()
+print(f"Building type: {building_info.building_type.value}")
+print(f"Energy class: {building_info.general_energy_class.value}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+### Performance Considerations
+
+- **Validation Overhead**: Pydantic validation adds some overhead to object creation. Use it when data integrity is critical.
+- **Serialization Cost**: JSON serialization/deserialization has performance implications. Cache results when possible.
+- **Memory Usage**: Pydantic models and LCAx objects both consume memory. Be mindful of large datasets.
+- **Conversion Efficiency**: Minimize unnecessary conversions between Pydantic models and LCAx objects.
+
+### Integration Patterns
+
+1. **Adapter Pattern**: Create adapter classes to convert between Pydantic models and LCAx objects
+2. **Decorator Pattern**: Use Pydantic models as decorators around LCAx objects for validation
+3. **Factory Pattern**: Implement factory methods to create validated LCAx objects
+4. **Repository Pattern**: Combine Pydantic validation with data access layers
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue: Type conversion errors**
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `# Solution: Ensure proper type conversion between Pydantic and LCAx
+from pydantic import BaseModel
+from lcax import Unit
+
+class ProductModel(BaseModel):
+unit: str # String representation
+
+    def to_lcax_unit(self) -> Unit:
+        # Map string to Unit enum
+        unit_map = {
+            'kg': Unit.KG,
+            'm2': Unit.M2,
+            'm3': Unit.M3
+        }
+        return unit_map.get(self.unit.lower(), Unit.KG)
+
+model = ProductModel(unit='kg')
+lcax_unit = model.to_lcax_unit()
+print(f"Converted unit: {lcax_unit}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+**Issue: Validation errors with LCAx objects**
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `# Solution: Validate data before creating LCAx objects
+from pydantic import BaseModel, validator
+from lcax import Product, Unit
+
+class SafeProductModel(BaseModel):
+name: str
+quantity: float
+
+    @validator('quantity')
+    def validate_quantity(cls, v):
+        if v <= 0:
+            raise ValueError('Quantity must be positive')
+        return v
+
+    def to_product(self) -> Product:
+        # Only create LCAx object if validation passes
+        return Product(
+            name=self.name,
+            reference_service_life=50,
+            impact_data=[],
+            quantity=self.quantity,
+            unit=Unit.KG
+        )
+
+try:
+product_data = SafeProductModel(name='Test', quantity=10.0)
+product = product_data.to_product()
+print(f"Valid product: {product.name}")
+except ValueError as e:
+print(f"Validation error: {e}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Complete Example
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'Python', code: `from pydantic import BaseModel, validator
+from typing import List, Optional
+from lcax import (
+    EPD, Product, Assembly, Project,
+    Unit, Standard, Country, Impacts,
+    Location, SoftwareInfo, ProjectPhase,
+    BuildingInfo, BuildingType, GeneralEnergyClass
+)
+from datetime import date
+
+# Pydantic models for LCAx integration
+
+class EPDModel(BaseModel):
+name: str
+declared_unit: Unit
+version: str
+published_date: date
+valid_until: date
+standard: Standard
+location: Country
+
+    @validator('valid_until')
+    def validate_dates(cls, v, values):
+        if 'published_date' in values and v < values['published_date']:
+            raise ValueError('Valid until must be after published date')
+        return v
+
+    def to_epd(self) -> EPD:
+        return EPD(
+            name=self.name,
+            declared_unit=self.declared_unit,
+            version=self.version,
+            published_date=self.published_date,
+            valid_until=self.valid_until,
+            standard=self.standard,
+            location=self.location,
+            impacts=Impacts()
+        )
+
+class ProductModel(BaseModel):
+name: str
+reference_service_life: int
+quantity: float
+unit: Unit
+
+    @validator('reference_service_life')
+    def validate_service_life(cls, v):
+        if v <= 0:
+            raise ValueError('Service life must be positive')
+        return v
+
+    def to_product(self) -> Product:
+        return Product(
+            name=self.name,
+            reference_service_life=self.reference_service_life,
+            impact_data=[],
+            quantity=self.quantity,
+            unit=self.unit
+        )
+
+class AssemblyModel(BaseModel):
+name: str
+quantity: float
+unit: Unit
+product_names: List[str]
+
+    def to_assembly(self) -> Assembly:
+        products = [
+            Product(
+                name=name,
+                reference_service_life=50,
+                impact_data=[],
+                quantity=1.0,
+                unit=Unit.KG
+            )
+            for name in self.product_names
+        ]
+
+        return Assembly(
+            name=self.name,
+            quantity=self.quantity,
+            unit=self.unit,
+            products=products
+        )
+
+class ProjectModel(BaseModel):
+name: str
+location_country: Country
+location_city: Optional[str] = None
+project_phase: ProjectPhase
+software_name: str
+software_version: str
+assembly_names: List[str]
+
+    def to_project(self) -> Project:
+        location = Location(
+            country=self.location_country,
+            city=self.location_city
+        )
+
+        software_info = SoftwareInfo(
+            lca_software=self.software_name,
+            lca_software_version=self.software_version
+        )
+
+        assemblies = [
+            Assembly(
+                name=name,
+                quantity=1.0,
+                unit=Unit.KG,
+                products=[]
+            )
+            for name in self.assembly_names
+        ]
+
+        return Project(
+            name=self.name,
+            location=location,
+            project_phase=self.project_phase,
+            software_info=software_info,
+            life_cycle_modules=[],
+            impact_categories=[],
+            assemblies=assemblies
+        )
+
+# Usage example: Complete workflow
+
+# 1. Create and validate EPD
+
+epd_data = EPDModel(
+name='Pydantic EPD',
+declared_unit=Unit.KG,
+version="1.0.0",
+published_date=date.today(),
+valid_until=date(2025, 12, 31),
+standard=Standard.EN15804A2,
+location=Country.GBR
+)
+epd = epd_data.to_epd()
+
+# 2. Create and validate Product
+
+product_data = ProductModel(
+name='Pydantic Product',
+reference_service_life=50,
+quantity=10.0,
+unit=Unit.KG
+)
+product = product_data.to_product()
+
+# 3. Create and validate Assembly
+
+assembly_data = AssemblyModel(
+name='Pydantic Assembly',
+quantity=1.0,
+unit=Unit.KG,
+product_names=['Product1', 'Product2']
+)
+assembly = assembly_data.to_assembly()
+
+# 4. Create and validate Project
+
+project_data = ProjectModel(
+name='Pydantic Project',
+location_country=Country.GBR,
+location_city='London',
+project_phase=ProjectPhase.CONCEPT_DESIGN,
+software_name='Pydantic LCA',
+software_version='1.0',
+assembly_names=['Assembly1', 'Assembly2']
+)
+project = project_data.to_project()
+
+print(f"Created project: {project.name}")
+print(f"With EPD: {epd.name}")
+print(f"Product: {product.name}")
+print(f"Assembly: {assembly.name}")
+
+# All objects maintain full LCAx compatibility
+
+print(f"EPD is LCAx type: {isinstance(epd, EPD)}")
+print(f"Product is LCAx type: {isinstance(product, Product)}")`, language: 'python' },
+]}
+expanded={true}
+/>
+
+## Conclusion
+
+Integrating LCAx with Pydantic provides a robust solution for data validation, serialization, and type safety. This combination allows you to leverage Pydantic's powerful validation capabilities while maintaining full compatibility with LCAx's Rust-powered performance.
+
+For more advanced use cases, refer to the [LCAx Python API Reference](../api/python) and the [Pydantic documentation](https://pydantic.dev/) on data validation and serialization.
