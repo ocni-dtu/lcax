@@ -71,6 +71,8 @@ You can also calculate impacts for individual assemblies and products. These fun
 
 ### Product
 
+When a product has multiple `impactData` entries (EPDs and/or generic data), their impacts are **summed**. Disjoint life-cycle modules from different entries all appear in the result; shared `(impact category, life-cycle module)` keys add together. Combination is order-independent. Assembly quantity is applied after the product-level sum.
+
 <CodeHighlightTabs
   code={[
     { fileName: 'calculate_product.py', code: calculateProductPY, language: 'py' },

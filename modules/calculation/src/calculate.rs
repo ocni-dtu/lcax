@@ -113,15 +113,16 @@ pub fn calculate_product(
                                 })?;
                         }
 
-                        impact_category.insert(
-                            life_cycle_module.clone(),
-                            Some(add_impact_result(
+                        add_to_impact_category(
+                            &mut impact_category,
+                            life_cycle_module,
+                            add_impact_result(
                                 &impacts,
                                 impact_category_key,
                                 life_cycle_module,
                                 &conversion_factor,
                                 product,
-                            )),
+                            ),
                         );
                     }
                     ImpactData::GenericData(data) => {
@@ -143,15 +144,16 @@ pub fn calculate_product(
                                 ),
                             }
                         }
-                        impact_category.insert(
-                            life_cycle_module.clone(),
-                            Some(add_impact_result(
+                        add_to_impact_category(
+                            &mut impact_category,
+                            life_cycle_module,
+                            add_impact_result(
                                 &impacts,
                                 impact_category_key,
                                 life_cycle_module,
                                 &conversion_factor,
                                 product,
-                            )),
+                            ),
                         );
                     }
                 }
@@ -161,6 +163,18 @@ pub fn calculate_product(
     }
     product.results = Some(product_results.clone());
     Ok(product_results)
+}
+
+fn add_to_impact_category(
+    impact_category: &mut ImpactCategory,
+    life_cycle_module: &LifeCycleModule,
+    contribution: f64,
+) {
+    let existing = impact_category
+        .get(life_cycle_module)
+        .and_then(|value| *value)
+        .unwrap_or(0.0);
+    impact_category.insert(life_cycle_module.clone(), Some(existing + contribution));
 }
 
 fn add_impact_result(

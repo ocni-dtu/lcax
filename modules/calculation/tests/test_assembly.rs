@@ -3,8 +3,12 @@ use std::path::Path;
 
 use lcax_calculation::calculate::calculate_assembly;
 use lcax_calculation::models::CalculationOptions;
-use lcax_models::assembly::AssemblyReference;
+use lcax_models::assembly::{Assembly, AssemblyReference};
+use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
+use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
+use lcax_models::product::{ImpactData, Product, ProductReference};
 use lcax_models::project::Project;
+use lcax_models::shared::Unit;
 
 #[test]
 fn test_calculate_assembly() -> Result<(), String> {
@@ -28,4 +32,71 @@ fn test_calculate_assembly() -> Result<(), String> {
     calculate_assembly(assembly, &options)?;
     assert!(assembly.results.is_some());
     Ok(())
+}
+
+#[test]
+fn test_assembly_quantity_applied_after_summing_product_impact_data() -> Result<(), String> {
+    let mut assembly = Assembly {
+        id: "1".to_string(),
+        name: "Assembly 1".to_string(),
+        description: None,
+        comment: None,
+        quantity: 2.0,
+        unit: Unit::M,
+        classification: None,
+        products: vec![ProductReference::Product(Product {
+            id: "1".to_string(),
+            name: "Product 1".to_string(),
+            description: None,
+            reference_service_life: 20,
+            impact_data: vec![epd_gwp_a1a3("818", 818.0), epd_gwp_a1a3("100", 100.0)],
+            quantity: 1.0,
+            unit: Unit::M,
+            transport: None,
+            results: None,
+            meta_data: None,
+        })],
+        results: None,
+        meta_data: None,
+    };
+    let options = CalculationOptions {
+        reference_study_period: None,
+        life_cycle_modules: vec![LifeCycleModule::A1A3],
+        impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
+    };
+
+    let result = calculate_assembly(&mut assembly, &options)?;
+    assert_eq!(
+        *result
+            .get(&ImpactCategoryKey::GWP)
+            .unwrap()
+            .get(&LifeCycleModule::A1A3)
+            .unwrap(),
+        Some(1836.0)
+    );
+    Ok(())
+}
+
+fn epd_gwp_a1a3(id: &str, value: f64) -> ImpactData {
+    ImpactData::EPD(EPDReference::EPD(EPD {
+        id: id.to_string(),
+        name: id.to_string(),
+        declared_unit: Unit::M,
+        version: "".to_string(),
+        published_date: Default::default(),
+        valid_until: Default::default(),
+        source: None,
+        reference_service_life: None,
+        standard: Standard::EN15804A1,
+        comment: None,
+        location: Default::default(),
+        subtype: SubType::GENERIC,
+        conversions: None,
+        impacts: Impacts::from([(
+            ImpactCategoryKey::GWP,
+            ImpactCategory::from([(LifeCycleModule::A1A3, Some(value))]),
+        )]),
+        meta_data: None,
+    }))
 }
