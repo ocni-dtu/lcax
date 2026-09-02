@@ -1,3 +1,9 @@
+## [3.5.1](https://github.com/ocni-dtu/lcax/compare/v3.5.0...v3.5.1) (2026-09-02)
+
+### Bug Fixes
+
+* **calculation:** sum multiple impact_data entries instead of last-wins ([a9c46d5](https://github.com/ocni-dtu/lcax/commit/a9c46d5465ddf196e9268195f2c5bffbd0f66f78)), closes [#145](https://github.com/ocni-dtu/lcax/issues/145)
+
 ## [3.5.0](https://github.com/ocni-dtu/lcax/compare/v3.4.3...v3.5.0) (2026-07-05)
 
 ### Features
