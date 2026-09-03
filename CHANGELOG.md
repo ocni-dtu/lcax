@@ -1,3 +1,9 @@
+## [3.6.0](https://github.com/ocni-dtu/lcax/compare/v3.5.1...v3.6.0) (2026-09-02)
+
+### Features
+
+* **devcontainer:** add development container configuration ([1971e0f](https://github.com/ocni-dtu/lcax/commit/1971e0f54d879128f60d268e20f02b458d156999))
+
 ## [3.5.1](https://github.com/ocni-dtu/lcax/compare/v3.5.0...v3.5.1) (2026-09-02)
 
 ### Bug Fixes
