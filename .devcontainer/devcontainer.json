@@ -1,3 +1,32 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d5525abb59ad9db6efb31fc4ca1b009ac4106de29f49e36a048e1c447141c557
-size 811
+{
+  "name": "LCAx",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".",
+  },
+  "customizations" : {
+    "jetbrains" : {
+      "backend" : "IntelliJ",
+      "settings" : {},
+      "plugins": []
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false,
+      "installOhMyZsh": false,
+      "installOhMyZshConfig": false
+    },
+    "ghcr.io/devcontainers/features/git" : {},
+    "ghcr.io/devcontainers/features/git-lfs" : {},
+    "ghcr.io/devcontainers/features/github-cli" : {},
+    "ghcr.io/devcontainers/features/node:2": {
+      "version": "24.13.0",
+      "npmVersion": "11.6.2"
+    },
+    "ghcr.io/devcontainers/features/rust:1": {},
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "containerUser": "ubuntu",
+  "remoteUser": "ubuntu"
+}
