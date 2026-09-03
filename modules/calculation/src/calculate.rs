@@ -40,9 +40,8 @@ pub fn calculate_project(
                     if let Ok(actual_assembly) = assembly.resolve_mut() {
                         for product in &mut actual_assembly.products {
                             if let Ok(actual_product) = product.resolve_mut() {
-                                let meta = actual_product
-                                    .meta_data
-                                    .get_or_insert_with(HashMap::new);
+                                let meta =
+                                    actual_product.meta_data.get_or_insert_with(HashMap::new);
                                 if !meta.contains_key("startYear")
                                     && !meta.contains_key("start_year")
                                 {
@@ -81,7 +80,10 @@ pub fn calculate_assembly(
         Impacts::new_results(&options.impact_categories, &options.life_cycle_modules);
 
     let assembly_rate_based = is_rate_based(&assembly.meta_data, &assembly.description);
-    let rsp = options.reference_study_period.map(|r| r as f64).unwrap_or(1.0);
+    let rsp = options
+        .reference_study_period
+        .map(|r| r as f64)
+        .unwrap_or(1.0);
 
     for product_ref in &mut assembly.products {
         let product = product_ref.resolve_mut()?;
@@ -211,27 +213,21 @@ pub fn calculate_product(
                         &id,
                         &product.id,
                     )?;
-                    let raw_val =
-                        get_raw_impact(&impacts, impact_category_key, life_cycle_module)
-                            .unwrap_or(0.0);
+                    let raw_val = get_raw_impact(&impacts, impact_category_key, life_cycle_module)
+                        .unwrap_or(0.0);
                     milestones.push((*year as f64, raw_val * conversion_factor));
                 }
                 milestones.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap());
 
                 let has_any_value = milestones.iter().any(|(_, v)| v.abs() > 0.0);
                 if has_any_value {
-                    let start_year = extract_start_year(&product.meta_data)
-                        .unwrap_or(milestones[0].0);
+                    let start_year =
+                        extract_start_year(&product.meta_data).unwrap_or(milestones[0].0);
                     let end_year = start_year + study_period;
-                    let integral =
-                        integrate_piecewise_linear(&milestones, start_year, end_year);
+                    let integral = integrate_piecewise_linear(&milestones, start_year, end_year);
                     let time_weighted_avg = integral / study_period;
                     let contribution = time_weighted_avg * product.quantity * rate_scale;
-                    add_to_impact_category(
-                        &mut impact_category,
-                        life_cycle_module,
-                        contribution,
-                    );
+                    add_to_impact_category(&mut impact_category, life_cycle_module, contribution);
                 } else {
                     add_to_impact_category(&mut impact_category, life_cycle_module, 0.0);
                 }
@@ -264,16 +260,10 @@ pub fn calculate_product(
                         &id,
                         &product.id,
                     )?;
-                    let raw_val =
-                        get_raw_impact(&impacts, impact_category_key, life_cycle_module)
-                            .unwrap_or(0.0);
-                    let contribution =
-                        raw_val * conversion_factor * product.quantity * rate_scale;
-                    add_to_impact_category(
-                        &mut impact_category,
-                        life_cycle_module,
-                        contribution,
-                    );
+                    let raw_val = get_raw_impact(&impacts, impact_category_key, life_cycle_module)
+                        .unwrap_or(0.0);
+                    let contribution = raw_val * conversion_factor * product.quantity * rate_scale;
+                    add_to_impact_category(&mut impact_category, life_cycle_module, contribution);
                 }
             } else {
                 for impact_data in &product.impact_data {
@@ -304,16 +294,10 @@ pub fn calculate_product(
                         &id,
                         &product.id,
                     )?;
-                    let raw_val =
-                        get_raw_impact(&impacts, impact_category_key, life_cycle_module)
-                            .unwrap_or(0.0);
-                    let contribution =
-                        raw_val * conversion_factor * product.quantity * rate_scale;
-                    add_to_impact_category(
-                        &mut impact_category,
-                        life_cycle_module,
-                        contribution,
-                    );
+                    let raw_val = get_raw_impact(&impacts, impact_category_key, life_cycle_module)
+                        .unwrap_or(0.0);
+                    let contribution = raw_val * conversion_factor * product.quantity * rate_scale;
+                    add_to_impact_category(&mut impact_category, life_cycle_module, contribution);
                 }
             }
         }
@@ -341,13 +325,7 @@ fn is_rate_based(meta_data: &Option<MetaData>, description: &Option<String>) -> 
         }
     }
     if let Some(meta) = meta_data {
-        for key in [
-            "isAnnual",
-            "is_annual",
-            "annual",
-            "rateBased",
-            "rate_based",
-        ] {
+        for key in ["isAnnual", "is_annual", "annual", "rateBased", "rate_based"] {
             if let Some(Some(val)) = meta.get(key) {
                 match val {
                     AnyValue::Bool(b) => {
@@ -365,8 +343,9 @@ fn is_rate_based(meta_data: &Option<MetaData>, description: &Option<String>) -> 
                 }
             }
         }
-        if let Some(Some(AnyValue::String(s))) =
-            meta.get("quantityType").or_else(|| meta.get("quantity_type"))
+        if let Some(Some(AnyValue::String(s))) = meta
+            .get("quantityType")
+            .or_else(|| meta.get("quantity_type"))
         {
             let s_lower = s.to_ascii_lowercase();
             if s_lower == "annual" || s_lower == "rate_based" || s_lower == "ratebased" {

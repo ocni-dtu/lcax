@@ -288,7 +288,9 @@ impl FromBROperation for Product {
                     ("isAnnual".to_string(), Some(AnyValue::Bool(true))),
                     (
                         "startYear".to_string(),
-                        Some(AnyValue::Number(Number::Int(*project_completion_year as i64))),
+                        Some(AnyValue::Number(Number::Int(
+                            *project_completion_year as i64,
+                        ))),
                     ),
                 ])),
             },
@@ -313,7 +315,9 @@ impl FromBROperation for Product {
                     ("isAnnual".to_string(), Some(AnyValue::Bool(true))),
                     (
                         "startYear".to_string(),
-                        Some(AnyValue::Number(Number::Int(*project_completion_year as i64))),
+                        Some(AnyValue::Number(Number::Int(
+                            *project_completion_year as i64,
+                        ))),
                     ),
                 ])),
             },
@@ -338,7 +342,9 @@ impl FromBROperation for Product {
                     ("isAnnual".to_string(), Some(AnyValue::Bool(true))),
                     (
                         "startYear".to_string(),
-                        Some(AnyValue::Number(Number::Int(*project_completion_year as i64))),
+                        Some(AnyValue::Number(Number::Int(
+                            *project_completion_year as i64,
+                        ))),
                     ),
                 ])),
             },
