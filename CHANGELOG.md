@@ -1,3 +1,9 @@
+## [3.7.0](https://github.com/ocni-dtu/lcax/compare/v3.6.0...v3.7.0) (2026-09-03)
+
+### Features
+
+* **calculation:** add scaling for rate-based impacts and milestone interpolation ([74e3739](https://github.com/ocni-dtu/lcax/commit/74e373908d770a94d86a163e1c7c0c589b9e6461))
+
 ## [3.6.0](https://github.com/ocni-dtu/lcax/compare/v3.5.1...v3.6.0) (2026-09-02)
 
 ### Features
