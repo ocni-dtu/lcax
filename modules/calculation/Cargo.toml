@@ -19,6 +19,7 @@ pybindings = ["pyo3", "pyo3/extension-module"]
 jsbindings = ["wasm-bindgen", "console_error_panic_hook", "tsify-next"]
 
 [dependencies]
+lcax_core = { path = "../core", version = ">=3.0.0-beta.1" }
 lcax_models = { path = "../models", version = ">=3.0.0-beta.1" }
 serde = { version = "1.0.219", features = ["derive"] }
 schemars = { version = "0.8.21", features = ["chrono"] }

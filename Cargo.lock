@@ -666,6 +666,7 @@ name = "lcax_calculation"
 version = "3.6.0"
 dependencies = [
  "console_error_panic_hook",
+ "lcax_core",
  "lcax_models",
  "pyo3",
  "schemars",

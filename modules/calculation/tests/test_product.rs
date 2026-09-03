@@ -1,10 +1,12 @@
 use lcax_calculation::calculate::calculate_product;
 use lcax_calculation::models::CalculationOptions;
+use lcax_core::value::{AnyValue, Number};
 use lcax_models::epd::{EPDReference, Standard, SubType, EPD};
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
 use lcax_models::product::{ImpactData, Product};
 use lcax_models::shared::Unit;
+use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
 
@@ -315,4 +317,290 @@ fn generic_gwp_a1a3(id: &str, value: f64) -> ImpactData {
         impacts: gwp_impacts(LifeCycleModule::A1A3, value),
         meta_data: None,
     }))
+}
+
+fn generic_gwp_b6(name: &str, value: f64) -> ImpactData {
+    ImpactData::GenericData(GenericDataReference::GenericData(GenericData {
+        id: name.to_string(),
+        name: name.to_string(),
+        declared_unit: Unit::KWH,
+        source: None,
+        comment: None,
+        conversions: None,
+        impacts: gwp_impacts(LifeCycleModule::B6, value),
+        meta_data: None,
+    }))
+}
+
+#[test]
+fn test_rate_based_product_scales_with_reference_study_period() -> Result<(), String> {
+    let mut product = Product {
+        id: "1".to_string(),
+        name: "Electricity".to_string(),
+        description: None,
+        reference_service_life: 20,
+        impact_data: vec![generic_gwp_b6("Electricity", 0.15)],
+        quantity: 10.0,
+        unit: Unit::KWH,
+        transport: None,
+        results: None,
+        meta_data: Some(HashMap::from([(
+            "isAnnual".to_string(),
+            Some(AnyValue::Bool(true)),
+        )])),
+    };
+
+    // With RSP = 50: 10.0 * 0.15 * 50 = 75.0
+    let options_50 = CalculationOptions {
+        reference_study_period: Some(50),
+        life_cycle_modules: vec![LifeCycleModule::B6],
+        impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
+    };
+    let result_50 = calculate_product(&mut product, &options_50)?;
+    assert_eq!(gwp_at(&result_50, LifeCycleModule::B6), Some(75.0));
+
+    // With RSP = 30: 10.0 * 0.15 * 30 = 45.0
+    let options_30 = CalculationOptions {
+        reference_study_period: Some(30),
+        life_cycle_modules: vec![LifeCycleModule::B6],
+        impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
+    };
+    let result_30 = calculate_product(&mut product, &options_30)?;
+    assert_eq!(gwp_at(&result_30, LifeCycleModule::B6), Some(45.0));
+
+    // With RSP = None: falls back to product.reference_service_life (20) -> 10.0 * 0.15 * 20 = 30.0
+    let options_none = CalculationOptions {
+        reference_study_period: None,
+        life_cycle_modules: vec![LifeCycleModule::B6],
+        impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
+    };
+    let result_none = calculate_product(&mut product, &options_none)?;
+    assert_eq!(gwp_at(&result_none, LifeCycleModule::B6), Some(30.0));
+
+    Ok(())
+}
+
+#[test]
+fn test_non_rate_based_product_ignores_reference_study_period() -> Result<(), String> {
+    let mut product = Product {
+        id: "1".to_string(),
+        name: "Electricity Lifetime".to_string(),
+        description: None,
+        reference_service_life: 20,
+        impact_data: vec![generic_gwp_b6("Electricity", 0.15)],
+        quantity: 500.0,
+        unit: Unit::KWH,
+        transport: None,
+        results: None,
+        meta_data: None, // Not rate-based
+    };
+
+    let options_50 = CalculationOptions {
+        reference_study_period: Some(50),
+        life_cycle_modules: vec![LifeCycleModule::B6],
+        impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
+    };
+    let result_50 = calculate_product(&mut product, &options_50)?;
+    // Cumulative quantity: 500.0 * 0.15 = 75.0 (not multiplied by 50)
+    assert_eq!(gwp_at(&result_50, LifeCycleModule::B6), Some(75.0));
+    Ok(())
+}
+
+#[test]
+fn test_milestone_interpolation_time_weighted_average() -> Result<(), String> {
+    // Milestones from Danish BR18 electricity decarbonization:
+    // 2023: 0.187, 2025: 0.135, 2030: 0.047, 2035: 0.0414, 2040: 0.0403
+    // Over 50 years (2023 to 2073):
+    // [2023, 2025]: dt = 2, avg = (0.187 + 0.135)/2 = 0.161, area = 0.322
+    // [2025, 2030]: dt = 5, avg = (0.135 + 0.047)/2 = 0.091, area = 0.455
+    // [2030, 2035]: dt = 5, avg = (0.047 + 0.0414)/2 = 0.0442, area = 0.221
+    // [2035, 2040]: dt = 5, avg = (0.0414 + 0.0403)/2 = 0.04085, area = 0.20425
+    // [2040, 2073]: dt = 33, avg = 0.0403, area = 1.3299
+    // Total area = 2.53215
+    // Time-weighted avg = 2.53215 / 50 = 0.050643 kg CO2e / kWh
+    let milestones = vec![
+        generic_gwp_b6("Electricity 2023", 0.187),
+        generic_gwp_b6("Electricity 2025", 0.135),
+        generic_gwp_b6("Electricity 2030", 0.047),
+        generic_gwp_b6("Electricity 2035", 0.0414),
+        generic_gwp_b6("Electricity 2040", 0.0403),
+    ];
+
+    let mut product = Product {
+        id: "1".to_string(),
+        name: "Electricity Cumulative".to_string(),
+        description: None,
+        reference_service_life: 50,
+        impact_data: milestones,
+        quantity: 1000.0,
+        unit: Unit::KWH,
+        transport: None,
+        results: None,
+        meta_data: None, // Cumulative quantity
+    };
+
+    let options = CalculationOptions {
+        reference_study_period: Some(50),
+        life_cycle_modules: vec![LifeCycleModule::B6],
+        impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
+    };
+    let result = calculate_product(&mut product, &options)?;
+    let gwp = gwp_at(&result, LifeCycleModule::B6).unwrap();
+
+    // Expected: 1000.0 * 0.050643 = 50.643
+    // Blind sum would give: 1000.0 * (0.187 + 0.135 + 0.047 + 0.0414 + 0.0403) = 450.7 (9x higher!)
+    assert!((gwp - 50.643).abs() < 1e-3, "Expected ~50.643, got {}", gwp);
+    Ok(())
+}
+
+#[test]
+fn test_milestone_interpolation_rate_based_annual() -> Result<(), String> {
+    let milestones = vec![
+        generic_gwp_b6("Electricity 2023", 0.187),
+        generic_gwp_b6("Electricity 2025", 0.135),
+        generic_gwp_b6("Electricity 2030", 0.047),
+        generic_gwp_b6("Electricity 2035", 0.0414),
+        generic_gwp_b6("Electricity 2040", 0.0403),
+    ];
+
+    let mut product = Product {
+        id: "1".to_string(),
+        name: "Electricity Annual".to_string(),
+        description: Some("Impact data should be linearly interpolated".to_string()),
+        reference_service_life: 50,
+        impact_data: milestones,
+        quantity: 20.0, // 20 kWh/year
+        unit: Unit::KWH,
+        transport: None,
+        results: None,
+        meta_data: Some(HashMap::from([(
+            "isAnnual".to_string(),
+            Some(AnyValue::Bool(true)),
+        )])),
+    };
+
+    let options = CalculationOptions {
+        reference_study_period: Some(50),
+        life_cycle_modules: vec![LifeCycleModule::B6],
+        impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
+    };
+    let result = calculate_product(&mut product, &options)?;
+    let gwp = gwp_at(&result, LifeCycleModule::B6).unwrap();
+
+    // Expected: 20.0 kWh/year * 50 years * 0.050643 kg CO2e / kWh = 50.643 kg CO2e
+    assert!((gwp - 50.643).abs() < 1e-3, "Expected ~50.643, got {}", gwp);
+    Ok(())
+}
+
+#[test]
+fn test_milestone_order_independent() -> Result<(), String> {
+    let ordered = vec![
+        generic_gwp_b6("Electricity 2023", 0.187),
+        generic_gwp_b6("Electricity 2025", 0.135),
+        generic_gwp_b6("Electricity 2030", 0.047),
+        generic_gwp_b6("Electricity 2035", 0.0414),
+        generic_gwp_b6("Electricity 2040", 0.0403),
+    ];
+    let shuffled = vec![
+        generic_gwp_b6("Electricity 2040", 0.0403),
+        generic_gwp_b6("Electricity 2025", 0.135),
+        generic_gwp_b6("Electricity 2023", 0.187),
+        generic_gwp_b6("Electricity 2035", 0.0414),
+        generic_gwp_b6("Electricity 2030", 0.047),
+    ];
+
+    let options = CalculationOptions {
+        reference_study_period: Some(50),
+        life_cycle_modules: vec![LifeCycleModule::B6],
+        impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
+    };
+
+    let mut p1 = Product {
+        id: "1".to_string(),
+        name: "P1".to_string(),
+        description: None,
+        reference_service_life: 50,
+        impact_data: ordered,
+        quantity: 100.0,
+        unit: Unit::KWH,
+        transport: None,
+        results: None,
+        meta_data: None,
+    };
+
+    let mut p2 = Product {
+        id: "2".to_string(),
+        name: "P2".to_string(),
+        description: None,
+        reference_service_life: 50,
+        impact_data: shuffled,
+        quantity: 100.0,
+        unit: Unit::KWH,
+        transport: None,
+        results: None,
+        meta_data: None,
+    };
+
+    let r1 = calculate_product(&mut p1, &options)?;
+    let r2 = calculate_product(&mut p2, &options)?;
+
+    assert_eq!(
+        gwp_at(&r1, LifeCycleModule::B6),
+        gwp_at(&r2, LifeCycleModule::B6)
+    );
+    Ok(())
+}
+
+#[test]
+fn test_milestone_interpolation_with_custom_start_year() -> Result<(), String> {
+    // Starting in 2025:
+    // [2025, 2030]: dt = 5, avg = 0.091, area = 0.455
+    // [2030, 2035]: dt = 5, avg = 0.0442, area = 0.221
+    // [2035, 2040]: dt = 5, avg = 0.04085, area = 0.20425
+    // [2040, 2075]: dt = 35, avg = 0.0403, area = 1.4105
+    // Total area = 2.29075
+    // Average = 2.29075 / 50 = 0.045815
+    let milestones = vec![
+        generic_gwp_b6("Electricity 2023", 0.187),
+        generic_gwp_b6("Electricity 2025", 0.135),
+        generic_gwp_b6("Electricity 2030", 0.047),
+        generic_gwp_b6("Electricity 2035", 0.0414),
+        generic_gwp_b6("Electricity 2040", 0.0403),
+    ];
+
+    let mut product = Product {
+        id: "1".to_string(),
+        name: "Electricity 2025 Start".to_string(),
+        description: None,
+        reference_service_life: 50,
+        impact_data: milestones,
+        quantity: 1000.0,
+        unit: Unit::KWH,
+        transport: None,
+        results: None,
+        meta_data: Some(HashMap::from([(
+            "startYear".to_string(),
+            Some(AnyValue::Number(Number::Int(2025))),
+        )])),
+    };
+
+    let options = CalculationOptions {
+        reference_study_period: Some(50),
+        life_cycle_modules: vec![LifeCycleModule::B6],
+        impact_categories: vec![ImpactCategoryKey::GWP],
+        overwrite_existing_results: true,
+    };
+    let result = calculate_product(&mut product, &options)?;
+    let gwp = gwp_at(&result, LifeCycleModule::B6).unwrap();
+
+    // Expected: 1000.0 * 0.045815 = 45.815
+    assert!((gwp - 45.815).abs() < 1e-3, "Expected ~45.815, got {}", gwp);
+    Ok(())
 }

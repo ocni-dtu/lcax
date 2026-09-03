@@ -7,7 +7,7 @@ use lcax_calculation::calculate::calculate_project;
 use lcax_calculation::models::CalculationOptions;
 use lcax_core::country::Country;
 use lcax_core::utils::get_version;
-use lcax_core::value::AnyValue;
+use lcax_core::value::{AnyValue, Number};
 use lcax_models::assembly::{Assembly, AssemblyReference, Classification};
 use lcax_models::generic_impact_data::{GenericData, GenericDataReference};
 use lcax_models::life_cycle_base::{ImpactCategoryKey, Impacts, LifeCycleModule};
@@ -284,7 +284,13 @@ impl FromBROperation for Product {
                 unit: Unit::KWH,
                 transport: None,
                 results: Some(operation.results.clone()),
-                meta_data: None,
+                meta_data: Some(HashMap::from([
+                    ("isAnnual".to_string(), Some(AnyValue::Bool(true))),
+                    (
+                        "startYear".to_string(),
+                        Some(AnyValue::Number(Number::Int(*project_completion_year as i64))),
+                    ),
+                ])),
             },
             "Fjernvarme" | "Fjernvarme - Fremskrivning" => Self {
                 id: Uuid::new_v4().to_string(),
@@ -303,7 +309,13 @@ impl FromBROperation for Product {
                 unit: Unit::KWH,
                 transport: None,
                 results: Some(operation.results.clone()),
-                meta_data: None,
+                meta_data: Some(HashMap::from([
+                    ("isAnnual".to_string(), Some(AnyValue::Bool(true))),
+                    (
+                        "startYear".to_string(),
+                        Some(AnyValue::Number(Number::Int(*project_completion_year as i64))),
+                    ),
+                ])),
             },
             "Ledningsgas" => Self {
                 id: uuid::Uuid::new_v4().to_string(),
@@ -322,7 +334,13 @@ impl FromBROperation for Product {
                 unit: Unit::KWH,
                 transport: None,
                 results: Some(operation.results.clone()),
-                meta_data: None,
+                meta_data: Some(HashMap::from([
+                    ("isAnnual".to_string(), Some(AnyValue::Bool(true))),
+                    (
+                        "startYear".to_string(),
+                        Some(AnyValue::Number(Number::Int(*project_completion_year as i64))),
+                    ),
+                ])),
             },
             "Andet energi" => {
                 todo!()
