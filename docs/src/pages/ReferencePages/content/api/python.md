@@ -3043,5 +3043,3 @@ validate(project, validation_schema)
 ```
 
 Validate a LCAx Project
-
-

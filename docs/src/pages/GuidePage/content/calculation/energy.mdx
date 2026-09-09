@@ -28,13 +28,14 @@ LCAx provides built-in helper functions (`get_energy_assemblies` in Python/Rust 
 
 When calling `get_energy_assemblies("BR18")`, LCAx generates three discrete energy carrier assemblies:
 
-| Carrier | Assembly ID | Classification Code | Classification Name | Unit |
-| :--- | :--- | :--- | :--- | :--- |
-| **Grid Electricity** | `br18-electricity` | `El` | Operational Electricity | `kWh` |
-| **District Heating** | `br18-district-heating` | `Fjernvarme` | Operational Heating | `kWh` |
-| **Natural Gas** | `br18-natural-gas` | `Ledningsgas` | Operational Gas | `kWh` |
+| Carrier              | Assembly ID             | Classification Code | Classification Name     | Unit  |
+| :------------------- | :---------------------- | :------------------ | :---------------------- | :---- |
+| **Grid Electricity** | `br18-electricity`      | `El`                | Operational Electricity | `kWh` |
+| **District Heating** | `br18-district-heating` | `Fjernvarme`        | Operational Heating     | `kWh` |
+| **Natural Gas**      | `br18-natural-gas`      | `Ledningsgas`       | Operational Gas         | `kWh` |
 
 Each assembly contains:
+
 - Standard classification tagging with `system: "BR18"`.
 - Unit set to `kWh` and default initial quantity `1.0`.
 - A single product representing the carrier with a reference service life of 50 years.
@@ -45,6 +46,7 @@ Each assembly contains:
 ### Milestone Time-Series Interpolation
 
 When calculating impacts for module `B6`:
+
 1. LCAx inspects the milestone data points attached to the product.
 2. It determines the evaluation time window from the project start year (by default, the first milestone year, e.g. 2023) to `startYear + referenceStudyPeriod` (e.g. 50 years).
 3. Emission factors between consecutive milestone years are linearly interpolated. Beyond the final milestone (e.g. after 2040), the last known emission factor is held constant.

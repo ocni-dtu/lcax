@@ -2,6 +2,7 @@
 title: lcax_calculation API Reference
 description: Rust - API Reference
 ---
+
 # Crate Documentation
 
 **Version:** 3.6.0
@@ -64,12 +65,12 @@ pub struct CalculationOptions {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `reference_study_period` | `Option<u8>` |  |
-| `life_cycle_modules` | `Vec<lcax_models::life_cycle_base::LifeCycleModule>` |  |
-| `impact_categories` | `Vec<lcax_models::life_cycle_base::ImpactCategoryKey>` |  |
-| `overwrite_existing_results` | `bool` |  |
+| Name                         | Type                                                   | Documentation |
+| ---------------------------- | ------------------------------------------------------ | ------------- |
+| `reference_study_period`     | `Option<u8>`                                           |               |
+| `life_cycle_modules`         | `Vec<lcax_models::life_cycle_base::LifeCycleModule>`   |               |
+| `impact_categories`          | `Vec<lcax_models::life_cycle_base::ImpactCategoryKey>` |               |
+| `overwrite_existing_results` | `bool`                                                 |               |
 
 ##### Implementations
 
@@ -101,11 +102,12 @@ pub struct CalculationOptions {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -147,11 +149,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -176,6 +179,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 ## Module `results`
 
 ```rust
@@ -201,4 +205,3 @@ pub fn normalize_result(result: &f64, normalizing_factor: &f64) -> f64 { /* ... 
 ```rust
 pub fn get_impacts_by_life_cycle_module(impacts: &lcax_models::life_cycle_base::Impacts, category: &lcax_models::life_cycle_base::ImpactCategoryKey, exclude_modules: &Option<Vec<lcax_models::life_cycle_base::LifeCycleModule>>, normalizing_factor: Option<f64>) -> Option<lcax_models::life_cycle_base::ImpactCategory> { /* ... */ }
 ```
-

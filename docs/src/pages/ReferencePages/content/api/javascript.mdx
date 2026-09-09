@@ -3,11 +3,9 @@ title: TypeScript API Reference
 description: LCAx TypeScript API Reference
 ---
 
-
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:4](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L4)
 
@@ -41,7 +39,7 @@ Defined in: [lcax.d.ts:8](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4a
 
 `string`
 
-***
+---
 
 ### toString()
 
@@ -53,7 +51,7 @@ Defined in: [lcax.d.ts:7](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4a
 
 `string`
 
-***
+---
 
 ### fromString()
 
@@ -71,10 +69,9 @@ Defined in: [lcax.d.ts:6](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4a
 
 `string`
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **buildingModelScopes**(): [`BuildingModelScope`](../type-aliases/BuildingModelScope.md)[]
 
@@ -84,10 +81,9 @@ Defined in: [lcax.d.ts:248](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`BuildingModelScope`](../type-aliases/BuildingModelScope.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **buildingTypes**(): [`BuildingType`](../type-aliases/BuildingType.md)[]
 
@@ -97,10 +93,9 @@ Defined in: [lcax.d.ts:250](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`BuildingType`](../type-aliases/BuildingType.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **buildingTypologies**(): [`BuildingTypology`](../type-aliases/BuildingTypology.md)[]
 
@@ -110,10 +105,9 @@ Defined in: [lcax.d.ts:252](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`BuildingTypology`](../type-aliases/BuildingTypology.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **calculateAssembly**(`assembly`, `options`): [`Impacts`](../type-aliases/Impacts.md)
 
@@ -136,10 +130,9 @@ The impact results for the assembly will be returned.
 
 [`Impacts`](../type-aliases/Impacts.md)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **calculateProduct**(`product`, `options`): [`Impacts`](../type-aliases/Impacts.md)
 
@@ -162,10 +155,9 @@ The impact results for the product will be returned.
 
 [`Impacts`](../type-aliases/Impacts.md)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **calculateProject**(`project`, `options?`): [`Project`](../interfaces/Project.md)
 
@@ -188,10 +180,9 @@ The impact results for the project will be added to the `results` property.
 
 [`Project`](../interfaces/Project.md)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **convertBRStandard**(`project_name`, `file`): [`Project`](../interfaces/Project.md)
 
@@ -201,7 +192,7 @@ Converts a BR Standard Format file into a LCAx `Project`.
 
 ## Parameters
 
-### project\_name
+### project_name
 
 `string`
 
@@ -213,10 +204,9 @@ Converts a BR Standard Format file into a LCAx `Project`.
 
 [`Project`](../interfaces/Project.md)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **convertIlcd**(`data`): [`EPD`](../interfaces/EPD.md)
 
@@ -234,10 +224,9 @@ Converts a json formatted ILCD+EPD data string into a LCAx EPD
 
 [`EPD`](../interfaces/EPD.md)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **convertLCAbyg**(`data`, `resultData?`): [`LCABygResult`](../type-aliases/LCABygResult.md)
 
@@ -259,10 +248,9 @@ Converts a json formatted LCAByg project into a LCAx Project
 
 [`LCABygResult`](../type-aliases/LCABygResult.md)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **countries**(): [`Country`](../classes/Country.md)[]
 
@@ -272,10 +260,9 @@ Defined in: [lcax.d.ts:287](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`Country`](../classes/Country.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **generalEnergyClasses**(): [`GeneralEnergyClass`](../type-aliases/GeneralEnergyClass.md)[]
 
@@ -285,10 +272,9 @@ Defined in: [lcax.d.ts:289](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`GeneralEnergyClass`](../type-aliases/GeneralEnergyClass.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **getCountryName**(`value`): `string`
 
@@ -304,10 +290,9 @@ Defined in: [lcax.d.ts:291](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 `string`
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **getEnergyAssemblies**(`standard`): [`Assembly`](../interfaces/Assembly.md)[]
 
@@ -325,10 +310,9 @@ Get default energy assemblies for a given standard.
 
 [`Assembly`](../interfaces/Assembly.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **getImpactTotal**(`impacts`, `category`, `exclude_modules?`): `number`
 
@@ -346,7 +330,7 @@ Get the total impact
 
 [`ImpactCategoryKey`](../type-aliases/ImpactCategoryKey.md)
 
-### exclude\_modules?
+### exclude_modules?
 
 [`LifeCycleModule`](../type-aliases/LifeCycleModule.md)[] \| `null`
 
@@ -354,10 +338,9 @@ Get the total impact
 
 `number`
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **getImpactsByLifeCycleModule**(`impacts`, `category`, `exclude_modules?`, `normalizing_factor?`): [`ImpactCategory`](../type-aliases/ImpactCategory.md) \| `undefined`
 
@@ -376,11 +359,11 @@ The results can be normalized by a factor.
 
 [`ImpactCategoryKey`](../type-aliases/ImpactCategoryKey.md)
 
-### exclude\_modules?
+### exclude_modules?
 
 [`LifeCycleModule`](../type-aliases/LifeCycleModule.md)[] \| `null`
 
-### normalizing\_factor?
+### normalizing_factor?
 
 `number` \| `null`
 
@@ -388,10 +371,9 @@ The results can be normalized by a factor.
 
 [`ImpactCategory`](../type-aliases/ImpactCategory.md) \| `undefined`
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **impactCategories**(): [`ImpactCategoryKey`](../type-aliases/ImpactCategoryKey.md)[]
 
@@ -401,10 +383,9 @@ Defined in: [lcax.d.ts:309](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`ImpactCategoryKey`](../type-aliases/ImpactCategoryKey.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **lifeCycleModules**(): [`LifeCycleModule`](../type-aliases/LifeCycleModule.md)[]
 
@@ -414,10 +395,9 @@ Defined in: [lcax.d.ts:311](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`LifeCycleModule`](../type-aliases/LifeCycleModule.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **normalizeResult**(`result`, `normalizing_factor`): `number`
 
@@ -431,7 +411,7 @@ Normalize a result with e.g. the reference study period and gross floor area
 
 `number`
 
-### normalizing\_factor
+### normalizing_factor
 
 `number`
 
@@ -439,10 +419,9 @@ Normalize a result with e.g. the reference study period and gross floor area
 
 `number`
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **projectPhases**(): [`ProjectPhase`](../type-aliases/ProjectPhase.md)[]
 
@@ -452,10 +431,9 @@ Defined in: [lcax.d.ts:318](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`ProjectPhase`](../type-aliases/ProjectPhase.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **roofTypes**(): [`RoofType`](../type-aliases/RoofType.md)[]
 
@@ -465,10 +443,9 @@ Defined in: [lcax.d.ts:320](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`RoofType`](../type-aliases/RoofType.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **standards**(): [`Standard`](../type-aliases/Standard.md)[]
 
@@ -478,10 +455,9 @@ Defined in: [lcax.d.ts:322](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`Standard`](../type-aliases/Standard.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **subTypes**(): [`SubType`](../type-aliases/SubType.md)[]
 
@@ -491,10 +467,9 @@ Defined in: [lcax.d.ts:324](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`SubType`](../type-aliases/SubType.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **toLCAbyg**(`data`): `string`
 
@@ -512,10 +487,9 @@ Converts LCAx objects into LCAbyg
 
 `string`
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **units**(): [`Unit`](../type-aliases/Unit.md)[]
 
@@ -525,10 +499,9 @@ Defined in: [lcax.d.ts:331](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 [`Unit`](../type-aliases/Unit.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **validate**(`project`, `validation_schemas`): [`ValidationResult`](../interfaces/ValidationResult.md)[]
 
@@ -542,7 +515,7 @@ Validate a LCAx Project
 
 [`Project`](../interfaces/Project.md)
 
-### validation\_schemas
+### validation_schemas
 
 [`ValidationSchema`](../interfaces/ValidationSchema.md)[]
 
@@ -550,10 +523,9 @@ Validate a LCAx Project
 
 [`ValidationResult`](../interfaces/ValidationResult.md)[]
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:12](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L12)
 
@@ -565,7 +537,7 @@ Defined in: [lcax.d.ts:12](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:15](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L15)
 
-***
+---
 
 ### unit
 
@@ -573,7 +545,7 @@ Defined in: [lcax.d.ts:15](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:14](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L14)
 
-***
+---
 
 ### value
 
@@ -581,10 +553,9 @@ Defined in: [lcax.d.ts:14](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:13](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L13)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:18](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L18)
 
@@ -596,7 +567,7 @@ Defined in: [lcax.d.ts:18](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:25](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L25)
 
-***
+---
 
 ### comment
 
@@ -604,7 +575,7 @@ Defined in: [lcax.d.ts:25](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:22](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L22)
 
-***
+---
 
 ### description
 
@@ -612,7 +583,7 @@ Defined in: [lcax.d.ts:22](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:21](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L21)
 
-***
+---
 
 ### id
 
@@ -620,7 +591,7 @@ Defined in: [lcax.d.ts:21](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:19](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L19)
 
-***
+---
 
 ### metaData
 
@@ -628,7 +599,7 @@ Defined in: [lcax.d.ts:19](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:28](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L28)
 
-***
+---
 
 ### name
 
@@ -636,7 +607,7 @@ Defined in: [lcax.d.ts:28](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:20](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L20)
 
-***
+---
 
 ### products
 
@@ -644,7 +615,7 @@ Defined in: [lcax.d.ts:20](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:26](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L26)
 
-***
+---
 
 ### quantity
 
@@ -652,7 +623,7 @@ Defined in: [lcax.d.ts:26](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:23](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L23)
 
-***
+---
 
 ### results
 
@@ -660,7 +631,7 @@ Defined in: [lcax.d.ts:23](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:27](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L27)
 
-***
+---
 
 ### unit
 
@@ -668,10 +639,9 @@ Defined in: [lcax.d.ts:27](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:24](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L24)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:31](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L31)
 
@@ -683,7 +653,7 @@ Defined in: [lcax.d.ts:31](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:44](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L44)
 
-***
+---
 
 ### buildingFootprint
 
@@ -691,7 +661,7 @@ Defined in: [lcax.d.ts:44](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:39](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L39)
 
-***
+---
 
 ### buildingHeight
 
@@ -699,7 +669,7 @@ Defined in: [lcax.d.ts:39](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:36](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L36)
 
-***
+---
 
 ### buildingMass
 
@@ -707,7 +677,7 @@ Defined in: [lcax.d.ts:36](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:35](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L35)
 
-***
+---
 
 ### buildingModelScope
 
@@ -715,7 +685,7 @@ Defined in: [lcax.d.ts:35](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:54](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L54)
 
-***
+---
 
 ### buildingPermitYear
 
@@ -723,7 +693,7 @@ Defined in: [lcax.d.ts:54](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:45](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L45)
 
-***
+---
 
 ### buildingType
 
@@ -731,7 +701,7 @@ Defined in: [lcax.d.ts:45](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:32](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L32)
 
-***
+---
 
 ### buildingTypology
 
@@ -739,7 +709,7 @@ Defined in: [lcax.d.ts:32](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:33](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L33)
 
-***
+---
 
 ### buildingUsers
 
@@ -747,7 +717,7 @@ Defined in: [lcax.d.ts:33](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:53](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L53)
 
-***
+---
 
 ### certifications
 
@@ -755,7 +725,7 @@ Defined in: [lcax.d.ts:53](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:34](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L34)
 
-***
+---
 
 ### energyDemandElectricity
 
@@ -763,7 +733,7 @@ Defined in: [lcax.d.ts:34](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:48](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L48)
 
-***
+---
 
 ### energyDemandHeating
 
@@ -771,7 +741,7 @@ Defined in: [lcax.d.ts:48](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:46](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L46)
 
-***
+---
 
 ### energySupplyElectricity
 
@@ -779,7 +749,7 @@ Defined in: [lcax.d.ts:46](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:49](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L49)
 
-***
+---
 
 ### energySupplyHeating
 
@@ -787,7 +757,7 @@ Defined in: [lcax.d.ts:49](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:47](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L47)
 
-***
+---
 
 ### exportedElectricity
 
@@ -795,7 +765,7 @@ Defined in: [lcax.d.ts:47](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:50](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L50)
 
-***
+---
 
 ### floorsAboveGround
 
@@ -803,7 +773,7 @@ Defined in: [lcax.d.ts:50](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:40](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L40)
 
-***
+---
 
 ### floorsBelowGround
 
@@ -811,7 +781,7 @@ Defined in: [lcax.d.ts:40](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:41](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L41)
 
-***
+---
 
 ### frameType
 
@@ -819,7 +789,7 @@ Defined in: [lcax.d.ts:41](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:43](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L43)
 
-***
+---
 
 ### generalEnergyClass
 
@@ -827,7 +797,7 @@ Defined in: [lcax.d.ts:43](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:51](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L51)
 
-***
+---
 
 ### grossFloorArea
 
@@ -835,7 +805,7 @@ Defined in: [lcax.d.ts:51](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:37](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L37)
 
-***
+---
 
 ### heatedFloorArea
 
@@ -843,7 +813,7 @@ Defined in: [lcax.d.ts:37](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:38](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L38)
 
-***
+---
 
 ### localEnergyClass
 
@@ -851,7 +821,7 @@ Defined in: [lcax.d.ts:38](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:52](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L52)
 
-***
+---
 
 ### roofType
 
@@ -859,10 +829,9 @@ Defined in: [lcax.d.ts:52](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:42](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L42)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:57](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L57)
 
@@ -874,7 +843,7 @@ Defined in: [lcax.d.ts:57](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:60](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L60)
 
-***
+---
 
 ### lifeCycleModules
 
@@ -882,7 +851,7 @@ Defined in: [lcax.d.ts:60](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:59](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L59)
 
-***
+---
 
 ### overwriteExistingResults
 
@@ -890,7 +859,7 @@ Defined in: [lcax.d.ts:59](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:61](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L61)
 
-***
+---
 
 ### referenceStudyPeriod
 
@@ -898,10 +867,9 @@ Defined in: [lcax.d.ts:61](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:58](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L58)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:64](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L64)
 
@@ -913,7 +881,7 @@ Defined in: [lcax.d.ts:64](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:66](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L66)
 
-***
+---
 
 ### name
 
@@ -921,7 +889,7 @@ Defined in: [lcax.d.ts:66](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:67](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L67)
 
-***
+---
 
 ### system
 
@@ -929,10 +897,9 @@ Defined in: [lcax.d.ts:67](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:65](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L65)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:70](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L70)
 
@@ -944,7 +911,7 @@ Defined in: [lcax.d.ts:70](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:73](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L73)
 
-***
+---
 
 ### to
 
@@ -952,7 +919,7 @@ Defined in: [lcax.d.ts:73](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:72](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L72)
 
-***
+---
 
 ### value
 
@@ -960,10 +927,9 @@ Defined in: [lcax.d.ts:72](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:71](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L71)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:76](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L76)
 
@@ -975,7 +941,7 @@ Defined in: [lcax.d.ts:76](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:86](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L86)
 
-***
+---
 
 ### conversions
 
@@ -983,7 +949,7 @@ Defined in: [lcax.d.ts:86](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:89](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L89)
 
-***
+---
 
 ### declaredUnit
 
@@ -991,7 +957,7 @@ Defined in: [lcax.d.ts:89](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:79](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L79)
 
-***
+---
 
 ### id
 
@@ -999,7 +965,7 @@ Defined in: [lcax.d.ts:79](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:77](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L77)
 
-***
+---
 
 ### impacts
 
@@ -1007,7 +973,7 @@ Defined in: [lcax.d.ts:77](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:90](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L90)
 
-***
+---
 
 ### location
 
@@ -1015,7 +981,7 @@ Defined in: [lcax.d.ts:90](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:87](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L87)
 
-***
+---
 
 ### metaData
 
@@ -1023,7 +989,7 @@ Defined in: [lcax.d.ts:87](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:91](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L91)
 
-***
+---
 
 ### name
 
@@ -1031,7 +997,7 @@ Defined in: [lcax.d.ts:91](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:78](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L78)
 
-***
+---
 
 ### publishedDate
 
@@ -1039,7 +1005,7 @@ Defined in: [lcax.d.ts:78](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:81](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L81)
 
-***
+---
 
 ### referenceServiceLife
 
@@ -1047,7 +1013,7 @@ Defined in: [lcax.d.ts:81](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:84](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L84)
 
-***
+---
 
 ### source
 
@@ -1055,7 +1021,7 @@ Defined in: [lcax.d.ts:84](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:83](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L83)
 
-***
+---
 
 ### standard
 
@@ -1063,7 +1029,7 @@ Defined in: [lcax.d.ts:83](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:85](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L85)
 
-***
+---
 
 ### subtype
 
@@ -1071,7 +1037,7 @@ Defined in: [lcax.d.ts:85](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:88](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L88)
 
-***
+---
 
 ### validUntil
 
@@ -1079,7 +1045,7 @@ Defined in: [lcax.d.ts:88](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:82](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L82)
 
-***
+---
 
 ### version
 
@@ -1087,10 +1053,9 @@ Defined in: [lcax.d.ts:82](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:80](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L80)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:94](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L94)
 
@@ -1102,7 +1067,7 @@ Defined in: [lcax.d.ts:94](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:99](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L99)
 
-***
+---
 
 ### conversions
 
@@ -1110,7 +1075,7 @@ Defined in: [lcax.d.ts:99](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:100](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L100)
 
-***
+---
 
 ### declaredUnit
 
@@ -1118,7 +1083,7 @@ Defined in: [lcax.d.ts:100](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:97](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L97)
 
-***
+---
 
 ### id
 
@@ -1126,7 +1091,7 @@ Defined in: [lcax.d.ts:97](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:95](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L95)
 
-***
+---
 
 ### impacts
 
@@ -1134,7 +1099,7 @@ Defined in: [lcax.d.ts:95](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:101](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L101)
 
-***
+---
 
 ### metaData
 
@@ -1142,7 +1107,7 @@ Defined in: [lcax.d.ts:101](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:102](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L102)
 
-***
+---
 
 ### name
 
@@ -1150,7 +1115,7 @@ Defined in: [lcax.d.ts:102](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:96](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L96)
 
-***
+---
 
 ### source
 
@@ -1158,10 +1123,9 @@ Defined in: [lcax.d.ts:96](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4
 
 Defined in: [lcax.d.ts:98](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L98)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:105](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L105)
 
@@ -1173,7 +1137,7 @@ Defined in: [lcax.d.ts:105](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:108](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L108)
 
-***
+---
 
 ### city
 
@@ -1181,7 +1145,7 @@ Defined in: [lcax.d.ts:108](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:107](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L107)
 
-***
+---
 
 ### country
 
@@ -1189,10 +1153,9 @@ Defined in: [lcax.d.ts:107](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:106](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L106)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:111](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L111)
 
@@ -1204,7 +1167,7 @@ Defined in: [lcax.d.ts:111](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:114](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L114)
 
-***
+---
 
 ### id
 
@@ -1212,7 +1175,7 @@ Defined in: [lcax.d.ts:114](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:112](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L112)
 
-***
+---
 
 ### impactData
 
@@ -1220,7 +1183,7 @@ Defined in: [lcax.d.ts:112](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:116](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L116)
 
-***
+---
 
 ### metaData
 
@@ -1228,7 +1191,7 @@ Defined in: [lcax.d.ts:116](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:121](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L121)
 
-***
+---
 
 ### name
 
@@ -1236,7 +1199,7 @@ Defined in: [lcax.d.ts:121](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:113](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L113)
 
-***
+---
 
 ### quantity
 
@@ -1244,7 +1207,7 @@ Defined in: [lcax.d.ts:113](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:117](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L117)
 
-***
+---
 
 ### referenceServiceLife
 
@@ -1252,7 +1215,7 @@ Defined in: [lcax.d.ts:117](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:115](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L115)
 
-***
+---
 
 ### results
 
@@ -1260,7 +1223,7 @@ Defined in: [lcax.d.ts:115](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:120](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L120)
 
-***
+---
 
 ### transport
 
@@ -1268,7 +1231,7 @@ Defined in: [lcax.d.ts:120](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:119](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L119)
 
-***
+---
 
 ### unit
 
@@ -1276,10 +1239,9 @@ Defined in: [lcax.d.ts:119](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:118](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L118)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:124](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L124)
 
@@ -1291,7 +1253,7 @@ Defined in: [lcax.d.ts:124](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:137](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L137)
 
-***
+---
 
 ### classificationSystems
 
@@ -1299,7 +1261,7 @@ Defined in: [lcax.d.ts:137](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:133](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L133)
 
-***
+---
 
 ### comment
 
@@ -1307,7 +1269,7 @@ Defined in: [lcax.d.ts:133](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:128](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L128)
 
-***
+---
 
 ### description
 
@@ -1315,7 +1277,7 @@ Defined in: [lcax.d.ts:128](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:127](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L127)
 
-***
+---
 
 ### formatVersion
 
@@ -1323,7 +1285,7 @@ Defined in: [lcax.d.ts:127](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:131](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L131)
 
-***
+---
 
 ### id
 
@@ -1331,7 +1293,7 @@ Defined in: [lcax.d.ts:131](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:125](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L125)
 
-***
+---
 
 ### impactCategories
 
@@ -1339,7 +1301,7 @@ Defined in: [lcax.d.ts:125](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:136](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L136)
 
-***
+---
 
 ### lciaMethod
 
@@ -1347,7 +1309,7 @@ Defined in: [lcax.d.ts:136](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:132](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L132)
 
-***
+---
 
 ### lifeCycleModules
 
@@ -1355,7 +1317,7 @@ Defined in: [lcax.d.ts:132](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:135](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L135)
 
-***
+---
 
 ### location
 
@@ -1363,7 +1325,7 @@ Defined in: [lcax.d.ts:135](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:129](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L129)
 
-***
+---
 
 ### metaData
 
@@ -1371,7 +1333,7 @@ Defined in: [lcax.d.ts:129](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:142](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L142)
 
-***
+---
 
 ### name
 
@@ -1379,7 +1341,7 @@ Defined in: [lcax.d.ts:142](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:126](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L126)
 
-***
+---
 
 ### owner
 
@@ -1387,7 +1349,7 @@ Defined in: [lcax.d.ts:126](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:130](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L130)
 
-***
+---
 
 ### projectInfo
 
@@ -1395,7 +1357,7 @@ Defined in: [lcax.d.ts:130](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:139](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L139)
 
-***
+---
 
 ### projectPhase
 
@@ -1403,7 +1365,7 @@ Defined in: [lcax.d.ts:139](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:140](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L140)
 
-***
+---
 
 ### referenceStudyPeriod
 
@@ -1411,7 +1373,7 @@ Defined in: [lcax.d.ts:140](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:134](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L134)
 
-***
+---
 
 ### results
 
@@ -1419,7 +1381,7 @@ Defined in: [lcax.d.ts:134](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:138](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L138)
 
-***
+---
 
 ### softwareInfo
 
@@ -1427,10 +1389,9 @@ Defined in: [lcax.d.ts:138](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:141](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L141)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:145](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L145)
 
@@ -1442,7 +1403,7 @@ Defined in: [lcax.d.ts:145](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:147](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L147)
 
-***
+---
 
 ### overrides
 
@@ -1450,7 +1411,7 @@ Defined in: [lcax.d.ts:147](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:149](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L149)
 
-***
+---
 
 ### uri
 
@@ -1458,7 +1419,7 @@ Defined in: [lcax.d.ts:149](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:146](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L146)
 
-***
+---
 
 ### version
 
@@ -1466,10 +1427,9 @@ Defined in: [lcax.d.ts:146](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:148](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L148)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:152](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L152)
 
@@ -1481,7 +1441,7 @@ Defined in: [lcax.d.ts:152](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:156](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L156)
 
-***
+---
 
 ### goalAndScopeDefinition
 
@@ -1489,7 +1449,7 @@ Defined in: [lcax.d.ts:156](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:155](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L155)
 
-***
+---
 
 ### lcaSoftware
 
@@ -1497,7 +1457,7 @@ Defined in: [lcax.d.ts:155](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:153](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L153)
 
-***
+---
 
 ### lcaSoftwareVersion
 
@@ -1505,10 +1465,9 @@ Defined in: [lcax.d.ts:153](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:154](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L154)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:159](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L159)
 
@@ -1520,7 +1479,7 @@ Defined in: [lcax.d.ts:159](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:160](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L160)
 
-***
+---
 
 ### url
 
@@ -1528,10 +1487,9 @@ Defined in: [lcax.d.ts:160](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:161](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L161)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:164](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L164)
 
@@ -1543,7 +1501,7 @@ Defined in: [lcax.d.ts:164](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:168](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L168)
 
-***
+---
 
 ### distanceUnit
 
@@ -1551,7 +1509,7 @@ Defined in: [lcax.d.ts:168](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:169](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L169)
 
-***
+---
 
 ### id
 
@@ -1559,7 +1517,7 @@ Defined in: [lcax.d.ts:169](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:165](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L165)
 
-***
+---
 
 ### impactData
 
@@ -1567,7 +1525,7 @@ Defined in: [lcax.d.ts:165](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:170](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L170)
 
-***
+---
 
 ### lifeCycleModules
 
@@ -1575,7 +1533,7 @@ Defined in: [lcax.d.ts:170](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:167](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L167)
 
-***
+---
 
 ### name
 
@@ -1583,10 +1541,9 @@ Defined in: [lcax.d.ts:167](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:166](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L166)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:173](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L173)
 
@@ -1598,7 +1555,7 @@ Defined in: [lcax.d.ts:173](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:174](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L174)
 
-***
+---
 
 ### message
 
@@ -1606,10 +1563,9 @@ Defined in: [lcax.d.ts:174](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:175](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L175)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:178](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L178)
 
@@ -1621,7 +1577,7 @@ Defined in: [lcax.d.ts:178](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:182](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L182)
 
-***
+---
 
 ### greater
 
@@ -1629,7 +1585,7 @@ Defined in: [lcax.d.ts:182](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:183](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L183)
 
-***
+---
 
 ### includes
 
@@ -1637,7 +1593,7 @@ Defined in: [lcax.d.ts:183](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:180](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L180)
 
-***
+---
 
 ### less
 
@@ -1645,7 +1601,7 @@ Defined in: [lcax.d.ts:180](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:184](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L184)
 
-***
+---
 
 ### oneOf
 
@@ -1653,7 +1609,7 @@ Defined in: [lcax.d.ts:184](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:185](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L185)
 
-***
+---
 
 ### range
 
@@ -1661,7 +1617,7 @@ Defined in: [lcax.d.ts:185](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:179](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L179)
 
-***
+---
 
 ### required
 
@@ -1669,10 +1625,9 @@ Defined in: [lcax.d.ts:179](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:181](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L181)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:188](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L188)
 
@@ -1684,7 +1639,7 @@ Defined in: [lcax.d.ts:188](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:190](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L190)
 
-***
+---
 
 ### level
 
@@ -1692,7 +1647,7 @@ Defined in: [lcax.d.ts:190](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:189](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L189)
 
-***
+---
 
 ### rule
 
@@ -1700,10 +1655,9 @@ Defined in: [lcax.d.ts:189](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:191](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L191)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 Defined in: [lcax.d.ts:194](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L194)
 
@@ -1715,7 +1669,7 @@ Defined in: [lcax.d.ts:194](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:196](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L196)
 
-***
+---
 
 ### value
 
@@ -1723,210 +1677,186 @@ Defined in: [lcax.d.ts:196](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e
 
 Defined in: [lcax.d.ts:195](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L195)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **AnyValue** = `boolean` \| [`Number`](Number.md) \| `string` \| `AnyValue`[] \| `Record`\<`string`, `AnyValue`\>
 
 Defined in: [lcax.d.ts:199](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L199)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **AssemblyReference** = `object` & [`Assembly`](../interfaces/Assembly.md) \| `object` & [`Reference`](../interfaces/Reference.md)
 
 Defined in: [lcax.d.ts:201](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L201)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **BuildingModelScope** = `"facilitating_works"` \| `"substructure"` \| `"superstructure_frame"` \| `"superstructure_envelope"` \| `"superstructure_internal_elements"` \| `"finishes"` \| `"building_services"` \| `"external_works"` \| `"ff_e"`
 
 Defined in: [lcax.d.ts:203](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L203)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **BuildingType** = `"new_construction_works"` \| `"demolition"` \| `"deconstruction_and_new_construction_works"` \| `"retrofit_works"` \| `"extension_works"` \| `"retrofit_and_extension_works"` \| `"fit_out_works"` \| `"operations"` \| `"unknown"` \| `"other"`
 
 Defined in: [lcax.d.ts:205](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L205)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **BuildingTypology** = `"office"` \| `"residential"` \| `"public"` \| `"commercial"` \| `"industrial"` \| `"infrastructure"` \| `"agricultural"` \| `"educational"` \| `"health"` \| `"science"` \| `"culture"` \| `"parking_logistic"` \| `"unknown"` \| `"other"`
 
 Defined in: [lcax.d.ts:207](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L207)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **EPDReference** = `object` & [`EPD`](../interfaces/EPD.md) \| `object` & [`Reference`](../interfaces/Reference.md)
 
 Defined in: [lcax.d.ts:211](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L211)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **GeneralEnergyClass** = `"existing"` \| `"standard"` \| `"advanced"` \| `"unknown"`
 
 Defined in: [lcax.d.ts:213](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L213)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **GenericDataReference** = `object` & [`GenericData`](../interfaces/GenericData.md) \| `object` & [`Reference`](../interfaces/Reference.md)
 
 Defined in: [lcax.d.ts:215](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L215)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **ImpactCategory** = `Record`\<[`LifeCycleModule`](LifeCycleModule.md), `number` \| `null`\>
 
 Defined in: [lcax.d.ts:217](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L217)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **ImpactCategoryKey** = `"gwp"` \| `"gwp_fos"` \| `"gwp_bio"` \| `"gwp_lul"` \| `"odp"` \| `"ap"` \| `"ep"` \| `"ep_fw"` \| `"ep_mar"` \| `"ep_ter"` \| `"pocp"` \| `"adpe"` \| `"adpf"` \| `"penre"` \| `"pere"` \| `"perm"` \| `"pert"` \| `"penrt"` \| `"penrm"` \| `"sm"` \| `"pm"` \| `"wdp"` \| `"irp"` \| `"etp_fw"` \| `"htp_c"` \| `"htp_nc"` \| `"sqp"` \| `"rsf"` \| `"nrsf"` \| `"fw"` \| `"hwd"` \| `"nhwd"` \| `"rwd"` \| `"cru"` \| `"mrf"` \| `"mer"` \| `"eee"` \| `"eet"`
 
 Defined in: [lcax.d.ts:219](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L219)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **ImpactData** = [`EPDReference`](EPDReference.md) \| [`GenericDataReference`](GenericDataReference.md)
 
 Defined in: [lcax.d.ts:221](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L221)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **Impacts** = `Record`\<[`ImpactCategoryKey`](ImpactCategoryKey.md), [`ImpactCategory`](ImpactCategory.md)\>
 
 Defined in: [lcax.d.ts:223](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L223)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **LCABygResult** = [`Project`](../interfaces/Project.md) \| [`Assembly`](../interfaces/Assembly.md)[] \| [`Product`](../interfaces/Product.md)[] \| [`EPD`](../interfaces/EPD.md)[]
 
 Defined in: [lcax.d.ts:225](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L225)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **Level** = `"project"` \| `"assembly"` \| `"product"` \| `"impactData"`
 
 Defined in: [lcax.d.ts:227](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L227)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **LifeCycleModule** = `"a0"` \| `"a1a3"` \| `"a4"` \| `"a5"` \| `"b1"` \| `"b2"` \| `"b3"` \| `"b4"` \| `"b5"` \| `"b6"` \| `"b7"` \| `"b8"` \| `"c1"` \| `"c2"` \| `"c3"` \| `"c4"` \| `"d"`
 
 Defined in: [lcax.d.ts:229](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L229)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **MetaData** = `Record`\<`string`, [`AnyValue`](AnyValue.md) \| `null`\>
 
 Defined in: [lcax.d.ts:231](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L231)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **Number** = `number` \| `number`
 
 Defined in: [lcax.d.ts:233](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L233)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **ProductReference** = `object` & [`Product`](../interfaces/Product.md) \| `object` & [`Reference`](../interfaces/Reference.md)
 
 Defined in: [lcax.d.ts:235](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L235)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **ProjectPhase** = `"strategic_design"` \| `"concept_design"` \| `"technical_design"` \| `"construction"` \| `"post_completion"` \| `"in_use"` \| `"other"`
 
 Defined in: [lcax.d.ts:237](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L237)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **RoofType** = `"flat"` \| `"pitched"` \| `"saddle"` \| `"pyramid"` \| `"unknown"` \| `"other"`
 
 Defined in: [lcax.d.ts:239](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L239)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **Standard** = `"en15804a1"` \| `"en15804a2"` \| `"unknown"`
 
 Defined in: [lcax.d.ts:241](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L241)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **SubType** = `"generic"` \| `"specific"` \| `"industry"` \| `"representative"`
 
 Defined in: [lcax.d.ts:243](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L243)
 
-
 [**lcax**](../README.md)
 
-***
+---
 
 > **Unit** = `"m"` \| `"m2"` \| `"m3"` \| `"kg"` \| `"tones"` \| `"pcs"` \| `"kwh"` \| `"l"` \| `"m2r1"` \| `"km"` \| `"tones_km"` \| `"kgm3"` \| `"unknown"`
 
 Defined in: [lcax.d.ts:245](https://github.com/ocni-dtu/lcax/blob/a8a4f667942d0e4aa062b618e3ac6dd7fdcdb5d9/packages/javascript/src/lcax.d.ts#L245)
-

@@ -2,6 +2,7 @@
 title: lcax API Reference
 description: Rust - API Reference
 ---
+
 # Crate Documentation
 
 **Version:** 3.6.0
@@ -49,6 +50,7 @@ pub fn convert_ilcd(data: String) -> Result<lcax_models::epd::EPD, String> { /* 
 Get default energy assemblies for a given standard.
 
 Currently supported standards:
+
 - `"BR18"`: Danish Building Regulations BR18 generic milestone data for Grid Electricity, District Heating, and Natural Gas.
 
 ```rust
@@ -62,4 +64,3 @@ pub fn get_energy_assemblies(standard: &str) -> Result<Vec<lcax_models::assembly
 ```rust
 pub use rust::*;
 ```
-

@@ -85,6 +85,7 @@ When a product has multiple `impactData` entries (EPDs and/or generic data), the
 ### Rate-Based Impacts and Milestone Interpolation
 
 For products representing operational energy or time-varying data (such as operational energy in life-cycle module `B6`):
+
 - When a product contains multiple milestone generic data entries across different years, LCAx calculates a time-weighted average impact across the study period `[startYear, startYear + referenceStudyPeriod]` using linear interpolation between milestones.
 - By default, products with milestone data or `isAnnual: false` in their metadata treat the quantity as a **lifetime total**, multiplying the total quantity directly by the time-weighted average emission factor.
 - If the quantity is an annual rate (e.g., `isAnnual: true` in metadata), LCAx scales the result by the reference study period.

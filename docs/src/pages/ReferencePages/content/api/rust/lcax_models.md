@@ -2,6 +2,7 @@
 title: lcax_models API Reference
 description: Rust - API Reference
 ---
+
 # Crate Documentation
 
 **Version:** 3.6.0
@@ -44,18 +45,18 @@ pub struct Assembly {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `description` | `Option<String>` |  |
-| `comment` | `Option<String>` |  |
-| `quantity` | `f64` |  |
-| `unit` | `crate::shared::Unit` |  |
-| `classification` | `Option<Vec<Classification>>` |  |
-| `products` | `Vec<crate::product::ProductReference>` |  |
-| `results` | `Option<crate::life_cycle_base::Impacts>` |  |
-| `meta_data` | `Option<crate::shared::MetaData>` |  |
+| Name             | Type                                      | Documentation |
+| ---------------- | ----------------------------------------- | ------------- |
+| `id`             | `String`                                  |               |
+| `name`           | `String`                                  |               |
+| `description`    | `Option<String>`                          |               |
+| `comment`        | `Option<String>`                          |               |
+| `quantity`       | `f64`                                     |               |
+| `unit`           | `crate::shared::Unit`                     |               |
+| `classification` | `Option<Vec<Classification>>`             |               |
+| `products`       | `Vec<crate::product::ProductReference>`   |               |
+| `results`        | `Option<crate::life_cycle_base::Impacts>` |               |
+| `meta_data`      | `Option<crate::shared::MetaData>`         |               |
 
 ##### Implementations
 
@@ -93,11 +94,12 @@ pub struct Assembly {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -139,11 +141,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -168,6 +171,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `Classification`
 
 **Attributes:**
@@ -184,11 +188,11 @@ pub struct Classification {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `system` | `String` |  |
-| `code` | `String` |  |
-| `name` | `String` |  |
+| Name     | Type     | Documentation |
+| -------- | -------- | ------------- |
+| `system` | `String` |               |
+| `code`   | `String` |               |
+| `name`   | `String` |               |
 
 ##### Implementations
 
@@ -226,11 +230,12 @@ pub struct Classification {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -272,11 +277,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -301,6 +307,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `AssemblyReference`
 
 **Attributes:**
@@ -322,17 +329,17 @@ pub enum AssemblyReference {
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `Assembly` |  |
+| Index | Type       | Documentation |
+| ----- | ---------- | ------------- |
+| 0     | `Assembly` |               |
 
 ###### `Reference`
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `crate::shared::Reference` |  |
+| Index | Type                       | Documentation |
+| ----- | -------------------------- | ------------- |
+| 0     | `crate::shared::Reference` |               |
 
 ##### Implementations
 
@@ -378,11 +385,12 @@ Fields:
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -424,11 +432,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -453,6 +462,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 ## Module `epd`
 
 ```rust
@@ -490,23 +500,23 @@ pub struct EPD {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `declared_unit` | `crate::shared::Unit` |  |
-| `version` | `String` |  |
-| `published_date` | `chrono::NaiveDate` |  |
-| `valid_until` | `chrono::NaiveDate` |  |
-| `source` | `Option<crate::shared::Source>` |  |
-| `reference_service_life` | `Option<u32>` |  |
-| `standard` | `Standard` |  |
-| `comment` | `Option<String>` |  |
-| `location` | `lcax_core::country::Country` |  |
-| `subtype` | `SubType` |  |
-| `conversions` | `Option<Vec<crate::shared::Conversion>>` |  |
-| `impacts` | `crate::life_cycle_base::Impacts` |  |
-| `meta_data` | `Option<crate::shared::MetaData>` |  |
+| Name                     | Type                                     | Documentation |
+| ------------------------ | ---------------------------------------- | ------------- |
+| `id`                     | `String`                                 |               |
+| `name`                   | `String`                                 |               |
+| `declared_unit`          | `crate::shared::Unit`                    |               |
+| `version`                | `String`                                 |               |
+| `published_date`         | `chrono::NaiveDate`                      |               |
+| `valid_until`            | `chrono::NaiveDate`                      |               |
+| `source`                 | `Option<crate::shared::Source>`          |               |
+| `reference_service_life` | `Option<u32>`                            |               |
+| `standard`               | `Standard`                               |               |
+| `comment`                | `Option<String>`                         |               |
+| `location`               | `lcax_core::country::Country`            |               |
+| `subtype`                | `SubType`                                |               |
+| `conversions`            | `Option<Vec<crate::shared::Conversion>>` |               |
+| `impacts`                | `crate::life_cycle_base::Impacts`        |               |
+| `meta_data`              | `Option<crate::shared::MetaData>`        |               |
 
 ##### Implementations
 
@@ -557,11 +567,12 @@ pub struct EPD {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -603,11 +614,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -632,6 +644,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `Standard`
 
 **Attributes:**
@@ -685,11 +698,12 @@ pub enum Standard {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -702,6 +716,7 @@ where
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
+
     Returns the argument unchanged.
 
   - ```rust
@@ -735,11 +750,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -764,6 +780,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `SubType`
 
 **Attributes:**
@@ -820,11 +837,12 @@ pub enum SubType {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -837,6 +855,7 @@ where
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
+
     Returns the argument unchanged.
 
   - ```rust
@@ -847,6 +866,7 @@ where
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
+
     Calls `U::from(self)`.
 
   - ```rust
@@ -874,11 +894,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -903,6 +924,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `EPDReference`
 
 **Attributes:**
@@ -924,17 +946,17 @@ pub enum EPDReference {
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `EPD` |  |
+| Index | Type  | Documentation |
+| ----- | ----- | ------------- |
+| 0     | `EPD` |               |
 
 ###### `Reference`
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `crate::shared::Reference` |  |
+| Index | Type                       | Documentation |
+| ----- | -------------------------- | ------------- |
+| 0     | `crate::shared::Reference` |               |
 
 ##### Implementations
 
@@ -976,11 +998,12 @@ Fields:
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -1022,11 +1045,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -1051,6 +1075,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 ## Module `generic_impact_data`
 
 ```rust
@@ -1081,16 +1106,16 @@ pub struct GenericData {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `declared_unit` | `crate::shared::Unit` |  |
-| `source` | `Option<crate::shared::Source>` |  |
-| `comment` | `Option<String>` |  |
-| `conversions` | `Option<Vec<crate::shared::Conversion>>` |  |
-| `impacts` | `crate::life_cycle_base::Impacts` |  |
-| `meta_data` | `Option<crate::shared::MetaData>` |  |
+| Name            | Type                                     | Documentation |
+| --------------- | ---------------------------------------- | ------------- |
+| `id`            | `String`                                 |               |
+| `name`          | `String`                                 |               |
+| `declared_unit` | `crate::shared::Unit`                    |               |
+| `source`        | `Option<crate::shared::Source>`          |               |
+| `comment`       | `Option<String>`                         |               |
+| `conversions`   | `Option<Vec<crate::shared::Conversion>>` |               |
+| `impacts`       | `crate::life_cycle_base::Impacts`        |               |
+| `meta_data`     | `Option<crate::shared::MetaData>`        |               |
 
 ##### Implementations
 
@@ -1133,11 +1158,12 @@ pub struct GenericData {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -1179,11 +1205,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -1208,6 +1235,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `GenericDataReference`
 
 **Attributes:**
@@ -1229,17 +1257,17 @@ pub enum GenericDataReference {
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `GenericData` |  |
+| Index | Type          | Documentation |
+| ----- | ------------- | ------------- |
+| 0     | `GenericData` |               |
 
 ###### `Reference`
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `crate::shared::Reference` |  |
+| Index | Type                       | Documentation |
+| ----- | -------------------------- | ------------- |
+| 0     | `crate::shared::Reference` |               |
 
 ##### Implementations
 
@@ -1286,11 +1314,12 @@ Fields:
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -1332,11 +1361,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -1361,6 +1391,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 ## Module `life_cycle_base`
 
 ```rust
@@ -1469,11 +1500,12 @@ pub enum LifeCycleModule {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **Display**
@@ -1526,11 +1558,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -1564,6 +1597,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `ImpactCategoryKey`
 
 **Attributes:**
@@ -1727,11 +1761,12 @@ pub enum ImpactCategoryKey {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **Display**
@@ -1784,11 +1819,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -1818,6 +1854,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `ImpactCategory`
 
 **Attributes:**
@@ -1831,9 +1868,9 @@ pub struct ImpactCategory(/* private field */);
 
 ##### Fields
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `private` | *Private field* |
+| Index | Type      | Documentation   |
+| ----- | --------- | --------------- |
+| 0     | `private` | _Private field_ |
 
 ##### Implementations
 
@@ -1904,11 +1941,12 @@ pub struct ImpactCategory(/* private field */);
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -1921,6 +1959,7 @@ where
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
+
     Returns the argument unchanged.
 
   - ```rust
@@ -1954,11 +1993,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -1983,6 +2023,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `Impacts`
 
 **Attributes:**
@@ -1996,9 +2037,9 @@ pub struct Impacts(/* private field */);
 
 ##### Fields
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `private` | *Private field* |
+| Index | Type      | Documentation   |
+| ----- | --------- | --------------- |
+| 0     | `private` | _Private field_ |
 
 ##### Implementations
 
@@ -2068,11 +2109,12 @@ pub struct Impacts(/* private field */);
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -2085,6 +2127,7 @@ where
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
+
     Returns the argument unchanged.
 
   - ```rust
@@ -2123,11 +2166,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -2152,6 +2196,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 ### Traits
 
 #### Trait `NewResults`
@@ -2208,18 +2253,18 @@ pub struct Product {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `description` | `Option<String>` |  |
-| `reference_service_life` | `u32` |  |
-| `impact_data` | `Vec<ImpactData>` |  |
-| `quantity` | `f64` |  |
-| `unit` | `crate::shared::Unit` |  |
-| `transport` | `Option<Vec<Transport>>` |  |
-| `results` | `Option<crate::life_cycle_base::Impacts>` |  |
-| `meta_data` | `Option<crate::shared::MetaData>` |  |
+| Name                     | Type                                      | Documentation |
+| ------------------------ | ----------------------------------------- | ------------- |
+| `id`                     | `String`                                  |               |
+| `name`                   | `String`                                  |               |
+| `description`            | `Option<String>`                          |               |
+| `reference_service_life` | `u32`                                     |               |
+| `impact_data`            | `Vec<ImpactData>`                         |               |
+| `quantity`               | `f64`                                     |               |
+| `unit`                   | `crate::shared::Unit`                     |               |
+| `transport`              | `Option<Vec<Transport>>`                  |               |
+| `results`                | `Option<crate::life_cycle_base::Impacts>` |               |
+| `meta_data`              | `Option<crate::shared::MetaData>`         |               |
 
 ##### Implementations
 
@@ -2257,11 +2302,12 @@ pub struct Product {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -2303,11 +2349,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -2332,6 +2379,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `ProductReference`
 
 **Attributes:**
@@ -2353,17 +2401,17 @@ pub enum ProductReference {
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `Product` |  |
+| Index | Type      | Documentation |
+| ----- | --------- | ------------- |
+| 0     | `Product` |               |
 
 ###### `Reference`
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `crate::shared::Reference` |  |
+| Index | Type                       | Documentation |
+| ----- | -------------------------- | ------------- |
+| 0     | `crate::shared::Reference` |               |
 
 ##### Implementations
 
@@ -2405,11 +2453,12 @@ Fields:
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -2451,11 +2500,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -2480,6 +2530,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `Transport`
 
 **Attributes:**
@@ -2500,14 +2551,14 @@ pub struct Transport {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `life_cycle_modules` | `Vec<crate::life_cycle_base::LifeCycleModule>` |  |
-| `distance` | `f64` |  |
-| `distance_unit` | `crate::shared::Unit` |  |
-| `impact_data` | `ImpactData` |  |
+| Name                 | Type                                           | Documentation |
+| -------------------- | ---------------------------------------------- | ------------- |
+| `id`                 | `String`                                       |               |
+| `name`               | `String`                                       |               |
+| `life_cycle_modules` | `Vec<crate::life_cycle_base::LifeCycleModule>` |               |
+| `distance`           | `f64`                                          |               |
+| `distance_unit`      | `crate::shared::Unit`                          |               |
+| `impact_data`        | `ImpactData`                                   |               |
 
 ##### Implementations
 
@@ -2539,11 +2590,12 @@ pub struct Transport {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -2585,11 +2637,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -2614,6 +2667,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `ImpactData`
 
 **Attributes:**
@@ -2635,17 +2689,17 @@ pub enum ImpactData {
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `crate::epd::EPDReference` |  |
+| Index | Type                       | Documentation |
+| ----- | -------------------------- | ------------- |
+| 0     | `crate::epd::EPDReference` |               |
 
 ###### `GenericData`
 
 Fields:
 
-| Index | Type | Documentation |
-|-------|------|---------------|
-| 0 | `crate::generic_impact_data::GenericDataReference` |  |
+| Index | Type                                               | Documentation |
+| ----- | -------------------------------------------------- | ------------- |
+| 0     | `crate::generic_impact_data::GenericDataReference` |               |
 
 ##### Implementations
 
@@ -2688,11 +2742,12 @@ Fields:
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -2734,11 +2789,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -2763,6 +2819,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 ## Module `project`
 
 ```rust
@@ -2803,26 +2860,26 @@ pub struct Project {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `description` | `Option<String>` |  |
-| `comment` | `Option<String>` |  |
-| `location` | `Location` |  |
-| `owner` | `Option<String>` |  |
-| `format_version` | `String` |  |
-| `lcia_method` | `Option<String>` |  |
-| `classification_systems` | `Option<Vec<String>>` |  |
-| `reference_study_period` | `Option<u8>` |  |
-| `life_cycle_modules` | `Vec<crate::life_cycle_base::LifeCycleModule>` |  |
-| `impact_categories` | `Vec<crate::life_cycle_base::ImpactCategoryKey>` |  |
-| `assemblies` | `Vec<crate::assembly::AssemblyReference>` |  |
-| `results` | `Option<crate::life_cycle_base::Impacts>` |  |
-| `project_info` | `Option<BuildingInfo>` |  |
-| `project_phase` | `ProjectPhase` |  |
-| `software_info` | `SoftwareInfo` |  |
-| `meta_data` | `Option<crate::shared::MetaData>` |  |
+| Name                     | Type                                             | Documentation |
+| ------------------------ | ------------------------------------------------ | ------------- |
+| `id`                     | `String`                                         |               |
+| `name`                   | `String`                                         |               |
+| `description`            | `Option<String>`                                 |               |
+| `comment`                | `Option<String>`                                 |               |
+| `location`               | `Location`                                       |               |
+| `owner`                  | `Option<String>`                                 |               |
+| `format_version`         | `String`                                         |               |
+| `lcia_method`            | `Option<String>`                                 |               |
+| `classification_systems` | `Option<Vec<String>>`                            |               |
+| `reference_study_period` | `Option<u8>`                                     |               |
+| `life_cycle_modules`     | `Vec<crate::life_cycle_base::LifeCycleModule>`   |               |
+| `impact_categories`      | `Vec<crate::life_cycle_base::ImpactCategoryKey>` |               |
+| `assemblies`             | `Vec<crate::assembly::AssemblyReference>`        |               |
+| `results`                | `Option<crate::life_cycle_base::Impacts>`        |               |
+| `project_info`           | `Option<BuildingInfo>`                           |               |
+| `project_phase`          | `ProjectPhase`                                   |               |
+| `software_info`          | `SoftwareInfo`                                   |               |
+| `meta_data`              | `Option<crate::shared::MetaData>`                |               |
 
 ##### Implementations
 
@@ -2881,11 +2938,12 @@ pub struct Project {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -2927,11 +2985,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -2956,6 +3015,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `SoftwareInfo`
 
 **Attributes:**
@@ -2974,12 +3034,12 @@ pub struct SoftwareInfo {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `lca_software` | `String` |  |
-| `lca_software_version` | `Option<String>` |  |
-| `goal_and_scope_definition` | `Option<String>` |  |
-| `calculation_type` | `Option<String>` |  |
+| Name                        | Type             | Documentation |
+| --------------------------- | ---------------- | ------------- |
+| `lca_software`              | `String`         |               |
+| `lca_software_version`      | `Option<String>` |               |
+| `goal_and_scope_definition` | `Option<String>` |               |
+| `calculation_type`          | `Option<String>` |               |
 
 ##### Implementations
 
@@ -3022,11 +3082,12 @@ pub struct SoftwareInfo {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -3068,11 +3129,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -3097,6 +3159,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `ProjectPhase`
 
 **Attributes:**
@@ -3167,11 +3230,12 @@ pub enum ProjectPhase {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -3213,11 +3277,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -3242,6 +3307,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `Location`
 
 **Attributes:**
@@ -3259,11 +3325,11 @@ pub struct Location {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `country` | `lcax_core::country::Country` |  |
-| `city` | `Option<String>` |  |
-| `address` | `Option<String>` |  |
+| Name      | Type                          | Documentation |
+| --------- | ----------------------------- | ------------- |
+| `country` | `lcax_core::country::Country` |               |
+| `city`    | `Option<String>`              |               |
+| `address` | `Option<String>`              |               |
 
 ##### Implementations
 
@@ -3306,11 +3372,12 @@ pub struct Location {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -3352,11 +3419,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -3381,6 +3449,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `BuildingInfo`
 
 **Attributes:**
@@ -3418,31 +3487,31 @@ pub struct BuildingInfo {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `building_type` | `BuildingType` |  |
-| `building_typology` | `Vec<BuildingTypology>` |  |
-| `certifications` | `Option<Vec<String>>` |  |
-| `building_mass` | `Option<ValueUnit>` |  |
-| `building_height` | `Option<ValueUnit>` |  |
-| `gross_floor_area` | `Option<AreaType>` |  |
-| `heated_floor_area` | `Option<AreaType>` |  |
-| `building_footprint` | `Option<ValueUnit>` |  |
-| `floors_above_ground` | `u16` |  |
-| `floors_below_ground` | `Option<u16>` |  |
-| `roof_type` | `Option<RoofType>` |  |
-| `frame_type` | `Option<String>` |  |
-| `building_completion_year` | `Option<u16>` |  |
-| `building_permit_year` | `Option<u16>` |  |
-| `energy_demand_heating` | `Option<f64>` |  |
-| `energy_supply_heating` | `Option<f64>` |  |
-| `energy_demand_electricity` | `Option<f64>` |  |
-| `energy_supply_electricity` | `Option<f64>` |  |
-| `exported_electricity` | `Option<f64>` |  |
-| `general_energy_class` | `GeneralEnergyClass` |  |
-| `local_energy_class` | `Option<String>` |  |
-| `building_users` | `Option<u32>` |  |
-| `building_model_scope` | `Option<Vec<BuildingModelScope>>` |  |
+| Name                        | Type                              | Documentation |
+| --------------------------- | --------------------------------- | ------------- |
+| `building_type`             | `BuildingType`                    |               |
+| `building_typology`         | `Vec<BuildingTypology>`           |               |
+| `certifications`            | `Option<Vec<String>>`             |               |
+| `building_mass`             | `Option<ValueUnit>`               |               |
+| `building_height`           | `Option<ValueUnit>`               |               |
+| `gross_floor_area`          | `Option<AreaType>`                |               |
+| `heated_floor_area`         | `Option<AreaType>`                |               |
+| `building_footprint`        | `Option<ValueUnit>`               |               |
+| `floors_above_ground`       | `u16`                             |               |
+| `floors_below_ground`       | `Option<u16>`                     |               |
+| `roof_type`                 | `Option<RoofType>`                |               |
+| `frame_type`                | `Option<String>`                  |               |
+| `building_completion_year`  | `Option<u16>`                     |               |
+| `building_permit_year`      | `Option<u16>`                     |               |
+| `energy_demand_heating`     | `Option<f64>`                     |               |
+| `energy_supply_heating`     | `Option<f64>`                     |               |
+| `energy_demand_electricity` | `Option<f64>`                     |               |
+| `energy_supply_electricity` | `Option<f64>`                     |               |
+| `exported_electricity`      | `Option<f64>`                     |               |
+| `general_energy_class`      | `GeneralEnergyClass`              |               |
+| `local_energy_class`        | `Option<String>`                  |               |
+| `building_users`            | `Option<u32>`                     |               |
+| `building_model_scope`      | `Option<Vec<BuildingModelScope>>` |               |
 
 ##### Implementations
 
@@ -3474,11 +3543,12 @@ pub struct BuildingInfo {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -3520,11 +3590,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -3549,6 +3620,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `AreaType`
 
 **Attributes:**
@@ -3566,11 +3638,11 @@ pub struct AreaType {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `value` | `f64` |  |
-| `unit` | `crate::shared::Unit` |  |
-| `definition` | `String` |  |
+| Name         | Type                  | Documentation |
+| ------------ | --------------------- | ------------- |
+| `value`      | `f64`                 |               |
+| `unit`       | `crate::shared::Unit` |               |
+| `definition` | `String`              |               |
 
 ##### Implementations
 
@@ -3602,11 +3674,12 @@ pub struct AreaType {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -3648,11 +3721,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -3677,6 +3751,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `ValueUnit`
 
 **Attributes:**
@@ -3693,10 +3768,10 @@ pub struct ValueUnit {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `value` | `f64` |  |
-| `unit` | `crate::shared::Unit` |  |
+| Name    | Type                  | Documentation |
+| ------- | --------------------- | ------------- |
+| `value` | `f64`                 |               |
+| `unit`  | `crate::shared::Unit` |               |
 
 ##### Implementations
 
@@ -3728,11 +3803,12 @@ pub struct ValueUnit {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -3774,11 +3850,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -3803,6 +3880,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `RoofType`
 
 **Attributes:**
@@ -3865,11 +3943,12 @@ pub enum RoofType {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -3911,11 +3990,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -3940,6 +4020,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `GeneralEnergyClass`
 
 **Attributes:**
@@ -3996,11 +4077,12 @@ pub enum GeneralEnergyClass {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -4013,6 +4095,7 @@ where
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
+
     Returns the argument unchanged.
 
   - ```rust
@@ -4046,11 +4129,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -4075,6 +4159,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `BuildingModelScope`
 
 **Attributes:**
@@ -4146,11 +4231,12 @@ pub enum BuildingModelScope {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -4192,11 +4278,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -4221,6 +4308,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `BuildingType`
 
 **Attributes:**
@@ -4295,11 +4383,12 @@ pub enum BuildingType {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -4341,11 +4430,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -4370,6 +4460,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Enum `BuildingTypology`
 
 **Attributes:**
@@ -4456,11 +4547,12 @@ pub enum BuildingTypology {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -4473,6 +4565,7 @@ where
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
+
     Returns the argument unchanged.
 
   - ```rust
@@ -4506,11 +4599,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -4535,6 +4629,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 ## Module `shared`
 
 ```rust
@@ -4636,11 +4731,12 @@ pub enum Unit {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **Display**
@@ -4658,6 +4754,7 @@ where
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
+
     Returns the argument unchanged.
 
   - ```rust
@@ -4691,11 +4788,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -4725,6 +4823,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `Conversion`
 
 **Attributes:**
@@ -4742,11 +4841,11 @@ pub struct Conversion {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `value` | `f64` |  |
-| `to` | `Unit` |  |
-| `meta_data` | `Option<MetaData>` |  |
+| Name        | Type               | Documentation |
+| ----------- | ------------------ | ------------- |
+| `value`     | `f64`              |               |
+| `to`        | `Unit`             |               |
+| `meta_data` | `Option<MetaData>` |               |
 
 ##### Implementations
 
@@ -4778,11 +4877,12 @@ pub struct Conversion {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -4824,11 +4924,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -4853,6 +4954,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `Source`
 
 **Attributes:**
@@ -4869,10 +4971,10 @@ pub struct Source {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `name` | `String` |  |
-| `url` | `Option<String>` |  |
+| Name   | Type             | Documentation |
+| ------ | ---------------- | ------------- |
+| `name` | `String`         |               |
+| `url`  | `Option<String>` |               |
 
 ##### Implementations
 
@@ -4904,11 +5006,12 @@ pub struct Source {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -4950,11 +5053,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -4979,6 +5083,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Struct `Reference`
 
 **Attributes:**
@@ -4996,12 +5101,12 @@ pub struct Reference {
 
 ##### Fields
 
-| Name | Type | Documentation |
-|------|------|---------------|
-| `uri` | `String` |  |
-| `format` | `Option<String>` |  |
-| `version` | `Option<String>` |  |
-| `overrides` | `Option<std::collections::HashMap<String, Option<lcax_core::value::AnyValue>>>` |  |
+| Name        | Type                                                                            | Documentation |
+| ----------- | ------------------------------------------------------------------------------- | ------------- |
+| `uri`       | `String`                                                                        |               |
+| `format`    | `Option<String>`                                                                |               |
+| `version`   | `Option<String>`                                                                |               |
+| `overrides` | `Option<std::collections::HashMap<String, Option<lcax_core::value::AnyValue>>>` |               |
 
 ##### Implementations
 
@@ -5033,11 +5138,12 @@ pub struct Reference {
     ```
 
 - **Deserialize**
-  - ```rust
-    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-where
-    __D: _serde::Deserializer<''de> { /* ... */ }
-    ```
+  - ````rust
+        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+    where
+        __D: _serde::Deserializer<''de> { /* ... */ }
+        ```
+    ````
 
 - **DeserializeOwned**
 - **DynClone**
@@ -5079,11 +5185,12 @@ where
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ```rust
-    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-where
-    __S: _serde::Serializer { /* ... */ }
-    ```
+  - ````rust
+        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+    where
+        __S: _serde::Serializer { /* ... */ }
+        ```
+    ````
 
 - **StructuralPartialEq**
 - **Sync**
@@ -5108,6 +5215,7 @@ where
 
 - **Unpin**
 - **UnwindSafe**
+
 #### Type Alias `MetaData`
 
 **Attributes:**
@@ -5117,4 +5225,3 @@ where
 ```rust
 pub type MetaData = std::collections::HashMap<String, Option<lcax_core::value::AnyValue>>;
 ```
-
