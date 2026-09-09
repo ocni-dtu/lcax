@@ -291,6 +291,11 @@ export function generalEnergyClasses(): GeneralEnergyClass[];
 export function getCountryName(value: string): string;
 
 /**
+ * Get default energy assemblies for a given standard.
+ */
+export function getEnergyAssemblies(standard: string): Assembly[];
+
+/**
  * Get the total impact
  */
 export function getImpactTotal(impacts: Impacts, category: ImpactCategoryKey, exclude_modules?: LifeCycleModule[] | null): number;

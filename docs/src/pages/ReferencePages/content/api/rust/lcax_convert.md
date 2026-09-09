@@ -5,7 +5,7 @@ description: Rust - API Reference
 
 # Crate Documentation
 
-**Version:** 3.4.3
+**Version:** 3.6.0
 
 **Format Version:** 57
 
@@ -110,6 +110,26 @@ pub fn read_br_standard_from_file(file_path: &std::path::PathBuf) -> Result<(cra
 
 ```rust
 pub fn read_br_standard_from_bytes(file: Vec<u8>) -> Result<(crate::br_standard::models::BRProjectInfo, Vec<crate::br_standard::models::BRComponent>, Vec<crate::br_standard::models::BROperation>), calamine::Error> { /* ... */ }
+```
+
+## Module `energy`
+
+```rust
+pub mod energy { /* ... */ }
+```
+
+### Functions
+
+#### Function `get_energy_assemblies`
+
+Get default energy assemblies for a given standard.
+
+Currently supported standards:
+
+- `"BR18"`: Danish Building Regulations BR18 generic milestone data for Grid Electricity, District Heating, and Natural Gas.
+
+```rust
+pub fn get_energy_assemblies(standard: &str) -> Result<Vec<lcax_models::assembly::Assembly>, String> { /* ... */ }
 ```
 
 ## Module `ilcd`
@@ -4677,4 +4697,12 @@ pub fn to_lcabyg(objects: &crate::lcabyg::parse::LCABygResult) -> serde_json::Re
 
 ```rust
 pub fn serialize_epds(epds: &Vec<lcax_models::epd::EPD>) -> serde_json::Result<String> { /* ... */ }
+```
+
+## Re-exports
+
+### Re-export `get_energy_assemblies`
+
+```rust
+pub use energy::get_energy_assemblies;
 ```

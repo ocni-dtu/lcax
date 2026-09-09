@@ -136,6 +136,18 @@ pub fn validate(
     Ok(lcax_validation::validate(&project, &validation_schema))
 }
 
+/// Get default energy assemblies for a given standard.
+///
+/// :param standard: Standard identifier (e.g. "BR18").
+/// :return: List of default Assembly objects for operational energy carriers.
+#[pyfunction]
+pub fn get_energy_assemblies(standard: &str) -> PyResult<Vec<Assembly>> {
+    match lcax_convert::get_energy_assemblies(standard) {
+        Ok(assemblies) => Ok(assemblies),
+        Err(error) => Err(PyValueError::new_err(error)),
+    }
+}
+
 /// A Python module implemented in Rust. The name of this function must match
 /// the `lib.name` setting in the `Cargo.toml`, else Python will not be able to
 /// import the module.
@@ -182,5 +194,6 @@ fn lcax(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(normalize_result, m)?)?;
     m.add_function(wrap_pyfunction!(get_impacts_by_life_cycle_module, m)?)?;
     m.add_function(wrap_pyfunction!(validate, m)?)?;
+    m.add_function(wrap_pyfunction!(get_energy_assemblies, m)?)?;
     Ok(())
 }

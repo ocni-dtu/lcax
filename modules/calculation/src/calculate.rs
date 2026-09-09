@@ -318,25 +318,22 @@ fn scale_impacts(impacts: &mut Impacts, scale: f64) {
 }
 
 fn is_rate_based(meta_data: &Option<MetaData>, description: &Option<String>) -> bool {
-    if let Some(desc) = description {
-        let desc_lower = desc.to_ascii_lowercase();
-        if desc_lower.contains("linearly interpolated") || desc_lower.contains("annual") {
-            return true;
-        }
-    }
     if let Some(meta) = meta_data {
         for key in ["isAnnual", "is_annual", "annual", "rateBased", "rate_based"] {
             if let Some(Some(val)) = meta.get(key) {
                 match val {
                     AnyValue::Bool(b) => {
-                        if *b {
-                            return true;
-                        }
+                        return *b;
                     }
                     AnyValue::String(s) => {
                         let s_lower = s.to_ascii_lowercase();
                         if s_lower == "true" || s_lower == "annual" || s_lower == "rate_based" {
                             return true;
+                        } else if s_lower == "false"
+                            || s_lower == "total"
+                            || s_lower == "cumulative"
+                        {
+                            return false;
                         }
                     }
                     _ => {}
@@ -350,7 +347,15 @@ fn is_rate_based(meta_data: &Option<MetaData>, description: &Option<String>) -> 
             let s_lower = s.to_ascii_lowercase();
             if s_lower == "annual" || s_lower == "rate_based" || s_lower == "ratebased" {
                 return true;
+            } else if s_lower == "total" || s_lower == "cumulative" {
+                return false;
             }
+        }
+    }
+    if let Some(desc) = description {
+        let desc_lower = desc.to_ascii_lowercase();
+        if desc_lower.contains("linearly interpolated") || desc_lower.contains("annual") {
+            return true;
         }
     }
     false

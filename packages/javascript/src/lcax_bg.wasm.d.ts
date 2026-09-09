@@ -7,6 +7,7 @@ export const calculateProject: (a: any, b: number) => [number, number, number];
 export const convertBRStandard: (a: number, b: number, c: number, d: number) => [number, number, number];
 export const convertIlcd: (a: number, b: number) => [number, number, number];
 export const convertLCAbyg: (a: number, b: number, c: number, d: number) => [number, number, number];
+export const getEnergyAssemblies: (a: number, b: number) => [number, number, number, number];
 export const getImpactTotal: (a: any, b: any, c: number, d: number) => [number, number, number];
 export const getImpactsByLifeCycleModule: (a: any, b: any, c: number, d: number, e: number, f: number) => [number, number, number];
 export const normalizeResult: (a: number, b: number) => [number, number, number];

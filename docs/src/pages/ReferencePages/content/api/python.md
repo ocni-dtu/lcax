@@ -2992,6 +2992,17 @@ convert_lcabyg(data, result_data=None)
 
 Converts a json formatted LCAByg project into a LCAx Project
 
+#### `lcax.lcax.get_energy_assemblies`
+
+```python
+get_energy_assemblies(standard)
+```
+
+Get default energy assemblies for a given standard.
+
+:param standard: Standard identifier (e.g. "BR18").
+:return: List of default Assembly objects for operational energy carriers.
+
 #### `lcax.lcax.get_impact_total`
 
 ```python
