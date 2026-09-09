@@ -164,6 +164,23 @@ export function getCountryName(value) {
 }
 
 /**
+ * Get default energy assemblies for a given standard.
+ * @param {string} standard
+ * @returns {Assembly[]}
+ */
+export function getEnergyAssemblies(standard) {
+    const ptr0 = passStringToWasm0(standard, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.getEnergyAssemblies(ptr0, len0);
+    if (ret[3]) {
+        throw takeFromExternrefTable0(ret[2]);
+    }
+    var v2 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v2;
+}
+
+/**
  * Get the total impact
  * @param {Impacts} impacts
  * @param {ImpactCategoryKey} category

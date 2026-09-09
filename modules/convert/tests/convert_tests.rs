@@ -18,3 +18,6 @@ mod test_parse_br_standard;
 
 #[path = "br_standard/test_br_from_file.rs"]
 mod test_br_from_file;
+
+// Energy
+mod test_energy;

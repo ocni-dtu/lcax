@@ -1,5 +1,6 @@
 use lcax_convert::lcabyg::parse::LCABygResult;
 use lcax_convert::{ilcd, lcabyg};
+use lcax_models::assembly::Assembly;
 use lcax_models::epd::EPD;
 
 #[cfg(feature = "default")]
@@ -16,4 +17,9 @@ pub fn convert_ilcd(data: String) -> Result<EPD, String> {
         Ok(epd) => Ok(epd),
         Err(_) => panic!("Error parsing ILCD data"),
     }
+}
+
+#[cfg(feature = "default")]
+pub fn get_energy_assemblies(standard: &str) -> Result<Vec<Assembly>, String> {
+    lcax_convert::get_energy_assemblies(standard)
 }

@@ -9,7 +9,7 @@ use lcax_calculation::results::{
 use lcax_convert::br_standard::parse::parse_br_standard;
 use lcax_convert::br_standard::xlsx::read_br_standard_from_bytes;
 use lcax_convert::lcabyg::parse::LCABygResult;
-use lcax_convert::{ilcd, lcabyg};
+use lcax_convert::{get_energy_assemblies, ilcd, lcabyg};
 use lcax_models::assembly::Assembly;
 use lcax_models::epd::EPD;
 use lcax_models::life_cycle_base::{ImpactCategory, ImpactCategoryKey, Impacts, LifeCycleModule};
@@ -167,4 +167,15 @@ pub fn validate(
     validation_schemas: Vec<ValidationSchema>,
 ) -> Result<Vec<ValidationResult>, JsError> {
     Ok(lcax_validation::validate(&project, &validation_schemas))
+}
+
+///Get default energy assemblies for a given standard.
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn getEnergyAssemblies(standard: &str) -> Result<Vec<Assembly>, JsError> {
+    console_error_panic_hook::set_once();
+    match get_energy_assemblies(standard) {
+        Ok(assemblies) => Ok(assemblies),
+        Err(error) => Err(JsError::new(error.as_str())),
+    }
 }
