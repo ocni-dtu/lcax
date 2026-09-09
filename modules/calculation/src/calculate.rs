@@ -329,7 +329,10 @@ fn is_rate_based(meta_data: &Option<MetaData>, description: &Option<String>) -> 
                         let s_lower = s.to_ascii_lowercase();
                         if s_lower == "true" || s_lower == "annual" || s_lower == "rate_based" {
                             return true;
-                        } else if s_lower == "false" || s_lower == "total" || s_lower == "cumulative" {
+                        } else if s_lower == "false"
+                            || s_lower == "total"
+                            || s_lower == "cumulative"
+                        {
                             return false;
                         }
                     }
