@@ -2,10 +2,9 @@
 title: lcax_validation API Reference
 description: Rust - API Reference
 ---
-
 # Crate Documentation
 
-**Version:** 3.4.3
+**Version:** 3.6.0
 
 **Format Version:** 57
 
@@ -82,12 +81,11 @@ pub enum Level {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -124,12 +122,11 @@ pub enum Level {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **ToOwned**
@@ -158,36 +155,31 @@ pub enum Level {
     fn validate(self: &Self, validator: ValidPhrase<''v>) -> Result<(), InnerValidatorError<FieldNames, String>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: ValidPhrase<''v>) -> Result<T, InnerValidatorError<FieldNames, String>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: ValidPhrase<''v>) -> Result<T, InnerValidatorError<FieldNames, String>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
   - ```rust
     fn validate(self: &Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<(), InnerValidatorError<FieldNames, M>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<T, InnerValidatorError<FieldNames, M>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<T, InnerValidatorError<FieldNames, M>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
   - ```rust
     fn validate(self: &Self, validator: InnerValidator<M, ()>) -> Result<(), InnerValidatorError<FieldNames, M2>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: InnerValidator<M, ()>) -> Result<T, InnerValidatorError<FieldNames, M2>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: InnerValidator<M, ()>) -> Result<T, InnerValidatorError<FieldNames, M2>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
 #### Struct `ValidationSchema`
 
@@ -206,11 +198,11 @@ pub struct ValidationSchema {
 
 ##### Fields
 
-| Name    | Type             | Documentation |
-| ------- | ---------------- | ------------- |
-| `level` | `Level`          |               |
-| `field` | `String`         |               |
-| `rule`  | `ValidationRule` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `level` | `Level` |  |
+| `field` | `String` |  |
+| `rule` | `ValidationRule` |  |
 
 ##### Implementations
 
@@ -247,12 +239,11 @@ pub struct ValidationSchema {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -289,12 +280,11 @@ pub struct ValidationSchema {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **ToOwned**
@@ -323,36 +313,31 @@ pub struct ValidationSchema {
     fn validate(self: &Self, validator: ValidPhrase<''v>) -> Result<(), InnerValidatorError<FieldNames, String>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: ValidPhrase<''v>) -> Result<T, InnerValidatorError<FieldNames, String>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: ValidPhrase<''v>) -> Result<T, InnerValidatorError<FieldNames, String>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
   - ```rust
     fn validate(self: &Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<(), InnerValidatorError<FieldNames, M>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<T, InnerValidatorError<FieldNames, M>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<T, InnerValidatorError<FieldNames, M>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
   - ```rust
     fn validate(self: &Self, validator: InnerValidator<M, ()>) -> Result<(), InnerValidatorError<FieldNames, M2>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: InnerValidator<M, ()>) -> Result<T, InnerValidatorError<FieldNames, M2>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: InnerValidator<M, ()>) -> Result<T, InnerValidatorError<FieldNames, M2>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
 #### Struct `ValidationRule`
 
@@ -375,15 +360,15 @@ pub struct ValidationRule {
 
 ##### Fields
 
-| Name       | Type                  | Documentation |
-| ---------- | --------------------- | ------------- |
-| `range`    | `Option<[f64; 2]>`    |               |
-| `includes` | `Option<String>`      |               |
-| `required` | `Option<bool>`        |               |
-| `equal`    | `Option<String>`      |               |
-| `greater`  | `Option<f64>`         |               |
-| `less`     | `Option<f64>`         |               |
-| `one_of`   | `Option<Vec<String>>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `range` | `Option<[f64; 2]>` |  |
+| `includes` | `Option<String>` |  |
+| `required` | `Option<bool>` |  |
+| `equal` | `Option<String>` |  |
+| `greater` | `Option<f64>` |  |
+| `less` | `Option<f64>` |  |
+| `one_of` | `Option<Vec<String>>` |  |
 
 ##### Implementations
 
@@ -420,12 +405,11 @@ pub struct ValidationRule {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -462,12 +446,11 @@ pub struct ValidationRule {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **ToOwned**
@@ -496,36 +479,31 @@ pub struct ValidationRule {
     fn validate(self: &Self, validator: ValidPhrase<''v>) -> Result<(), InnerValidatorError<FieldNames, String>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: ValidPhrase<''v>) -> Result<T, InnerValidatorError<FieldNames, String>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: ValidPhrase<''v>) -> Result<T, InnerValidatorError<FieldNames, String>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
   - ```rust
     fn validate(self: &Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<(), InnerValidatorError<FieldNames, M>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<T, InnerValidatorError<FieldNames, M>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<T, InnerValidatorError<FieldNames, M>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
   - ```rust
     fn validate(self: &Self, validator: InnerValidator<M, ()>) -> Result<(), InnerValidatorError<FieldNames, M2>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: InnerValidator<M, ()>) -> Result<T, InnerValidatorError<FieldNames, M2>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: InnerValidator<M, ()>) -> Result<T, InnerValidatorError<FieldNames, M2>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
 #### Struct `ValidationResult`
 
@@ -543,10 +521,10 @@ pub struct ValidationResult {
 
 ##### Fields
 
-| Name      | Type     | Documentation |
-| --------- | -------- | ------------- |
-| `field`   | `String` |               |
-| `message` | `String` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `field` | `String` |  |
+| `message` | `String` |  |
 
 ##### Implementations
 
@@ -583,12 +561,11 @@ pub struct ValidationResult {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -625,12 +602,11 @@ pub struct ValidationResult {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **ToOwned**
@@ -659,36 +635,31 @@ pub struct ValidationResult {
     fn validate(self: &Self, validator: ValidPhrase<''v>) -> Result<(), InnerValidatorError<FieldNames, String>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: ValidPhrase<''v>) -> Result<T, InnerValidatorError<FieldNames, String>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: ValidPhrase<''v>) -> Result<T, InnerValidatorError<FieldNames, String>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
   - ```rust
     fn validate(self: &Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<(), InnerValidatorError<FieldNames, M>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<T, InnerValidatorError<FieldNames, M>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: InnerValidator<M, HashMap<MessageKey<''_>, M>>) -> Result<T, InnerValidatorError<FieldNames, M>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
   - ```rust
     fn validate(self: &Self, validator: InnerValidator<M, ()>) -> Result<(), InnerValidatorError<FieldNames, M2>> { /* ... */ }
     ```
 
-  - ````rust
-        fn validate_mut<''de>(self: Self, validator: InnerValidator<M, ()>) -> Result<T, InnerValidatorError<FieldNames, M2>>
-    where
-        T: Deserialize<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn validate_mut<''de>(self: Self, validator: InnerValidator<M, ()>) -> Result<T, InnerValidatorError<FieldNames, M2>>
+where
+    T: Deserialize<''de> { /* ... */ }
+    ```
 
 ## Module `rules`
 
@@ -715,8 +686,8 @@ pub struct Equal<T>(pub T);
 ##### Fields
 
 | Index | Type | Documentation |
-| ----- | ---- | ------------- |
-| 0     | `T`  |               |
+|-------|------|---------------|
+| 0 | `T` |  |
 
 ##### Implementations
 
@@ -792,21 +763,18 @@ pub struct Equal<T>(pub T);
     ```
 
 - **RuleExt**
-  - ````rust
-        fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
-    where
-        R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
-        ```
+  - ```rust
+    fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
+where
+    R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
+    ```
 
-    ````
-
-  - ````rust
-        fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
-    where
-        F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
-        V: FromValue + ''static { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
+where
+    F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
+    V: FromValue + ''static { /* ... */ }
+    ```
 
 - **Send**
 - **Sync**
@@ -831,7 +799,6 @@ pub struct Equal<T>(pub T);
 
 - **Unpin**
 - **UnwindSafe**
-
 ## Module `greater`
 
 ```rust
@@ -849,8 +816,8 @@ pub struct Greater<T>(pub T);
 ##### Fields
 
 | Index | Type | Documentation |
-| ----- | ---- | ------------- |
-| 0     | `T`  |               |
+|-------|------|---------------|
+| 0 | `T` |  |
 
 ##### Implementations
 
@@ -926,21 +893,18 @@ pub struct Greater<T>(pub T);
     ```
 
 - **RuleExt**
-  - ````rust
-        fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
-    where
-        R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
-        ```
+  - ```rust
+    fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
+where
+    R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
+    ```
 
-    ````
-
-  - ````rust
-        fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
-    where
-        F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
-        V: FromValue + ''static { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
+where
+    F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
+    V: FromValue + ''static { /* ... */ }
+    ```
 
 - **Send**
 - **Sync**
@@ -965,7 +929,6 @@ pub struct Greater<T>(pub T);
 
 - **Unpin**
 - **UnwindSafe**
-
 ## Module `includes`
 
 ```rust
@@ -983,8 +946,8 @@ pub struct Includes<T>(pub T);
 ##### Fields
 
 | Index | Type | Documentation |
-| ----- | ---- | ------------- |
-| 0     | `T`  |               |
+|-------|------|---------------|
+| 0 | `T` |  |
 
 ##### Implementations
 
@@ -1060,21 +1023,18 @@ pub struct Includes<T>(pub T);
     ```
 
 - **RuleExt**
-  - ````rust
-        fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
-    where
-        R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
-        ```
+  - ```rust
+    fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
+where
+    R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
+    ```
 
-    ````
-
-  - ````rust
-        fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
-    where
-        F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
-        V: FromValue + ''static { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
+where
+    F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
+    V: FromValue + ''static { /* ... */ }
+    ```
 
 - **Send**
 - **Sync**
@@ -1099,7 +1059,6 @@ pub struct Includes<T>(pub T);
 
 - **Unpin**
 - **UnwindSafe**
-
 ## Module `less`
 
 ```rust
@@ -1117,8 +1076,8 @@ pub struct Less<T>(pub T);
 ##### Fields
 
 | Index | Type | Documentation |
-| ----- | ---- | ------------- |
-| 0     | `T`  |               |
+|-------|------|---------------|
+| 0 | `T` |  |
 
 ##### Implementations
 
@@ -1194,21 +1153,18 @@ pub struct Less<T>(pub T);
     ```
 
 - **RuleExt**
-  - ````rust
-        fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
-    where
-        R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
-        ```
+  - ```rust
+    fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
+where
+    R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
+    ```
 
-    ````
-
-  - ````rust
-        fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
-    where
-        F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
-        V: FromValue + ''static { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
+where
+    F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
+    V: FromValue + ''static { /* ... */ }
+    ```
 
 - **Send**
 - **Sync**
@@ -1233,7 +1189,6 @@ pub struct Less<T>(pub T);
 
 - **Unpin**
 - **UnwindSafe**
-
 ## Module `one_of`
 
 ```rust
@@ -1251,8 +1206,8 @@ pub struct OneOf<T>(pub T);
 ##### Fields
 
 | Index | Type | Documentation |
-| ----- | ---- | ------------- |
-| 0     | `T`  |               |
+|-------|------|---------------|
+| 0 | `T` |  |
 
 ##### Implementations
 
@@ -1328,21 +1283,18 @@ pub struct OneOf<T>(pub T);
     ```
 
 - **RuleExt**
-  - ````rust
-        fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
-    where
-        R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
-        ```
+  - ```rust
+    fn and<R2>(self: Self, other: R2) -> RuleList<Input, Msg>
+where
+    R2: CoreRule<Input, (), Message = Msg> { /* ... */ }
+    ```
 
-    ````
-
-  - ````rust
-        fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
-    where
-        F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
-        V: FromValue + ''static { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn custom<F, V>(self: Self, other: F) -> RuleList<Input, Msg>
+where
+    F: for<''a> FnOnce(&''a mut V) -> Result<(), Msg> + CoreRule<Input, V, Message = Msg>,
+    V: FromValue + ''static { /* ... */ }
+    ```
 
 - **Send**
 - **Sync**
@@ -1367,7 +1319,6 @@ pub struct OneOf<T>(pub T);
 
 - **Unpin**
 - **UnwindSafe**
-
 ### Re-exports
 
 #### Re-export `Equal`
@@ -1427,3 +1378,4 @@ pub use model::ValidationSchema;
 ```rust
 pub use validate::validate;
 ```
+

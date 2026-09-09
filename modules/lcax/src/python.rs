@@ -136,6 +136,10 @@ pub fn validate(
     Ok(lcax_validation::validate(&project, &validation_schema))
 }
 
+/// Get default energy assemblies for a given standard.
+///
+/// :param standard: Standard identifier (e.g. "BR18").
+/// :return: List of default Assembly objects for operational energy carriers.
 #[pyfunction]
 pub fn get_energy_assemblies(standard: &str) -> PyResult<Vec<Assembly>> {
     match lcax_convert::get_energy_assemblies(standard) {

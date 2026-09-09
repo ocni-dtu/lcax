@@ -19,6 +19,10 @@ pub fn convert_ilcd(data: String) -> Result<EPD, String> {
     }
 }
 
+/// Get default energy assemblies for a given standard.
+///
+/// Currently supported standards:
+/// - `"BR18"`: Danish Building Regulations BR18 generic milestone data for Grid Electricity, District Heating, and Natural Gas.
 #[cfg(feature = "default")]
 pub fn get_energy_assemblies(standard: &str) -> Result<Vec<Assembly>, String> {
     lcax_convert::get_energy_assemblies(standard)

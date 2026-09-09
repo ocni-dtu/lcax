@@ -1,5 +1,7 @@
 import Calculate from './content/calculation/calculate.mdx'
 import { frontmatter as calculateFrontmatter } from './content/calculation/calculate.mdx'
+import EnergyAssemblies from './content/calculation/energy.mdx'
+import { frontmatter as energyFrontmatter } from './content/calculation/energy.mdx'
 import Results from './content/calculation/results.mdx'
 import { frontmatter as resultFrontmatter } from './content/calculation/results.mdx'
 import CustomConverter from './content/conversion/custom.mdx'
@@ -97,6 +99,13 @@ export const guideIndex = {
           content: Calculate,
           title: calculateFrontmatter.title,
           description: calculateFrontmatter.description,
+        },
+        {
+          label: 'Energy Assemblies',
+          slug: '/guides/calculation/energy',
+          content: EnergyAssemblies,
+          title: energyFrontmatter.title,
+          description: energyFrontmatter.description,
         },
         {
           label: 'Results',

@@ -2,10 +2,9 @@
 title: lcax_convert API Reference
 description: Rust - API Reference
 ---
-
 # Crate Documentation
 
-**Version:** 3.4.3
+**Version:** 3.6.0
 
 **Format Version:** 57
 
@@ -67,10 +66,10 @@ Parse data from BR Standard Format in to a LCAx Project
 
 # Arguments
 
-- `project_name`: Project Name
-- `project_info`: Project info from the "General information" tab
-- `components`: Component info from the "BR18 vejledning" tab
-- `operations`: Operation info from the "Drift" tab
+* `project_name`: Project Name
+* `project_info`: Project info from the "General information" tab
+* `components`: Component info from the "BR18 vejledning" tab
+* `operations`: Operation info from the "Drift" tab
 
 returns: Result<LCAxProject, String>
 
@@ -112,6 +111,25 @@ pub fn read_br_standard_from_file(file_path: &std::path::PathBuf) -> Result<(cra
 pub fn read_br_standard_from_bytes(file: Vec<u8>) -> Result<(crate::br_standard::models::BRProjectInfo, Vec<crate::br_standard::models::BRComponent>, Vec<crate::br_standard::models::BROperation>), calamine::Error> { /* ... */ }
 ```
 
+## Module `energy`
+
+```rust
+pub mod energy { /* ... */ }
+```
+
+### Functions
+
+#### Function `get_energy_assemblies`
+
+Get default energy assemblies for a given standard.
+
+Currently supported standards:
+- `"BR18"`: Danish Building Regulations BR18 generic milestone data for Grid Electricity, District Heating, and Natural Gas.
+
+```rust
+pub fn get_energy_assemblies(standard: &str) -> Result<Vec<lcax_models::assembly::Assembly>, String> { /* ... */ }
+```
+
 ## Module `ilcd`
 
 ```rust
@@ -146,13 +164,13 @@ pub struct ILCD {
 
 ##### Fields
 
-| Name                       | Type                     | Documentation |
-| -------------------------- | ------------------------ | ------------- |
-| `process_information`      | `ProcessInformation`     |               |
-| `modelling_and_validation` | `ModellingAndValidation` |               |
-| `exchanges`                | `Exchanges`              |               |
-| `lcia_results`             | `LCIAResults`            |               |
-| `version`                  | `String`                 |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `process_information` | `ProcessInformation` |  |
+| `modelling_and_validation` | `ModellingAndValidation` |  |
+| `exchanges` | `Exchanges` |  |
+| `lcia_results` | `LCIAResults` |  |
+| `version` | `String` |  |
 
 ##### Implementations
 
@@ -174,12 +192,11 @@ pub struct ILCD {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -210,7 +227,6 @@ pub struct ILCD {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Exchanges`
 
 **Attributes:**
@@ -225,9 +241,9 @@ pub struct Exchanges {
 
 ##### Fields
 
-| Name       | Type            | Documentation |
-| ---------- | --------------- | ------------- |
-| `exchange` | `Vec<Exchange>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `exchange` | `Vec<Exchange>` |  |
 
 ##### Implementations
 
@@ -249,12 +265,11 @@ pub struct Exchanges {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -285,7 +300,6 @@ pub struct Exchanges {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Exchange`
 
 **Attributes:**
@@ -309,18 +323,18 @@ pub struct Exchange {
 
 ##### Fields
 
-| Name                         | Type                            | Documentation |
-| ---------------------------- | ------------------------------- | ------------- |
-| `reference_to_flow_data_set` | `ReferenceToDescription`        |               |
-| `mean_amount`                | `Option<f64>`                   |               |
-| `resulting_amount`           | `Option<f64>`                   |               |
-| `data_set_internal_id`       | `Option<u32>`                   |               |
-| `reference_flow`             | `Option<bool>`                  |               |
-| `resulting_flow_amount`      | `Option<f64>`                   |               |
-| `flow_properties`            | `Option<Vec<FlowProperty>>`     |               |
-| `material_properties`        | `Option<Vec<MaterialProperty>>` |               |
-| `exchange_direction`         | `Option<String>`                |               |
-| `other`                      | `Option<LCIAAnies>`             |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `reference_to_flow_data_set` | `ReferenceToDescription` |  |
+| `mean_amount` | `Option<f64>` |  |
+| `resulting_amount` | `Option<f64>` |  |
+| `data_set_internal_id` | `Option<u32>` |  |
+| `reference_flow` | `Option<bool>` |  |
+| `resulting_flow_amount` | `Option<f64>` |  |
+| `flow_properties` | `Option<Vec<FlowProperty>>` |  |
+| `material_properties` | `Option<Vec<MaterialProperty>>` |  |
+| `exchange_direction` | `Option<String>` |  |
+| `other` | `Option<LCIAAnies>` |  |
 
 ##### Implementations
 
@@ -342,12 +356,11 @@ pub struct Exchange {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -378,7 +391,6 @@ pub struct Exchange {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `FlowProperty`
 
 **Attributes:**
@@ -398,14 +410,14 @@ pub struct FlowProperty {
 
 ##### Fields
 
-| Name                      | Type             | Documentation |
-| ------------------------- | ---------------- | ------------- |
-| `name`                    | `Vec<ValueLang>` |               |
-| `uuid`                    | `String`         |               |
-| `mean_value`              | `f64`            |               |
-| `reference_flow_property` | `Option<bool>`   |               |
-| `reference_unit`          | `Option<String>` |               |
-| `unit_group_uuid`         | `Option<String>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `name` | `Vec<ValueLang>` |  |
+| `uuid` | `String` |  |
+| `mean_value` | `f64` |  |
+| `reference_flow_property` | `Option<bool>` |  |
+| `reference_unit` | `Option<String>` |  |
+| `unit_group_uuid` | `Option<String>` |  |
 
 ##### Implementations
 
@@ -427,12 +439,11 @@ pub struct FlowProperty {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -463,7 +474,6 @@ pub struct FlowProperty {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `MaterialProperty`
 
 **Attributes:**
@@ -481,12 +491,12 @@ pub struct MaterialProperty {
 
 ##### Fields
 
-| Name               | Type             | Documentation |
-| ------------------ | ---------------- | ------------- |
-| `name`             | `String`         |               |
-| `value`            | `String`         |               |
-| `unit`             | `String`         |               |
-| `unit_description` | `Option<String>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `name` | `String` |  |
+| `value` | `String` |  |
+| `unit` | `String` |  |
+| `unit_description` | `Option<String>` |  |
 
 ##### Implementations
 
@@ -518,12 +528,11 @@ pub struct MaterialProperty {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -542,7 +551,6 @@ pub struct MaterialProperty {
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
-
     Calls `U::from(self)`.
 
   - ```rust
@@ -552,12 +560,11 @@ pub struct MaterialProperty {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **ToOwned**
@@ -581,7 +588,6 @@ pub struct MaterialProperty {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ModellingAndValidation`
 
 **Attributes:**
@@ -597,10 +603,10 @@ pub struct ModellingAndValidation {
 
 ##### Fields
 
-| Name                        | Type                     | Documentation |
-| --------------------------- | ------------------------ | ------------- |
-| `lci_method_and_allocation` | `LCIMethodAndAllocation` |               |
-| `compliance_declarations`   | `ComplianceDeclarations` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `lci_method_and_allocation` | `LCIMethodAndAllocation` |  |
+| `compliance_declarations` | `ComplianceDeclarations` |  |
 
 ##### Implementations
 
@@ -622,12 +628,11 @@ pub struct ModellingAndValidation {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -658,7 +663,6 @@ pub struct ModellingAndValidation {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ComplianceDeclarations`
 
 **Attributes:**
@@ -673,9 +677,9 @@ pub struct ComplianceDeclarations {
 
 ##### Fields
 
-| Name         | Type              | Documentation |
-| ------------ | ----------------- | ------------- |
-| `compliance` | `Vec<Compliance>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `compliance` | `Vec<Compliance>` |  |
 
 ##### Implementations
 
@@ -697,12 +701,11 @@ pub struct ComplianceDeclarations {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -733,7 +736,6 @@ pub struct ComplianceDeclarations {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Compliance`
 
 **Attributes:**
@@ -748,9 +750,9 @@ pub struct Compliance {
 
 ##### Fields
 
-| Name                             | Type                     | Documentation |
-| -------------------------------- | ------------------------ | ------------- |
-| `reference_to_compliance_system` | `ReferenceToDescription` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `reference_to_compliance_system` | `ReferenceToDescription` |  |
 
 ##### Implementations
 
@@ -772,12 +774,11 @@ pub struct Compliance {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -808,7 +809,6 @@ pub struct Compliance {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ReferenceToDescription`
 
 **Attributes:**
@@ -825,11 +825,11 @@ pub struct ReferenceToDescription {
 
 ##### Fields
 
-| Name                | Type             | Documentation |
-| ------------------- | ---------------- | ------------- |
-| `short_description` | `Vec<ValueLang>` |               |
-| `_type`             | `String`         |               |
-| `version`           | `Option<String>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `short_description` | `Vec<ValueLang>` |  |
+| `_type` | `String` |  |
+| `version` | `Option<String>` |  |
 
 ##### Implementations
 
@@ -851,12 +851,11 @@ pub struct ReferenceToDescription {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -887,7 +886,6 @@ pub struct ReferenceToDescription {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `LCIAResults`
 
 **Attributes:**
@@ -902,9 +900,9 @@ pub struct LCIAResults {
 
 ##### Fields
 
-| Name          | Type              | Documentation |
-| ------------- | ----------------- | ------------- |
-| `lcia_result` | `Vec<LCIAResult>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `lcia_result` | `Vec<LCIAResult>` |  |
 
 ##### Implementations
 
@@ -926,12 +924,11 @@ pub struct LCIAResults {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -962,7 +959,6 @@ pub struct LCIAResults {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `LCIAResult`
 
 **Attributes:**
@@ -978,10 +974,10 @@ pub struct LCIAResult {
 
 ##### Fields
 
-| Name                               | Type                           | Documentation |
-| ---------------------------------- | ------------------------------ | ------------- |
-| `reference_to_lcia_method_dataset` | `ReferenceToLCIAMethodDataSet` |               |
-| `other`                            | `LCIAAnies`                    |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `reference_to_lcia_method_dataset` | `ReferenceToLCIAMethodDataSet` |  |
+| `other` | `LCIAAnies` |  |
 
 ##### Implementations
 
@@ -1003,12 +999,11 @@ pub struct LCIAResult {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1039,7 +1034,6 @@ pub struct LCIAResult {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `LCIAAnies`
 
 **Attributes:**
@@ -1054,9 +1048,9 @@ pub struct LCIAAnies {
 
 ##### Fields
 
-| Name    | Type              | Documentation |
-| ------- | ----------------- | ------------- |
-| `anies` | `Vec<ModuleAnie>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `anies` | `Vec<ModuleAnie>` |  |
 
 ##### Implementations
 
@@ -1078,12 +1072,11 @@ pub struct LCIAAnies {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1114,7 +1107,6 @@ pub struct LCIAAnies {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ModuleAnie`
 
 **Attributes:**
@@ -1130,10 +1122,10 @@ pub struct ModuleAnie {
 
 ##### Fields
 
-| Name     | Type                | Documentation |
-| -------- | ------------------- | ------------- |
-| `module` | `Option<String>`    |               |
-| `value`  | `Option<AnieValue>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `module` | `Option<String>` |  |
+| `value` | `Option<AnieValue>` |  |
 
 ##### Implementations
 
@@ -1155,12 +1147,11 @@ pub struct ModuleAnie {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1191,7 +1182,6 @@ pub struct ModuleAnie {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Enum `AnieValue`
 
 **Attributes:**
@@ -1211,17 +1201,17 @@ pub enum AnieValue {
 
 Fields:
 
-| Index | Type     | Documentation |
-| ----- | -------- | ------------- |
-| 0     | `String` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `String` |  |
 
 ###### `ValueObject`
 
 Fields:
 
-| Index | Type          | Documentation |
-| ----- | ------------- | ------------- |
-| 0     | `ValueObject` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `ValueObject` |  |
 
 ##### Implementations
 
@@ -1243,12 +1233,11 @@ Fields:
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1283,7 +1272,6 @@ Fields:
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ValueObject`
 
 **Attributes:**
@@ -1298,9 +1286,9 @@ pub struct ValueObject {
 
 ##### Fields
 
-| Name             | Type | Documentation                   |
-| ---------------- | ---- | ------------------------------- |
-| _private fields_ | ...  | _Some fields have been omitted_ |
+| Name | Type | Documentation |
+|------|------|---------------|
+| *private fields* | ... | *Some fields have been omitted* |
 
 ##### Implementations
 
@@ -1322,12 +1310,11 @@ pub struct ValueObject {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1358,7 +1345,6 @@ pub struct ValueObject {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Enum `ModuleValue`
 
 ```rust
@@ -1374,17 +1360,17 @@ pub enum ModuleValue {
 
 Fields:
 
-| Index | Type     | Documentation |
-| ----- | -------- | ------------- |
-| 0     | `String` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `String` |  |
 
 ###### `Name`
 
 Fields:
 
-| Index | Type        | Documentation |
-| ----- | ----------- | ------------- |
-| 0     | `ModuleMap` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `ModuleMap` |  |
 
 ##### Implementations
 
@@ -1406,12 +1392,11 @@ Fields:
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1442,7 +1427,6 @@ Fields:
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ModuleMap`
 
 ```rust
@@ -1453,9 +1437,9 @@ pub struct ModuleMap {
 
 ##### Fields
 
-| Name             | Type | Documentation                   |
-| ---------------- | ---- | ------------------------------- |
-| _private fields_ | ...  | _Some fields have been omitted_ |
+| Name | Type | Documentation |
+|------|------|---------------|
+| *private fields* | ... | *Some fields have been omitted* |
 
 ##### Implementations
 
@@ -1477,12 +1461,11 @@ pub struct ModuleMap {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1513,7 +1496,6 @@ pub struct ModuleMap {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ReferenceToLCIAMethodDataSet`
 
 **Attributes:**
@@ -1528,9 +1510,9 @@ pub struct ReferenceToLCIAMethodDataSet {
 
 ##### Fields
 
-| Name                | Type             | Documentation |
-| ------------------- | ---------------- | ------------- |
-| `short_description` | `Vec<ValueLang>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `short_description` | `Vec<ValueLang>` |  |
 
 ##### Implementations
 
@@ -1557,12 +1539,11 @@ pub struct ReferenceToLCIAMethodDataSet {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1593,7 +1574,6 @@ pub struct ReferenceToLCIAMethodDataSet {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `LCIMethodAndAllocation`
 
 **Attributes:**
@@ -1608,9 +1588,9 @@ pub struct LCIMethodAndAllocation {
 
 ##### Fields
 
-| Name    | Type            | Documentation |
-| ------- | --------------- | ------------- |
-| `other` | `Option<Anies>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `other` | `Option<Anies>` |  |
 
 ##### Implementations
 
@@ -1632,12 +1612,11 @@ pub struct LCIMethodAndAllocation {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1668,7 +1647,6 @@ pub struct LCIMethodAndAllocation {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Anies`
 
 **Attributes:**
@@ -1683,9 +1661,9 @@ pub struct Anies {
 
 ##### Fields
 
-| Name    | Type        | Documentation |
-| ------- | ----------- | ------------- |
-| `anies` | `Vec<Anie>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `anies` | `Vec<Anie>` |  |
 
 ##### Implementations
 
@@ -1707,12 +1685,11 @@ pub struct Anies {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1743,7 +1720,6 @@ pub struct Anies {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Anie`
 
 **Attributes:**
@@ -1759,10 +1735,10 @@ pub struct Anie {
 
 ##### Fields
 
-| Name    | Type             | Documentation |
-| ------- | ---------------- | ------------- |
-| `name`  | `String`         |               |
-| `value` | `Option<String>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `name` | `String` |  |
+| `value` | `Option<String>` |  |
 
 ##### Implementations
 
@@ -1794,12 +1770,11 @@ pub struct Anie {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -1844,7 +1819,6 @@ pub struct Anie {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ProcessInformation`
 
 **Attributes:**
@@ -1862,12 +1836,12 @@ pub struct ProcessInformation {
 
 ##### Fields
 
-| Name                   | Type                 | Documentation |
-| ---------------------- | -------------------- | ------------- |
-| `data_set_information` | `DataSetInformation` |               |
-| `time`                 | `TimeData`           |               |
-| `geography`            | `Geography`          |               |
-| `technology`           | `Option<Technology>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `data_set_information` | `DataSetInformation` |  |
+| `time` | `TimeData` |  |
+| `geography` | `Geography` |  |
+| `technology` | `Option<Technology>` |  |
 
 ##### Implementations
 
@@ -1889,12 +1863,11 @@ pub struct ProcessInformation {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -1925,7 +1898,6 @@ pub struct ProcessInformation {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Technology`
 
 **Attributes:**
@@ -1940,9 +1912,9 @@ pub struct Technology {
 
 ##### Fields
 
-| Name          | Type             | Documentation |
-| ------------- | ---------------- | ------------- |
-| `description` | `Vec<ValueLang>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `description` | `Vec<ValueLang>` |  |
 
 ##### Implementations
 
@@ -1964,12 +1936,11 @@ pub struct Technology {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2000,7 +1971,6 @@ pub struct Technology {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Geography`
 
 **Attributes:**
@@ -2015,9 +1985,9 @@ pub struct Geography {
 
 ##### Fields
 
-| Name                                         | Type                                    | Documentation |
-| -------------------------------------------- | --------------------------------------- | ------------- |
-| `location_of_operation_supply_or_production` | `LocationOfOperationSupplyOrProduction` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `location_of_operation_supply_or_production` | `LocationOfOperationSupplyOrProduction` |  |
 
 ##### Implementations
 
@@ -2039,12 +2009,11 @@ pub struct Geography {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2075,7 +2044,6 @@ pub struct Geography {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `LocationOfOperationSupplyOrProduction`
 
 **Attributes:**
@@ -2090,9 +2058,9 @@ pub struct LocationOfOperationSupplyOrProduction {
 
 ##### Fields
 
-| Name       | Type     | Documentation |
-| ---------- | -------- | ------------- |
-| `location` | `String` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `location` | `String` |  |
 
 ##### Implementations
 
@@ -2114,12 +2082,11 @@ pub struct LocationOfOperationSupplyOrProduction {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2150,7 +2117,6 @@ pub struct LocationOfOperationSupplyOrProduction {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `TimeData`
 
 **Attributes:**
@@ -2166,10 +2132,10 @@ pub struct TimeData {
 
 ##### Fields
 
-| Name                   | Type  | Documentation |
-| ---------------------- | ----- | ------------- |
-| `reference_year`       | `i32` |               |
-| `data_set_valid_until` | `i32` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `reference_year` | `i32` |  |
+| `data_set_valid_until` | `i32` |  |
 
 ##### Implementations
 
@@ -2191,12 +2157,11 @@ pub struct TimeData {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2227,7 +2192,6 @@ pub struct TimeData {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `DataSetInformation`
 
 **Attributes:**
@@ -2244,11 +2208,11 @@ pub struct DataSetInformation {
 
 ##### Fields
 
-| Name              | Type                     | Documentation |
-| ----------------- | ------------------------ | ------------- |
-| `uuid`            | `String`                 |               |
-| `name`            | `DataSetName`            |               |
-| `general_comment` | `Option<Vec<ValueLang>>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `uuid` | `String` |  |
+| `name` | `DataSetName` |  |
+| `general_comment` | `Option<Vec<ValueLang>>` |  |
 
 ##### Implementations
 
@@ -2270,12 +2234,11 @@ pub struct DataSetInformation {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2306,7 +2269,6 @@ pub struct DataSetInformation {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `DataSetName`
 
 **Attributes:**
@@ -2321,9 +2283,9 @@ pub struct DataSetName {
 
 ##### Fields
 
-| Name        | Type             | Documentation |
-| ----------- | ---------------- | ------------- |
-| `base_name` | `Vec<ValueLang>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `base_name` | `Vec<ValueLang>` |  |
 
 ##### Implementations
 
@@ -2345,12 +2307,11 @@ pub struct DataSetName {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2381,7 +2342,6 @@ pub struct DataSetName {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ValueLang`
 
 ```rust
@@ -2393,10 +2353,10 @@ pub struct ValueLang {
 
 ##### Fields
 
-| Name    | Type             | Documentation |
-| ------- | ---------------- | ------------- |
-| `value` | `Option<String>` |               |
-| `lang`  | `String`         |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `value` | `Option<String>` |  |
+| `lang` | `String` |  |
 
 ##### Implementations
 
@@ -2423,12 +2383,11 @@ pub struct ValueLang {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2459,7 +2418,6 @@ pub struct ValueLang {
 
 - **Unpin**
 - **UnwindSafe**
-
 ## Module `parse`
 
 ```rust
@@ -2474,7 +2432,7 @@ Parse a ILCD formatted EPD in an EPDx struct
 
 # Arguments
 
-- `json`: JSON formatted string containing the "full" EPD on ILCD format
+* `json`: JSON formatted string containing the "full" EPD on ILCD format
 
 returns: EPD
 
@@ -2530,121 +2488,121 @@ pub enum Node {
 
 Fields:
 
-| Index | Type                  | Documentation |
-| ----- | --------------------- | ------------- |
-| 0     | `ConstructionProcess` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `ConstructionProcess` |  |
 
 ###### `Product`
 
 Fields:
 
-| Index | Type      | Documentation |
-| ----- | --------- | ------------- |
-| 0     | `Product` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Product` |  |
 
 ###### `Construction`
 
 Fields:
 
-| Index | Type           | Documentation |
-| ----- | -------------- | ------------- |
-| 0     | `Construction` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Construction` |  |
 
 ###### `ElementModel`
 
 Fields:
 
-| Index | Type           | Documentation |
-| ----- | -------------- | ------------- |
-| 0     | `ElementModel` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `ElementModel` |  |
 
 ###### `ConstructionInstallation`
 
 Fields:
 
-| Index | Type                       | Documentation |
-| ----- | -------------------------- | ------------- |
-| 0     | `ConstructionInstallation` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `ConstructionInstallation` |  |
 
 ###### `FuelConsumption`
 
 Fields:
 
-| Index | Type              | Documentation |
-| ----- | ----------------- | ------------- |
-| 0     | `FuelConsumption` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `FuelConsumption` |  |
 
 ###### `DGNBOperationReference`
 
 Fields:
 
-| Index | Type                     | Documentation |
-| ----- | ------------------------ | ------------- |
-| 0     | `DGNBOperationReference` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `DGNBOperationReference` |  |
 
 ###### `Element`
 
 Fields:
 
-| Index | Type      | Documentation |
-| ----- | --------- | ------------- |
-| 0     | `Element` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Element` |  |
 
 ###### `EmbodiedRoot`
 
 Fields:
 
-| Index | Type           | Documentation |
-| ----- | -------------- | ------------- |
-| 0     | `EmbodiedRoot` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `EmbodiedRoot` |  |
 
 ###### `Building`
 
 Fields:
 
-| Index | Type       | Documentation |
-| ----- | ---------- | ------------- |
-| 0     | `Building` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Building` |  |
 
 ###### `Stage`
 
 Fields:
 
-| Index | Type    | Documentation |
-| ----- | ------- | ------------- |
-| 0     | `Stage` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Stage` |  |
 
 ###### `Operation`
 
 Fields:
 
-| Index | Type        | Documentation |
-| ----- | ----------- | ------------- |
-| 0     | `Operation` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Operation` |  |
 
 ###### `ProductTransportRoot`
 
 Fields:
 
-| Index | Type                   | Documentation |
-| ----- | ---------------------- | ------------- |
-| 0     | `ProductTransportRoot` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `ProductTransportRoot` |  |
 
 ###### `Project`
 
 Fields:
 
-| Index | Type      | Documentation |
-| ----- | --------- | ------------- |
-| 0     | `Project` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Project` |  |
 
 ###### `Transport`
 
 Fields:
 
-| Index | Type        | Documentation |
-| ----- | ----------- | ------------- |
-| 0     | `Transport` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Transport` |  |
 
 ##### Implementations
 
@@ -2666,12 +2624,11 @@ Fields:
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2690,12 +2647,11 @@ Fields:
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -2710,7 +2666,6 @@ Fields:
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Transport`
 
 **Attributes:**
@@ -2725,9 +2680,9 @@ pub struct Transport {
 
 ##### Fields
 
-| Name | Type     | Documentation |
-| ---- | -------- | ------------- |
-| `id` | `String` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
 
 ##### Implementations
 
@@ -2749,12 +2704,11 @@ pub struct Transport {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2773,12 +2727,11 @@ pub struct Transport {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -2793,7 +2746,6 @@ pub struct Transport {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Element`
 
 **Attributes:**
@@ -2813,14 +2765,14 @@ pub struct Element {
 
 ##### Fields
 
-| Name                 | Type          | Documentation |
-| -------------------- | ------------- | ------------- |
-| `id`                 | `String`      |               |
-| `name`               | `Languages`   |               |
-| `source`             | `String`      |               |
-| `comment`            | `Languages`   |               |
-| `enabled`            | `bool`        |               |
-| `excluded_scenarios` | `Vec<String>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
+| `name` | `Languages` |  |
+| `source` | `String` |  |
+| `comment` | `Languages` |  |
+| `enabled` | `bool` |  |
+| `excluded_scenarios` | `Vec<String>` |  |
 
 ##### Implementations
 
@@ -2842,12 +2794,11 @@ pub struct Element {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2866,12 +2817,11 @@ pub struct Element {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -2886,7 +2836,6 @@ pub struct Element {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Construction`
 
 **Attributes:**
@@ -2906,14 +2855,14 @@ pub struct Construction {
 
 ##### Fields
 
-| Name      | Type        | Documentation |
-| --------- | ----------- | ------------- |
-| `id`      | `String`    |               |
-| `name`    | `Languages` |               |
-| `unit`    | `String`    |               |
-| `source`  | `String`    |               |
-| `comment` | `Languages` |               |
-| `locked`  | `bool`      |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
+| `name` | `Languages` |  |
+| `unit` | `String` |  |
+| `source` | `String` |  |
+| `comment` | `Languages` |  |
+| `locked` | `bool` |  |
 
 ##### Implementations
 
@@ -2935,12 +2884,11 @@ pub struct Construction {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -2959,12 +2907,11 @@ pub struct Construction {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -2979,7 +2926,6 @@ pub struct Construction {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `DGNBOperationReference`
 
 **Attributes:**
@@ -2996,11 +2942,11 @@ pub struct DGNBOperationReference {
 
 ##### Fields
 
-| Name                     | Type     | Documentation |
-| ------------------------ | -------- | ------------- |
-| `id`                     | `String` |               |
-| `heat_supplement`        | `f64`    |               |
-| `electricity_supplement` | `f64`    |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
+| `heat_supplement` | `f64` |  |
+| `electricity_supplement` | `f64` |  |
 
 ##### Implementations
 
@@ -3022,12 +2968,11 @@ pub struct DGNBOperationReference {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -3046,12 +2991,11 @@ pub struct DGNBOperationReference {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -3066,7 +3010,6 @@ pub struct DGNBOperationReference {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Building`
 
 **Attributes:**
@@ -3101,29 +3044,29 @@ pub struct Building {
 
 ##### Fields
 
-| Name                      | Type             | Documentation |
-| ------------------------- | ---------------- | ------------- |
-| `id`                      | `String`         |               |
-| `scenario_name`           | `String`         |               |
-| `locked`                  | `String`         |               |
-| `description`             | `Languages`      |               |
-| `building_type`           | `String`         |               |
-| `heated_floor_area`       | `f64`            |               |
-| `gross_area`              | `f64`            |               |
-| `integrated_garage`       | `f64`            |               |
-| `external_area`           | `f64`            |               |
-| `gross_area_above_ground` | `f64`            |               |
-| `person_count`            | `f64`            |               |
-| `storeys_above_ground`    | `u16`            |               |
-| `storeys_below_ground`    | `u16`            |               |
-| `storey_height`           | `f64`            |               |
-| `initial_year`            | `u16`            |               |
-| `calculation_timespan`    | `u16`            |               |
-| `calculation_mode`        | `String`         |               |
-| `outside_area`            | `f64`            |               |
-| `plot_area`               | `f64`            |               |
-| `energy_class`            | `String`         |               |
-| `project_type`            | `Option<String>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
+| `scenario_name` | `String` |  |
+| `locked` | `String` |  |
+| `description` | `Languages` |  |
+| `building_type` | `String` |  |
+| `heated_floor_area` | `f64` |  |
+| `gross_area` | `f64` |  |
+| `integrated_garage` | `f64` |  |
+| `external_area` | `f64` |  |
+| `gross_area_above_ground` | `f64` |  |
+| `person_count` | `f64` |  |
+| `storeys_above_ground` | `u16` |  |
+| `storeys_below_ground` | `u16` |  |
+| `storey_height` | `f64` |  |
+| `initial_year` | `u16` |  |
+| `calculation_timespan` | `u16` |  |
+| `calculation_mode` | `String` |  |
+| `outside_area` | `f64` |  |
+| `plot_area` | `f64` |  |
+| `energy_class` | `String` |  |
+| `project_type` | `Option<String>` |  |
 
 ##### Implementations
 
@@ -3145,12 +3088,11 @@ pub struct Building {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -3169,12 +3111,11 @@ pub struct Building {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -3189,7 +3130,6 @@ pub struct Building {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `StageIndicators`
 
 **Attributes:**
@@ -3214,19 +3154,19 @@ pub struct StageIndicators {
 
 ##### Fields
 
-| Name   | Type  | Documentation |
-| ------ | ----- | ------------- |
-| `ser`  | `f64` |               |
-| `ep`   | `f64` |               |
-| `odp`  | `f64` |               |
-| `pocp` | `f64` |               |
-| `per`  | `f64` |               |
-| `adpe` | `f64` |               |
-| `ap`   | `f64` |               |
-| `gwp`  | `f64` |               |
-| `adpf` | `f64` |               |
-| `penr` | `f64` |               |
-| `senr` | `f64` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `ser` | `f64` |  |
+| `ep` | `f64` |  |
+| `odp` | `f64` |  |
+| `pocp` | `f64` |  |
+| `per` | `f64` |  |
+| `adpe` | `f64` |  |
+| `ap` | `f64` |  |
+| `gwp` | `f64` |  |
+| `adpf` | `f64` |  |
+| `penr` | `f64` |  |
+| `senr` | `f64` |  |
 
 ##### Implementations
 
@@ -3281,12 +3221,11 @@ pub struct StageIndicators {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -3311,12 +3250,11 @@ pub struct StageIndicators {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **ToOwned**
@@ -3340,7 +3278,6 @@ pub struct StageIndicators {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ProductTransportRoot`
 
 **Attributes:**
@@ -3355,9 +3292,9 @@ pub struct ProductTransportRoot {
 
 ##### Fields
 
-| Name | Type     | Documentation |
-| ---- | -------- | ------------- |
-| `id` | `String` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
 
 ##### Implementations
 
@@ -3379,12 +3316,11 @@ pub struct ProductTransportRoot {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -3403,12 +3339,11 @@ pub struct ProductTransportRoot {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -3423,7 +3358,6 @@ pub struct ProductTransportRoot {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Project`
 
 **Attributes:**
@@ -3443,14 +3377,14 @@ pub struct Project {
 
 ##### Fields
 
-| Name                          | Type        | Documentation |
-| ----------------------------- | ----------- | ------------- |
-| `id`                          | `String`    |               |
-| `name`                        | `Languages` |               |
-| `owner`                       | `String`    |               |
-| `address`                     | `String`    |               |
-| `lca_advisor`                 | `String`    |               |
-| `building_regulation_version` | `String`    |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
+| `name` | `Languages` |  |
+| `owner` | `String` |  |
+| `address` | `String` |  |
+| `lca_advisor` | `String` |  |
+| `building_regulation_version` | `String` |  |
 
 ##### Implementations
 
@@ -3472,12 +3406,11 @@ pub struct Project {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -3496,12 +3429,11 @@ pub struct Project {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -3516,7 +3448,6 @@ pub struct Project {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Operation`
 
 **Attributes:**
@@ -3534,12 +3465,12 @@ pub struct Operation {
 
 ##### Fields
 
-| Name                     | Type     | Documentation |
-| ------------------------ | -------- | ------------- |
-| `id`                     | `String` |               |
-| `electricity_usage`      | `f64`    |               |
-| `heat_usage`             | `f64`    |               |
-| `electricity_production` | `f64`    |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
+| `electricity_usage` | `f64` |  |
+| `heat_usage` | `f64` |  |
+| `electricity_production` | `f64` |  |
 
 ##### Implementations
 
@@ -3561,12 +3492,11 @@ pub struct Operation {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -3585,12 +3515,11 @@ pub struct Operation {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -3605,7 +3534,6 @@ pub struct Operation {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `EmbodiedRoot`
 
 **Attributes:**
@@ -3620,9 +3548,9 @@ pub struct EmbodiedRoot {
 
 ##### Fields
 
-| Name | Type     | Documentation |
-| ---- | -------- | ------------- |
-| `id` | `String` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
 
 ##### Implementations
 
@@ -3644,12 +3572,11 @@ pub struct EmbodiedRoot {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -3668,12 +3595,11 @@ pub struct EmbodiedRoot {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -3688,7 +3614,6 @@ pub struct EmbodiedRoot {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `FuelConsumption`
 
 **Attributes:**
@@ -3703,9 +3628,9 @@ pub struct FuelConsumption {
 
 ##### Fields
 
-| Name | Type     | Documentation |
-| ---- | -------- | ------------- |
-| `id` | `String` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
 
 ##### Implementations
 
@@ -3727,12 +3652,11 @@ pub struct FuelConsumption {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -3751,12 +3675,11 @@ pub struct FuelConsumption {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -3771,7 +3694,6 @@ pub struct FuelConsumption {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ConstructionInstallation`
 
 **Attributes:**
@@ -3786,9 +3708,9 @@ pub struct ConstructionInstallation {
 
 ##### Fields
 
-| Name | Type     | Documentation |
-| ---- | -------- | ------------- |
-| `id` | `String` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
 
 ##### Implementations
 
@@ -3810,12 +3732,11 @@ pub struct ConstructionInstallation {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -3834,12 +3755,11 @@ pub struct ConstructionInstallation {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -3854,7 +3774,6 @@ pub struct ConstructionInstallation {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ElementModel`
 
 **Attributes:**
@@ -3869,9 +3788,9 @@ pub struct ElementModel {
 
 ##### Fields
 
-| Name | Type     | Documentation |
-| ---- | -------- | ------------- |
-| `id` | `String` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
 
 ##### Implementations
 
@@ -3893,12 +3812,11 @@ pub struct ElementModel {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -3917,12 +3835,11 @@ pub struct ElementModel {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -3937,7 +3854,6 @@ pub struct ElementModel {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `ConstructionProcess`
 
 **Attributes:**
@@ -3952,9 +3868,9 @@ pub struct ConstructionProcess {
 
 ##### Fields
 
-| Name | Type     | Documentation |
-| ---- | -------- | ------------- |
-| `id` | `String` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
 
 ##### Implementations
 
@@ -3976,12 +3892,11 @@ pub struct ConstructionProcess {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -4000,12 +3915,11 @@ pub struct ConstructionProcess {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -4020,7 +3934,6 @@ pub struct ConstructionProcess {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Product`
 
 **Attributes:**
@@ -4039,13 +3952,13 @@ pub struct Product {
 
 ##### Fields
 
-| Name                 | Type        | Documentation |
-| -------------------- | ----------- | ------------- |
-| `id`                 | `String`    |               |
-| `name`               | `Languages` |               |
-| `source`             | `String`    |               |
-| `comment`            | `Languages` |               |
-| `uncertainty_factor` | `f64`       |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
+| `name` | `Languages` |  |
+| `source` | `String` |  |
+| `comment` | `Languages` |  |
+| `uncertainty_factor` | `f64` |  |
 
 ##### Implementations
 
@@ -4077,12 +3990,11 @@ pub struct Product {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -4106,12 +4018,11 @@ pub struct Product {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **ToOwned**
@@ -4135,7 +4046,6 @@ pub struct Product {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Languages`
 
 **Attributes:**
@@ -4153,12 +4063,12 @@ pub struct Languages {
 
 ##### Fields
 
-| Name        | Type             | Documentation |
-| ----------- | ---------------- | ------------- |
-| `english`   | `Option<String>` |               |
-| `german`    | `Option<String>` |               |
-| `norwegian` | `Option<String>` |               |
-| `danish`    | `Option<String>` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `english` | `Option<String>` |  |
+| `german` | `Option<String>` |  |
+| `norwegian` | `Option<String>` |  |
+| `danish` | `Option<String>` |  |
 
 ##### Implementations
 
@@ -4196,12 +4106,11 @@ pub struct Languages {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -4225,12 +4134,11 @@ pub struct Languages {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **ToOwned**
@@ -4254,7 +4162,6 @@ pub struct Languages {
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Struct `Stage`
 
 **Attributes:**
@@ -4285,25 +4192,25 @@ pub struct Stage {
 
 ##### Fields
 
-| Name               | Type              | Documentation |
-| ------------------ | ----------------- | ------------- |
-| `id`               | `String`          |               |
-| `name`             | `Languages`       |               |
-| `comment`          | `Languages`       |               |
-| `source`           | `String`          |               |
-| `valid_to`         | `Option<String>`  |               |
-| `stage`            | `String`          |               |
-| `stage_unit`       | `String`          |               |
-| `stage_factor`     | `f64`             |               |
-| `mass_factor`      | `f64`             |               |
-| `scale_factor`     | `f64`             |               |
-| `external_source`  | `String`          |               |
-| `external_id`      | `String`          |               |
-| `external_version` | `String`          |               |
-| `external_url`     | `String`          |               |
-| `compliance`       | `String`          |               |
-| `data_type`        | `String`          |               |
-| `indicators`       | `StageIndicators` |               |
+| Name | Type | Documentation |
+|------|------|---------------|
+| `id` | `String` |  |
+| `name` | `Languages` |  |
+| `comment` | `Languages` |  |
+| `source` | `String` |  |
+| `valid_to` | `Option<String>` |  |
+| `stage` | `String` |  |
+| `stage_unit` | `String` |  |
+| `stage_factor` | `f64` |  |
+| `mass_factor` | `f64` |  |
+| `scale_factor` | `f64` |  |
+| `external_source` | `String` |  |
+| `external_id` | `String` |  |
+| `external_version` | `String` |  |
+| `external_url` | `String` |  |
+| `compliance` | `String` |  |
+| `data_type` | `String` |  |
+| `indicators` | `StageIndicators` |  |
 
 ##### Implementations
 
@@ -4345,12 +4252,11 @@ pub struct Stage {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -4374,12 +4280,11 @@ pub struct Stage {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **ToOwned**
@@ -4403,7 +4308,6 @@ pub struct Stage {
 
 - **Unpin**
 - **UnwindSafe**
-
 ### Functions
 
 #### Function `epd_from_lcabyg_stages`
@@ -4436,25 +4340,25 @@ pub enum NodesAndEdges {
 
 Fields:
 
-| Index | Type                         | Documentation |
-| ----- | ---------------------------- | ------------- |
-| 0     | `crate::lcabyg::nodes::Node` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `crate::lcabyg::nodes::Node` |  |
 
 ###### `Edge`
 
 Fields:
 
-| Index | Type                                               | Documentation |
-| ----- | -------------------------------------------------- | ------------- |
-| 0     | `(crate::lcabyg::edges::EdgeType, String, String)` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `(crate::lcabyg::edges::EdgeType, String, String)` |  |
 
 ###### `Secret`
 
 Fields:
 
-| Index | Type       | Documentation |
-| ----- | ---------- | ------------- |
-| 0     | `Vec<i32>` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Vec<i32>` |  |
 
 ##### Implementations
 
@@ -4476,12 +4380,11 @@ Fields:
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -4500,12 +4403,11 @@ Fields:
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **Sync**
 - **TryFrom**
@@ -4520,7 +4422,6 @@ Fields:
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Enum `LCABygResult`
 
 **Attributes:**
@@ -4543,33 +4444,33 @@ pub enum LCABygResult {
 
 Fields:
 
-| Index | Type                            | Documentation |
-| ----- | ------------------------------- | ------------- |
-| 0     | `lcax_models::project::Project` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `lcax_models::project::Project` |  |
 
 ###### `Assemblies`
 
 Fields:
 
-| Index | Type                                   | Documentation |
-| ----- | -------------------------------------- | ------------- |
-| 0     | `Vec<lcax_models::assembly::Assembly>` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Vec<lcax_models::assembly::Assembly>` |  |
 
 ###### `Products`
 
 Fields:
 
-| Index | Type                                 | Documentation |
-| ----- | ------------------------------------ | ------------- |
-| 0     | `Vec<lcax_models::product::Product>` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Vec<lcax_models::product::Product>` |  |
 
 ###### `EPDs`
 
 Fields:
 
-| Index | Type                         | Documentation |
-| ----- | ---------------------------- | ------------- |
-| 0     | `Vec<lcax_models::epd::EPD>` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Vec<lcax_models::epd::EPD>` |  |
 
 ##### Implementations
 
@@ -4591,12 +4492,11 @@ Fields:
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **Freeze**
@@ -4620,12 +4520,11 @@ Fields:
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **StructuralPartialEq**
 - **Sync**
@@ -4641,7 +4540,6 @@ Fields:
 
 - **Unpin**
 - **UnwindSafe**
-
 ### Functions
 
 #### Function `parse_lcabyg`
@@ -4650,8 +4548,8 @@ Parse an LCAByg project exported as json files.
 
 # Arguments
 
-- `project_data`: JSON formatted string containing the LCAbyg project data
-- `result_data`: Optional JSON formatted string containing the result data from the LCAByg project
+* `project_data`: JSON formatted string containing the LCAbyg project data
+* `result_data`: Optional JSON formatted string containing the result data from the LCAByg project
 
 returns: LCAxProject
 
@@ -4678,3 +4576,12 @@ pub fn to_lcabyg(objects: &crate::lcabyg::parse::LCABygResult) -> serde_json::Re
 ```rust
 pub fn serialize_epds(epds: &Vec<lcax_models::epd::EPD>) -> serde_json::Result<String> { /* ... */ }
 ```
+
+## Re-exports
+
+### Re-export `get_energy_assemblies`
+
+```rust
+pub use energy::get_energy_assemblies;
+```
+

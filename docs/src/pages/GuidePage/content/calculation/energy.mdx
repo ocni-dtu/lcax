@@ -1,0 +1,80 @@
+---
+title: Energy Assemblies & Operational Energy
+description: How to obtain and use default national energy assemblies in LCAx to calculate operational energy impacts (Module B6).
+keywords:
+  - energy assemblies
+  - operational energy
+  - module b6
+  - br18
+  - milestone interpolation
+  - get_energy_assemblies
+  - getEnergyAssemblies
+---
+
+import { CodeHighlightTabs } from '@/components'
+import energyAssembliesPY from './code/energy_assemblies.py?raw'
+import energyAssembliesTS from './code/energyAssemblies.ts?raw'
+import energyAssembliesRS from './code/energy_assemblies.rs?raw'
+
+In building Life Cycle Assessment (LCA), operational energy consumption (electricity, space heating, and gas) is evaluated under **Life Cycle Module B6 (Operational Energy Use)**.
+
+Because national electricity grids and district heating networks decarbonize over time, energy emission factors are not static constants. Instead, standards define time-series projections with milestone emission factors for future years.
+
+LCAx provides built-in helper functions (`get_energy_assemblies` in Python/Rust and `getEnergyAssemblies` in TypeScript) to generate standard-compliant default energy assemblies.
+
+## Supported Standards
+
+### Danish Building Regulations (BR18)
+
+When calling `get_energy_assemblies("BR18")`, LCAx generates three discrete energy carrier assemblies:
+
+| Carrier | Assembly ID | Classification Code | Classification Name | Unit |
+| :--- | :--- | :--- | :--- | :--- |
+| **Grid Electricity** | `br18-electricity` | `El` | Operational Electricity | `kWh` |
+| **District Heating** | `br18-district-heating` | `Fjernvarme` | Operational Heating | `kWh` |
+| **Natural Gas** | `br18-natural-gas` | `Ledningsgas` | Operational Gas | `kWh` |
+
+Each assembly contains:
+- Standard classification tagging with `system: "BR18"`.
+- Unit set to `kWh` and default initial quantity `1.0`.
+- A single product representing the carrier with a reference service life of 50 years.
+- Five generic impact data milestones for years **2023**, **2025**, **2030**, **2035**, and **2040**, reflecting the official Danish energy projection data.
+
+## Calculation Mechanics
+
+### Milestone Time-Series Interpolation
+
+When calculating impacts for module `B6`:
+1. LCAx inspects the milestone data points attached to the product.
+2. It determines the evaluation time window from the project start year (by default, the first milestone year, e.g. 2023) to `startYear + referenceStudyPeriod` (e.g. 50 years).
+3. Emission factors between consecutive milestone years are linearly interpolated. Beyond the final milestone (e.g. after 2040), the last known emission factor is held constant.
+4. The integral over the study period is divided by the study period length to compute a single **time-weighted average emission factor** (e.g. `kg CO2e / kWh`).
+
+### Customizing the Start Year
+
+If your building project starts in a different year (for example, completion in 2025 instead of 2023), set `startYear` on the product's `meta_data`:
+
+- **Python**: `electricity.products[0].meta_data["startYear"] = 2025`
+- **TypeScript**: `electricity.products[0].metaData = { ...electricity.products[0].metaData, startYear: 2025 }`
+- **Rust**: `product.meta_data.get_or_insert_default().insert("startYear".into(), Some(AnyValue::Number(2025.into())));`
+
+LCAx will evaluate the time-weighted average starting from that specific year.
+
+### Lifetime vs. Annual Quantities (`isAnnual`)
+
+Operational energy inputs can be expressed either as total energy consumed over the building's reference study period (lifetime total) or as an annual consumption rate:
+
+- **Lifetime Demand (`isAnnual: false`)**: By default, BR18 energy assemblies created by LCAx have `isAnnual: false` in their metadata. The product's `quantity` is interpreted as the **total kWh over the lifetime**. LCAx multiplies the total quantity directly by the time-weighted average emission factor without multiplying by the study period again.
+- **Annual Consumption Rate (`isAnnual: true`)**: If your energy model provides annual consumption (e.g. `1,000 kWh/year`), set `isAnnual` to `true` in `meta_data`. LCAx will automatically multiply the annual quantity by the reference study period (e.g. 50 years) when computing total impacts.
+
+## Example
+
+The following example illustrates how to retrieve the BR18 energy assemblies, set energy quantities, add them to a project, and run calculation for Module `B6`.
+
+<CodeHighlightTabs
+  code={[
+    { fileName: 'energy_assemblies.py', code: energyAssembliesPY, language: 'py' },
+    { fileName: 'energyAssemblies.ts', code: energyAssembliesTS, language: 'ts' },
+    { fileName: 'energy_assemblies.rs', code: energyAssembliesRS, language: 'rs' },
+  ]}
+/>

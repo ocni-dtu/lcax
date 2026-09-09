@@ -28,6 +28,10 @@ fn milestones_to_impact_data(data: &HashMap<u16, GenericData>) -> Vec<ImpactData
         .collect()
 }
 
+/// Get default energy assemblies for a given standard.
+///
+/// Currently supported standards:
+/// - `"BR18"`: Danish Building Regulations BR18 generic milestone data for Grid Electricity, District Heating, and Natural Gas.
 pub fn get_energy_assemblies(standard: &str) -> Result<Vec<Assembly>, String> {
     match standard.to_uppercase().as_str() {
         "BR18" => Ok(get_br18_energy_assemblies()),

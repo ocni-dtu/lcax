@@ -2,10 +2,9 @@
 title: lcax_core API Reference
 description: Rust - API Reference
 ---
-
 # Crate Documentation
 
-**Version:** 3.4.3
+**Version:** 3.6.0
 
 **Format Version:** 57
 
@@ -820,12 +819,11 @@ pub enum Country {
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -838,7 +836,6 @@ pub enum Country {
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
-
     Returns the argument unchanged.
 
   - ```rust
@@ -872,12 +869,11 @@ pub enum Country {
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **StructuralPartialEq**
 - **Sync**
@@ -902,7 +898,6 @@ pub enum Country {
 
 - **Unpin**
 - **UnwindSafe**
-
 ## Module `dates`
 
 ```rust
@@ -972,41 +967,41 @@ pub enum AnyValue {
 
 Fields:
 
-| Index | Type   | Documentation |
-| ----- | ------ | ------------- |
-| 0     | `bool` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `bool` |  |
 
 ###### `Number`
 
 Fields:
 
-| Index | Type     | Documentation |
-| ----- | -------- | ------------- |
-| 0     | `Number` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Number` |  |
 
 ###### `String`
 
 Fields:
 
-| Index | Type     | Documentation |
-| ----- | -------- | ------------- |
-| 0     | `String` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `String` |  |
 
 ###### `Array`
 
 Fields:
 
-| Index | Type            | Documentation |
-| ----- | --------------- | ------------- |
-| 0     | `Vec<AnyValue>` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `Vec<AnyValue>` |  |
 
 ###### `Object`
 
 Fields:
 
-| Index | Type                                          | Documentation |
-| ----- | --------------------------------------------- | ------------- |
-| 0     | `std::collections::HashMap<String, AnyValue>` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `std::collections::HashMap<String, AnyValue>` |  |
 
 ##### Implementations
 
@@ -1044,12 +1039,11 @@ Fields:
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -1062,7 +1056,6 @@ Fields:
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
-
     Returns the argument unchanged.
 
   - ```rust
@@ -1100,12 +1093,11 @@ Fields:
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **StructuralPartialEq**
 - **Sync**
@@ -1130,7 +1122,6 @@ Fields:
 
 - **Unpin**
 - **UnwindSafe**
-
 #### Enum `Number`
 
 **Attributes:**
@@ -1151,17 +1142,17 @@ pub enum Number {
 
 Fields:
 
-| Index | Type  | Documentation |
-| ----- | ----- | ------------- |
-| 0     | `i64` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `i64` |  |
 
 ###### `Float`
 
 Fields:
 
-| Index | Type  | Documentation |
-| ----- | ----- | ------------- |
-| 0     | `f64` |               |
+| Index | Type | Documentation |
+|-------|------|---------------|
+| 0 | `f64` |  |
 
 ##### Implementations
 
@@ -1193,12 +1184,11 @@ Fields:
     ```
 
 - **Deserialize**
-  - ````rust
-        fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
-    where
-        __D: _serde::Deserializer<''de> { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>
+where
+    __D: _serde::Deserializer<''de> { /* ... */ }
+    ```
 
 - **DeserializeOwned**
 - **DynClone**
@@ -1240,12 +1230,11 @@ Fields:
 - **RefUnwindSafe**
 - **Send**
 - **Serialize**
-  - ````rust
-        fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
-    where
-        __S: _serde::Serializer { /* ... */ }
-        ```
-    ````
+  - ```rust
+    fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>
+where
+    __S: _serde::Serializer { /* ... */ }
+    ```
 
 - **StructuralPartialEq**
 - **Sync**
