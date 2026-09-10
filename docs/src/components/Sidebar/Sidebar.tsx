@@ -8,7 +8,7 @@ const NavElement = ({ label, items, slug }: PagesProps) => {
 
   if (items && items.length > 0) {
     return (
-      <NavLink component={Link} to={slug || ''} label={label} defaultOpened childrenOffset='lg' fw='bold' py='xs'>
+      <NavLink component={Link} to={slug || ''} label={label} defaultOpened childrenOffset='lg' fw={500} py='xs'>
         {items.map((item) => (
           <NavElement {...item} key={item.label} />
         ))}

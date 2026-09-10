@@ -6,7 +6,7 @@ import '@mantine/core/styles.css'
 import '@mantine/spotlight/styles.css'
 import '@mantine/code-highlight/styles.css'
 
-import { theme, AppRouter } from '@/components'
+import { cssVariablesResolver, theme, AppRouter } from '@/components'
 
 async function loadShiki() {
   const { createHighlighter } = await import('shiki')
@@ -23,7 +23,7 @@ const umamiId = import.meta.env.VITE_UMAMI_ID
 export const App = () => {
   return (
     <HelmetProvider>
-      <MantineProvider theme={theme}>
+      <MantineProvider theme={theme} cssVariablesResolver={cssVariablesResolver}>
         <CodeHighlightAdapterProvider adapter={shikiAdapter}>
           <BrowserRouter>
             {umamiId && (

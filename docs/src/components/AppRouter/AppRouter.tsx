@@ -24,14 +24,14 @@ export const AppRouter = () => (
       <Routes>
         <Route element={<AppLayout />}>
           <Route path='/' element={<LandingPage />} />
-          <Route path='/concept/:slug' element={<ConceptPage />} />
-          <Route path='/guides/:topic' element={<GuidePage />} />
-          <Route path='/guides/:topic/:slug' element={<GuidePage />} />
-          <Route path='/reference/:topic' element={<ReferencePage />} />
-          <Route path='/reference/:topic/:slug' element={<ReferencePage />} />
-          <Route path='/reference/:topic/:slug/:subpage' element={<ReferencePage />} />
-          {/*<Route path='*' element={<NotFoundPage />} />*/}
         </Route>
+        <Route path='/concept/:slug' element={<ConceptPage />} />
+        <Route path='/guides/:topic' element={<GuidePage />} />
+        <Route path='/guides/:topic/:slug' element={<GuidePage />} />
+        <Route path='/reference/:topic' element={<ReferencePage />} />
+        <Route path='/reference/:topic/:slug' element={<ReferencePage />} />
+        <Route path='/reference/:topic/:slug/:subpage' element={<ReferencePage />} />
+        {/*<Route path='*' element={<NotFoundPage />} />*/}
       </Routes>
     </ErrorBoundary>
   </Suspense>

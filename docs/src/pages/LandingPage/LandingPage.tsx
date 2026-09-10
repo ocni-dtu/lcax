@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import { LandingPageCard } from '@/components'
 
 export const LandingPage = () => (
-  <Container fluid mih='100vh' bg='grey.0'>
+  <Container fluid p={0} mih='100vh' bg='grey.0'>
     <Stack h='100%' justify='space-around'>
       <Hero />
       <Features />
