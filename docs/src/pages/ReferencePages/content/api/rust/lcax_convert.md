@@ -5,7 +5,7 @@ description: Rust - API Reference
 
 # Crate Documentation
 
-**Version:** 3.6.0
+**Version:** 3.7.0
 
 **Format Version:** 57
 

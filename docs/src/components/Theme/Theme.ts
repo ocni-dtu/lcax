@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, createTheme, Divider, rem, Title } from '@mantine/core'
+import { type CSSVariablesResolver, Container, createTheme, Divider, rem, Title } from '@mantine/core'
 import '@fontsource/inter-tight/400.css'
 import '@fontsource/inter-tight/500.css'
 import '@fontsource/inter-tight/600.css'
@@ -10,13 +10,31 @@ import '@fontsource/jetbrains-mono'
 
 import classes from './theme.module.css'
 
-const CONTAINER_SIZES: Record<string, number> = {
+export const CONTAINER_SIZES: Record<string, number> = {
   xs: 540,
   sm: 720,
   md: 960,
   lg: 1140,
   xl: 1320,
+  xxl: 1560,
 }
+
+export const BREAKPOINTS = {
+  xs: '36em',
+  sm: '48em',
+  md: '62em',
+  lg: '75em',
+  xl: '88em',
+  xxl: '110em',
+}
+
+export const cssVariablesResolver: CSSVariablesResolver = () => ({
+  variables: {
+    '--mantine-breakpoint-xxl': '110em',
+  },
+  light: {},
+  dark: {},
+})
 
 const fontFamily = 'Inter Tight, sans-serif'
 
@@ -30,6 +48,7 @@ const fontSizes = {
 
 export const theme = createTheme({
   defaultRadius: 'xl',
+  breakpoints: BREAKPOINTS,
   colors: {
     yellow: [
       '#fff9e2',

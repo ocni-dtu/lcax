@@ -14,7 +14,7 @@ export const GuidePage = () => {
   return (
     <DocsLayout title={title} description={description}>
       <Title>{title}</Title>
-      <Text size={'sm'} c='gray.5' mb='lg'>
+      <Text size={'sm'} c='grey.5' mb='lg'>
         {description}
       </Text>
       <Content />
