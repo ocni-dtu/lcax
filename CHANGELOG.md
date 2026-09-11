@@ -1,3 +1,9 @@
+## [3.8.0](https://github.com/ocni-dtu/lcax/compare/v3.7.0...v3.8.0) (2026-09-11)
+
+### Features
+
+* **docs, config:** enhance docs setup and support utilities ([#147](https://github.com/ocni-dtu/lcax/issues/147)) ([9b2e5f0](https://github.com/ocni-dtu/lcax/commit/9b2e5f05bb585d243d716103d642d82cd45406ae))
+
 ## [3.7.0](https://github.com/ocni-dtu/lcax/compare/v3.6.0...v3.7.0) (2026-09-03)
 
 ### Features
