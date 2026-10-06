@@ -1,0 +1,99 @@
+---
+title: Use ÖKOBAUDAT with LCAx
+description: A guide on fetching ILCD+EPD datasets from ÖKOBAUDAT and converting them to LCAx EPDs. Covers the soda4LCA REST API, JSON exports, search, and convert_ilcd.
+keywords:
+  - ÖKOBAUDAT
+  - Ökobau
+  - ILCD+EPD
+  - soda4LCA
+  - environmental product declarations
+  - building LCA data
+---
+
+import { CodeHighlightTabs } from '@/components'
+import searchOekobauPY from './code/oekobau/search_oekobau.py?raw'
+import searchOekobauTS from './code/oekobau/searchOekobau.ts?raw'
+import searchOekobauRS from './code/oekobau/search_oekobau.rs?raw'
+import fetchOekobauPY from './code/oekobau/fetch_oekobau.py?raw'
+import fetchOekobauTS from './code/oekobau/fetchOekobau.ts?raw'
+import fetchOekobauRS from './code/oekobau/fetch_oekobau.rs?raw'
+
+## ÖKOBAUDAT
+
+[ÖKOBAUDAT](https://www.oekobaudat.de/en.html) is the German Federal Government's free LCA database for construction.
+It is maintained by the BBSR on behalf of the BMWSB and is the mandatory data basis for the Assessment System for
+Sustainable Building (BNB).
+
+The database contains generic datasets and manufacturer or association EPDs for construction products, plus transport,
+energy, and end-of-life processes. Datasets follow EN 15804 (A1 and A2). ÖKOBAUDAT is intended for building-level LCA,
+not for creating product EPDs.
+
+## ILCD+EPD data format
+
+ÖKOBAUDAT publishes machine-readable datasets in the **ILCD+EPD** format (ILCD extended for Environmental Product
+Declarations). The original encoding is XML; the soda4LCA service also returns the same process as **JSON**, which is
+what LCAx converts.
+
+LCAx does not replace ILCD+EPD. Use `convert_ilcd` / `convertIlcd` / `parse_ilcd` to turn an ÖKOBAUDAT process JSON
+document into an LCAx `EPD`.
+
+See also the [ILCD conversion guide](/guides/conversion/ilcd).
+
+## REST API (soda4LCA)
+
+ÖKOBAUDAT is served by a [soda4LCA](https://soda4lca.io) node. You can browse datasets on the website or request them
+programmatically.
+
+Base URL:
+
+`https://oekobaudat.de/OEKOBAU.DAT/resource`
+
+Useful endpoints:
+
+- **Search processes:**
+  `GET /processes?search=true&name={query}&format=json`
+- **Single process (JSON):**
+  `GET /processes/{uuid}?format=json&view=extended`
+- **Filter by EN 15804 amendment** using the `compliance` query parameter and the source UUID of A1 or A2
+  (documented for software developers on [oekobaudat.de](https://oekobaudat.de/anleitungen/softwareentwickler.html)).
+
+Copy the process UUID from a dataset page on [ÖKOBAUDAT](https://www.oekobaudat.de/en.html), or from a search result.
+Always request `format=json`. Prefer `view=extended` so impact results and conversions are included.
+
+Official developer documentation (ILCD+EPD schema and service interface) is linked from the
+[software developer instructions](https://oekobaudat.de/anleitungen/softwareentwickler.html).
+
+## Search, then convert
+
+Search returns a list of process metadata. Take a `uuid` from the result, fetch the extended JSON, then convert.
+
+<CodeHighlightTabs
+  code={[
+    { code: searchOekobauPY, language: 'py', fileName: 'search_oekobau.py' },
+    { code: searchOekobauTS, language: 'ts', fileName: 'searchOekobau.ts' },
+    { code: searchOekobauRS, language: 'rs', fileName: 'search_oekobau.rs' },
+  ]}
+/>
+
+## Fetch a known dataset
+
+If you already have a process UUID, download the ILCD+EPD JSON and convert it directly.
+
+<CodeHighlightTabs
+  code={[
+    { code: fetchOekobauPY, language: 'py', fileName: 'fetch_oekobau.py' },
+    { code: fetchOekobauTS, language: 'ts', fileName: 'fetchOekobau.ts' },
+    { code: fetchOekobauRS, language: 'rs', fileName: 'fetch_oekobau.rs' },
+  ]}
+/>
+
+The UUID in the example is the same process used in LCAx ILCD tests. Replace it with any process UUID from ÖKOBAUDAT.
+
+## Notes
+
+- LCAx expects **JSON**, not XML. If you export XML from the website, convert it to JSON first or use the API
+  `format=json` parameter.
+- Generic ÖKOBAUDAT datasets and EPD datasets both map to LCAx `EPD` objects; check `epd.subtype` and `epd.source`
+  after conversion.
+- Impact values live on `epd.impacts`, keyed by impact category and life-cycle module (for example GWP / A1–A3).
+- Data on ÖKOBAUDAT is free to use; responsibility for values remains with the dataset owner.
