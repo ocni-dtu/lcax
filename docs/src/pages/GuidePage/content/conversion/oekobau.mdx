@@ -11,10 +11,12 @@ keywords:
 ---
 
 import { CodeHighlightTabs } from '@/components'
+import searchOekobauPY from './code/oekobau/search_oekobau.py?raw'
+import searchOekobauTS from './code/oekobau/searchOekobau.ts?raw'
+import searchOekobauRS from './code/oekobau/search_oekobau.rs?raw'
 import fetchOekobauPY from './code/oekobau/fetch_oekobau.py?raw'
 import fetchOekobauTS from './code/oekobau/fetchOekobau.ts?raw'
 import fetchOekobauRS from './code/oekobau/fetch_oekobau.rs?raw'
-import searchOekobauPY from './code/oekobau/search_oekobau.py?raw'
 
 ## ÖKOBAUDAT
 
@@ -48,10 +50,10 @@ Base URL:
 
 Useful endpoints:
 
-- **Single process (JSON):**
-  `GET /processes/{uuid}?format=json&view=extended`
 - **Search processes:**
   `GET /processes?search=true&name={query}&format=json`
+- **Single process (JSON):**
+  `GET /processes/{uuid}?format=json&view=extended`
 - **Filter by EN 15804 amendment** using the `compliance` query parameter and the source UUID of A1 or A2
   (documented for software developers on [oekobaudat.de](https://oekobaudat.de/anleitungen/softwareentwickler.html)).
 
@@ -61,9 +63,21 @@ Always request `format=json`. Prefer `view=extended` so impact results and conve
 Official developer documentation (ILCD+EPD schema and service interface) is linked from the
 [software developer instructions](https://oekobaudat.de/anleitungen/softwareentwickler.html).
 
-## Fetch a dataset and convert to LCAx
+## Search, then convert
 
-The following example downloads one process as ILCD+EPD JSON and converts it to an LCAx EPD.
+Search returns a list of process metadata. Take a `uuid` from the result, fetch the extended JSON, then convert.
+
+<CodeHighlightTabs
+  code={[
+    { code: searchOekobauPY, language: 'py', fileName: 'search_oekobau.py' },
+    { code: searchOekobauTS, language: 'ts', fileName: 'searchOekobau.ts' },
+    { code: searchOekobauRS, language: 'rs', fileName: 'search_oekobau.rs' },
+  ]}
+/>
+
+## Fetch a known dataset
+
+If you already have a process UUID, download the ILCD+EPD JSON and convert it directly.
 
 <CodeHighlightTabs
   code={[
@@ -74,16 +88,6 @@ The following example downloads one process as ILCD+EPD JSON and converts it to 
 />
 
 The UUID in the example is the same process used in LCAx ILCD tests. Replace it with any process UUID from ÖKOBAUDAT.
-
-## Search, then convert
-
-Search returns a list of process metadata. Take a `uuid` from the result, fetch the extended JSON, then convert.
-
-<CodeHighlightTabs
-  code={[
-    { code: searchOekobauPY, language: 'py', fileName: 'search_oekobau.py' },
-  ]}
-/>
 
 ## Notes
 
