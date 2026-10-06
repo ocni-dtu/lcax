@@ -8,6 +8,8 @@ import CustomConverter from './content/conversion/custom.mdx'
 import { frontmatter as customFrontmatter } from './content/conversion/custom.mdx'
 import ILCD from './content/conversion/ilcd.mdx'
 import { frontmatter as ilcdFrontmatter } from './content/conversion/ilcd.mdx'
+import Oekobau from './content/conversion/oekobau.mdx'
+import { frontmatter as oekobauFrontmatter } from './content/conversion/oekobau.mdx'
 import LCAByg from './content/conversion/lcabyg.mdx'
 import { frontmatter as lcabygFrontmatter } from './content/conversion/lcabyg.mdx'
 import RealTime from './content/conversion/realtimelca.mdx'
@@ -47,6 +49,13 @@ export const guideIndex = {
           content: ILCD,
           title: ilcdFrontmatter.title,
           description: ilcdFrontmatter.description,
+        },
+        {
+          label: 'ÖKOBAUDAT',
+          slug: '/guides/conversion/oekobau',
+          content: Oekobau,
+          title: oekobauFrontmatter.title,
+          description: oekobauFrontmatter.description,
         },
         {
           label: 'LCAByg',
